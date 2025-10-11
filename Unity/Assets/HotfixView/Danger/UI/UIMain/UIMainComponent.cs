@@ -859,6 +859,8 @@ namespace ET
 
         public static void OnLanguageUpdate(this UIMainComponent self)
         {
+            self.UIMainChat.OnLanguageUpdate();
+
             self.UIMainSkillComponent.OnLanguageUpdate().Coroutine();
         }
 

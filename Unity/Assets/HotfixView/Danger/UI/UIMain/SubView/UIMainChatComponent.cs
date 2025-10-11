@@ -31,6 +31,8 @@ namespace ET
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenChat(); });
             self.ScrollRect = rc.Get<GameObject>("ScrollView").GetComponent<ScrollRect>();
+
+            self.OnLanguageUpdate();
         }
     }
 
@@ -85,6 +87,28 @@ namespace ET
 
             self.UpdatePosition().Coroutine();
             self.ImageButton.SetActive(self.ChatInfoList.Count < 4);
+        }
+
+        public static void OnLanguageUpdate(this UIMainChatComponent self)
+        {
+            Text[] text = self.UIMainChatItem.GetComponentsInChildren<Text>();
+            if (text != null && text.Length > 0)
+            {
+                for (int i = 0; i < text.Length; i++)
+                {
+                    if (!text[i].name.Equals("Text"))
+                    {
+                        continue;
+                    }
+
+                    text[i].fontSize = GameSettingLanguge.Language == 0 ? 20 : 16;
+                }
+            }
+
+            for (int i = 0; i < self.ChatUIList.Count; i++)
+            {
+                self.ChatUIList[i].OnLanguageUpdate();
+            }
         }
 
         public static async ETTask UpdatePosition(this UIMainChatComponent self)

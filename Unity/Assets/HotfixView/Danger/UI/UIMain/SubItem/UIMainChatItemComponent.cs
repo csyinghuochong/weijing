@@ -47,6 +47,23 @@ namespace ET
             self.ClickHanlder = action;
         }
 
+        public static void OnLanguageUpdate(this UIMainChatItemComponent self)
+        {
+            Text[] text = self.GameObject.GetComponentsInChildren<Text>();
+            if (text!=null && text.Length > 0)
+            {
+                for (int i = 0; i < text.Length; i++)
+                {
+                    if (!text[i].name.Equals("Text"))
+                    {
+                        continue;
+                    }
+
+                    text[i].fontSize = GameSettingLanguge.Language == 0 ? 20 : 16;
+                }
+            }
+        }
+
         public static  void UpdateHeight(this UIMainChatItemComponent self)
         {
             if (!self.UpdateHeight)
