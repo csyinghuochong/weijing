@@ -109,7 +109,11 @@ namespace ET
                 self.UIItemList[i].GameObject.transform.Find("Image_Recvived").gameObject.SetActive(rece);
                 string strtext = rece ? "已领取" : "待领取";
                 strtext = GameSettingLanguge.LoadLocalization(strtext);
-                self.UIItemList[i].Label_ItemName.GetComponent<Text>().text = strtext;  
+
+                GameObject Label_ItemName = self.UIItemList[i].Label_ItemName;
+                Label_ItemName.gameObject.SetActive(true);
+                Label_ItemName.GetComponent<Text>().color = Color.white;
+                Label_ItemName.GetComponent<Text>().text = strtext;  
             }
             int receNum = activityComponent.TimerChouKaReceiveIds.Count;
             if (receNum >= ConfigHelper.TimerChouKaRewardList.Count)
