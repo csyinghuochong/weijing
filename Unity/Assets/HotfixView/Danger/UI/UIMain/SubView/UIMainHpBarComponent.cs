@@ -38,7 +38,7 @@ namespace ET
         public GameObject RawImage;
         public GameObject Lab_BossLv;
         public GameObject Lab_BossName;
-        public GameObject Img_BossHp;
+        public Image Img_BossHp;
         public GameObject MonsterNode;
         public GameObject BossNode;
         public Text Lab_Owner;
@@ -80,7 +80,7 @@ namespace ET
             self.RawImage = rc.Get<GameObject>("Img_BossIcon");
             self.Lab_BossLv = rc.Get<GameObject>("Lab_BossLv");
             self.Lab_BossName = rc.Get<GameObject>("Lab_BossName");
-            self.Img_BossHp = rc.Get<GameObject>("Img_BossHp");
+            self.Img_BossHp = rc.Get<GameObject>("Img_BossHp").GetComponent<Image>();
             self.MonsterNode = rc.Get<GameObject>("MonsterNode");
             self.BossNode = rc.Get<GameObject>("BossNode");
             self.Lab_Owner = rc.Get<GameObject>("Lab_Owner").GetComponent<Text>();
@@ -374,7 +374,7 @@ namespace ET
             if (self.LockBossId == unit.Id)
             {
                 //更新Boss血条
-                self.Img_BossHp.transform.localScale = self.Vector3;
+                self.Img_BossHp.fillAmount = self.Vector3.x;
             }
         }
 

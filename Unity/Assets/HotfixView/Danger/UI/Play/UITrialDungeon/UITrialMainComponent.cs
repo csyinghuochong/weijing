@@ -135,7 +135,7 @@ namespace ET
             await TimerComponent.Instance.WaitAsync(500);
             UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             ui.GetComponent<UIMainComponent>().UIMainHpBar.BossNode.SetActive(false);
-            ui.GetComponent<UIMainComponent>().UIMainHpBar.Img_BossHp.transform.localScale = Vector2.one;
+            ui.GetComponent<UIMainComponent>().UIMainHpBar.Img_BossHp.fillAmount = 1f;
             ui.GetComponent<UIMainComponent>().LockTargetComponent.OnMainHeroMove();
         }
 
