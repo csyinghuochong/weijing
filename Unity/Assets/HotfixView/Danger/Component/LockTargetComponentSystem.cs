@@ -91,13 +91,15 @@ namespace ET
             }
         }
 
-        public static void OnUnitRemove(this LockTargetComponent self, List<long> ids)
+        public static bool OnUnitRemove(this LockTargetComponent self, List<long> ids)
         {
             if (ids.Contains(self.LastLockId))
             {
                 self.LastLockId = 0;
                 self.HideLockEffect();
+                return true;
             }
+            return false;
         }
 
         public static void  CheckLockEffect(this LockTargetComponent self)

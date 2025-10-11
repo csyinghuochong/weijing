@@ -422,6 +422,11 @@ namespace ET
             self.Button_ZhuaPu.SetActive(monsterConfig.MonsterSonType == 58 || monsterConfig.MonsterSonType == 59);
         }
 
+        public static void UpdateButton_ZhuaPu(this UIMainSkillComponent self, bool show)
+        {
+            self.Button_ZhuaPu.SetActive(show);
+        }
+
         public static void OnButton_ZhuaPu(this UIMainSkillComponent self)
         {
             long lockTargetId = self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId;

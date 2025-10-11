@@ -10,7 +10,13 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.UnitRemove args = cls as EventType.UnitRemove;
-            args.ZoneScene.GetComponent<LockTargetComponent>().OnUnitRemove(args.RemoveIds);
+            bool removelock = args.ZoneScene.GetComponent<LockTargetComponent>().OnUnitRemove(args.RemoveIds);
+
+            if (removelock)
+            {
+                UI uimain = UIHelper.GetUI(args.ZoneScene, UIType.UIMain);
+                uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UpdateButton_ZhuaPu(false);
+            }
         }
 
     }
