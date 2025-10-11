@@ -166,6 +166,11 @@ namespace ET
                 gameObject.transform.SetParent(root);
                 m_soundclips.Add(gameObject);
                 audio.clip = audioClip;
+                if (clipName.Contains("Run"))
+                {
+                    audio.loop = true;
+                }
+
                 gameObject.GetComponent<AudioSource>().volume = volume * SoundVolume;
                 gameObject.GetComponent<AudioSource>().Play();
             }
