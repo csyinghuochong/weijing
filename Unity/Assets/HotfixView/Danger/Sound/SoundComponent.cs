@@ -87,9 +87,7 @@ namespace ET
 
         public void PlayRunSound()
         {
-#if UNITY_EDITOR
             PlayClip("Game/Run", "map3").Coroutine();
-#endif
         }
 
         public void StopRunSound()
