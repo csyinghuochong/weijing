@@ -99,7 +99,9 @@ namespace ET
         public Text TextPing;
         public Text TextMessage;
         public GameObject Btn_LvReward;
+        public GameObject Btn_LvRewardEffect;
         public GameObject Btn_KillMonsterReward;
+        public GameObject Btn_KillMonsterRewardEffect;
         public GameObject MailHintTip;
         public GameObject UIStall;
         public GameObject Btn_Friend;
@@ -294,10 +296,12 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_NewYear, self.OnButton_NewYear);
 
             self.Btn_LvReward = rc.Get<GameObject>("Btn_LvReward");
+            self.Btn_LvRewardEffect = self.Btn_LvReward.transform.Find("Effect").gameObject;
             ButtonHelp.AddListenerEx(self.Btn_LvReward.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemButton"),
                 () => { self.OnBtn_LvReward().Coroutine(); });
 
             self.Btn_KillMonsterReward = rc.Get<GameObject>("Btn_KillMonsterReward");
+            self.Btn_KillMonsterRewardEffect = self.Btn_KillMonsterReward.transform.Find("Effect").gameObject;
             ButtonHelp.AddListenerEx(self.Btn_KillMonsterReward.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemButton"),
                 () => { self.OnBtn_KillMonsterReward().Coroutine(); });
             
@@ -2601,18 +2605,40 @@ namespace ET
                 rc.Get<GameObject>("Label_ItemNum").GetComponent<Text>().text = item[1];
 
                 string color = "FFFFFF";
+                string showstr = string.Empty;
                 if (userInfoComponent.UserInfo.Lv >= newLv)
                 {
                     color = "C4FF00";
+                    showstr = GameSettingLanguge.LoadLocalization("可领取");
+                    showstr = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}</color>"), color, showstr);
+                    self.ShowShanShuo2Effect(self.Btn_LvRewardEffect, true);
+                }
+                else
+                {
+                    showstr = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}级领取</color>"), color, newLv);
+                    self.ShowShanShuo2Effect(self.Btn_LvRewardEffect, false);
                 }
                 rc.Get<GameObject>("LvText (1)").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>等级奖励</color>"), color);
-                rc.Get<GameObject>("LvText").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}级领取</color>"), color, newLv);
+                rc.Get<GameObject>("LvText").GetComponent<Text>().text = showstr;
                 self.Btn_LvReward.SetActive(true);
             }
             else
             {
                 self.Btn_LvReward.SetActive(false);
             }
+        }
+
+        public static  void ShowShanShuo2Effect(this UIMainComponent self, GameObject effect, bool show)
+        {
+            if (show && effect.transform.childCount == 0)
+            {
+                string path = ABPathHelper.GetEffetPath("UIEffect/Effect_ShanShuo_2");
+                GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+                GameObject go = GameObject.Instantiate(prefab);
+                UICommonHelper.SetParent(go, effect);
+                effect.transform.localScale = Vector3.one * 60;
+            }
+            effect.SetActive(show);
         }
 
         public static async ETTask OnBtn_KillMonsterReward(this UIMainComponent self)
@@ -2724,14 +2750,22 @@ namespace ET
                 rc.Get<GameObject>("Label_ItemNum").GetComponent<Text>().text = item[1];
                 
                 string color = "FFFFFF";
+                string showstr = string.Empty;
                 if (numericComponent.GetAsInt(NumericType.KillMonsterNumber) >= newNum)
                 {
                     color = "C4FF00";
+                    showstr = GameSettingLanguge.LoadLocalization("可领取");
+                    self.ShowShanShuo2Effect(self.Btn_KillMonsterRewardEffect, true);
+                }
+                else
+                {
+                    showstr =  $"{numericComponent.GetAsInt(NumericType.KillMonsterNumber)}/{newNum}";
+                    self.ShowShanShuo2Effect(self.Btn_KillMonsterRewardEffect, false) ;
                 }
 
                 rc.Get<GameObject>("LvText (1)").GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>击败怪物</color>"), color);
                 rc.Get<GameObject>("LvText").GetComponent<Text>().text =
-                        $"<color=#{color}>{numericComponent.GetAsInt(NumericType.KillMonsterNumber)}/{newNum}</color>";
+                        $"<color=#{color}>{showstr}</color>";
                 self.Btn_KillMonsterReward.SetActive(true);
             }
             else
