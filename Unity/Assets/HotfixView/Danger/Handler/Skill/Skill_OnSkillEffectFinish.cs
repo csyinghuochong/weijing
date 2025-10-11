@@ -16,7 +16,7 @@ namespace ET
             {
                 return;
             }
-            effectViewComponent.RemoveEffectId(args.EffectInstanceId);
+            effectViewComponent.RemoveEffectInstance(args.EffectInstanceId);
         }
     }
 }

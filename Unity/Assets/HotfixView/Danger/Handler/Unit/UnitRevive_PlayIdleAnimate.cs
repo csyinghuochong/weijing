@@ -13,6 +13,7 @@ namespace ET
             unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmIdleState);
             unit.GetComponent<UIUnitHpComponent>()?.OnRevive();
             unit.GetComponent<GameObjectComponent>()?.OnRevive();
+            unit.GetComponent<EffectViewComponent>().RemoveEffectById(91000316);
         }
     }
 }

@@ -27,24 +27,16 @@ namespace ET
                 }
 
                 unit.ZoneScene().GetComponent<LockTargetComponent>().OnUnitDead(unit);
+                unit.GetComponent<EffectViewComponent>()?.OnDispose();
 
                 MapComponent mapComponent = unit.ZoneScene().GetComponent<MapComponent>();
                 UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-                if (unit.Type == UnitType.Player)
+                if (unit.Type == UnitType.Player && mapComponent.SceneTypeEnum != SceneTypeEnum.Demon)
                 {
-                    unit.GetComponent<EffectViewComponent>()?.OnDispose();
-
-                    if (mapComponent.SceneTypeEnum != SceneTypeEnum.Demon)
-                    {
-                        unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
-                        ShowRevive(unit, mapComponent).Coroutine();
-                    }
+                    unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
+                    ShowRevive(unit, mapComponent).Coroutine();
                 }
-                else
-                {
-                    unit.GetComponent<EffectViewComponent>()?.OnDispose();
-                }
-
+              
                 //播放开启宝箱特效
                 if (unit.IsChest())
                 {
@@ -199,7 +191,8 @@ namespace ET
 
             unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmHui);
             unit.GetComponent<UIUnitHpComponent>()?.OnDead();
-            unit.GetComponent<GameObjectComponent>().OnHui();
+            unit.GetComponent<GameObjectComponent>()?.OnDead();
+            FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000316);
         }
     }
 }

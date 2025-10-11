@@ -42,6 +42,12 @@ namespace ET
 
         public static void OnDispose(this EffectViewComponent self)
         {
+            self.OnClear();
+            TimerComponent.Instance?.Remove(ref self.Timer);
+        }
+
+        public static void OnClear(this EffectViewComponent self)
+        {
             if (self.Effects != null)
             {
                 for (int i = self.Effects.Count - 1; i >= 0; i--)
@@ -53,9 +59,9 @@ namespace ET
                 }
                 self.Effects.Clear();
             }
-          
-            TimerComponent.Instance?.Remove(ref self.Timer);
+
         }
+
 
         public static void RemoveEffectType(this EffectViewComponent self, int effectTypeEnum)
         {
@@ -71,11 +77,25 @@ namespace ET
             }
         }
 
-        public static void RemoveEffectId(this EffectViewComponent self, long instanceId)
+        public static void RemoveEffectInstance(this EffectViewComponent self, long instanceId)
         {
             for (int i = self.Effects.Count - 1; i >= 0; i--)
             {
                 if (self.Effects[i].EffectData.InstanceId == instanceId)
+                {
+                    AEffectHandler aEffectHandler = self.Effects[i];
+                    aEffectHandler.OnFinished();
+                    aEffectHandler.Dispose();
+                    self.Effects.RemoveAt(i);
+                }
+            }
+        }
+
+        public static void RemoveEffectById(this EffectViewComponent self, int effectId)
+        {
+            for (int i = self.Effects.Count - 1; i >= 0; i--)
+            {
+                if (self.Effects[i].EffectData.EffectId == effectId)
                 {
                     AEffectHandler aEffectHandler = self.Effects[i];
                     aEffectHandler.OnFinished();

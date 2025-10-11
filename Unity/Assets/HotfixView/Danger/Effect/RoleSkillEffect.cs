@@ -162,8 +162,11 @@ namespace ET
                 case 2:
                     effectFileName = "SkillHitEffect/";
                     break;
-                //技能特效
+                //场景特效
                 case 3:
+                    effectFileName = "ScenceEffect/";
+                    break;
+                default:
                     effectFileName = "SkillEffect/";
                     break;
             }

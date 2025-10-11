@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ET
 {
@@ -84,7 +83,7 @@ namespace ET
             }
             if (!string.IsNullOrEmpty(self.UnitAssetsPath))
             {
-                self.OnRevive();
+                self.OnReset();
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.UnitAssetsPath, self.GameObject);
             }
             self.GameObject = null;
@@ -1082,7 +1081,11 @@ namespace ET
         }
 
 
-        public static void OnHui(this GameObjectComponent self)
+        /// <summary>
+        /// boss死亡
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OnDead(this GameObjectComponent self)
         {
             Transform transform = self.GameObject.transform;
             for (int i = 0; i < transform.childCount; i++)
@@ -1096,6 +1099,11 @@ namespace ET
         }
 
         public static void OnRevive(this GameObjectComponent self)
+        {
+            self.OnReset();
+        }
+
+        public static void OnReset(this GameObjectComponent self)
         {
             if (self.GameObject == null)
             {
