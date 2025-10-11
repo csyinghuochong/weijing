@@ -403,6 +403,12 @@ namespace ET
             return false;
         }
 
+         public static  void OnMoveToJingLing(this OperaComponent self, long unitid)
+        {
+            UI uimain = UIHelper.GetUI( self.ZoneScene(), UIType.UIMain );
+            uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnButton_ZhuaPu();
+        }
+
         public static async ETTask OnClickMonsterItem(this OperaComponent self, long unitid)
         {
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();

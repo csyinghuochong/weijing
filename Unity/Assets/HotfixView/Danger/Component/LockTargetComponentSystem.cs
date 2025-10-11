@@ -144,7 +144,7 @@ namespace ET
             if (self.AttackTarget == 0)
             {
                 //选择最近的
-                self.LockTargetUnit();
+                self.LockTargetUnit(false, true);
             }
             else
             {
@@ -265,7 +265,7 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="random"></param>
         /// <returns></returns>
-        public static long LockTargetUnit(this LockTargetComponent self, bool random = false)
+        public static long LockTargetUnit(this LockTargetComponent self, bool random = false, bool attack = false)
         {
             Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (!random && self.AttackTarget == 1)
@@ -293,8 +293,10 @@ namespace ET
                 }
                 else
                 {
-                    ///非挂机状态下可以选中精灵
-                    if (!main.IsCanAttackUnit(unit) && !unit.IsJingLingMonster())
+                    //普通攻击不能选中精灵， 切换目标可以选中精灵
+
+                    bool teshu = !attack && unit.IsJingLingMonster();
+                    if (!main.IsCanAttackUnit(unit) &&!teshu)
                     {
                         continue;
                     }

@@ -503,13 +503,14 @@ namespace ET
                 //{
                 //    return -1;
                 //}
-                distance = i;
+                
                 Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.BuildingLayer);
                 if (hit.collider != null)
                 {
                     Log.Debug($" hit.collider != null: i : {i}   x: {target.x}  z:{target.z} ");
                     break;
                 }
+                distance = i;
             }
 
             return distance * intveral;

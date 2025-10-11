@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ET
 {
@@ -16,7 +12,7 @@ namespace ET
             List<Unit> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
-                if (units[i].Type == UnitType.Npc || units[i].IsChest())
+                if (units[i].Type == UnitType.Npc || units[i].IsChest() || units[i].IsJingLingMonster())
                 {
                     float t_distance = PositionHelper.Distance2D(main, units[i]);
                     if (t_distance < distance)
@@ -32,14 +28,21 @@ namespace ET
                 return;
             }
 
+            OperaComponent operaComponent = zoneScene.CurrentScene().GetComponent<OperaComponent>();
             if (npc.Type == UnitType.Npc)
             {
-                zoneScene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc.ConfigId).Coroutine();
+                operaComponent.OnClickNpc(npc.ConfigId).Coroutine();
             }
 
-            if (npc.Type == UnitType.Monster)
+            if (npc.IsChest())
             {
-                zoneScene.CurrentScene().GetComponent<OperaComponent>().OnClickChest(npc.Id);
+                operaComponent.OnClickChest(npc.Id);
+            }
+
+            if (npc.IsJingLingMonster())
+            {
+                operaComponent.OnClickMonsterItem(npc.Id).Coroutine();
+                operaComponent.OnMoveToJingLing(npc.Id);
             }
         }
     }
