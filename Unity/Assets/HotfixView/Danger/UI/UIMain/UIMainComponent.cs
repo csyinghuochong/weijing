@@ -1693,6 +1693,8 @@ namespace ET
         public static void OnPetFightSet(this UIMainComponent self)
         {
             self.UIRoleHead.OnPetFightSet();
+
+            self.UIMainSkillComponent.UpdatePetButton();
         }
 
         public static void OnUpdateRoleName(this UIMainComponent self)

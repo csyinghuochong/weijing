@@ -11,6 +11,7 @@ namespace ET
         public Image Image_Switch_CD;
         public Image Image_Switch_0;
         public GameObject Btn_PetTarget;
+        public GameObject Btn_PetChuZhan;
         public GameObject Button_Switch;
         public GameObject Transforms;
         public GameObject Normal;
@@ -32,6 +33,7 @@ namespace ET
 
         public float LastLockTime;
         public float LastPickTime;
+        public long LastFightPetId;
 
         public long SwitchCDEndTime;
         public List<string> AssetPath = new List<string>();
@@ -90,6 +92,9 @@ namespace ET
 
             self.Btn_PetTarget = rc.Get<GameObject>("Btn_PetTarget");
             ButtonHelp.AddListenerEx(self.Btn_PetTarget, () => { self.OnBtn_PetTarget().Coroutine();  });
+
+            self.Btn_PetChuZhan = rc.Get<GameObject>("Btn_PetChuZhan");
+            ButtonHelp.AddListenerEx(self.Btn_PetChuZhan, () => { self.OnBtn_PetChuZhan().Coroutine(); });
 
             self.Btn_CancleSkill.SetActive(false);
             ButtonHelp.AddEventTriggers(self.Btn_CancleSkill, (PointerEventData pdata) => { self.OnEnterCancelButton(); }, EventTriggerType.PointerEnter);
@@ -152,6 +157,52 @@ namespace ET
             }
             C2M_PetTargetLockRequest  request  = new C2M_PetTargetLockRequest() { TargetId = lockId };
             M2C_PetTargetLockResponse response = (M2C_PetTargetLockResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+        }
+
+        public static async ETTask OnBtn_PetChuZhan(this UIMainSkillComponent self)
+        {
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            long fightpetid = petComponent.FightPetId;
+            if (fightpetid == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("暂无出战宠物!"));
+                return;
+            }
+            await  NetHelper.RequestPetFight(self.DomainScene(), fightpetid,1);
+        }
+
+
+        //没有宠物并且没有宠物出战  宠物锁定宠物出战按钮都隐藏
+        //如果有宠物并且出战了      宠物没死亡显示宠物锁定按钮 宠物已死亡显示宠物出战按钮
+        public static void UpdatePetButton(this UIMainSkillComponent self)
+        {
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            long fightpetid = petComponent.FightPetId;
+            if(fightpetid == 0)
+            {
+                self.Btn_PetChuZhan.SetActive(false);
+                self.Btn_PetTarget.SetActive(false);
+                return;
+            }
+
+            Unit unitpet = null;
+            UnitComponent unitComponent = self.ZoneScene().CurrentScene()?.GetComponent<UnitComponent>();
+            if (unitComponent != null )
+            {
+                unitpet = unitComponent.Get(fightpetid);
+            }
+            if (unitpet == null || unitpet.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
+            {
+                //self.Btn_PetChuZhan.SetActive(false);
+                //self.Btn_PetTarget.SetActive(false);
+                self.Btn_PetChuZhan.SetActive(true);
+                self.Btn_PetTarget.SetActive(false);
+            }
+            else
+            {
+                self.Btn_PetChuZhan.SetActive(false);
+                self.Btn_PetTarget.SetActive(true);
+            }
         }
 
         public static async ETTask OnButton_Switch(this UIMainSkillComponent self)
@@ -658,6 +709,7 @@ namespace ET
             self.OnSkillCDUpdate();
             self.CheckJingLingFunction();
             self.OnUpdateButton();
+            self.UpdatePetButton();
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
                 self.UISkillGirdList[i].RemoveSkillInfoShow();

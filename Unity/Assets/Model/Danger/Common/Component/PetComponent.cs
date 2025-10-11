@@ -7,6 +7,9 @@ namespace ET
         public int PetFubeRewardId = 0;
 
         public int PetShouHuActive = 0;
+
+        public long FightPetId = 0;
+
         public List<long> TeamPetList = new List<long>() { };       //宠物天梯
         public List<long> PetFormations = new List<long>() { };     //宠物副本
         public List<long> PetShouHuList = new List<long>() { };     //守护列表（0-14宠物id  15/16/17矿场ID）

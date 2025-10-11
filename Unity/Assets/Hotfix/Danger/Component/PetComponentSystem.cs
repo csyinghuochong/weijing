@@ -25,6 +25,8 @@ namespace ET
             self.PetMingList = m2C_RolePetList.PetMingList;
             self.PetMingPosition = m2C_RolePetList.PetMingPosition;
             self.RolePetBag = m2C_RolePetList.RolePetBag;
+
+            self.FightPetId = self.GetFightPetId();
         }
 
         public static void OnRecvRolePetUpdate(this PetComponent self, M2C_RolePetUpdate m2C_RolePetUpdate)
@@ -138,6 +140,11 @@ namespace ET
                 {
                     fightpet.PetStatus = 0;
                 }
+                self.FightPetId = petId;
+            }
+            else
+            {
+                self.FightPetId = 0;
             }
             RolePetInfo rolePetInfo = self.GetPetInfoByID(petId);
             rolePetInfo.PetStatus = fight;

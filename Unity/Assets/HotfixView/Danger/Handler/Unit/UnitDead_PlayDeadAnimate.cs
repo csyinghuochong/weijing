@@ -99,7 +99,7 @@ namespace ET
                     unit.ZoneScene().GetComponent<BattleMessageComponent>().CancelRideTargetUnit(unit.Id);
                 }
 
-                //死亡的是怪物， 则清空一下
+                //死亡的是宠物， 则清空一下
                 if (unit.Type == UnitType.Pet && unit.GetMasterId() == UnitHelper.GetMyUnitId(unit.ZoneScene()))
                 {
                      Dictionary<long, long> PetFightTime = unit.ZoneScene().GetComponent<BattleMessageComponent>().PetFightCD;
@@ -107,6 +107,8 @@ namespace ET
                     {
                         PetFightTime[unit.Id] = 0;
                     }
+
+                    uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UpdatePetButton();
                 }
 
                 //记录tap数据
