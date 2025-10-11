@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 05075d0c53e27b443876e268e17a4f15, type: 2}
 --- !u!1 &576016
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 6888829}
   m_Layer: 0
   m_Name: Tree_A10 (26)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 10101729}
   m_Layer: 0
   m_Name: Tree_A12 (12)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 16912815}
   m_Layer: 0
   m_Name: Tree_A10 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1162,7 +1162,7 @@ GameObject:
   - component: {fileID: 23218898}
   m_Layer: 0
   m_Name: Tree_A10 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1267,7 +1267,7 @@ GameObject:
   - component: {fileID: 23752527}
   m_Layer: 0
   m_Name: Tree_A10 (19)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1372,7 +1372,7 @@ GameObject:
   - component: {fileID: 23965189}
   m_Layer: 0
   m_Name: Tree_A10 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1855,7 +1855,7 @@ GameObject:
   - component: {fileID: 29815482}
   m_Layer: 0
   m_Name: Tree_A13 (21)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2605,7 +2605,7 @@ GameObject:
   - component: {fileID: 42856670}
   m_Layer: 0
   m_Name: Tree_A10
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2710,7 +2710,7 @@ GameObject:
   - component: {fileID: 44250957}
   m_Layer: 0
   m_Name: Tree_A9 (48)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2898,7 +2898,7 @@ GameObject:
   - component: {fileID: 48283938}
   m_Layer: 0
   m_Name: Tree_A13 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3380,7 +3380,7 @@ GameObject:
   - component: {fileID: 53562263}
   m_Layer: 0
   m_Name: Tree_A13 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3485,7 +3485,7 @@ GameObject:
   - component: {fileID: 54317973}
   m_Layer: 0
   m_Name: Tree_A10 (44)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4265,7 +4265,7 @@ GameObject:
   - component: {fileID: 60251260}
   m_Layer: 0
   m_Name: Tree_A13 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4937,7 +4937,7 @@ GameObject:
   - component: {fileID: 64663810}
   m_Layer: 0
   m_Name: Tree_A10 (31)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5258,7 +5258,7 @@ GameObject:
   - component: {fileID: 72678077}
   m_Layer: 0
   m_Name: Tree_A9 (24)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5363,7 +5363,7 @@ GameObject:
   - component: {fileID: 73164246}
   m_Layer: 0
   m_Name: Tree_A10 (51)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5634,7 +5634,7 @@ GameObject:
   - component: {fileID: 77912376}
   m_Layer: 0
   m_Name: Tree_A12 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5739,7 +5739,7 @@ GameObject:
   - component: {fileID: 78626984}
   m_Layer: 0
   m_Name: Tree_A13 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6502,7 +6502,7 @@ GameObject:
   - component: {fileID: 85949734}
   m_Layer: 0
   m_Name: Tree_A13
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6879,7 +6879,7 @@ GameObject:
   - component: {fileID: 91666080}
   m_Layer: 0
   m_Name: Tree_A12 (10)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7196,7 +7196,7 @@ GameObject:
   - component: {fileID: 92860443}
   m_Layer: 0
   m_Name: Tree_A10 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8011,7 +8011,7 @@ GameObject:
   - component: {fileID: 104598258}
   m_Layer: 0
   m_Name: Tree_A9 (25)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8199,7 +8199,7 @@ GameObject:
   - component: {fileID: 108582883}
   m_Layer: 0
   m_Name: Tree_A9 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8304,7 +8304,7 @@ GameObject:
   - component: {fileID: 109411270}
   m_Layer: 0
   m_Name: Tree_A12 (25)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8575,7 +8575,7 @@ GameObject:
   - component: {fileID: 113704748}
   m_Layer: 0
   m_Name: Tree_A9 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8680,7 +8680,7 @@ GameObject:
   - component: {fileID: 115954048}
   m_Layer: 0
   m_Name: Tree_A10 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8785,7 +8785,7 @@ GameObject:
   - component: {fileID: 116064798}
   m_Layer: 0
   m_Name: Tree_A13 (33)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8890,7 +8890,7 @@ GameObject:
   - component: {fileID: 116317299}
   m_Layer: 0
   m_Name: Tree_A10 (11)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10305,7 +10305,7 @@ GameObject:
   - component: {fileID: 130009965}
   m_Layer: 0
   m_Name: Tree_A10 (38)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10765,7 +10765,7 @@ GameObject:
   - component: {fileID: 138077210}
   m_Layer: 0
   m_Name: Tree_A13 (14)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10870,7 +10870,7 @@ GameObject:
   - component: {fileID: 139713817}
   m_Layer: 0
   m_Name: Tree_A12 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11224,7 +11224,7 @@ GameObject:
   - component: {fileID: 149506771}
   m_Layer: 0
   m_Name: Tree_A12 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11329,7 +11329,7 @@ GameObject:
   - component: {fileID: 151231965}
   m_Layer: 0
   m_Name: Tree_A9 (31)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11434,7 +11434,7 @@ GameObject:
   - component: {fileID: 151414944}
   m_Layer: 0
   m_Name: Tree_A13 (18)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12083,7 +12083,7 @@ GameObject:
   - component: {fileID: 157824130}
   m_Layer: 0
   m_Name: Buildings_C1 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12189,7 +12189,7 @@ GameObject:
   - component: {fileID: 158546129}
   m_Layer: 0
   m_Name: Tree_A12 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12709,7 +12709,7 @@ GameObject:
   - component: {fileID: 167073146}
   m_Layer: 0
   m_Name: Tree_A10 (48)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12919,7 +12919,7 @@ GameObject:
   - component: {fileID: 167996262}
   m_Layer: 0
   m_Name: Tree_A10 (22)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13271,7 +13271,7 @@ GameObject:
   - component: {fileID: 171549531}
   m_Layer: 0
   m_Name: Tree_A9 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13559,9 +13559,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1136374430}
     m_Modifications:
+    - target: {fileID: 105778, guid: 294e7d7b67910624fbb4b5eba194de51, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 105778, guid: 294e7d7b67910624fbb4b5eba194de51, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 151980, guid: 294e7d7b67910624fbb4b5eba194de51, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 170068, guid: 294e7d7b67910624fbb4b5eba194de51, type: 3}
       propertyPath: m_Name
       value: building_weapon_lv1
+      objectReference: {fileID: 0}
+    - target: {fileID: 170068, guid: 294e7d7b67910624fbb4b5eba194de51, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 170068, guid: 294e7d7b67910624fbb4b5eba194de51, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 177680, guid: 294e7d7b67910624fbb4b5eba194de51, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 177680, guid: 294e7d7b67910624fbb4b5eba194de51, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189666, guid: 294e7d7b67910624fbb4b5eba194de51, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 189666, guid: 294e7d7b67910624fbb4b5eba194de51, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 456530, guid: 294e7d7b67910624fbb4b5eba194de51, type: 3}
       propertyPath: m_RootOrder
@@ -13632,7 +13668,7 @@ GameObject:
   - component: {fileID: 179400553}
   m_Layer: 0
   m_Name: Tree_A10 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14242,7 +14278,7 @@ GameObject:
   - component: {fileID: 185203616}
   m_Layer: 0
   m_Name: plant_tree_004_02
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14538,7 +14574,7 @@ GameObject:
   - component: {fileID: 185413032}
   m_Layer: 0
   m_Name: Tree_A13 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14891,7 +14927,7 @@ GameObject:
   - component: {fileID: 189049075}
   m_Layer: 0
   m_Name: plant_tree_004_02
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15330,7 +15366,7 @@ GameObject:
   - component: {fileID: 199896294}
   m_Layer: 0
   m_Name: Tree_A12 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15601,7 +15637,7 @@ GameObject:
   - component: {fileID: 200405722}
   m_Layer: 0
   m_Name: Tree_A10 (26)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16038,7 +16074,7 @@ GameObject:
   - component: {fileID: 206027682}
   m_Layer: 0
   m_Name: Tree_A10 (10)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16143,7 +16179,7 @@ GameObject:
   - component: {fileID: 207400493}
   m_Layer: 0
   m_Name: Tree_A10
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17266,7 +17302,7 @@ GameObject:
   - component: {fileID: 226311571}
   m_Layer: 0
   m_Name: Tree_A10 (62)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18164,7 +18200,7 @@ GameObject:
   - component: {fileID: 243152640}
   m_Layer: 0
   m_Name: Tree_A13 (49)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18269,7 +18305,7 @@ GameObject:
   - component: {fileID: 243669424}
   m_Layer: 0
   m_Name: Tree_A12 (16)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18480,7 +18516,7 @@ GameObject:
   - component: {fileID: 245778833}
   m_Layer: 0
   m_Name: Tree_A13 (11)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18940,7 +18976,7 @@ GameObject:
   - component: {fileID: 252032544}
   m_Layer: 0
   m_Name: Tree_A13 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19151,7 +19187,7 @@ GameObject:
   - component: {fileID: 254876602}
   m_Layer: 0
   m_Name: Tree_A10 (15)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20869,7 +20905,7 @@ GameObject:
   - component: {fileID: 278196589}
   m_Layer: 0
   m_Name: Tree_A13 (13)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22084,7 +22120,7 @@ GameObject:
   - component: {fileID: 291372964}
   m_Layer: 0
   m_Name: Tree_A12 (23)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22461,7 +22497,7 @@ GameObject:
   - component: {fileID: 300646603}
   m_Layer: 0
   m_Name: Tree_A10 (24)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22566,7 +22602,7 @@ GameObject:
   - component: {fileID: 301017025}
   m_Layer: 0
   m_Name: Tree_A12 (17)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22883,7 +22919,7 @@ GameObject:
   - component: {fileID: 303598148}
   m_Layer: 0
   m_Name: Tree_A12 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23320,7 +23356,7 @@ GameObject:
   - component: {fileID: 310833237}
   m_Layer: 0
   m_Name: Tree_A9 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23792,7 +23828,7 @@ GameObject:
   - component: {fileID: 316902896}
   m_Layer: 0
   m_Name: Tree_A13 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24229,7 +24265,7 @@ GameObject:
   - component: {fileID: 324174416}
   m_Layer: 0
   m_Name: Buildings_C1 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24985,7 +25021,7 @@ GameObject:
   - component: {fileID: 331190845}
   m_Layer: 0
   m_Name: Tree_A10 (12)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25256,7 +25292,7 @@ GameObject:
   - component: {fileID: 338217293}
   m_Layer: 0
   m_Name: Tree_A9 (28)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25549,7 +25585,7 @@ GameObject:
   - component: {fileID: 344894746}
   m_Layer: 0
   m_Name: Tree_A10 (18)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26146,7 +26182,7 @@ GameObject:
   - component: {fileID: 351969440}
   m_Layer: 0
   m_Name: Tree_A9 (73)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26334,7 +26370,7 @@ GameObject:
   - component: {fileID: 353648194}
   m_Layer: 0
   m_Name: Tree_A12 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26651,7 +26687,7 @@ GameObject:
   - component: {fileID: 355154300}
   m_Layer: 0
   m_Name: Tree_A9 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26839,7 +26875,7 @@ GameObject:
   - component: {fileID: 356815610}
   m_Layer: 0
   m_Name: Tree_A10 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26944,7 +26980,7 @@ GameObject:
   - component: {fileID: 357433315}
   m_Layer: 0
   m_Name: Tree_A13 (53)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27184,6 +27220,12 @@ Transform:
   - {fileID: 396160364}
   - {fileID: 1257240211}
   - {fileID: 867059337}
+  - {fileID: 754980706}
+  - {fileID: 1213786989}
+  - {fileID: 1687008626}
+  - {fileID: 1059073482}
+  - {fileID: 2056241420}
+  - {fileID: 993575883}
   - {fileID: 950334602}
   - {fileID: 1321900302}
   - {fileID: 1066597399}
@@ -27341,7 +27383,7 @@ GameObject:
   - component: {fileID: 363077774}
   m_Layer: 0
   m_Name: Tree_A12 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28071,7 +28113,7 @@ GameObject:
   - component: {fileID: 370473070}
   m_Layer: 0
   m_Name: Tree_A12
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28448,7 +28490,7 @@ GameObject:
   - component: {fileID: 373136899}
   m_Layer: 0
   m_Name: Tree_A10 (35)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29097,7 +29139,7 @@ GameObject:
   - component: {fileID: 381632153}
   m_Layer: 0
   m_Name: Tree_A13 (36)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29308,7 +29350,7 @@ GameObject:
   - component: {fileID: 384426755}
   m_Layer: 0
   m_Name: Tree_A13 (28)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29413,7 +29455,7 @@ GameObject:
   - component: {fileID: 386928569}
   m_Layer: 0
   m_Name: Tree_A9 (9)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30166,7 +30208,7 @@ GameObject:
   - component: {fileID: 397101383}
   m_Layer: 0
   m_Name: Tree_A12 (22)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30354,7 +30396,7 @@ GameObject:
   - component: {fileID: 398996039}
   m_Layer: 0
   m_Name: Tree_A10 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30814,7 +30856,7 @@ GameObject:
   - component: {fileID: 402975314}
   m_Layer: 0
   m_Name: Tree_A10 (29)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32876,7 +32918,7 @@ GameObject:
   - component: {fileID: 437206752}
   m_Layer: 0
   m_Name: plant_tree_004_02
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33043,7 +33085,7 @@ GameObject:
   - component: {fileID: 440346351}
   m_Layer: 0
   m_Name: Tree_A13 (35)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33342,7 +33384,7 @@ GameObject:
   - component: {fileID: 444585834}
   m_Layer: 0
   m_Name: Tree_A13 (15)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33613,7 +33655,7 @@ GameObject:
   - component: {fileID: 449100484}
   m_Layer: 0
   m_Name: Tree_A12 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34195,7 +34237,7 @@ GameObject:
   - component: {fileID: 461661882}
   m_Layer: 0
   m_Name: Tree_A10 (40)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34300,7 +34342,7 @@ GameObject:
   - component: {fileID: 462141045}
   m_Layer: 0
   m_Name: Tree_A9 (20)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34700,7 +34742,7 @@ GameObject:
   - component: {fileID: 467568466}
   m_Layer: 0
   m_Name: Tree_A10 (28)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34888,7 +34930,7 @@ GameObject:
   - component: {fileID: 472497064}
   m_Layer: 0
   m_Name: Tree_A12 (18)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35076,7 +35118,7 @@ GameObject:
   - component: {fileID: 473243216}
   m_Layer: 0
   m_Name: Tree_A9 (71)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35181,7 +35223,7 @@ GameObject:
   - component: {fileID: 476543586}
   m_Layer: 0
   m_Name: Tree_A12 (11)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35286,7 +35328,7 @@ GameObject:
   - component: {fileID: 476735996}
   m_Layer: 0
   m_Name: Tree_A10 (12)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36095,7 +36137,7 @@ GameObject:
   - component: {fileID: 493960034}
   m_Layer: 0
   m_Name: Tree_A13 (57)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36532,7 +36574,7 @@ GameObject:
   - component: {fileID: 495892741}
   m_Layer: 0
   m_Name: Tree_A10 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37094,7 +37136,7 @@ GameObject:
   - component: {fileID: 508314622}
   m_Layer: 0
   m_Name: Tree_A10 (52)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38084,7 +38126,7 @@ GameObject:
   - component: {fileID: 522598698}
   m_Layer: 0
   m_Name: Tree_A12 (9)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38355,7 +38397,7 @@ GameObject:
   - component: {fileID: 530892696}
   m_Layer: 0
   m_Name: Tree_A12 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38543,7 +38585,7 @@ GameObject:
   - component: {fileID: 533595689}
   m_Layer: 0
   m_Name: Tree_A10 (15)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39131,7 +39173,7 @@ GameObject:
   - component: {fileID: 543834426}
   m_Layer: 0
   m_Name: Tree_A13 (42)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40522,7 +40564,7 @@ GameObject:
   - component: {fileID: 558248266}
   m_Layer: 0
   m_Name: Tree_A10 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40627,7 +40669,7 @@ GameObject:
   - component: {fileID: 559616928}
   m_Layer: 0
   m_Name: Tree_A9 (41)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40826,7 +40868,7 @@ GameObject:
   - component: {fileID: 559875976}
   m_Layer: 0
   m_Name: Tree_A9 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41120,7 +41162,7 @@ GameObject:
   - component: {fileID: 563064481}
   m_Layer: 0
   m_Name: Tree_A13 (31)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41497,7 +41539,7 @@ GameObject:
   - component: {fileID: 568861564}
   m_Layer: 0
   m_Name: Tree_A9 (66)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41897,7 +41939,7 @@ GameObject:
   - component: {fileID: 580557986}
   m_Layer: 0
   m_Name: Tree_A13 (51)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42108,7 +42150,7 @@ GameObject:
   - component: {fileID: 581053238}
   m_Layer: 0
   m_Name: Tree_A9 (19)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42213,7 +42255,7 @@ GameObject:
   - component: {fileID: 581900828}
   m_Layer: 0
   m_Name: Tree_A9 (52)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42318,7 +42360,7 @@ GameObject:
   - component: {fileID: 582207200}
   m_Layer: 0
   m_Name: Tree_A13 (19)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42423,7 +42465,7 @@ GameObject:
   - component: {fileID: 583867265}
   m_Layer: 0
   m_Name: Tree_A13 (11)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42883,7 +42925,7 @@ GameObject:
   - component: {fileID: 596258132}
   m_Layer: 0
   m_Name: Tree_A9 (14)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43177,7 +43219,7 @@ GameObject:
   - component: {fileID: 597663102}
   m_Layer: 0
   m_Name: Tree_A12 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43554,7 +43596,7 @@ GameObject:
   - component: {fileID: 604907864}
   m_Layer: 0
   m_Name: Tree_A9 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43958,7 +44000,7 @@ GameObject:
   - component: {fileID: 606838520}
   m_Layer: 0
   m_Name: Tree_A9 (65)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44063,7 +44105,7 @@ GameObject:
   - component: {fileID: 607855238}
   m_Layer: 0
   m_Name: Tree_A10 (14)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44629,7 +44671,7 @@ GameObject:
   - component: {fileID: 612779867}
   m_Layer: 0
   m_Name: Tree_A9 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45444,7 +45486,7 @@ GameObject:
   - component: {fileID: 627795583}
   m_Layer: 0
   m_Name: Tree_A13
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45549,7 +45591,7 @@ GameObject:
   - component: {fileID: 630549164}
   m_Layer: 0
   m_Name: Tree_A9 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45654,7 +45696,7 @@ GameObject:
   - component: {fileID: 631477608}
   m_Layer: 0
   m_Name: Tree_A9 (38)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45948,7 +45990,7 @@ GameObject:
   - component: {fileID: 635473183}
   m_Layer: 0
   m_Name: Tree_A9 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46136,7 +46178,7 @@ GameObject:
   - component: {fileID: 638460647}
   m_Layer: 0
   m_Name: Tree_A10 (39)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46724,7 +46766,7 @@ GameObject:
   - component: {fileID: 647483399}
   m_Layer: 0
   m_Name: Tree_A9 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47324,7 +47366,7 @@ GameObject:
   - component: {fileID: 650639518}
   m_Layer: 0
   m_Name: Tree_A10 (13)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47535,7 +47577,7 @@ GameObject:
   - component: {fileID: 652559776}
   m_Layer: 0
   m_Name: Tree_A13 (31)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47746,7 +47788,7 @@ GameObject:
   - component: {fileID: 654633475}
   m_Layer: 0
   m_Name: Tree_A9 (43)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47934,7 +47976,7 @@ GameObject:
   - component: {fileID: 658197688}
   m_Layer: 0
   m_Name: Tree_A9 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48122,7 +48164,7 @@ GameObject:
   - component: {fileID: 660894770}
   m_Layer: 0
   m_Name: Tree_A10 (30)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48227,7 +48269,7 @@ GameObject:
   - component: {fileID: 664844370}
   m_Layer: 0
   m_Name: Tree_A10 (27)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48692,7 +48734,7 @@ GameObject:
   - component: {fileID: 671295234}
   m_Layer: 0
   m_Name: Tree_A12 (13)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48903,7 +48945,7 @@ GameObject:
   - component: {fileID: 672180100}
   m_Layer: 0
   m_Name: Tree_A9
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49114,7 +49156,7 @@ GameObject:
   - component: {fileID: 673125644}
   m_Layer: 0
   m_Name: Tree_A9 (59)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49564,7 +49606,7 @@ GameObject:
   - component: {fileID: 679137413}
   m_Layer: 0
   m_Name: Tree_A12 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49858,7 +49900,7 @@ GameObject:
   - component: {fileID: 683822375}
   m_Layer: 0
   m_Name: Tree_A9 (35)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50401,7 +50443,7 @@ GameObject:
   - component: {fileID: 690422974}
   m_Layer: 0
   m_Name: Tree_A10 (36)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50694,7 +50736,7 @@ GameObject:
   - component: {fileID: 694625982}
   m_Layer: 0
   m_Name: Tree_A9 (47)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51365,7 +51407,7 @@ GameObject:
   - component: {fileID: 701407115}
   m_Layer: 0
   m_Name: Tree_A12 (10)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51991,7 +52033,7 @@ GameObject:
   - component: {fileID: 713037572}
   m_Layer: 0
   m_Name: Tree_A10 (20)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52134,7 +52176,7 @@ GameObject:
   - component: {fileID: 716442582}
   m_Layer: 0
   m_Name: Tree_A9 (18)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52322,7 +52364,7 @@ GameObject:
   - component: {fileID: 717115613}
   m_Layer: 0
   m_Name: Tree_A12 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52427,7 +52469,7 @@ GameObject:
   - component: {fileID: 717444534}
   m_Layer: 0
   m_Name: Tree_A13 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53395,7 +53437,7 @@ GameObject:
   - component: {fileID: 731619188}
   m_Layer: 0
   m_Name: Tree_A12 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53500,7 +53542,7 @@ GameObject:
   - component: {fileID: 733241339}
   m_Layer: 0
   m_Name: Tree_A9 (26)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53605,7 +53647,7 @@ GameObject:
   - component: {fileID: 734950684}
   m_Layer: 0
   m_Name: Tree_A13 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53876,7 +53918,7 @@ GameObject:
   - component: {fileID: 742188287}
   m_Layer: 0
   m_Name: Tree_A9 (11)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53981,7 +54023,7 @@ GameObject:
   - component: {fileID: 745364513}
   m_Layer: 0
   m_Name: Tree_A9 (58)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54624,6 +54666,111 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754448941}
   m_Mesh: {fileID: 4300000, guid: d868740513ba69942b40d6fcf9280cbd, type: 3}
+--- !u!1 &754980705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 754980706}
+  - component: {fileID: 754980709}
+  - component: {fileID: 754980708}
+  - component: {fileID: 754980707}
+  m_Layer: 10
+  m_Name: Cube (44)
+  m_TagString: NavMesh
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &754980706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754980705}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.34156713, z: -0, w: 0.9398574}
+  m_LocalPosition: {x: -11.3, y: 18.542435, z: 47.9}
+  m_LocalScale: {x: 6.094581, y: 12.570827, z: 17.160501}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 361190372}
+  m_LocalEulerAnglesHint: {x: 0, y: -39.945, z: 0}
+--- !u!23 &754980707
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754980705}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &754980708
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754980705}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &754980709
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754980705}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &758429082
 GameObject:
   m_ObjectHideFlags: 0
@@ -54850,7 +54997,7 @@ GameObject:
   - component: {fileID: 762566125}
   m_Layer: 0
   m_Name: Tree_A9 (46)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55960,7 +56107,7 @@ GameObject:
   - component: {fileID: 768777755}
   m_Layer: 0
   m_Name: Tree_A10 (24)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56065,7 +56212,7 @@ GameObject:
   - component: {fileID: 769671048}
   m_Layer: 0
   m_Name: Tree_A10 (23)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56253,7 +56400,7 @@ GameObject:
   - component: {fileID: 772523003}
   m_Layer: 0
   m_Name: Tree_A10 (41)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56819,7 +56966,7 @@ GameObject:
   - component: {fileID: 784511085}
   m_Layer: 0
   m_Name: Tree_A12 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56924,7 +57071,7 @@ GameObject:
   - component: {fileID: 785653202}
   m_Layer: 0
   m_Name: Tree_A9 (31)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57573,7 +57720,7 @@ GameObject:
   - component: {fileID: 790184301}
   m_Layer: 0
   m_Name: Tree_A10 (18)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57672,9 +57819,89 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1136374430}
     m_Modifications:
+    - target: {fileID: 106316, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 106316, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 106750, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 106750, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 116036, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 116036, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 121962, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
       propertyPath: m_Name
       value: building_potion_lv5
+      objectReference: {fileID: 0}
+    - target: {fileID: 121962, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 121962, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 126824, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 126824, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 127768, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 127768, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 129964, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 129964, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132504, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 132504, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174008, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 174008, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174356, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 174356, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 425114, guid: e8ad1c9e86afab24c99942c9dd4ec2c1, type: 3}
       propertyPath: m_RootOrder
@@ -57957,7 +58184,7 @@ GameObject:
   - component: {fileID: 796234337}
   m_Layer: 0
   m_Name: Tree_A9 (34)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58145,7 +58372,7 @@ GameObject:
   - component: {fileID: 797516451}
   m_Layer: 0
   m_Name: Tree_A10 (39)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58250,7 +58477,7 @@ GameObject:
   - component: {fileID: 797827909}
   m_Layer: 0
   m_Name: Tree_A9 (49)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58521,7 +58748,7 @@ GameObject:
   - component: {fileID: 801304235}
   m_Layer: 0
   m_Name: Tree_A10 (25)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58709,7 +58936,7 @@ GameObject:
   - component: {fileID: 805539399}
   m_Layer: 0
   m_Name: Tree_A12 (17)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59380,7 +59607,7 @@ GameObject:
   - component: {fileID: 810531639}
   m_Layer: 0
   m_Name: Tree_A13 (16)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60280,7 +60507,7 @@ GameObject:
   - component: {fileID: 825178265}
   m_Layer: 0
   m_Name: Tree_A10 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60468,7 +60695,7 @@ GameObject:
   - component: {fileID: 826299547}
   m_Layer: 0
   m_Name: Tree_A13 (56)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60845,7 +61072,7 @@ GameObject:
   - component: {fileID: 832293460}
   m_Layer: 0
   m_Name: Tree_A9 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61033,7 +61260,7 @@ GameObject:
   - component: {fileID: 835173553}
   m_Layer: 0
   m_Name: Tree_A9
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61138,7 +61365,7 @@ GameObject:
   - component: {fileID: 837070955}
   m_Layer: 0
   m_Name: Tree_A13 (24)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61598,7 +61825,7 @@ GameObject:
   - component: {fileID: 840097223}
   m_Layer: 0
   m_Name: Tree_A9 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61936,7 +62163,7 @@ GameObject:
   - component: {fileID: 845218042}
   m_Layer: 0
   m_Name: Tree_A10 (25)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62725,7 +62952,7 @@ GameObject:
   - component: {fileID: 852917764}
   m_Layer: 0
   m_Name: Tree_A13 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62830,7 +63057,7 @@ GameObject:
   - component: {fileID: 854374373}
   m_Layer: 0
   m_Name: Tree_A9 (54)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63298,7 +63525,7 @@ GameObject:
   - component: {fileID: 858114056}
   m_Layer: 0
   m_Name: Tree_A13 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63863,7 +64090,7 @@ GameObject:
   - component: {fileID: 867707252}
   m_Layer: 0
   m_Name: Tree_A9 (30)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64211,7 +64438,7 @@ GameObject:
   - component: {fileID: 871389629}
   m_Layer: 0
   m_Name: Tree_A9 (44)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64316,7 +64543,7 @@ GameObject:
   - component: {fileID: 872624833}
   m_Layer: 0
   m_Name: Tree_A10 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65342,7 +65569,7 @@ GameObject:
   - component: {fileID: 886779390}
   m_Layer: 0
   m_Name: Tree_A10 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66369,7 +66596,7 @@ GameObject:
   - component: {fileID: 896756998}
   m_Layer: 0
   m_Name: Tree_A13 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66768,7 +66995,7 @@ GameObject:
   - component: {fileID: 900210782}
   m_Layer: 0
   m_Name: Tree_A10 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67228,7 +67455,7 @@ GameObject:
   - component: {fileID: 904568227}
   m_Layer: 0
   m_Name: Tree_A13 (45)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67545,7 +67772,7 @@ GameObject:
   - component: {fileID: 909536595}
   m_Layer: 0
   m_Name: Tree_A12 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67650,7 +67877,7 @@ GameObject:
   - component: {fileID: 910130604}
   m_Layer: 0
   m_Name: Tree_A9 (26)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67755,7 +67982,7 @@ GameObject:
   - component: {fileID: 910593270}
   m_Layer: 0
   m_Name: Tree_A12 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68073,7 +68300,7 @@ GameObject:
   - component: {fileID: 913601460}
   m_Layer: 0
   m_Name: Tree_A10 (38)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68403,7 +68630,7 @@ GameObject:
   - component: {fileID: 916661187}
   m_Layer: 0
   m_Name: Tree_A9 (62)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69347,7 +69574,7 @@ GameObject:
   - component: {fileID: 926640241}
   m_Layer: 0
   m_Name: Tree_A13 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69452,7 +69679,7 @@ GameObject:
   - component: {fileID: 928239207}
   m_Layer: 0
   m_Name: Tree_A10 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69557,7 +69784,7 @@ GameObject:
   - component: {fileID: 930815562}
   m_Layer: 0
   m_Name: Tree_A10 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69662,7 +69889,7 @@ GameObject:
   - component: {fileID: 931535153}
   m_Layer: 0
   m_Name: Tree_A10 (17)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69767,7 +69994,7 @@ GameObject:
   - component: {fileID: 933204856}
   m_Layer: 0
   m_Name: Tree_A9 (70)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69872,7 +70099,7 @@ GameObject:
   - component: {fileID: 935115413}
   m_Layer: 0
   m_Name: Tree_A12 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69977,7 +70204,7 @@ GameObject:
   - component: {fileID: 935179228}
   m_Layer: 0
   m_Name: Tree_A13
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70165,7 +70392,7 @@ GameObject:
   - component: {fileID: 937167891}
   m_Layer: 0
   m_Name: Tree_A13 (48)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70542,7 +70769,7 @@ GameObject:
   - component: {fileID: 942615235}
   m_Layer: 0
   m_Name: Tree_A12 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71508,7 +71735,7 @@ GameObject:
   - component: {fileID: 956170721}
   m_Layer: 0
   m_Name: Tree_A10 (20)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71803,7 +72030,7 @@ GameObject:
   - component: {fileID: 958175128}
   m_Layer: 0
   m_Name: Tree_A13 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72204,7 +72431,7 @@ GameObject:
   - component: {fileID: 963148431}
   m_Layer: 0
   m_Name: Tree_A13 (41)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72958,7 +73185,7 @@ GameObject:
   - component: {fileID: 974022217}
   m_Layer: 0
   m_Name: Tree_A13 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73063,7 +73290,7 @@ GameObject:
   - component: {fileID: 975392535}
   m_Layer: 0
   m_Name: Tree_A9 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73168,7 +73395,7 @@ GameObject:
   - component: {fileID: 976109920}
   m_Layer: 0
   m_Name: Tree_A13 (40)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73356,7 +73583,7 @@ GameObject:
   - component: {fileID: 978088303}
   m_Layer: 0
   m_Name: Tree_A9 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73544,7 +73771,7 @@ GameObject:
   - component: {fileID: 979663044}
   m_Layer: 0
   m_Name: Tree_A9 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73838,7 +74065,7 @@ GameObject:
   - component: {fileID: 984685396}
   m_Layer: 0
   m_Name: Tree_A9 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74621,7 +74848,7 @@ GameObject:
   - component: {fileID: 992995107}
   m_Layer: 0
   m_Name: Tree_A13 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74712,6 +74939,111 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992995105}
   m_Mesh: {fileID: 4300000, guid: 25c0b5a9bf673034e980f4200dcca1c5, type: 3}
+--- !u!1 &993575882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 993575883}
+  - component: {fileID: 993575886}
+  - component: {fileID: 993575885}
+  - component: {fileID: 993575884}
+  m_Layer: 10
+  m_Name: Cube (46)
+  m_TagString: NavMesh
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &993575883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993575882}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.99951184, z: -0, w: 0.031243028}
+  m_LocalPosition: {x: -4.91, y: 18.542435, z: 67.08}
+  m_LocalScale: {x: 36.946205, y: 12.570827, z: 6.6120753}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 361190372}
+  m_LocalEulerAnglesHint: {x: 0, y: -176.419, z: 0}
+--- !u!23 &993575884
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993575882}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &993575885
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993575882}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &993575886
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993575882}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &993615803
 GameObject:
   m_ObjectHideFlags: 0
@@ -74998,7 +75330,7 @@ GameObject:
   - component: {fileID: 997420888}
   m_Layer: 0
   m_Name: Tree_A10 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75263,9 +75595,61 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1136374430}
     m_Modifications:
+    - target: {fileID: 108508, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 108508, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110104, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 111784, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 111784, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 139166, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 146076, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 146076, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 152744, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
       propertyPath: m_Name
       value: building_weapon_lv3
+      objectReference: {fileID: 0}
+    - target: {fileID: 152744, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 152744, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 161256, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 168212, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 168212, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 468250, guid: 5ef3171ed4129b54bb8495b16bf723bc, type: 3}
       propertyPath: m_RootOrder
@@ -76014,7 +76398,7 @@ GameObject:
   - component: {fileID: 1017376349}
   m_Layer: 0
   m_Name: Tree_A13 (17)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76580,7 +76964,7 @@ GameObject:
   - component: {fileID: 1020281295}
   m_Layer: 0
   m_Name: Tree_A9 (29)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76930,7 +77314,7 @@ GameObject:
   - component: {fileID: 1020976691}
   m_Layer: 0
   m_Name: Tree_A9 (16)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77035,7 +77419,7 @@ GameObject:
   - component: {fileID: 1025103434}
   m_Layer: 0
   m_Name: Tree_A9 (22)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77329,7 +77713,7 @@ GameObject:
   - component: {fileID: 1028806241}
   m_Layer: 0
   m_Name: Tree_A10 (49)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78378,7 +78762,7 @@ GameObject:
   - component: {fileID: 1043951834}
   m_Layer: 0
   m_Name: Tree_A10 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78778,7 +79162,7 @@ GameObject:
   - component: {fileID: 1049089589}
   m_Layer: 0
   m_Name: Tree_A10 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78986,7 +79370,7 @@ GameObject:
   - component: {fileID: 1052796948}
   m_Layer: 0
   m_Name: Tree_A13 (30)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79194,7 +79578,7 @@ GameObject:
   - component: {fileID: 1056556604}
   m_Layer: 0
   m_Name: Tree_A13 (9)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79285,6 +79669,111 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056556602}
   m_Mesh: {fileID: 4300000, guid: 25c0b5a9bf673034e980f4200dcca1c5, type: 3}
+--- !u!1 &1059073481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1059073482}
+  - component: {fileID: 1059073485}
+  - component: {fileID: 1059073484}
+  - component: {fileID: 1059073483}
+  m_Layer: 10
+  m_Name: Cube (48)
+  m_TagString: NavMesh
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1059073482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059073481}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.99340755, z: -0, w: 0.11463632}
+  m_LocalPosition: {x: 7.47, y: 18.542435, z: 43.72}
+  m_LocalScale: {x: 6.094581, y: 12.570827, z: 12.343877}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 361190372}
+  m_LocalEulerAnglesHint: {x: 0, y: -166.835, z: 0}
+--- !u!23 &1059073483
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059073481}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1059073484
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059073481}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1059073485
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059073481}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1060280929
 GameObject:
   m_ObjectHideFlags: 0
@@ -79299,7 +79788,7 @@ GameObject:
   - component: {fileID: 1060280931}
   m_Layer: 0
   m_Name: Tree_A10 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79910,7 +80399,7 @@ GameObject:
   - component: {fileID: 1067384916}
   m_Layer: 0
   m_Name: Tree_A10 (16)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80874,7 +81363,7 @@ GameObject:
   - component: {fileID: 1089561720}
   m_Layer: 0
   m_Name: Tree_A10 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81357,7 +81846,7 @@ GameObject:
   - component: {fileID: 1096033019}
   m_Layer: 0
   m_Name: Tree_A13 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81855,7 +82344,7 @@ GameObject:
   - component: {fileID: 1105594248}
   m_Layer: 0
   m_Name: Tree_A13 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82126,7 +82615,7 @@ GameObject:
   - component: {fileID: 1107288300}
   m_Layer: 0
   m_Name: Tree_A10 (10)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82314,7 +82803,7 @@ GameObject:
   - component: {fileID: 1107604800}
   m_Layer: 0
   m_Name: Tree_A9 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82585,7 +83074,7 @@ GameObject:
   - component: {fileID: 1111002027}
   m_Layer: 0
   m_Name: Tree_A13 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82690,7 +83179,7 @@ GameObject:
   - component: {fileID: 1111014649}
   m_Layer: 0
   m_Name: Tree_A13 (38)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82878,7 +83367,7 @@ GameObject:
   - component: {fileID: 1113145149}
   m_Layer: 0
   m_Name: Tree_A13 (29)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83089,7 +83578,7 @@ GameObject:
   - component: {fileID: 1117566289}
   m_Layer: 0
   m_Name: Tree_A10 (47)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83660,7 +84149,7 @@ GameObject:
   - component: {fileID: 1124495596}
   m_Layer: 0
   m_Name: Tree_A10 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83931,7 +84420,7 @@ GameObject:
   - component: {fileID: 1125101673}
   m_Layer: 0
   m_Name: Tree_A10 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84331,7 +84820,7 @@ GameObject:
   - component: {fileID: 1133068856}
   m_Layer: 0
   m_Name: Tree_A13 (26)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84707,7 +85196,7 @@ GameObject:
   m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1136374430
 Transform:
@@ -84876,7 +85365,7 @@ GameObject:
   - component: {fileID: 1136841686}
   m_Layer: 0
   m_Name: Tree_A10 (44)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85147,7 +85636,7 @@ GameObject:
   - component: {fileID: 1143798257}
   m_Layer: 0
   m_Name: Tree_A12 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85465,7 +85954,7 @@ GameObject:
   - component: {fileID: 1150055679}
   m_Layer: 0
   m_Name: Tree_A9 (13)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85970,7 +86459,7 @@ GameObject:
   - component: {fileID: 1156615906}
   m_Layer: 0
   m_Name: Tree_A10 (45)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86075,7 +86564,7 @@ GameObject:
   - component: {fileID: 1158547382}
   m_Layer: 0
   m_Name: Tree_A13 (10)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86369,7 +86858,7 @@ GameObject:
   - component: {fileID: 1161085283}
   m_Layer: 0
   m_Name: Tree_A12 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86557,7 +87046,7 @@ GameObject:
   - component: {fileID: 1167320592}
   m_Layer: 0
   m_Name: Tree_A10 (22)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86828,7 +87317,7 @@ GameObject:
   - component: {fileID: 1168871381}
   m_Layer: 0
   m_Name: Tree_A9 (75)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87537,7 +88026,7 @@ GameObject:
   - component: {fileID: 1179456523}
   m_Layer: 0
   m_Name: Tree_A13 (23)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87748,7 +88237,7 @@ GameObject:
   - component: {fileID: 1181045063}
   m_Layer: 0
   m_Name: Tree_A12 (24)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88268,7 +88757,7 @@ GameObject:
   - component: {fileID: 1184024467}
   m_Layer: 0
   m_Name: Tree_A10 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89280,7 +89769,7 @@ GameObject:
   - component: {fileID: 1195454999}
   m_Layer: 0
   m_Name: Tree_A9 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89551,7 +90040,7 @@ GameObject:
   - component: {fileID: 1196772492}
   m_Layer: 0
   m_Name: Tree_A9 (42)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90208,6 +90697,111 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212421758}
   m_Mesh: {fileID: 4300000, guid: 578a3dcc3bd4c3943ba1a09c21e70026, type: 3}
+--- !u!1 &1213786988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1213786989}
+  - component: {fileID: 1213786992}
+  - component: {fileID: 1213786991}
+  - component: {fileID: 1213786990}
+  m_Layer: 10
+  m_Name: Cube (49)
+  m_TagString: NavMesh
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1213786989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213786988}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.686319, z: -0, w: 0.7273007}
+  m_LocalPosition: {x: -6.93, y: 18.542435, z: 39.91}
+  m_LocalScale: {x: 4.2065406, y: 12.570827, z: 7.259006}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 361190372}
+  m_LocalEulerAnglesHint: {x: 0, y: -86.679, z: 0}
+--- !u!23 &1213786990
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213786988}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1213786991
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213786988}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1213786992
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213786988}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1215201763
 GameObject:
   m_ObjectHideFlags: 0
@@ -90222,7 +90816,7 @@ GameObject:
   - component: {fileID: 1215201765}
   m_Layer: 0
   m_Name: Tree_A9 (74)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90842,7 +91436,7 @@ GameObject:
   - component: {fileID: 1219823604}
   m_Layer: 0
   m_Name: Tree_A12 (9)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91514,7 +92108,7 @@ GameObject:
   - component: {fileID: 1236712621}
   m_Layer: 0
   m_Name: Tree_A12 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91997,7 +92591,7 @@ GameObject:
   - component: {fileID: 1241230380}
   m_Layer: 0
   m_Name: Tree_A9 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93683,7 +94277,7 @@ GameObject:
   - component: {fileID: 1274683053}
   m_Layer: 0
   m_Name: Tree_A10 (21)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94438,7 +95032,7 @@ GameObject:
   - component: {fileID: 1284546330}
   m_Layer: 0
   m_Name: Tree_A9 (39)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96221,7 +96815,7 @@ GameObject:
   - component: {fileID: 1302647383}
   m_Layer: 0
   m_Name: Tree_A12 (20)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96426,9 +97020,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1136374430}
     m_Modifications:
+    - target: {fileID: 111488, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 111488, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 122994, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
       propertyPath: m_Name
       value: building_potion_lv1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 122994, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 122994, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 125682, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 125682, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 127516, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 127516, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174372, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 174372, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181010, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 181010, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 416034, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
       propertyPath: m_RootOrder
@@ -96499,7 +97141,7 @@ GameObject:
   - component: {fileID: 1303022258}
   m_Layer: 0
   m_Name: Tree_A13 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96959,7 +97601,7 @@ GameObject:
   - component: {fileID: 1306884710}
   m_Layer: 0
   m_Name: Tree_A12 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97253,7 +97895,7 @@ GameObject:
   - component: {fileID: 1310051226}
   m_Layer: 0
   m_Name: Tree_A13 (55)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97736,7 +98378,7 @@ GameObject:
   - component: {fileID: 1314487674}
   m_Layer: 0
   m_Name: Tree_A9 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98030,7 +98672,7 @@ GameObject:
   - component: {fileID: 1317170026}
   m_Layer: 0
   m_Name: Tree_A13 (43)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98655,7 +99297,7 @@ GameObject:
   - component: {fileID: 1324999080}
   m_Layer: 0
   m_Name: Tree_A13 (26)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98760,7 +99402,7 @@ GameObject:
   - component: {fileID: 1325103989}
   m_Layer: 0
   m_Name: Tree_A10 (46)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98948,7 +99590,7 @@ GameObject:
   - component: {fileID: 1327224693}
   m_Layer: 0
   m_Name: Tree_A9 (68)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99219,7 +99861,7 @@ GameObject:
   - component: {fileID: 1329001826}
   m_Layer: 0
   m_Name: Tree_A9 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99898,7 +100540,7 @@ GameObject:
   - component: {fileID: 1340209388}
   m_Layer: 0
   m_Name: Tree_A12 (21)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101128,7 +101770,7 @@ GameObject:
   - component: {fileID: 1354476995}
   m_Layer: 0
   m_Name: Tree_A10 (30)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101233,7 +101875,7 @@ GameObject:
   - component: {fileID: 1354856074}
   m_Layer: 0
   m_Name: Tree_A9 (69)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101653,7 +102295,7 @@ GameObject:
   - component: {fileID: 1360039247}
   m_Layer: 0
   m_Name: Tree_A10 (34)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101758,7 +102400,7 @@ GameObject:
   - component: {fileID: 1360180918}
   m_Layer: 0
   m_Name: Tree_A10 (28)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101863,7 +102505,7 @@ GameObject:
   - component: {fileID: 1360575848}
   m_Layer: 0
   m_Name: Tree_A10 (23)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101968,7 +102610,7 @@ GameObject:
   - component: {fileID: 1361879596}
   m_Layer: 0
   m_Name: Tree_A10 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102593,7 +103235,7 @@ GameObject:
   - component: {fileID: 1372061888}
   m_Layer: 0
   m_Name: Tree_A9 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102963,7 +103605,7 @@ GameObject:
   - component: {fileID: 1378131763}
   m_Layer: 0
   m_Name: Tree_A10 (21)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103068,7 +103710,7 @@ GameObject:
   - component: {fileID: 1380714161}
   m_Layer: 0
   m_Name: Tree_A12 (12)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103173,7 +103815,7 @@ GameObject:
   - component: {fileID: 1382447696}
   m_Layer: 0
   m_Name: Tree_A13 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103278,7 +103920,7 @@ GameObject:
   - component: {fileID: 1382554923}
   m_Layer: 0
   m_Name: Tree_A10 (43)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104147,7 +104789,7 @@ GameObject:
   - component: {fileID: 1395690623}
   m_Layer: 0
   m_Name: Tree_A10 (36)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104252,7 +104894,7 @@ GameObject:
   - component: {fileID: 1396271922}
   m_Layer: 0
   m_Name: Tree_A9 (33)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104440,7 +105082,7 @@ GameObject:
   - component: {fileID: 1397024941}
   m_Layer: 0
   m_Name: Tree_A10 (16)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104545,7 +105187,7 @@ GameObject:
   - component: {fileID: 1397434145}
   m_Layer: 0
   m_Name: Tree_A10 (9)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104733,7 +105375,7 @@ GameObject:
   - component: {fileID: 1398642432}
   m_Layer: 0
   m_Name: Tree_A12 (14)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104838,7 +105480,7 @@ GameObject:
   - component: {fileID: 1399484620}
   m_Layer: 0
   m_Name: Tree_A12 (14)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105140,7 +105782,7 @@ GameObject:
   - component: {fileID: 1403592791}
   m_Layer: 0
   m_Name: Tree_A10 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105931,7 +106573,7 @@ GameObject:
   - component: {fileID: 1415888811}
   m_Layer: 0
   m_Name: Tree_A10 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106119,7 +106761,7 @@ GameObject:
   - component: {fileID: 1420504354}
   m_Layer: 0
   m_Name: Tree_A12 (25)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106897,7 +107539,7 @@ GameObject:
   - component: {fileID: 1428195391}
   m_Layer: 0
   m_Name: Tree_A9 (55)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107190,7 +107832,7 @@ GameObject:
   - component: {fileID: 1429154343}
   m_Layer: 0
   m_Name: Tree_A12 (26)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108292,7 +108934,7 @@ GameObject:
   - component: {fileID: 1435043744}
   m_Layer: 0
   m_Name: Tree_A12 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108397,7 +109039,7 @@ GameObject:
   - component: {fileID: 1436616220}
   m_Layer: 0
   m_Name: Tree_A9 (40)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109046,7 +109688,7 @@ GameObject:
   - component: {fileID: 1447012429}
   m_Layer: 0
   m_Name: Tree_A13 (25)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109446,7 +110088,7 @@ GameObject:
   - component: {fileID: 1454261677}
   m_Layer: 0
   m_Name: Tree_A9 (64)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109657,7 +110299,7 @@ GameObject:
   - component: {fileID: 1456361015}
   m_Layer: 0
   m_Name: Tree_A9 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109868,7 +110510,7 @@ GameObject:
   - component: {fileID: 1457856547}
   m_Layer: 0
   m_Name: Tree_A10
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110056,7 +110698,7 @@ GameObject:
   - component: {fileID: 1459467463}
   m_Layer: 0
   m_Name: Tree_A12 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110805,7 +111447,7 @@ GameObject:
   - component: {fileID: 1470864415}
   m_Layer: 0
   m_Name: Tree_A10 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111726,7 +112368,7 @@ GameObject:
   - component: {fileID: 1481524176}
   m_Layer: 0
   m_Name: Tree_A9 (51)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111831,7 +112473,7 @@ GameObject:
   - component: {fileID: 1481764290}
   m_Layer: 0
   m_Name: Tree_A9 (10)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112019,7 +112661,7 @@ GameObject:
   - component: {fileID: 1482534467}
   m_Layer: 0
   m_Name: Buildings_D2
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112125,7 +112767,7 @@ GameObject:
   - component: {fileID: 1482806547}
   m_Layer: 0
   m_Name: Tree_A12 (33)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112230,7 +112872,7 @@ GameObject:
   - component: {fileID: 1484502539}
   m_Layer: 0
   m_Name: Tree_A13 (12)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112335,7 +112977,7 @@ GameObject:
   - component: {fileID: 1487011326}
   m_Layer: 0
   m_Name: Tree_A10 (29)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112440,7 +113082,7 @@ GameObject:
   - component: {fileID: 1487294396}
   m_Layer: 0
   m_Name: Tree_A13 (9)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112711,7 +113353,7 @@ GameObject:
   - component: {fileID: 1491143139}
   m_Layer: 0
   m_Name: Tree_A10 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112982,7 +113624,7 @@ GameObject:
   - component: {fileID: 1492626163}
   m_Layer: 0
   m_Name: Tree_A13 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113442,7 +114084,7 @@ GameObject:
   - component: {fileID: 1498937933}
   m_Layer: 0
   m_Name: Tree_A12 (11)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114311,7 +114953,7 @@ GameObject:
   - component: {fileID: 1513242829}
   m_Layer: 0
   m_Name: Tree_A9 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114499,7 +115141,7 @@ GameObject:
   - component: {fileID: 1515358431}
   m_Layer: 0
   m_Name: Tree_A9 (63)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114604,7 +115246,7 @@ GameObject:
   - component: {fileID: 1516406429}
   m_Layer: 0
   m_Name: Tree_A10 (17)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115041,7 +115683,7 @@ GameObject:
   - component: {fileID: 1520097626}
   m_Layer: 0
   m_Name: Tree_A10 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116451,7 +117093,7 @@ GameObject:
   - component: {fileID: 1531828019}
   m_Layer: 0
   m_Name: Tree_A9 (72)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117488,7 +118130,7 @@ GameObject:
   - component: {fileID: 1541007186}
   m_Layer: 0
   m_Name: Tree_A12 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117593,7 +118235,7 @@ GameObject:
   - component: {fileID: 1542377499}
   m_Layer: 0
   m_Name: Buildings_C1
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117919,7 +118561,7 @@ GameObject:
   - component: {fileID: 1546494103}
   m_Layer: 0
   m_Name: Tree_A10 (33)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118273,7 +118915,7 @@ GameObject:
   - component: {fileID: 1550074880}
   m_Layer: 0
   m_Name: Tree_A10 (42)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118672,7 +119314,7 @@ GameObject:
   - component: {fileID: 1557298184}
   m_Layer: 0
   m_Name: Tree_A10 (19)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119138,7 +119780,7 @@ GameObject:
   - component: {fileID: 1571885715}
   m_Layer: 0
   m_Name: Tree_A10 (32)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119386,7 +120028,7 @@ GameObject:
   - component: {fileID: 1580065521}
   m_Layer: 0
   m_Name: Tree_A12 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120879,7 +121521,7 @@ GameObject:
   - component: {fileID: 1591406297}
   m_Layer: 0
   m_Name: Tree_A12 (16)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121256,7 +121898,7 @@ GameObject:
   - component: {fileID: 1594701707}
   m_Layer: 0
   m_Name: Tree_A9 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121355,9 +121997,89 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1136374430}
     m_Modifications:
+    - target: {fileID: 102640, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 102640, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 122654, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 122654, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 151252, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
       propertyPath: m_Name
       value: building_house_lv5
+      objectReference: {fileID: 0}
+    - target: {fileID: 151252, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 151252, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 153618, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 153618, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 160946, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 160946, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 173872, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 173872, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 179854, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 179854, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 186198, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 186198, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 188560, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 188560, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 194210, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 194210, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 447404, guid: ebcdbd56aea03f543a21482cbf1fb4b8, type: 3}
       propertyPath: m_RootOrder
@@ -121523,7 +122245,7 @@ GameObject:
   - component: {fileID: 1595781403}
   m_Layer: 0
   m_Name: Tree_A9 (45)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121705,9 +122427,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1136374430}
     m_Modifications:
+    - target: {fileID: 111488, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 111488, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 122994, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
       propertyPath: m_Name
       value: building_potion_lv1
+      objectReference: {fileID: 0}
+    - target: {fileID: 122994, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 122994, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 125682, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 125682, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 127516, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 127516, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174372, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 174372, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181010, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_TagString
+      value: NavMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 181010, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 416034, guid: f9b13189e9341ab46a40b88a56500e91, type: 3}
       propertyPath: m_RootOrder
@@ -124115,7 +124885,7 @@ GameObject:
   - component: {fileID: 1626770267}
   m_Layer: 0
   m_Name: Tree_A13 (22)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124514,7 +125284,7 @@ GameObject:
   - component: {fileID: 1629511553}
   m_Layer: 0
   m_Name: Tree_A12
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125080,7 +125850,7 @@ GameObject:
   - component: {fileID: 1639625033}
   m_Layer: 0
   m_Name: Tree_A12 (13)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125268,7 +126038,7 @@ GameObject:
   - component: {fileID: 1641110637}
   m_Layer: 0
   m_Name: Tree_A13 (34)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125562,7 +126332,7 @@ GameObject:
   - component: {fileID: 1641961883}
   m_Layer: 0
   m_Name: Tree_A9 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125667,7 +126437,7 @@ GameObject:
   - component: {fileID: 1642641313}
   m_Layer: 0
   m_Name: Tree_A13 (37)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125803,7 +126573,7 @@ GameObject:
   - component: {fileID: 1644540471}
   m_Layer: 0
   m_Name: Tree_A10 (33)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126203,7 +126973,7 @@ GameObject:
   - component: {fileID: 1646504893}
   m_Layer: 0
   m_Name: Tree_A10 (51)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126851,7 +127621,7 @@ GameObject:
   - component: {fileID: 1652966197}
   m_Layer: 0
   m_Name: Tree_A10 (37)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127251,7 +128021,7 @@ GameObject:
   - component: {fileID: 1659325297}
   m_Layer: 0
   m_Name: Tree_A9 (30)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128223,7 +128993,7 @@ GameObject:
   - component: {fileID: 1668014942}
   m_Layer: 0
   m_Name: Tree_A9 (57)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128359,7 +129129,7 @@ GameObject:
   - component: {fileID: 1671772005}
   m_Layer: 0
   m_Name: Tree_A12 (19)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128570,7 +129340,7 @@ GameObject:
   - component: {fileID: 1673536761}
   m_Layer: 0
   m_Name: Tree_A10 (41)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128675,7 +129445,7 @@ GameObject:
   - component: {fileID: 1677704538}
   m_Layer: 0
   m_Name: Tree_A13 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128780,7 +129550,7 @@ GameObject:
   - component: {fileID: 1678864532}
   m_Layer: 0
   m_Name: Tree_A9 (12)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128885,7 +129655,7 @@ GameObject:
   - component: {fileID: 1679633142}
   m_Layer: 0
   m_Name: Tree_A9 (37)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129248,6 +130018,111 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685036344}
   m_Mesh: {fileID: 4300000, guid: 482426375954ddf419060f4d7d5c0f75, type: 3}
+--- !u!1 &1687008625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687008626}
+  - component: {fileID: 1687008629}
+  - component: {fileID: 1687008628}
+  - component: {fileID: 1687008627}
+  m_Layer: 10
+  m_Name: Cube (47)
+  m_TagString: NavMesh
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1687008626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687008625}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.89062893, z: -0, w: 0.4547308}
+  m_LocalPosition: {x: 11.27, y: 18.542435, z: 50.55}
+  m_LocalScale: {x: 6.094581, y: 12.570827, z: 8.870232}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 361190372}
+  m_LocalEulerAnglesHint: {x: 0, y: -125.905, z: 0}
+--- !u!23 &1687008627
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687008625}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1687008628
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687008625}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1687008629
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687008625}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1687971950
 GameObject:
   m_ObjectHideFlags: 0
@@ -129720,7 +130595,7 @@ GameObject:
   - component: {fileID: 1693243828}
   m_Layer: 0
   m_Name: Tree_A9 (50)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129908,7 +130783,7 @@ GameObject:
   - component: {fileID: 1694077388}
   m_Layer: 0
   m_Name: Tree_A13 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130202,7 +131077,7 @@ GameObject:
   - component: {fileID: 1696771867}
   m_Layer: 0
   m_Name: Tree_A13 (39)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131137,7 +132012,7 @@ GameObject:
   - component: {fileID: 1705564214}
   m_Layer: 0
   m_Name: Tree_A13 (52)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131597,7 +132472,7 @@ GameObject:
   - component: {fileID: 1712391729}
   m_Layer: 0
   m_Name: Tree_A9 (67)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131785,7 +132660,7 @@ GameObject:
   - component: {fileID: 1713383480}
   m_Layer: 0
   m_Name: Tree_A10 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132291,7 +133166,7 @@ GameObject:
   - component: {fileID: 1716891221}
   m_Layer: 0
   m_Name: Tree_A10 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132676,7 +133551,7 @@ GameObject:
   - component: {fileID: 1720702666}
   m_Layer: 0
   m_Name: Tree_A12 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133136,7 +134011,7 @@ GameObject:
   - component: {fileID: 1730853192}
   m_Layer: 0
   m_Name: Tree_A13 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133324,7 +134199,7 @@ GameObject:
   - component: {fileID: 1736539502}
   m_Layer: 0
   m_Name: Tree_A13 (32)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133913,7 +134788,7 @@ GameObject:
   - component: {fileID: 1742357688}
   m_Layer: 0
   m_Name: Tree_A9 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134396,7 +135271,7 @@ GameObject:
   - component: {fileID: 1747268356}
   m_Layer: 0
   m_Name: Tree_A12 (11)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134607,7 +135482,7 @@ GameObject:
   - component: {fileID: 1748201940}
   m_Layer: 0
   m_Name: Tree_A12 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135794,7 +136669,7 @@ GameObject:
   - component: {fileID: 1764827946}
   m_Layer: 0
   m_Name: Tree_A13 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136065,7 +136940,7 @@ GameObject:
   - component: {fileID: 1766705496}
   m_Layer: 0
   m_Name: Tree_A10 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136487,7 +137362,7 @@ GameObject:
   - component: {fileID: 1769975795}
   m_Layer: 0
   m_Name: Tree_A13 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136698,7 +137573,7 @@ GameObject:
   - component: {fileID: 1773315046}
   m_Layer: 0
   m_Name: Tree_A12 (9)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137461,7 +138336,7 @@ GameObject:
   - component: {fileID: 1793546871}
   m_Layer: 0
   m_Name: Tree_A9 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138020,7 +138895,7 @@ GameObject:
   - component: {fileID: 1806290006}
   m_Layer: 0
   m_Name: Tree_A10 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138337,7 +139212,7 @@ GameObject:
   - component: {fileID: 1810503400}
   m_Layer: 0
   m_Name: Tree_A9 (36)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138774,7 +139649,7 @@ GameObject:
   - component: {fileID: 1822104966}
   m_Layer: 0
   m_Name: Tree_A13 (9)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138962,7 +139837,7 @@ GameObject:
   - component: {fileID: 1825618041}
   m_Layer: 0
   m_Name: Tree_A9 (53)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139284,7 +140159,7 @@ GameObject:
   - component: {fileID: 1828402347}
   m_Layer: 0
   m_Name: Tree_A9
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139578,7 +140453,7 @@ GameObject:
   - component: {fileID: 1832855873}
   m_Layer: 0
   m_Name: Tree_A10
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139849,7 +140724,7 @@ GameObject:
   - component: {fileID: 1834392476}
   m_Layer: 0
   m_Name: Tree_A13 (54)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140987,7 +141862,7 @@ GameObject:
   - component: {fileID: 1847471955}
   m_Layer: 0
   m_Name: Tree_A10 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141447,7 +142322,7 @@ GameObject:
   - component: {fileID: 1852248440}
   m_Layer: 0
   m_Name: Tree_A10 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141552,7 +142427,7 @@ GameObject:
   - component: {fileID: 1852478301}
   m_Layer: 0
   m_Name: Tree_A13
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142035,7 +142910,7 @@ GameObject:
   - component: {fileID: 1854639284}
   m_Layer: 0
   m_Name: Tree_A10 (11)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142140,7 +143015,7 @@ GameObject:
   - component: {fileID: 1855876751}
   m_Layer: 0
   m_Name: Tree_A12 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142245,7 +143120,7 @@ GameObject:
   - component: {fileID: 1856871987}
   m_Layer: 0
   m_Name: Tree_A9 (21)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142539,7 +143414,7 @@ GameObject:
   - component: {fileID: 1859508270}
   m_Layer: 0
   m_Name: Tree_A13 (46)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142644,7 +143519,7 @@ GameObject:
   - component: {fileID: 1860496895}
   m_Layer: 0
   m_Name: Tree_A10 (14)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143187,7 +144062,7 @@ GameObject:
   - component: {fileID: 1866334229}
   m_Layer: 0
   m_Name: Tree_A9 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144012,7 +144887,7 @@ GameObject:
   - component: {fileID: 1872368061}
   m_Layer: 0
   m_Name: Buildings_C1 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144201,7 +145076,7 @@ GameObject:
   - component: {fileID: 1873245115}
   m_Layer: 0
   m_Name: Tree_A12 (10)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144601,7 +145476,7 @@ GameObject:
   - component: {fileID: 1879730442}
   m_Layer: 0
   m_Name: Tree_A9 (9)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145250,7 +146125,7 @@ GameObject:
   - component: {fileID: 1888760705}
   m_Layer: 0
   m_Name: Tree_A12 (6)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145544,7 +146419,7 @@ GameObject:
   - component: {fileID: 1894402276}
   m_Layer: 0
   m_Name: Tree_A13 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146257,7 +147132,7 @@ GameObject:
   - component: {fileID: 1903305900}
   m_Layer: 0
   m_Name: Tree_A10 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146362,7 +147237,7 @@ GameObject:
   - component: {fileID: 1904797220}
   m_Layer: 0
   m_Name: Tree_A9 (1)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146550,7 +147425,7 @@ GameObject:
   - component: {fileID: 1905982109}
   m_Layer: 0
   m_Name: Tree_A12 (15)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146761,7 +147636,7 @@ GameObject:
   - component: {fileID: 1909877252}
   m_Layer: 0
   m_Name: Tree_A12 (15)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147032,7 +147907,7 @@ GameObject:
   - component: {fileID: 1910705827}
   m_Layer: 0
   m_Name: Tree_A13 (11)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148422,7 +149297,7 @@ GameObject:
   - component: {fileID: 1934243862}
   m_Layer: 0
   m_Name: Tree_A10 (32)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148527,7 +149402,7 @@ GameObject:
   - component: {fileID: 1934548241}
   m_Layer: 0
   m_Name: Tree_A10 (34)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148715,7 +149590,7 @@ GameObject:
   - component: {fileID: 1939884995}
   m_Layer: 0
   m_Name: Tree_A13 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148986,7 +149861,7 @@ GameObject:
   - component: {fileID: 1942944868}
   m_Layer: 0
   m_Name: Tree_A10 (31)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149197,7 +150072,7 @@ GameObject:
   - component: {fileID: 1944685089}
   m_Layer: 0
   m_Name: Tree_A9 (32)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149491,7 +150366,7 @@ GameObject:
   - component: {fileID: 1947289473}
   m_Layer: 0
   m_Name: Tree_A13 (25)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149627,7 +150502,7 @@ GameObject:
   - component: {fileID: 1949043229}
   m_Layer: 0
   m_Name: Tree_A10 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149815,7 +150690,7 @@ GameObject:
   - component: {fileID: 1951660624}
   m_Layer: 0
   m_Name: Tree_A13 (44)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150003,7 +150878,7 @@ GameObject:
   - component: {fileID: 1951898988}
   m_Layer: 0
   m_Name: Tree_A13 (32)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150214,7 +151089,7 @@ GameObject:
   - component: {fileID: 1952694471}
   m_Layer: 0
   m_Name: Tree_A9 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150319,7 +151194,7 @@ GameObject:
   - component: {fileID: 1953865338}
   m_Layer: 0
   m_Name: Tree_A13 (10)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150507,7 +151382,7 @@ GameObject:
   - component: {fileID: 1955138302}
   m_Layer: 0
   m_Name: Tree_A12 (7)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150778,7 +151653,7 @@ GameObject:
   - component: {fileID: 1961927210}
   m_Layer: 0
   m_Name: Tree_A10 (27)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150883,7 +151758,7 @@ GameObject:
   - component: {fileID: 1961931016}
   m_Layer: 0
   m_Name: Tree_A13 (47)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150988,7 +151863,7 @@ GameObject:
   - component: {fileID: 1964232249}
   m_Layer: 0
   m_Name: Tree_A13 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152013,7 +152888,7 @@ GameObject:
   - component: {fileID: 1970498773}
   m_Layer: 0
   m_Name: Tree_A9 (61)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152330,7 +153205,7 @@ GameObject:
   - component: {fileID: 1975320818}
   m_Layer: 0
   m_Name: Tree_A9 (8)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152601,7 +153476,7 @@ GameObject:
   - component: {fileID: 1978119395}
   m_Layer: 0
   m_Name: Tree_A9 (60)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153258,7 +154133,7 @@ GameObject:
   - component: {fileID: 1986952924}
   m_Layer: 0
   m_Name: Tree_A10 (40)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153612,7 +154487,7 @@ GameObject:
   - component: {fileID: 1995017712}
   m_Layer: 0
   m_Name: Tree_A13 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153905,7 +154780,7 @@ GameObject:
   - component: {fileID: 1999955268}
   m_Layer: 0
   m_Name: Tree_A9
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154342,7 +155217,7 @@ GameObject:
   - component: {fileID: 2005137524}
   m_Layer: 0
   m_Name: Tree_A13 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154659,7 +155534,7 @@ GameObject:
   - component: {fileID: 2008258535}
   m_Layer: 0
   m_Name: Tree_A9 (25)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155392,7 +156267,7 @@ GameObject:
   - component: {fileID: 2019796523}
   m_Layer: 0
   m_Name: Tree_A10 (50)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155845,7 +156720,7 @@ GameObject:
   - component: {fileID: 2025902027}
   m_Layer: 0
   m_Name: Tree_A9 (27)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156577,7 +157452,7 @@ GameObject:
   - component: {fileID: 2036211002}
   m_Layer: 0
   m_Name: Tree_A10 (37)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156871,7 +157746,7 @@ GameObject:
   - component: {fileID: 2039476192}
   m_Layer: 0
   m_Name: Tree_A10 (13)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157059,7 +157934,7 @@ GameObject:
   - component: {fileID: 2045798201}
   m_Layer: 0
   m_Name: Tree_A10 (35)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157625,7 +158500,7 @@ GameObject:
   - component: {fileID: 2053521619}
   m_Layer: 0
   m_Name: Tree_A13 (10)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157716,6 +158591,111 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053521617}
   m_Mesh: {fileID: 4300000, guid: 25c0b5a9bf673034e980f4200dcca1c5, type: 3}
+--- !u!1 &2056241419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2056241420}
+  - component: {fileID: 2056241423}
+  - component: {fileID: 2056241422}
+  - component: {fileID: 2056241421}
+  m_Layer: 10
+  m_Name: Cube (45)
+  m_TagString: NavMesh
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2056241420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056241419}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.8952286, z: -0, w: 0.4456072}
+  m_LocalPosition: {x: -10.61, y: 18.542435, z: 50.04}
+  m_LocalScale: {x: 6.094581, y: 12.570827, z: 4.8816805}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 361190372}
+  m_LocalEulerAnglesHint: {x: 0, y: -127.076, z: 0}
+--- !u!23 &2056241421
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056241419}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2056241422
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056241419}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &2056241423
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056241419}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2057047406
 GameObject:
   m_ObjectHideFlags: 0
@@ -157835,7 +158815,7 @@ GameObject:
   - component: {fileID: 2057707344}
   m_Layer: 0
   m_Name: Tree_A12
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159907,7 +160887,7 @@ GameObject:
   - component: {fileID: 2092226821}
   m_Layer: 0
   m_Name: Tree_A10 (9)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160284,7 +161264,7 @@ GameObject:
   - component: {fileID: 2096029370}
   m_Layer: 0
   m_Name: Tree_A13 (27)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160389,7 +161369,7 @@ GameObject:
   - component: {fileID: 2096526178}
   m_Layer: 0
   m_Name: Tree_A10 (43)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160494,7 +161474,7 @@ GameObject:
   - component: {fileID: 2096685035}
   m_Layer: 0
   m_Name: Tree_A10 (2)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160705,7 +161685,7 @@ GameObject:
   - component: {fileID: 2098053199}
   m_Layer: 0
   m_Name: Tree_A12 (5)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161430,7 +162410,7 @@ GameObject:
   - component: {fileID: 2103550578}
   m_Layer: 0
   m_Name: Tree_A12 (3)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161770,7 +162750,7 @@ GameObject:
   - component: {fileID: 2106091135}
   m_Layer: 0
   m_Name: Tree_A9 (23)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162064,7 +163044,7 @@ GameObject:
   - component: {fileID: 2106968662}
   m_Layer: 0
   m_Name: Tree_A10 (42)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162169,7 +163149,7 @@ GameObject:
   - component: {fileID: 2108358706}
   m_Layer: 0
   m_Name: Tree_A13 (50)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162274,7 +163254,7 @@ GameObject:
   - component: {fileID: 2115752771}
   m_Layer: 0
   m_Name: Tree_A9 (15)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162622,7 +163602,7 @@ GameObject:
   - component: {fileID: 2121142152}
   m_Layer: 0
   m_Name: Tree_A9 (17)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162727,7 +163707,7 @@ GameObject:
   - component: {fileID: 2122150659}
   m_Layer: 0
   m_Name: Tree_A13 (4)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162915,7 +163895,7 @@ GameObject:
   - component: {fileID: 2125884135}
   m_Layer: 0
   m_Name: Tree_A9 (56)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163020,7 +164000,7 @@ GameObject:
   - component: {fileID: 2126526622}
   m_Layer: 0
   m_Name: Tree_A9 (10)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163397,7 +164377,7 @@ GameObject:
   - component: {fileID: 2129504959}
   m_Layer: 0
   m_Name: Tree_A10
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163985,7 +164965,7 @@ GameObject:
   - component: {fileID: 2141528364}
   m_Layer: 0
   m_Name: Tree_A13 (20)
-  m_TagString: Untagged
+  m_TagString: NavMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
