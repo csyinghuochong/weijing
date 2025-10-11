@@ -409,7 +409,7 @@ namespace ET
             else
             {
                 distance = self.CanMoveDistance(unit, rotation);
-                distance = Mathf.Max(distance, 2f);
+                //distance = Mathf.Max(distance, 1f);
 
                 if (self.noCheckTime < clientNow)
                 {
@@ -492,7 +492,7 @@ namespace ET
         public static float CanMoveDistance(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation)
         {
             float intveral = 1f; //每次寻的长度
-            int distance = 2;
+            int distance = 1;
             int maxnumber = 5; //最多寻多少次
             for (int i = distance; i <= maxnumber; i++)
             {
