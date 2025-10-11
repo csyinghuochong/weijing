@@ -304,7 +304,10 @@ namespace ET
             self.Btn_KillMonsterRewardEffect = self.Btn_KillMonsterReward.transform.Find("Effect").gameObject;
             ButtonHelp.AddListenerEx(self.Btn_KillMonsterReward.GetComponent<ReferenceCollector>().Get<GameObject>("Image_ItemButton"),
                 () => { self.OnBtn_KillMonsterReward().Coroutine(); });
-            
+
+            self.ShowShanShuo2Effect(self.Btn_LvRewardEffect, false);
+            self.ShowShanShuo2Effect(self.Btn_KillMonsterRewardEffect, false);
+
             self.MailHintTip = rc.Get<GameObject>("MailHintTip");
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
             UI mailHintTipUI = self.AddChild<UI, string, GameObject>("MailHintTip", self.MailHintTip);
@@ -2639,6 +2642,7 @@ namespace ET
                 effect.transform.localScale = Vector3.one * 60;
             }
             effect.SetActive(show);
+            effect.transform.parent.Find("Reddot").gameObject.SetActive(show);
         }
 
         public static async ETTask OnBtn_KillMonsterReward(this UIMainComponent self)
