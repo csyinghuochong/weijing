@@ -140,8 +140,8 @@ namespace ET
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 return;
             }
-            string nexttime = UICommonHelper.ShowLeftTime(self.CDTime, GameSettingLanguge.Language);
-            self.TextTip.text = GameSettingLanguge.LoadLocalization("下次抽奖时间:") + nexttime;
+            string nexttime = UICommonHelper.ShowLeftTime_2(self.CDTime, GameSettingLanguge.Language);
+            self.TextTip.text = string.Format(GameSettingLanguge.LoadLocalization("{0}后领取"), nexttime);
             self.CDTime -= 1000;
         }
 
