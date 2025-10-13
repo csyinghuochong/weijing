@@ -1468,6 +1468,21 @@ namespace ET
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.AcceptTask, taskid);
         }
 
+
+        public static void OnTaskGetEffect(this UIMainComponent self)
+        {
+            Game.Scene.GetComponent<SoundComponent>().PlayClip("UI/GetTask", "mp3").Coroutine();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000317);
+        }
+
+        public static void OnTaskCompleteEffect(this UIMainComponent self)
+        {
+            Game.Scene.GetComponent<SoundComponent>().PlayClip("UI/ComplateTask", "mp3").Coroutine();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000318);
+        }
+
         public static async ETTask OnCompleteTask(this UIMainComponent self, string taskid)
         {
             // 完成藏宝图任务后自动接取藏宝图任务

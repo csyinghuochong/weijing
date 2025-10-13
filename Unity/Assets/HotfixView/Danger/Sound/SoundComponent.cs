@@ -39,8 +39,11 @@ namespace ET
 
         public List<string> m_assetlist = new List<string>();   
 
+
         public float MusicVolume = 1f;
         public float SoundVolume = 1f;
+
+        public string RunSound = "Game/Run";
 
         public void Awake()
         {
@@ -87,14 +90,14 @@ namespace ET
 
         public void PlayRunSound()
         {
-            PlayClip("Game/Run", "map3").Coroutine();
+            PlayClip(RunSound, "map3").Coroutine();
         }
 
         public void StopRunSound()
         {
             for (int i = 0; i < m_soundclips.Count; i++)
             {
-                if (m_soundclips[i].name != "Game/Run")
+                if (m_soundclips[i].name != RunSound)
                 {
                     continue;
                 }
@@ -166,7 +169,7 @@ namespace ET
                 gameObject.transform.SetParent(root);
                 m_soundclips.Add(gameObject);
                 audio.clip = audioClip;
-                if (clipName.Contains("Run"))
+                if (clipName.Contains(RunSound))
                 {
                     audio.loop = true;
                 }

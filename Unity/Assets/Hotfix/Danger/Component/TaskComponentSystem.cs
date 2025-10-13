@@ -418,6 +418,8 @@ namespace ET
                         self.TaskCountryList[i].taskStatus = (int)TaskStatuEnum.Commited;
                     }
                 }
+
+                HintHelp.GetInstance().DataUpdate(DataType.TaskCountryComplete);
             }
             
             return m2C_CommitTaskResponse.Error;

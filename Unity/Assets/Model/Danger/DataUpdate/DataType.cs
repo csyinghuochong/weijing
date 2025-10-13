@@ -59,6 +59,7 @@
         public const int TaskGet = 18;
         //完成任务
         public const int TaskComplete = 19;
+
         /// <summary>
         /// 放弃任务
         /// </summary>
@@ -131,5 +132,7 @@
         public const int AccountWarehous = 50;
 
         public const int LanguageUpdate = 51;
+
+        public const int TaskCountryComplete = 52;
     }
 }

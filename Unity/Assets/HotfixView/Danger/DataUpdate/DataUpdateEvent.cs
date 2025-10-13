@@ -60,7 +60,8 @@ namespace ET
                 { DataType.UpdateSing, OnUpdateSing },
                 { DataType.AccountWarehous, OnAccountWarehous },
                 { DataType.ChouKaWarehouseAddItem, OnChouKaWarehouseAddItem},
-                { DataType.LanguageUpdate, OnLanguageUpdate}
+                { DataType.LanguageUpdate, OnLanguageUpdate},
+                { DataType.TaskCountryComplete, OnTaskCountryComplete },
             };
         }
 
@@ -1460,6 +1461,7 @@ namespace ET
                     uimainComponent.OnTaskGet(DataParams);
                     uimainComponent.OnRecvTaskUpdate();
                     uimainComponent.OnRecvTaskTrace();
+                    uimainComponent.OnTaskGetEffect();
                     continue;
                 }
                 if (component is UITaskAComponent uiTaskAComponent)
@@ -1479,6 +1481,7 @@ namespace ET
                 {
                     uimainComponent.OnCompleteTask(DataParams).Coroutine();
                     uimainComponent.OnRecvTaskUpdate();
+                    uimainComponent.OnTaskCompleteEffect();
                     continue;
                 }
             }
@@ -1609,7 +1612,17 @@ namespace ET
         }
 
 
-
+        public void OnTaskCountryComplete(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIMainComponent uimainComponent)
+                {
+                    uimainComponent.OnTaskCompleteEffect();
+                    continue;
+                }
+            }
+        }
     }
 
     [Event]
