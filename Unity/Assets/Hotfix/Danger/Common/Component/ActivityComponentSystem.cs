@@ -85,6 +85,11 @@ namespace ET
             }
         }
 
+        public static void Check(this ActivityComponent self)
+        {
+            self.LastTimerChouKaPassTime += TimeHelper.Second;
+        }
+
         public static void OnZeroClockUpdate(this ActivityComponent self, int level)
         {
             self.DayTeHui = DayTeHuiHelper.GetDayTeHuiList(2, level);
@@ -118,7 +123,7 @@ namespace ET
             self.ActivityV1Info.ChouKaNumberReward.Clear(); 
             self.ActivityV1Info.ConsumeDiamondReward.Clear();
 
-            self.TimerChouKaLastTime = 0;
+            self.LastTimerChouKaPassTime = 0;
             self.TimerChouKaReceiveIndex = 0;
     }
 #endif
@@ -165,9 +170,27 @@ namespace ET
                 }
             }
 
-            self.TimerChouKaLastTime = 0;
+            self.LastTimerChouKaPassTime = 0;
             self.TimerChouKaReceiveIndex = 0;
+
+            HintHelp.GetInstance().DataUpdate(DataType.UpdateTimerChouKa);
         }
+
+        public static void OnRecvActivityInfo(this ActivityComponent self, M2C_ActivityInfoResponse r2c_roleEquip)
+        {
+            self.ActivityReceiveIds = r2c_roleEquip.ReceiveIds;
+            self.LastSignTime = r2c_roleEquip.LastSignTime;
+            self.TotalSignNumber = r2c_roleEquip.TotalSignNumber;
+            self.QuTokenRecvive = r2c_roleEquip.QuTokenRecvive;
+            self.LastLoginTime = r2c_roleEquip.LastLoginTime;
+            self.DayTeHui = r2c_roleEquip.DayTeHui;
+            self.ActivityV1Info = r2c_roleEquip.ActivityV1Info;
+            self.TimerChouKaReceiveIndex = r2c_roleEquip.TimerChouKaReceiveIndex;
+            self.LastTimerChouKaPassTime = r2c_roleEquip.LastTimerChouKaPassTime;
+
+            HintHelp.GetInstance().DataUpdate(DataType.UpdateTimerChouKa);
+        }
+
 
         public static async ETTask<int> SendTimerChouKaRequest(this ActivityComponent self)
         { 
@@ -182,8 +205,10 @@ namespace ET
                 return m2C_TimerChouKaResponse.Error;
             }
 
-            self.TimerChouKaLastTime = m2C_TimerChouKaResponse.TimerChouKaLastTime;
+            self.LastTimerChouKaPassTime = m2C_TimerChouKaResponse.LastTimerChouKaPassTime;
             self.TimerChouKaReceiveIndex = m2C_TimerChouKaResponse.TimerChouKaReceiveIndex;
+
+            HintHelp.GetInstance().DataUpdate(DataType.UpdateTimerChouKa);
             return ErrorCode.ERR_Success;
         }
 

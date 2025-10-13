@@ -227,15 +227,7 @@ namespace ET
             ActivityComponent activityComponent = zoneScene.GetComponent<ActivityComponent>();
             C2M_ActivityInfoRequest c2M_ItemHuiShouRequest = new C2M_ActivityInfoRequest() { };
             M2C_ActivityInfoResponse r2c_roleEquip = (M2C_ActivityInfoResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
-            activityComponent.ActivityReceiveIds = r2c_roleEquip.ReceiveIds;
-            activityComponent.LastSignTime = r2c_roleEquip.LastSignTime;
-            activityComponent.TotalSignNumber = r2c_roleEquip.TotalSignNumber;
-            activityComponent.QuTokenRecvive = r2c_roleEquip.QuTokenRecvive;
-            activityComponent.LastLoginTime = r2c_roleEquip.LastLoginTime;
-            activityComponent.DayTeHui = r2c_roleEquip.DayTeHui;
-            activityComponent.ActivityV1Info = r2c_roleEquip.ActivityV1Info;
-            activityComponent.TimerChouKaReceiveIndex = r2c_roleEquip.TimerChouKaReceiveIndex;
-            activityComponent.TimerChouKaLastTime = r2c_roleEquip.TimerChouKaLastTime;
+            activityComponent.OnRecvActivityInfo(r2c_roleEquip);
         }
 
         public static async ETTask RequestZhanQuInfo(Scene zoneScene)

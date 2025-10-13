@@ -62,6 +62,7 @@ namespace ET
                 { DataType.ChouKaWarehouseAddItem, OnChouKaWarehouseAddItem},
                 { DataType.LanguageUpdate, OnLanguageUpdate},
                 { DataType.TaskCountryComplete, OnTaskCountryComplete },
+                { DataType.UpdateTimerChouKa, OnUpdateTimerChouKa },
             };
         }
 
@@ -1619,6 +1620,18 @@ namespace ET
                 if (component is UIMainComponent uimainComponent)
                 {
                     uimainComponent.OnTaskCompleteEffect();
+                    continue;
+                }
+            }
+        }
+
+        public void OnUpdateTimerChouKa(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIMainComponent uimainComponent)
+                {
+                    uimainComponent.OnUpdateTimerChouKa();
                     continue;
                 }
             }

@@ -134,5 +134,7 @@
         public const int LanguageUpdate = 51;
 
         public const int TaskCountryComplete = 52;
+
+        public const int UpdateTimerChouKa = 53;
     }
 }

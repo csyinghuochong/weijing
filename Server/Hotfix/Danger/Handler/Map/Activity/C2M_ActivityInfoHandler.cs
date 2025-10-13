@@ -28,7 +28,7 @@ namespace ET
             response.LastLoginTime = activityComponent.LastLoginTime;
             response.DayTeHui = activityComponent.DayTeHui;
             response.TimerChouKaReceiveIndex = activityComponent.TimerChouKaReceiveIndex;
-            response.TimerChouKaLastTime = activityComponent.TimerChouKaLastTime;
+            response.LastTimerChouKaPassTime = activityComponent.LastTimerChouKaPassTime;
 
 
             ActivityV1Info activityV1Info = activityComponent.ActivityV1Info;

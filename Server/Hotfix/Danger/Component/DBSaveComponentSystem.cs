@@ -271,9 +271,11 @@ namespace ET
             if (self.SceondIndex >= 60)
             { 
                 self.SceondIndex = 0;
-
                 self.MinuteCheck();
             }
+
+            Unit unit = self.GetParent<Unit>();
+            unit.GetComponent<ActivityComponent>().Check();
         }
 
         public static bool MinuteCheck(this DBSaveComponent self)

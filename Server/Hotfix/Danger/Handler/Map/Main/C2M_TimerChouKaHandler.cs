@@ -34,11 +34,10 @@ namespace ET
                 return;
             }
 
-            long serverTime = TimeHelper.ServerNow();
-            long lastTime = activityComponent.TimerChouKaLastTime;
-            long validTime = lastTime + ConfigHelper.TimerChouKaRewardList[receNum].Interval * TimeHelper.Minute;
+            long passtime = activityComponent.LastTimerChouKaPassTime;
+            long validTime =  ConfigHelper.TimerChouKaRewardList[receNum].Interval * TimeHelper.Minute;
 
-            if (serverTime < validTime)
+            if (passtime < validTime)
             {
                 response.Error = ErrorCode.ERR_NotTimeToGet;
                 reply();
@@ -62,10 +61,10 @@ namespace ET
             string getitem = ConfigHelper.TimerChouKaRewardList[recvid].ItemInfo;
             bagComponent.OnAddItemData(getitem, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
             activityComponent.TimerChouKaReceiveIndex++;
-            activityComponent.TimerChouKaLastTime = serverTime;
+            activityComponent.LastTimerChouKaPassTime = 0;
 
 
-            response.TimerChouKaLastTime = activityComponent.TimerChouKaLastTime;
+            response.LastTimerChouKaPassTime = activityComponent.LastTimerChouKaPassTime;
             response.TimerChouKaReceiveIndex = activityComponent.TimerChouKaReceiveIndex;
             reply();
             await ETTask.CompletedTask;
