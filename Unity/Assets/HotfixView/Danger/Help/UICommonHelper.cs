@@ -3,6 +3,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace ET
 {
@@ -604,6 +605,60 @@ namespace ET
                 if (transform.GetComponent<Image>() != null)
                 {
                     child.GetComponent<Image>().CrossFadeAlpha(alpha, duration, false);
+                }
+            }
+        }
+
+        public static void OnShowItemTipsQuick(Scene zonescene, PointerEventData pdata)
+        {
+            UI uirole = UIHelper.GetUI(zonescene, UIType.UIRole);
+            if (uirole == null)
+            {
+                return;
+            }
+            UI uIRoleBag = uirole.GetComponent<UIRoleComponent>().UIPageView.UISubViewList[(int)RolePageEnum.RoleBag];
+            if (uIRoleBag == null || uIRoleBag.GameObject == null || !uIRoleBag.GameObject.activeSelf)
+            {
+                return;
+            }
+
+            RectTransform targetUI = uIRoleBag.GameObject.transform.Find("Right/ScrollView/Viewport/BuildingList").GetComponent<RectTransform>(); // 目标UI节点，比如一个Panel
+
+            Vector2 screenPoint = pdata.position;
+
+            Vector2 localPoint;
+            bool success = RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                targetUI,
+                screenPoint,
+                pdata.pressEventCamera, // 这里使用EventData中的相机
+                out localPoint
+            );
+
+            if (success)
+            {
+                //Debug.Log($"转换后的局部坐标: {localPoint}");
+                UIHelper.Remove(zonescene, UIType.UIItemTips);
+
+                List<UIItemComponent> itemlist = uIRoleBag.GetComponent<UIRoleBagComponent>().ItemUIlist;
+                int childcount = itemlist.Count;
+                for (int i = 0; i < childcount; i++)
+                {
+                    UIItemComponent uIItem = itemlist[i];
+                    if (uIItem.GameObject.name.Equals("0"))
+                    {
+                        continue;
+                    }
+
+                    Vector2 itemPoint = uIItem.GameObject.transform.localPosition;
+                    //Debug.Log($"transformtransform aaa:  {transform.name} {itemPoint}   {Math.Abs(itemPoint.x - localPoint.x)}  {Math.Abs(itemPoint.y - localPoint.y)}");
+
+                    if (Math.Abs(itemPoint.x - localPoint.x) < 60f
+                        && Math.Abs(itemPoint.y - localPoint.y) < 60f)
+                    {
+                        Debug.Log($"uIItem.GameObject.name: {uIItem.GameObject.name}");
+                        uIItem.OnClickUIItem();
+                    }
+
                 }
             }
         }

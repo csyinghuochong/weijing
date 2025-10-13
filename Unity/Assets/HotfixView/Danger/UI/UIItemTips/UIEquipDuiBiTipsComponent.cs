@@ -1,6 +1,5 @@
-﻿using System.Text.RegularExpressions;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace ET
 {
@@ -22,7 +21,15 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
-            self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseTips(); });
+            //self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseTips(); });
+            ButtonHelp.AddEventTriggers(self.ImageButton, (PointerEventData pdata) => { self.OnPointerDown(pdata); },
+                 EventTriggerType.PointerDown);
+            ButtonHelp.AddEventTriggers(self.ImageButton, (PointerEventData pdata) => { self.OnPointerUp(pdata); },
+                EventTriggerType.PointerUp);
+            ButtonHelp.AddEventTriggers(self.ImageButton, (PointerEventData pdata) => { self.OnDraging(pdata); }, EventTriggerType.Drag);
+            ButtonHelp.AddEventTriggers(self.ImageButton, (PointerEventData pdata) => { self.OnEndDrag(pdata); }, EventTriggerType.EndDrag);
+
+
 
             self.Tips2 = rc.Get<GameObject>("Tips2");
             self.Tips1 = rc.Get<GameObject>("Tips1");
@@ -31,7 +38,35 @@ namespace ET
 
     public static class UIEquipDuiBiTipsComponentSystem
     {
-       
+
+        public static void OnPointerDown(this UIEquipDuiBiTipsComponent self, PointerEventData pdata)
+        {
+        }
+
+        public static void OnPointerUp(this UIEquipDuiBiTipsComponent self, PointerEventData pdata)
+        {
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            Scene zonescene = self.ZoneScene();
+            self.OnCloseTips();
+
+            UICommonHelper.OnShowItemTipsQuick(zonescene, pdata);
+        }
+
+        public static void OnDraging(this UIEquipDuiBiTipsComponent self, PointerEventData pdata)
+        {
+            //Log.ILog.Debug($"OnDragingxxxx");
+        }
+
+        public static void OnEndDrag(this UIEquipDuiBiTipsComponent self, PointerEventData pdata)
+        {
+            //Log.ILog.Debug($"OnEndDragxxxx");
+            self.OnPointerUp(pdata);
+        }
+
         public static void OnCloseTips(this UIEquipDuiBiTipsComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips);

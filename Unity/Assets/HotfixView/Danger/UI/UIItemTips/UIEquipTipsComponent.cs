@@ -1,6 +1,6 @@
-﻿using ProtoBuf.Meta;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
@@ -196,8 +196,16 @@ namespace ET
 
             GameSettingLanguge.TransformText(self.GetParent<UI>().GameObject.transform);
             GameSettingLanguge.TransformImage(self.GetParent<UI>().GameObject.transform);
-            
-            ButtonHelp.AddListenerEx(self.Img_back_btn, self.OnCloseTips);
+
+            //ButtonHelp.AddListenerEx(self.Img_back_btn, self.OnCloseTips);
+            ButtonHelp.AddEventTriggers(self.Img_back_btn, (PointerEventData pdata) => { self.OnPointerDown(pdata); },
+                  EventTriggerType.PointerDown);
+            ButtonHelp.AddEventTriggers(self.Img_back_btn, (PointerEventData pdata) => { self.OnPointerUp(pdata); },
+                EventTriggerType.PointerUp);
+            ButtonHelp.AddEventTriggers(self.Img_back_btn, (PointerEventData pdata) => { self.OnDraging(pdata); }, EventTriggerType.Drag);
+            ButtonHelp.AddEventTriggers(self.Img_back_btn, (PointerEventData pdata) => { self.OnEndDrag(pdata); }, EventTriggerType.EndDrag);
+
+
             ButtonHelp.AddListenerEx(self.Btn_Use, self.OnClickWearEquip);
             ButtonHelp.AddListenerEx(self.Btn_Takeoff, self.OnClickTakeEquip);
             ButtonHelp.AddListenerEx(self.Btn_Sell, self.OnClickSellEquip);
@@ -285,6 +293,34 @@ namespace ET
             self.OnCloseTips();
         }
 
+        public static void OnPointerDown(this UIEquipTipsComponent self, PointerEventData pdata)
+        {
+        }
+
+        public static void OnPointerUp(this UIEquipTipsComponent self, PointerEventData pdata)
+        {
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            Scene zonescene = self.ZoneScene();
+            self.OnCloseTips();
+
+            UICommonHelper.OnShowItemTipsQuick(zonescene, pdata);
+        }
+
+        public static void OnDraging(this UIEquipTipsComponent self, PointerEventData pdata)
+        {
+            //Log.ILog.Debug($"OnDragingxxxx");
+        }
+
+        public static void OnEndDrag(this UIEquipTipsComponent self, PointerEventData pdata)
+        {
+            //Log.ILog.Debug($"OnEndDragxxxx");
+            self.OnPointerUp(pdata);
+        }
+
         //放入背包
         public static void OnBtn_PutBag(this UIEquipTipsComponent self)
         {
@@ -300,8 +336,13 @@ namespace ET
             self.OnCloseTips();
         }
 
+
         public static void OnCloseTips(this UIEquipTipsComponent self)
         {
+            if (self.IsDisposed)
+            {
+                return;
+            }
             UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips);
         }
 

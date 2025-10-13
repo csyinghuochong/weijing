@@ -325,6 +325,8 @@ namespace ET
                 //uIItemComponent.UpdateUnLock(i < opencell);
                 uIItemComponent.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
                 self.ItemUIlist.Add(uIItemComponent);
+
+                go.name = bagInfo!=null ? bagInfo.BagInfoID.ToString() : "0";
             }
 
             self.CheckUpItem();

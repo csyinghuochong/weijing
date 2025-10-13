@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
@@ -84,7 +84,14 @@ namespace ET
             self.Obj_Lab_EquipBangDing = rc.Get<GameObject>("Lab_BangDing");
             self.Obj_Img_EquipBangDing = rc.Get<GameObject>("Img_BangDing");
 
-            ButtonHelp.AddListenerEx(self.Imagebg, self.OnCloseTips);
+            //ButtonHelp.AddListenerEx(self.Imagebg, self.OnBtnImagebg);
+            ButtonHelp.AddEventTriggers(self.Imagebg, (PointerEventData pdata) => { self.OnPointerDown(pdata); },
+                   EventTriggerType.PointerDown);
+            ButtonHelp.AddEventTriggers(self.Imagebg, (PointerEventData pdata) => { self.OnPointerUp(pdata); },
+                EventTriggerType.PointerUp);
+            ButtonHelp.AddEventTriggers(self.Imagebg, (PointerEventData pdata) => { self.OnDraging(pdata); }, EventTriggerType.Drag);
+            ButtonHelp.AddEventTriggers(self.Imagebg, (PointerEventData pdata) => { self.OnEndDrag(pdata); }, EventTriggerType.EndDrag);
+
             ButtonHelp.AddListenerEx(self.Btn_Sell, () => { self.OnClickSell().Coroutine(); });
             ButtonHelp.AddListenerEx(self.Btn_Use, () => { self.OnClickUse().Coroutine(); });     
             ButtonHelp.AddListenerEx(self.Btn_Split, () => { self.OnBtn_Split().Coroutine(); });
@@ -203,6 +210,35 @@ namespace ET
         public static void Awake(this UIItemTipsComponent self)
         {
 
+        }
+
+
+        public static void OnPointerDown(this UIItemTipsComponent self, PointerEventData pdata)
+        {
+        }
+
+        public static void OnPointerUp(this UIItemTipsComponent self, PointerEventData pdata)
+        {
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            Scene zonescene = self.ZoneScene();
+            self.OnCloseTips();
+
+            UICommonHelper.OnShowItemTipsQuick(zonescene, pdata);
+        }
+
+        public static void OnDraging(this UIItemTipsComponent self, PointerEventData pdata)
+        {
+            //Log.ILog.Debug($"OnDragingxxxx");
+        }
+
+         public static void OnEndDrag(this UIItemTipsComponent self, PointerEventData pdata)
+        {
+            //Log.ILog.Debug($"OnEndDragxxxx");
+            self.OnPointerUp(pdata);
         }
 
         //点击Tips
