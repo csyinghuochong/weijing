@@ -15,6 +15,8 @@ namespace ET
         public GameObject Button_Revive;
         public GameObject Button_Exit;
         public GameObject Text_ExitDes;
+        public GameObject Node_2;
+        public GameObject Node_1;
 
         public long Timer;
         public int LeftTime;
@@ -37,6 +39,9 @@ namespace ET
             self.Button_Revive = rc.Get<GameObject>("Button_Revive");
             self.Button_Exit = rc.Get<GameObject>("Button_Exit");
             self.Text_ExitDes = rc.Get<GameObject>("Text_ExitDes");
+
+            self.Node_1 = rc.Get<GameObject>("Node_1");
+            self.Node_2 = rc.Get<GameObject>("Node_2");
 
             self.Button_Revive.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Revive(); });
             self.Button_Exit.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Exit(); });
@@ -112,12 +117,19 @@ namespace ET
             }
         }
 
+        public static void UpdateStatus(this UICellDungeonReviveComponent self)
+        {
+            self.Node_1.SetActive(true);
+            self.Node_2.SetActive(false);
+        }
+
         public static void OnInitUI(this UICellDungeonReviveComponent self, int seneTypeEnum)
         {
             self.SceneType = seneTypeEnum;
             self.LeftTime = seneTypeEnum == SceneTypeEnum.TeamDungeon ? 3 : 10;
 
             self.BegingTimer().Coroutine();
+            self.UpdateStatus();
 
             string reviveCost = GlobalValueConfigCategory.Instance.Get(5).Value;
             string[] needList = reviveCost.Split(';');
