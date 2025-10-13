@@ -655,7 +655,7 @@ namespace ET
                     ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]);
                 }
             }
-
+            TimerComponent.Instance?.Remove(ref self.TimerChouKaTimer);
             TimerComponent.Instance?.Remove(ref self.OnlineCheckTimer);
             TimerComponent.Instance?.Remove(ref self.TimerFunctiuon);
             TimerComponent.Instance?.Remove(ref self.TimerPing);
