@@ -408,33 +408,57 @@ namespace ET
 
                 if (itemConfig.EquipType != 0 && itemConfig.EquipType != 99 && itemConfig.EquipType != 101 && itemConfig.EquipType != 201)
                 {
-                    //武器类型
-                    switch (userInfoComponent.UserInfo.Occ)
+                    if (itemConfig.EquipType < 10)
                     {
+                        bool ifWear =  ConfigHelper.OccWeaponList[userInfoComponent.UserInfo.Occ].Contains(itemConfig.EquipType);
 
-                        //战士
-                        case 1:
-                            if (itemConfig.EquipType <10 && itemConfig.EquipType != 1 && itemConfig.EquipType != 2)
-                            {
-                                continue;
-                            }
-                            break;
-
-                        //法师
-                        case 2:
-                            if (itemConfig.EquipType < 10 && itemConfig.EquipType != 3 && itemConfig.EquipType != 4)
-                            {
-                                continue;
-                            }
-                            break;
-                        //猎人
-                        case 3:
-                            if (itemConfig.EquipType < 10 && itemConfig.EquipType != 1 && itemConfig.EquipType != 5)
-                            {
-                                continue;
-                            }
-                            break;
+                        if (!ifWear)
+                        {
+                            continue;
+                        }
                     }
+
+                   
+
+                    //武器类型
+                    //switch (userInfoComponent.UserInfo.Occ)
+                    //{
+                    //    //战士
+                    //    case 1:
+                    //        if (itemConfig.EquipType <10 && itemConfig.EquipType != 1 && itemConfig.EquipType != 2)
+                    //        {
+                    //            continue;
+                    //        }
+                    //        break;
+                    //    //法师
+                    //    case 2:
+                    //        if (itemConfig.EquipType < 10 && itemConfig.EquipType != 3 && itemConfig.EquipType != 4)
+                    //        {
+                    //            continue;
+                    //        }
+                    //        break;
+                    //    //猎人
+                    //    case 3:
+                    //        if (itemConfig.EquipType < 10 && itemConfig.EquipType != 1 && itemConfig.EquipType != 5)
+                    //        {
+                    //            continue;
+                    //        }
+                    //        break;
+                    //    case 4:
+                    //        if (itemConfig.EquipType < 10 && itemConfig.EquipType != 3 && itemConfig.EquipType != 4)
+                    //        {
+                    //            continue;
+                    //        }
+                    //        break;
+                    //    case 5:
+                    //        if (itemConfig.EquipType < 10 && itemConfig.EquipType != 2 && itemConfig.EquipType != 5)
+                    //        {
+                    //            continue;
+                    //        }
+                    //        break;
+                    //    default:
+                    //        break;
+                    //}
 
 
                     if (userInfoComponent.UserInfo.OccTwo > 100)
