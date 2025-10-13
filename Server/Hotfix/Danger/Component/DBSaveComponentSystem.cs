@@ -275,7 +275,10 @@ namespace ET
             }
 
             Unit unit = self.GetParent<Unit>();
-            unit.GetComponent<ActivityComponent>().Check();
+            if (unit.GetComponent<UnitGateComponent>().PlayerState!= PlayerState.None)
+            {
+                unit.GetComponent<ActivityComponent>().Check();
+            }
         }
 
         public static bool MinuteCheck(this DBSaveComponent self)
