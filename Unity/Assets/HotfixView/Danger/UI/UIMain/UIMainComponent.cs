@@ -63,7 +63,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IUpdate, IDestroy
     {
         public GameObject DragPanel;
-        public GameObject Btn_TimerChouKa;
+        public GameObject Btn_TimeReward;
         public GameObject Button_ActivityV1;
         public GameObject Button_RechargeReward;
         public GameObject Button_ZhanKai;
@@ -430,9 +430,9 @@ namespace ET
             self.Btn_GM.SetActive(AdminAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             self.Button_ActivityV1.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
-            self.Btn_TimerChouKa = rc.Get<GameObject>("Btn_TimerChouKa");
-            self.Btn_TimerChouKa.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_TimerChouKa().Coroutine(); });
-            self.Btn_TimerChouKa.SetActive(false);
+            self.Btn_TimeReward = rc.Get<GameObject>("Btn_TimeReward");
+            self.Btn_TimeReward.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_TimerChouKa().Coroutine(); });
+            self.Btn_TimeReward.SetActive(false);
 
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();
@@ -2136,7 +2136,7 @@ namespace ET
                     self.Button_Season.SetActive(showButton);
                     break;
                 case 1074:
-                    self.Btn_TimerChouKa.SetActive(showButton && GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+                    self.Btn_TimeReward.SetActive(showButton && GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
                     break;
                 default:
                     break;
