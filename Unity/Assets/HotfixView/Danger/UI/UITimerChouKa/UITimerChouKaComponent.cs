@@ -112,7 +112,6 @@ namespace ET
 
                 GameObject Label_ItemName = self.UIItemList[i].Label_ItemName;
                 Label_ItemName.gameObject.SetActive(true);
-                Label_ItemName.GetComponent<Text>().color = Color.white;
 
                 GameObject Label_ItemStatus = self.UIItemList[i].GameObject.transform.Find("Label_ItemStatus").gameObject;
                 Label_ItemStatus.GetComponent<Text>().text = strtext;  
