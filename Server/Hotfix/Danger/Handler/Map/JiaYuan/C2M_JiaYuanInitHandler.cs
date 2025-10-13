@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -43,6 +44,10 @@ namespace ET
                     });
                     await DBHelper.SaveComponentCache(unit.DomainZone(), request.MasterId, jiaYuanComponent);
                 }
+            }
+            else
+            {
+               
             }
 
             response.PlanOpenList = jiaYuanComponent.InitOpenList();

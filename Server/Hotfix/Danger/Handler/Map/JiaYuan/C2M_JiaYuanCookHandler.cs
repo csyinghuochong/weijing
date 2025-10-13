@@ -77,7 +77,13 @@ namespace ET
                 {
                 */
                 //制作成功
-                jiaYuanComponent.LearnMakeIds_7.Add(makeid);
+
+
+                if (!jiaYuanComponent.LearnMakeIds_7.Contains(makeid))
+                {
+                    jiaYuanComponent.LearnMakeIds_7.Add(makeid);
+                }
+
                 getItemid = EquipMakeConfigCategory.Instance.Get(makeid).MakeItemID;
                 ifActiveMake = true;
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ET
@@ -311,6 +312,11 @@ namespace ET
         public static void OnLogin(this JiaYuanComponent self)
         {
 #if SERVER
+            List<int> numbers = self.LearnMakeIds_7;
+
+            // 使用 Distinct() 去除重复元素
+            self.LearnMakeIds_7 = numbers.Distinct().ToList();
+
             //检测宠物
             PetComponent petComponent = self.GetParent<Unit>().GetComponent<PetComponent>();
             for(int i = self.JiaYuanPetList_2.Count - 1; i >= 0; i--)
