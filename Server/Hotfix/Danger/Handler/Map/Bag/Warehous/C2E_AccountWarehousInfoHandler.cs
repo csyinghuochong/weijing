@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ET
 {
@@ -11,7 +10,8 @@ namespace ET
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccInfoID))
             {
-                DBAccountInfo dBAccountWarehouse = await DBHelper.GetComponentCache<DBAccountInfo>(scene.DomainZone(), request.AccInfoID);
+                DBAccountInfo dBAccountWarehouse = await DBHelper.GetComponent<DBAccountInfo>(scene.DomainZone(), request.AccInfoID);
+
                 if (dBAccountWarehouse != null)
                 {
                     response.BagInfos = dBAccountWarehouse.BagInfoList;

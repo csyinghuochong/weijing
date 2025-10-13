@@ -984,6 +984,9 @@ namespace ET
 		[ProtoMember(8)]
 		public int TaskId { get; set; }
 
+		[ProtoMember(9)]
+		public float SpeedRate { get; set; }
+
 	}
 
 ///客户端寻路...

@@ -489,6 +489,7 @@ message C2M_PathfindingRequest // IActorLocationMessage
 	int32 Direction = 6;
 	float Distance = 7;
 	int32 TaskId = 8;
+	float SpeedRate = 9;
 }
 
 ///客户端寻路...

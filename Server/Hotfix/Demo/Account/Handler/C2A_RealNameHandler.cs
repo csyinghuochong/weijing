@@ -27,8 +27,14 @@ namespace ET
                 }
 
                 long dbCacheId = DBHelper.GetDbCacheId(session.DomainZone());
-                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.AccountId, Component = DBHelper.DBAccountInfo });
-                DBAccountInfo accountInfo = d2GGetUnit.Component as DBAccountInfo;
+                //D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.AccountId, Component = DBHelper.DBAccountInfo });
+                //DBAccountInfo accountInfo = d2GGetUnit.Component as DBAccountInfo;
+                DBAccountInfo accountInfo =await DBHelper.GetComponent<DBAccountInfo>(session.DomainZone(), request.AccountId);
+                //List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
+                //if (accountInfoList != null && accountInfoList.Count > 0)
+                //{
+                //    accountInfo = accountInfoList[0];
+                //}
 
                 RealNameCode result_check = new RealNameCode();
                 result_check.data = new RealNameData();

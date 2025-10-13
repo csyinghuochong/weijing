@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ET
 {
@@ -20,7 +19,7 @@ namespace ET
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Buy, unit.Id))
             {
                 long accountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID;
-                DBAccountInfo dBAccountWarehouse = await DBHelper.GetComponentCache<DBAccountInfo>(unit.DomainZone(), accountId);
+                DBAccountInfo dBAccountWarehouse = await DBHelper.GetComponent<DBAccountInfo>(unit.DomainZone(), accountId);
                 if (dBAccountWarehouse == null)
                 {
                     response.Error = ErrorCode.ERR_NetWorkError;
@@ -95,7 +94,8 @@ namespace ET
                 }
 
                 DBHelper.SaveComponentCache(unit.DomainZone(), unit.Id, bagComponent).Coroutine();
-                DBHelper.SaveComponentCache(unit.DomainZone(), accountId, dBAccountWarehouse).Coroutine();
+
+                DBHelper.SaveComponent(unit.DomainZone(), accountId, dBAccountWarehouse).Coroutine();
                 reply();
             }
             await ETTask.CompletedTask;
