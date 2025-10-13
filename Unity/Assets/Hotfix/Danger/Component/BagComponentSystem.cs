@@ -631,6 +631,11 @@ namespace ET
                     }
                     List<BagInfo> temp = self.GetItemListByItem(bagInfo.Loc);
                     temp.Add(bagInfo);
+
+                    if (bagInfo.ItemID == 10010080 && bagInfo.Loc == (int)ItemLocType.ItemLocBag)
+                    {
+                        HintHelp.GetInstance().DataUpdate(DataType.OnUseSealWeapon, bagInfo.BagInfoID.ToString());
+                    }
                 }
             }
 

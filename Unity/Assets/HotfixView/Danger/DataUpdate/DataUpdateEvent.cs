@@ -63,6 +63,7 @@ namespace ET
                 { DataType.LanguageUpdate, OnLanguageUpdate},
                 { DataType.TaskCountryComplete, OnTaskCountryComplete },
                 { DataType.UpdateTimerChouKa, OnUpdateTimerChouKa },
+                { DataType.OnUseSealWeapon, OnOnUseSealWeapon },
             };
         }
 
@@ -1632,6 +1633,18 @@ namespace ET
                 if (component is UIMainComponent uimainComponent)
                 {
                     uimainComponent.OnUpdateTimerChouKa();
+                    continue;
+                }
+            }
+        }
+
+        public void OnOnUseSealWeapon(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIMainComponent uimainComponent)
+                {
+                    uimainComponent.OnOnUseSealWeapon(DataParams).Coroutine();
                     continue;
                 }
             }

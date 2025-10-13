@@ -136,5 +136,7 @@
         public const int TaskCountryComplete = 52;
 
         public const int UpdateTimerChouKa = 53;
+
+        public const int OnUseSealWeapon = 54;
     }
 }

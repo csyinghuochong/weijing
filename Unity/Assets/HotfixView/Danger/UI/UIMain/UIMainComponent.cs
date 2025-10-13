@@ -521,6 +521,7 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.TaskCountryComplete, self);
             DataUpdateComponent.Instance.AddListener(DataType.UpdateTimerChouKa, self);
+            DataUpdateComponent.Instance.AddListener(DataType.OnUseSealWeapon, self);
         }
     }
 
@@ -641,6 +642,7 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.TaskCountryComplete, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.UpdateTimerChouKa, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.OnUseSealWeapon, self);
 
             if (self.TianQiEffectObj != null)
             {
@@ -1501,6 +1503,14 @@ namespace ET
             Game.Scene.GetComponent<SoundComponent>().PlayClip("UI/GetTask", "mp3").Coroutine();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000317);
+        }
+
+        public static async ETTask OnOnUseSealWeapon(this UIMainComponent self, string baginfoid)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(long.Parse(baginfoid));
+            UI selectWeapon = await UIHelper.Create(self.ZoneScene(), UIType.UISelectWeapon);
+            selectWeapon.GetComponent<UISelectWeaponComponent>().OnInitUI(userInfoComponent.UserInfo.Occ, bagInfo.ItemID, bagInfo.BagInfoID);
         }
 
         public static void OnUpdateTimerChouKa(this UIMainComponent self)
