@@ -1547,7 +1547,7 @@ namespace ET
             {
                 long leftTime = validTime - passtime;
                 string newLv = UICommonHelper.ShowLeftTime_3(leftTime,GameSettingLanguge.Language);
-                showstr = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}级领取</color>"), color, newLv);
+                showstr = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}领取</color>"), color, newLv);
                 self.Btn_TimeReward.transform.Find("Reddot").gameObject.SetActive(false);
             }
             self.Btn_TimeRewardText.text = showstr;

@@ -239,7 +239,7 @@ namespace ET
 
             if (language == 0)
             {
-                str += $"{time}分";
+                str += $"{time}分钟";
             }
             else
             {
