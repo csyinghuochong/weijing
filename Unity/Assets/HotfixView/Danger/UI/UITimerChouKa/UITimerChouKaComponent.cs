@@ -162,7 +162,7 @@ namespace ET
             }
 
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
-            if (activityComponent.TimerChouKaReceiveIds.Count >= ConfigHelper.TimerChouKaRewardList.Count)
+            if (activityComponent.TimerChouKaReceiveIndex >= ConfigHelper.TimerChouKaRewardList.Count)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("活动已经结束"));
                 return;
