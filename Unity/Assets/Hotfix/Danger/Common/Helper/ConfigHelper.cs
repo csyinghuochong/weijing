@@ -1336,8 +1336,8 @@ namespace ET
         public static List<TimerChouKaItemn> TimerChouKaRewardList = new List<TimerChouKaItemn>()
         {
              new TimerChouKaItemn(){  Interval = 0,  Weight = 10,  ItemInfo =  "10010001;1" },     //小型生命药水
-            new TimerChouKaItemn(){  Interval = 5,  Weight = 10, ItemInfo =  "10010091;1" },      //幼小的宠物蛋
-            new TimerChouKaItemn(){  Interval = 10,  Weight = 10, ItemInfo =  "10010080;1" },      //武器  
+            new TimerChouKaItemn(){  Interval = 1,  Weight = 10, ItemInfo =  "10010091;1" },      //幼小的宠物蛋
+            new TimerChouKaItemn(){  Interval = 2,  Weight = 10, ItemInfo =  "10010080;1" },      //武器  
             new TimerChouKaItemn(){  Interval = 15,  Weight = 10, ItemInfo =  "10010041;2" },      //经验盒子
             new TimerChouKaItemn(){  Interval = 20,  Weight = 10, ItemInfo =  "10010039;1" },      //藏宝图
             new TimerChouKaItemn(){  Interval = 25, Weight = 10,  ItemInfo =  "10000121;1" },      //一章装备盒子
