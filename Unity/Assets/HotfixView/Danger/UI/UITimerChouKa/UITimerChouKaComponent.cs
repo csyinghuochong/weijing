@@ -33,7 +33,6 @@ namespace ET
         public List<UIItemComponent> UIItemList = new List<UIItemComponent>();
 
         public long Timer;
-        public long CDTime;
     }
 
     public class UITimerChouKaComponentAwake : AwakeSystem<UITimerChouKaComponent>
@@ -114,7 +113,7 @@ namespace ET
                 string strtext = rece ? "已领取" : "待领取";
                 strtext = GameSettingLanguge.LoadLocalization(strtext);
                 //B0FF0E  待领取切换颜色值    已领取色值：959595
-                Color color_2 = rece ? new Color(176,255,14): new Color(149,149,149);
+                Color color_2 = rece ? new Color(176 / 255f, 255 / 255f, 14 / 255f) : new Color(149 / 255f, 149 / 255f, 149 / 255f);
 
                 GameObject Label_ItemStatus = self.UIItemList[i].GameObject.transform.Find("Label_ItemStatus").gameObject;
                 Label_ItemStatus.GetComponent<Text>().text = strtext;
@@ -127,48 +126,54 @@ namespace ET
                 return;
             }
 
-            long serverTime = TimeHelper.ServerNow();
-            long lastTime = activityComponent.LastTimerChouKaPassTime;
-            long validTime = lastTime + ConfigHelper.TimerChouKaRewardList[receNum].Interval *TimeHelper.Minute; ;
-            if (serverTime >= validTime)
+            long passTime = activityComponent.LastTimerChouKaPassTime;
+            long validTime = ConfigHelper.TimerChouKaRewardList[receNum].Interval *TimeHelper.Minute; 
+            if (passTime >= validTime)
             {
                 self.TextTip.text = GameSettingLanguge.LoadLocalization("可抽奖!");
-                self.CDTime = 0;
             }
             else
             {
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.UITimerChouKaTimer, self);
-                self.CDTime = validTime - serverTime;
                 self.OnTimer();
             }
         }
 
         public static void OnTimer(this UITimerChouKaComponent self)
         {
-            if (self.CDTime < 0)
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            int receNum = activityComponent.TimerChouKaReceiveIndex;
+            long passtime = activityComponent.LastTimerChouKaPassTime;
+            long validTime = ConfigHelper.TimerChouKaRewardList[receNum].Interval * TimeHelper.Minute;
+
+            if (passtime >= validTime)
             {
-                self.CDTime = 0;
                 self.TextTip.text = GameSettingLanguge.LoadLocalization("可抽奖!");
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 return;
             }
-            string nexttime = UICommonHelper.ShowLeftTime_2(self.CDTime, GameSettingLanguge.Language);
+            long leftTime = validTime - passtime;
+            string nexttime = UICommonHelper.ShowLeftTime_2(leftTime, GameSettingLanguge.Language);
             self.TextTip.text = string.Format(GameSettingLanguge.LoadLocalization("{0}后领取"), nexttime);
-            self.CDTime -= 1000;
         }
 
         public static async ETTask OnButton_TimerChouKa(this UITimerChouKaComponent self)
         {
-            if (self.CDTime > 0)
-            {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("还未到领取时间！"));
-                return;
-            }
-
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            
             if (activityComponent.TimerChouKaReceiveIndex >= ConfigHelper.TimerChouKaRewardList.Count)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("活动已经结束"));
+                return;
+            }
+
+            int receNum = activityComponent.TimerChouKaReceiveIndex;
+            long passtime = activityComponent.LastTimerChouKaPassTime;
+            long validTime = ConfigHelper.TimerChouKaRewardList[receNum].Interval * TimeHelper.Minute;
+
+            if (passtime < validTime)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("还未到领取时间！"));
                 return;
             }
 

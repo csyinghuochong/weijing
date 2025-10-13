@@ -1505,8 +1505,7 @@ namespace ET
 
         public static void OnUpdateTimerChouKa(this UIMainComponent self)
         {
-            Log.ILog.Debug($"OnUpdateTimerChouKa ");
-
+         
             TimerComponent.Instance.Remove(ref self.TimerChouKaTimer);
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             if (activityComponent.TimerChouKaReceiveIndex >= ConfigHelper.TimerChouKaRewardList.Count)
@@ -1514,7 +1513,6 @@ namespace ET
                 self.Btn_TimeReward.gameObject.SetActive(false);
                 return;
             }
-            Log.ILog.Debug($"OnUpdateTimerChouKa {activityComponent.TimerChouKaReceiveIndex}   {activityComponent.LastTimerChouKaPassTime}");
 
             self.Btn_TimeReward.gameObject.SetActive(true);
             self.TimerChouKaTimer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.MainTimerChouKaTimer, self);
@@ -1543,12 +1541,14 @@ namespace ET
                 color = "C4FF00";
                 showstr = GameSettingLanguge.LoadLocalization("可领取");
                 showstr = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}</color>"), color, showstr);
+                self.Btn_TimeReward.transform.Find("Reddot").gameObject.SetActive(true);
             }
             else
             {
                 long leftTime = validTime - passtime;
-                string newLv = UICommonHelper.ShowLeftTime_2(leftTime,GameSettingLanguge.Language);
+                string newLv = UICommonHelper.ShowLeftTime_3(leftTime,GameSettingLanguge.Language);
                 showstr = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}级领取</color>"), color, newLv);
+                self.Btn_TimeReward.transform.Find("Reddot").gameObject.SetActive(false);
             }
             self.Btn_TimeRewardText.text = showstr;
             //self.Btn_TimeRewardText

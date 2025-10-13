@@ -227,6 +227,30 @@ namespace ET
             return str;
         }
 
+        public static string ShowLeftTime_3(long time, int language = 0)
+        {
+            string str = "";
+            long remain = time % TimeHelper.Minute;
+            time = time / TimeHelper.Minute;
+            if (remain > 0)
+            {
+                time += 1;
+            }
+
+            if (language == 0)
+            {
+                str += $"{time}分";
+            }
+            else
+            {
+                str += $"{time}m";
+            }
+
+            return str;
+        }
+
+
+
         //"Assets/Bundles/Effect/SkillEffect/Eff_Skill_GongJianAct_1.prefab"
         public static List<string> NoUsePool = new List<string>()
         {
