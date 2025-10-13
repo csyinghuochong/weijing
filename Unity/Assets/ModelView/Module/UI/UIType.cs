@@ -36,7 +36,8 @@ namespace ET
 		public const string UIPopupview = "Common/UI_CommonHint";
 		public const string UI_CommonHint_2 = "Common/UI_CommonHint_2";
         public const string UIItemTips = "Main/ItemTips/UIItemTips";
-		public const string UIItemSellTip = "Main/ItemTips/UIItemSellTip";
+        public const string UISupportDevs = "Main/ItemTips/UISupportDevs";
+        public const string UIItemSellTip = "Main/ItemTips/UIItemSellTip";
         public const string UIItemExpBox = "Main/ItemTips/UIItemExpBox";
         public const string UIItemChangeOcc = "Main/ItemTips/UIItemChangeOcc";
         public const string UIItemBatchUse = "Main/ItemTips/UIItemBatchUse";

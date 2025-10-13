@@ -16,6 +16,13 @@ namespace ET
         {
             int itemWidth = 462;
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(args.bagInfo.ItemID);
+
+            if (itemConfig.Id == 10010076)
+            {
+                UI uisupport = await UIHelper.Create(args.ZoneScene, UIType.UISupportDevs);
+                uisupport.GetComponent<UISupportDevsComponent>().InitData ( args.bagInfo );
+                return;
+            }
             if (args.itemOperateEnum == ItemOperateEnum.XiangQianBag)
             {
                 if (itemConfig.ItemType == (int)ItemTypeEnum.PetHeXin)
