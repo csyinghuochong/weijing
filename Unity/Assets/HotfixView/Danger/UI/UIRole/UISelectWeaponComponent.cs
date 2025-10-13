@@ -155,6 +155,7 @@ namespace ET
 
                 UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(skillItem);
                 ui_item.OnUpdateUI(showskillid);
+                ui_item.TextSkillName.SetActive(true);
             }
         }
 
