@@ -1552,6 +1552,7 @@ namespace ET
                 showstr = GameSettingLanguge.LoadLocalization("可领取");
                 showstr = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}</color>"), color, showstr);
                 self.Btn_TimeReward.transform.Find("Reddot").gameObject.SetActive(true);
+                self.Btn_TimeReward.transform.Find("LvText (1)").GetComponent<Text>().color = new Color(196/255f, 255/255f, 0f);
             }
             else
             {
@@ -1559,6 +1560,7 @@ namespace ET
                 string newLv = UICommonHelper.ShowLeftTime_3(leftTime,GameSettingLanguge.Language);
                 showstr = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}领取</color>"), color, newLv);
                 self.Btn_TimeReward.transform.Find("Reddot").gameObject.SetActive(false);
+                self.Btn_TimeReward.transform.Find("LvText (1)").GetComponent<Text>().color = Color.white;
             }
             self.Btn_TimeRewardText.text = showstr;
             //self.Btn_TimeRewardText
