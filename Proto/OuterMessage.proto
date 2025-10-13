@@ -7952,7 +7952,7 @@ message M2C_TimerChouKaResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 
-	repeated int32 TimerChouKaReceiveIds = 9;
+	int TimerChouKaReceiveIndex = 9;
 	int64 TimerChouKaLastTime = 10;
 }
 
