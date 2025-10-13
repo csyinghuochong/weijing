@@ -6700,7 +6700,7 @@ namespace ET
 		public int TimerChouKaReceiveIndex { get; set; }
 
 		[ProtoMember(10)]
-		public long TimerChouKaLastTime { get; set; }
+		public long LastTimerChouKaPassTime { get; set; }
 
 	}
 
@@ -16620,7 +16620,7 @@ namespace ET
 		public int TimerChouKaReceiveIndex { get; set; }
 
 		[ProtoMember(10)]
-		public long TimerChouKaLastTime { get; set; }
+		public long LastTimerChouKaPassTime { get; set; }
 
 	}
 

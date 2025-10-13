@@ -107,14 +107,18 @@ namespace ET
             {
                 bool rece = activityComponent.TimerChouKaReceiveIndex > i;
                 self.UIItemList[i].GameObject.transform.Find("Image_Recvived").gameObject.SetActive(rece);
-                string strtext = rece ? "已领取" : "待领取";
-                strtext = GameSettingLanguge.LoadLocalization(strtext);
 
                 GameObject Label_ItemName = self.UIItemList[i].Label_ItemName;
                 Label_ItemName.gameObject.SetActive(true);
 
+                string strtext = rece ? "已领取" : "待领取";
+                strtext = GameSettingLanguge.LoadLocalization(strtext);
+                //B0FF0E  待领取切换颜色值    已领取色值：959595
+                Color color_2 = rece ? new Color(176,255,14): new Color(149,149,149);
+
                 GameObject Label_ItemStatus = self.UIItemList[i].GameObject.transform.Find("Label_ItemStatus").gameObject;
-                Label_ItemStatus.GetComponent<Text>().text = strtext;  
+                Label_ItemStatus.GetComponent<Text>().text = strtext;
+                Label_ItemStatus.GetComponent<Text>().color = color_2;
             }
             int receNum = activityComponent.TimerChouKaReceiveIndex;
             if (receNum >= ConfigHelper.TimerChouKaRewardList.Count)
@@ -124,7 +128,7 @@ namespace ET
             }
 
             long serverTime = TimeHelper.ServerNow();
-            long lastTime = activityComponent.TimerChouKaLastTime;
+            long lastTime = activityComponent.LastTimerChouKaPassTime;
             long validTime = lastTime + ConfigHelper.TimerChouKaRewardList[receNum].Interval *TimeHelper.Minute; ;
             if (serverTime >= validTime)
             {

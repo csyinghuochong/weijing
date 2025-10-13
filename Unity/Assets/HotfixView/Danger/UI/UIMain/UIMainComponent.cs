@@ -22,7 +22,8 @@ namespace ET
             }
         }
     }
-    
+   
+
     [Timer(TimerType.OnlineCheckTimer)]
     public class RankeTimer : ATimer<UIMainComponent>
     {
@@ -35,6 +36,22 @@ namespace ET
                 TapSDKHelper.UserUpdate_allOnLine(1);
                 TapSDKHelper.UserUpdate_finalOffline(TimeHelper.DateTimeNow().ToString());
 #endif
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    [Timer(TimerType.MainTimerChouKaTimer)]
+    public class MainTimerChouKaTimer : ATimer<UIMainComponent>
+    {
+        public override void Run(UIMainComponent self)
+        {
+            try
+            {
+                self.OnTimerChouKaTimer();
             }
             catch (Exception e)
             {
@@ -64,6 +81,7 @@ namespace ET
     {
         public GameObject DragPanel;
         public GameObject Btn_TimeReward;
+        public Text Btn_TimeRewardText;
         public GameObject Button_ActivityV1;
         public GameObject Button_RechargeReward;
         public GameObject Button_ZhanKai;
@@ -151,6 +169,8 @@ namespace ET
         public UIMainActivityTipComponent UIMainActivityTipComponent;
         public UIMainButtonPositionComponent UIMainButtonPositionComponent;
 
+
+        public ActivityComponent ActivityComponent;
         public LockTargetComponent LockTargetComponent;
         public SkillIndicatorComponent SkillIndicatorComponent;
 
@@ -184,6 +204,7 @@ namespace ET
         public List<long> TickCount = new List<long>();  //三百帧取一个平均数
 
         public long OnlineCheckTimer;
+        public long TimerChouKaTimer;
     }
 
 
@@ -433,7 +454,9 @@ namespace ET
             self.Btn_TimeReward = rc.Get<GameObject>("Btn_TimeReward");
             self.Btn_TimeReward.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_TimerChouKa().Coroutine(); });
             self.Btn_TimeReward.SetActive(false);
+            self.Btn_TimeRewardText = self.Btn_TimeReward.transform.Find("LvText").GetComponent<Text>();
 
+            self.ActivityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();
 
@@ -496,6 +519,8 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.BeforeMove, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillUpgrade, self);
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            DataUpdateComponent.Instance.AddListener(DataType.TaskCountryComplete, self);
+            DataUpdateComponent.Instance.AddListener(DataType.UpdateTimerChouKa, self);
         }
     }
 
@@ -614,6 +639,8 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.BeforeMove, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillUpgrade, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.TaskCountryComplete, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateTimerChouKa, self);
 
             if (self.TianQiEffectObj != null)
             {
@@ -669,7 +696,7 @@ namespace ET
 
         public static async ETTask SendRelinkRecord(this UIMainComponent self)
         {
-            string relinkmsg =  PlayerPrefsHelp.GetString(PlayerPrefsHelp.RelinkRecord);
+            string relinkmsg = PlayerPrefsHelp.GetString(PlayerPrefsHelp.RelinkRecord);
             if (string.IsNullOrEmpty(relinkmsg))
             {
                 return;
@@ -707,7 +734,7 @@ namespace ET
                 if (!userInfoComponent.UserInfo.RechargeReward.Contains(item.Key))
                 {
                     showButton = true;
-                    break; 
+                    break;
                 }
             }
             self.Button_RechargeReward.SetActive(showButton);
@@ -791,7 +818,7 @@ namespace ET
             {
                 return;
             }
-            
+
             self.mFrameCount++;
             long nCurTime = TickToMilliSec(System.DateTime.Now.Ticks);
             if (self.mLastFrameTime == 0)
@@ -820,7 +847,7 @@ namespace ET
                 }
                 totalFps = totalFps / self.TickCount.Count;
                 self.TickCount.Clear();
-                
+
                 string pjFpsText = "平均帧数: {0}";
                 if (GameSettingLanguge.Language == 1)
                 {
@@ -868,7 +895,7 @@ namespace ET
         {
             return tick / (10 * 1000);
         }
-        
+
         public static void UpdatePing(this UIMainComponent self)
         {
             SessionComponent sessionComponent = self.ZoneScene()?.GetComponent<SessionComponent>();
@@ -904,7 +931,7 @@ namespace ET
             //    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             //    MoveHelper.MoveToAsync2(unit, unit.Position).Coroutine();
             //}
-           
+
             using (zstring.Block())
             {
                 self.TextPing.text = zstring.Format(pingText, ping);
@@ -934,14 +961,14 @@ namespace ET
 
                 messageText = self.messageText_EN;
             }
-            
+
             using (zstring.Block())
             {
                 self.TextMessage.text = zstring.Format(messageText, OpcodeHelper.OneTotalNumber);
             }
             OpcodeHelper.OneTotalNumber = 0;
         }
-        
+
         public static void OnUpdateUserDataExp(this UIMainComponent self, string updateType, long updateValue)
         {
             //if (updateValue > 0)
@@ -1032,7 +1059,7 @@ namespace ET
             {
                 return;
             }
-            
+
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int userDataType = int.Parse(updateType.Split('_')[0]);
 
@@ -1254,7 +1281,7 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
         }
 
-        public static  void CheckTapRepCiLiu(this UIMainComponent self)
+        public static void CheckTapRepCiLiu(this UIMainComponent self)
         {
 #if UNITY_ANDROID
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
@@ -1263,8 +1290,8 @@ namespace ET
                 return;
             }
 
-            string registerTime = PlayerPrefsHelp.GetString( PlayerPrefsHelp.TapRepRegister );
-            if ( string.IsNullOrEmpty(registerTime))
+            string registerTime = PlayerPrefsHelp.GetString(PlayerPrefsHelp.TapRepRegister);
+            if (string.IsNullOrEmpty(registerTime))
             {
                 return;
             }
@@ -1326,7 +1353,7 @@ namespace ET
                 {
                     continue;
                 }
-                
+
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(baginfo1.ItemID);
 
                 //判断等级
@@ -1402,7 +1429,7 @@ namespace ET
                     {
                         continue;
                     }
-                    
+
                     int weizhi = itemConfig.ItemSubType;
                     //获取之前的位置是否有装备
                     BagInfo beforeequip = null;
@@ -1451,7 +1478,7 @@ namespace ET
             await ETTask.CompletedTask;
         }
 
-        public static  void OnBagItemUpdate(this UIMainComponent self)
+        public static void OnBagItemUpdate(this UIMainComponent self)
         {
             self.UIMainSkillComponent.OnBagItemUpdate();
 
@@ -1474,6 +1501,57 @@ namespace ET
             Game.Scene.GetComponent<SoundComponent>().PlayClip("UI/GetTask", "mp3").Coroutine();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000317);
+        }
+
+        public static void OnUpdateTimerChouKa(this UIMainComponent self)
+        {
+            Log.ILog.Debug($"OnUpdateTimerChouKa ");
+
+            TimerComponent.Instance.Remove(ref self.TimerChouKaTimer);
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            if (activityComponent.TimerChouKaReceiveIndex >= ConfigHelper.TimerChouKaRewardList.Count)
+            {
+                self.Btn_TimeReward.gameObject.SetActive(false);
+                return;
+            }
+            Log.ILog.Debug($"OnUpdateTimerChouKa {activityComponent.TimerChouKaReceiveIndex}   {activityComponent.LastTimerChouKaPassTime}");
+
+            self.Btn_TimeReward.gameObject.SetActive(true);
+            self.TimerChouKaTimer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.MainTimerChouKaTimer, self);
+            self.ActivityComponent = activityComponent;
+        }
+
+        public static void OnTimerChouKaTimer(this UIMainComponent self)
+        {
+            self.ActivityComponent.LastTimerChouKaPassTime += TimeHelper.Second;
+
+            int receNum = self.ActivityComponent.TimerChouKaReceiveIndex;
+            if (receNum >= ConfigHelper.TimerChouKaRewardList.Count)
+            {
+                self.OnUpdateTimerChouKa();
+                return;
+            }
+
+
+            long passtime = self.ActivityComponent.LastTimerChouKaPassTime;
+            long validTime = ConfigHelper.TimerChouKaRewardList[receNum].Interval * TimeHelper.Minute;
+
+            string color = "FFFFFF";
+            string showstr = string.Empty;
+            if (passtime >= validTime)
+            {
+                color = "C4FF00";
+                showstr = GameSettingLanguge.LoadLocalization("可领取");
+                showstr = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}</color>"), color, showstr);
+            }
+            else
+            {
+                long leftTime = validTime - passtime;
+                string newLv = UICommonHelper.ShowLeftTime_2(leftTime,GameSettingLanguge.Language);
+                showstr = string.Format(GameSettingLanguge.LoadLocalization("<color=#{0}>{1}级领取</color>"), color, newLv);
+            }
+            self.Btn_TimeRewardText.text = showstr;
+            //self.Btn_TimeRewardText
         }
 
         public static void OnTaskCompleteEffect(this UIMainComponent self)
@@ -1886,6 +1964,8 @@ namespace ET
             userInfoComponent.PickSet = userInfoComponent.GetGameSettingValue(GameSettingEnum.PickSet).Split('@');
 
             self.CheckRechargeRewardButton();
+
+            self.OnUpdateTimerChouKa();
         }
 
         public static void OnZeroClockUpdate(this UIMainComponent self)

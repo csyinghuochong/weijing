@@ -3161,7 +3161,7 @@ message M2C_ActivityInfoResponse // IActorLocationResponse
 	repeated int32 DayTeHui = 7;
 	ActivityV1Info ActivityV1Info = 8;
 	int32 TimerChouKaReceiveIndex = 9;
-	int64 TimerChouKaLastTime = 10;
+	int64 LastTimerChouKaPassTime = 10;
 }
 
 //战区活动
@@ -7953,7 +7953,7 @@ message M2C_TimerChouKaResponse // IActorLocationResponse
 	string Message = 92;
 
 	int TimerChouKaReceiveIndex = 9;
-	int64 TimerChouKaLastTime = 10;
+	int64 LastTimerChouKaPassTime = 10;
 }
 
 
