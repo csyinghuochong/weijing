@@ -21,7 +21,7 @@ namespace ET
         //定时抽奖
         public long TimerChouKaLastTime = 0;
         
-        public List<int> TimerChouKaReceiveIds = new List<int>();
+        public int TimerChouKaReceiveIndex = 0;
 
         public List<int> ActivityReceiveIds = new List<int>();
         /// <summary>

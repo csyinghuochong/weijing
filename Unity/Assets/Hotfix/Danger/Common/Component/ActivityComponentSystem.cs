@@ -119,7 +119,7 @@ namespace ET
             self.ActivityV1Info.ConsumeDiamondReward.Clear();
 
             self.TimerChouKaLastTime = 0;
-            self.TimerChouKaReceiveIds.Clear();
+            self.TimerChouKaReceiveIndex = 0;
     }
 #endif
 
@@ -166,7 +166,7 @@ namespace ET
             }
 
             self.TimerChouKaLastTime = 0;
-            self.TimerChouKaReceiveIds.Clear();
+            self.TimerChouKaReceiveIndex = 0;
         }
 
         public static async ETTask<int> SendTimerChouKaRequest(this ActivityComponent self)
@@ -183,7 +183,7 @@ namespace ET
             }
 
             self.TimerChouKaLastTime = m2C_TimerChouKaResponse.TimerChouKaLastTime;
-            self.TimerChouKaReceiveIds = m2C_TimerChouKaResponse.TimerChouKaReceiveIds;
+            self.TimerChouKaReceiveIndex = m2C_TimerChouKaResponse.TimerChouKaReceiveIndex;
             return ErrorCode.ERR_Success;
         }
 

@@ -25,8 +25,8 @@ namespace ET
                 return;
             }
             
-            ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();   
-            int receNum = activityComponent.TimerChouKaReceiveIds.Count;
+            ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();
+            int receNum = activityComponent.TimerChouKaReceiveIndex;
             if (receNum >= ConfigHelper.TimerChouKaRewardList.Count)
             {
                 response.Error = ErrorCode.ERR_AlreadyFinish;
@@ -58,15 +58,15 @@ namespace ET
             //int index = RandomHelper.RandomByWeight(weights);
             //int recvid = validids[index];
 
-            int recvid = activityComponent.TimerChouKaReceiveIds.Count;
+            int recvid = activityComponent.TimerChouKaReceiveIndex;
             string getitem = ConfigHelper.TimerChouKaRewardList[recvid].ItemInfo;
             bagComponent.OnAddItemData(getitem, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
-            activityComponent.TimerChouKaReceiveIds.Add(recvid);
+            activityComponent.TimerChouKaReceiveIndex++;
             activityComponent.TimerChouKaLastTime = serverTime;
 
 
             response.TimerChouKaLastTime = activityComponent.TimerChouKaLastTime;
-            response.TimerChouKaReceiveIds = activityComponent.TimerChouKaReceiveIds;
+            response.TimerChouKaReceiveIndex = activityComponent.TimerChouKaReceiveIndex;
             reply();
             await ETTask.CompletedTask;
         }

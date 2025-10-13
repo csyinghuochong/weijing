@@ -6697,7 +6697,7 @@ namespace ET
 		public ActivityV1Info ActivityV1Info { get; set; }
 
 		[ProtoMember(9)]
-		public List<int> TimerChouKaReceiveIds = new List<int>();
+		public int TimerChouKaReceiveIndex { get; set; }
 
 		[ProtoMember(10)]
 		public long TimerChouKaLastTime { get; set; }
@@ -16617,7 +16617,7 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(9)]
-		public List<int> TimerChouKaReceiveIds = new List<int>();
+		public int TimerChouKaReceiveIndex { get; set; }
 
 		[ProtoMember(10)]
 		public long TimerChouKaLastTime { get; set; }

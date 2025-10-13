@@ -105,19 +105,18 @@ namespace ET
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             for (int i = 0; i < self.UIItemList.Count; i++)
             {
-                bool rece = activityComponent.TimerChouKaReceiveIds.Contains(i);
+                bool rece = activityComponent.TimerChouKaReceiveIndex > i;
                 self.UIItemList[i].GameObject.transform.Find("Image_Recvived").gameObject.SetActive(rece);
                 string strtext = rece ? "已领取" : "待领取";
                 strtext = GameSettingLanguge.LoadLocalization(strtext);
 
                 GameObject Label_ItemName = self.UIItemList[i].Label_ItemName;
                 Label_ItemName.gameObject.SetActive(true);
-                Label_ItemName.GetComponent<Text>().color = Color.white;
 
                 GameObject Label_ItemStatus = self.UIItemList[i].GameObject.transform.Find("Label_ItemStatus").gameObject;
                 Label_ItemStatus.GetComponent<Text>().text = strtext;  
             }
-            int receNum = activityComponent.TimerChouKaReceiveIds.Count;
+            int receNum = activityComponent.TimerChouKaReceiveIndex;
             if (receNum >= ConfigHelper.TimerChouKaRewardList.Count)
             {
                 self.TextTip.text = string.Empty;
@@ -163,7 +162,7 @@ namespace ET
             }
 
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
-            if (activityComponent.TimerChouKaReceiveIds.Count >= ConfigHelper.TimerChouKaRewardList.Count)
+            if (activityComponent.TimerChouKaReceiveIndex >= ConfigHelper.TimerChouKaRewardList.Count)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("活动已经结束"));
                 return;
