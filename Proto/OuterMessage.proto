@@ -3160,7 +3160,7 @@ message M2C_ActivityInfoResponse // IActorLocationResponse
 	int64 LastLoginTime = 6;
 	repeated int32 DayTeHui = 7;
 	ActivityV1Info ActivityV1Info = 8;
-	repeated int32 TimerChouKaReceiveIds = 9;
+	int32 TimerChouKaReceiveIndex = 9;
 	int64 TimerChouKaLastTime = 10;
 }
 

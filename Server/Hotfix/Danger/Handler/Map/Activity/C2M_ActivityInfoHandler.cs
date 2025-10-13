@@ -27,7 +27,7 @@ namespace ET
             response.QuTokenRecvive = activityComponent.QuTokenRecvive;
             response.LastLoginTime = activityComponent.LastLoginTime;
             response.DayTeHui = activityComponent.DayTeHui;
-            response.TimerChouKaReceiveIds = activityComponent.TimerChouKaReceiveIds;
+            response.TimerChouKaReceiveIndex = activityComponent.TimerChouKaReceiveIndex;
             response.TimerChouKaLastTime = activityComponent.TimerChouKaLastTime;
 
 
