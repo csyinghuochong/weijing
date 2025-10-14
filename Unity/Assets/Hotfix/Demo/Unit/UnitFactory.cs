@@ -86,6 +86,7 @@ namespace ET
             if (mainHero)
             {
                 int runraceMonster = numericComponent.GetAsInt(NumericType.RunRaceTransform);
+                unit.GetComponent<MoveComponent>().SceneTypeEnum =  unit.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
                 unit.ZoneScene().GetComponent<AttackComponent>().OnTransformId(unit.ConfigId, runraceMonster);
             }
 			

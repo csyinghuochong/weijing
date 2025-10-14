@@ -339,9 +339,12 @@ namespace ET
 
             if (unit.MainHero  && targetdis > 5f && skillConfig.SkillType!=1 && !self.UploadSkill.Contains(skillConfig.Id) && !self.WaitMode)
             {
-                Scene zonescene = unit.ZoneScene();
-                NetHelper.RequestUploadData(zonescene, $"玩家:{unit.Id} 移动被技能 {skillConfig.Id} 打断.  距离终点:{targetdis}  是否继续移动:{skillConfig.IfStopMove}").Coroutine();
-                self.UploadSkill.Add(skillConfig.Id);
+                if (skillConfig.IfStopMove == 0 && self.SceneTypeEnum == SceneTypeEnum.MainCityScene)
+                {
+                    Scene zonescene = unit.ZoneScene();
+                    NetHelper.RequestUploadData(zonescene, $"玩家:{unit.Id} 移动被技能 {skillConfig.Id} 打断.  距离终点:{targetdis}  是否继续移动:{skillConfig.IfStopMove}").Coroutine();
+                    self.UploadSkill.Add(skillConfig.Id);
+                }
             }
 
             if (!unit.MainHero || !self.WaitMode || targetdis < 2f)
