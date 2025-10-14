@@ -655,7 +655,6 @@ namespace ET
                     if (Math.Abs(itemPoint.x - localPoint.x) < 60f
                         && Math.Abs(itemPoint.y - localPoint.y) < 60f)
                     {
-                        Debug.Log($"uIItem.GameObject.name: {uIItem.GameObject.name}");
                         uIItem.OnClickUIItem();
                     }
 
