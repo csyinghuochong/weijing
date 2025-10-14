@@ -1142,6 +1142,108 @@ namespace ET
             return weaponids;
         }
 
+        public static bool CheckUpItem(UserInfo userInfo,  BagInfo bagInfo, List<BagInfo> curEquiplist)
+        {
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            if (itemConfig.ItemType != 3)
+            {
+                return false;
+            }
+
+            //if (itemConfig.Id == 15505004)
+            //{
+            //    Log.Debug("11111");
+            //}
+
+            int curQulity = 0;
+            int curLevel = 0;
+            for (int e = 0; e < curEquiplist.Count; e++)
+            {
+                ItemConfig curEquipConfig = ItemConfigCategory.Instance.Get(curEquiplist[e].ItemID);
+                if (curEquipConfig.UseLv < curLevel || curLevel == 0)
+                {
+                    curLevel = curEquipConfig.UseLv;
+                }
+                if (curEquipConfig.ItemQuality < curQulity || curQulity == 0)
+                {
+                    curQulity = curEquipConfig.ItemQuality;
+                }
+            }
+
+            if (curEquiplist.Count < 3 && itemConfig.ItemSubType == 5)
+            {
+                curQulity = 0;
+                curLevel = 0;
+            }
+
+            if (itemConfig.EquipType != 0 && itemConfig.EquipType != 99 && itemConfig.EquipType != 101 && itemConfig.EquipType != 201)
+            {
+                if (itemConfig.EquipType < 10)
+                {
+                    bool ifWear = ConfigHelper.OccWeaponList[userInfo.Occ].Contains(itemConfig.EquipType);
+
+                    if (!ifWear)
+                    {
+                        return false;
+                    }
+                }
+
+                //武器类型
+                //switch (userInfoComponent.UserInfo.Occ)
+                //{
+                //    //战士
+                //    case 1:
+                //        if (itemConfig.EquipType <10 && itemConfig.EquipType != 1 && itemConfig.EquipType != 2)
+                //        {
+                //            continue;
+                //        }
+                //        break;
+                //    //法师
+                //    case 2:
+                //        if (itemConfig.EquipType < 10 && itemConfig.EquipType != 3 && itemConfig.EquipType != 4)
+                //        {
+                //            continue;
+                //        }
+                //        break;
+                //    //猎人
+                //    case 3:
+                //        if (itemConfig.EquipType < 10 && itemConfig.EquipType != 1 && itemConfig.EquipType != 5)
+                //        {
+                //            continue;
+                //        }
+                //        break;
+                //    case 4:
+                //        if (itemConfig.EquipType < 10 && itemConfig.EquipType != 3 && itemConfig.EquipType != 4)
+                //        {
+                //            continue;
+                //        }
+                //        break;
+                //    case 5:
+                //        if (itemConfig.EquipType < 10 && itemConfig.EquipType != 2 && itemConfig.EquipType != 5)
+                //        {
+                //            continue;
+                //        }
+                //        break;
+                //    default:
+                //        break;
+                //}
+
+
+                if (userInfo.OccTwo > 100)
+                {
+                    OccupationTwoConfig occTwoCof = OccupationTwoConfigCategory.Instance.Get(userInfo.OccTwo);
+                    //护甲类型
+                    if (itemConfig.EquipType > 10 && itemConfig.EquipType != occTwoCof.ArmorMastery)
+                    {
+                        return false;
+                    }
+                }
+            }
+            bool showup = userInfo.Lv >= itemConfig.UseLv
+                && itemConfig.UseLv > curLevel && itemConfig.ItemQuality > curQulity && itemConfig.EquipType != 20;
+            return showup;
+        }
+
         //获取装备的鉴定属性
         public static JianDingDate GetEquipZhuanJingPro(int equipID, int itemID, int jianDingPinZhi, bool ifItem)
         {

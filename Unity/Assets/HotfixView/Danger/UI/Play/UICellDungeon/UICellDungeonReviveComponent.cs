@@ -45,7 +45,12 @@ namespace ET
 
             self.Button_Revive.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Revive(); });
             self.Button_Exit.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Exit(); });
-            
+
+            ButtonHelp.AddListenerEx(self.Node_2.transform.Find("Item_1/Button_GoTo").gameObject, () => { self.OnButton_GoToOpera(1); });
+            ButtonHelp.AddListenerEx(self.Node_2.transform.Find("Item_2/Button_GoTo").gameObject, () => { self.OnButton_GoToOpera(2); });
+            ButtonHelp.AddListenerEx(self.Node_2.transform.Find("Item_3/Button_GoTo").gameObject, () => { self.OnButton_GoToOpera(3); });
+            ButtonHelp.AddListenerEx(self.Node_2.transform.Find("Item_4/Button_GoTo").gameObject, () => { self.OnButton_GoToOpera(4); });
+
             self.OnLanguageUpdate();
         }
     }
@@ -117,10 +122,65 @@ namespace ET
             }
         }
 
+        public static  void OnButton_GoToOpera(this UICellDungeonReviveComponent self, int operatype)
+        {
+            self.ZoneScene().GetComponent<BattleMessageComponent>().GoToOperate = operatype;
+            self.OnButton_Exit();
+        }
+
         public static void UpdateStatus(this UICellDungeonReviveComponent self)
         {
-            self.Node_1.SetActive(true);
-            self.Node_2.SetActive(false);
+            int operatenum = 0;
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            UserInfo userInfo = userInfoComponent.UserInfo;
+            List<BagInfo> bagitemlist = bagComponent.GetBagList();
+            for (int i = 0; i < bagitemlist.Count; i++)
+            {
+                BagInfo bagInfo = bagitemlist[i];
+                if (bagInfo == null)
+                {
+                    continue;
+                }
+
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                List<BagInfo> curEquiplist = bagComponent.GetEquipListByWeizhi(itemConfig.ItemSubType);
+
+                bool showup = ItemHelper.CheckUpItem(userInfo, bagInfo, curEquiplist);
+                if (showup)
+                {
+                    operatenum |= 1<<1;
+                    break;
+                }
+            }
+
+            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+            int skillsp = userInfoComponent.UserInfo.Sp;
+            if( skillsp >= 3 && skillSetComponent.GetCanUpSkill(skillsp).Count > 0)
+            {
+                operatenum |= 1 << 2;
+            }
+
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            if (petComponent.FightPetId==0 && petComponent.RolePetInfos.Count > 0 && petComponent.GetFightPetId() == 0)
+            {
+                operatenum |= 1 << 3;
+            }
+
+            
+            if(bagComponent.GetItemNumber(10010076) > 0)
+            {
+                operatenum |= 1 << 4;
+            }
+
+            self.Node_2.transform.Find("Item_1").gameObject.SetActive((operatenum & (1 << 1)) > 0);
+            self.Node_2.transform.Find("Item_2").gameObject.SetActive((operatenum & (1 << 2)) > 0);
+            self.Node_2.transform.Find("Item_3").gameObject.SetActive((operatenum & (1 << 3)) > 0);
+            self.Node_2.transform.Find("Item_4").gameObject.SetActive((operatenum & (1 << 4)) > 0);
+
+
+            self.Node_1.SetActive(operatenum == 0);
+            self.Node_2.SetActive(operatenum > 0);
         }
 
         public static void OnInitUI(this UICellDungeonReviveComponent self, int seneTypeEnum)

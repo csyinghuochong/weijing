@@ -287,9 +287,9 @@ namespace ET
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 			if (userInfoComponent.UserInfo.OccTwo != 0)
 			{
-                HintHelp.GetInstance().ShowHint("请先重置职业!");
-                return false;
-            }
+				HintHelp.GetInstance().ShowHint("请先重置职业!");
+				return false;
+			}
 
 
 			C2M_ChangeOccTwoRequest c2M_ChangeOccTwoRequest = new C2M_ChangeOccTwoRequest() { OccTwoID = occTwoID };
@@ -404,7 +404,7 @@ namespace ET
 			return null;
 		}
 
-	
+
 		public static SkillPro GetCanUseSkill(this SkillSetComponent self)
 		{
 			SkillPro skillPro = self.SkillList[RandomHelper.RandomNumber(0, self.SkillList.Count)];
@@ -475,8 +475,8 @@ namespace ET
 			return 0;
 		}
 
-		//和GetSkillRoleProLists方法一致 主要是获取类型为8的被动技能,8的被动技能不加战斗力
-		public static List<PropertyValue> GetSkillRoleProLists_8(this SkillSetComponent self)
+        //和GetSkillRoleProLists方法一致 主要是获取类型为8的被动技能,8的被动技能不加战斗力
+        public static List<PropertyValue> GetSkillRoleProLists_8(this SkillSetComponent self)
 		{
 			List<PropertyValue> proList = new List<PropertyValue>();
 			for (int i = 0; i < self.SkillList.Count; i++)

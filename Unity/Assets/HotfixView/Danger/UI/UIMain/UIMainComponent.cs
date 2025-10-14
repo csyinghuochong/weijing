@@ -2585,7 +2585,43 @@ namespace ET
             self.UpdateLvReward();
             self.UpdateKillMonsterReward();
 
+            self.OnButtonGoToOperate();
+
             self.CheckMailReddot().Coroutine();
+        }
+
+        public static void OnButtonGoToOperate(this UIMainComponent self)
+        {
+            BattleMessageComponent battleMessage = self.ZoneScene().GetComponent<BattleMessageComponent>();
+            switch (battleMessage.GoToOperate)
+            {
+                case 1:
+                    self.OnOpenBag();
+                    break;
+                case 2:
+                    self.OnClickSkillButton();
+                    break;
+                case 3:
+                    self.OnClickPetButton();
+                    break;
+                case 4:
+                    self.OnOpenSupportDevs().Coroutine();
+                    break;
+                default:
+                    break;
+            }
+            battleMessage.GoToOperate = 0;
+        }
+
+        private static async ETTask OnOpenSupportDevs(this UIMainComponent self)
+        {
+            self.OnOpenBag();
+            BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(10010076);
+            if (bagInfo != null)
+            {
+                UI uisupport = await UIHelper.Create(self.ZoneScene(), UIType.UISupportDevs);
+                uisupport.GetComponent<UISupportDevsComponent>().InitData(bagInfo);
+            }
         }
 
         public static void OnOpenTask(this UIMainComponent self)

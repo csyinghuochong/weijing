@@ -22,11 +22,11 @@ namespace ET
                 return;
             }
 
-
+            PetComponent petComponent = unit.GetComponent<PetComponent>();
             if (request.PetStatus == 1)
             {
                 //出战要清掉之前的
-                RolePetInfo fightpet =  unit.GetComponent<PetComponent>().GetFightPet();
+                RolePetInfo fightpet = petComponent.GetFightPet();
                 if (fightpet != null)
                 {
                     fightpet.PetStatus = 0;
@@ -34,21 +34,20 @@ namespace ET
                 }
                 if (unit.GetParent<UnitComponent>().Get(petinfo.Id) == null)
                 {
-                    unit.GetComponent<PetComponent>().UpdatePetAttribute(petinfo, false);
+                    petComponent.UpdatePetAttribute(petinfo, false);
                     UnitFactory.CreatePet(unit, petinfo);
                 }
 
                 petinfo.PetStatus = request.PetStatus;
+                petComponent.FightPetId = request.PetInfoId;
             }
             else
             {
                 //休息
                 petinfo.PetStatus = request.PetStatus;
+                petComponent.FightPetId = 0;
                 unit.GetParent<UnitComponent>().Remove(petinfo.Id);
             }
-
-
-
 
             ///移除有问题的宠物
             //List<Unit> entities = unit.GetParent<UnitComponent>().GetAll();

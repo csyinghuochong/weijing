@@ -23,6 +23,7 @@ namespace ET
 			response.PetMingList = petComponent.PetMingList;
 			response.PetMingPosition = petComponent.PetMingPosition;
 			response.RolePetBag = petComponent.RolePetBag;
+			response.FightPetId = petComponent.FightPetId;
 
             reply();
 			await ETTask.CompletedTask;

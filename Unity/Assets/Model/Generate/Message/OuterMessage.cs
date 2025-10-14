@@ -4074,6 +4074,9 @@ namespace ET
 		[ProtoMember(13)]
 		public List<RolePetInfo> RolePetBag = new List<RolePetInfo>();
 
+		[ProtoMember(14)]
+		public long FightPetId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.PetFubenInfo)]

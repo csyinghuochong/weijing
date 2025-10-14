@@ -87,7 +87,7 @@ namespace ET
                 }
             }
         }
-        
+
         public static void OnLanguageUpdate(this UIRoleBagComponent self)
         {
             Transform tt = self.UIPageComponent.GetParent<UI>().GameObject.transform;
@@ -105,19 +105,19 @@ namespace ET
                     {
                         icon.gameObject.SetActive(GameSettingLanguge.Language == 0);
                     }
-                    
+
                     Text text = XuanZhong.GetComponentInChildren<Text>();
                     RectTransform rt = text.GetComponent<RectTransform>();
                     if (text)
                     {
                         // 调整文字大小
-                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
-                        
+                        text.fontSize = GameSettingLanguge.Language == 0 ? 32 : 28;
+
                         // 调整文字宽度
                         Vector2 size = rt.sizeDelta;
-                        size.x = GameSettingLanguge.Language == 0? 160f : 200f;
+                        size.x = GameSettingLanguge.Language == 0 ? 160f : 200f;
                         rt.sizeDelta = size;
-                        
+
                         // 调整文字位置
                         Vector2 position = Vector2.zero;
                         position = self.UIOldPositionList[i];
@@ -126,9 +126,9 @@ namespace ET
                             position.x = 0f;
                         }
                         rt.localPosition = position;
-                        
+
                         // 调整文字对齐方式
-                        text.alignment = GameSettingLanguge.Language == 0? TextAnchor.UpperLeft : TextAnchor.UpperCenter;
+                        text.alignment = GameSettingLanguge.Language == 0 ? TextAnchor.UpperLeft : TextAnchor.UpperCenter;
                     }
                 }
 
@@ -140,11 +140,11 @@ namespace ET
                     if (text)
                     {
                         // 调整文字大小
-                        text.fontSize = GameSettingLanguge.Language == 0? 32 : 28;
-                        
+                        text.fontSize = GameSettingLanguge.Language == 0 ? 32 : 28;
+
                         // 调整文字宽度
                         Vector2 size = rt.sizeDelta;
-                        size.x = GameSettingLanguge.Language == 0? 160f : 200f;
+                        size.x = GameSettingLanguge.Language == 0 ? 160f : 200f;
                         rt.sizeDelta = size;
                     }
                 }
@@ -158,9 +158,9 @@ namespace ET
 
         public static void OnButton_OpenOneSellSet(this UIRoleBagComponent self)
         {
-            UIHelper.Create(self.DomainScene(),UIType.UIOneSellSet).Coroutine();
+            UIHelper.Create(self.DomainScene(), UIType.UIOneSellSet).Coroutine();
         }
-        
+
 
         public static void OnBtn_ZhengLi(this UIRoleBagComponent self)
         {
@@ -168,15 +168,15 @@ namespace ET
             FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包已整理完毕"));
         }
 
-        public static  void OnBtn_OneSell(this UIRoleBagComponent self)
+        public static void OnBtn_OneSell(this UIRoleBagComponent self)
         {
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), GameSettingLanguge.LoadLocalization("一键出售"), GameSettingLanguge.LoadLocalization("是否一键出售低品质装备和宝石,出售品质可以在设置中进行选择"), ()=>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("一键出售"), GameSettingLanguge.LoadLocalization("是否一键出售低品质装备和宝石,出售品质可以在设置中进行选择"), () =>
             {
                 self.RequestOneSell().Coroutine();
             }, null).Coroutine();
         }
 
-        public static  void OnBtn_OneGem(this UIRoleBagComponent self)
+        public static void OnBtn_OneGem(this UIRoleBagComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 1)
@@ -185,7 +185,7 @@ namespace ET
                 return;
             }
 
-            List <BagInfo> bagItemList = bagComponent.GetBagList();
+            List<BagInfo> bagItemList = bagComponent.GetBagList();
             List<BagInfo> gemList = new List<BagInfo>();
             for (int i = 0; i < bagItemList.Count; i++)
             {
@@ -241,7 +241,7 @@ namespace ET
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             await bagComponent.RequestOneSell(ItemLocType.ItemLocBag);        //方法封装进通用里了
-            
+
             /*
             List<long> baginfoids = new List<long>();   
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
@@ -294,12 +294,12 @@ namespace ET
             self.UpdateBagUI(page);
         }
 
-        public static async ETTask  InitBagUIList(this UIRoleBagComponent self)
+        public static async ETTask InitBagUIList(this UIRoleBagComponent self)
         {
             //Log.Debug("page:   " + page);
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
-            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByType(0);
             int maxCount = GlobalValueConfigCategory.Instance.BagMaxCapacity;
@@ -326,7 +326,7 @@ namespace ET
                 uIItemComponent.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
                 self.ItemUIlist.Add(uIItemComponent);
 
-                go.name = bagInfo!=null ? bagInfo.BagInfoID.ToString() : "0";
+                go.name = bagInfo != null ? bagInfo.BagInfoID.ToString() : "0";
             }
 
             self.CheckUpItem();
@@ -367,6 +367,27 @@ namespace ET
         }
 
         public static void CheckUpItem(this UIRoleBagComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            UserInfo userInfo = userInfoComponent.UserInfo;
+            for (int i = 0; i < self.ItemUIlist.Count; i++)
+            {
+                BagInfo bagInfo = self.ItemUIlist[i].Baginfo;
+                if (bagInfo == null)
+                {
+                    continue;
+                }
+
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                List<BagInfo> curEquiplist = bagComponent.GetEquipListByWeizhi(itemConfig.ItemSubType);
+
+                bool showup = ItemHelper.CheckUpItem(userInfo, bagInfo, curEquiplist);
+                self.ItemUIlist[i].Image_UpTip.SetActive(showup);
+            }
+        }
+
+        public static void CheckUpItem_Old(this UIRoleBagComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();

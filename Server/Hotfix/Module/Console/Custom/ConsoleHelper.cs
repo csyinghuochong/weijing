@@ -8,6 +8,7 @@ namespace ET
     public static class ConsoleHelper
     {
 
+        //新的账号： wxoVumu0idnDSrvRw9NfgxY4iRVz2Y  实名都不一样
         /// <summary>
         /// archive 121 2734635332115955712 3       //wxoVumu0kGTgy4EmcNn9FJPYduhJDo 你
         /// </summary>

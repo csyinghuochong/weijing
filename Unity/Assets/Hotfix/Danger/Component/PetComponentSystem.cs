@@ -26,7 +26,8 @@ namespace ET
             self.PetMingPosition = m2C_RolePetList.PetMingPosition;
             self.RolePetBag = m2C_RolePetList.RolePetBag;
 
-            self.FightPetId = self.GetFightPetId();
+            long fightid = self.GetFightPetId();
+            self.FightPetId = fightid > 0 ? fightid : m2C_RolePetList.FightPetId;
         }
 
         public static void OnRecvRolePetUpdate(this PetComponent self, M2C_RolePetUpdate m2C_RolePetUpdate)
