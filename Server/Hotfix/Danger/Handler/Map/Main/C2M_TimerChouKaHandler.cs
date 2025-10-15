@@ -10,13 +10,6 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_TimerChouKaRequest request, M2C_TimerChouKaResponse response, Action reply)
         {
-            if (!FunctionHelp.IsInTime(1074))
-            {
-                response.Error = ErrorCode.ERR_ActivityNotOpen;
-                reply();
-                return;
-            }
-
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 1)
             {
