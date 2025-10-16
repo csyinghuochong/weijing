@@ -782,7 +782,7 @@ namespace ET
 
         public static async ETTask SavePaiMaiData(this PaiMaiSceneComponent self, long unitId, DBPaiMainInfo dBPaiMainInfo)
         {
-            Log.Warning($"PaiMaiSceneComponent.SaveDB:  zone:{self.DomainZone()}  id:{unitId}  {dBPaiMainInfo.PaiMaiItemInfos.Count}");
+            //Log.Warning($"PaiMaiSceneComponent.SaveDB:  zone:{self.DomainZone()}  id:{unitId}  {dBPaiMainInfo.PaiMaiItemInfos.Count}");
             
             //long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
             //D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitId, EntityByte = MongoHelper.ToBson(dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });

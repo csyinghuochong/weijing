@@ -10,9 +10,14 @@ namespace ET
 
             SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
             if (skillManagerComponent.HaveSkillType(SkillHelp.Skill_Other_ChongJi_1))
-			{
-				return;
-			}
+            {
+                return;
+            }
+            else
+            {
+                unit.GetComponent<BuffManagerComponent>()?.AddBuffRecord(0, 0);
+            }
+
             unit.GetComponent<MoveComponent>().SyncPosition();
             unit.GetComponent<SkillPassiveComponent>().OnPlayerMove();
             unit.GetComponent<BuffManagerComponent>().BuffRemoveType(1);

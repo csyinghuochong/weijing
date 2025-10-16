@@ -151,10 +151,11 @@ namespace ET
         /// <param name="buffHandler"></param>
         public static void AddBuffRecord(this BuffManagerComponent self, int operate, int buffId)
         {
-            if (buffId <= 0)
-            {
-                return;////先屏蔽掉
-            }
+            ////先屏蔽掉
+            //if (buffId <= 0)
+            //{
+            //    return;
+            //}
 
             Unit unit = self.GetParent<Unit>();
             if (unit.Type != UnitType.Player)
@@ -166,10 +167,13 @@ namespace ET
                 self.m_BuffRecord.RemoveAt(0);
             }
 
-            long speed = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed);
-            self.m_BuffRecord.Add(new KeyValuePairLong() { KeyId = buffId, Value = operate, Value2 = speed });
-
-            if (operate == 0 && speed >= 100000)
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            long speed = numericComponent.GetAsLong(NumericType.Now_Speed);
+            if (buffId > 0)
+            {
+                self.m_BuffRecord.Add(new KeyValuePairLong() { KeyId = buffId, Value = operate, Value2 = speed });
+            }
+            if (operate == 0 && speed >= 150000)
             {
                 bool haveSpeedBuff = false;
                 for (int i = 0; i < self.m_Buffs.Count; i++)
@@ -186,17 +190,17 @@ namespace ET
                         break;
                     }
                 }
-                if (!haveSpeedBuff)
-                {
-                    for (int i = 0; i < self.m_BuffRecord.Count; i++)
-                    {
-                        if (self.m_BuffRecord[i].KeyId == 1)
-                        {
-                            haveSpeedBuff = true;
-                            break;
-                        }
-                    }
-                }
+                //if (!haveSpeedBuff)
+                //{
+                //    for (int i = 0; i < self.m_BuffRecord.Count; i++)
+                //    {
+                //        if (self.m_BuffRecord[i].KeyId == 1)
+                //        {
+                //            haveSpeedBuff = true;
+                //            break;
+                //        }
+                //    }
+                //}
 
                 if (!haveSpeedBuff)
                 {
@@ -213,6 +217,13 @@ namespace ET
                     {
                         strLog += $"{self.m_Buffs[i].mBuffConfig.Id}  ";
                     }
+
+                    strLog += "当前速度属性： ";
+                    strLog += $" {numericComponent.GetAsLong(NumericType.Base_Speed_Base)} ";
+                    strLog += $" {numericComponent.GetAsLong(NumericType.Base_Speed_Mul)} ";
+                    strLog += $" {numericComponent.GetAsLong(NumericType.Base_Speed_Add)} ";
+                    strLog += $" {numericComponent.GetAsLong(NumericType.Extra_Buff_Speed_Add)} ";
+                    strLog += $" {numericComponent.GetAsLong(NumericType.Extra_Buff_Speed_Mul)} ";
 
                     self.m_BuffRecord.Clear();
                     Log.Warning(strLog);

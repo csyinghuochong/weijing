@@ -1,5 +1,4 @@
-﻿using NLog.Targets;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ET
 {
