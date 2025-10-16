@@ -220,6 +220,8 @@ message C2G_EnterGame // IRequest
     string CurSystemRegionCode = 13;
 		//ip地址对应的区域
     string ByIPRegionCode = 14;
+	string UnityVersion = 15;
+	int32 BigVersion = 16;
 }
 
 message G2C_EnterGame // IResponse

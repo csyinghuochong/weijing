@@ -176,6 +176,10 @@ namespace ET
         //设备ID
         public string DeviceID;
 
+        public string UnityVersion;  //2020 2022
+
+        public int BigVersion;
+
 
         //拍卖总获得金币
         public long PaiMaiGold;

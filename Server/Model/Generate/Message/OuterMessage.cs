@@ -470,6 +470,12 @@ namespace ET
 		[ProtoMember(14)]
 		public string ByIPRegionCode { get; set; }
 
+		[ProtoMember(15)]
+		public string UnityVersion { get; set; }
+
+		[ProtoMember(16)]
+		public int BigVersion { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]

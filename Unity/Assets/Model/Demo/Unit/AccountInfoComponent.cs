@@ -65,6 +65,10 @@ namespace ET
         //ip地址对应的区域
         public string ByIPRegionCode;
 
+		public string UnityVersion;  //2020 2022
+
+		public int BigVersion;
+
 
         public int GetRecharge()
 		{

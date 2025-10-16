@@ -244,6 +244,8 @@ namespace ET
                     CurSystemLanguage = accountInfoComponent.CurSystemLanguage,
                     CurSystemRegionCode = accountInfoComponent.CurSystemRegionCode,
                     ByIPRegionCode = accountInfoComponent.ByIPRegionCode,
+                    UnityVersion = accountInfoComponent.UnityVersion,
+                    BigVersion = accountInfoComponent.BigVersion,   
                 });
             }
             catch (Exception e)
