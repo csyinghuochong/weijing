@@ -123,8 +123,8 @@ namespace ET
             self.ActivityV1Info.ChouKaNumberReward.Clear(); 
             self.ActivityV1Info.ConsumeDiamondReward.Clear();
 
-            self.LastTimerChouKaPassTime = 0;
-            self.TimerChouKaReceiveIndex = 0;
+            //self.LastTimerChouKaPassTime = 0;
+            //self.TimerChouKaReceiveIndex = 0;
     }
 #endif
 
@@ -170,8 +170,8 @@ namespace ET
                 }
             }
 
-            self.LastTimerChouKaPassTime = 0;
-            self.TimerChouKaReceiveIndex = 0;
+            //self.LastTimerChouKaPassTime = 0;
+            //self.TimerChouKaReceiveIndex = 0;
 
             HintHelp.GetInstance().DataUpdate(DataType.UpdateTimerChouKa);
         }

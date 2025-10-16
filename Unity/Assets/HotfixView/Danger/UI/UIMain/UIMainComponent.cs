@@ -1515,7 +1515,6 @@ namespace ET
 
         public static void OnUpdateTimerChouKa(this UIMainComponent self)
         {
-         
             TimerComponent.Instance.Remove(ref self.TimerChouKaTimer);
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             if (activityComponent.TimerChouKaReceiveIndex >= ConfigHelper.TimerChouKaRewardList.Count)
@@ -2228,6 +2227,10 @@ namespace ET
                     self.Button_Season.SetActive(showButton);
                     break;
                 case 1074:
+                    if (self.ActivityComponent.TimerChouKaReceiveIndex >= ConfigHelper.TimerChouKaRewardList.Count)
+                    {
+                        showButton = false;
+                    }
                     self.Btn_TimeReward.SetActive(showButton && GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
                     break;
                 default:
