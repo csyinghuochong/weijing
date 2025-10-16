@@ -30,6 +30,9 @@ namespace ET
         public GameObject InputCreateRoleName;
         public GameObject OccShow_ZhanShi;
         public GameObject OccShow_FaShi;
+        public GameObject OccShow_JvJian;
+        public GameObject OccShow_HuanMo;
+        public GameObject OccShow_LieRen;
         public GameObject UICreateRoleSkillItem;
 
         public GameObject RawImage;
@@ -67,6 +70,11 @@ namespace ET
 
             self.OccShow_ZhanShi = rc.Get<GameObject>("OccShow_ZhanShi");
             self.OccShow_FaShi = rc.Get<GameObject>("OccShow_FaShi");
+
+            self.OccShow_JvJian = rc.Get<GameObject>("OccShow_JvJian");
+            self.OccShow_HuanMo = rc.Get<GameObject>("OccShow_HuanMo");
+            self.OccShow_LieRen = rc.Get<GameObject>("OccShow_LieRen");
+
             self.UICreateRoleSkillItem = rc.Get<GameObject>("UICreateRoleSkillItem");
             self.UICreateRoleSkillItem.SetActive(false);
 
@@ -296,7 +304,7 @@ namespace ET
             self.OnUpdateOccInfo();
         }
 
-        public static void  OnUpdateOccInfo(this UICreateRoleComponent self)
+        public static void OnUpdateOccInfo(this UICreateRoleComponent self)
         {
             long instanceid = self.InstanceId;
             self.eTCancellation?.Cancel();
@@ -340,18 +348,11 @@ namespace ET
             }
 
             //显示职业介绍
-            self.OccShow_ZhanShi.SetActive(false);
-            self.OccShow_FaShi.SetActive(false);
-            Log.Info("self.Occ = " + self.Occ);
-            if (self.Occ == 1) 
-            {
-                self.OccShow_ZhanShi.SetActive(true);
-            }
-
-            if (self.Occ == 2)
-            {
-                self.OccShow_FaShi.SetActive(true);
-            }
+            self.OccShow_ZhanShi.SetActive(self.Occ == 1);
+            self.OccShow_FaShi.SetActive(self.Occ == 2);
+            self.OccShow_LieRen.SetActive(self.Occ == 3);
+            self.OccShow_HuanMo.SetActive(self.Occ == 4);
+            self.OccShow_JvJian.SetActive(self.Occ == 5);
         }
 
         public static void OnClickSelectButton(this UICreateRoleComponent self, int direction)

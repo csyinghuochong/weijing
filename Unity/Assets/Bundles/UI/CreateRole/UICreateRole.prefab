@@ -125,6 +125,12 @@ MonoBehaviour:
     gameObject: {fileID: 890108009743291497}
   - key: Icon_5_2
     gameObject: {fileID: 3520623255460573341}
+  - key: OccShow_LieRen
+    gameObject: {fileID: 9064195950181135577}
+  - key: OccShow_HuanMo
+    gameObject: {fileID: 5564654769424733439}
+  - key: OccShow_JvJian
+    gameObject: {fileID: 694000153854806842}
 --- !u!114 &7116154794937056390
 MonoBehaviour:
   m_ObjectHideFlags: 0
