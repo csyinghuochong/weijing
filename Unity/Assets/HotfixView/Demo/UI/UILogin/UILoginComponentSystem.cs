@@ -244,7 +244,7 @@ namespace ET
 					self.AccountInfoComponent.Simulator = IPHoneHelper.IsSimulator() ? 1 : 0;	
                 }
 				self.AccountInfoComponent.BigVersion = bigversion;
-				self.AccountInfoComponent.UnitVersin = Application.unityVersion;
+				self.AccountInfoComponent.UnityVersion = Application.unityVersion;
 
                 //Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
                 self.ShowYinsiNew();
