@@ -1115,7 +1115,7 @@ namespace ET
             List<int> weaponids = new List<int> {  };
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
-            string[] iteminfo = itemConfig.ItemUsePar.Split("@");
+            string[] iteminfo = itemConfig.ItemUsePar.Split('@');
 
             for (int i = 0; i < iteminfo.Length; i++)
             {
