@@ -1123,7 +1123,7 @@ namespace ET
                 {
                     continue;
                 }
-                string[] weaponinfo = iteminfo[i].Split(";");
+                string[] weaponinfo = iteminfo[i].Split(';');
 
                 if (weaponinfo.Length != 2)
                 {
@@ -1132,7 +1132,7 @@ namespace ET
 
                 if (int.Parse(weaponinfo[0])== occ)
                 {
-                    string[] ids = weaponinfo[1].Split(",");
+                    string[] ids = weaponinfo[1].Split(',');
                     weaponids.Add(int.Parse(ids[0]));
                     weaponids.Add(int.Parse(ids[1]));
                     break;
