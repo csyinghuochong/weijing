@@ -2456,7 +2456,7 @@ namespace ET
         /// <param name="sceneTypeEnum"></param>
         public static void AfterEnterScene(this UIMainComponent self, int sceneTypeEnum)
         {
-            bool zhankai = self.Button_ZhanKai.transform.localScale == new Vector3(-1f, 1f, 1f);
+            bool zhankai = self.Button_ZhanKai.transform.localScale == new Vector3(1f, 1f, 1f);
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.Btn_TopRight_1.SetActive(zhankai && SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.Btn_TopRight_2.SetActive(zhankai && SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
@@ -3080,7 +3080,7 @@ namespace ET
             self.Btn_TopRight_1.SetActive(!active);
             self.Btn_TopRight_2.SetActive(!active);
 
-            self.Button_ZhanKai.transform.localScale = active ? new Vector3(1f, 1f, 1f) :  new Vector3(-1f, 1f, 1f);
+            self.Button_ZhanKai.transform.localScale = active ?   new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
         }
 
         public static void OnButton_NewYear(this UIMainComponent self)
