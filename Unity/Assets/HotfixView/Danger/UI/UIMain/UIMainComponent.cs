@@ -3355,7 +3355,10 @@ namespace ET
 
         public static void OnShrinkBtn(this UIMainComponent self)
         {
-            self.LeftBottomBtns.SetActive(!self.LeftBottomBtns.activeSelf);
+            bool active = !self.LeftBottomBtns.activeSelf;
+            self.LeftBottomBtns.SetActive(active);
+
+            self.ShrinkBtn.transform.Find("image").transform.localScale = active ? new Vector3(1f,1f, 1f) : new Vector3(-1f, 1f,1f);
         }
 
         public static void OnClickPetButton(this UIMainComponent self)
