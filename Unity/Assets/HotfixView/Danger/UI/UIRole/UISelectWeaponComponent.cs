@@ -131,6 +131,8 @@ namespace ET
             self.UIItemComponent_1.UpdateItem(new BagInfo() { ItemID = weaponids[0] }, ItemOperateEnum.None);
             self.UIItemComponent_2.UpdateItem(new BagInfo() { ItemID = weaponids[1] }, ItemOperateEnum.None);
 
+            self.UIItemComponent_1.Label_ItemName.GetComponent<Text>().color = new Color(192 / 255f, 255 / 255f, 23 / 255f);
+            self.UIItemComponent_2.Label_ItemName.GetComponent<Text>().color = new Color(192 / 255f, 255 / 255f, 23 / 255f);
 
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -156,6 +158,7 @@ namespace ET
                 UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(skillItem);
                 ui_item.OnUpdateUI(showskillid);
                 ui_item.TextSkillName.SetActive(true);
+                ui_item.TextSkillName.GetComponent<Text>().color = new Color(192/255f,255/255f,23/255f);
             }
         }
 
