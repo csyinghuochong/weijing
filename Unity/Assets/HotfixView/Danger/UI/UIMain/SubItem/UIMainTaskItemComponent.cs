@@ -51,7 +51,7 @@ namespace ET
 
             if (textDesc.preferredHeight > 50f)
             {
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 100f);
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, textDesc.preferredHeight + 50f);
             }
             else
             {
