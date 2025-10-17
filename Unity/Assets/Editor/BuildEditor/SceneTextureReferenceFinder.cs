@@ -1,12 +1,11 @@
 using System;
-using UnityEditor;
-using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using UnityEditor.SceneManagement;
-using UnityEngine.Profiling;
 using System.Reflection;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
 
 namespace ET
 {

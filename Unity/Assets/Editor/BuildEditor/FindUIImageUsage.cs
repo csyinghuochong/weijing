@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using UnityEditor;
-using UnityEngine.UI;
-using System.Collections.Generic;
-using UnityEditor.SceneManagement;
-using UnityEditor.Experimental.SceneManagement;
+﻿using System.Collections.Generic;
 using System.Reflection;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class FindUIImageUsage : EditorWindow
 {
@@ -13,7 +12,7 @@ public class FindUIImageUsage : EditorWindow
     private List<(GameObject root, Image image)> foundSceneImages = new List<(GameObject root, Image image)>();
     private List<(GameObject prefab, string path, string hierarchy)> foundPrefabImages = new List<(GameObject prefab, string path, string hierarchy)>();
 
-    //[MenuItem("Tools/查找图片被那些UI使用")]
+    [MenuItem("Tools/查找图片被那些UI使用")]
     public static void ShowWindow()
     {
         GetWindow<FindUIImageUsage>("查找图片被那些UI使用");
