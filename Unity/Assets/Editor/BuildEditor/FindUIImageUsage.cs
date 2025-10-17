@@ -13,7 +13,7 @@ public class FindUIImageUsage : EditorWindow
     private List<(GameObject root, Image image)> foundSceneImages = new List<(GameObject root, Image image)>();
     private List<(GameObject prefab, string path, string hierarchy)> foundPrefabImages = new List<(GameObject prefab, string path, string hierarchy)>();
 
-    [MenuItem("Tools/查找图片被那些UI使用")]
+    //[MenuItem("Tools/查找图片被那些UI使用")]
     public static void ShowWindow()
     {
         GetWindow<FindUIImageUsage>("查找图片被那些UI使用");
