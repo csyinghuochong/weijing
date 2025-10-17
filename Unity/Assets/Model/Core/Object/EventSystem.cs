@@ -220,7 +220,7 @@ namespace ET
 
             Type type = component.GetType();
 
-            OneTypeSystems oneTypeSystems = this.typeSystems.GetOneTypeSystems(type);;
+            OneTypeSystems oneTypeSystems = this.typeSystems.GetOneTypeSystems(type);
             if (component is ILoad)
             {
                 if (oneTypeSystems.ContainsKey(typeof (ILoadSystem)))

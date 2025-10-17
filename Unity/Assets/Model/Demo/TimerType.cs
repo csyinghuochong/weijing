@@ -105,6 +105,7 @@
         public const int UITimerChouKaTimer = 1118;
         public const int PickItemTimer = 1119;
         public const int MainTimerChouKaTimer = 1120;
+        public const int DelayRemoveTimer = 1121;
         // 不能超过10000
     }
 }

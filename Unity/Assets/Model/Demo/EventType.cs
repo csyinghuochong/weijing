@@ -200,6 +200,13 @@ namespace ET
             public List<long> RemoveIds;
         }
 
+        public class UnitDropFly : DisposeObject
+        {
+            public static readonly UnitDropFly Instance = new UnitDropFly();
+            public Scene ZoneScene;
+            public Unit Unit;
+        }
+
         public class UnitRevive : DisposeObject
         {
             public static readonly UnitRevive Instance = new UnitRevive();

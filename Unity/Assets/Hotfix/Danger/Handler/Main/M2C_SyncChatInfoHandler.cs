@@ -25,10 +25,10 @@
             
 #else
             //玩家自己的拾取
-            //if (chatInfo.ChannelId == ChannelEnum.Pick && chatInfo.UserId == selfId)
-            //{
-            //    zoneScene.GetComponent<PickItemsComponent>().PickItemIds.Add(chatInfo.ParamId);
-            //}
+            if (chatInfo.ChannelId == ChannelEnum.Pick && chatInfo.UserId == selfId)
+            {
+                zoneScene.GetComponent<BattleMessageComponent>().PickItemIds.Add(chatInfo.ParamId);
+            }
 #endif
         }
 

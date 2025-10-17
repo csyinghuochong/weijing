@@ -2559,6 +2559,7 @@ namespace ET
             self.UIMainSkillComponent.OnSkillSetUpdate();
             self.UIRoleHead.OnEnterScene(sceneTypeEnum);
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
+            self.ZoneScene().GetComponent<BattleMessageComponent>().PickItemIds.Clear();
 
             self.Btn_Union.SetActive(self.MainUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) > 0);
             if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)

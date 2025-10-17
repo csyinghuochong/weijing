@@ -81,7 +81,7 @@ namespace ET
             self.Btn_Target.GetComponent<Button>().onClick.AddListener(() => { self.OnLockTargetUnit(); });
 
             self.Btn_ShiQu = rc.Get<GameObject>("Btn_ShiQu");
-            ButtonHelp.AddListenerEx(self.Btn_ShiQu, () => { self.OnBtn_ShiQu(3f, false);  });
+            ButtonHelp.AddListenerEx(self.Btn_ShiQu, () => { self.OnBtn_ShiQu(ConfigHelper.PickDistance, false);  });
 
             self.Btn_NpcDuiHua = rc.Get<GameObject>("Btn_NpcDuiHua");
             ButtonHelp.AddListenerEx(self.Btn_NpcDuiHua, self.OnBtn_NpcDuiHua);
@@ -555,30 +555,30 @@ namespace ET
 
         }
 
-        public static async ETTask OnBtn_ShiQuItems(this UIMainSkillComponent self, List<Unit> ids, bool jingling)
+        public static async ETTask OnBtn_ShiQuItems(this UIMainSkillComponent self, List<Unit> units, bool jingling)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            for (int i = ids.Count - 1; i >= 0; i--)
+            for (int i = units.Count - 1; i >= 0; i--)
             {
                 //DropInfo dropInfo = ids[i].GetComponent<DropComponent>().DropInfo;
                 //ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ids[i].ConfigId);
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(units[i].ConfigId);
 
                 if (userInfoComponent.PickSet[0] == "1" && itemConfig.ItemQuality == 2)
                 {
-                    ids.RemoveAt(i);
+                    units.RemoveAt(i);
                     continue;
                 }
 
                 // 蓝色 金币除外
                 if (userInfoComponent.PickSet[1] == "1" && itemConfig.ItemQuality == 3 && itemConfig.Id != 1)
                 {
-                    ids.RemoveAt(i);
+                    units.RemoveAt(i);
                     continue;
                 }
             }
 
-            if (ids.Count <= 0)
+            if (units.Count <= 0)
             {
                 return;
             }
@@ -595,7 +595,20 @@ namespace ET
                 self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
             }
 
-            MapHelper.SendShiquItems(self.ZoneScene(), ids).Coroutine();
+            for (int i = units.Count - 1; i >= 0; i--)
+            { 
+                Unit u = units[i];
+                DeleyRemoveComponent delayremove = u.GetComponent<DeleyRemoveComponent>();
+                if (delayremove != null)
+                {
+                    units.RemoveAt(i);
+                }
+            }
+
+            if (units.Count > 0)
+            {
+                MapHelper.SendShiquItems(self.ZoneScene(), units).Coroutine();
+            }
 
             if (!jingling)
             {
@@ -615,7 +628,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int value = await unit.MoveToAsync2(position, true);
-            List<Unit> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 3f);
+            List<Unit> ids = MapHelper.GetCanShiQu(self.ZoneScene(), ConfigHelper.PickDistance);
             if (value == 0 && ids.Count > 0)
             {
                 self.OnBtn_ShiQuItems(ids, false).Coroutine();

@@ -11,7 +11,7 @@ namespace ET
 
             UnitComponent unitComponent = zoneScene.CurrentScene()?.GetComponent<UnitComponent>();
 
-            PickItemsComponent  pickItemsComponent =  zoneScene.GetComponent<PickItemsComponent>();
+            BattleMessageComponent  battlemessageComponent =  zoneScene.GetComponent<BattleMessageComponent>();
 
             foreach (long unitId in message.Units)
 			{
@@ -31,19 +31,29 @@ namespace ET
                     delayRemove = 3000;
                 }
 
-				if (pickItemsComponent.PickItemIds.Contains(unit.Id))
+				bool showdrofly = false;
+				if (battlemessageComponent.PickItemIds.Contains(unit.Id))
 				{
                     delayRemove = 3000;
-                    pickItemsComponent.PickItemIds.Remove(unit.Id);	
+					showdrofly = true;	
+                    battlemessageComponent.PickItemIds.Remove(unit.Id);
                 }
 
                 if (delayRemove > 0)
 				{
-					RunAsyncRemove(unit, delayRemove).Coroutine();
-				}
+					//RunAsyncRemove(unit, delayRemove).Coroutine();
+					unit.AddComponent<DeleyRemoveComponent, long>(delayRemove);
+                }
 				else
 				{
 					unitComponent.Remove(unitId);
+                }
+
+				if (showdrofly)
+				{
+                    EventType.UnitDropFly.Instance.Unit = unit;
+                    EventType.UnitDropFly.Instance.ZoneScene = session.ZoneScene();
+                    Game.EventSystem.PublishClass(EventType.UnitDropFly.Instance);
                 }
             }
 

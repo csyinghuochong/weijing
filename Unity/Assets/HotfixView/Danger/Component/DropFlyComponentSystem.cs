@@ -1,21 +1,43 @@
-using System;
 using UnityEngine;
 
 namespace ET
 {
 
-    public static partial class DropFlyComponentSystem
+    public class DropFlyComponentAwake : AwakeSystem<DropFlyComponent>
     {
-        private static void Awake(this DropFlyComponent self)
+        public override void Awake(DropFlyComponent self)
         {
             self.MyUnit = self.GetParent<Unit>();
             self.TargetUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.EffectPath = ABPathHelper.GetEffetPath("ScenceEffect/SceneEffect_DropFly");
         }
+    }
 
-
-        private static void Update(this DropFlyComponent self)
+    public class DropFlyComponentUpdate : UpdateSystem<DropFlyComponent>
+    {
+        public override void Update(DropFlyComponent self)
         {
+            self.Update();
+        }
+    }
+
+    public class DropFlyComponentDestroy : DestroySystem<DropFlyComponent>
+    {
+        public override void Destroy(DropFlyComponent self)
+        {
+            self.RecoveryGameObject(self.EffectGameObject);
+        }
+    }
+
+    public static partial class DropFlyComponentSystem
+    {
+        public static void Update(this DropFlyComponent self)
+        {
+            if (self.Send)
+            {
+                return;
+            }
+
             if (self.MyUnit == null || self.MyUnit.IsDisposed)
             {
                 return;
@@ -36,9 +58,12 @@ namespace ET
             if (!self.Send && Vector3.Distance(self.MyUnit.Position, self.TargetUnit.Position) < self.Distance)
             {
                 self.Send = true;
+
                 // 只要靠近了就销毁拾取特效 不等消息返回
-                self.ZoneScene().GetComponent<PickItemsComponent>().SendPick(self.MyUnit);
-                self.Dispose();
+                self.MyUnit.GetParent<UnitComponent>().Remove(self.MyUnit.Id);
+
+                //self.ZoneScene().GetComponent<PickItemsComponent>().SendPick(self.MyUnit);
+                //self.Dispose();
                 return;
             }
 
@@ -60,10 +85,6 @@ namespace ET
             }
         }
 
-        private static void Destroy(this DropFlyComponent self)
-        {
-            self.RecoveryGameObject(self.EffectGameObject);
-        }
 
         private static void OnLoadGameObject(this DropFlyComponent self, GameObject gameObject, long formId)
         {
@@ -73,6 +94,7 @@ namespace ET
                 return;
             }
 
+            gameObject.SetActive(true);
             self.EffectGameObject = gameObject;
             self.EffectGameObject.transform.SetParent(self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform);
             self.EffectGameObject.transform.localPosition = Vector3.zero;
@@ -80,14 +102,14 @@ namespace ET
             self.EffectGameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
-        private static void RecoveryGameObject(this DropFlyComponent self, GameObject gameObject)
+        public static void RecoveryGameObject(this DropFlyComponent self, GameObject gameObject)
         {
             if (gameObject == null)
             {
                 return;
             }
 
-            GameObjectPoolComponent.Instance.RecoverGameObject(self.EffectPath, gameObject, true);
+            GameObjectPoolComponent.Instance.RecoverGameObject(self.EffectPath, gameObject, false);
         }
     }
 }

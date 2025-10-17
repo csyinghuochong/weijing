@@ -6,6 +6,8 @@ namespace ET
     public static class ConfigHelper
     {
 
+
+        public static float PickDistance = 6f;
       
         public static int PetFramgeItemId = 10000165;       //神兽碎片兑换神话之灵
 

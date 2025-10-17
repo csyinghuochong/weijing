@@ -49,6 +49,8 @@ namespace ET
 
         public List<long> AttackSelfPlayer = new List<long>();
 
+        public List<long> PickItemIds  = new List<long>();
+
         public long LastPopularize_ListTime = 0;
 
         public int GoToOperate = 0;

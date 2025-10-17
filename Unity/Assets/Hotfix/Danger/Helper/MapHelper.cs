@@ -175,14 +175,48 @@ namespace ET
                 Actor_PickItemResponse actor_PickItemResponse = await zoneScene.GetComponent<SessionComponent>().Session.Call(actor_PickItemRequest) as Actor_PickItemResponse;
 
                 UnitComponent unitComponent = zoneScene.CurrentScene().GetComponent<UnitComponent>();
+
                 for (int i = 0; i < ids.Count; i++)
                 {
-                    if (ids[i].DropType == 1)
+                    if (ids[i].DropType != 1)
+                    {
+                        continue;
+                    }
+
+                    //私有掉落，本地移除
+                    Unit  itemdrop = unitComponent.Get(ids[i].UnitId);
+
+                    if (itemdrop == null || itemdrop.IsDisposed)
+                    {
+                        continue;
+                    }
+
+                    DropComponent dropComponent = itemdrop.GetComponent<DropComponent>();
+                    if (dropComponent == null)
+                    {
+                        Log.Error($"dropComponent == null");
+                        continue;
+                    }
+                    DropInfo dropInfo = dropComponent.DropInfo;
+                    if (dropInfo == null)
+                    {
+                        Log.Error($"dropInfo == null");
+                        continue;
+                    }
+
+                    if (dropInfo.DropType == 1)
                     {
                         //私有掉落，本地移除
-                        unitComponent.Remove(ids[i].UnitId);
+                        //unitComponent.Remove(ids[i].UnitId);
+
+                        itemdrop.AddComponent<DeleyRemoveComponent, long>(3000);
+
+                        EventType.UnitDropFly.Instance.Unit = itemdrop;
+                        EventType.UnitDropFly.Instance.ZoneScene = zoneScene;
+                        Game.EventSystem.PublishClass(EventType.UnitDropFly.Instance);
                     }
                 }
+
             }
             catch (Exception ex)
             {
