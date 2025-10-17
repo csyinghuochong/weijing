@@ -9,6 +9,12 @@ namespace ET
 
     public class UISettingGameComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject Button_1;
+        public GameObject Button_2;
+        public GameObject Page_1;
+        public GameObject Page_2;
+
         public GameObject LanguageSet;
         public GameObject ZhuBoSet;
         public GameObject ReSetCameraBtn;
@@ -60,7 +66,7 @@ namespace ET
         public GameObject ButtonRname;
         public GameObject InputFieldCName;
         public GameObject NoShowOther;
-
+        public UIPageButtonComponent UIPageButton;
         public UserInfoComponent UserInfoComponent;
         public List<KeyValuePair> GameSettingInfos = new List<KeyValuePair>();
     }
@@ -73,6 +79,21 @@ namespace ET
             self.GameSettingInfos.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.Page_1 = rc.Get<GameObject>("Page_1");
+            self.Page_2 = rc.Get<GameObject>("Page_2");
+
+            GameObject functionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
+            UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", functionSetBtn);
+            self.UIPageButton = pageButton.AddComponent<UIPageButtonComponent>();
+            self.UIPageButton.SetClickHandler((int page) => 
+            {
+                self.Page_1.SetActive(page == 0);
+                self.Page_2.SetActive(page == 1);
+            });
+            self.UIPageButton.OnSelectIndex(0);
+
+
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
             self.TextVersionTip = rc.Get<GameObject>("TextVersionTip");
             self.TextVersion = rc.Get<GameObject>("TextVersion");
