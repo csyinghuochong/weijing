@@ -291,6 +291,11 @@ namespace ET
 
         public static void UpdatePlatName(this DataCollationComponent self, int platform, int simulator, int  root, string deviceId, string unityversion, int bigversion)
         {
+            self.Simulator = simulator;
+            self.IsRoot = root;
+            self.DeviceID = deviceId;
+            self.UnityVersion = unityversion;
+            self.BigVersion = bigversion;
 
             string platformName = PlatformHelper.GetPlatformName(platform);
             if (!string.IsNullOrEmpty(self.Platform) && !self.Platform.Contains('_'))
@@ -302,11 +307,6 @@ namespace ET
                 return;
             }
             self.Platform += $"{platformName}: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}_";
-            self.Simulator = simulator;
-            self.IsRoot = root;   
-            self.DeviceID = deviceId;     
-            self.UnityVersion = unityversion;
-            self.BigVersion = bigversion;   
         }
 
         public static void UpdateRegionCode(this DataCollationComponent self, int systemLanguage, string systemRegionCode, string byIPRegionCode)
