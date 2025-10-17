@@ -7,6 +7,8 @@ namespace ET
 
     public class UIWearWeaponComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject SkillItemShow;
         public GameObject TextTip3;
         public GameObject RawImage;
         public GameObject ButtonClose;
@@ -25,6 +27,8 @@ namespace ET
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ImgClose = rc.Get<GameObject>("ImgClose");
+
+            self.SkillItemShow = rc.Get<GameObject>("SkillItemShow");
 
             ButtonHelp.AddListenerEx(self.ButtonClose, self.OnButtonClose);
             ButtonHelp.AddListenerEx(self.ImgClose, self.OnButtonClose);
@@ -58,6 +62,32 @@ namespace ET
             UIHelper.Remove( self.ZoneScene(), UIType.UIWearWeapon );
         }
 
+        public static void ShowSkillList(this UIWearWeaponComponent self,  int itemid)
+        {
+            var path_1 = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path_1);
+            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
+            int[] initskilllist = occupationConfig.InitSkillID;
+
+            int weapontype = ItemConfigCategory.Instance.Get(itemid).EquipType;
+
+            for (int i = 0; i < initskilllist.Length; i++)
+            {
+                GameObject skillItem = GameObject.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(skillItem, self.SkillItemShow);
+                skillItem.SetActive(true);
+                skillItem.transform.localScale = Vector3.one * 1f;
+
+                int showskillid = SkillHelp.GetWeaponSkill(initskilllist[i], weapontype, null);
+
+                UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(skillItem);
+                ui_item.OnUpdateUI(showskillid);
+                ui_item.TextSkillName.SetActive(true);
+                ui_item.TextSkillName.GetComponent<Text>().color = new Color(192 / 255f, 255 / 255f, 23 / 255f);
+            }
+        }
+
         public static void OnInitUI(this UIWearWeaponComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
@@ -69,7 +99,8 @@ namespace ET
             tip = itemConfig.GetItemName();
             self.TextTip3.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("恭喜你获得了{0}!\n它可以让你的技能产生变化!\n不同类型的武器对应不同的技能哦!"), tip);
 
-            
+            self.ShowSkillList(weaponid);   
+
             if (!ComHelp.IfNull(itemConfig.ItemModelID))
             {
                 self.RenderTexture = null;
