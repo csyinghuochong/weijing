@@ -174,7 +174,7 @@ namespace ET
                 self.OnUpdateTitle(UIHelper.OpenUIList[0]);
                 self.ZiJinSet.SetActive(UIHelper.OpenUIList[0].Contains("JiaYuan"));
                 self.JiaZuSet.SetActive(UIHelper.OpenUIList[0].Contains("UIUnion"));
-                self.WeiJingSet.SetActive(UIHelper.OpenUIList[0].Contains("UIPaiMai"));
+                //self.WeiJingSet.SetActive(UIHelper.OpenUIList[0].Contains("UIPaiMai"));
             }
         }
 
