@@ -3953,9 +3953,11 @@
 {"_t":"MulLanguageConfig","_id":300113,"Des":"","Chinese":"下次领取时间：","English":"Next Claim Time:"},
 {"_t":"MulLanguageConfig","_id":300114,"Des":"","Chinese":"可抽奖!","English":"Draw Available!"},
 {"_t":"MulLanguageConfig","_id":300115,"Des":"","Chinese":"点击抽奖","English":"Draw"},
-{"_t":"MulLanguageConfig","_id":300116,"Des":"","Chinese":"在线奖励","English":"Online Reward"},
+{"_t":"MulLanguageConfig","_id":300116,"Des":"","Chinese":"在线奖励","English":"OnlineReward"},
 {"_t":"MulLanguageConfig","_id":300117,"Des":"","Chinese":"如果游戏中你感觉卡顿,可以在设置处恢复普通模式","English":"If the game feels laggy, switch back to Normal Mode in Settings."},
 {"_t":"MulLanguageConfig","_id":300118,"Des":"","Chinese":"猎人是擅长追踪、狩猎的职业，熟悉野外环境与猎物习性，运用弓箭、陷阱等工具，需具备敏锐观察力和野外生存能力。","English":"Hunters are masters of tracking and hunting. They possess an intimate knowledge of the wild and their prey, utilizing bows, traps, and their keen senses to survive and thrive in the wilderness."},
 {"_t":"MulLanguageConfig","_id":300119,"Des":"","Chinese":"驾驭魔力的智者，借符文与魔法引动冰火等力量，可远程打击敌人、施展防护法术，需精深学识支撑魔力运用。","English":"The Mage is a sage who wields arcane wisdom. Using runes and magic to channel elemental powers like ice and fire, they can strike foes from a distance and cast protective spells, all requiring profound knowledge to control their magic."},
 {"_t":"MulLanguageConfig","_id":300120,"Des":"","Chinese":"巨剑士以沉重巨剑为武器，凭惊人力量劈砍破防，兼顾近战压制与范围攻击，需强悍体能驾驭兵器、抗住敌方冲击。","English":"The Greatsword Warrior wields a massive blade as their weapon. Relying on immense strength to cleave through enemy defenses, they excel at both close-quarters suppression and area-of-effect attacks. This requires a formidable physique to master the weapon and withstand enemy assaults."},
+{"_t":"MulLanguageConfig","_id":300121,"Des":"","Chinese":"<color=#{0}>{1}领取</color>","English":"<color=#{0}>{1}Recvive</color>"},
+{"_t":"MulLanguageConfig","_id":300122,"Des":"","Chinese":"{0}后领取","English":"Claim in {0}"},
 ]}
