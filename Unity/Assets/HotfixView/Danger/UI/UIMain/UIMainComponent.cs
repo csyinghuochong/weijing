@@ -1511,6 +1511,8 @@ namespace ET
             BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(long.Parse(baginfoid));
             UI selectWeapon = await UIHelper.Create(self.ZoneScene(), UIType.UISelectWeapon);
             selectWeapon.GetComponent<UISelectWeaponComponent>().OnInitUI(userInfoComponent.UserInfo.Occ, bagInfo.ItemID, bagInfo.BagInfoID);
+
+            UIHelper.Remove( self.ZoneScene(), UIType.UITimerChouKa );
         }
 
         public static void OnUpdateTimerChouKa(this UIMainComponent self)
