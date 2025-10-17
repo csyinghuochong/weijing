@@ -104,20 +104,22 @@ namespace ET
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             for (int i = 0; i < self.UIItemList.Count; i++)
             {
-                bool rece = activityComponent.TimerChouKaReceiveIndex > i;
-                self.UIItemList[i].GameObject.transform.Find("Image_Recvived").gameObject.SetActive(rece);
+                bool recv = activityComponent.TimerChouKaReceiveIndex > i;
+                self.UIItemList[i].GameObject.transform.Find("Image_Recvived").gameObject.SetActive(recv);
 
                 GameObject Label_ItemName = self.UIItemList[i].Label_ItemName;
                 Label_ItemName.gameObject.SetActive(true);
 
-                string strtext = rece ? "已领取" : "待领取";
+                string strtext = recv ? "已领取" : "待领取";
                 strtext = GameSettingLanguge.LoadLocalization(strtext);
                 //B0FF0E  待领取切换颜色值    已领取色值：959595
-                Color color_2 = rece ? new Color(176 / 255f, 255 / 255f, 14 / 255f) : new Color(149 / 255f, 149 / 255f, 149 / 255f);
+                Color color_2 = recv ? new Color(176 / 255f, 255 / 255f, 14 / 255f) : new Color(149 / 255f, 149 / 255f, 149 / 255f);
 
                 GameObject Label_ItemStatus = self.UIItemList[i].GameObject.transform.Find("Label_ItemStatus").gameObject;
                 Label_ItemStatus.GetComponent<Text>().text = strtext;
                 Label_ItemStatus.GetComponent<Text>().color = color_2;
+
+                UICommonHelper.SetImageGray(self.UIItemList[i].Image_ItemIcon, recv);
             }
             int receNum = activityComponent.TimerChouKaReceiveIndex;
             if (receNum >= ConfigHelper.TimerChouKaRewardList.Count)

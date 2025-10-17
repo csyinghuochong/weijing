@@ -962,7 +962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UILayer: 30
   UIType: 0
-  HideMainUI: 0
+  HideMainUI: 1
   ShowHuoBi: 0
 --- !u!1 &4221637178267119106
 GameObject:
