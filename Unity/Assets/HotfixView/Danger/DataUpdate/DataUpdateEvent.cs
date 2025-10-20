@@ -19,6 +19,7 @@ namespace ET
                 { DataType.SkillSetting, OnSkillSetting },
                 { DataType.SkillReset, OnSkillReset },
                 { DataType.SkillUpgrade, OnSkillUpgrade },
+                { DataType.SkillGet, OnSkillGet},
                 { DataType.EquipWear, OnEquipWear },
                 { DataType.HuiShouSelect, OnHuiShouSelect },
                 { DataType.TaskTrace, OnRecvTaskTrace },
@@ -1569,6 +1570,19 @@ namespace ET
                 if (component is UIMainComponent uiMainComponent)
                 {
                     uiMainComponent.OnSkillSetUpdate();
+                    continue;
+                }
+            }
+        }
+        
+        // 技能获得
+        public void OnSkillGet(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UISkillComponent uiTargetComponent)
+                {
+                    uiTargetComponent.SkillSetGuideTrigger();
                     continue;
                 }
             }

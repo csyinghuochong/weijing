@@ -70,6 +70,7 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.SkillUpgrade, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillReset, self);
+            DataUpdateComponent.Instance.AddListener(DataType.SkillGet, self);
             
             self.OnLanguageUpdate();
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
@@ -88,6 +89,7 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillUpgrade, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillReset, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.SkillGet, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 
             ReddotViewComponent redPointComponent = self.ZoneScene()?.GetComponent<ReddotViewComponent>();
@@ -156,6 +158,10 @@ namespace ET
         public static void OnSkillUpgrade(this UISkillComponent self, string DataParams)
         {
             self.UIPageView.UISubViewList[(int)SkillPageEnum.SkillLearn].GetComponent<UISkillLearnComponent>().OnSkillUpgrade(DataParams);
+        }
+
+        public static void SkillSetGuideTrigger(this UISkillComponent self)
+        {
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
             int num = 0;
             for (int i = 0; i < skillSetComponent.SkillList.Count; i++)

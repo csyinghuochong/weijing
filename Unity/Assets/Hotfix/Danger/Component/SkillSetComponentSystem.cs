@@ -55,6 +55,20 @@ namespace ET
 				return;
 			}
 
+
+			string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuId).AddPropreListStr.Split("@");
+			for (int k = 0; k < addPropreListStr.Length; k++)
+			{
+				string[] properInfo = addPropreListStr[k].Split(";");
+
+				switch (properInfo[0])
+				{
+					case TianFuProEnum.SkillIdAdd:
+						HintHelp.GetInstance().DataUpdate(DataType.SkillGet);
+						break;
+				}
+			}
+			
 			//如果有相同等级的天赋则替换
 			HintHelp.GetInstance().DataUpdate(DataType.OnActiveTianFu);
 			HintHelp.GetInstance().ShowHint("激活成功！");
@@ -264,6 +278,11 @@ namespace ET
 			{
 				if (self.SkillList[i].SkillID == skillId)
 				{
+					if (!SkillConfigCategory.Instance.Contain(self.SkillList[i].SkillID - 1))
+					{
+						HintHelp.GetInstance().DataUpdate(DataType.SkillGet);
+					}
+					
 					self.SkillList[i].SkillID = m2C_SkillSet.NewSkillID;
 					break;
 				}

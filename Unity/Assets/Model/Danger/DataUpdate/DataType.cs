@@ -138,5 +138,7 @@
         public const int UpdateTimerChouKa = 53;
 
         public const int OnUseSealWeapon = 54;
+        
+        public const int SkillGet = 55;
     }
 }
