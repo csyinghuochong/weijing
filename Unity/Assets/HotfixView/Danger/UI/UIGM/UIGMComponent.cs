@@ -2,11 +2,16 @@
 using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace ET
 {
     public  class UIGMComponent : Entity, IAwake
     {
+
+        public TMP_InputField TMP_InputField_Test;
+        public TextMeshProUGUI TextMeshPro_Test;
+
         public GameObject InputField_Common;
         public GameObject Button_Common;
         public GameObject InputField_ReLoadValue;
@@ -50,6 +55,13 @@ namespace ET
             self.Button_Common = rc.Get<GameObject>("Button_Common");
             self.Button_Common.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Common().Coroutine(); });
             self.Text_OnLineNumber.GetComponent<Text>().text = string.Empty;
+
+            self.TMP_InputField_Test = rc.Get<GameObject>("TMP_InputField_Test").GetComponent<TMP_InputField>() ;
+            self.TextMeshPro_Test = rc.Get<GameObject>("TextMeshPro_Test").GetComponent<TextMeshProUGUI>();
+
+            self.TMP_InputField_Test.text = "TMP_InputField_Test";
+            self.TextMeshPro_Test.text = "TextMeshPro_Test";
+
             self.RequestGMInfo().Coroutine();
         }
     }
