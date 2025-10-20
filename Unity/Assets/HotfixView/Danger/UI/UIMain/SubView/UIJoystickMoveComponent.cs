@@ -425,10 +425,6 @@ namespace ET
                 unit.MoveByYaoGan(newv3, direction, distance, null).Coroutine();
             }
 
-            EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
-            EventType.DataUpdate.Instance.DataParamString = string.Empty;
-            Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
-
             self.lastSendTime = clientNow;
             self.lastDirection = direction;
             return true;

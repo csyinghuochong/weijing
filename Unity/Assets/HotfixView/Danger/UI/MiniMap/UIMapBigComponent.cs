@@ -527,9 +527,9 @@ namespace ET
 
             if (hit.collider != null)
             {
-                EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
-                EventType.DataUpdate.Instance.DataParamString = "1";
-                Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+                //EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+                //EventType.DataUpdate.Instance.DataParamString = "1";
+                //Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
                 unit.MoveToAsync2(hit.point, true, null, 0, 0, true).Coroutine();
             }
         }

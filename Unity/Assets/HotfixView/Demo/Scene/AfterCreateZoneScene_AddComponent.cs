@@ -14,6 +14,7 @@ namespace ET
             zoneScene.AddComponent<ResourcesLoaderComponent>();
             zoneScene.AddComponent<SkillIndicatorComponent>();
             zoneScene.AddComponent<LockTargetComponent>();
+            zoneScene.AddComponent<AutoPathEffectComponent>();
         }
     }
 }

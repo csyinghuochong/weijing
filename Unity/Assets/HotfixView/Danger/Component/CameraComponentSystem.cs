@@ -1,11 +1,10 @@
 ﻿using System;
-using DG.Tweening;
 using UnityEngine;
 
 namespace ET
 {
 
-	public class CameraComponentAwakeSystem : AwakeSystem<CameraComponent>
+    public class CameraComponentAwakeSystem : AwakeSystem<CameraComponent>
 	{
 		public override void Awake(CameraComponent self)
 		{

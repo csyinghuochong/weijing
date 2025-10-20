@@ -88,8 +88,15 @@ namespace ET
 
         public Quaternion To;
 
-        //0 摇杆移动 1点击移动
-        public bool WaitMove;
+       
+        /// <summary>
+        /// 等待继续移动
+        /// </summary>
+        public bool WaitMove;   
+
+        /// <summary>
+        /// 是否支持继续移动
+        /// </summary>
         public bool WaitMode;
         public Vector3 TargetPosition;
 

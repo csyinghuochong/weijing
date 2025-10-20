@@ -29,6 +29,10 @@ namespace ET
         /// <returns></returns>
         public static async ETTask<int> MoveByYaoGan(this Unit unit, Vector3 targetPos, int direction, float distance,  ETCancellationToken cancellationToken = null)
         {
+            EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            EventType.DataUpdate.Instance.DataParamString = string.Empty;
+            Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             moveComponent.WaitMove = false;
             moveComponent.WaitMode = false;
@@ -45,11 +49,17 @@ namespace ET
 
             ObjectWait objectWait = unit.GetComponent<ObjectWait>();
 
+            //Log.ILog.Debug($"MoveToAsync2xx Target {targetPos}");
+
+
             // 要取消上一次的移动协程
             objectWait.Notify(new WaitType.Wait_UnitStop() { Error = WaitTypeError.Cancel });
 
             // 一直等到unit发送stop
             WaitType.Wait_UnitStop waitUnitStop = await objectWait.Wait<WaitType.Wait_UnitStop>(cancellationToken);
+
+            //Log.ILog.Debug($"MoveToAsync2xx Result {waitUnitStop.Error}");
+
             return waitUnitStop.Error;
         }
 
@@ -57,6 +67,10 @@ namespace ET
         // 可以多次调用，多次调用的话会取消上一次的协程
         public static async ETTask<int> MoveResultToAsync(this Unit unit, List<Vector3> pathlist, ETCancellationToken cancellationToken = null)
         {
+            EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            EventType.DataUpdate.Instance.DataParamString = string.Empty;
+            Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+
             C2M_PathfindingResult msg = new C2M_PathfindingResult();
             for (int i = 0; i < pathlist.Count; i++ )
             {
@@ -74,6 +88,8 @@ namespace ET
 
             // 一直等到unit发送stop
             WaitType.Wait_UnitStop waitUnitStop = await objectWait.Wait<WaitType.Wait_UnitStop>(cancellationToken);
+
+
             return waitUnitStop.Error;
         }
 
@@ -94,6 +110,10 @@ namespace ET
                 return errorCode;
             }
 
+            EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            EventType.DataUpdate.Instance.DataParamString = waitmode ? "1" : "0";
+            Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             moveComponent.WaitMove = false;
             moveComponent.WaitMode = waitmode;
@@ -110,11 +130,16 @@ namespace ET
 
             ObjectWait objectWait = unit.GetComponent<ObjectWait>();
 
+            //Log.ILog.Debug($"MoveToAsync2xx Target {targetPos}");
+
             // 要取消上一次的移动协程
             objectWait.Notify(new WaitType.Wait_UnitStop() { Error = WaitTypeError.Cancel });
 
             // 一直等到unit发送stop
             WaitType.Wait_UnitStop waitUnitStop = await objectWait.Wait<WaitType.Wait_UnitStop>(cancellationToken);
+
+            //Log.ILog.Debug($"MoveToAsync2xx Result {waitUnitStop.Error}");
+
             return waitUnitStop.Error;
         }
 

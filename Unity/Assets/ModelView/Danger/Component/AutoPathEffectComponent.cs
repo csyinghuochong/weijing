@@ -20,5 +20,7 @@ namespace ET
 
         public GameObject UIAutoPath;
         public Text TextDistance;
+
+        public bool IfAutoPath = false;
     }
 }

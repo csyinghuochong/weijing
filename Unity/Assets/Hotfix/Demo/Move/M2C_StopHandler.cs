@@ -43,7 +43,10 @@ namespace ET
 			{
 				MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
 				moveComponent.Stop();
-				return;
+
+                EventType.MoveStop.Instance.Unit = unit;
+                Game.EventSystem.PublishClass(EventType.MoveStop.Instance);
+                return;
 			}
 			//message.Error == -2立即停止且同步坐标
 			if (message.Error == -2)
@@ -80,7 +83,10 @@ namespace ET
                     unit.Position = pos;
                 }
             }
-			unit.GetComponent<ObjectWait>()?.Notify(new WaitType.Wait_UnitStop() { Error = message.Error });
+
+            //Log.ILog.Debug($"MoveToAsync2xx Notify {message.Error}");
+
+            unit.GetComponent<ObjectWait>()?.Notify(new WaitType.Wait_UnitStop() { Error = message.Error });
 		}
 	}
 }

@@ -11,6 +11,7 @@ namespace ET
         public override void Awake(AutoPathEffectComponent self)
         {
             self.EffectPath = ABPathHelper.GetEffetPath("ScenceEffect/Eff_AutoPath");
+            self.IfAutoPath = false;
         }
     }
 
@@ -66,15 +67,25 @@ namespace ET
         /// BeforeMove,  有些移动没有派发这个事件
         /// </summary>
         /// <param name="self"></param>
-        public static void AutoHorse(this AutoPathEffectComponent self)
-        {
-            self.UIAutoPath.SetActive(true);
-        }
-
         public static void OnMoveStart(this AutoPathEffectComponent self, string dataParams)
         {
-            self.UIAutoPath.SetActive(dataParams == "1");
+            if (dataParams == "1")
+            {
+                self.IfAutoPath = true;
+                self.UIAutoPath.SetActive(true);
+            }
+            else
+            {
+                self.HideEffect();
+            }
+        }
 
+        private static void HideEffect(this AutoPathEffectComponent self)
+        {
+            self.IfAutoPath = false;
+            self.TextDistance.text = string.Empty;
+
+            self.UIAutoPath.SetActive(false);
             for (int i = 0; i < self.PathPointList.Count; i++)
             {
                 self.PathPointList[i].transform.localPosition = self.InvisiblePosition;
@@ -83,18 +94,15 @@ namespace ET
 
         public static void OnMoveStop(this AutoPathEffectComponent self)
         {
-            self.UIAutoPath.SetActive(false);
-            for (int i = 0; i < self.PathPointList.Count; i++)
-            {
-                self.PathPointList[i].transform.localPosition = self.InvisiblePosition;
-            }
+            self.HideEffect();
         }
 
         public static void UpdatePathPoint(this AutoPathEffectComponent self)
         {
-            if (!self.MoveComponent.WaitMode)
+            //if (!self.MoveComponent.WaitMode)
+            if (!self.IfAutoPath)
             {
-                self.UIAutoPath.SetActive(false);
+                //self.HideEffect();
                 return;
             }
            
@@ -103,15 +111,19 @@ namespace ET
 
             if (N >= target.Count)
             {
-                self.UIAutoPath.SetActive(false);
+                self.HideEffect();
                 return;
             }
 
-            Vector3 lastVector = self.InvisiblePosition;
             int showNumber = 0;
+            float ditance = 0f;
+            Vector3 lastVector = self.InvisiblePosition;
+            
             for (int i = target.Count - 1; i >= N; i--)
             {
                 Vector3 vector31 = target[i];
+                float neardis = Vector3.Distance(vector31, target[i-1]);
+                ditance += neardis; 
 
                 //2米显示一个特效
                 if (Vector3.Distance(vector31, lastVector) > 2f)
@@ -126,6 +138,8 @@ namespace ET
             {
                 self.PathPointList[i].transform.localPosition = self.InvisiblePosition;
             }
+
+            self.TextDistance.text = string.Format("距离目标{0}米", Mathf.FloorToInt(ditance));
         }
 
         public static void OnMainHeroMove(this AutoPathEffectComponent self)

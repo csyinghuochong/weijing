@@ -627,9 +627,9 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("请先消灭{0}"), monsterName));
                 return -1;
             }
-            EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
-            EventType.DataUpdate.Instance.DataParamString = operatetype;
-            Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+            //EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            //EventType.DataUpdate.Instance.DataParamString = operatetype;
+            //Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             int ret = await unit.MoveToAsync2(position, true, null,0, 0, operatetype == "1");
             return ret;
         }

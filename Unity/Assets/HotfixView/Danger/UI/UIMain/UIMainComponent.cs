@@ -173,6 +173,7 @@ namespace ET
         public ActivityComponent ActivityComponent;
         public LockTargetComponent LockTargetComponent;
         public SkillIndicatorComponent SkillIndicatorComponent;
+        public AutoPathEffectComponent AutoPathEffectComponent;
 
         public List<string> AssetPath = new List<string>();
         public List<ActivityTimer> FunctionButtons = new List<ActivityTimer>();
@@ -459,6 +460,7 @@ namespace ET
             self.ActivityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();
+            self.AutoPathEffectComponent = self.ZoneScene().GetComponent<AutoPathEffectComponent>();
 
             if (GlobalHelp.GetPlatform() == 1)
             {
@@ -802,6 +804,7 @@ namespace ET
             self.UIMapMini.OnMainHeroMove();
             self.LockTargetComponent.OnMainHeroMove();
             self.SkillIndicatorComponent.OnMainHeroMove();
+            self.AutoPathEffectComponent.OnMainHeroMove();
 
             if (self.TianQiEffectObj != null)
             {
@@ -2562,8 +2565,9 @@ namespace ET
             self.UIRoleHead.OnEnterScene(sceneTypeEnum);
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
             self.ZoneScene().GetComponent<BattleMessageComponent>().PickItemIds.Clear();
+            self.ZoneScene().GetComponent<AutoPathEffectComponent>().OnEnterScene(self.GetParent<UI>().GameObject);
 
-            self.Btn_Union.SetActive(self.MainUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) > 0);
+           self.Btn_Union.SetActive(self.MainUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) > 0);
             if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)
             {
                 self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.EnterFuben, sceneid.ToString());
@@ -3377,15 +3381,42 @@ namespace ET
             }
         }
 
-        public static void OnMoveStart(this UIMainComponent self)
+        public static void OnMoveStop(this UIMainComponent self)
         {
+            self.AutoPathEffectComponent.OnMoveStop();
+        }
+
+        public static void OnMoveStart(this UIMainComponent self, string dataParams)
+        {
+            if (dataParams == "1")
+            {
+                self.AutoHorse();
+            }
+
             if (self.UIOpenBoxComponent != null && self.UIOpenBoxComponent.BoxUnitId> 0)
             {
                 self.UIOpenBoxComponent.OnOpenBox(null);
             }
             self.UIMainSkillComponent.UIAttackGrid.OnMoveStart();
-
+            self.AutoPathEffectComponent.OnMoveStart(dataParams);
             self.MainUnit.GetComponent<SingingComponent>()?.BeginMove();
+        }
+
+        /// <summary>
+        /// 取消所有行为
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OnStopAction(this UIMainComponent self)
+        {
+            self.UIJoystickMoveComponent.ResetUI();
+
+            if (self.UIOpenBoxComponent != null && self.UIOpenBoxComponent.BoxUnitId > 0)
+            {
+                self.UIOpenBoxComponent.OnOpenBox(null);
+            }
+            self.UIMainSkillComponent.UIAttackGrid.OnMoveStart();
+
+            //self.AutoPathEffectComponent.OnMoveStop();
         }
 
         public static void OnSpellStart(this UIMainComponent self)
@@ -3399,12 +3430,6 @@ namespace ET
         public static void OnBeforeSkill(this UIMainComponent self)
         {
             self.UIJoystickMoveComponent.lastSendTime = 0;
-        }
-
-        public static void OnStopAction(this UIMainComponent self)
-        {
-            self.UIJoystickMoveComponent.ResetUI();
-            self.OnMoveStart();
         }
 
         public static void UpdateShadow(this UIMainComponent self, string usevalue = "")

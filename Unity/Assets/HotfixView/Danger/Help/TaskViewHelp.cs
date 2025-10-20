@@ -146,6 +146,10 @@ namespace ET
             Vector3 target = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
             // Vector3 dir = unit.Position - target;
             //target = target + dir.normalized * 10f;
+
+            //EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            //EventType.DataUpdate.Instance.DataParamString = "1";
+            //Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             unit.MoveToAsync2(target, false, null, 0, taskPro.taskID, true).Coroutine();
             return true;
         }
@@ -315,9 +319,9 @@ namespace ET
                 return;
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-            EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
-            EventType.DataUpdate.Instance.DataParamString = "1";
-            Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+            //EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            //EventType.DataUpdate.Instance.DataParamString = "1";
+            //Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             unit.MoveToAsync2(gameObject.transform.position, true, null, 0,0, true).Coroutine();
         }
 
@@ -329,7 +333,7 @@ namespace ET
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
                 DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(transformid);
                 Vector3 vector3 = new Vector3(transferConfig.Position[0] * 0.01f, transferConfig.Position[1] * 0.01f, transferConfig.Position[2] * 0.01f);
-                unit.MoveToAsync2(vector3, false).Coroutine();
+                unit.MoveToAsync2(vector3, false, null, 0,0, true).Coroutine();
                 return true;
             }
             return false;
@@ -356,9 +360,9 @@ namespace ET
                 Quaternion rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
                 targetPos += rotation * Vector3.forward * TaskHelper.NpcSpeakDistance;
 
-                EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
-                EventType.DataUpdate.Instance.DataParamString = "1";
-                Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+                //EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+                //EventType.DataUpdate.Instance.DataParamString = "1";
+                //Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
 
                 ret = await unit.MoveToAsync2(targetPos, true, null, 0, 0, true);
             }

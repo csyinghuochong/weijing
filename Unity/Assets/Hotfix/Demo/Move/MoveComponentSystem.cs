@@ -368,9 +368,9 @@ namespace ET
                 return;
             }
 
-            EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
-            EventType.DataUpdate.Instance.DataParamString = "1";
-            Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+            //EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            //EventType.DataUpdate.Instance.DataParamString = "1";
+            //Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             //Log.Debug($"waitmove  skillConfig.IfStopMove == 1 {skillConfig.Id} 开始继续寻路");
             MoveHelper.MoveToAsync2(unit, self.TargetPosition, true, null, 0, 0, self.WaitMode).Coroutine();
         }

@@ -97,11 +97,7 @@ namespace ET
             {
                 if (component is UIMainComponent uiComponent)
                 {
-                    if (DataParams == "1")
-                    {
-                        uiComponent.AutoHorse();
-                    }
-                    uiComponent.OnMoveStart();
+                    uiComponent.OnMoveStart(DataParams);
                     continue;
                 }
                 if (component is UIJiaYuanMainComponent uiwareComponent)
