@@ -10,9 +10,10 @@ namespace ET
     public class UISettingGameComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Button_1;
+        public GameObject Button_2;
         public GameObject Page_1;
         public GameObject Page_2;
-        public GameObject Page_3;
 
         public GameObject LanguageSet;
         public GameObject ZhuBoSet;
@@ -81,7 +82,6 @@ namespace ET
 
             self.Page_1 = rc.Get<GameObject>("Page_1");
             self.Page_2 = rc.Get<GameObject>("Page_2");
-            self.Page_3 = rc.Get<GameObject>("Page_3");
 
             GameObject functionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", functionSetBtn);
@@ -90,7 +90,6 @@ namespace ET
             {
                 self.Page_1.SetActive(page == 0);
                 self.Page_2.SetActive(page == 1);
-                self.Page_3.SetActive(page == 2);
             });
             self.UIPageButton.OnSelectIndex(0);
 
@@ -260,42 +259,42 @@ namespace ET
         public static void OnLanguageUpdate(this UISettingGameComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            rc.Get<GameObject>("Text_PlayerName").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            rc.Get<GameObject>("Text_Music").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            rc.Get<GameObject>("Text_Sound").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            rc.Get<GameObject>("Text_YaoGanSet").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            self.HighFps.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            self.Smooth.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            rc.Get<GameObject>("Text_YaoGan").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            rc.Get<GameObject>("Text_Fps").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            self.NoShowOther.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            self.RandomHorese.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            rc.Get<GameObject>("Text_PlayerName").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            rc.Get<GameObject>("Text_Music").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            rc.Get<GameObject>("Text_Sound").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            rc.Get<GameObject>("Text_YaoGanSet").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.HighFps.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.Smooth.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            rc.Get<GameObject>("Text_YaoGan").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            rc.Get<GameObject>("Text_Fps").GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.NoShowOther.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.RandomHorese.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             foreach (Text text in self.ActTargetSelect.GetComponentsInChildren<Text>())
             {
-                text.fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+                text.fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             }
-            self.AutoAttack.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.AutoAttack.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             foreach (Text text in self.OneSellSet.GetComponentsInChildren<Text>())
             {
-                text.fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+                text.fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             }
             foreach (Text text in self.ActTypeSet.GetComponentsInChildren<Text>())
             {
-                text.fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+                text.fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             }
-            self.HideLeftBottom.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            self.FirstUnionName.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            self.SkillAttackPlayerFirst.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.HideLeftBottom.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.FirstUnionName.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.SkillAttackPlayerFirst.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             foreach (Text text in self.PickSet.GetComponentsInChildren<Text>())
             {
-                text.fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+                text.fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             }
-            self.LenDepthSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            self.RotaAngleSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
-            self.ZhuBoSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.LenDepthSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.RotaAngleSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.ZhuBoSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             foreach (Text text in self.LanguageSet.GetComponentsInChildren<Text>())
             {
-                text.fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+                text.fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             }
             self.TextVersionTip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             self.TextVersion.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
