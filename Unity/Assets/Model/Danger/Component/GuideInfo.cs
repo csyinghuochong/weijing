@@ -13,6 +13,7 @@ namespace ET
         public const int DropItem   = 5;
         public const int SkillUp    = 6;
         public const int LevelUp    = 7;
+        public const int AddPet     = 8;
     }
     
     public static class GuideActionType

@@ -78,6 +78,8 @@ namespace ET
             
             self.OnLanguageUpdate();
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+            
+            self.Init().Coroutine();
         }
     }
 
@@ -140,6 +142,12 @@ namespace ET
                     }
                 }
             }
+        }
+        
+        public static async ETTask Init(this UIPetComponent self)
+        {
+            await TimerComponent.Instance.WaitAsync(10);
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIPet);
         }
         
         public static void OnBtn_Close(this UIPetComponent self)

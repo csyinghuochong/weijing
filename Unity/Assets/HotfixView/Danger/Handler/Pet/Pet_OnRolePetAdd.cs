@@ -20,6 +20,12 @@ namespace ET
             else
             {
                 args.ZoneScene.GetComponent<BattleMessageComponent>().ShowPetChouKaGet = true;
+
+                if (args.ZoneScene.GetComponent<PetComponent>().GetFightPet() == null)
+                {
+                    args.ZoneScene.GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.AddPet, "0");
+                }
+                
                 UI uI = await UIHelper.Create(args.ZoneScene, UIType.UIPetChouKaGet);
                 uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(args.RolePetInfo, args.OldPetSkin);
             }

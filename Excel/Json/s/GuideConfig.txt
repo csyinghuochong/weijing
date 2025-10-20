@@ -15,4 +15,6 @@
 {"_t":"GuideConfig","_id":40003,"GroupId":4,"NextID":0,"Save":1,"TrigerType":1,"TrigerParams":"UIRoleProperty","ActionType":1,"ActionTarget":"Main/Role/UIRole","ActionParams":"SubViewNode;1@ButtonAddPoint","Force":0,"Text":"属性加点","Text_EN":"Attribute Enhancement Points","TextPosition":0},
 {"_t":"GuideConfig","_id":50001,"GroupId":5,"NextID":0,"Save":1,"TrigerType":7,"TrigerParams":"3","ActionType":1,"ActionTarget":"Main/Main/UIMain","ActionParams":"Btn_RoseSkill","Force":0,"Text":"学习技能","Text_EN":"Learn skills","TextPosition":0},
 {"_t":"GuideConfig","_id":50002,"GroupId":5,"NextID":0,"Save":1,"TrigerType":1,"TrigerParams":"Main/Skill/UISkill","ActionType":1,"ActionTarget":"Main/Skill/UISkill","ActionParams":"SubViewNode;0@SkillListNode;1@ButtonLearn","Force":0,"Text":"学习技能","Text_EN":"Learn skills","TextPosition":0},
+{"_t":"GuideConfig","_id":60001,"GroupId":6,"NextID":0,"Save":1,"TrigerType":8,"TrigerParams":"0","ActionType":1,"ActionTarget":"Main/Main/UIMain","ActionParams":"Btn_Pet","Force":0,"Text":"宠物出战","Text_EN":"Click","TextPosition":0},
+{"_t":"GuideConfig","_id":60002,"GroupId":6,"NextID":0,"Save":1,"TrigerType":1,"TrigerParams":"Main/Pet/UIPet","ActionType":1,"ActionTarget":"Main/Pet/UIPet","ActionParams":"SubViewNode;0@Btn_ChuZhan","Force":0,"Text":"宠物出战","Text_EN":"Click","TextPosition":0},
 ]}
