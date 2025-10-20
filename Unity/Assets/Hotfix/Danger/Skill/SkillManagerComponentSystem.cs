@@ -498,18 +498,18 @@ namespace ET
                 {
                     return ErrorCode.ERR_UseSkillInCD5;
                 }
-                //公共技能冷却
-                long leftPublicCD = self.SkillPublicCDTime - TimeHelper.ServerNow();
-                if (leftPublicCD > 1500)
-                {
-                    Log.Error($"leftPublicCD > 1000 {leftPublicCD}");
-                    self.SkillPublicCDTime = TimeHelper.ServerNow();
-                    leftPublicCD = 0;
-                }
-                if (itemId==0 && leftPublicCD > 0)
-                {
-                    return ErrorCode.ERR_UseSkillInCD6;
-                }
+            }
+            //公共技能冷却
+            long leftPublicCD = self.SkillPublicCDTime - TimeHelper.ServerNow();
+            if (leftPublicCD > 1500)
+            {
+                Log.Error($"leftPublicCD > 1000 {leftPublicCD}");
+                self.SkillPublicCDTime = TimeHelper.ServerNow();
+                leftPublicCD = 0;
+            }
+            if (itemId==0 && leftPublicCD > 0)
+            {
+                return ErrorCode.ERR_UseSkillInCD6;
             }
 
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
