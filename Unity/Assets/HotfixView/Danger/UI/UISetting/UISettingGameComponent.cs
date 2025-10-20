@@ -10,10 +10,9 @@ namespace ET
     public class UISettingGameComponent : Entity, IAwake, IDestroy
     {
 
-        public GameObject Button_1;
-        public GameObject Button_2;
         public GameObject Page_1;
         public GameObject Page_2;
+        public GameObject Page_3;
 
         public GameObject LanguageSet;
         public GameObject ZhuBoSet;
@@ -82,6 +81,7 @@ namespace ET
 
             self.Page_1 = rc.Get<GameObject>("Page_1");
             self.Page_2 = rc.Get<GameObject>("Page_2");
+            self.Page_3 = rc.Get<GameObject>("Page_3");
 
             GameObject functionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", functionSetBtn);
@@ -90,6 +90,7 @@ namespace ET
             {
                 self.Page_1.SetActive(page == 0);
                 self.Page_2.SetActive(page == 1);
+                self.Page_3.SetActive(page == 2);
             });
             self.UIPageButton.OnSelectIndex(0);
 
