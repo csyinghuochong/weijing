@@ -53,7 +53,25 @@ namespace ET
 			}
 			else
 			{
-				self.GuideInfoList.Remove(group);	
+				GuideConfig guideConfig = GuideConfigCategory.Instance.Get(self.GuideInfoList[group]);
+				if (guideConfig.Save == 1)
+				{
+					self.GuideInfoList.Remove(group);
+				}
+				else
+				{
+					List<GuideConfig> guideConfigs = GuideConfigCategory.Instance.GetAll().Values.ToList();
+					for (int i = 0; i < guideConfigs.Count; i++)
+					{
+						if (guideConfigs[i].GroupId != group)
+						{
+							continue;
+						}
+
+						self.GuideInfoList[group] = guideConfigs[i].Id;
+						break;
+					}
+				}
 			}
 		}
 

@@ -156,7 +156,21 @@ namespace ET
         public static void OnSkillUpgrade(this UISkillComponent self, string DataParams)
         {
             self.UIPageView.UISubViewList[(int)SkillPageEnum.SkillLearn].GetComponent<UISkillLearnComponent>().OnSkillUpgrade(DataParams);
-            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.SkillUp, "0");
+            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+            int num = 0;
+            for (int i = 0; i < skillSetComponent.SkillList.Count; i++)
+            {
+                if (skillSetComponent.SkillList[i].SkillPosition > 0 && skillSetComponent.SkillList[i].SkillPosition < 9) // 9,10是道具
+                {
+                    num++;
+                }
+            }
+
+            if (num < 4)
+            {
+                // 装备技能少于4个
+                self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.SkillUp, "0");
+            }
         }
 
         public static void OnSkillSetUpdate(this UISkillComponent self)
