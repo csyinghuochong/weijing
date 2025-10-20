@@ -197,7 +197,7 @@ namespace ET
 
         public static string GetLocalDungeonMonsters_2(int mapid)
         {
-            if (mapid == 0)
+            if (mapid <= 0)
             {
                 return string.Empty;
             }
@@ -269,6 +269,11 @@ namespace ET
 
         public static string[] GetPostionMonster(int fubenid, int monsterId, int wave)
         {
+            if (fubenid <= 0 || wave == -1)
+            {
+                return null;
+            }
+
             string monsterlist = GetLocalDungeonMonsters_2(fubenid);
             string[] monsters = monsterlist.Split('@');
             for (int i = 0; i < monsters.Length; i++)

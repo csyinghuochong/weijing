@@ -132,7 +132,8 @@ namespace ET
                     return true;
                 }
 
-                fubenId = mapComponent.SceneId;
+                fubenId = 0;
+                //fubenId = mapComponent.SceneId;
             }
             int wave = taskPro.FubenId > 0 ? taskPro.WaveId : -1;
             string[] position = SceneConfigHelper.GetPostionMonster(fubenId, monsterId, wave);
@@ -553,7 +554,14 @@ namespace ET
                     text1 = string.Format(progress, monsterConfig.GetMonsterName(), taskPro.taskTargetNum_2, taskConfig.TargetValue[i], fubenName);
                 }
 
-                desc = desc + text1 + "\n";
+                if ( i < taskConfig.Target.Length - 1)
+                {
+                    desc = desc + text1 + "\n";
+                }
+                else
+                {
+                    desc = desc + text1;
+                }
             }
 
             return desc;
