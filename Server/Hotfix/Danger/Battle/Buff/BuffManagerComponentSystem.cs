@@ -61,8 +61,6 @@ namespace ET
             int buffcnt = self.m_Buffs.Count;
             for (int i = buffcnt - 1; i >= 0; i--)
             {
-
-
                 if (self.m_Buffs[i].TheUnitFrom.Id == unitId)
                 {
                     self.OnRemoveBuffItem(self.m_Buffs[i]);
@@ -190,17 +188,17 @@ namespace ET
                         break;
                     }
                 }
-                //if (!haveSpeedBuff)
-                //{
-                //    for (int i = 0; i < self.m_BuffRecord.Count; i++)
-                //    {
-                //        if (self.m_BuffRecord[i].KeyId == 1)
-                //        {
-                //            haveSpeedBuff = true;
-                //            break;
-                //        }
-                //    }
-                //}
+                if (!haveSpeedBuff)
+                {
+                    for (int i = 0; i < self.m_BuffRecord.Count; i++)
+                    {
+                        if (self.m_BuffRecord[i].KeyId == 1)
+                        {
+                            haveSpeedBuff = true;
+                            break;
+                        }
+                    }
+                }
 
                 if (!haveSpeedBuff)
                 {
