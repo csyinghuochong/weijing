@@ -4361,10 +4361,12 @@ m̨1矿场占领次数 <color=#EAFF39>{0}/{1}</color>"4Mine occupation times 
 !Ҩ
 可抽奖!"Draw Available!
 Ө点击抽奖"Draw
- Ԩ在线奖励"OnlineReward
+Ԩ在线奖励"Online
 �ըC如果游戏中你感觉卡顿,可以在设置处恢复普通模式"@If the game feels laggy, switch back to Normal Mode in Settings.
 �֨�猎人是擅长追踪、狩猎的职业，熟悉野外环境与猎物习性，运用弓箭、陷阱等工具，需具备敏锐观察力和野外生存能力。"�Hunters are masters of tracking and hunting. They possess an intimate knowledge of the wild and their prey, utilizing bows, traps, and their keen senses to survive and thrive in the wilderness.
 �ר�驾驭魔力的智者，借符文与魔法引动冰火等力量，可远程打击敌人、施展防护法术，需精深学识支撑魔力运用。"�The Mage is a sage who wields arcane wisdom. Using runes and magic to channel elemental powers like ice and fire, they can strike foes from a distance and cast protective spells, all requiring profound knowledge to control their magic.
 �ب�巨剑士以沉重巨剑为武器，凭惊人力量劈砍破防，兼顾近战压制与范围攻击，需强悍体能驾驭兵器、抗住敌方冲击。"�The Greatsword Warrior wields a massive blade as their weapon. Relying on immense strength to cleave through enemy defenses, they excel at both close-quarters suppression and area-of-effect attacks. This requires a formidable physique to master the weapon and withstand enemy assaults.
 C٨<color=#{0}>{1}领取</color>"<color=#{0}>{1}Recvive</color>
  ڨ{0}后领取"Claim in {0}
+ۨ战斗"Battle
+/ܨ距离目标{0}米"Target Distance: {0}m
