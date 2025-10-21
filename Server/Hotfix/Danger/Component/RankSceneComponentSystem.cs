@@ -106,6 +106,18 @@ namespace ET
             //}
         }
 
+        public static void ClearRankingTrialById(this RankSceneComponent self, long unitid)
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            for (int i = self.DBRankInfo.rankingTrial.Count - 1; i >= 0; i--)
+            {
+                if (self.DBRankInfo.rankingTrial[i].KeyId == unitid)
+                {
+                    self.DBRankInfo.rankingTrial.RemoveAt(i);
+                }
+            }
+        }
+
         public static void ClearRankingTrial(this RankSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
