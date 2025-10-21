@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace ET
 {
     [Timer(TimerType.JoystickTimer)]
-    public class JoystickTimer: ATimer<UIJoystickMoveComponent>
+    public class JoystickTimer : ATimer<UIJoystickMoveComponent>
     {
         public override void Run(UIJoystickMoveComponent self)
         {
@@ -22,7 +22,7 @@ namespace ET
         }
     }
 
-    public class UIJoystickMoveComponent: Entity, IAwake<GameObject>, IDestroy
+    public class UIJoystickMoveComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Thumb;
         public GameObject CenterShow;
@@ -67,7 +67,7 @@ namespace ET
 
     }
 
-    public class UIJoystickMoveComponentDestroy: DestroySystem<UIJoystickMoveComponent>
+    public class UIJoystickMoveComponentDestroy : DestroySystem<UIJoystickMoveComponent>
     {
         public override void Destroy(UIJoystickMoveComponent self)
         {
@@ -75,7 +75,7 @@ namespace ET
         }
     }
 
-    public class UIJoystickMoveComponentAwake: AwakeSystem<UIJoystickMoveComponent, GameObject>
+    public class UIJoystickMoveComponentAwake : AwakeSystem<UIJoystickMoveComponent, GameObject>
     {
         public override void Awake(UIJoystickMoveComponent self, GameObject gameObject)
         {
@@ -132,8 +132,8 @@ namespace ET
 
             //self.YaoGanDiFix.transform.localPosition = new Vector3 (434, 376, 0 );
 
-            self.CenterShow.transform.SetParent(operateMode == 0? self.YaoGanDiFix.transform : self.YaoGanDiMove.transform);
-            self.Thumb.transform.transform.SetParent(operateMode == 0? self.YaoGanDiFix.transform : self.YaoGanDiMove.transform);
+            self.CenterShow.transform.SetParent(operateMode == 0 ? self.YaoGanDiFix.transform : self.YaoGanDiMove.transform);
+            self.Thumb.transform.transform.SetParent(operateMode == 0 ? self.YaoGanDiFix.transform : self.YaoGanDiMove.transform);
 
             self.CenterShow.SetActive(self.OperateMode == 0);
             self.Thumb.SetActive(self.OperateMode == 0);
@@ -221,14 +221,14 @@ namespace ET
             self.lastSendTime = 0;
             self.direction = self.GetDirection(pdata);
             self.MoveComponent.LastRecvTime = TimeHelper.ClientNow();
-            bool canmove =  self.SendMove(self.direction);
+            bool canmove = self.SendMove(self.direction);
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.JoystickTimer, self);
 
-            if (!SettingHelper.ClintFindPath &&  canmove)
+            if (!SettingHelper.ClintFindPath && canmove)
             {
                 SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
-                if (TimeHelper.ClientNow()< skillManagerComponent.SkillMoveTime)
+                if (TimeHelper.ClientNow() < skillManagerComponent.SkillMoveTime)
                 {
                     return;
                 }
@@ -247,7 +247,7 @@ namespace ET
 
         public static GameObject GetYaoGanDi(this UIJoystickMoveComponent self)
         {
-            return self.OperateMode == 0? self.YaoGanDiFix : self.YaoGanDiMove;
+            return self.OperateMode == 0 ? self.YaoGanDiFix : self.YaoGanDiMove;
         }
 
         public static int GetDirection(this UIJoystickMoveComponent self, PointerEventData pdata)
@@ -392,8 +392,8 @@ namespace ET
                 distance = Vector3.Distance(newv3, unit.Position);
                 float needTime = distance / speed;
                 self.checkTime = (long)(1000 * needTime);
-                self.checkTime =  Math.Min(200, self.checkTime);
-               
+                self.checkTime = Math.Min(200, self.checkTime);
+
                 long passTime = clientNow - self.MoveComponent.LastRecvTime;
 
                 float c2sdisc = self.MoveComponent.C2SDistance;
@@ -408,8 +408,7 @@ namespace ET
             }
             else
             {
-                newv3 = self.CanMoveDistance(unit, rotation);
-                distance = Vector3.Distance(unit.Position, newv3);
+                distance = self.CanMoveDistance(unit, rotation);
                 //distance = Mathf.Max(distance, 1f);
 
                 if (self.noCheckTime < clientNow)
@@ -421,7 +420,9 @@ namespace ET
                 {
                     self.checkTime = 100;
                 }
-                unit.MoveByYaoGan(newv3, 0, 0, null).Coroutine();
+
+                newv3 = unit.Position + rotation * Vector3.forward * distance;
+                unit.MoveByYaoGan(newv3, direction, distance, null).Coroutine();
             }
 
             self.lastSendTime = clientNow;
@@ -484,12 +485,12 @@ namespace ET
         /// <param name="unit"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public static Vector3 CanMoveDistance(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation)
+        public static float CanMoveDistance(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation)
         {
-            float intveral = 0.5f;    //每次寻的长度
-            int findnumber = 1;
-            int maxnumber = 10;      //最多寻多少次
-            for (int i = findnumber; i <= maxnumber; i++)
+            float intveral = 1f; //每次寻的长度
+            int distance = 1;
+            int maxnumber = 5; //最多寻多少次
+            for (int i = distance; i <= maxnumber; i++)
             {
                 Vector3 target = unit.Position + rotation * Vector3.forward * i * intveral;
                 RaycastHit hit;
@@ -498,19 +499,17 @@ namespace ET
                 //{
                 //    return -1;
                 //}
-                
+
                 Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.BuildingLayer);
                 if (hit.collider != null)
                 {
-                    //Log.ILog.Debug($" hit.collider != null: i : {findnumber}   x: {target.x}  z:{target.z} ");
+                    Log.Debug($" hit.collider != null: i : {i}   x: {target.x}  z:{target.z} ");
                     break;
                 }
-                findnumber = i;
+                distance = i;
             }
 
-            Vector3 newv3 = unit.Position + rotation * Vector3.forward * (findnumber * intveral);
-
-            return newv3;
+            return distance * intveral;
         }
 
         public static int CheckObstruct(this UIJoystickMoveComponent self, Unit unit, Vector3 target)
