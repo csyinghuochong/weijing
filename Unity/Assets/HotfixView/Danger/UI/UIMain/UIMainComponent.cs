@@ -2688,8 +2688,16 @@ namespace ET
             {
                 if (items.Length > 1)
                 {
-                    UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UISelectReward);
-                    ui.GetComponent<UISelectRewardComponent>().UpdateInfo(self.LevelRewardKey, 0);
+                    if (self.LevelRewardKey == 8)
+                    {
+                        UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UISelectRewardWeapon);
+                        ui.GetComponent<UISelectRewardWeaponComponent>().UpdateInfo(self.LevelRewardKey, 0);
+                    }
+                    else
+                    {
+                        UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UISelectReward);
+                        ui.GetComponent<UISelectRewardComponent>().UpdateInfo(self.LevelRewardKey, 0);
+                    }
                 }
                 else
                 {

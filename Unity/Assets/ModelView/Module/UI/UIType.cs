@@ -17,7 +17,8 @@ namespace ET
 		public const string UIMain = "Main/Main/UIMain";
 		public const string UIActivityV1 = "Main/ActivityV1/UIActivityV1";
 		public const string UISelectReward = "Main/Main/UISelectReward";
-		public const string UIOpenChest = "Main/Main/UIOpenChest";
+        public const string UISelectRewardWeapon = "Main/Main/UISelectRewardWeapon";
+        public const string UIOpenChest = "Main/Main/UIOpenChest";
 		public const string UIGuideEquip = "Main/Main/UIGuideEquip";
 		public const string UIRole = "Main/Role/UIRole";
 		public const string UIProLucklyExplain = "Main/Role/UIProLucklyExplain";
