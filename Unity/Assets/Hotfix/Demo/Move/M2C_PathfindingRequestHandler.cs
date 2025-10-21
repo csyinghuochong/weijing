@@ -16,14 +16,24 @@ namespace ET
 			//MapHelper.LogMoveInfo($"移动寻路返回 {TimeHelper.ServerNow()}");
            
             float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-            using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
+            using (ListComponent<Vector3> pointsList = ListComponent<Vector3>.Create())
 			{
 				for (int i = 0; i < message.Xs.Count; ++i)
 				{
-					list.Add(new Vector3(message.Xs[i], message.Ys[i], message.Zs[i]));
+					Vector3 v1 = new Vector3(message.Xs[i], message.Ys[i], message.Zs[i]);
+                    pointsList.Add(v1);
+
+					if (i < message.Xs.Count - 1)
+					{
+                        Vector3 v2 = new Vector3(message.Xs[i + 1], message.Ys[i + 1], message.Zs[i + 1]);
+                        if (Vector3.Distance(v1, v2) > 4f )  /// && Mathf.Abs(v1.y- v2.y) < 0.5f)
+						{
+							pointsList.Add( (v1 + v2) * 0.5f );
+                        }
+					}
 				}
 
-				unit.GetComponent<MoveComponent>().MoveToAsync(list, speed).Coroutine();
+                unit.GetComponent<MoveComponent>().MoveToAsync(pointsList, speed).Coroutine();
 			}
 		}
 	}
