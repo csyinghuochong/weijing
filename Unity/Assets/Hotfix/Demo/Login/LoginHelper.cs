@@ -101,7 +101,6 @@ namespace ET
                 return a2CLoginAccount.Error;
             }
 
-            playerComponent.TestNewOcc = a2CLoginAccount.TestNewOcc;
             playerComponent.AccountId = a2CLoginAccount.AccountId;
             playerComponent.Password = password;
             playerComponent.PlayerInfo = a2CLoginAccount.PlayerInfo;

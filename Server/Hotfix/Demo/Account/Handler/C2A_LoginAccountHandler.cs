@@ -427,7 +427,7 @@ namespace ET
                             
                             response.RoleLists.Add(roleList);
                         }
-                        response.TestNewOcc = GMHelp.TestNewOccAccount.Contains(request.AccountName) ? 1 : 0;
+ 
                         response.RelinkRecord = ConfigHelper.RelinkRecordUsers.Contains(request.AccountName) ? 1 : 0;
                         response.TodayCreateRole = centerAccount.TodayCreateRole;
                         response.TaprepRequest = centerAccount.TaprepRequest;

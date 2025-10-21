@@ -8,13 +8,7 @@ namespace ET
 
 		protected override async ETTask Run(Unit unit, C2M_PaiMaiSellRequest request, M2C_PaiMaiSellResponse response, Action reply)
 		{
-            if (unit.GetComponent<UserInfoComponent>().UserInfo.Occ == 5)//TestNewOcc
-            {
-                response.Error = ErrorCode.ERR_ModifyData;
-                reply();
-                return;
-            }
-
+           
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Sell, unit.Id))
 			{
 				if (request.PaiMaiItemInfo.BagInfo.ItemNum <= 0)

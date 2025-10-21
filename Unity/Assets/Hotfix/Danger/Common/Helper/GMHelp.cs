@@ -24,16 +24,7 @@ namespace ET
 
         public static List<string> TestNewOccAccount = new List<string>()
         {
-            "qqUID_FD4CDC789CE2F625D0AEFF212332F505",
-             "qqUID_9F05E97A533AE68CACE68E1D110095DE",
-              "668bdd33b00c87f01927142e",
-              "wxoVumu0oGAD46Veu9v8BbWwUe3AJ4",
-              "7364782171531352883",
-              "18692725652",
-              "18319670230",
-              "18278712593",
-              "18319670288",
-              "13603352627",
+           
         };
 
         public static List<long> BanChatPlayer = new List<long>()

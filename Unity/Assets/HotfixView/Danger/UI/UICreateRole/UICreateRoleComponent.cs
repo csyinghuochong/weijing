@@ -89,15 +89,7 @@ namespace ET
 
             self.Btn_Occ5 = rc.Get<GameObject>("Btn_Occ5");
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.Btn_Occ5.SetActive( GMHelp.GmAccount.Contains(accountInfoComponent.Account ) || accountInfoComponent.TestNewOcc == 1);
-            if (accountInfoComponent.ServerId  != 5)
-            {
-                self.Btn_Occ5.SetActive(false);
-            }
-            if (GlobalHelp.GetPlatform() == 7 || GameSettingLanguge.Language != 0)
-            {
-                self.Btn_Occ5.SetActive(false);
-            }
+            self.Btn_Occ5.SetActive(true);
 
             self.Icon_5_2 = rc.Get<GameObject>("Icon_5_2");
             self.Icon_5_1 = rc.Get<GameObject>("Icon_5_1");

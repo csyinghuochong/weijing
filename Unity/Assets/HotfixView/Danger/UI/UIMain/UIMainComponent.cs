@@ -1939,7 +1939,7 @@ namespace ET
             self.UIMainButtonPositionComponent.GameObject.SetActive(false);
 
             bool showButton = self.ActivityComponent.TimerChouKaReceiveIndex < ConfigHelper.TimerChouKaRewardList.Count;
-            self.Btn_TimeReward.SetActive(showButton && GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            self.Btn_TimeReward.SetActive(showButton);
 
             //IOS适配
             GameObject PhoneLeft = rc.Get<GameObject>("PhoneLeft");

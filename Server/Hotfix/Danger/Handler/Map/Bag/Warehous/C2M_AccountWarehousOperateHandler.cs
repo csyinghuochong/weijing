@@ -9,12 +9,6 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_AccountWarehousOperateRequest request, M2C_AccountWarehousOperateResponse response, Action reply)
         {
-            if (unit.GetComponent<UserInfoComponent>().UserInfo.Occ == 5)//TestNewOcc
-            {
-                response.Error = ErrorCode.ERR_ModifyData;
-                reply();
-                return;
-            }
 
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Buy, unit.Id))
             {

@@ -1347,7 +1347,6 @@ namespace ET
 
 		[ProtoMember(15)]
 		public int TestNewOcc { get; set; }
-
 	}
 
 	[Message(OuterOpcode.A2C_Disconnect)]

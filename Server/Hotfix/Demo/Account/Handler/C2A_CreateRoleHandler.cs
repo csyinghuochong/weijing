@@ -72,24 +72,6 @@ namespace ET
                             return;
                         }
 
-
-						if (request.CreateOcc == 5 && session.DomainZone()!= 5)
-						{
-							response.Error = ErrorCode.ERR_CreateRole_Limit_2;
-							reply();
-							return;
-						}
-
-						//if (request.CreateOcc == 5 &&
-						//	!GMHelp.GmAccount.Contains(centerAccountList[0].Account)
-						//	&& !testnewocc.Contains("wxoVumu0vBTnqtjfSv-3ppgR_vh7WQ"))
-						//{
-						//	response.Error = ErrorCode.ERR_CreateRole_Limit_2;
-						//	reply();
-						//	return;
-						//}
-
-
 						long accountCrateTime = centerAccountList[0].CreateTime;
 						long serverNowTime = TimeHelper.ServerNow();
 						long serverOpenTime = ServerHelper.GetOpenServerTime(false, session.DomainZone());
@@ -181,14 +163,7 @@ namespace ET
                             userInfo.SeasonLevel = 1;
                             userInfo.Occ = request.CreateOcc;
 						}
-                        if (GMHelp.TestNewOccAccount.Contains(centerAccountList[0].Account) && request.CreateOcc == 5 && session.DomainZone() == 5)
-                        {
-                            userInfo.Lv = 50;
-                            userInfo.Sp = 50;
-                            userInfo.Gold = 20000000;
-                            userInfo.Diamond = 100000;
-                        }
-
+                       
                         D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userId, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
 						userInfoComponent.Dispose();
 

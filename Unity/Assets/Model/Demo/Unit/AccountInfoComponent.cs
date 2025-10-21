@@ -15,8 +15,6 @@ namespace ET
 
 		public int Age_Type = -1;
 
-        public int TestNewOcc;
-
         public long AccountId = 0;
 
 		public string Token;
