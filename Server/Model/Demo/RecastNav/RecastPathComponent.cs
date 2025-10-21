@@ -21,7 +21,7 @@ namespace ET
         {
             if (!ConfigData.OldNavMesh)
             {
-                return;
+                //return;
             }
 
             RecastInterface.Init();
@@ -121,7 +121,7 @@ namespace ET
         {
             if (!ConfigData.OldNavMesh)
             {
-                return;
+                //return;
             }
 
             string path = $"../Config/RecastNavData/{mapId}.bin";
