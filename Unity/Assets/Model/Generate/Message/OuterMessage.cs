@@ -1345,8 +1345,6 @@ namespace ET
 		[ProtoMember(14)]
 		public int RelinkRecord { get; set; }
 
-		[ProtoMember(15)]
-		public int TestNewOcc { get; set; }
 	}
 
 	[Message(OuterOpcode.A2C_Disconnect)]
