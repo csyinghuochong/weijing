@@ -17,12 +17,21 @@ namespace ET
 
         public static void OnKillEvent(this TrialDungeonComponent self, Unit defend)
         {
+            if (defend.Type != UnitType.Monster)
+            {
+                return;
+            }
+
             List<Unit> players = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             if (defend.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == players[0].Id)
             {
                 return;
             }
-            if (defend.Type != UnitType.Monster)
+
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            int sonsceneid = mapComponent.SonSceneId;
+            TowerConfig towerConfig = TowerConfigCategory.Instance.Get(sonsceneid);
+            if (!towerConfig.MonsterSet.Contains(defend.ConfigId.ToString()))
             {
                 return;
             }
@@ -44,7 +53,6 @@ namespace ET
             m2C_FubenSettlement.BattleResult = CombatResultEnum.Win;
 
             long lastDungeonId = players[0].GetComponent<NumericComponent>().GetAsLong(NumericType.TrialDungeonId);
-            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
 
             string userName = players[0].GetComponent<UserInfoComponent>().UserInfo.Name;
             Log.Warning($"试炼之地通关： 区:{players[0].DomainZone()}   {players[0].Id}   {mapComponent.SonSceneId}  {userName}  {players[0].GetComponent<UserInfoComponent>().UserInfo.Lv}");
