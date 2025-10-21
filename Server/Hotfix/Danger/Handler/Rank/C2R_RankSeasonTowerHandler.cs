@@ -11,6 +11,9 @@ namespace ET
             long timeNow = TimeHelper.ServerNow();
             RankSceneComponent rankComponent = scene.GetComponent<RankSceneComponent>();
 
+            //rankComponent.ClearSeasonTowerRankByUnitId(3096816747831951360);  //诗香
+            //rankComponent.ClearSeasonTowerRankByUnitId(3089593540553015296);  //白血伤
+
             if (timeNow - rankComponent.RankSeasonTowerLastTime < TimeHelper.Second * 10)
             {
                 response.RankList = rankComponent.RankSeasonTowers;

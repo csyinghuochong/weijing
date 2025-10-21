@@ -459,6 +459,17 @@ namespace ET
             return 0;
         }
 
+        public static void ClearSeasonTowerRankByUnitId(this RankSceneComponent self, long userId)
+        {
+            for (int i = self.DBRankInfo.rankSeasonTower.Count - 1; i >= 0; i--)
+            {
+                if (self.DBRankInfo.rankSeasonTower[i].KeyId == userId)
+                {
+                    self.DBRankInfo.rankSeasonTower.RemoveAt(i);    
+                }
+            }
+        }
+
         public static int GetSeasonTowerRank(this RankSceneComponent self, long userId)
         {
             for (int i = 0; i < self.DBRankInfo.rankSeasonTower.Count; i++)
