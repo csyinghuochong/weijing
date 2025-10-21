@@ -154,6 +154,7 @@ namespace ET
             UICommonHelper.SetParent(gameObject, self.RawImage);
             gameObject.transform.localPosition = new Vector3(0, 0, 0);
             gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 70f, 150f);
+            gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 80;
 
             UI ui = self.AddChild<UI, string, GameObject>( "UIModelShow", gameObject);
             self.uIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
