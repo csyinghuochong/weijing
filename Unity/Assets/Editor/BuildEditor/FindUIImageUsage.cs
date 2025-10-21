@@ -149,6 +149,8 @@ public class FindUIImageUsage : EditorWindow
     // 反射调用 PrefabStageUtility.OpenPrefab 打开 prefab 编辑模式并定位
     private void OpenPrefabAndSelectChild(string prefabPath, string hierarchy)
     {
+
+#if UNITY_2022_1_OR_NEWER
         var type = typeof(PrefabStageUtility);
 
         MethodInfo targetMethod = null;
@@ -193,5 +195,7 @@ public class FindUIImageUsage : EditorWindow
         GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
         Selection.activeObject = prefab;
         EditorGUIUtility.PingObject(prefab);
+
+#endif
     }
 }

@@ -56,10 +56,10 @@ namespace ET
 			}
 
 
-			string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuId).AddPropreListStr.Split("@");
+			string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuId).AddPropreListStr.Split('@');
 			for (int k = 0; k < addPropreListStr.Length; k++)
 			{
-				string[] properInfo = addPropreListStr[k].Split(";");
+				string[] properInfo = addPropreListStr[k].Split(';');
 
 				switch (properInfo[0])
 				{
