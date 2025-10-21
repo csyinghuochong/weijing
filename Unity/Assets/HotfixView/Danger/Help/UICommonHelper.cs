@@ -611,6 +611,11 @@ namespace ET
 
         public static void OnShowItemTipsQuick(Scene zonescene, PointerEventData pdata)
         {
+            if (UIHelper.GetUI(zonescene, UIType.UIAppraisalSelect) != null)
+            {
+                return;
+            }
+
             UI uirole = UIHelper.GetUI(zonescene, UIType.UIRole);
             if (uirole == null)
             {
