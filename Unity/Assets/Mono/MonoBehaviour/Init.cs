@@ -44,7 +44,9 @@ using UnityEngine.SocialPlatforms;
 #endif
 #if UNITY_ANDROID
 #if UNITY_2022_1_OR_NEWER
+#if !Google7
 using TapSDK.Login;
+#endif
 #endif
 #endif
 
@@ -538,6 +540,7 @@ namespace ET
             await ETTask.CompletedTask;
 #if UNITY_ANDROID
 #if UNITY_2022_1_OR_NEWER
+#if !Google7
             if (this.BigVersion >= 24)
             {
                 Log.ILog.Debug("TapTapLogin v4 TDSUser.GetCurrent");
@@ -576,6 +579,7 @@ namespace ET
                 return string.Empty;
 
             }
+#endif
 #endif
 #endif
             return string.Empty;
@@ -636,11 +640,13 @@ namespace ET
 
 #if UNITY_ANDROID
 #if UNITY_2022_1_OR_NEWER
+#if !Google7
             if (this.BigVersion >= 24)
             {
                 TapSDK.Login.TapTapLogin.Instance.Logout(); 
                 return;
             }
+#endif
 #endif
 #endif
 

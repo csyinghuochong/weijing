@@ -4,9 +4,11 @@ using UnityEngine;
 
 #if UNITY_ANDROID
 #if UNITY_2022_1_OR_NEWER
+#if !Google7
 using TapSDK.Core;
 using TapSDK.Compliance;
 using TapSDK.Login;
+#endif
 #endif
 #endif
 
@@ -42,6 +44,7 @@ namespace ET
 
         public static void Init()
         {
+#if !Google7
             if (!hasInit)
             {
                 hasInit = true;
@@ -104,6 +107,7 @@ namespace ET
                 };
                 TapTapSDK.Init(coreOptions, otherOptions);
             }
+#endif
         }
 
         /// <summary>
@@ -117,8 +121,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             ET.Log.ILog.Debug("Tab SetUser.Init");
             TapTapEvent.SetUserID(userId);
+#endif
         }
 
         //衍生事件
@@ -137,7 +143,9 @@ namespace ET
                 return;
             }
 
+#if !Google7
             TapTapEvent.ClearUser();
+#endif
         }
 
         /// <summary>
@@ -156,12 +164,14 @@ namespace ET
                 return;
             }
 
+#if !Google7
             TapTapEvent.LogPurchasedEvent(orderID: orderId,
                 productName: product,
                 amount: amount,
                 currencyType: currencyType,
                 paymentMethod: payment,
                 properties: properties);
+#endif
         }
 
         //自定义事件
@@ -209,8 +219,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             ET.Log.ILog.Debug("Tap TrackEvent");
             TapTapEvent.LogEvent("#eventName_2", "{\"#serverid\":\"3\"}");
+#endif
         }
 
         public static void TrackEvent(string eventName, string properties)
@@ -220,7 +232,9 @@ namespace ET
                 return;
             }
 
+#if !Google7
             TapTapEvent.LogEvent(eventName, properties);
+#endif
         }
 
         /// <summary>
@@ -235,7 +249,9 @@ namespace ET
                 return;
             }
 
+#if !Google7
             TapTapEvent.AddCommon(staticProperties);
+#endif
         }
 
         /// <summary>
@@ -249,7 +265,9 @@ namespace ET
                 return;
             }
 
+#if !Google7
             TapTapEvent.ClearCommonProperty("#current_channel");
+#endif
         }
 
         /// <summary>
@@ -262,7 +280,9 @@ namespace ET
                 return;
             }
 
+#if !Google7
             TapTapEvent.ClearAllCommonProperties();
+#endif
         }
 
 
@@ -273,6 +293,7 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"#rolename\":\"" + rolename + "\"}";
             Log.ILog.Debug(properties);
             TapTapEvent.UserUpdate(properties);
@@ -288,6 +309,7 @@ namespace ET
 
             properties = "{\"#servername\":\"" + servername + "\"}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
 
@@ -299,8 +321,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"rolename\":\"" + rolename + "\"}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
         // 服务器名称
@@ -311,8 +335,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"servername\":\"" + servername + "\"}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
         // 在线时间（单位：分钟）
@@ -323,8 +349,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"allOnLine\":" + add + "}";
             TapTapEvent.UserAdd(properties);
+#endif
         }
 
         // 最后离线时间(时间戳)
@@ -335,8 +363,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"finalOffline\":\"" + finalOffline + "\"}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
         // 是否第一次建立角色
@@ -347,8 +377,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"isFirstCreateRole\":" + isFirstCreateRole + "}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
         // 战力
@@ -359,8 +391,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"combat\":" + combat + "}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
         // 等级
@@ -371,8 +405,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"level\":" + level + "}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
         // 金币
@@ -383,8 +419,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"gold\":" + gold + "}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
         // 钻石
@@ -395,8 +433,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"diamond\":" + diamond + "}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
         // 充值
@@ -407,8 +447,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"rechargeNumber\":" + rechargeNumber + "}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
         // 当前任务ID
@@ -419,8 +461,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"currentTaskId\":" + currentTaskId + "}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
         // 当前任务名称
@@ -431,8 +475,10 @@ namespace ET
                 return;
             }
 
+#if !Google7
             string properties = "{\"currentTaskName\":\"" + currentTaskName + "\"}";
             TapTapEvent.UserUpdate(properties);
+#endif
         }
 
         /// <summary>
@@ -449,11 +495,13 @@ namespace ET
                 return;
             }
 
+#if !Google7
             TapTapEvent.LogEvent("#WeiJingEvent", "{\"#rolename\":\"" + rolename + "\"}");
             TapTapEvent.LogEvent("#WeiJingEvent", "{\"#level\":\"" + level + "\"}");
             TapTapEvent.LogEvent("#WeiJingEvent", "{\"#servername\":\"" + servername + "\"}");
             TapTapEvent.LogEvent("#WeiJingEvent", "{\"#EventType\":\"" + eventType + "\"}");
             TapTapEvent.LogEvent("#WeiJingEvent", "{\"#EventValue\":\"" + eventVlue + "\"}");
+#endif
         }
 
         //1.激活
@@ -474,6 +522,7 @@ namespace ET
             }
 
 
+#if !Google7
             //转化事件发生后，开发者/第三方在请求接口后附上回传字段({DEEP_CALLBACK_URL}&event_type=xxx&event_timestamp={timestamp}&???=xxx)，并发起 GET 请求，上报给 TapREP。
             string url = $"{taprepRequest}&event_type={eventType}&event_timestamp={TimeHelper.ServerNow()}&amount={eventData}";
 
@@ -482,7 +531,7 @@ namespace ET
             Log.Debug($"TapReqEvent_1 request  url: {url}");
             string routerInfo = await HttpClientHelper.Get(url);
             Log.Debug($"TapReqEvent_1 respose  url: {routerInfo}");
-
+#endif
         }
 
 
@@ -511,13 +560,22 @@ namespace ET
         /// <returns></returns>
         public static async ETTask<int> GetAgeRange()
         {
+#if !Google7
             return await TapTapCompliance.GetAgeRange();
+#else
+            return 0;
+#endif
+
         }
 
 
         public static async ETTask<int> GetRemainingTime()
         {
+#if !Google7
             return await TapTapCompliance.GetRemainingTime();
+#else
+            return 0;
+#endif
         }
 
         private static string clientId = ConfigHelper.clientId;
@@ -526,12 +584,14 @@ namespace ET
         private static bool v20hasInit = false;
 
 
-        public static  bool hasCheckedAntiAddiction { get; private set; }
+        public static bool hasCheckedAntiAddiction { get; private set; }
 
-     
+
 
         public static void InitSDK()
         {
+
+#if !Google7
             if (!v20hasInit)
             {
                 v20hasInit = true;
@@ -580,6 +640,8 @@ namespace ET
                 // 回调设置
                 TapTapCompliance.RegisterComplianceCallback(AntiAddictionCallback);
             }
+
+#endif
         }
 
         /// <summary>
@@ -590,10 +652,12 @@ namespace ET
 
             InitSDK();
 
+#if !Google7
             ///System.Guid.NewGuid();  ϵͳ��������Ψһid
             // ע��Ψһ��ʶ����ֵ���Ȳ��ܳ��� 64 �ַ�
             //int timestart = (int)Time.time;
             TapTapCompliance.Startup(userid);
+#endif
         }
 
         /// <summary>
