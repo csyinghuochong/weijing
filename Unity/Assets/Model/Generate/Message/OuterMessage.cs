@@ -1153,6 +1153,9 @@ namespace ET
 		[ProtoMember(7)]
 		public List<float> Zs = new List<float>();
 
+		[ProtoMember(9)]
+		public float SpeedRate { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_PathfindingListRequest)]

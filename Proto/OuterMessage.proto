@@ -567,6 +567,8 @@ message M2C_PathfindingRequest // IActorMessage
 	repeated float Xs = 5;
 	repeated float Ys = 6;
 	repeated float Zs = 7;
+
+	float SpeedRate = 9;
 }
 
 message M2C_PathfindingListRequest // IActorMessage
