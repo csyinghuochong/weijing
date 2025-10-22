@@ -3962,4 +3962,5 @@
 {"_t":"MulLanguageConfig","_id":300122,"Des":"","Chinese":"{0}后领取","English":"Claim in {0}"},
 {"_t":"MulLanguageConfig","_id":300123,"Des":"","Chinese":"战斗","English":"Battle"},
 {"_t":"MulLanguageConfig","_id":300124,"Des":"","Chinese":"距离目标{0}米","English":"Target Distance: {0}m"},
+{"_t":"MulLanguageConfig","_id":300125,"Des":"","Chinese":"寻路中...","English":"Pathfinding..."},
 ]}

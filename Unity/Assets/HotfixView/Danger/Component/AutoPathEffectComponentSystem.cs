@@ -138,8 +138,8 @@ namespace ET
             {
                 self.PathPointList[i].transform.localPosition = self.InvisiblePosition;
             }
-
-            self.TextDistance.text = string.Format("距离目标{0}米", Mathf.FloorToInt(ditance));
+           
+            self.TextDistance.text = string.Format(GameSettingLanguge.LoadLocalization("距离目标{0}米"), Mathf.FloorToInt(ditance));
         }
 
         public static void OnMainHeroMove(this AutoPathEffectComponent self)
