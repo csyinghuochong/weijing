@@ -406,8 +406,13 @@ namespace ET
                             {
                                 continue;
                             }
-
                             UserInfoComponent userinfo = d2GGetUnit.Component as UserInfoComponent;
+
+                            if (session.DomainZone() == 5 && userinfo.UserInfo.Occ == 5 && userinfo.UserInfo.Lv >= 50)
+                            {
+                                continue;
+                            }
+
                             CreateRoleInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userinfo.UserInfo, account.UserList[i]);
 
                             d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.NumericComponent });

@@ -24,7 +24,16 @@ namespace ET
 
         public static List<string> TestNewOccAccount = new List<string>()
         {
-           
+              //"qqUID_FD4CDC789CE2F625D0AEFF212332F505",
+              //"qqUID_9F05E97A533AE68CACE68E1D110095DE",
+              //"668bdd33b00c87f01927142e",
+              //"wxoVumu0oGAD46Veu9v8BbWwUe3AJ4",
+              //"7364782171531352883",
+              //"18692725652",
+              //"18319670230",
+              //"18278712593",
+              //"18319670288",
+              //"13603352627",
         };
 
         public static List<long> BanChatPlayer = new List<long>()
@@ -35,7 +44,6 @@ namespace ET
         //无限BOSS
         public static List<string> ZhuBoURBossAccount = new List<string>()
         {
-            "18319670288",          //唐
             "7328696482012846884",     //璀璨梦境+南按钮
             "7328726248887376692",     //璀璨梦境+魔王
             "19139061490",           //永恒结界+七曜夏影
