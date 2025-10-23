@@ -189,7 +189,7 @@ namespace ET
 
                 if (skillBuffConfig.DamgePro > 0)
                 {
-                    buffDamgePro += (float)skillBuffConfig.DamgePro;
+                    buffDamgePro = (float)skillBuffConfig.DamgePro;
                 }
 
                 if (!skillHandler.OnlyHideBuffActionUnitID.Contains(defendUnit.Id))
@@ -821,7 +821,7 @@ namespace ET
                 }
 
                 //获取技能相关系数
-                double actDamge = skillconfig.ActDamge * singingvalue + buffHurtValueAdd;
+                double actDamge = skillconfig.ActDamge * singingvalue + buffHurtValueAdd + buffDamgePro;
                 int actDamgeValue = skillconfig.DamgeValue;
                 if (hurtMode == 1)  //持续伤害
                 {
