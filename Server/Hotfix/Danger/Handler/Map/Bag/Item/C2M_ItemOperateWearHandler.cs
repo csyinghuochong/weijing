@@ -87,7 +87,7 @@ namespace ET
                 }
 
                 ///猎人   默认 0弓箭   1剑
-                ///巨剑士 默认 0刀     1弓箭
+                ///巨刃士 默认 0刀     1弓箭
                 int equipIndex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex);
                 int equipType = itemConfig.EquipType;
                 int findIndex = -1;

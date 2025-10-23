@@ -193,7 +193,7 @@ namespace ET
                 return;
             }
 
-            //猎人、巨剑士单独处理
+            //猎人、巨刃士单独处理
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             if ((occ == 3 || occ == 5) && itemCof.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
             {
@@ -226,7 +226,7 @@ namespace ET
         //卸下装备
         public static async ETTask SendTakeEquip(this BagComponent self, BagInfo bagInfo)
         {
-            //猎人、巨剑士单独处理
+            //猎人、巨刃士单独处理
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             if ((occ == 3 || occ == 5) && itemCof.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
