@@ -53,7 +53,8 @@ namespace ET
                     singingvalue = 0.3f;
                 }
             }
-            
+
+            float buffDamgePro = 0f;
             float buffHurtValueAdd = 0f;
             ///Buff层数触发技能  buffid 1 技能ID 触发间隔
             if (SkillConfigCategory.Instance.BuffTriggerSkill.ContainsKey(skillconfig.Id))
@@ -188,7 +189,7 @@ namespace ET
 
                 if (skillBuffConfig.DamgePro > 0)
                 {
-                    buffHurtValueAdd += (float)skillBuffConfig.DamgePro;
+                    buffDamgePro += (float)skillBuffConfig.DamgePro;
                 }
 
                 if (!skillHandler.OnlyHideBuffActionUnitID.Contains(defendUnit.Id))

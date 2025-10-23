@@ -991,7 +991,7 @@ namespace ET
 		public int TaskId { get; set; }
 
 		[ProtoMember(9)]
-		public float SpeedRate { get; set; }
+		public int SpeedRate { get; set; }
 
 	}
 
@@ -1154,7 +1154,7 @@ namespace ET
 		public List<float> Zs = new List<float>();
 
 		[ProtoMember(9)]
-		public float SpeedRate { get; set; }
+		public int SpeedRate { get; set; }
 
 	}
 

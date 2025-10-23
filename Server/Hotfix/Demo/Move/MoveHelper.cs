@@ -9,7 +9,7 @@ namespace ET
     {
 
         // 可以多次调用，多次调用的话会取消上一次的协程
-        public static async ETTask<int> FindPathMoveToAsync(this Unit unit, Vector3 target, ETCancellationToken cancellationToken = null, bool yaogan = false)
+        public static async ETTask<int> FindPathMoveToAsync(this Unit unit, Vector3 target, ETCancellationToken cancellationToken = null, bool yaogan = false, int speedrate = 100)
         {
             ///以防止怪物再引力波的作用下不移动
             if (unit.GetComponent<StateComponent>().ServerCanMove()!= ErrorCode.ERR_Success)
@@ -63,7 +63,7 @@ namespace ET
                     m2CPathfindingResult.Ys.Add(vector3.y);
                     m2CPathfindingResult.Zs.Add(vector3.z);
                 }
-
+                m2CPathfindingResult.SpeedRate = speedrate;
                 if (path.Count < 2)
                 {
                     LogHelper.LogWarning("path.Count < 2");
@@ -130,7 +130,7 @@ namespace ET
                 m2CPathfindingResult.Ys.Add(vector3.y);
                 m2CPathfindingResult.Zs.Add(vector3.z);
             }
-
+            m2CPathfindingResult.SpeedRate = 100;
             MessageHelper.Broadcast(unit, m2CPathfindingResult);
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             bool ret = await moveComponent.MoveToAsync(list, speed, 0, null);

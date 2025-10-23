@@ -18,6 +18,8 @@ namespace ET
 
         public float UpdateUITime;
 
+        public int SpeedRate { get; set; }
+
         private WrapVector3 position = new WrapVector3(); //坐标
 
         public Vector3 Position

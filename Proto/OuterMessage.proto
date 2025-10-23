@@ -491,7 +491,7 @@ message C2M_PathfindingRequest // IActorLocationMessage
 	int32 Direction = 6;
 	float Distance = 7;
 	int32 TaskId = 8;
-	float SpeedRate = 9;
+	int32 SpeedRate = 9;
 }
 
 ///客户端寻路...
@@ -568,7 +568,7 @@ message M2C_PathfindingRequest // IActorMessage
 	repeated float Ys = 6;
 	repeated float Zs = 7;
 
-	float SpeedRate = 9;
+	int32 SpeedRate = 9;
 }
 
 message M2C_PathfindingListRequest // IActorMessage

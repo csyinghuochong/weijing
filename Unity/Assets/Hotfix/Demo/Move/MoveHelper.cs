@@ -27,7 +27,7 @@ namespace ET
         /// <param name="targetPos"></param>
         /// <param name="yangan"></param>
         /// <returns></returns>
-        public static async ETTask<int> MoveByYaoGan(this Unit unit, Vector3 targetPos, int direction, float distance,  ETCancellationToken cancellationToken = null)
+        public static async ETTask<int> MoveByYaoGan(this Unit unit, Vector3 targetPos, int direction, float distance,  ETCancellationToken cancellationToken = null, int speedRate = 100)
         {
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
             EventType.DataUpdate.Instance.DataParamString = string.Empty;
@@ -45,6 +45,7 @@ namespace ET
             msg.X = targetPos.x;
             msg.Y = targetPos.y;
             msg.Z = targetPos.z;
+            msg.SpeedRate = speedRate;
             unit.ZoneScene().GetComponent<SessionComponent>().Session.Send(msg);
 
             ObjectWait objectWait = unit.GetComponent<ObjectWait>();

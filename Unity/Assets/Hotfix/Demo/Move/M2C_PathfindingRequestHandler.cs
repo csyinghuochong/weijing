@@ -32,7 +32,7 @@ namespace ET
                         }
 					}
 				}
-
+				unit.SpeedRate = message.SpeedRate;
                 unit.GetComponent<MoveComponent>().MoveToAsync(pointsList, speed).Coroutine();
 			}
 		}

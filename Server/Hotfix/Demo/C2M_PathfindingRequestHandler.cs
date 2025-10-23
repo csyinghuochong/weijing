@@ -43,7 +43,7 @@ namespace ET
 				Vector3 target = unit.Position + rotation * Vector3.forward * message.Distance;
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
                 skillManagerComponent.InterruptSing(0, true);
-                unit.FindPathMoveToAsync(target, null, message.YaoGan).Coroutine();
+                unit.FindPathMoveToAsync(target, null, message.YaoGan, message.SpeedRate).Coroutine();
             }
 			else
             {
@@ -51,7 +51,7 @@ namespace ET
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
                 skillManagerComponent.InterruptSing(0, true);
 
-                unit.FindPathMoveToAsync(target, null, message.YaoGan).Coroutine();
+                unit.FindPathMoveToAsync(target, null, message.YaoGan, message.SpeedRate).Coroutine();
             }
 
             await ETTask.CompletedTask;

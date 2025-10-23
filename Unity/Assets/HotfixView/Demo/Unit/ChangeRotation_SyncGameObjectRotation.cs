@@ -17,7 +17,10 @@ namespace ET
             }
             else
             {
-                gameObjectComponent?.UpdateRotation(args.Unit.Rotation);
+                if (unit.SpeedRate >= 100)
+                {
+                    gameObjectComponent?.UpdateRotation(args.Unit.Rotation);
+                }
             }
         }
     }
