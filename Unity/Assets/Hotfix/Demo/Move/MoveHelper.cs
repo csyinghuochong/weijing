@@ -127,6 +127,7 @@ namespace ET
             msg.Direction = 0;
             msg.Distance = 0;
             msg.TaskId = taskId;
+            msg.SpeedRate = 100;
             unit.ZoneScene().GetComponent<SessionComponent>().Session.Send(msg);
 
             ObjectWait objectWait = unit.GetComponent<ObjectWait>();
@@ -161,6 +162,7 @@ namespace ET
             msg.Z = targetPos.z;
             msg.Distance = 0;
             msg.Direction = 0;
+            msg.SpeedRate = 100;
             unit.ZoneScene().GetComponent<SessionComponent>().Session.Send(msg);
 
             ObjectWait objectWait = unit.GetComponent<ObjectWait>();
