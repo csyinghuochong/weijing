@@ -23,15 +23,32 @@ namespace ET
 					Vector3 v1 = new Vector3(message.Xs[i], message.Ys[i], message.Zs[i]);
                     pointsList.Add(v1);
 
-					if (i < message.Xs.Count - 1)
+					if (i >= message.Xs.Count - 1)
 					{
-                        Vector3 v2 = new Vector3(message.Xs[i + 1], message.Ys[i + 1], message.Zs[i + 1]);
-                        if (Vector3.Distance(v1, v2) > 4f )  /// && Mathf.Abs(v1.y- v2.y) < 0.5f)
-						{
-							pointsList.Add( (v1 + v2) * 0.5f );
-                        }
+						continue;
 					}
-				}
+
+                    Vector3 v2 = new Vector3(message.Xs[i + 1], message.Ys[i + 1], message.Zs[i + 1]);
+					Vector3 dir = (v2 - v1).normalized;
+					float distance = Vector3.Distance(v1, v2);
+                    if (distance <= 2f)  /// && Mathf.Abs(v1.y- v2.y) < 0.5f)
+                    {
+						//pointsList.Add( (v1 + v2) * 0.5f );
+						continue;
+                    }
+
+					float index = 0f;
+					while (distance > index)
+					{
+                        index += 2f;
+                        if (distance - index < 1f)
+                        {
+                            break;
+                        }
+                        Vector3 temp = v1 + dir * index;
+                        pointsList.Add(temp);
+                    }
+                }
 				unit.SpeedRate = message.SpeedRate;
                 unit.GetComponent<MoveComponent>().MoveToAsync(pointsList, speed).Coroutine();
 			}
