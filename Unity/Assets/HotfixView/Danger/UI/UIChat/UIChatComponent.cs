@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ namespace ET
         public GameObject ChatSendNode;
         public GameObject UIChatEmoji;
         public GameObject ButtonEmoji;
-        public GameObject InputFieldTMP;
+        public TMP_InputField InputFieldTMP;
         public GameObject Btn_Close;
         public GameObject FunctionSetBtn;
         public GameObject ChatContent;
@@ -34,8 +35,8 @@ namespace ET
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseChat(); });
 
-            self.InputFieldTMP = rc.Get<GameObject>("InputFieldTMP");
-            self.InputFieldTMP.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(); });
+            self.InputFieldTMP = rc.Get<GameObject>("InputFieldTMP").GetComponent<TMP_InputField>();
+            self.InputFieldTMP.onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(); });
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             self.ChatContent = rc.Get<GameObject>("ChatContent");
@@ -98,9 +99,9 @@ namespace ET
 
         public static void OnClckEmojiItem(this UIChatComponent self, string emoji)
         {
-            string text = self.InputFieldTMP.GetComponent<InputField>().text;
+            string text = self.InputFieldTMP.text;
             text = text + $"<sprite={emoji}>";
-            self.InputFieldTMP.GetComponent<InputField>().text = text;
+            self.InputFieldTMP.text = text;
         }
 
         public static void OnClickPageButton(this UIChatComponent self, int type)
@@ -180,16 +181,16 @@ namespace ET
                 return;
             }
             string text_new = "";
-            string text_old = self.InputFieldTMP.GetComponent<InputField>().text;
+            string text_old = self.InputFieldTMP.text;
             if (text_old.Equals("#etgm"))
                 return;
             MaskWordHelper.Instance.IsContainSensitiveWords(ref text_old,out text_new);
-            self.InputFieldTMP.GetComponent<InputField>().text = text_old;
+            self.InputFieldTMP.text = text_old;
         }
 
         public static void OnSendChat(this UIChatComponent self)
         {
-            string text = self.InputFieldTMP.GetComponent<InputField>().text;
+            string text = self.InputFieldTMP.text;
             if (string.IsNullOrEmpty(text) || text.Length == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请输入聊天内容！"));
@@ -236,37 +237,37 @@ namespace ET
             if (text.Equals("#blood"))
             {
                 SettingHelper.ShowBlood = !SettingHelper.ShowBlood;
-                self.InputFieldTMP.GetComponent<InputField>().text = "";
+                self.InputFieldTMP.text = "";
                 return;
             }
             if (text.Equals("#guanghuan"))
             {
                 SettingHelper.ShowGuangHuan = !SettingHelper.ShowGuangHuan;
-                self.InputFieldTMP.GetComponent<InputField>().text = "";
+                self.InputFieldTMP.text = "";
                 return;
             }
             if (text.Equals("#animation"))
             {
                 SettingHelper.ShowAnimation = !SettingHelper.ShowAnimation;
-                self.InputFieldTMP.GetComponent<InputField>().text = "";
+                self.InputFieldTMP.text = "";
                 return;
             }
             if (text.Equals("#sound"))
             {
                 SettingHelper.PlaySound = !SettingHelper.PlaySound;
-                self.InputFieldTMP.GetComponent<InputField>().text = "";
+                self.InputFieldTMP.text = "";
                 return;
             }
             if (text.Equals("#pool"))
             {
                 SettingHelper.UsePool = !SettingHelper.UsePool;
-                self.InputFieldTMP.GetComponent<InputField>().text = "";
+                self.InputFieldTMP.text = "";
                 return;
             }
             if (text.Equals("#path"))
             {
                 SettingHelper.ClintFindPath = !SettingHelper.ClintFindPath;
-                self.InputFieldTMP.GetComponent<InputField>().text = "";
+                self.InputFieldTMP.text = "";
                 return;
             }
             if (text.Equals("#fenghao"))
@@ -280,7 +281,7 @@ namespace ET
                 SettingHelper.ShowGuangHuan = true;
                 SettingHelper.ShowAnimation = true;
                 SettingHelper.PlaySound = true;
-                self.InputFieldTMP.GetComponent<InputField>().text = "";
+                self.InputFieldTMP.text = "";
                 return;
             }
             if (text.Equals("#resetall"))
@@ -291,7 +292,7 @@ namespace ET
                 SettingHelper.ShowAnimation = false;
                 SettingHelper.PlaySound = false;
                 SettingHelper.ClintFindPath = false;
-                self.InputFieldTMP.GetComponent<InputField>().text = "";
+                self.InputFieldTMP.text = "";
                 return;
             }
             if (mask)
@@ -346,7 +347,7 @@ namespace ET
                 self.ZoneScene().GetComponent<ChatComponent>().SendChat(itemType, text).Coroutine();
             }
 
-            self.InputFieldTMP.GetComponent<InputField>().text = "";
+            self.InputFieldTMP.text = "";
         }
 
     }

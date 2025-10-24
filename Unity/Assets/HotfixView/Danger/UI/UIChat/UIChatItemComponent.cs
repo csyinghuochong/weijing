@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
@@ -6,12 +7,12 @@ namespace ET
     public class UIChatItemComponent : Entity, IAwake<GameObject>
     {
         public ChatInfo mChatInfo;
-        public GameObject Text_System_TMP;
+        public TMP_Text Text_System_TMP;
         public GameObject Node2;
         public GameObject Node1;
         public GameObject Text_Level;
         public GameObject Imagebg;
-        public GameObject Text_TMP;
+        public TMP_Text Text_TMP;
         public GameObject Text_Name;
         public GameObject Text_Speak;
         public GameObject Obj_ImgHeadIcon;
@@ -29,13 +30,13 @@ namespace ET
             self.GameObject = gameObject;   
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.Text_Level = rc.Get<GameObject>("Text_Level");
-            self.Text_TMP = rc.Get<GameObject>("Text_TMP");
+            self.Text_TMP = rc.Get<GameObject>("Text_TMP").GetComponent<TMP_Text>();
             self.Imagebg = rc.Get<GameObject>("Imagebg");
             self.Text_Name = rc.Get<GameObject>("Text_Name");
  
             self.Obj_ImgHeadIcon = rc.Get<GameObject>("ImgHeadIcon");
             self.Obj_ImgHeadIconXiTong = rc.Get<GameObject>("ImgHeadIconXiTong");
-            self.Text_System_TMP = rc.Get<GameObject>("Text_System_TMP");
+            self.Text_System_TMP = rc.Get<GameObject>("Text_System_TMP").GetComponent<TMP_Text>();
             self.Node2 = rc.Get<GameObject>("Node2");
             self.Node1 = rc.Get<GameObject>("Node1");
             self.Node2.SetActive(false);
@@ -144,10 +145,9 @@ namespace ET
                 self.Node1.SetActive(false);
                 self.Node2.SetActive(true);
 
-                Text textMeshProUGUI = self.Text_System_TMP.GetComponent<Text>();
-                textMeshProUGUI.text = showValue;
+                self.Text_System_TMP.text = showValue;
 
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_System_TMP.GetComponent<Text>().preferredHeight + 50);
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_System_TMP.preferredHeight + 50);
             }
             else
             {
@@ -158,13 +158,11 @@ namespace ET
 
                 self.Text_Level.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("等级：{0}"), chatInfo.PlayerLevel.ToString());
 
-                Text textMeshProUGUI = self.Text_TMP.GetComponent<Text>();
+                self.Text_TMP.text = showValue;
 
-                textMeshProUGUI.text = showValue;
-
-                if (self.Text_TMP.GetComponent<Text>().preferredHeight > 100)
+                if (self.Text_TMP.preferredHeight > 100)
                 {
-                    self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_TMP.GetComponent<Text>().preferredHeight + 110);
+                    self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_TMP.preferredHeight + 110);
                 }
                 else
                 {

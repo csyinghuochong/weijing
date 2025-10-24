@@ -1,0 +1,417 @@
+{"frames": [
+
+{
+	"filename": "Emoji amaze.png",
+	"frame": {"x":0,"y":0,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji angel.PNG",
+	"frame": {"x":60,"y":0,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji angry.PNG",
+	"frame": {"x":120,"y":0,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji aristocrat.PNG",
+	"frame": {"x":180,"y":0,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji beg.PNG",
+	"frame": {"x":240,"y":0,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji crazy.PNG",
+	"frame": {"x":300,"y":0,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji cry 1.PNG",
+	"frame": {"x":360,"y":0,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji cry 2.PNG",
+	"frame": {"x":420,"y":0,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji cry 3.PNG",
+	"frame": {"x":0,"y":60,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji dead.PNG",
+	"frame": {"x":60,"y":60,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji devil 1.PNG",
+	"frame": {"x":120,"y":60,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji devil.PNG",
+	"frame": {"x":180,"y":60,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji disgust.PNG",
+	"frame": {"x":240,"y":60,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji dislike.PNG",
+	"frame": {"x":300,"y":60,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji drunk.PNG",
+	"frame": {"x":360,"y":60,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji eyes 1.PNG",
+	"frame": {"x":420,"y":60,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji eyes 2.PNG",
+	"frame": {"x":0,"y":120,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji freez.PNG",
+	"frame": {"x":60,"y":120,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji happy 1.PNG",
+	"frame": {"x":120,"y":120,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji happy 2.PNG",
+	"frame": {"x":180,"y":120,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji heart.PNG",
+	"frame": {"x":240,"y":120,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji hot.PNG",
+	"frame": {"x":300,"y":120,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji kiss 1.PNG",
+	"frame": {"x":360,"y":120,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji kiss 2.PNG",
+	"frame": {"x":420,"y":120,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji laugh 1.PNG",
+	"frame": {"x":0,"y":180,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji laugh 2.PNG",
+	"frame": {"x":60,"y":180,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji like.PNG",
+	"frame": {"x":120,"y":180,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji love 1.PNG",
+	"frame": {"x":180,"y":180,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji love.PNG",
+	"frame": {"x":240,"y":180,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji money 1.PNG",
+	"frame": {"x":300,"y":180,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji poo.PNG",
+	"frame": {"x":360,"y":180,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji roar.PNG",
+	"frame": {"x":420,"y":180,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji roll eyes.PNG",
+	"frame": {"x":0,"y":240,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji sad.PNG",
+	"frame": {"x":60,"y":240,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji sick 1.PNG",
+	"frame": {"x":120,"y":240,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji sick.PNG",
+	"frame": {"x":180,"y":240,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji sleep 1.PNG",
+	"frame": {"x":240,"y":240,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji sleep 3.PNG",
+	"frame": {"x":300,"y":240,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji smile.PNG",
+	"frame": {"x":360,"y":240,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji stars.PNG",
+	"frame": {"x":420,"y":240,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji surprise.PNG",
+	"frame": {"x":0,"y":300,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji think.PNG",
+	"frame": {"x":60,"y":300,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji tongue.PNG",
+	"frame": {"x":120,"y":300,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji wink.PNG",
+	"frame": {"x":180,"y":300,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+},
+{
+	"filename": "Emoji with glasses.PNG",
+	"frame": {"x":240,"y":300,"w":60,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+	"sourceSize": {"w":60,"h":60},
+	"pivot": {"x":0,"y":0.9}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "emoji.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":512},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:943d2b055f8bcf5c7441bf54fff811d7:403f1ff47fa18da9be69eb7d538de41a:3b6ee1b3efdb705ed941d972d580542a$"
+}
+}

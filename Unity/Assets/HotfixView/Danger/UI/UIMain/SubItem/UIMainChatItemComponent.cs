@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using TMPro;
 using UnityEngine.UI;
 
 namespace ET
@@ -7,7 +8,7 @@ namespace ET
     public class UIMainChatItemComponent : Entity, IAwake<GameObject>
     {
         public bool UpdateHeight;
-        public Text Lab_ChatText;
+        public TMP_Text Lab_ChatText;
         public GameObject ImageButton;
         public GameObject[] TitleList = new GameObject[ChannelEnum.Number];
 
@@ -24,7 +25,7 @@ namespace ET
             self.UpdateHeight = false;
             self.GameObject = gameObject;   
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
-            self.Lab_ChatText = rc.Get<GameObject>("Lab_ChatText").GetComponent<Text>();
+            self.Lab_ChatText = rc.Get<GameObject>("Lab_ChatText").GetComponent<TMP_Text>();
             self.RectTransform = gameObject.GetComponent<RectTransform>();
 
             //-157.6  -15.9
@@ -97,7 +98,7 @@ namespace ET
                 }
 
                 self.m2C_SyncChatInfo = chatInfo;
-                Text textMeshProUGUI = self.Lab_ChatText.GetComponent<Text>();
+                TMP_Text textMeshProUGUI = self.Lab_ChatText;
                 string showValue = string.Empty;
                 if (!string.IsNullOrEmpty(chatInfo.ChatMsg))
                 {
@@ -128,7 +129,7 @@ namespace ET
                         //textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
                         textMeshProUGUI.text = StringBuilderHelper.GetChatText(chatInfo.PlayerName, showValue);
                     }
-                    textMeshProUGUI.horizontalOverflow = HorizontalWrapMode.Wrap;
+                    // textMeshProUGUI.horizontalOverflow = HorizontalWrapMode.Wrap;
 
                     float preferredHeight = self.Lab_ChatText.preferredHeight;
                     if (preferredHeight > 40f)
