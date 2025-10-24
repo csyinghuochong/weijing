@@ -344,7 +344,8 @@ namespace ET
 				return;
 			}
 
-            if (GlobalHelp.GetBigVersion() <= 23)
+			bool newtapsdk = false; // GlobalHelp.GetBigVersion() <= 23;
+            if (newtapsdk)
 			{
                 EventType.TapTapSdkInit.Instance.ZoneScene = self.ZoneScene();
                 EventSystem.Instance.PublishClass(EventType.TapTapSdkInit.Instance);

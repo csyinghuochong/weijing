@@ -88,10 +88,12 @@ namespace ET
         public bool OueNetMode;
         [SerializeField]
         public int BigVersion = 21;
-        //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id             22客户端寻路 23渠道包/Google     24    30 tapv4登陆(待定)
+        //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id
+		//22客户端寻路 23渠道包/Google     24tapv4登陆(待定) 25unity20220362+osdkdatalink
         [SerializeField]
         public int BigVersionIOS = 21;
-        //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id Apple登陆   22客户端寻路 23渠道包/Google
+        //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id Apple登陆
+		//22客户端寻路 23渠道包/Google
         [SerializeField]
         public CodeMode CodeMode = CodeMode.Mono;
         [SerializeField]
