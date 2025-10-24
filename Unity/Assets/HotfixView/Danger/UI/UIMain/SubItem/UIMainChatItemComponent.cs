@@ -75,7 +75,7 @@ namespace ET
             float preferredHeight = self.Lab_ChatText.preferredHeight;
             if (preferredHeight > 40f)
             {
-                self.RectTransform.sizeDelta = new Vector2(400, preferredHeight + 50);
+                self.RectTransform.sizeDelta = new Vector2(400, preferredHeight + 14f);
                 self.GameObject.SetActive(false);
                 self.GameObject.SetActive(true);
             }
@@ -134,11 +134,11 @@ namespace ET
                     float preferredHeight = self.Lab_ChatText.preferredHeight;
                     if (preferredHeight > 40f)
                     {
-                        self.RectTransform.sizeDelta = new Vector2(400, preferredHeight + 50);
+                        self.RectTransform.sizeDelta = new Vector2(400, preferredHeight + 14f);
                     }
                     else
                     {
-                        self.RectTransform.sizeDelta = new Vector2(400, 40);
+                        self.RectTransform.sizeDelta = new Vector2(400, 40f);
                     }
                     if (chatInfo.ChannelId >= 0 && chatInfo.ChannelId < self.TitleList.Length)
                     {
