@@ -8,6 +8,7 @@ namespace ET
 {
     public class UIChatComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Button_CloseEmoji;
         public GameObject ChatSendNode;
         public GameObject UIChatEmoji;
         public GameObject ButtonEmoji;
@@ -68,6 +69,11 @@ namespace ET
             UI uiEmoji = self.AddChild<UI, string, GameObject>( "UIChatEmoji", self.UIChatEmoji);
             UIChatEmojiComponent uIChatEmojiComponent = uiEmoji.AddComponent<UIChatEmojiComponent>();
             uIChatEmojiComponent.SetClickHandler((string button)=> { self.OnClckEmojiItem(button); });
+
+            self.Button_CloseEmoji = rc.Get<GameObject>("Button_CloseEmoji");
+            self.Button_CloseEmoji.GetComponent<Button>().onClick.AddListener(() => {
+                self.UIChatEmoji.SetActive(false);
+            });
 
             DataUpdateComponent.Instance.AddListener(DataType.OnRecvChat, self);
         }
