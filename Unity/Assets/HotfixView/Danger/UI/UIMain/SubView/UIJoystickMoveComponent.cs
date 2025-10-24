@@ -379,7 +379,7 @@ namespace ET
             if (SettingHelper.ClintFindPath)
             {
                 List<Vector3> pathfind = new List<Vector3>();
-                self.CanMovePosition(unit, speed, rotation, pathfind);
+                self.CanMovePositionList(unit, speed, rotation, pathfind);
                 if (pathfind.Count < 2)
                 {
                     EventType.MoveStart.Instance.Unit = unit;
@@ -408,7 +408,27 @@ namespace ET
             }
             else
             {
-                distance = self.CanMoveDistance(unit, rotation);
+                newv3 = self.CanMovePosition(unit, direction, rotation);
+
+                distance = Vector3.Distance(unit.Position, newv3);
+                int speedrate = 0;
+                if (newv3.Equals(unit.Position))
+                {
+                    Log.Debug($"不能移动，靠墙移动：{unit.Position}  {newv3}   {distance}！");
+                    newv3 = self.MoveSlowly(direction);
+                    speedrate = 50;
+                }
+                else
+                {
+                    speedrate = 100; 
+                    Log.Debug($"可以移动，目标位置：{unit.Position}  {newv3}   {distance}！");
+                }
+
+                if (newv3.Equals(unit.Position))
+                {
+                    Log.Debug($"靠墙蹭动：也不能移动！");
+                    return false;
+                }
                 //distance = Mathf.Max(distance, 1f);
 
                 if (self.noCheckTime < clientNow)
@@ -421,8 +441,9 @@ namespace ET
                     self.checkTime = 100;
                 }
 
-                newv3 = unit.Position + rotation * Vector3.forward * distance;
-                unit.MoveByYaoGan(newv3, direction, distance, null).Coroutine();
+                //Log.Debug($"distance: {distance}   newv3:{newv3}");
+
+                unit.MoveByYaoGan(newv3, direction, distance, null, speedrate).Coroutine();
             }
 
             self.lastSendTime = clientNow;
@@ -442,7 +463,7 @@ namespace ET
             FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("请先消灭{0}"), monsterName));
         }
 
-        public static void CanMovePosition(this UIJoystickMoveComponent self, Unit unit, float speed, Quaternion rotation, List<Vector3> pathfind)
+        public static void CanMovePositionList(this UIJoystickMoveComponent self, Unit unit, float speed, Quaternion rotation, List<Vector3> pathfind)
         {
             unit.GetComponent<PathfindingComponent>().Find(unit.Position, unit.Position + rotation * Vector3.forward * speed * 0.5f, pathfind);
             //Vector3 targetPosi = unit.Position;
@@ -485,32 +506,79 @@ namespace ET
         /// <param name="unit"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public static float CanMoveDistance(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation)
+        public static Vector3 CanMovePosition(this UIJoystickMoveComponent self, Unit unit, int direction , Quaternion rotation)
         {
-            float intveral = 1f; //每次寻的长度
-            int distance = 1;
-            int maxnumber = 5; //最多寻多少次
+            float intveral = 0.2f; //每次寻的长度
+            int distance = 0;
+            int maxnumber = 20; //最多寻多少次
+
+            Vector3 newv3 = unit.Position; // + rotation * Vector3.forward * (distance * intveral);
+
             for (int i = distance; i <= maxnumber; i++)
             {
                 Vector3 target = unit.Position + rotation * Vector3.forward * i * intveral;
                 RaycastHit hit;
-                //Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
+                //Physics.Raycast(target + new Vector3(0f, 2f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
                 //if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon && i <= 3 && hit.collider != null)
                 //{
                 //    return -1;
                 //}
 
-                Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.BuildingLayer);
+                Physics.Raycast(target + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 100, self.BuildingLayer);
                 if (hit.collider != null)
                 {
-                    Log.Debug($" hit.collider != null: i : {i}   x: {target.x}  z:{target.z} ");
+                    //Log.Debug($" hit.collider != null: i : {i}   x: {target.x}  z:{target.z} ");
                     break;
                 }
+
                 distance = i;
             }
 
-            return distance * intveral;
+            if (distance * intveral > 0.8f)
+            {
+                newv3 = unit.Position + rotation * Vector3.forward * (distance * intveral);
+            }
+            return newv3;
         }
+
+        //靠墙慢慢往前蹭
+        public static Vector3 MoveSlowly(this UIJoystickMoveComponent self, int direction)
+        {
+            Unit unit = self.MainUnit;
+            Vector3 vector3result = unit.Position;
+            unit.GetComponent<GameObjectComponent>().UpdateRotation(Quaternion.Euler(0, direction, 0));
+
+            //int speedRate = 50;  //移动速度 10是原始速度1/10 100是原始速度
+            bool sendmove = false;
+            for (int i = 0; i < 80; i++)    //左右80度范围寻找可以移动的点
+            {
+                Quaternion rotation_1 = Quaternion.Euler(0, direction + i, 0);
+                Vector3 newv3_1 =  self.CanMovePosition(unit, direction, rotation_1);
+
+                if (newv3_1.Equals(unit.Position))
+                {
+                    Quaternion rotation_2 = Quaternion.Euler(0, direction - i, 0);
+                    newv3_1 =  self.CanMovePosition(unit, direction,    rotation_2);
+                }
+
+                if (!newv3_1.Equals(unit.Position))
+                {
+                    sendmove = true;
+                    vector3result = newv3_1;
+                    Log.Debug($"靠墙移动 移动位置：{i} {vector3result}");
+                    //unit.MoveResultToAsync(pathfind, null, speedRate).Coroutine();
+                    // unit.GetComponent<MoveComponent>().MoveToAsync(pathfind, speed).Coroutine();
+                    break;
+                }
+            }
+
+            if (!sendmove)
+            {
+                //EventSystem.Instance.Publish(self.Root().CurrentScene(), new MoveStart() { Unit = unit });
+            }
+            return vector3result;
+        }
+
 
         public static int CheckObstruct(this UIJoystickMoveComponent self, Unit unit, Vector3 target)
         {
