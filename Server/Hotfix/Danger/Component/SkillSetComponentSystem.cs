@@ -1039,9 +1039,14 @@ namespace ET
 
         public static void OnChangeEquipIndex(this SkillSetComponent self,  int equipIndex)
 		{
-			self.OnRmItemSkill(ConfigHelper.HunterFarSkill, 0);
-            self.OnRmItemSkill(ConfigHelper.HunterNearSkill,0);
-            self.OnAddItemSkill( equipIndex == 0 ? ConfigHelper.HunterFarSkill : ConfigHelper.HunterNearSkill );
+			UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
+
+            self.OnRmItemSkill(ConfigHelper.HunterFarSkill, 0);
+            self.OnRmItemSkill(ConfigHelper.HunterNearSkill, 0);
+            if (userInfoComponent.UserInfo.Occ == 3)
+			{
+                self.OnAddItemSkill(equipIndex == 0 ? ConfigHelper.HunterFarSkill : ConfigHelper.HunterNearSkill);
+            }
         }
 
         /// <summary>
