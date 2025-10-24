@@ -412,6 +412,7 @@ namespace ET
 
                 distance = Vector3.Distance(unit.Position, newv3);
                 int speedrate = 0;
+                //int speedRate = 50;  //移动速度 10是原始速度1/10 100是原始速度
                 if (newv3.Equals(unit.Position))
                 {
                     Log.Debug($"不能移动，靠墙移动：{unit.Position}  {newv3}   {distance}！");
@@ -430,7 +431,7 @@ namespace ET
                     return false;
                 }
                 //distance = Mathf.Max(distance, 1f);
-
+                
                 if (self.noCheckTime < clientNow)
                 {
                     float needtime = distance / speed;
@@ -548,7 +549,6 @@ namespace ET
             Vector3 vector3result = unit.Position;
             unit.GetComponent<GameObjectComponent>().UpdateRotation(Quaternion.Euler(0, direction, 0));
 
-            //int speedRate = 50;  //移动速度 10是原始速度1/10 100是原始速度
             bool sendmove = false;
             for (int i = 0; i < 80; i++)    //左右80度范围寻找可以移动的点
             {
