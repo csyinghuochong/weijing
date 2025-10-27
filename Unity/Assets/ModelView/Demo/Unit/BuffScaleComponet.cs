@@ -17,6 +17,8 @@ namespace ET
 
         public long BeginTime;
 
+        public long EndTime;
+
         public long Timer;
     }
 }

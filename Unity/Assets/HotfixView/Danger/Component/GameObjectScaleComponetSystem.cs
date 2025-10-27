@@ -39,21 +39,23 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="skillBuff"></param>
         /// <param name="operateType">1缩放  2回退 </param>
-        public static void OnBuffScale(this BuffScaleComponet self, SkillBuffConfig skillBuff, int operateType)
+        public static void OnBuffScale(this BuffScaleComponet self, SkillBuffConfig skillBuff, int operateType, long buffEndTime)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
 
             Unit unit = self.GetParent<Unit>();
-            GameObject gameObject = unit.GetComponent<GameObjectComponent>().GameObject;
+            GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
+            GameObject gameObject = gameObjectComponent.GameObject;
             if (gameObject == null)
             {
                 return;
             }
 
             self.PassTime = 0;
-            self.ButtTime = skillBuff.BuffLoopTime;
-            self.ToScaleValue = operateType ==1 ? (float)skillBuff.buffParameterValue : 1;
-            self.InitScaleValue = gameObject.transform.localScale.x;
+            self.EndTime = buffEndTime;
+            self.ButtTime = skillBuff.BuffLoopTime > 0 ? skillBuff.BuffLoopTime : 100;
+            self.ToScaleValue = operateType ==1 ? (float)skillBuff.buffParameterValue * gameObjectComponent.localScale : 1;
+            self.InitScaleValue = gameObjectComponent.localScale;
             self.Transform = gameObject.transform;
             self.BeginTime = TimeHelper.ServerNow();
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.BuffScaleTimer, self);
@@ -61,8 +63,16 @@ namespace ET
 
         public static void OnUpdate(this BuffScaleComponet self)
         {
-            self.PassTime = TimeHelper.ServerNow() - self.BeginTime;
-            float passvalue = (self.PassTime * 1f/ self.ButtTime);
+            long curTime = TimeHelper.ServerNow();
+            if (curTime > self.EndTime)
+            {
+                self.Transform.localScale = Vector3.one * self.InitScaleValue;
+                TimerComponent.Instance.Remove(ref self.Timer);
+                return;
+            }
+
+            self.PassTime = curTime - self.BeginTime;
+            float passvalue = (self.PassTime * 1f / self.ButtTime);
             if (passvalue > 1f)
             {
                 passvalue = 1f;

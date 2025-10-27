@@ -16,7 +16,7 @@ namespace ET
                 buffScaleComponet = args.Unit.AddComponent<BuffScaleComponet>();
             }
 
-            buffScaleComponet.OnBuffScale(args.ABuffHandler.mSkillBuffConf, args.OperateType);
+            buffScaleComponet.OnBuffScale(args.ABuffHandler.mSkillBuffConf, args.OperateType, args.ABuffHandler.BuffEndTime);
         }
     }
 }

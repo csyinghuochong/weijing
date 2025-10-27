@@ -16,5 +16,7 @@ namespace ET
         public string OldShader;
 
         public bool BianShenEffect;
+
+        public float localScale = 1f;
     }
 }

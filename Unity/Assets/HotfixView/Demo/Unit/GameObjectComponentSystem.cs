@@ -352,8 +352,11 @@ namespace ET
             go.transform.localPosition = unit.Position;
             go.transform.rotation = unit.Rotation;
 
-            UICommonHelper.SetParent(self.GameObject, HoreseHelper.GetHorseNode(self.ObjectHorse));
-            self.GameObject.transform.localScale = HoreseHelper.GetRoleScale(go, horseId) * Vector3.one;
+            GameObject horeseNode = HoreseHelper.GetHorseNode(self.ObjectHorse);
+            Vector3 horseScale =  HoreseHelper.GetRoleScale(go, horseId) * Vector3.one;
+            horeseNode.transform.localScale = horseScale;   
+            UICommonHelper.SetParent(self.GameObject, horeseNode);
+            //self.GameObject.transform.localScale = horeseNode;
             //特殊处理
             if (horseId == 10008)
             {
@@ -493,6 +496,7 @@ namespace ET
                 return;
             }
             self.GameObject = go;
+            self.localScale = go.transform.localScale.x;
             self.InitMaterial();
             if (self.DelayShow > 0)
             {
