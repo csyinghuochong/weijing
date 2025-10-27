@@ -262,6 +262,22 @@ namespace libx
                     break;
             }
 
+            if (Application.unityVersion == "2022.3.62f2c1")
+            {
+                Log.Error("Application.unityVersion == 2022.3.62f2c1");
+
+                switch ((VersionMode)version)
+                {
+                    case VersionMode.Alpha:
+                    case VersionMode.Beta:
+                        path = "DLCBeta20220362";
+                        break;
+                    case VersionMode.BanHao:
+                        path = "DLCBanHao";
+                        break;
+                }
+            }
+
             if (unity2022)
             {
                 ET.FileHelper.CleanDirectory(Directory.GetParent(Application.dataPath) + $"/../Release/{path}/WJ");

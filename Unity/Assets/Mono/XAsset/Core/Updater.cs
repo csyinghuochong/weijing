@@ -156,8 +156,26 @@ namespace libx
                     dlcPath = "DLCBanHao/WJ";
                     break;
             }
-            baseURL = "http://weijinghot.weijinggame.com/weijing1/" + dlcPath + "/";
+            
+            Log.Debug("Application.unityVersion: " + Application.unityVersion);
+            
+            if (Application.unityVersion == "2022.3.62f2c1")
+            {
+                Log.Error("Application.unityVersion == 2022.3.62f2c1");
 
+                switch (versionMode)
+                {
+                    case VersionMode.Alpha:
+                    case VersionMode.Beta:
+                        dlcPath = "DLCBeta20220362/WJ";
+                        break;
+                    case VersionMode.BanHao:
+                        dlcPath = "DLCBanHao/WJ";
+                        break;
+                }
+            }
+
+            baseURL = "http://weijinghot.weijinggame.com/weijing1/" + dlcPath + "/";
             baseURL = baseURL.EndsWith("/") ? baseURL : baseURL + "/";
 
             Init init = GameObject.Find("Global").GetComponent<Init>();

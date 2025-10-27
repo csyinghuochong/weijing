@@ -23,7 +23,6 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
 using ET;
 using System;
 using System.Collections.Generic;
@@ -95,6 +94,21 @@ namespace libx
                     outputPath = "../Release/DLCBanHao/WJ/" + GetPlatformName();
                     break;
             }
+
+            if (Application.unityVersion == "2022.3.62f2c1")
+            {
+                switch ((VersionMode)version)
+                {
+                    case VersionMode.Alpha:
+                    case VersionMode.Beta:
+                        outputPath = "../Release/DLCBeta20220362/WJ/" + GetPlatformName();
+                        break;
+                    case VersionMode.BanHao:
+                        outputPath = "../Release/DLCBanHao/WJ/" + GetPlatformName();
+                        break;
+                }
+            }
+
 
             BuildRules rules = GetBuildRules();
             BuildRules.nameByHash = hash;
@@ -405,6 +419,24 @@ namespace libx
                     outputPath = "DLCBanHao/WJ";
                     break;
             }
+
+            if (Application.unityVersion == "2022.3.62f2c1")
+            {
+                Log.Error("Application.unityVersion == 2022.3.62f2c1");
+
+                switch ((VersionMode)version)
+                {
+                    case VersionMode.Alpha:
+                    case VersionMode.Beta:
+                        outputPath = "DLCBeta20220362/WJ";
+                        break;
+                    case VersionMode.BanHao:
+                        outputPath = "DLCBanHao/WJ";
+                        break;
+                }
+            }
+
+
             string dataPath = Application.dataPath;
             dataPath = dataPath.Substring(0, dataPath.Length - 6);
             dataPath = dataPath.Substring(0, dataPath.Length - 6);

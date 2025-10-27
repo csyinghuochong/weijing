@@ -109,6 +109,23 @@ namespace libx
                     BuildScript.outputPath = "../Release/DLCBanHao/WJ" + BuildScript.GetPlatformName();
                     break;
             }
+
+            if (Application.unityVersion == "2022.3.62f2c1")
+            {
+
+                switch ((VersionMode)version)
+                {
+                    case VersionMode.Alpha:
+                    case VersionMode.Beta:
+                        BuildScript.outputPath = "../Release/DLCBeta20220362/WJ" + BuildScript.GetPlatformName();
+                        break;
+                    case VersionMode.BanHao:
+                        BuildScript.outputPath = "../Release/DLCBanHao/WJ" + BuildScript.GetPlatformName();
+                        break;
+                }
+            }
+
+
             Assets.basePath = BuildScript.outputPath + Path.DirectorySeparatorChar;
             Assets.loadDelegate = AssetDatabase.LoadAssetAtPath;
             return version;
