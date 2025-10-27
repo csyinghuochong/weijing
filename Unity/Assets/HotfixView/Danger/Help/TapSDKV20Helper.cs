@@ -4,7 +4,7 @@ using UnityEngine;
 
 #if UNITY_ANDROID
 #if UNITY_2022_1_OR_NEWER
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
 using TapSDK.Core;
 using TapSDK.Compliance;
 using TapSDK.Login;
@@ -44,7 +44,7 @@ namespace ET
 
         public static void Init()
         {
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             if (!hasInit)
             {
                 hasInit = true;
@@ -121,7 +121,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             ET.Log.ILog.Debug("Tab SetUser.Init");
             TapTapEvent.SetUserID(userId);
 #endif
@@ -143,7 +143,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             TapTapEvent.ClearUser();
 #endif
         }
@@ -164,7 +164,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             TapTapEvent.LogPurchasedEvent(orderID: orderId,
                 productName: product,
                 amount: amount,
@@ -219,7 +219,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             ET.Log.ILog.Debug("Tap TrackEvent");
             TapTapEvent.LogEvent("#eventName_2", "{\"#serverid\":\"3\"}");
 #endif
@@ -232,7 +232,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             TapTapEvent.LogEvent(eventName, properties);
 #endif
         }
@@ -249,7 +249,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             TapTapEvent.AddCommon(staticProperties);
 #endif
         }
@@ -265,7 +265,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             TapTapEvent.ClearCommonProperty("#current_channel");
 #endif
         }
@@ -280,7 +280,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             TapTapEvent.ClearAllCommonProperties();
 #endif
         }
@@ -293,7 +293,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"#rolename\":\"" + rolename + "\"}";
             Log.ILog.Debug(properties);
             TapTapEvent.UserUpdate(properties);
@@ -321,7 +321,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"rolename\":\"" + rolename + "\"}";
             TapTapEvent.UserUpdate(properties);
 #endif
@@ -335,7 +335,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"servername\":\"" + servername + "\"}";
             TapTapEvent.UserUpdate(properties);
 #endif
@@ -349,7 +349,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"allOnLine\":" + add + "}";
             TapTapEvent.UserAdd(properties);
 #endif
@@ -363,7 +363,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"finalOffline\":\"" + finalOffline + "\"}";
             TapTapEvent.UserUpdate(properties);
 #endif
@@ -377,7 +377,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"isFirstCreateRole\":" + isFirstCreateRole + "}";
             TapTapEvent.UserUpdate(properties);
 #endif
@@ -391,7 +391,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"combat\":" + combat + "}";
             TapTapEvent.UserUpdate(properties);
 #endif
@@ -405,7 +405,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"level\":" + level + "}";
             TapTapEvent.UserUpdate(properties);
 #endif
@@ -419,7 +419,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"gold\":" + gold + "}";
             TapTapEvent.UserUpdate(properties);
 #endif
@@ -433,7 +433,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"diamond\":" + diamond + "}";
             TapTapEvent.UserUpdate(properties);
 #endif
@@ -447,7 +447,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"rechargeNumber\":" + rechargeNumber + "}";
             TapTapEvent.UserUpdate(properties);
 #endif
@@ -461,7 +461,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"currentTaskId\":" + currentTaskId + "}";
             TapTapEvent.UserUpdate(properties);
 #endif
@@ -475,7 +475,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             string properties = "{\"currentTaskName\":\"" + currentTaskName + "\"}";
             TapTapEvent.UserUpdate(properties);
 #endif
@@ -495,7 +495,7 @@ namespace ET
                 return;
             }
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             TapTapEvent.LogEvent("#WeiJingEvent", "{\"#rolename\":\"" + rolename + "\"}");
             TapTapEvent.LogEvent("#WeiJingEvent", "{\"#level\":\"" + level + "\"}");
             TapTapEvent.LogEvent("#WeiJingEvent", "{\"#servername\":\"" + servername + "\"}");
@@ -560,7 +560,7 @@ namespace ET
         /// <returns></returns>
         public static async ETTask<int> GetAgeRange()
         {
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             return await TapTapCompliance.GetAgeRange();
 #else
             return 0;
@@ -571,7 +571,7 @@ namespace ET
 
         public static async ETTask<int> GetRemainingTime()
         {
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             return await TapTapCompliance.GetRemainingTime();
 #else
             return 0;
@@ -591,7 +591,7 @@ namespace ET
         public static void InitSDK()
         {
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             if (!v20hasInit)
             {
                 v20hasInit = true;
@@ -652,7 +652,7 @@ namespace ET
 
             InitSDK();
 
-#if !Google7
+#if !Google7 && !TikTokGuanFu8
             ///System.Guid.NewGuid();  ϵͳ��������Ψһid
             // ע��Ψһ��ʶ����ֵ���Ȳ��ܳ��� 64 �ַ�
             //int timestart = (int)Time.time;
