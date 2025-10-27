@@ -462,7 +462,7 @@ namespace ET
         /// <param name="rimLight">边缘光</param>
         public static void ShowWeapon(this ChangeEquipHelper self,  GameObject hero, int occ, int equipIndex, int weaponId, bool rimLight)
         {
-            if (hero == null)
+            if (hero == null || self.IsDisposed)
             {
                 return;
             }

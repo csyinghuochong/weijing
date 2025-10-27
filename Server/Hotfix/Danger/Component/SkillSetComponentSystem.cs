@@ -5,6 +5,7 @@ using System.Linq;
 namespace ET
 {
 
+
 	//AwakeSystem 只会执行一次。。 StartSystem每次Add都会在下一帧执行
 	public class SkillSetComponentAwakeSystem : AwakeSystem<SkillSetComponent>
 	{
@@ -1041,10 +1042,10 @@ namespace ET
 		{
 			UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
 
-            self.OnRmItemSkill(ConfigHelper.HunterFarSkill, 0);
-            self.OnRmItemSkill(ConfigHelper.HunterNearSkill, 0);
             if (userInfoComponent.UserInfo.Occ == 3)
 			{
+                self.OnRmItemSkill(ConfigHelper.HunterFarSkill, 0);
+                self.OnRmItemSkill(ConfigHelper.HunterNearSkill, 0);
                 self.OnAddItemSkill(equipIndex == 0 ? ConfigHelper.HunterFarSkill : ConfigHelper.HunterNearSkill);
             }
         }

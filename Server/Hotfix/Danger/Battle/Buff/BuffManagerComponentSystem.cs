@@ -171,7 +171,7 @@ namespace ET
             {
                 self.m_BuffRecord.Add(new KeyValuePairLong() { KeyId = buffId, Value = operate, Value2 = speed });
             }
-            if (operate == 0 && speed >= 150000)
+            if (operate == 0 && speed >= 120000)
             {
                 bool haveSpeedBuff = false;
                 for (int i = 0; i < self.m_Buffs.Count; i++)
