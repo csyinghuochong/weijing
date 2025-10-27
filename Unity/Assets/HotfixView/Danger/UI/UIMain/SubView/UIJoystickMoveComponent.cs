@@ -532,6 +532,13 @@ namespace ET
                     break;
                 }
 
+                Physics.Raycast(target + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 100, self.BuildingLayer);
+                if (hit.collider != null && !hit.collider.name.Contains("C_PlankPlanterLow_1x1m"))
+                {
+                    //Log.Debug($" hit.collider != null: i : {i}   x: {target.x}  z:{target.z} ");
+                    break;
+                }
+
                 distance = i;
             }
 
