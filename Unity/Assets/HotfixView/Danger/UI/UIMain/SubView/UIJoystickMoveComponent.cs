@@ -525,7 +525,7 @@ namespace ET
                 //    return -1;
                 //}
 
-                Physics.Raycast(target + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 100, self.BuildingLayer);
+                Physics.Raycast(target + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
                 if (hit.collider != null)
                 {
                     //Log.Debug($" hit.collider != null: i : {i}   x: {target.x}  z:{target.z} ");
