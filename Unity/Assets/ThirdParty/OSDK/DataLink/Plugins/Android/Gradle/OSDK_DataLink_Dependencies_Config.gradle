@@ -1,0 +1,3 @@
+    // OSDK_DataLink_Start，此行注释不能删除，用于自动化标记使用
+    implementation "com.bytedance.ttgame:gbsdk_optional_datalink_plugin:$version" 
+    // OSDK_DataLink_End，此行注释不能删除，用于自动化标记使用

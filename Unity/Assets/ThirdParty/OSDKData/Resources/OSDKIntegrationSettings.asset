@@ -20,14 +20,14 @@ MonoBehaviour:
   showSectionIntegration: 1
   showSectionEnvironment: 1
   showSectionHelpCenter: 1
-  showSectionArchive: 0
+  showSectionArchive: 1
   showSectionVersion: 1
   showSectionSampleCenter: 1
-  showInit: 1
+  showInit: 0
   showGameRole: 1
   showAuthorize: 1
   showUnion: 0
-  showDataLink: 0
+  showDataLink: 1
   showAd: 0
   showAdConfig: 0
   showRewardAd: 0
@@ -69,8 +69,8 @@ MonoBehaviour:
   pAndroidAppID: 554726
   pAndroidAppName: "\u5371\u5883"
   pAndroidClientKey: aw3upeu2cv6q7cb6
-  pAndroidUnionMode: 0
-  pAndroidSdkType: 
+  pAndroidUnionMode: 11
+  pAndroidSdkType: Omnichannel_DataLink
   pAndroidLiveTTSDKID: 
   pAndroidLiveTTWebcastID: 
   pAndroidLiveLicenseUpdateTime: 
@@ -98,5 +98,5 @@ MonoBehaviour:
   recommendDocumentLink: 
   forceDocumentLink: 
   lastFetchVersionSuccess: 1
-  lastFetchVersionTime: 638888879935096613
+  lastFetchVersionTime: 638972475695593157
   lastAutoPopupVersionTime: 0

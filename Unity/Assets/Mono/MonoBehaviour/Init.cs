@@ -404,6 +404,10 @@ namespace ET
                 //初始化SDK后会采集一些设备信息,请确保披露隐私协议后再调用GBCommonSDK.init(...)方法以保证合规。
                 //初始化需要尽可能早调用，请确保SDK初始化成功后再调其他业务接口，否则可能会有不可预期的错误。
                 this.GetComponent<OSDKInit>().InitSDK();
+                bool osdkactive =  this.GetComponent<OSDKDataLink>().OnGameActive();
+
+                Log.ILog.Debug(($"osdkactive:  {osdkactive}"));
+
 #if UNITY_ANDROID && !UNITY_EDITOR
 			//jo.Call(InitHelper.TikTokInitFunc, InitHelper.TikTokInitParam);
 #else
