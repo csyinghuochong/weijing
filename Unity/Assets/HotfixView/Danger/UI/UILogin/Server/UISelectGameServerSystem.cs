@@ -71,8 +71,7 @@ namespace ET
 
             for (int i = allserverList.Count - 1; i >= 0; i--)
             {
-                
-                if (!allserverList[i].PlatformList.Contains(platform))
+                if (!allserverList[i].PlatformList.Contains(platform) && platform!= 8)
                 {
                     allserverList.RemoveAt(i);
                     continue;
