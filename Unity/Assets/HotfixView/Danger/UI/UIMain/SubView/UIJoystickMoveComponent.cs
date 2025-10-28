@@ -409,20 +409,18 @@ namespace ET
             else
             {
                 newv3 = self.CanMovePosition(unit, direction, rotation);
-
-                distance = Vector3.Distance(unit.Position, newv3);
                 int speedrate = 0;
                 //int speedRate = 50;  //移动速度 10是原始速度1/10 100是原始速度
                 if (newv3.Equals(unit.Position))
                 {
-                    Log.Debug($"不能移动，靠墙移动：{unit.Position}  {newv3}   {distance}！");
+                    Log.Debug($"不能移动，靠墙移动：{unit.Position}  {newv3}！");
                     newv3 = self.MoveSlowly(direction);
                     speedrate = 50;
                 }
                 else
                 {
                     speedrate = 100; 
-                    Log.Debug($"可以移动，目标位置：{unit.Position}  {newv3}   {distance}！");
+                    Log.Debug($"可以移动，目标位置：{unit.Position}  {newv3}！");
                 }
 
                 if (newv3.Equals(unit.Position))
@@ -431,7 +429,7 @@ namespace ET
                     return false;
                 }
                 //distance = Mathf.Max(distance, 1f);
-                
+                distance = Vector3.Distance(unit.Position, newv3);
                 if (self.noCheckTime < clientNow)
                 {
                     float needtime = distance / speed;
@@ -528,14 +526,14 @@ namespace ET
                 Physics.Raycast(target + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
                 if (hit.collider != null)
                 {
-                    //Log.Debug($" hit.collider != null: i : {i}   x: {target.x}  z:{target.z} ");
+                    //Log.ILog.Debug($" hit.collider != null: {hit.collider.name} ");
                     break;
                 }
 
                 Physics.Raycast(target + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 100, self.BuildingLayer);
                 if (hit.collider != null && !hit.collider.name.Contains("C_PlankPlanterLow_1x1m"))
                 {
-                    //Log.Debug($" hit.collider != null: i : {i}   x: {target.x}  z:{target.z} ");
+                    //Log.ILog.Debug($" hit.collider != null: {hit.collider.name} ");
                     break;
                 }
 
