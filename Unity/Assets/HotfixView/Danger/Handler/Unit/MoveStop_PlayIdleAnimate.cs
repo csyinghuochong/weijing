@@ -22,7 +22,6 @@ namespace ET
             //    args.Unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
             //}
 
-            args.Unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
 
             //播放移动特效
             HeroTransformComponent heroTransformComponent = args.Unit.GetComponent<HeroTransformComponent>();
@@ -32,11 +31,18 @@ namespace ET
                 heroTransformComponent.RunEffect.GetComponent<ParticleSystem>().Stop();
             }
 
+            bool chatidle = true;
             if (args.Unit.MainHero)
             {
                 UI uimain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
                 uimain.GetComponent<UIMainComponent>().OnMoveStop();
+                chatidle = uimain.GetComponent<UIMainComponent>().UIJoystickMoveComponent.Timer == 0;
                 Game.Scene.GetComponent<SoundComponent>().StopRunSound();
+            }
+
+            if (chatidle)
+            {
+                args.Unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
             }
         }
 

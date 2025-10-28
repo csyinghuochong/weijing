@@ -221,28 +221,24 @@ namespace ET
             self.lastSendTime = 0;
             self.direction = self.GetDirection(pdata);
             self.MoveComponent.LastRecvTime = TimeHelper.ClientNow();
-            bool canmove = self.SendMove(self.direction);
+            int canmove = self.SendMove(self.direction);
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.JoystickTimer, self);
 
-            if (!SettingHelper.ClintFindPath && canmove)
+            if (!SettingHelper.ClintFindPath && canmove!=-1)
             {
                 SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
                 if (TimeHelper.ClientNow() < skillManagerComponent.SkillMoveTime)
                 {
                     return;
                 }
-                EventType.PlayAnimator.Instance.Unit = unit;
-                EventType.PlayAnimator.Instance.Animator = "Run";
-                Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
-            }
+                //EventType.PlayAnimator.Instance.Unit = unit;
+                //EventType.PlayAnimator.Instance.Animator = "Run";
+                //Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
 
-            //if (SettingHelper.ClintFindPath)
-            //{
-            //    EventType.MoveStart.Instance.Unit = unit;
-            //    Game.EventSystem.PublishClass(EventType.MoveStart.Instance);
-            //    unit.Rotation = Quaternion.Euler(0, self.direction, 0);
-            //}
+                EventType.MoveStart.Instance.Unit = self.MainUnit;
+                Game.EventSystem.PublishClass(EventType.MoveStart.Instance);
+            }
         }
 
         public static GameObject GetYaoGanDi(this UIJoystickMoveComponent self)
@@ -303,17 +299,17 @@ namespace ET
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
         }
 
-        public static bool SendMove(this UIJoystickMoveComponent self, int direction)
+        public static int SendMove(this UIJoystickMoveComponent self, int direction)
         {
             long clientNow = TimeHelper.ClientNow();
 
             if (SettingHelper.ClintFindPath && self.BattleMessageComponent.TransferMap)
             {
-                return false;
+                return -1;
             }
             if (clientNow - self.lastSendTime < 30)
             {
-                return false;
+                return -1;
             }
 
             Unit unit = self.MainUnit;
@@ -321,12 +317,12 @@ namespace ET
 
             if (clientNow - self.AttackComponent.MoveAttackTime < 200)
             {
-                return false;
+                return -1;
             }
 
             if (self.lastDirection == direction && clientNow - self.lastSendTime < self.checkTime)
             {
-                return false;
+                return -1;
             }
 
             int errorCode = MoveHelper.IfCanMove(unit);
@@ -339,14 +335,14 @@ namespace ET
                     self.lastSendTime = clientNow;
                     self.lastDirection = direction;
                     NetHelper.RequestSkillXuanZhuan(self.ZoneScene(), direction).Coroutine();
-                    return false;
+                    return -1;
                 }
             }
 
             if (errorCode != ErrorCode.ERR_Success)
             {
                 HintHelp.GetInstance().ShowHintError(errorCode, self.ZoneScene());
-                return false;
+                return -1;
             }
 
             if (self.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
@@ -368,7 +364,7 @@ namespace ET
                         unit.Stop();
                     }
 
-                    return false;
+                    return -1;
                 }
             }
 
@@ -385,7 +381,7 @@ namespace ET
                     EventType.MoveStart.Instance.Unit = unit;
                     Game.EventSystem.PublishClass(EventType.MoveStart.Instance);
                     unit.Rotation = Quaternion.Euler(0, self.direction, 0);
-                    return false;
+                    return -1;
                 }
 
                 newv3 = pathfind[pathfind.Count - 1];
@@ -426,7 +422,7 @@ namespace ET
                 if (newv3.Equals(unit.Position))
                 {
                     Log.Debug($"靠墙蹭动：也不能移动！");
-                    return false;
+                    return -2;
                 }
                 //distance = Mathf.Max(distance, 1f);
                 distance = Vector3.Distance(unit.Position, newv3);
@@ -447,7 +443,7 @@ namespace ET
 
             self.lastSendTime = clientNow;
             self.lastDirection = direction;
-            return true;
+            return 0;
         }
 
         public static void ShowObstructTip(this UIJoystickMoveComponent self, int monsterId)
@@ -577,10 +573,6 @@ namespace ET
                 }
             }
 
-            if (!sendmove)
-            {
-                //EventSystem.Instance.Publish(self.Root().CurrentScene(), new MoveStart() { Unit = unit });
-            }
             return vector3result;
         }
 
