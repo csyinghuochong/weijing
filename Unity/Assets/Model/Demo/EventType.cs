@@ -922,6 +922,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class TikTokAccountRegister : DisposeObject
+        {
+            public static readonly TikTokAccountRegister Instance = new TikTokAccountRegister();
+            public string GameUserID;
+            public Scene ZoneScene;
+        }
+
         public class TikTokCreateRole : DisposeObject
         {
             public static readonly TikTokCreateRole Instance = new TikTokCreateRole();

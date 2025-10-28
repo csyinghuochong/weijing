@@ -1318,6 +1318,14 @@ namespace ET
                     //tapreq 注册
                     await TapSDKHelper.TapReqEvent(accountInfoComponent.TaprepRequest, 2, string.Empty);
                 }
+
+				if (GlobalHelp.GetPlatform() == 8)   // && accountInfoComponent.CreateRoleList.Count == 0)
+                {
+                    EventType.TikTokAccountRegister.Instance.ZoneScene = self.ZoneScene();
+					EventType.TikTokAccountRegister.Instance.GameUserID = accountInfoComponent.Account;
+
+                    EventSystem.Instance.PublishClass(EventType.TikTokAccountRegister.Instance);
+                }
 #endif
 			}
 			else

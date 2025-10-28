@@ -75,6 +75,25 @@ namespace ET
     }
 
     [Event]
+    public class TikTok_TikTokAccountRegister : AEventClass<EventType.TikTokAccountRegister>
+    {
+        protected override void Run(object a)
+        {
+            EventType.TikTokAccountRegister args = a as EventType.TikTokAccountRegister;
+
+            Log.ILog.Debug($"TikTok_TikTokAccountRegister:  {args.GameUserID}");
+            if (string.IsNullOrEmpty(args.GameUserID))
+            {
+                return;
+            }
+
+            OSDKDataLink init = GameObject.Find("Global").GetComponent<OSDKDataLink>();
+            //init.CheckTimeInteval = 3600 * 1000;
+            init.OnAccountRegister(args.GameUserID);
+        }
+    }
+
+    [Event]
     public class TikTok_TikTokGetAuthorizeCode : AEventClass<EventType.TikTokGetAuthorizeCode>
     {
         protected override void Run(object a)
