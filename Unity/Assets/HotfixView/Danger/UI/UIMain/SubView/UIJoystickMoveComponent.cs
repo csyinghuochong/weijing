@@ -232,6 +232,10 @@ namespace ET
                 {
                     return;
                 }
+                if (skillManagerComponent.HaveSkillType(SkillHelp.Skill_Other_ChongJi_1))
+                {
+                    return;
+                }
                 //EventType.PlayAnimator.Instance.Unit = unit;
                 //EventType.PlayAnimator.Instance.Animator = "Run";
                 //Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
