@@ -88,10 +88,60 @@ namespace ET
             }
 
             OSDKDataLink init = GameObject.Find("Global").GetComponent<OSDKDataLink>();
-            //init.CheckTimeInteval = 3600 * 1000;
             init.OnAccountRegister(args.GameUserID);
         }
     }
+
+    [Event]
+    public class TikTok_TikTokRoleRegister : AEventClass<EventType.TikTokRoleRegister>
+    {
+        protected override void Run(object a)
+        {
+            EventType.TikTokRoleRegister args = a as EventType.TikTokRoleRegister;
+
+            OSDKDataLink init = GameObject.Find("Global").GetComponent<OSDKDataLink>();
+            init.OnRoleRegister(args.GameUserID, args.GameRoleID);
+        }
+    }
+
+
+    [Event]
+    public class TikTok_TikTokAccountLogin : AEventClass<EventType.TikTokAccountLogin>
+    {
+        protected override void Run(object a)
+        {
+            EventType.TikTokAccountLogin args = a as EventType.TikTokAccountLogin;
+
+            OSDKDataLink init = GameObject.Find("Global").GetComponent<OSDKDataLink>();
+            init.OnAccountLogin(args.GameUserID, args.LastLoginTime);
+        }
+    }
+
+    [Event]
+    public class TikTok_TikTokRoleLogin : AEventClass<EventType.TikTokRoleLogin>
+    {
+        protected override void Run(object a)
+        {
+            EventType.TikTokRoleLogin args = a as EventType.TikTokRoleLogin;
+
+            OSDKDataLink init = GameObject.Find("Global").GetComponent<OSDKDataLink>();
+            init.OnRoleLogin(args.GameUserID, args.GameRoleID, args.LastRoleLoginTime);
+        }
+    }
+
+    [Event]
+    public class TikTok_TikTokOnPay : AEventClass<EventType.TikTokOnPay>
+    {
+        protected override void Run(object a)
+        {
+            EventType.TikTokOnPay args = a as EventType.TikTokOnPay;
+
+            OSDKDataLink init = GameObject.Find("Global").GetComponent<OSDKDataLink>();
+            init.OnPay(args.GameUserID, args.GameRoleID, args.GameOrderID, args.TotalAmount,
+                args.ProductID, args.ProductName, args.ProductDesc);
+        }
+    }
+
 
     [Event]
     public class TikTok_TikTokGetAuthorizeCode : AEventClass<EventType.TikTokGetAuthorizeCode>

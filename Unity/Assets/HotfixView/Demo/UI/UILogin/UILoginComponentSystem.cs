@@ -1326,8 +1326,16 @@ namespace ET
 
                     EventSystem.Instance.PublishClass(EventType.TikTokAccountRegister.Instance);
                 }
+
+                if (GlobalHelp.GetPlatform() == 8)  
+                {
+                    EventType.TikTokAccountLogin.Instance.ZoneScene = self.ZoneScene();
+                    EventType.TikTokAccountLogin.Instance.GameUserID = accountInfoComponent.Account;
+					EventType.TikTokAccountLogin.Instance.LastLoginTime = TimeHelper.ClientNow();
+                    EventSystem.Instance.PublishClass(EventType.TikTokAccountLogin.Instance);
+                }
 #endif
-			}
+            }
 			else
 			{
                 self.LoginErrorNumber++;

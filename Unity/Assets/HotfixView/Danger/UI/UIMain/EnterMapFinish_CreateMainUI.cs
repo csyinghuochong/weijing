@@ -95,9 +95,18 @@ namespace ET
 					}
 				}
 			}
+
+			if (GlobalHelp.GetPlatform() == 8)
+			{
+				EventType.TikTokRoleLogin.Instance.ZoneScene = args.ZoneScene;
+                EventType.TikTokRoleLogin.Instance.GameUserID = accountInfoComponent.Account;
+                EventType.TikTokRoleLogin.Instance.GameRoleID = accountInfoComponent.CurrentRoleId.ToString();
+                EventType.TikTokRoleLogin.Instance.LastRoleLoginTime = TimeHelper.ClientNow();
+                EventSystem.Instance.PublishClass(EventType.TikTokRoleLogin.Instance);
+            }
 #endif
 
-			Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
 			unit.GetComponent<UIUnitHpComponent>()?.OnGetUseInfoUpdate();
         }
     }

@@ -922,10 +922,63 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        /// <summary>
+        /// 抖音账号注册事件
+        /// </summary>
         public class TikTokAccountRegister : DisposeObject
         {
             public static readonly TikTokAccountRegister Instance = new TikTokAccountRegister();
             public string GameUserID;
+            public Scene ZoneScene;
+        }
+
+        /// <summary>
+        /// 抖音角色注册事件
+        /// </summary>
+        public class TikTokRoleRegister : DisposeObject
+        {
+            public static readonly TikTokRoleRegister Instance = new TikTokRoleRegister();
+            public string GameUserID;
+            public string GameRoleID;
+            public Scene ZoneScene;
+        }
+
+        /// <summary>
+        /// 抖音账号登录事件
+        /// </summary>
+        public class TikTokAccountLogin : DisposeObject
+        {
+            public static readonly TikTokAccountLogin Instance = new TikTokAccountLogin();
+            public string GameUserID;
+            public long LastLoginTime;
+            public Scene ZoneScene;
+        }
+
+        /// <summary>
+        /// 抖音角色登录事件
+        /// </summary>
+        public class TikTokRoleLogin : DisposeObject
+        {
+            public static readonly TikTokRoleLogin Instance = new TikTokRoleLogin();
+            public string GameUserID;
+            public string GameRoleID;
+            public long LastRoleLoginTime;
+            public Scene ZoneScene;
+        }
+
+        /// <summary>
+        /// 抖音用户付费事件
+        /// </summary>
+        public class TikTokOnPay : DisposeObject
+        {
+            public static readonly TikTokOnPay Instance = new TikTokOnPay();
+            public string GameUserID;
+            public string GameRoleID;
+            public string GameOrderID;
+            public long TotalAmount;
+            public string ProductID;
+            public string ProductName;
+            public string ProductDesc;
             public Scene ZoneScene;
         }
 

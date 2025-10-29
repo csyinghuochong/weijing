@@ -258,6 +258,11 @@ namespace ET
                 EventType.TikTokCreateRole.Instance.ZoneScene = self.ZoneScene();
                 EventType.TikTokCreateRole.Instance.CreateRoleInfo = $"{createRoleInfo.UserID}_{createRoleInfo.PlayerName}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{createRoleInfo.PlayerOcc}_{accountInfoComponent.AccountId}";
                 EventSystem.Instance.PublishClass(EventType.TikTokCreateRole.Instance);
+
+                EventType.TikTokRoleRegister.Instance.ZoneScene = self.ZoneScene();
+                EventType.TikTokRoleRegister.Instance.GameUserID = accountInfoComponent.Account;
+                EventType.TikTokRoleRegister.Instance.GameRoleID = createRoleInfo.UserID.ToString();
+                EventSystem.Instance.PublishClass(EventType.TikTokCreateRole.Instance);
             }
             if (GlobalHelp.GetPlatform() == 100)    //渠道包
             {

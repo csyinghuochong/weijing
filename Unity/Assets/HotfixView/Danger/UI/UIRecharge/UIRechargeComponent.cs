@@ -329,11 +329,6 @@ namespace ET
                 return;
             }
 
-            if (GlobalHelp.GetPlatform() != 1)
-            {
-                return;
-            }
-
             int r_num = RandomHelper.RandomNumber(1000, 9999);
             string nowTime = TimeHelper.ServerNow().ToString();
             string orderId = $"Pay_{r_num}_{nowTime}_{amount}";
@@ -350,8 +345,27 @@ namespace ET
                 payment = "wechat";
             }
 
-            TapSDKHelper.OnCharge(orderId, product, amount * 100, "CNY", payment, "{\"on_sell\":true}");
-            TapSDKHelper.UserUpdate_rechargeNumber(now);
+            if (GlobalHelp.GetPlatform() == 1)
+            {
+                
+                TapSDKHelper.OnCharge(orderId, product, amount * 100, "CNY", payment, "{\"on_sell\":true}");
+                TapSDKHelper.UserUpdate_rechargeNumber(now);
+            }
+
+            if (GlobalHelp.GetPlatform() == 8)
+            {
+                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                EventType.TikTokOnPay.Instance.ZoneScene = self.ZoneScene();
+                EventType.TikTokOnPay.Instance.GameUserID = accountInfoComponent.Account;
+                EventType.TikTokOnPay.Instance.GameRoleID = accountInfoComponent.CurrentRoleId.ToString();
+                EventType.TikTokOnPay.Instance.GameOrderID = orderId;
+                EventType.TikTokOnPay.Instance.TotalAmount = amount;
+                EventType.TikTokOnPay.Instance.ProductID = product;
+                EventType.TikTokOnPay.Instance.ProductName = product;
+                EventType.TikTokOnPay.Instance.ProductDesc = product;
+
+                EventSystem.Instance.PublishClass(EventType.TikTokOnPay.Instance);
+            }
 #endif
         }
     }
