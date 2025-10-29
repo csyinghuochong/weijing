@@ -13,6 +13,8 @@ namespace ET
                 CodeLoader.Instance.Update += Game.Update;
 				CodeLoader.Instance.LateUpdate += Game.LateUpdate;
 				CodeLoader.Instance.OnApplicationQuit += Game.Close;
+
+                //debug run time
                 Game.EventSystem.Add(CodeLoader.Instance.GetHotfixTypes());
 				Game.EventSystem.Publish(new EventType.AppStart());
 			}

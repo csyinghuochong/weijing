@@ -26,7 +26,8 @@ namespace ET
 
         private async ETTask RunAsync(EventType.AppStart args)
         {
-    
+            //debug run time
+
             Game.Scene.AddComponent<TimerComponent>();
             Game.Scene.AddComponent<CoroutineLockComponent>();
 
