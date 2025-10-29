@@ -99,6 +99,7 @@ namespace ET
         {
             EventType.TikTokRoleRegister args = a as EventType.TikTokRoleRegister;
 
+            Log.ILog.Debug($"TikTok_TikTokRoleRegister:  {args.GameRoleID}");
             OSDKDataLink init = GameObject.Find("Global").GetComponent<OSDKDataLink>();
             init.OnRoleRegister(args.GameUserID, args.GameRoleID);
         }
@@ -112,6 +113,7 @@ namespace ET
         {
             EventType.TikTokAccountLogin args = a as EventType.TikTokAccountLogin;
 
+            Log.ILog.Debug($"TikTokAccountLogin:  {args.GameUserID}");
             OSDKDataLink init = GameObject.Find("Global").GetComponent<OSDKDataLink>();
             init.OnAccountLogin(args.GameUserID, args.LastLoginTime);
         }
@@ -124,6 +126,7 @@ namespace ET
         {
             EventType.TikTokRoleLogin args = a as EventType.TikTokRoleLogin;
 
+            Log.ILog.Debug($"TikTokRoleLogin:  {args.GameRoleID}");
             OSDKDataLink init = GameObject.Find("Global").GetComponent<OSDKDataLink>();
             init.OnRoleLogin(args.GameUserID, args.GameRoleID, args.LastRoleLoginTime);
         }
@@ -136,6 +139,7 @@ namespace ET
         {
             EventType.TikTokOnPay args = a as EventType.TikTokOnPay;
 
+            Log.ILog.Debug($"TikTokOnPay:  {args.GameRoleID}");
             OSDKDataLink init = GameObject.Find("Global").GetComponent<OSDKDataLink>();
             init.OnPay(args.GameUserID, args.GameRoleID, args.GameOrderID, args.TotalAmount,
                 args.ProductID, args.ProductName, args.ProductDesc);
