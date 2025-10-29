@@ -31,8 +31,11 @@ namespace Douyin.Game
                OSDKIntegrationConfig.GetBizMode() == OSDKIntegrationConfig.BizMode.DouyinChannel) 
                 return;
             // 自动配置Core模块Gradle
+            
+#if TikTokGuanFu8
             AutoConfigGradle();
             AutoConfigManifest();
+#endif
         }
 
         private static void AutoConfigGradle()
