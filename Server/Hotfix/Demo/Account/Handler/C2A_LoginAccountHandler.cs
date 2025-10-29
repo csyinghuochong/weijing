@@ -168,6 +168,7 @@ namespace ET
                                     LoginType = int.Parse(request.ThirdLogin),
                                 });
                                 AccountId = saveAccount.AccountId;
+                                response.NewRegister = 1;
 
                                 if (request.AccountName == "7303474616922905355")
                                 {

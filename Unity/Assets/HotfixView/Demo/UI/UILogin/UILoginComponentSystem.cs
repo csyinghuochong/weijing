@@ -1319,7 +1319,7 @@ namespace ET
                     await TapSDKHelper.TapReqEvent(accountInfoComponent.TaprepRequest, 2, string.Empty);
                 }
 
-				if (GlobalHelp.GetPlatform() == 8)   // && accountInfoComponent.CreateRoleList.Count == 0)
+				if (GlobalHelp.GetPlatform() == 8 && accountInfoComponent.NewRegister == 1)
                 {
                     EventType.TikTokAccountRegister.Instance.ZoneScene = self.ZoneScene();
 					EventType.TikTokAccountRegister.Instance.GameUserID = accountInfoComponent.Account;
