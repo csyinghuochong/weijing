@@ -128,6 +128,12 @@ namespace ET
                 if (TaskHelper.IsTaskGiveItem(taskConfig.TargetType, taskConfig.Target, taskConfig.TargetValue, self.BagInfo))
                 {
                     TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(self.TaskId);
+                    if (taskPro == null)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("完成任务"));
+                        return;
+                    }
+
                     taskPro.taskStatus = (int)TaskStatuEnum.Completed;
                     int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskId, self.BagInfo.BagInfoID);
                     if (errorCode == ErrorCode.ERR_Success)
@@ -158,6 +164,12 @@ namespace ET
                             break;
                         }
                     }
+                    if (taskPro == null)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("完成任务"));
+                        return;
+                    }
+
                     taskPro.taskStatus = (int)TaskStatuEnum.Completed;
                     int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskId, self.BagInfo.BagInfoID);
                     if (errorCode == ErrorCode.ERR_Success)
