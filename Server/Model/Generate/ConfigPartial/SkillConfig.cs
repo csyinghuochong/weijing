@@ -29,8 +29,12 @@ namespace ET
         public Dictionary<int, KeyValuePairLong4> BuffSecondSkill = new Dictionary<int, KeyValuePairLong4>();
 
 
-        //技能额外属性
-        public  Dictionary<int, List<PropertyValue>> ExtraProperty = new Dictionary<int, List<PropertyValue>>();
+        //技能额外属性来自自身
+        public Dictionary<int, List<PropertyValue>> ExtraPropertyFromSelf = new Dictionary<int, List<PropertyValue>>();
+
+
+        //技能额外属性来自被动技能
+        public Dictionary<int, List<PropertyValue>> ExtraPropertyFromOther = new Dictionary<int, List<PropertyValue>>();
 
         /// <summary>
         /// 获取是技能的一级基础技能

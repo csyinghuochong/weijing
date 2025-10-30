@@ -449,12 +449,12 @@ namespace ET
             }
             
             List<PropertyValue> extrapros = null;
-            SkillConfigCategory.Instance.ExtraProperty.TryGetValue(self.SkillConf.Id, out extrapros);
+            SkillConfigCategory.Instance.ExtraPropertyFromSelf.TryGetValue(self.SkillConf.Id, out extrapros);
             if (extrapros == null)
             {
                 extrapros = new List<PropertyValue>();
-                NumericHelp.GetProList(self.SkillConf.ExtraProperty, extrapros);
-                SkillConfigCategory.Instance.ExtraProperty.Add(self.SkillConf.Id, extrapros);
+                //NumericHelp.GetProList(self.SkillConf.ExtraProperty, extrapros);
+                //SkillConfigCategory.Instance.ExtraPropertyFromSelf.Add(self.SkillConf.Id, extrapros);
             }
 
             HeroDataComponent heroDataComponent = self.TheUnitFrom.GetComponent<HeroDataComponent>();
