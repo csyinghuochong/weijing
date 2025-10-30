@@ -28,6 +28,8 @@ namespace ET
         /// </summary>
         public Dictionary<int, KeyValuePairLong4> BuffSecondSkill = new Dictionary<int, KeyValuePairLong4>();
 
+
+
         /// <summary>
         /// 获取是技能的一级基础技能
         /// </summary>

@@ -294,6 +294,9 @@ namespace ET
 		/// <summary>技能最多攻击人数</summary>
 		[ProtoMember(73)]
 		public int MaxAttackNumber { get; set; }
+		/// <summary>额外附加属性</summary>
+		[ProtoMember(74)]
+		public string ExtraProperty { get; set; }
 
 	}
 }
