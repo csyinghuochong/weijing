@@ -35,7 +35,8 @@ namespace ET
         public static int CheckBuffTime(Unit theUnitBelongto, SkillBuffConfig skillBuffConfig)
         {
             int buffTime = skillBuffConfig.BuffTime;
-            if (skillBuffConfig.BuffType == 2 && skillBuffConfig.buffParameterType == 7)
+            if ( (skillBuffConfig.BuffType == 2 && skillBuffConfig.buffParameterType == 7)
+                ||  skillBuffConfig.BuffScript.Equals("RoleBuff_Bounce"))
             {
                 //韧性缩短眩晕时间
                 NumericComponent numericComponent = theUnitBelongto.GetComponent<NumericComponent>();
