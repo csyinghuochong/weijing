@@ -458,7 +458,9 @@ namespace ET
 
         public int CanLogin(string identityCard, bool isHoliday, int age_type, int thirdlogin)
         {
-            if (thirdlogin == LoginTypeEnum.Google)
+            if (thirdlogin == LoginTypeEnum.Google
+                || thirdlogin == LoginTypeEnum.TikTok
+                || thirdlogin == LoginTypeEnum.TikTokGuanFu)
             {
                 return ErrorCode.ERR_Success; 
             }
