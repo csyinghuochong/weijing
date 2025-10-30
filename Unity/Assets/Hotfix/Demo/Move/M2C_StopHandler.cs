@@ -27,6 +27,7 @@ namespace ET
                     unit.Position = pos;
                     //unit.Rotation = rotation;
                     EventType.MoveStop.Instance.Unit = unit;
+                    EventType.MoveStop.Instance.Error = message.Error;
                     Game.EventSystem.PublishClass(EventType.MoveStop.Instance);
                 }
                 else
@@ -38,13 +39,14 @@ namespace ET
                     unit.GetComponent<MoveComponent>().MoveToAsync(list, speed * 1.5f).Coroutine();
                 }
             }
-            //message.Error == -1移动异常立即停止
+            //message.Error == -1移动异常立即停止(目前只有寻路异常用到)
             if (message.Error == -1)
 			{
 				MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
 				moveComponent.Stop();
 
                 EventType.MoveStop.Instance.Unit = unit;
+                EventType.MoveStop.Instance.Error = message.Error;
                 Game.EventSystem.PublishClass(EventType.MoveStop.Instance);
                 return;
 			}
@@ -58,6 +60,7 @@ namespace ET
 
                 //unit.Rotation = rotation;
                 EventType.MoveStop.Instance.Unit = unit;
+                EventType.MoveStop.Instance.Error = message.Error;
                 Game.EventSystem.PublishClass(EventType.MoveStop.Instance);
             }
             //message.Error == -2立即停止且同步坐标

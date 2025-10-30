@@ -608,6 +608,7 @@ namespace ET
         {
             public static readonly MoveStop Instance = new MoveStop();
             public Unit Unit;
+            public int Error;
             public override void Dispose()
             {
                 this.Unit = null;

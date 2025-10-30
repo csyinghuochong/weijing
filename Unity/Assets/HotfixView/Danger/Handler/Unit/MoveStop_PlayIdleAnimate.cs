@@ -33,22 +33,24 @@ namespace ET
 
 
             bool chatidle = true;
-            if (args.Unit.MainHero)
+            if (args.Unit.MainHero && args.Error == -1)
             {
                 UI uimain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
-                uimain.GetComponent<UIMainComponent>().OnMoveStop();
-
                 bool isstop = uimain.GetComponent<UIMainComponent>().UIJoystickMoveComponent.Timer == 0;
                 bool isskill = args.Unit.GetComponent<StateComponent>().IsRigidity();
                 bool iswait = args.Unit.GetComponent<StateComponent>().IsNetWaitEndTime();
                 chatidle = isstop || isskill || iswait;
-                Game.Scene.GetComponent<SoundComponent>().StopRunSound();
             }
-
-
             if (chatidle)
             {
                 args.Unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
+            }
+
+            if (args.Unit.MainHero)
+            {
+                UI uimain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
+                uimain.GetComponent<UIMainComponent>().OnMoveStop();
+                Game.Scene.GetComponent<SoundComponent>().StopRunSound();
             }
         }
 
