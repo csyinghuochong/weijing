@@ -29,6 +29,8 @@ namespace ET
         public Dictionary<int, KeyValuePairLong4> BuffSecondSkill = new Dictionary<int, KeyValuePairLong4>();
 
 
+        //技能额外属性
+        public  Dictionary<int, List<PropertyValue>> ExtraProperty = new Dictionary<int, List<PropertyValue>>();
 
         /// <summary>
         /// 获取是技能的一级基础技能
@@ -145,7 +147,7 @@ namespace ET
                     }
                 }
             }
-            
+
             // 得到所有技能的基础技能
             foreach (SkillConfig skillConfig in this.GetAll().Values)
             {

@@ -447,8 +447,29 @@ namespace ET
             {
                 return false;
             }
+            
+            List<PropertyValue> extrapros = null;
+            SkillConfigCategory.Instance.ExtraProperty.TryGetValue(self.SkillConf.Id, out extrapros);
+            if (extrapros == null)
+            {
+                extrapros = new List<PropertyValue>();
+                NumericHelp.GetProList(self.SkillConf.ExtraProperty, extrapros);
+                SkillConfigCategory.Instance.ExtraProperty.Add(self.SkillConf.Id, extrapros);
+            }
 
+            HeroDataComponent heroDataComponent = self.TheUnitFrom.GetComponent<HeroDataComponent>();
+            for (int i = 0; i < extrapros.Count; i++)
+            {
+                heroDataComponent.BuffPropertyUpdate_Long(extrapros[i].HideID, extrapros[i].HideValue);
+            }
+            
             bool ishit = Function_Fight.GetInstance().Fight(self.TheUnitFrom, uu, self, hurtMode);
+
+            for (int i = 0; i < extrapros.Count; i++)
+            {
+                heroDataComponent.BuffPropertyUpdate_Long(extrapros[i].HideID, extrapros[i].HideValue * -1);
+            }
+
             if (clearnTemporary)
             {
                 self.ActTargetTemporaryAddPro = 0;      //清空
