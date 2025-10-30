@@ -51,6 +51,7 @@ namespace ET
                 this.SpeedAddValue = 0f;
             }
             this.TheUnitFrom.GetComponent<StateComponent>().SetRigidityEndTime(0);
+            this.TheUnitFrom.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.ChongJi);
             float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
             Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
             this.TargetPosition = this.TheUnitFrom.Position + rotation * Vector3.forward * moveDistance;
@@ -117,6 +118,8 @@ namespace ET
 
         public override void OnFinished()
         {
+            this.TheUnitFrom.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.ChongJi);
+
             NumericComponent numericComponent = this.TheUnitFrom.GetComponent<NumericComponent>();
             float curspeedAdd = numericComponent.GetAsFloat(NumericType.Extra_Buff_Speed_Add) - this.SpeedAddValue;
             numericComponent.Set(NumericType.Extra_Buff_Speed_Add, Mathf.Max(0, curspeedAdd));

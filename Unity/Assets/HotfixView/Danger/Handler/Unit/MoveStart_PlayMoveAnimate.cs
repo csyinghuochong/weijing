@@ -17,9 +17,10 @@ namespace ET
             {
                 return;
             }
-            unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmRunState);
-            unit.GetComponent<HeroTransformComponent>()?.ShowRunEffect();
 
+            unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmRunState);
+
+            unit.GetComponent<HeroTransformComponent>()?.ShowRunEffect();
             if(unit.MainHero)
             {
                 Game.Scene.GetComponent<SoundComponent>().PlayRunSound();
