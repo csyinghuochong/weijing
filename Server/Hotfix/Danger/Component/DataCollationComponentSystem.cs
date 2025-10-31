@@ -371,6 +371,12 @@ namespace ET
             self.Level = userInfoComponent.UserInfo.Lv;
             self.Account = userInfoComponent.Account;
             self.Password = userInfoComponent.Password; 
+            string deviceName = userInfoComponent.DeviceName;
+            if (!string.IsNullOrEmpty(deviceName))
+            {
+                deviceName = deviceName.Replace(';', '&');
+            }
+            self.DeviceName = deviceName;
 
             self.Occ = OccupationConfigCategory.Instance.Get(userInfoComponent.UserInfo.Occ).OccupationName;
 
