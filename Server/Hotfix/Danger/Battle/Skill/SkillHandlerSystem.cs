@@ -503,12 +503,23 @@ namespace ET
             if (extrapros == null)
             {
                 extrapros = new List<PropertyValue>();
-                //NumericHelp.GetProList(self.SkillConf.ExtraProperty, extrapros);
-                //SkillConfigCategory.Instance.ExtraPropertyFromSelf.Add(self.SkillConf.Id, extrapros);
+
+                //0&100411;50000@100203;50@100603;10
+                string[] extrapro = self.SkillConf.ExtraProperty.Split('&');
+                if (extrapro.Length == 2 && extrapro[0] == "0")
+                {
+                    NumericHelp.GetProList(extrapro[1], extrapros);
+                }
+
+                SkillConfigCategory.Instance.ExtraPropertyFromSelf.Add(self.SkillConf.Id, extrapros);
             }
 
             //技能额外属性来自被动技能
-            //List<PropertyValue> ExtraPropertyFromOther = new List<PropertyValue>();
+            if (self.TheUnitFrom.Type == UnitType.Player)
+            {
+                List<PropertyValue> ExtraPropertyFromOther = self.TheUnitFrom.GetComponent<SkillSetComponent>().GetSkillRoleProLists_9(self.SkillConf.Id);
+                extrapros.AddRange(ExtraPropertyFromOther);
+            }
 
             HeroDataComponent heroDataComponent = self.TheUnitFrom.GetComponent<HeroDataComponent>();
             for (int i = 0; i < extrapros.Count; i++)

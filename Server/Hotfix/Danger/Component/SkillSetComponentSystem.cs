@@ -337,8 +337,34 @@ namespace ET
 			return proList;
 		}
 
-		//和GetSkillRoleProLists方法一致 主要是获取类型为8的被动技能,8的被动技能不加战斗力
-		public static List<PropertyValue> GetSkillRoleProLists_8(this SkillSetComponent self)
+        //和GetSkillRoleProLists方法一致 主要是获取类型为8的被动技能,8的被动技能不加战斗力
+        public static List<PropertyValue> GetSkillRoleProLists_9(this SkillSetComponent self, int skillid)
+        {
+            List<PropertyValue> proList = new List<PropertyValue>();
+            for (int i = 0; i < self.SkillList.Count; i++)
+            {
+                if (self.SkillList[i].SkillSetType == (int)SkillSetEnum.Item)
+                {
+                    continue;
+                }
+
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.SkillList[i].SkillID);
+                if (skillConfig.SkillType != (int)SkillTypeEnum.AddProToSpecifiedSkill)
+                {
+                    continue;
+                }
+
+                string[] extrapro = skillConfig.ExtraProperty.Split('&');
+                if (extrapro.Length == 2 && extrapro[0] != "0" && extrapro[0].Contains(skillid.ToString()))
+                {
+                    NumericHelp.GetProList(extrapro[1], proList);
+                }
+            }
+            return proList;
+        }
+
+        //和GetSkillRoleProLists方法一致 主要是获取类型为8的被动技能,8的被动技能不加战斗力
+        public static List<PropertyValue> GetSkillRoleProLists_8(this SkillSetComponent self)
 		{
 			List<PropertyValue> proList = new List<PropertyValue>();
 			for (int i = 0; i < self.SkillList.Count; i++)
