@@ -409,7 +409,8 @@ namespace ET
                             }
                             UserInfoComponent userinfo = d2GGetUnit.Component as UserInfoComponent;
 
-                            if (session.DomainZone() == 5 && userinfo.UserInfo.Occ == 5 && userinfo.UserInfo.Lv >= 50)
+                            if (session.DomainZone() == 5 && userinfo.UserInfo.Occ == 5 && userinfo.UserInfo.Lv >= 50 
+                                && (userinfo.Id!= 3157723315460702208))
                             {
                                 continue;
                             }

@@ -49,6 +49,9 @@ namespace ET
         //创建角色时间
         public string CreateRoleTime;
 
+        //平台
+        public string Platform;
+
         //上次登录时间
         public string LastLoginTime;
 
@@ -152,9 +155,6 @@ namespace ET
         /// 已经出售的道具ID. 目前只记录装备。。
         /// </summary>
         public List<long> SoldBagInfoIDList = new List<long>();
-
-        //平台
-        public string Platform;
 
         public string DeviceName;
 
