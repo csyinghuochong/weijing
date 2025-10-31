@@ -297,6 +297,9 @@ namespace ET
 		/// <summary>额外附加属性</summary>
 		[ProtoMember(74)]
 		public string ExtraProperty { get; set; }
+		/// <summary>额外附加属性</summary>
+		[ProtoMember(75)]
+		public int[] SpecifiedMonster { get; set; }
 
 	}
 }

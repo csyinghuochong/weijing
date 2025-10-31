@@ -182,27 +182,23 @@ namespace ET
                 }
             }
 
-            //鞭炮不加成
-            if (skillHandler.SkillConf.Id != 76001001)
+            if (skillHandler.OnlyHideBuffActionUnitID.Count > 0 && !skillHandler.IsSpecifiedFight(defendUnit))
             {
-                if (skillHandler.OnlyHideBuffActionUnitID.Count > 0)
+                SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get((int)skillHandler.OnlyHideBuffActionUnitID[0]);
+
+                if (skillBuffConfig.DamgePro > 0)
                 {
-                    SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get((int)skillHandler.OnlyHideBuffActionUnitID[0]);
+                    buffDamgePro = (float)skillBuffConfig.DamgePro;
+                }
 
-                    if (skillBuffConfig.DamgePro > 0)
-                    {
-                        buffDamgePro = (float)skillBuffConfig.DamgePro;
-                    }
+                if (!skillHandler.OnlyHideBuffActionUnitID.Contains(defendUnit.Id))
+                {
+                    skillHandler.OnlyHideBuffActionUnitID.Add(defendUnit.Id);
 
-                    if (!skillHandler.OnlyHideBuffActionUnitID.Contains(defendUnit.Id))
-                    {
-                        skillHandler.OnlyHideBuffActionUnitID.Add(defendUnit.Id);
-
-                        BuffData buffData_2 = new BuffData();
-                        buffData_2.SkillId = 67000278;
-                        buffData_2.BuffId = int.Parse(skillBuffConfig.buffParameterValue2); //69000046
-                        defendUnit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, attackUnit, null, true);
-                    }
+                    BuffData buffData_2 = new BuffData();
+                    buffData_2.SkillId = 67000278;
+                    buffData_2.BuffId = int.Parse(skillBuffConfig.buffParameterValue2); //69000046
+                    defendUnit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, attackUnit, null, true);
                 }
             }
 

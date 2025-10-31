@@ -32,6 +32,9 @@ namespace ET
         //技能额外属性来自自身
         public Dictionary<int, List<PropertyValue>> ExtraPropertyFromSelf = new Dictionary<int, List<PropertyValue>>();
 
+
+        public Dictionary<int,List<int>> SkillSpecifiedMonster = new Dictionary<int, List<int>>();  
+
         /// <summary>
         /// 获取是技能的一级基础技能
         /// </summary>
@@ -145,6 +148,26 @@ namespace ET
                     {
                         Log.Error(ex.ToString());
                     }
+                }
+            }
+
+            foreach (SkillConfig skillconfig in this.GetAll().Values)
+            {
+                int[] specimonsters = skillconfig.SpecifiedMonster;
+                if (specimonsters == null || specimonsters.Length == 0)
+                {
+                    continue;
+                }
+
+                for (int i = 0; i < specimonsters.Length; i++)
+                { 
+                    int monsterid = specimonsters[i];
+                    if (!SkillSpecifiedMonster.ContainsKey(monsterid))
+                    {
+                        SkillSpecifiedMonster.Add(monsterid, new List<int>());
+                    }
+
+                    SkillSpecifiedMonster[monsterid].Add(skillconfig.Id);
                 }
             }
 

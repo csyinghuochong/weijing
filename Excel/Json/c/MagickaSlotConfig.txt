@@ -1,0 +1,3 @@
+{"list":[{"_t":"MagickaSlotConfig","_id":1001,"ShieldType":1,"ShieldName":"熔岩之魂1级","ShieldName_EN":"Lava Soul Level 1","ShieldLevel":1,"ShieldExp":3000,"AddProperty":"205703;0.01","Des":"降低受到玩家普通攻击伤害1%","Des_EN":"Reduces damage taken from player basic attacks by 1%."},
+{"_t":"MagickaSlotConfig","_id":1002,"ShieldType":1,"ShieldName":"熔岩之魂2级","ShieldName_EN":"Lava Soul Level 2","ShieldLevel":2,"ShieldExp":6000,"AddProperty":"205703;0.02","Des":"降低受到玩家普通攻击伤害2%","Des_EN":"Reduce damage from player's normal attacks by 2%"},
+]}

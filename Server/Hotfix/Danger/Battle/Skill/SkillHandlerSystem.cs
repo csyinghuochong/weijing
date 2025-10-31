@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ET
@@ -314,18 +315,67 @@ namespace ET
             }
         }
 
+        /// <summary>
+        /// 特定技能没有附加伤害
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="uu"></param>
+        /// <returns></returns>
+        public static bool IsSpecifiedFight(this SkillHandler self, Unit uu)
+        {
+            if (uu.Type!=UnitType.Monster)
+            {
+                return false;
+            }
+            int[] specimonsters = self.SkillConf.SpecifiedMonster;
+            if (specimonsters == null || specimonsters.Length == 0)
+            {
+                return false;
+            }
+            return specimonsters.Contains(uu.ConfigId);
+        }
+
         public static bool SkillCanAttackUnit(this SkillHandler self, Unit uu)
         {
             //鞭炮打年兽 鞭炮道具10030002 技能76001001年兽 72009001
-            if (self.SkillConf.Id == 76001001 && uu.ConfigId != 72009001)
+            //if (self.SkillConf.Id == 76001001 && uu.ConfigId != 72009001)
+            //{
+            //    return false;
+            //}
+            //if (self.SkillConf.Id != 76001001 && uu.ConfigId == 72009001)
+            //{
+            //    return false;
+            //}
+
+            int[] specimonsters = self.SkillConf.SpecifiedMonster;
+            if (specimonsters == null || specimonsters.Length == 0)
             {
-                return false;
+                if (uu.Type == UnitType.Monster)
+                {
+                    List<int> canskillid = null;
+                    SkillConfigCategory.Instance.SkillSpecifiedMonster.TryGetValue(uu.ConfigId, out canskillid);
+                    if (canskillid == null)
+                    {
+                        return true;
+                    }
+                    return canskillid.Contains(self.SkillConf.Id);
+                }
+                else
+                {
+                    return true;
+                }
             }
-            if (self.SkillConf.Id != 76001001 && uu.ConfigId == 72009001)
+            else
             {
-                return false;
+                if (uu.Type == UnitType.Monster)
+                {
+                    return specimonsters.Contains(uu.ConfigId);
+                }
+                else
+                {
+                    return false;
+                }
             }
-            return true;
         }
 
         public static void OnChiXuHurtCollision(this SkillHandler self, Unit uu)
