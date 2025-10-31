@@ -44,6 +44,7 @@ namespace ET
     //19: 普攻攻击暴击触发
     //20: 前冲进入CD触发
     //21: 受到伤害触发buff， 技能效果内只触发一次。//每次释放技能的时候 有概率触发玩家21类型的被动技能。 不管单攻群攻打击到目标会触发这个被动技能。技能效果内只会触发一次。。
+    //22: 给指定技能附加属性
 
     public static class SkillPassiveTypeEnum
     {
@@ -69,6 +70,7 @@ namespace ET
         public const int AckCritical_19 = 19;
         public const int FanGunCD_20 = 20;
         public const int PassiveTypeEnum_21 = 21;
+        public const int ExtraPropertyToSkill_22 = 22;
     }
 
     //1：主动技能

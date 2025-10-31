@@ -448,7 +448,7 @@ namespace ET
                 return false;
             }
             
-            List<PropertyValue> extrapros = null;
+            List<PropertyValue> extrapros = null; 
             SkillConfigCategory.Instance.ExtraPropertyFromSelf.TryGetValue(self.SkillConf.Id, out extrapros);
             if (extrapros == null)
             {
@@ -456,6 +456,9 @@ namespace ET
                 //NumericHelp.GetProList(self.SkillConf.ExtraProperty, extrapros);
                 //SkillConfigCategory.Instance.ExtraPropertyFromSelf.Add(self.SkillConf.Id, extrapros);
             }
+
+            //技能额外属性来自被动技能
+            //List<PropertyValue> ExtraPropertyFromOther = new List<PropertyValue>();
 
             HeroDataComponent heroDataComponent = self.TheUnitFrom.GetComponent<HeroDataComponent>();
             for (int i = 0; i < extrapros.Count; i++)
