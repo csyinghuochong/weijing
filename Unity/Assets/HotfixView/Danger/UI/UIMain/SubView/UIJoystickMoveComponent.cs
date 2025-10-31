@@ -577,6 +577,11 @@ namespace ET
                 }
             }
 
+            if (!sendmove)
+            {
+                //doto
+            }
+
             return vector3result;
         }
 

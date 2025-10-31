@@ -313,7 +313,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("没有队伍！"));
                 return;
             }
-            
+
             if (text.Contains("#"))
             {
                 string[] commands = text.Split('#');
@@ -321,6 +321,12 @@ namespace ET
                 {
                     return;
                 }
+                if (commands[0] == "17")
+                {
+                    EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.LocalDungeon, int.Parse(commands[1]), 0).Coroutine();
+                    return;
+                }
+
                 if (commands[1].Contains("alltask"))
                 {
                     List<TaskConfig> tasks = TaskConfigCategory.Instance.GetAll().Values.ToList();
