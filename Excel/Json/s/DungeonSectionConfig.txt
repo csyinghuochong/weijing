@@ -3,5 +3,5 @@
 {"_t":"DungeonSectionConfig","_id":3,"ChapterName":"第三章","ChapterName_EN":"Chapter 3","Name":"冰封世界","Name_EN":"Frozen world","RandomArea":[30001,30003,30004,30005,30006],"OpenLevel":[30,33,35],"ShenMiEnterID":"100;100301@100;100001"},
 {"_t":"DungeonSectionConfig","_id":4,"ChapterName":"第四章","ChapterName_EN":"Chapter 4","Name":"暮色危境","Name_EN":"Dusk Crisis","RandomArea":[40001,40003,40004,40006,40007],"OpenLevel":[40,43,45],"ShenMiEnterID":"100;100401@100;100001"},
 {"_t":"DungeonSectionConfig","_id":5,"ChapterName":"第五章","ChapterName_EN":"Chapter 5","Name":"黑暗陨落","Name_EN":"Darkness Falls","RandomArea":[50001,50002,50004,50006,50007],"OpenLevel":[50,53,55],"ShenMiEnterID":"100;100501@100;100001"},
-{"_t":"DungeonSectionConfig","_id":6,"ChapterName":"终章","ChapterName_EN":"Final Chapter","Name":"黎明之光","Name_EN":"Dawn Light","RandomArea":[60001,60002,60003],"OpenLevel":[60,62,65],"ShenMiEnterID":"100;100601@100;100001"},
+{"_t":"DungeonSectionConfig","_id":6,"ChapterName":"终章","ChapterName_EN":"Final Chapter","Name":"黎明之光","Name_EN":"Dawn Light","RandomArea":[60001,60002,60003,60004],"OpenLevel":[60,62,65,68],"ShenMiEnterID":"100;100601@100;100001"},
 ]}

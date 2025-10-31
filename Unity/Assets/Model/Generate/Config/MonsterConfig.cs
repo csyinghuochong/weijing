@@ -234,9 +234,6 @@ namespace ET
 		/// <summary>是否带走buff</summary>
 		[ProtoMember(53)]
 		public int RemoveBuff { get; set; }
-		/// <summary>技能</summary>
-		[ProtoMember(54)]
-		public int[] SpecifiedSkill { get; set; }
 
 	}
 }
