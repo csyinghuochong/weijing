@@ -129,6 +129,9 @@ EditorBuildSettings:
     path: Assets/Scenes/60003.unity
     guid: a595e153d53a45c44875f70381211216
   - enabled: 1
+    path: Assets/Scenes/60004.unity
+    guid: 5836d16a67d280b4ba95f15f8424628a
+  - enabled: 1
     path: Assets/Scenes/100001.unity
     guid: 2d4030e5232f4534c9758f3bea0e170c
   - enabled: 1
