@@ -102,6 +102,7 @@ namespace ET
             new KeyValuePairLong(){ KeyId = 4, Value = 1738339200001, Value2 = 1746028800000 },
             new KeyValuePairLong(){ KeyId = 5, Value = 1746028800001, Value2 = 1753977600000 },
             new KeyValuePairLong(){ KeyId = 6, Value = 1753977600001, Value2 = 1761926400000 },
+            new KeyValuePairLong(){ KeyId = 7, Value = 1761926400001, Value2 = 1769875200000 },
         };
 
         /// <summary>
