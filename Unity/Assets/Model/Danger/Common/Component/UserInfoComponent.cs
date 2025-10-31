@@ -62,7 +62,7 @@ namespace ET
         public UserInfo UserInfo = new UserInfo();
 #if SERVER
          public string Account;
-        public string Password;
+         public string Password;
           /// <summary>
           /// 登录或者零点刷新的时候会改变.主要用来体力恢复，刷新数据
           /// </summary>
@@ -82,6 +82,8 @@ namespace ET
         public string RemoteAddress;
         public string DeviceName;
         public string UserName;
+
+        public long CreateAccountTime;
 
         /// <summary>
         /// 狩猎击杀野怪数量

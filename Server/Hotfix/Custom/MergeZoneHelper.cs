@@ -287,15 +287,6 @@ namespace ET
             List<DataCollationComponent> dataCollationComponents = await Game.Scene.GetComponent<DBComponent>().Query<DataCollationComponent>(zone, d => d.Id > 0);
             for (int i = 0; i < dataCollationComponents.Count; i++)
             {
-                for (int buyindex = 0; buyindex < dataCollationComponents[i].BuySelfPlayerList.Count; buyindex++)
-                {
-
-                    if (dataCollationComponents[i].BuySelfPlayerList[buyindex].KeyId == buyId)
-                    {
-                        Log.Warning($"{dataCollationComponents[i].Account}  {dataCollationComponents[i].Id}  {dataCollationComponents[i].Name}");
-                    }
-                }
-
             }
 
         }
@@ -323,12 +314,7 @@ namespace ET
                 {
                     //Log.Warning($"Gold:{entity.Id} ");
                 }
-                if (entity.DeviceName != null && entity.DeviceName.Contains("960:540"))
-                {
-                    //Console.WriteLine($"960:540:{entity.Id} {entity.DeviceName}");
-                    //Log.Warning($"960:540:   {entity.Id}  {entity.UserInfo.Lv}\t  {entity.UserInfo.Name}\t   {entity.DeviceName}");
-                }
-
+               
                 if (entity.UserInfo.Name.Contains("南宫") || entity.UserInfo.Name.Contains("世家"))
                 {
                     //Log.Warning($"南宫:   {entity.Id}  {entity.UserInfo.Lv}\t  {entity.UserInfo.Name}\t   {entity.UserInfo.Combat}");

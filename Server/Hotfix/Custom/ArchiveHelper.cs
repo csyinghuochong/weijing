@@ -194,12 +194,23 @@ namespace ET
            });
 
             //已经被拍卖的装备不找回。。。
-            List<long> soldbaginfoids = new List<long>() ;
+            string soldbaginfoidstr = string.Empty;
             List <DataCollationComponent> new_dataCollationComponents = await Game.Scene.GetComponent<DBComponent>().Query<DataCollationComponent>(zone, d => d.Id == unitid);
             if (new_dataCollationComponents != null && new_dataCollationComponents.Count > 0)
             {
-                soldbaginfoids = new_dataCollationComponents[0].SoldBagInfoIDList;  
+                soldbaginfoidstr = new_dataCollationComponents[0].SoldBagInfoID;  
             }
+
+            List<long> soldbaginfoids = new List<long>();
+            if (!string.IsNullOrEmpty(soldbaginfoidstr))
+            {
+                string[] idddss = soldbaginfoidstr.Split('&');
+                for (int i = 0; i < idddss.Length; i++)
+                {
+                    soldbaginfoids.Add(long.Parse(idddss[i]));
+                }
+            }
+
             List<DBAccountInfo> new_dbAccountInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(zone, d => d.Id == old_userInfoComponent.UserInfo.AccInfoID);
             if (new_dbAccountInfos == null || new_dbAccountInfos.Count == 0)
             {

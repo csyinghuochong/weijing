@@ -46,6 +46,10 @@ namespace ET
         //总共在线时间
         public long TotalOnLine;
 
+        public long CreateAccountTime;
+
+        public string CreateAccountTimeStr;
+
         //创建角色时间
         public string CreateRoleTime;
 
@@ -124,7 +128,6 @@ namespace ET
         //（单独处理一下两个, 花费类型高的排在前面）
         //金币消耗
         public string GoldCost;
-
         [BsonIgnore]
         public List<KeyValuePairInt> GoldCostList = new List<KeyValuePairInt>();
 
@@ -145,16 +148,13 @@ namespace ET
         [BsonIgnore]
         public List<KeyValuePairInt> DiamondGetList = new List<KeyValuePairInt>();
 
-        /// <summary>
-        /// 购买自己的玩家列表
-        /// </summary>
-        public List<KeyValuePairLong> BuySelfPlayerList = new List<KeyValuePairLong>();
 
+        // 购买自己的玩家列表
+        public string BuySelfPlayer;
+ 
+        // 出售的道具Id
+        public string SoldBagInfoID = string.Empty; 
 
-        /// <summary>
-        /// 已经出售的道具ID. 目前只记录装备。。
-        /// </summary>
-        public List<long> SoldBagInfoIDList = new List<long>();
 
         public string DeviceName;
 

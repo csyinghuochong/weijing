@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -20,7 +21,7 @@ namespace ET
         public static void Check(this DataCollationComponent self)
         {
             self.TotalOnLine++;
-            
+
             self.TodayOnLine = self.GetParent<Unit>().GetComponent<UserInfoComponent>().TodayOnLine;
         }
 
@@ -94,33 +95,40 @@ namespace ET
         }
 
 
-        public static void UpdateBuySelfPlayerList(this DataCollationComponent self, long addgold, long unitid, long baginfoid,  bool notice)
+        public static void UpdateBuySelfPlayerList(this DataCollationComponent self, long addgold, long unitid, long baginfoid, bool notice)
         {
             if (unitid == 0)
             {
                 return;
             }
+    
             self.PaiMaiGold += addgold;
 
-            if(baginfoid > 0 && !self.SoldBagInfoIDList.Contains(baginfoid))
+            if (baginfoid > 0)
             {
-                self.SoldBagInfoIDList.Add(baginfoid);
-            }
-
-            for (int i = self.BuySelfPlayerList.Count - 1; i >= 0 ; i--)
-            {
-                if (self.BuySelfPlayerList[i].KeyId == unitid)
+                if (string.IsNullOrEmpty(self.SoldBagInfoID))
                 {
-                    self.BuySelfPlayerList[i].Value += addgold;
-                    return;
+                    self.SoldBagInfoID = baginfoid.ToString();
+                }
+                else
+                {
+                    self.SoldBagInfoID += $"&{baginfoid}";
                 }
             }
 
-            self.BuySelfPlayerList.Add( new KeyValuePairLong()
-            { 
-                KeyId = unitid,
-                Value = addgold
-            });
+            if (string.IsNullOrEmpty(self.BuySelfPlayer))
+            {
+                self.BuySelfPlayer = $"{unitid}&{addgold}";
+            }
+            else
+            {
+                self.BuySelfPlayer += $"_{unitid}&{addgold}";
+            }
+        }
+
+        public static List<KeyValuePairLong> GetBuySelfPlayer(this DataCollationComponent self)
+        {
+            return null;
         }
 
         public static long GetCostByType(this DataCollationComponent self, int getWay)
@@ -289,13 +297,19 @@ namespace ET
             }
         }
 
-        public static void UpdatePlatName(this DataCollationComponent self, int platform, int simulator, int  root, string deviceId, string unityversion, int bigversion)
+        public static void UpdatePlatName(this DataCollationComponent self, int platform, int simulator, int  root, string deviceId, string unityversion, int bigversion, string deviceName)
         {
             self.Simulator = simulator;
             self.IsRoot = root;
             self.DeviceID = deviceId;
             self.UnityVersion = unityversion;
             self.BigVersion = bigversion;
+
+            if (!string.IsNullOrEmpty(deviceName))
+            {
+                deviceName = deviceName.Replace(';', '&');
+            }
+            self.DeviceName = deviceName;
 
             string platformName = PlatformHelper.GetPlatformName(platform);
             if (!string.IsNullOrEmpty(self.Platform) && !self.Platform.Contains('_'))
@@ -370,13 +384,10 @@ namespace ET
             self.Name = userInfoComponent.UserInfo.Name;
             self.Level = userInfoComponent.UserInfo.Lv;
             self.Account = userInfoComponent.Account;
-            self.Password = userInfoComponent.Password; 
-            string deviceName = userInfoComponent.DeviceName;
-            if (!string.IsNullOrEmpty(deviceName))
-            {
-                deviceName = deviceName.Replace(';', '&');
-            }
-            self.DeviceName = deviceName;
+            self.Password = userInfoComponent.Password;
+
+            self.CreateAccountTime = userInfoComponent.CreateAccountTime;
+            self.CreateAccountTimeStr = TimeInfo.Instance.ToDateTime(self.CreateAccountTime).ToString();
 
             self.Occ = OccupationConfigCategory.Instance.Get(userInfoComponent.UserInfo.Occ).OccupationName;
 

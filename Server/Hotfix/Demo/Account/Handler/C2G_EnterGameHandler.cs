@@ -244,12 +244,12 @@ namespace ET
                         unit.AddComponent<StateComponent>();
                         unit.AddComponent<HeroDataComponent>();
                         unit.AddComponent<DBSaveComponent>();
-                        unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString(), request.DeviceName);
+                        unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString());
 						unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
 
 						DataCollationComponent dataCollationComponent = unit.GetComponent<DataCollationComponent>();
 						dataCollationComponent.CorrectData();
-                        dataCollationComponent.UpdatePlatName(request.Platform, request.Simulator, request.Root, request.DeviceID, request.UnityVersion, request.BigVersion);
+                        dataCollationComponent.UpdatePlatName(request.Platform, request.Simulator, request.Root, request.DeviceID, request.UnityVersion, request.BigVersion, request.DeviceName);
                         dataCollationComponent.UpdateRegionCode(request.CurSystemLanguage, request.CurSystemRegionCode, request.ByIPRegionCode);
                         unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 						//unit.GetComponent<DBSaveComponent>().LastDBTime = TimeHelper.ServerNow();

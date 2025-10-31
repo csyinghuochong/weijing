@@ -1303,7 +1303,7 @@ namespace ET
             }
 
             long serverNow = TimeHelper.ServerNow();
-            List<KeyValuePairLong> buyselflist = dataCollationComponents[0].BuySelfPlayerList;
+            List<KeyValuePairLong> buyselflist = new List<KeyValuePairLong>() ; ;// dataCollationComponents[0].BuySelfPlayer;
 
             string gongzuoshiInfo = string.Empty;
             string allpaimaiInfo = string.Empty;    

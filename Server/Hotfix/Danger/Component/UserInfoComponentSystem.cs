@@ -274,11 +274,10 @@ namespace ET
             //self.LastLoginTime = TimeHelper.ServerNow();
         }
 
-        public static void OnLogin(this UserInfoComponent self, string remoteIp, string deviceName)
+        public static void OnLogin(this UserInfoComponent self, string remoteIp)
         {
             self.CheckData();
             self.RemoteAddress = remoteIp;
-            self.DeviceName = deviceName;
             Unit unit = self.GetParent<Unit>();
             long currentTime = TimeHelper.ServerNow();
 
