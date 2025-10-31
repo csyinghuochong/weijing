@@ -263,6 +263,7 @@ namespace ET
                     this.BuffShieldValue = rc.Get<GameObject>("BuffShieldValue");
                     this.Img_ChengHao = rc.Get<GameObject>("Img_ChengHao");
                     this.Img_ChengHao.SetActive(true);
+                    this.Img_ChengHao.transform.localPosition = new Vector3(0f, 100f, 0f);
                     this.PlayerNameSet.SetActive(true);
                     this.Lal_AddtionName = rc.Get<GameObject>("Lal_AddtionName");
                     this.Img_AngleValue = rc.Get<GameObject>("Img_AngleValue").GetComponent<Image>();
@@ -405,6 +406,10 @@ namespace ET
         {
             if (this.Lal_JiaZuName == null)
             {
+                if (this.Img_ChengHao != null)
+                {
+                    this.Img_ChengHao.transform.localPosition = new Vector3(0f, 100f, 0f);
+                }
                 return;
             }
             Unit unit = this.GetParent<Unit>();
