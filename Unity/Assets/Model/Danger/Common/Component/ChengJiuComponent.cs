@@ -169,6 +169,7 @@ namespace ET
         public List<int> AlreadReceivedId = new List<int>();
         public List<int> ChengJiuCompleteList = new List<int>();
         public List<int> JingLingList = new List<int>();
+        public List<int> MagickaSlotId = new List<int>();
         public int JingLingId = 0;
         public int RandomDrop = 0;
     }

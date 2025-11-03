@@ -56,6 +56,56 @@ namespace ET
             EventType.JingLingGet.Instance.JingLingId = jid;
             EventSystem.Instance.PublishClass(EventType.JingLingGet.Instance);
         }
+
+        public static int GetCurrentMagickaSlotIdByPosition(this ChengJiuComponent self, int position)
+        {
+            if (position >= self.MagickaSlotId.Count)
+            {
+                return 0;
+            }
+            return self.MagickaSlotId[position];
+        }
+
+        public static int GetMaxMagickaSlotIdPosition(this ChengJiuComponent self)
+        {
+            int position = 0;
+            foreach (var slotinfo in MagickaSlotConfigCategory.Instance.GetAll())
+            {
+                if (slotinfo.Value.Position > position)
+                {
+                    position = slotinfo.Value.Position;
+                }
+            }
+            return position;
+        }
+
+        public static int GetFirstMagickaSlotIdByPosition(this ChengJiuComponent self, int position)
+        {
+            int id = 0;
+            foreach (var slotinfo in MagickaSlotConfigCategory.Instance.GetAll())
+            {
+                if (slotinfo.Value.Position == position && id < slotinfo.Key)
+                {
+                    id = slotinfo.Key;
+                    break;
+                }
+            }
+            return id;
+        }
+
+        public static int GetNextMagickaSlotIdByPosition(this ChengJiuComponent self, int position)
+        {
+            int id = self.GetCurrentMagickaSlotIdByPosition(position);
+            foreach (var slotinfo in MagickaSlotConfigCategory.Instance.GetAll())
+            {
+                if (slotinfo.Value.Position == position + 1 && id < slotinfo.Key)
+                {
+                    id = slotinfo.Key;
+                    break;
+                }
+            }
+            return id;
+        }
     }
 
 }

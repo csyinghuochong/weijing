@@ -12,6 +12,7 @@ namespace ET
         public GameObject Label_ItemNum;
         public GameObject Image_ItemIcon;
         public GameObject Image_ItemQuality;
+        public GameObject GameObject;
 
         public int ItemId;
         public List<string> AssetPath = new List<string>();
@@ -22,6 +23,8 @@ namespace ET
     {
         public override void Awake(UICommonCostItemComponent self, GameObject gameObject)
         {
+            self.GameObject = gameObject;
+
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.Image_ItemButton = rc.Get<GameObject>("Image_ItemButton");
             self.Label_ItemName = rc.Get<GameObject>("Label_ItemName");
