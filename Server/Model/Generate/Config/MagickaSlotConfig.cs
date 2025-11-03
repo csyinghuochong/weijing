@@ -78,20 +78,26 @@ namespace ET
 		/// <summary>Id</summary>
 		[ProtoMember(1)]
 		public int Id { get; set; }
-		/// <summary>生命之盾类型</summary>
+		/// <summary>魔能类型</summary>
 		[ProtoMember(2)]
-		public int ShieldType { get; set; }
-		/// <summary>名字</summary>
+		public int MagicType { get; set; }
+		/// <summary>位置</summary>
 		[ProtoMember(3)]
-		public string ShieldName { get; set; }
+		public int Position { get; set; }
+		/// <summary>名字</summary>
+		[ProtoMember(4)]
+		public string MagicName { get; set; }
 		/// <summary>等级</summary>
-		[ProtoMember(5)]
-		public int ShieldLevel { get; set; }
-		/// <summary>生命之盾经验</summary>
 		[ProtoMember(6)]
-		public int ShieldExp { get; set; }
-		/// <summary>额外属性</summary>
+		public int MagicLevel { get; set; }
+		/// <summary>开启消耗道具</summary>
 		[ProtoMember(7)]
+		public string OpenCostItem { get; set; }
+		/// <summary>开启需要总等级</summary>
+		[ProtoMember(8)]
+		public int NeedTotalLevel { get; set; }
+		/// <summary>额外属性</summary>
+		[ProtoMember(9)]
 		public string AddProperty { get; set; }
 
 	}
