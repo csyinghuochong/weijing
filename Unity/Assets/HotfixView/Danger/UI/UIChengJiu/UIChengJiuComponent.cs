@@ -10,13 +10,15 @@ namespace ET
         ChengJiu = 1,
         JingLing = 2,
         PetTuJian = 3,
-        Spirit = 4,
+        MagickaSlot = 4,
 
         Number,
     }
 
     public class UIChengJiuComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject Btn_Magic;
         public GameObject Btn_JingLing;
         public GameObject ImageButton;
         public GameObject SubViewNode;
@@ -46,17 +48,20 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.ChengJiu] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuShow");
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.JingLing] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuJingling");
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.PetTuJian] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetTuJian");
-            pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.Spirit] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UISpiritShow");
+            pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.MagickaSlot] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIMagickaSlot");
 
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.Reward] = typeof(UIChengJiuRewardComponent);
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.ChengJiu] = typeof(UIChengJiuShowComponent);
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.JingLing] = typeof(UIChengJiuJingLingComponent);
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.PetTuJian] = typeof(UIPetTuJianComponent);
-            pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.Spirit] = typeof(UISpiritShowComponent);
+            pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.MagickaSlot] = typeof(UIMagickaSlotComponent);
             self.UIPageView = pageViewComponent;
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseChengJiu(); });
+
+            self.Btn_Magic = rc.Get<GameObject>("Btn_Magic");
+            self.Btn_Magic.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             self.SubViewNode = rc.Get<GameObject>("SubViewNode");
             GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
