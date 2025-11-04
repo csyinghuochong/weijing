@@ -12,6 +12,8 @@ namespace ET
         public GameObject GameObject;
         public GameObject Image_Lock;
         public GameObject XuanZhong;
+        public GameObject DiButton_1;
+        public UIItemComponent UICommonItem;
 
         public Action<int> ClickLockHandler;
     }
@@ -25,6 +27,13 @@ namespace ET
 
             self.Image_Lock = gameObject.transform.Find("Image_Lock").gameObject;
             self.XuanZhong = gameObject.transform.Find("XuanZhong").gameObject;
+            self.DiButton_1 = gameObject.transform.Find("DiButton_1").gameObject;
+
+            GameObject uICommonItem = gameObject.transform.Find("UICommonItem").gameObject;
+            self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(uICommonItem);
+            self.UICommonItem.GameObject.SetActive(false);
+
+            self.DiButton_1.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
             self.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
         }
     }
