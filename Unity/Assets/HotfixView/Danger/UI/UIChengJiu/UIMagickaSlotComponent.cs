@@ -9,6 +9,9 @@ namespace ET
     public class UIMagickaSlotComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject EquipSlot;
+        public GameObject OpenSlot;
+
         public GameObject Btn_OpenSlot;
 
         public GameObject RewardListNode;
@@ -47,6 +50,11 @@ namespace ET
             self.UICommonCostItem = rc.Get<GameObject>("UICommonCostItem");
             self.UICommonCostItem.SetActive(false);
 
+            self.EquipSlot = rc.Get<GameObject>("EquipSlot");
+            self.OpenSlot = rc.Get<GameObject>("OpenSlot");
+            self.EquipSlot.SetActive(false);
+            self.OpenSlot.SetActive(false);
+
             self.Btn_OpenSlot = rc.Get<GameObject>("Btn_OpenSlot");
             ButtonHelp.AddListenerEx(self.Btn_OpenSlot, () => { self.OnBtn_OpenSlot().Coroutine();  });
 
@@ -62,6 +70,7 @@ namespace ET
             self.OnInitUI();
             self.OnUpdateUI();
             self.OnClickLockHandler(0);
+            self.OnClickPageButton(0);
         }
     }
 
@@ -86,6 +95,8 @@ namespace ET
         public static void OnClickPageButton(this UIMagickaSlotComponent self, int page)
         {
             Log.ILog.Debug($"UIMagickaSlotComponent : {page}");
+            self.EquipSlot.SetActive(page == 0);
+            self.OpenSlot.SetActive(page == 1);
         }
 
         public static void OnUpdateUI(this UIMagickaSlotComponent self)
