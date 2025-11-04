@@ -355,5 +355,75 @@ namespace ET
                 }
             }
         }
+
+        public static int GetCurrentMagickaSlotIdByPosition(this ChengJiuComponent self, int position)
+        {
+            foreach (var magicinfo in self.MagickaSlotIdList)
+            {
+                MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(magicinfo.SlotId);
+                if (magickaSlotConfig.Position == position + 1)
+                {
+                    return magicinfo.SlotId;
+                }
+            }
+            return 0;
+        }
+
+        public static int GetCurrentMagickaTotalLevel(this ChengJiuComponent self)
+        {
+            int totallevel = 0;
+            foreach( var magicinfo in self.MagickaSlotIdList )
+            {
+                MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(magicinfo.SlotId);
+                totallevel += magickaSlotConfig.MagicLevel;
+            }
+            return totallevel;
+        }
+
+        public static void OnOpenMagicka(this ChengJiuComponent self, int position, int magicid)
+        {
+            self.MagickaSlotIdList.Add(new MagickaSlotInfo() { SlotId = magicid, Exp = 0 });
+        }
+
+        public static int GetMaxMagickaSlotIdPosition(this ChengJiuComponent self)
+        {
+            int position = 0;
+            foreach (var slotinfo in MagickaSlotConfigCategory.Instance.GetAll())
+            {
+                if (slotinfo.Value.Position > position)
+                {
+                    position = slotinfo.Value.Position;
+                }
+            }
+            return position;
+        }
+
+        public static int GetFirstMagickaSlotIdByPosition(this ChengJiuComponent self, int position)
+        {
+            int id = 0;
+            foreach (var slotinfo in MagickaSlotConfigCategory.Instance.GetAll())
+            {
+                if (slotinfo.Value.Position == position + 1 && id < slotinfo.Key)
+                {
+                    id = slotinfo.Key;
+                    break;
+                }
+            }
+            return id;
+        }
+
+        public static int GetNextMagickaSlotIdByPosition(this ChengJiuComponent self, int position)
+        {
+            int id = self.GetCurrentMagickaSlotIdByPosition(position);
+            foreach (var slotinfo in MagickaSlotConfigCategory.Instance.GetAll())
+            {
+                if (slotinfo.Value.Position == position + 1 && id < slotinfo.Key)
+                {
+                    id = slotinfo.Key;
+                    break;
+                }
+            }
+            return id;
+        }
     }
 }

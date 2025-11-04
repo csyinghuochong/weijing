@@ -11,6 +11,7 @@ namespace ET
         public int Position;
         public GameObject GameObject;
         public GameObject Image_Lock;
+        public GameObject XuanZhong;
 
         public Action<int> ClickLockHandler;
     }
@@ -23,6 +24,7 @@ namespace ET
             self.GameObject = gameObject;
 
             self.Image_Lock = gameObject.transform.Find("Image_Lock").gameObject;
+            self.XuanZhong = gameObject.transform.Find("XuanZhong").gameObject;
             self.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
         }
     }
@@ -41,6 +43,10 @@ namespace ET
             self.ClickLockHandler?.Invoke( self.Position );
          }
 
+        public static void SetSelected(this UIMagickaSlotItemComponent self, bool active)
+        {
+            self.XuanZhong.SetActive(active);
+        }
 
     }
 }

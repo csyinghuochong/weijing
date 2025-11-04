@@ -17,6 +17,20 @@ namespace ET
             self.AlreadReceivedId.Add(rewardId);
         }
 
+        public static async ETTask<int> RequestOpenMagicka(this ChengJiuComponent self, int position)
+        {
+            M2C_MagickaSlotOpenResponse r2C_Bag = (M2C_MagickaSlotOpenResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call
+                (
+                new C2M_MagickaSlotOpenRequest() { Position = position }
+                );
+            if (r2C_Bag.Error == 0)
+            {
+                self.MagickaSlotIdList = r2C_Bag.MagickaSlotIds;
+
+            }
+            return r2C_Bag.Error;
+        }
+
         public static async ETTask GetChengJiuList(this ChengJiuComponent self)
         {
             M2C_ChengJiuListResponse r2C_Respose = (M2C_ChengJiuListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(new C2M_ChengJiuListRequest());
@@ -26,6 +40,7 @@ namespace ET
             self.JingLingList = r2C_Respose.JingLingList;
             self.RandomDrop = r2C_Respose.RandomDrop;
             self.JingLingId = r2C_Respose.JingLingId;
+            self.MagickaSlotIdList = r2C_Respose.MagickaSlotIds;
          
             self.ChengJiuProgessList = new Dictionary<int, ChengJiuInfo>();
             for (int  i = 0; i < r2C_Respose.ChengJiuProgessList.Count; i++)
@@ -59,11 +74,15 @@ namespace ET
 
         public static int GetCurrentMagickaSlotIdByPosition(this ChengJiuComponent self, int position)
         {
-            if (position >= self.MagickaSlotId.Count)
+            foreach (var magicinfo in self.MagickaSlotIdList)
             {
-                return 0;
+                MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(magicinfo.SlotId);
+                if (magickaSlotConfig.Position == position + 1)
+                {
+                    return magicinfo.SlotId;
+                }
             }
-            return self.MagickaSlotId[position];
+            return 0;
         }
 
         public static int GetMaxMagickaSlotIdPosition(this ChengJiuComponent self)
@@ -84,7 +103,7 @@ namespace ET
             int id = 0;
             foreach (var slotinfo in MagickaSlotConfigCategory.Instance.GetAll())
             {
-                if (slotinfo.Value.Position == position && id < slotinfo.Key)
+                if (slotinfo.Value.Position == position + 1 && id < slotinfo.Key)
                 {
                     id = slotinfo.Key;
                     break;

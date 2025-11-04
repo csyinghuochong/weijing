@@ -5536,6 +5536,59 @@ namespace ET
 		[ProtoMember(7)]
 		public int RandomDrop { get; set; }
 
+		[ProtoMember(8)]
+		public List<MagickaSlotInfo> MagickaSlotIds = new List<MagickaSlotInfo>();
+
+	}
+
+	[Message(OuterOpcode.MagickaSlotInfo)]
+	[ProtoContract]
+	public partial class MagickaSlotInfo: Object
+	{
+		[ProtoMember(1)]
+		public int SlotId { get; set; }
+
+		[ProtoMember(2)]
+		public long Exp { get; set; }
+
+		[ProtoMember(3)]
+		public long BagInfoID { get; set; }
+
+	}
+
+//激活魔能
+	[ResponseType(nameof(M2C_MagickaSlotOpenResponse))]
+	[Message(OuterOpcode.C2M_MagickaSlotOpenRequest)]
+	[ProtoContract]
+	public partial class C2M_MagickaSlotOpenRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int Position { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_MagickaSlotOpenResponse)]
+	[ProtoContract]
+	public partial class M2C_MagickaSlotOpenResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<MagickaSlotInfo> MagickaSlotIds = new List<MagickaSlotInfo>();
+
 	}
 
 //激活成就

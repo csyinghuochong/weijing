@@ -8,6 +8,9 @@ namespace ET
 
     public class UIMagickaSlotComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject Btn_OpenSlot;
+
         public GameObject RewardListNode;
         public GameObject UIMagickaSlotItem;
 
@@ -18,7 +21,17 @@ namespace ET
 
         public List<UICommonCostItemComponent> UICommonCostItemList = new List<UICommonCostItemComponent>();
 
-        public int Position;
+        public UIPageButtonComponent UIPageButton;
+
+        public int Position = -1;
+    }
+
+    public class UIMagickaSlotComponentDestroy : DestroySystem<UIMagickaSlotComponent>
+    {
+        public override void Destroy(UIMagickaSlotComponent self)
+        {
+            
+        }
     }
 
     public class UIMagickaSlotComponentAwake : AwakeSystem<UIMagickaSlotComponent>
@@ -34,7 +47,21 @@ namespace ET
             self.UICommonCostItem = rc.Get<GameObject>("UICommonCostItem");
             self.UICommonCostItem.SetActive(false);
 
+            self.Btn_OpenSlot = rc.Get<GameObject>("Btn_OpenSlot");
+            ButtonHelp.AddListenerEx(self.Btn_OpenSlot, () => { self.OnBtn_OpenSlot().Coroutine();  });
+
+            //单选组件
+            GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+            UI uiPage = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
+            UIPageButtonComponent uIPageViewComponent = uiPage.AddComponent<UIPageButtonComponent>();
+            uIPageViewComponent.SetClickHandler((int page) => {
+                self.OnClickPageButton(page);
+            });
+            self.UIPageButton = uIPageViewComponent;
+
             self.OnInitUI();
+            self.OnUpdateUI();
+            self.OnClickLockHandler(0);
         }
     }
 
@@ -56,10 +83,48 @@ namespace ET
             }
         }
 
+        public static void OnClickPageButton(this UIMagickaSlotComponent self, int page)
+        {
+            Log.ILog.Debug($"UIMagickaSlotComponent : {page}");
+        }
+
+        public static void OnUpdateUI(this UIMagickaSlotComponent self)
+        {
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            for (int i = 0; i < self.UIMagickaSlotItemList.Count; i++)
+            { 
+                int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(i);
+                self.UIMagickaSlotItemList[i].Image_Lock.SetActive( curid == 0 );
+            }
+        }
+
+        public static async ETTask OnBtn_OpenSlot(this UIMagickaSlotComponent self)
+        {
+            if (self.Position < 0)
+            {
+                return;
+            }
+
+            long instanceid = self.InstanceId;
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            int errorcode = await chengJiuComponent.RequestOpenMagicka(self.Position);
+            if (instanceid != self.InstanceId || errorcode != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+
+            self.OnUpdateUI();
+        }
+
         public static void OnClickLockHandler(this UIMagickaSlotComponent self, int position)
         {
             Log.ILog.Debug("OnClickLockHandler " + position);
             self.Position = position;
+
+            for (int i = 0; i < self.UIMagickaSlotItemList.Count; i++)
+            {
+                self.UIMagickaSlotItemList[i].SetSelected(position == i);
+            }
 
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(position);

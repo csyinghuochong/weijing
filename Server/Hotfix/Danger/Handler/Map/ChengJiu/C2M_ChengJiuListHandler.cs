@@ -16,6 +16,7 @@ namespace ET
             response.JingLingList = chengJiuComponent.JingLingList;
             response.JingLingId = chengJiuComponent.JingLingId;
             response.RandomDrop = chengJiuComponent.RandomDrop;
+            response.MagickaSlotIds = chengJiuComponent.MagickaSlotIdList;
 
             reply();
             await ETTask.CompletedTask;

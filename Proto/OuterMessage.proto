@@ -2613,7 +2613,35 @@ message M2C_ChengJiuListResponse // IActorLocationResponse
 	repeated int32 JingLingList = 5;
 	int32 JingLingId = 6;
 	int32 RandomDrop = 7;
+	repeated MagickaSlotInfo MagickaSlotIds = 8;
 }
+
+message MagickaSlotInfo
+{
+	int32 SlotId = 1;
+	int64 Exp = 2;
+	int64 BagInfoID  = 3;
+}
+
+
+//激活魔能
+//ResponseType M2C_MagickaSlotOpenResponse
+message C2M_MagickaSlotOpenRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 Position = 1;
+}
+
+message M2C_MagickaSlotOpenResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	repeated MagickaSlotInfo MagickaSlotIds = 1;
+}
+
 
 //激活成就
 message M2C_ChengJiuActiveMessage // IActorMessage

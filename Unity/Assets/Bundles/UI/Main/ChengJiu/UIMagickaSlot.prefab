@@ -110,13 +110,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u88AB\u52A8\u6280\u80FD"
+  m_Text: "\u5347\u7EA7"
 --- !u!1 &240675238524570651
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +410,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u88AB\u52A8\u6280\u80FD"
+  m_Text: "\u5347\u7EA7"
 --- !u!1 &454039155885817896
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +489,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4E3B\u52A8\u6280\u80FD"
+  m_Text: "\u9996\u9875"
 --- !u!1 &616590432377072942
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 4.7}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 180, y: 82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &312148332325323025
@@ -1815,13 +1815,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4E3B\u52A8\u6280\u80FD"
+  m_Text: "\u9996\u9875"
 --- !u!1 &2752013778360921689
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,7 +2219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &253475766614533047
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2237,7 +2237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 4.7}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 180, y: 82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6620931850537199765
@@ -2414,6 +2414,10 @@ MonoBehaviour:
     gameObject: {fileID: 1454491612334219167}
   - key: UICommonCostItem
     gameObject: {fileID: 6827815520274677804}
+  - key: Btn_OpenSlot
+    gameObject: {fileID: 4264115244601565635}
+  - key: BtnItemTypeSet
+    gameObject: {fileID: 3544488305154127666}
 --- !u!1 &4057351039609766260
 GameObject:
   m_ObjectHideFlags: 0
