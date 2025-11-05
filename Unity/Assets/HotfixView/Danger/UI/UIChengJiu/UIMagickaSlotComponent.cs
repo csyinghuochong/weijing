@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
@@ -8,6 +9,27 @@ namespace ET
 
     public class UIMagickaSlotComponent : Entity, IAwake, IDestroy
     {
+
+        /// <summary>
+        /// 注入列表
+        /// </summary>
+        public GameObject BuildingList_2;
+        public GameObject ScrollView_2;
+        public GameObject Btn_ZhuRu;
+        public List<UIItemComponent> ZhuRuItemUIlist = new List<UIItemComponent>();
+        public List<BagInfo> HuiShoulist = new List<BagInfo>();
+
+        /// <summary>
+        /// 装备列表
+        /// </summary>
+        public GameObject ScrollView_1;
+        public GameObject BuildingList_1;
+        public GameObject Btn_Equip;
+        public List<UIItemComponent> EquiItemUIlist = new List<UIItemComponent>();
+        public long EquipInfoId;
+
+        public GameObject NodeOpen;
+        public GameObject NodeZhuRu;
 
         public GameObject EquipSlot;
         public GameObject OpenSlot;
@@ -26,15 +48,14 @@ namespace ET
 
         public UIPageButtonComponent UIPageButton;
 
-        public int Position = -1;
-    }
+        public BagComponent BagComponent;
 
-    public class UIMagickaSlotComponentDestroy : DestroySystem<UIMagickaSlotComponent>
-    {
-        public override void Destroy(UIMagickaSlotComponent self)
-        {
-            
-        }
+        public int Position = -1;
+
+        public bool IsDrag;
+        public long ClickTime;
+
+        public bool IsHoldDown;
     }
 
     public class UIMagickaSlotComponentAwake : AwakeSystem<UIMagickaSlotComponent>
@@ -55,6 +76,20 @@ namespace ET
             self.EquipSlot.SetActive(false);
             self.OpenSlot.SetActive(false);
 
+            self.NodeOpen = rc.Get<GameObject>("NodeOpen");
+            self.NodeZhuRu = rc.Get<GameObject>("NodeZhuRu");
+            self.NodeOpen.SetActive(false);
+            self.NodeZhuRu.SetActive(false);
+
+            self.ScrollView_2 = rc.Get<GameObject>("ScrollView_2");
+            self.BuildingList_2 = rc.Get<GameObject>("BuildingList_2");
+            self.Btn_ZhuRu = rc.Get<GameObject>("Btn_ZhuRu");
+
+            self.ScrollView_1 = rc.Get<GameObject>("ScrollView_1");
+            self.BuildingList_1 = rc.Get<GameObject>("BuildingList_1");
+            self.Btn_Equip = rc.Get<GameObject>("Btn_Equip");
+            ButtonHelp.AddListenerEx(self.Btn_Equip, () => { self.OnBtn_Equip().Coroutine(); });
+
             self.Btn_OpenSlot = rc.Get<GameObject>("Btn_OpenSlot");
             ButtonHelp.AddListenerEx(self.Btn_OpenSlot, () => { self.OnBtn_OpenSlot().Coroutine();  });
 
@@ -66,11 +101,22 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton = uIPageViewComponent;
+            self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
             self.OnInitUI();
             self.OnUpdateUI();
             self.OnClickLockHandler(0);
-            self.OnClickPageButton(0);
+            self.UIPageButton.OnSelectIndex(0);
+
+            DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
+        }
+    }
+
+    public class UIMagickaSlotComponentDestroy : DestroySystem<UIMagickaSlotComponent>
+    {
+        public override void Destroy(UIMagickaSlotComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.HuiShouSelect, self);
         }
     }
 
@@ -97,6 +143,213 @@ namespace ET
             Log.ILog.Debug($"UIMagickaSlotComponent : {page}");
             self.EquipSlot.SetActive(page == 0);
             self.OpenSlot.SetActive(page == 1);
+
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(self.Position);
+
+            switch (page)
+            {
+                case 0:
+                    self.UpdateEquipList();
+                    break;
+                case 1:
+                    self.NodeOpen.SetActive(curid == 0);
+                    self.NodeZhuRu.SetActive(curid != 0);
+                    self.UpdateZhuruList();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public static void UpdateEquipList(this UIMagickaSlotComponent self)
+        {
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+
+            List<BagInfo> allInfos = new List<BagInfo>();
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Equipment));
+
+            int number = 0;
+            for (int i = 0; i < allInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(allInfos[i].ItemID );
+                if (itemConfig.EquipType!= 401)
+                {
+                    continue;
+                }
+
+                UIItemComponent uI_1 = null;
+                if (number < self.EquiItemUIlist.Count)
+                {
+                    uI_1 = self.EquiItemUIlist[number];
+                    uI_1.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(go, self.BuildingList_1);
+                    go.transform.localScale = Vector3.one;
+                    uI_1 = self.AddChild<UIItemComponent, GameObject>(go);
+                    uI_1.ClickItemHandler = (BagInfo baginfo) => { self.OnClickPaiMaiItem(baginfo.BagInfoID); };
+                    self.EquiItemUIlist.Add(uI_1);
+                }
+                uI_1.UpdateItem(allInfos[i], ItemOperateEnum.None);
+                uI_1.HideItemName();
+                number++;
+            }
+
+            for (int i = number; i < self.EquiItemUIlist.Count; i++)
+            {
+                self.EquiItemUIlist[i].GameObject.SetActive(false);
+            }
+        }
+
+        public static void UpdateZhuruList(this UIMagickaSlotComponent self)
+        {
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+
+            List<BagInfo> allInfos = new List<BagInfo>();
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            //allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Consume));
+            allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Material));
+            allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Equipment));
+
+            int number = 0;
+            for (int i = 0; i < allInfos.Count; i++)
+            {
+                if (!ConfigHelper.MagicAddShieldExp.ContainsKey(allInfos[i].ItemID))
+                {
+                    continue;
+                }
+
+                UIItemComponent uI_1 = null;
+                if (number < self.ZhuRuItemUIlist.Count)
+                {
+                    uI_1 = self.ZhuRuItemUIlist[number];
+                    uI_1.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(go, self.BuildingList_2);
+                    go.transform.localScale = Vector3.one;
+                    uI_1 = self.AddChild<UIItemComponent, GameObject>(go);
+                    uI_1.SetEventTrigger(true);
+                    uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
+                    uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
+                    uI_1.BeginDragHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnBeginDrag(binfo, pdata); };
+                    uI_1.DragingHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnDraging(binfo, pdata); };
+                    uI_1.EndDragHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnEndDrag(binfo, pdata); };
+                    self.ZhuRuItemUIlist.Add(uI_1);
+                }
+                uI_1.UpdateItem(allInfos[i], ItemOperateEnum.HuishouBag);
+                uI_1.HideItemName();
+                number++;
+            }
+
+            for (int i = number; i < self.ZhuRuItemUIlist.Count; i++)
+            {
+                self.ZhuRuItemUIlist[i].GameObject.SetActive(false);
+            }
+        }
+
+        public static void OnBeginDrag(this UIMagickaSlotComponent self, BagInfo bagInfo, PointerEventData pdata)
+        {
+            self.ScrollView_2.GetComponent<ScrollRect>().OnBeginDrag(pdata);
+            self.IsDrag = true;
+        }
+        public static void OnDraging(this UIMagickaSlotComponent self, BagInfo bagInfo, PointerEventData pdata)
+        {
+            self.ScrollView_2.GetComponent<ScrollRect>().OnDrag(pdata);
+            self.IsDrag = true;
+        }
+        public static void OnEndDrag(this UIMagickaSlotComponent self, BagInfo bagInfo, PointerEventData pdata)
+        {
+            self.ScrollView_2.GetComponent<ScrollRect>().OnEndDrag(pdata);
+            self.IsDrag = false;
+        }
+        public static async ETTask OnPointerDown(this UIMagickaSlotComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            self.IsHoldDown = true;
+            self.ClickTime = TimeHelper.ClientNow();
+            await TimerComponent.Instance.WaitAsync(500);
+            if (!self.IsHoldDown || self.IsDrag)
+                return;
+            EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
+            EventType.ShowItemTips.Instance.bagInfo = binfo;
+            EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.None;
+            EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
+            EventType.ShowItemTips.Instance.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
+        }
+
+        public static void OnPointerUp(this UIMagickaSlotComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            if (TimeHelper.ClientNow() - self.ClickTime < 200)
+            {
+                HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{binfo.BagInfoID}");
+            }
+            self.IsHoldDown = false;
+        }
+
+        public static void OnHuiShouSelect(this UIMagickaSlotComponent self, string dataparams)
+        {
+            self.UpdateHuiShouInfo(dataparams);
+            self.UpdateBagSelected();
+        }
+
+        public static void UpdateHuiShouInfo(this UIMagickaSlotComponent self, string dataparams)
+        {
+            string[] huishouInfo = dataparams.Split('_');
+            BagInfo bagInfo = self.BagComponent.GetBagInfo(long.Parse(huishouInfo[1]));
+            if (bagInfo == null)
+            {
+                return;
+            }
+
+            //1新增  2移除 
+            if (!self.HuiShoulist.Contains(bagInfo))
+            {
+                self.HuiShoulist.Add(bagInfo);
+            }
+            else
+            {
+                self.HuiShoulist.Remove(bagInfo);
+            }
+        }
+
+        public static void UpdateBagSelected(this UIMagickaSlotComponent self)
+        {
+            for (int i = 0; i < self.ZhuRuItemUIlist.Count; i++)
+            {
+                UIItemComponent uIItemComponent = self.ZhuRuItemUIlist[i];
+                BagInfo bagInfo = uIItemComponent.Baginfo;
+                if (bagInfo == null)
+                {
+                    continue;
+                }
+                bool have = self.HuiShoulist.Where(item => item.BagInfoID == bagInfo.BagInfoID).Count() > 0;
+                uIItemComponent.Image_XuanZhong.SetActive(have);
+            }
+        }
+
+        public static void OnClickPaiMaiItem(this UIMagickaSlotComponent self, long paimaiId)
+        {
+            self.EquipInfoId = paimaiId;
+            for (int i = 0; i < self.EquiItemUIlist.Count; i++)
+            {
+                UIItemComponent uIItemComponent = self.EquiItemUIlist[i];
+                BagInfo bagInfo = uIItemComponent.Baginfo;
+                if (bagInfo == null)
+                {
+                    continue;
+                }
+                bool have = self.EquipInfoId == bagInfo.BagInfoID;
+                uIItemComponent.Image_XuanZhong.SetActive(have);
+            }
         }
 
         public static void OnUpdateUI(this UIMagickaSlotComponent self)
@@ -107,6 +360,27 @@ namespace ET
                 int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(i);
                 self.UIMagickaSlotItemList[i].Image_Lock.SetActive( curid == 0 );
             }
+        }
+
+        public static async ETTask OnBtn_Equip(this UIMagickaSlotComponent self)
+        {
+            if (self.EquipInfoId == 0)
+            {
+                return;
+            }
+            if (self.Position < 0)
+            {
+                return;
+            }
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            BagInfo bagInfo =  bagComponent.GetBagInfo(self.EquipInfoId);
+            if (bagInfo == null)
+            {
+                return;
+            }
+            Log.ILog.Debug($"OnBtn_Equip:  {self.EquipInfoId}");
+
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask OnBtn_OpenSlot(this UIMagickaSlotComponent self)
@@ -148,6 +422,8 @@ namespace ET
             {
                 self.ShowCostItems(nexid);
             }
+
+            self.OnClickPageButton(self.UIPageButton.CurrentIndex);
         }
 
         public static void ShowCostItems(this UIMagickaSlotComponent self, int nextd)

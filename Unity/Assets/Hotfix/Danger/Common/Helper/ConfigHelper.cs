@@ -443,6 +443,15 @@ namespace ET
             { 20230408, new KeyValuePairInt{  KeyId =0, Value = 1  } },
         };
 
+        //魔能注入
+        public static Dictionary<int, int> MagicAddShieldExp = new Dictionary<int, int>()
+        {
+            {10020001,1},
+            {10021001,1},
+            {10021002,1},
+            {10021003,1},
+        };
+
         //生命之盾
         public static Dictionary<int, int> ItemAddShieldExp = new Dictionary<int, int>()
         {

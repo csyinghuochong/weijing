@@ -1535,6 +1535,11 @@ namespace ET
                     uiSkillLiftComponent.OnHuiShouSelect(DataParams);
                     continue;
                 }
+                if (component is UIMagickaSlotComponent uIMagickaSlotComponent)
+                {
+                    uIMagickaSlotComponent.OnHuiShouSelect(DataParams);
+                    continue;
+                }
             }
 
         }
