@@ -2923,6 +2923,14 @@ MonoBehaviour:
     gameObject: {fileID: 3255020956136749565}
   - key: Btn_ZhuRu
     gameObject: {fileID: 4902476647015870190}
+  - key: ImageExpValue
+    gameObject: {fileID: 8140284383937036440}
+  - key: Text_ZiZhiValue
+    gameObject: {fileID: 240675238524570651}
+  - key: Text_ZiZhiName
+    gameObject: {fileID: 9077488173518973846}
+  - key: SlotProItem
+    gameObject: {fileID: 1635174626304519361}
 --- !u!1 &4057351039609766260
 GameObject:
   m_ObjectHideFlags: 0

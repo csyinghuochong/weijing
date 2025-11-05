@@ -10,6 +10,15 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, C2M_MagickaZhuruRequest request, M2C_MagickaZhuruResponse response, Action reply)
         {
+            ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();
+            int nexid = chengJiuComponent.GetNextMagickaSlotIdByPosition(request.Position);
+            int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(request.Position);
+            if (nexid <= curid)
+            {
+                reply();
+                return;
+            }
+
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             int addExp = 0;
             List<long> bagidList = new List<long>();
@@ -36,7 +45,6 @@ namespace ET
                 response.AddExp = addExp;
             }
 
-            ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();
             chengJiuComponent.OnAddMagickaExpByPosition( request.Position, addExp);
 
             //扣除装备

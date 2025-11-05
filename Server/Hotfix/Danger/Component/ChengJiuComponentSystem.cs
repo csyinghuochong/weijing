@@ -370,8 +370,35 @@ namespace ET
         }
 
         public static void OnAddMagickaExpByPosition(this ChengJiuComponent self, int position, int addexp)
-        { 
-            
+        {
+            MagickaSlotInfo magickaSlotInfo = null;
+            foreach (var magicinfo in self.MagickaSlotIdList)
+            {
+                MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(magicinfo.SlotId);
+                if (magickaSlotConfig.Position == position + 1)
+                {
+                    magickaSlotInfo = magicinfo;
+                    break;
+                }
+            }
+            if (magickaSlotInfo == null || magickaSlotInfo.SlotId == 0)
+            {
+                return;
+            }
+            magickaSlotInfo.Exp += addexp;
+            int nexid = self.GetNextMagickaSlotIdByPosition(position);
+            int curid = self.GetCurrentMagickaSlotIdByPosition(position);
+            if (nexid <= curid)
+            {
+                return;
+            }
+
+            int needexp = MagickaSlotConfigCategory.Instance.Get(curid).NeedExp;
+            if (magickaSlotInfo.Exp >= needexp)
+            {
+                magickaSlotInfo.Exp -= needexp; 
+                magickaSlotInfo.SlotId = nexid; 
+            }
         }
 
         public static int GetCurrentMagickaTotalLevel(this ChengJiuComponent self)

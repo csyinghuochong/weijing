@@ -87,15 +87,21 @@ namespace ET
 
         public static int GetCurrentMagickaSlotIdByPosition(this ChengJiuComponent self, int position)
         {
+            MagickaSlotInfo magickaSlotInfo = self.GetCurrentMagickaSlotByPosition(position);   
+            return magickaSlotInfo != null ? magickaSlotInfo.SlotId : 0;
+        }
+
+        public static MagickaSlotInfo GetCurrentMagickaSlotByPosition(this ChengJiuComponent self, int position)
+        {
             foreach (var magicinfo in self.MagickaSlotIdList)
             {
                 MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(magicinfo.SlotId);
                 if (magickaSlotConfig.Position == position + 1)
                 {
-                    return magicinfo.SlotId;
+                    return magicinfo;
                 }
             }
-            return 0;
+            return null;
         }
 
         public static int GetMaxMagickaSlotIdPosition(this ChengJiuComponent self)

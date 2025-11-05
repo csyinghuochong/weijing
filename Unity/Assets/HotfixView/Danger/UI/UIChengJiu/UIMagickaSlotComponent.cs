@@ -9,6 +9,11 @@ namespace ET
     public class UIMagickaSlotComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject SlotProItem;
+        public GameObject ImageExpValue;
+        public GameObject Text_ZiZhiValue;
+        public GameObject Text_ZiZhiName;
+
         /// <summary>
         /// 注入列表
         /// </summary>
@@ -69,6 +74,11 @@ namespace ET
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.UICommonCostItem = rc.Get<GameObject>("UICommonCostItem");
             self.UICommonCostItem.SetActive(false);
+
+            self.SlotProItem = rc.Get<GameObject>("SlotProItem");
+            self.ImageExpValue = rc.Get<GameObject>("ImageExpValue");
+            self.Text_ZiZhiValue = rc.Get<GameObject>("Text_ZiZhiValue");
+            self.Text_ZiZhiName = rc.Get<GameObject>("Text_ZiZhiName");
 
             self.EquipSlot = rc.Get<GameObject>("EquipSlot");
             self.OpenSlot = rc.Get<GameObject>("OpenSlot");
@@ -391,6 +401,15 @@ namespace ET
             {
                 return;
             }
+
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            MagickaSlotInfo magickaSlotInfo = chengJiuComponent.GetCurrentMagickaSlotByPosition(self.Position);
+            int curid = magickaSlotInfo != null ? magickaSlotInfo.SlotId : 0;
+            if (curid <= 0)
+            {
+                return;
+            }
+
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             BagInfo bagInfo =  bagComponent.GetBagInfo(self.EquipInfoId);
             if (bagInfo == null)
@@ -440,8 +459,29 @@ namespace ET
             {
                 self.ShowCostItems(nexid);
             }
+            self.ShowSlotPros();
 
             self.OnClickPageButton(self.UIPageButton.CurrentIndex);
+        }
+
+        public static void ShowSlotPros(this UIMagickaSlotComponent self)
+        {
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            MagickaSlotInfo magickaSlotInfo = chengJiuComponent.GetCurrentMagickaSlotByPosition(self.Position);
+            int curid = magickaSlotInfo != null ? magickaSlotInfo.SlotId : 0;
+            self.SlotProItem.SetActive(curid > 0);
+            if (curid <= 0)
+            {
+                return;
+            }
+
+            long curex = magickaSlotInfo != null ? magickaSlotInfo.Exp : 0;
+            int nexid = chengJiuComponent.GetNextMagickaSlotIdByPosition(self.Position);
+            MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(nexid);
+
+            self.ImageExpValue.GetComponent<Image>().fillAmount = curex * 1f / magickaSlotConfig.NeedTotalLevel;
+            self.Text_ZiZhiValue.GetComponent<Text>().text = $"{curex}/{magickaSlotConfig.NeedTotalLevel}";
+            self.Text_ZiZhiName.GetComponent<Text>().text = magickaSlotConfig.Des;
         }
 
         public static void ShowCostItems(this UIMagickaSlotComponent self, int nextd)
