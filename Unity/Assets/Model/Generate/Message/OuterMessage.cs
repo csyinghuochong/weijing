@@ -5591,6 +5591,47 @@ namespace ET
 
 	}
 
+//魔能注入
+	[ResponseType(nameof(M2C_MagickaZhuruResponse))]
+	[Message(OuterOpcode.C2M_MagickaZhuruRequest)]
+	[ProtoContract]
+	public partial class C2M_MagickaZhuruRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int Position { get; set; }
+
+		[ProtoMember(2)]
+		public List<long> OperateBagID = new List<long>();
+
+	}
+
+	[Message(OuterOpcode.M2C_MagickaZhuruResponse)]
+	[ProtoContract]
+	public partial class M2C_MagickaZhuruResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int AddExp { get; set; }
+
+		[ProtoMember(2)]
+		public List<MagickaSlotInfo> MagickaSlotIds = new List<MagickaSlotInfo>();
+
+	}
+
 //激活成就
 	[Message(OuterOpcode.M2C_ChengJiuActiveMessage)]
 	[ProtoContract]
@@ -14203,6 +14244,44 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_ItemOperateMagicResponse))]
+//魔能装备特殊处理
+	[Message(OuterOpcode.C2M_ItemOperateMagicRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemOperateMagicRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(2)]
+		public long OperateBagID { get; set; }
+
+		[ProtoMember(3)]
+		public string OperatePar { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemOperateMagicResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemOperateMagicResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public string OperatePar { get; set; }
 
 	}
 

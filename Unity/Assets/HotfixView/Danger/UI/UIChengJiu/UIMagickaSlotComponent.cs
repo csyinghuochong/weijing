@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,7 +16,7 @@ namespace ET
         public GameObject ScrollView_2;
         public GameObject Btn_ZhuRu;
         public List<UIItemComponent> ZhuRuItemUIlist = new List<UIItemComponent>();
-        public List<BagInfo> HuiShoulist = new List<BagInfo>();
+        public List<long> HuiShouIdlist = new List<long>();
 
         /// <summary>
         /// 装备列表
@@ -84,6 +83,7 @@ namespace ET
             self.ScrollView_2 = rc.Get<GameObject>("ScrollView_2");
             self.BuildingList_2 = rc.Get<GameObject>("BuildingList_2");
             self.Btn_ZhuRu = rc.Get<GameObject>("Btn_ZhuRu");
+            ButtonHelp.AddListenerEx(self.Btn_ZhuRu, () => { self.OnBtn_ZhuRu().Coroutine(); });
 
             self.ScrollView_1 = rc.Get<GameObject>("ScrollView_1");
             self.BuildingList_1 = rc.Get<GameObject>("BuildingList_1");
@@ -105,10 +105,11 @@ namespace ET
 
             self.OnInitUI();
             self.OnUpdateUI();
-            self.OnClickLockHandler(0);
+            self.OnClickSlotHandler(0);
             self.UIPageButton.OnSelectIndex(0);
 
             DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
+            DataUpdateComponent.Instance.AddListener(DataType.EquipWear, self);
         }
     }
 
@@ -117,6 +118,7 @@ namespace ET
         public override void Destroy(UIMagickaSlotComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.HuiShouSelect, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.EquipWear, self);
         }
     }
 
@@ -133,7 +135,7 @@ namespace ET
                 skillItem.SetActive(true);
                 UICommonHelper.SetParent(skillItem, self.RewardListNode);
                 UIMagickaSlotItemComponent uIMagickaSlotItem =  self.AddChild<UIMagickaSlotItemComponent, GameObject>(skillItem);
-                uIMagickaSlotItem.InitData( i, self.OnClickLockHandler);
+                uIMagickaSlotItem.InitData( i, self.OnClickSlotHandler);
                 self.UIMagickaSlotItemList.Add(uIMagickaSlotItem);
             }
         }
@@ -162,6 +164,12 @@ namespace ET
             }
         }
 
+        public static void OnEquipWear(this UIMagickaSlotComponent self)
+        {
+            self.OnUpdateUI();
+            self.OnClickSlotHandler(self.Position);
+        }
+
         public static void UpdateEquipList(this UIMagickaSlotComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
@@ -170,7 +178,6 @@ namespace ET
             List<BagInfo> allInfos = new List<BagInfo>();
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Equipment));
-
             int number = 0;
             for (int i = 0; i < allInfos.Count; i++)
             {
@@ -179,6 +186,13 @@ namespace ET
                 {
                     continue;
                 }
+                int subtype = itemConfig.ItemSubType - 4001; //0 1 2
+                int curtype = self.Position / 3;
+                if (curtype != subtype)
+                {
+                    continue;
+                }
+
 
                 UIItemComponent uI_1 = null;
                 if (number < self.EquiItemUIlist.Count)
@@ -311,13 +325,13 @@ namespace ET
             }
 
             //1新增  2移除 
-            if (!self.HuiShoulist.Contains(bagInfo))
+            if (!self.HuiShouIdlist.Contains(bagInfo.BagInfoID))
             {
-                self.HuiShoulist.Add(bagInfo);
+                self.HuiShouIdlist.Add(bagInfo.BagInfoID);
             }
             else
             {
-                self.HuiShoulist.Remove(bagInfo);
+                self.HuiShouIdlist.Remove(bagInfo.BagInfoID);
             }
         }
 
@@ -331,7 +345,7 @@ namespace ET
                 {
                     continue;
                 }
-                bool have = self.HuiShoulist.Where(item => item.BagInfoID == bagInfo.BagInfoID).Count() > 0;
+                bool have = self.HuiShouIdlist.Contains( bagInfo.BagInfoID);
                 uIItemComponent.Image_XuanZhong.SetActive(have);
             }
         }
@@ -354,12 +368,17 @@ namespace ET
 
         public static void OnUpdateUI(this UIMagickaSlotComponent self)
         {
-            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             for (int i = 0; i < self.UIMagickaSlotItemList.Count; i++)
-            { 
-                int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(i);
-                self.UIMagickaSlotItemList[i].Image_Lock.SetActive( curid == 0 );
+            {
+                self.UIMagickaSlotItemList[i].OnUpdateUI();
             }
+        }
+
+        public static async ETTask OnBtn_ZhuRu(this UIMagickaSlotComponent self)
+        {
+            int error = await  self.ZoneScene().GetComponent<ChengJiuComponent>().RequestMagicZhuru(self.Position, self.HuiShouIdlist);
+            self.OnClickPageButton(self.UIPageButton.CurrentIndex);
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask OnBtn_Equip(this UIMagickaSlotComponent self)
@@ -379,8 +398,7 @@ namespace ET
                 return;
             }
             Log.ILog.Debug($"OnBtn_Equip:  {self.EquipInfoId}");
-
-            await ETTask.CompletedTask;
+            await bagComponent.SendWearMagicEquip(3, bagInfo, self.Position);
         }
 
         public static async ETTask OnBtn_OpenSlot(this UIMagickaSlotComponent self)
@@ -401,7 +419,7 @@ namespace ET
             self.OnUpdateUI();
         }
 
-        public static void OnClickLockHandler(this UIMagickaSlotComponent self, int position)
+        public static void OnClickSlotHandler(this UIMagickaSlotComponent self, int position)
         {
             Log.ILog.Debug("OnClickLockHandler " + position);
             self.Position = position;

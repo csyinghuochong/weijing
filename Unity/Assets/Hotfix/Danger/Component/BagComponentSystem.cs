@@ -178,6 +178,19 @@ namespace ET
             }
         }
 
+        //穿戴魔能装备
+        public static async ETTask SendWearMagicEquip(this BagComponent self,int operatype, BagInfo bagInfo, int postion)
+        {
+            C2M_ItemOperateMagicRequest m_ItemOperateWear = new C2M_ItemOperateMagicRequest() { OperateType = operatype, OperateBagID = bagInfo.BagInfoID , OperatePar = postion.ToString()};
+            M2C_ItemOperateMagicResponse r2c_roleEquip = (M2C_ItemOperateMagicResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
+            if (self.IsDisposed || r2c_roleEquip.Error > 0)
+            {
+                return;
+            }
+
+            HintHelp.GetInstance().DataUpdate(DataType.EquipWear);
+        }
+
         //穿戴装备
         public static async ETTask SendWearEquip(this BagComponent self, BagInfo bagInfo)
         {
@@ -1041,7 +1054,24 @@ namespace ET
             }
             return self.QiangHuaLevel[subType];
         }
-      
+
+
+        //获取某个装备位置的道具数据
+        public static BagInfo GetMagicEquipBySubType(this BagComponent self, ItemLocType equipIndex, int subType, int position)
+        {
+            List<BagInfo> equipList = self.GetItemByLoc(equipIndex);
+            for (int i = 0; i < equipList.Count; i++)
+            {
+                ItemConfig itemCof = ItemConfigCategory.Instance.Get(equipList[i].ItemID);
+                if (itemCof.ItemSubType == subType && equipList[i].EquipIndex == position)
+                {
+                    return equipList[i];
+                }
+            }
+            return null;
+        }
+
+
         public static BagInfo GetEquipBySubType(this BagComponent self,  ItemLocType itemLocType, int subType)
         {
             List<BagInfo> bagInfos = self.GetItemsByLoc(itemLocType);

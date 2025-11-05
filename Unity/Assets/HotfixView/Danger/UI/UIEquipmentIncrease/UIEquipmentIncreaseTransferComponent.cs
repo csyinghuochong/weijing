@@ -243,7 +243,7 @@ namespace ET
                     continue;
                 }
                 
-                if (itemconf.EquipType == 101 || itemconf.EquipType == 201)
+                if (itemconf.EquipType > 100)
                 {
                     continue;
                 }

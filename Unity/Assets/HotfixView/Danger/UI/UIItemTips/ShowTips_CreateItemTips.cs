@@ -57,7 +57,11 @@ namespace ET
             if (itemConfig.ItemType == (int)ItemTypeEnum.Equipment)
             {
                 BagInfo haveEquip = null;
-                if (itemConfig.EquipType == 301)
+                if (itemConfig.EquipType == 401)
+                {
+                    haveEquip = null;
+                }
+                else if (itemConfig.EquipType == 301)
                 {
                     UI uI1 = UIHelper.GetUI(args.ZoneScene, UIType.UIPet);
                     haveEquip = uI1 != null ? uI1.GetComponent<UIPetComponent>().GetEquipBySubType(itemConfig.ItemSubType) : null;

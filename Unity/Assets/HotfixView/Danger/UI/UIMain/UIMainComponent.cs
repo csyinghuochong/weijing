@@ -1426,7 +1426,7 @@ namespace ET
                     }
                     else
                     {
-                        // 生肖、晶核这些不用
+                        // 生肖、晶核、魔能这些不用
                         ifWear = false;
                     }
 

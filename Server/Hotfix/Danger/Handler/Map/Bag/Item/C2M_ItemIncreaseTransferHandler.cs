@@ -20,14 +20,14 @@ namespace ET
             ItemConfig itemConfig_0 = ItemConfigCategory.Instance.Get(bagInfo_1.ItemID);
             ItemConfig itemConfig_1 = ItemConfigCategory.Instance.Get(bagInfo_2.ItemID);
 
-            if (itemConfig_0.EquipType == 101 || itemConfig_0.EquipType == 201)
+            if (itemConfig_0.EquipType > 100)
             {
                 response.Error = ErrorCode.ERR_ItemUseError;
                 reply();
                 return;
             }
             
-            if (itemConfig_1.EquipType == 101 || itemConfig_1.EquipType == 201)
+            if (itemConfig_1.EquipType > 100)
             {
                 response.Error = ErrorCode.ERR_ItemUseError;
                 reply();

@@ -99,14 +99,17 @@ namespace ET
 		/// <summary>开启需要总等级</summary>
 		[ProtoMember(8)]
 		public int NeedTotalLevel { get; set; }
-		/// <summary>额外属性</summary>
+		/// <summary>升级需要经验</summary>
 		[ProtoMember(9)]
+		public int NeedExp { get; set; }
+		/// <summary>额外属性</summary>
+		[ProtoMember(10)]
 		public string AddProperty { get; set; }
 		/// <summary>额外描述</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public string Des { get; set; }
 		/// <summary>额外描述2</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public string Des_EN { get; set; }
 
 	}

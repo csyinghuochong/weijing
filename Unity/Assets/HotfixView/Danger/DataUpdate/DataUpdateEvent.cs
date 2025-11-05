@@ -1559,6 +1559,11 @@ namespace ET
                     uimainComponent.OnEquipWear();
                     continue;
                 }
+                if (component is UIMagickaSlotComponent uIMagickaSlot)
+                {
+                    uIMagickaSlot.OnEquipWear();
+                    continue;
+                }
             }
         }
 

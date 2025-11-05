@@ -2921,6 +2921,8 @@ MonoBehaviour:
     gameObject: {fileID: 6948402452867760921}
   - key: BuildingList_2
     gameObject: {fileID: 3255020956136749565}
+  - key: Btn_ZhuRu
+    gameObject: {fileID: 4902476647015870190}
 --- !u!1 &4057351039609766260
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,6 +31,19 @@ namespace ET
             return r2C_Bag.Error;
         }
 
+        public static async ETTask<int> RequestMagicZhuru(this ChengJiuComponent self, int position, List<long> costs)
+        {
+            C2M_MagickaZhuruRequest request = new C2M_MagickaZhuruRequest() { Position = position, OperateBagID = costs };
+            M2C_MagickaZhuruResponse response = (M2C_MagickaZhuruResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if(response.Error == ErrorCode.ERR_Success)
+            {
+                self.MagickaSlotIdList = response.MagickaSlotIds;
+
+
+            }
+            return response.Error;
+        }
+
         public static async ETTask GetChengJiuList(this ChengJiuComponent self)
         {
             M2C_ChengJiuListResponse r2C_Respose = (M2C_ChengJiuListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(new C2M_ChengJiuListRequest());

@@ -23,7 +23,7 @@ namespace ET
             float addValue = 0;
 
             for (int i = 0; i < qulitylv.Count; i++) {
-                addValue = addValue + baseValue + (float)qulitylv[i]/5f;
+                addValue = addValue + baseValue + (float)qulitylv[i] / 5f;
             }
 
             int min = (int)(addValue * 0.8f);
@@ -75,7 +75,7 @@ namespace ET
                 }
             }
 
-            return canTrans;   
+            return canTrans;
         }
 
 
@@ -141,14 +141,14 @@ namespace ET
         }
 
         //生成晶核属性. 
-        public static HideProList GetJingHeHidePro(int itemid, int qulity) 
+        public static HideProList GetJingHeHidePro(int itemid, int qulity)
         {
             //1,30@1;202103,0.01,0.03   增加属性
             //1,30@2;62000001           增加技能
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
             string[] parmainfos = itemConfig.ItemUsePar.Split('@');
-            string[] attriinfos = parmainfos[1].Split(';'); 
+            string[] attriinfos = parmainfos[1].Split(';');
 
             int addType = int.Parse(attriinfos[0]);
             if (addType != 1)
@@ -263,10 +263,10 @@ namespace ET
             int number = 0;
             for (int i = 0; i < bagInfos.Count; i++)
             {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID );
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
                 if (itemConfig.ItemQuality >= qulity)
-                { 
-                    number++;   
+                {
+                    number++;
                 }
             }
 
@@ -276,7 +276,7 @@ namespace ET
 
         public static List<BagInfo> GetSeedList(List<BagInfo> bagInfos)
         {
-            List <BagInfo>  seedlist = new List<BagInfo> ();
+            List<BagInfo> seedlist = new List<BagInfo>();
             for (int i = 0; i < bagInfos.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
@@ -336,7 +336,7 @@ namespace ET
 
             return treasureMapList;
         }
-        
+
         public static Dictionary<int, int> ItemToUserDataType = new Dictionary<int, int>()
         {
             {  1, UserDataType.Gold },
@@ -407,13 +407,13 @@ namespace ET
 
         public static int GetNeedCell(string needitems)
         {
-            List<RewardItem> rewards = GetRewardItems(needitems);   
+            List<RewardItem> rewards = GetRewardItems(needitems);
             return GetNeedCell(rewards);
         }
 
         public static int GetNeedCell(List<RewardItem> rewardItems_1)
         {
-            Dictionary<int, int > rewardItems = new Dictionary<int, int>();
+            Dictionary<int, int> rewardItems = new Dictionary<int, int>();
             for (int i = 0; i < rewardItems_1.Count; i++)
             {
                 if (!rewardItems.ContainsKey(rewardItems_1[i].ItemID))
@@ -424,7 +424,7 @@ namespace ET
             }
 
             int bagCellNumber = 1;
-            foreach( var item in rewardItems )
+            foreach (var item in rewardItems)
             {
                 int itemId = item.Key;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
@@ -536,12 +536,12 @@ namespace ET
         }
 
 
-        public static bool IsBuyItem(int getType) 
+        public static bool IsBuyItem(int getType)
         {
             return getType == ItemGetWay.StoreBuy || getType == ItemGetWay.MysteryBuy || getType == ItemGetWay.PaiMaiShop;
         }
 
-        public static BagInfo GetEquipByWeizhi( List<BagInfo> bagInfos, int pos)
+        public static BagInfo GetEquipByWeizhi(List<BagInfo> bagInfos, int pos)
         {
             for (int i = 0; i < bagInfos.Count; i++)
             {
@@ -656,14 +656,14 @@ namespace ET
 
 
         //生肖激活前缀
-        public static bool IfShengXiaoActive(int shengXiaoItemID,List<BagInfo> equipList) {
+        public static bool IfShengXiaoActive(int shengXiaoItemID, List<BagInfo> equipList) {
 
             List<int> idList = new List<int>();
             for (int i = 0; i < equipList.Count; i++) {
                 idList.Add(equipList[i].ItemID);
             }
 
-            switch (shengXiaoItemID){
+            switch (shengXiaoItemID) {
 
                 case 16000101:
                     return true;
@@ -678,7 +678,7 @@ namespace ET
                     break;
 
                 case 16000104:
-                    if (idList.Contains(16000102)&& idList.Contains(16000103)|| idList.Contains(16000101))
+                    if (idList.Contains(16000102) && idList.Contains(16000103) || idList.Contains(16000101))
                     {
                         return true;
                     }
@@ -694,7 +694,7 @@ namespace ET
                     break;
 
                 case 16000107:
-                    if (idList.Contains(16000105)&& idList.Contains(16000106))
+                    if (idList.Contains(16000105) && idList.Contains(16000106))
                     {
                         return true;
                     }
@@ -718,7 +718,7 @@ namespace ET
                     break;
 
                 case 16000111:
-                    if (idList.Contains(16000109)&& idList.Contains(16000110)|| idList.Contains(16000112))
+                    if (idList.Contains(16000109) && idList.Contains(16000110) || idList.Contains(16000112))
                     {
                         return true;
                     }
@@ -919,10 +919,10 @@ namespace ET
         }
 
         public static string ItemGetWayName(int itemgetWay)
-        { 
+        {
             string getname = string.Empty;
             ItemGetWayNameList.TryGetValue(itemgetWay, out getname);
-            return getname; 
+            return getname;
         }
 
         public static void ItemLitSort(List<BagInfo> ItemTypeList)
@@ -1092,16 +1092,16 @@ namespace ET
             ////69000013;69000017
             List<int> skillids = new List<int>();
             if (ComHelp.IfNull(skillpar))
-            { 
-                return skillids;    
+            {
+                return skillids;
             }
             string[] skillinfos = skillpar.Split(';');
-            for (int i = 0;i < skillinfos.Length; i++)
+            for (int i = 0; i < skillinfos.Length; i++)
             {
                 int skillid = int.Parse(skillinfos[i]);
                 if (skillid != 0)
-                { 
-                    skillids.Add(skillid);  
+                {
+                    skillids.Add(skillid);
                 }
             }
             return skillids;
@@ -1111,8 +1111,8 @@ namespace ET
         //获取封印武器
         //1;14100021,14100022@2;14100021,14100022@3;14100021,14100022@4;14100021,14100022@5;14100021,14100022
         public static List<int> GetSealWeaponList(int occ, int itemid)
-        { 
-            List<int> weaponids = new List<int> {  };
+        {
+            List<int> weaponids = new List<int> { };
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
             string[] iteminfo = itemConfig.ItemUsePar.Split('@');
@@ -1130,7 +1130,7 @@ namespace ET
                     continue;
                 }
 
-                if (int.Parse(weaponinfo[0])== occ)
+                if (int.Parse(weaponinfo[0]) == occ)
                 {
                     string[] ids = weaponinfo[1].Split(',');
                     weaponids.Add(int.Parse(ids[0]));
@@ -1142,7 +1142,7 @@ namespace ET
             return weaponids;
         }
 
-        public static bool CheckUpItem(UserInfo userInfo,  BagInfo bagInfo, List<BagInfo> curEquiplist)
+        public static bool CheckUpItem(UserInfo userInfo, BagInfo bagInfo, List<BagInfo> curEquiplist)
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             if (itemConfig.ItemType != 3)
@@ -1176,7 +1176,7 @@ namespace ET
                 curLevel = 0;
             }
 
-            if (itemConfig.EquipType != 0 && itemConfig.EquipType != 99 && itemConfig.EquipType != 101 && itemConfig.EquipType != 201)
+            if (itemConfig.EquipType != 0 && itemConfig.EquipType != 99)
             {
                 if (itemConfig.EquipType < 10)
                 {
@@ -1242,6 +1242,23 @@ namespace ET
             bool showup = userInfo.Lv >= itemConfig.UseLv
                 && itemConfig.UseLv > curLevel && itemConfig.ItemQuality > curQulity && itemConfig.EquipType != 20;
             return showup;
+        }
+
+        public static int GetMagicItemSubType(int position)
+        {
+            if (position >= 0 && position <= 2)
+            {
+                return 4001;
+            }
+            if (position >= 3 && position <= 5)
+            {
+                return 4002;
+            }
+            if (position >= 6 && position <= 8)
+            {
+                return 4003;
+            }
+            return 0;
         }
 
         //获取装备的鉴定属性

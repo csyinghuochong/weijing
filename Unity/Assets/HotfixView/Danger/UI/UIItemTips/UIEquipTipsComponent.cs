@@ -356,6 +356,13 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int occTwo = userInfo.OccTwo;
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
+
+            if (itemconf.EquipType == 401)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请到魔能界面操作"));
+                return;
+            }
+
             if (itemconf.EquipType == 301)
             {
                 if (self.ItemOpetateType != ItemOperateEnum.PetEquipBag)
@@ -438,7 +445,16 @@ namespace ET
         //卸下装备
         public static void OnClickTakeEquip(this UIEquipTipsComponent self)
         {
-            self.BagComponent.SendTakeEquip(self.BagInfo).Coroutine();
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
+            if (itemCof.EquipType == 401)
+            {
+                self.BagComponent.SendWearMagicEquip(4, self.BagInfo, self.BagInfo.EquipIndex).Coroutine();
+            }
+            else
+            {
+                self.BagComponent.SendTakeEquip(self.BagInfo).Coroutine();
+            }
+
 
             //播放音效
             UIHelper.PlayUIMusic("10006");
@@ -871,7 +887,8 @@ namespace ET
             }
 
             //生肖和晶核不显示强化
-            if (itemconf.ItemType == 3 && (itemconf.EquipType == 101 || itemconf.EquipType == 201 || itemconf.EquipType == 301)) {
+            if (itemconf.ItemType == 3 && itemconf.EquipType > 100)
+            {
                 self.Obj_Lab_EquipQiangHua.SetActive(false);
             }
 
@@ -1073,7 +1090,18 @@ namespace ET
                         localPosition.x = 0;
                         self.Btn_Sell.GetComponent<RectTransform>().localPosition = localPosition;
                     }
-
+                    //魔能装备
+                    if (itemConfig.ItemType == 3 && itemConfig.EquipType == 401)
+                    {
+                       
+                    }
+                    break;
+                case ItemOperateEnum.MagicSlot:
+                    self.Obj_BagOpenSet.SetActive(false);
+                    self.Obj_RoseEquipOpenSet.SetActive(true);
+                    self.Obj_Btn_StoreHouseSet.SetActive(false);
+                    self.Obj_SaveStoreHouse.SetActive(false);
+                    self.Btn_Takeoff.SetActive(true);
                     break;
                 case ItemOperateEnum.XiangQianBag:
                     self.Obj_BagOpenSet.SetActive(false);

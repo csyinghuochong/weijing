@@ -40,11 +40,16 @@ namespace ET
                     reply();
                     return;
                 }
-
                 if (useBagInfo != null)
                 {
                     itemConfig = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
                     weizhi = itemConfig.ItemSubType;
+                }
+
+                if (itemConfig != null && itemConfig.EquipType == 401)
+                {
+                    reply();
+                    return;
                 }
 
                 //通知客户端背包刷新

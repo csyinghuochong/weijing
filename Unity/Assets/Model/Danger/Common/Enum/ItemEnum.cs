@@ -274,6 +274,7 @@ namespace ET
         AccountCangku = 25,
         GemBag = 26,                //宝石仓库背包
         GemCangku = 27,             //宝石仓库
+        MagicSlot = 28,
     }
 
 }

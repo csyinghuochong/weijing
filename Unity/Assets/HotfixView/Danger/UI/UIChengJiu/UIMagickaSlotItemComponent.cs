@@ -45,6 +45,26 @@ namespace ET
         {
             self.Position = position;
             self.ClickLockHandler = click;
+
+            self.OnUpdateUI();
+        }
+
+        public static void OnUpdateUI(this UIMagickaSlotItemComponent self)
+        {
+            int curid = self.ZoneScene().GetComponent<ChengJiuComponent>().GetCurrentMagickaSlotIdByPosition(self.Position);
+            self.Image_Lock.SetActive(curid == 0);
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            int subtype = ItemHelper.GetMagicItemSubType( self.Position );
+            BagInfo bagInfo = bagComponent.GetMagicEquipBySubType( ItemLocType.ItemLocEquip, subtype, self.Position);
+            if (bagInfo == null)
+            {
+                self.UICommonItem.GameObject.SetActive(false);
+                return;
+            }
+            self.UICommonItem.GameObject.SetActive(true);
+            self.UICommonItem.UpdateItem(bagInfo, ItemOperateEnum.MagicSlot);
+
         }
 
         public static void OnClickImage_Lock(this UIMagickaSlotItemComponent self)

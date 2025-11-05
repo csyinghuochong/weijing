@@ -149,8 +149,7 @@ namespace ET
                 return;
             }
 
-            if (itemConfig_0.EquipType == 201 || itemConfig_0.EquipType == 301 
-                || itemConfig_1.EquipType == 201 || itemConfig_1.EquipType == 301)
+            if (itemConfig_0.EquipType > 100 ||  itemConfig_1.EquipType > 100)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该装备不能转移！"));
                 return;
@@ -240,7 +239,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (itemconf.EquipType == 201 || itemconf.EquipType == 301)
+                if (itemconf.EquipType > 100)
                 {
                     continue;
                 }

@@ -369,6 +369,11 @@ namespace ET
             return 0;
         }
 
+        public static void OnAddMagickaExpByPosition(this ChengJiuComponent self, int position, int addexp)
+        { 
+            
+        }
+
         public static int GetCurrentMagickaTotalLevel(this ChengJiuComponent self)
         {
             int totallevel = 0;
