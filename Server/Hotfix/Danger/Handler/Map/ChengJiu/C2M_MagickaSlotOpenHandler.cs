@@ -28,7 +28,7 @@ namespace ET
             MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(nexid);
 
             int totallevel = chengJiuComponent.GetCurrentMagickaTotalLevel();
-            if (magickaSlotConfig.NeedTotalLevel < totallevel)
+            if (totallevel < magickaSlotConfig.NeedTotalLevel)
             {
                 response.Error = ErrorCode.ERR_MagicLevelNotEnough;
                 reply();
