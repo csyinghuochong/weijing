@@ -1,14 +1,20 @@
-﻿
-
-using System.Security.Cryptography;
-using System;
-using System.Linq;
-using Alipay.AopSdk.Core.Domain;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 
 namespace ET
 {
-    public class WeChatOACodeComponentDestroySystem : DestroySystem<WeChatOACodeComponent>
+
+    public class WeChatOACodeComponentAwake : AwakeSystem<WeChatOACodeComponent>
+    {
+        public override void Awake(WeChatOACodeComponent self)
+        {
+
+        }
+    }
+
+    public class WeChatOACodeComponentDestroy : DestroySystem<WeChatOACodeComponent>
     {
         public override void Destroy(WeChatOACodeComponent self)
         {
@@ -106,22 +112,21 @@ namespace ET
         public static int GenerateSecureFourDigitNumber()
         {
 
-            // 生成10000000到99999999之间的随机数
+            // 生成1000到9999之间的随机四位数
             using (var rng = RandomNumberGenerator.Create())
-
             {
-                byte[] buffer = new byte[8]; // 使用8字节(64位)以获得更大范围
+                byte[] buffer = new byte[4]; // 4字节(32位)已足够覆盖四位数范围
                 rng.GetBytes(buffer);
 
-                // 转换为64位无符号整数，确保非负
-                ulong randomValue = BitConverter.ToUInt64(buffer, 0);
+                // 转换为32位无符号整数，确保非负
+                uint randomValue = BitConverter.ToUInt32(buffer, 0);
 
-                // 计算范围：99999999 - 10000000 + 1 = 90000000
-                const ulong range = 90000000;
-                const int minValue = 10000000;
+                // 计算范围：9999 - 1000 + 1 = 9000
+                const uint range = 9000;
+                const int minValue = 1000;
 
                 // 计算结果：随机值 % 范围 + 最小值
-                ulong result = (randomValue % range) + minValue;
+                uint result = (randomValue % range) + minValue;
 
                 return (int)result;
             }
