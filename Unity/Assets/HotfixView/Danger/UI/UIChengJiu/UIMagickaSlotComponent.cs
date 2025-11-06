@@ -107,7 +107,7 @@ namespace ET
             self.Btn_OpenSlot = rc.Get<GameObject>("Btn_OpenSlot");
             ButtonHelp.AddListenerEx(self.Btn_OpenSlot, () => { self.OnBtn_OpenSlot().Coroutine();  });
 
-            self.Text_NeedTotalLevel = rc.Get<Text>("Text_NeedTotalLevel");
+            self.Text_NeedTotalLevel = rc.Get<GameObject>("Text_NeedTotalLevel").GetComponent<Text>();
 
             GameObject uiitem = rc.Get<GameObject>("UICommonItem");
             self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(uiitem);
