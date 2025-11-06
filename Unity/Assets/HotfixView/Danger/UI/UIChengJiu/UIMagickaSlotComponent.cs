@@ -9,6 +9,8 @@ namespace ET
     public class UIMagickaSlotComponent : Entity, IAwake, IDestroy
     {
 
+        public UIItemComponent UICommonItem;
+
         public GameObject SlotProItem;
         public GameObject ImageExpValue;
         public GameObject Text_ZiZhiValue;
@@ -38,6 +40,7 @@ namespace ET
         public GameObject EquipSlot;
         public GameObject OpenSlot;
 
+        public Text Text_NeedTotalLevel;
         public GameObject Btn_OpenSlot;
 
         public GameObject RewardListNode;
@@ -67,6 +70,7 @@ namespace ET
         public override void Awake(UIMagickaSlotComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
             self.UIMagickaSlotItem = rc.Get<GameObject>("UIMagickaSlotItem");
             self.UIMagickaSlotItem.SetActive(false);
@@ -103,6 +107,11 @@ namespace ET
             self.Btn_OpenSlot = rc.Get<GameObject>("Btn_OpenSlot");
             ButtonHelp.AddListenerEx(self.Btn_OpenSlot, () => { self.OnBtn_OpenSlot().Coroutine();  });
 
+            self.Text_NeedTotalLevel = rc.Get<Text>("Text_NeedTotalLevel");
+
+            GameObject uiitem = rc.Get<GameObject>("UICommonItem");
+            self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(uiitem);
+
             //单选组件
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
             UI uiPage = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
@@ -114,7 +123,7 @@ namespace ET
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
             self.OnInitUI();
-            self.OnUpdateUI();
+            self.OnUpdateSlotUI();
             self.OnClickSlotHandler(0);
             self.UIPageButton.OnSelectIndex(0);
 
@@ -176,7 +185,7 @@ namespace ET
 
         public static void OnEquipWear(this UIMagickaSlotComponent self)
         {
-            self.OnUpdateUI();
+            self.OnUpdateSlotUI();
             self.OnClickSlotHandler(self.Position);
         }
 
@@ -376,7 +385,7 @@ namespace ET
             }
         }
 
-        public static void OnUpdateUI(this UIMagickaSlotComponent self)
+        public static void OnUpdateSlotUI(this UIMagickaSlotComponent self)
         {
             for (int i = 0; i < self.UIMagickaSlotItemList.Count; i++)
             {
@@ -435,7 +444,8 @@ namespace ET
                 return;
             }
 
-            self.OnUpdateUI();
+            self.OnUpdateSlotUI();
+            self.OnClickSlotHandler(self.Position);
         }
 
         public static void OnClickSlotHandler(this UIMagickaSlotComponent self, int position)
@@ -469,19 +479,24 @@ namespace ET
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             MagickaSlotInfo magickaSlotInfo = chengJiuComponent.GetCurrentMagickaSlotByPosition(self.Position);
             int curid = magickaSlotInfo != null ? magickaSlotInfo.SlotId : 0;
-            self.SlotProItem.SetActive(curid > 0);
-            if (curid <= 0)
-            {
-                return;
-            }
+           
 
             long curex = magickaSlotInfo != null ? magickaSlotInfo.Exp : 0;
             int nexid = chengJiuComponent.GetNextMagickaSlotIdByPosition(self.Position);
             MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(nexid);
 
-            self.ImageExpValue.GetComponent<Image>().fillAmount = curex * 1f / magickaSlotConfig.NeedTotalLevel;
-            self.Text_ZiZhiValue.GetComponent<Text>().text = $"{curex}/{magickaSlotConfig.NeedTotalLevel}";
-            self.Text_ZiZhiName.GetComponent<Text>().text = magickaSlotConfig.Des;
+            self.SlotProItem.SetActive(true);
+            if (magickaSlotConfig.NeedExp <= 0)
+            {
+                self.ImageExpValue.GetComponent<Image>().fillAmount = 0f;
+            }
+            else
+            {
+                self.ImageExpValue.GetComponent<Image>().fillAmount = curex * 1f / magickaSlotConfig.NeedExp;
+            }
+            self.Text_ZiZhiValue.GetComponent<Text>().text = $"{curex}/{magickaSlotConfig.NeedExp}";
+            self.Text_ZiZhiName.GetComponent<Text>().text = magickaSlotConfig.GetDes();
+            self.UICommonItem.Label_ItemName.GetComponent<Text>().text = magickaSlotConfig.GetName();
         }
 
         public static void ShowCostItems(this UIMagickaSlotComponent self, int nextd)
@@ -515,6 +530,8 @@ namespace ET
             {
                 self.UICommonCostItemList[i].GameObject.SetActive(false);
             }
+
+            self.Text_NeedTotalLevel.text = $"总等级达到{magickaSlotConfig.NeedTotalLevel}级";
         }
     }
 }

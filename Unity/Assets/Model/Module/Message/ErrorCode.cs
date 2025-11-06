@@ -176,8 +176,8 @@ namespace ET
         public const int ERR_NotTimeToGet = 300710;
         public const int ERR_ActivityNotOpen = 300711;
         public const int ERR_AlreadyOpen = 300712;
-        public const int ERR_AlreadyMaxLevel = 300712;
         public const int ERR_MagicLevelNotEnough = 300713;
+        public const int ERR_AlreadyMaxLevel = 300714;
 
         /// <summary>
         /// 技能CD中

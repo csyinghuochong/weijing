@@ -2931,6 +2931,10 @@ MonoBehaviour:
     gameObject: {fileID: 9077488173518973846}
   - key: SlotProItem
     gameObject: {fileID: 1635174626304519361}
+  - key: UICommonItem
+    gameObject: {fileID: 774967458976570650}
+  - key: Text_NeedTotalLevel
+    gameObject: {fileID: 5586339206719138427}
 --- !u!1 &4057351039609766260
 GameObject:
   m_ObjectHideFlags: 0

@@ -1310,7 +1310,31 @@ namespace ET
                 return self.Des_EN;
             }
         }
-        
+
+        public static string GetName(this MagickaSlotConfig self)
+        {
+            if (GameSettingLanguge.Language == 0)
+            {
+                return self.MagicName;
+            }
+            else
+            {
+                return self.MagicName_EN;
+            }
+        }
+
+        public static string GetDes(this MagickaSlotConfig self)
+        {
+            if (GameSettingLanguge.Language == 0)
+            {
+                return self.Des;
+            }
+            else
+            {
+                return self.Des_EN;
+            }
+        }
+
         public static string GetName(this DungeonTransferConfig self)
         {
             if (GameSettingLanguge.Language == 0)

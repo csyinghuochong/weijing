@@ -89,7 +89,7 @@ namespace ET
 		public string MagicName { get; set; }
 		/// <summary>名字2</summary>
 		[ProtoMember(5)]
-		public string ShieldName_EN { get; set; }
+		public string MagicName_EN { get; set; }
 		/// <summary>等级</summary>
 		[ProtoMember(6)]
 		public int MagicLevel { get; set; }
