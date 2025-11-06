@@ -396,7 +396,11 @@ namespace ET
         public static async ETTask OnBtn_ZhuRu(this UIMagickaSlotComponent self)
         {
             int error = await  self.ZoneScene().GetComponent<ChengJiuComponent>().RequestMagicZhuru(self.Position, self.HuiShouIdlist);
-            self.OnClickPageButton(self.UIPageButton.CurrentIndex);
+            if (error != ErrorCode.ERR_Success || self.IsDisposed)
+            {
+                return;
+            }
+            self.OnClickSlotHandler(self.Position);
             await ETTask.CompletedTask;
         }
 
