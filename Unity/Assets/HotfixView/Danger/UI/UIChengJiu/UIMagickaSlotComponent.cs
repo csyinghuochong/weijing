@@ -508,10 +508,10 @@ namespace ET
             MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(nextd);
 
             int shownumber = 0;
-            string[] costItem = magickaSlotConfig.OpenCostItem.Split("@");
+            string[] costItem = magickaSlotConfig.OpenCostItem.Split('@');
             for (int i = 0; i < costItem.Length; i++)
             {
-                string[] iteminfo = costItem[i].Split(";");
+                string[] iteminfo = costItem[i].Split(';');
                 if (iteminfo.Length != 2)
                 {
                     continue;
