@@ -440,11 +440,12 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 177, ServerIp = $"{ip}:20545", ServerName = "长安旧梦", ServerOpenTime = 1760094000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 178, ServerIp = $"{ip}:20565", ServerName = "风暴之地", ServerOpenTime = 1760698800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 179, ServerIp = $"{ip}:20595", ServerName = "巨刃降临", ServerOpenTime = 1761303600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-
-
-                //2025/10/31 19:00:00 1761908400000 合区 xx-xx   xx/xx
-                //2025/10/31 19:00:00 1761908400000 新区 生命之树 180
                 serverItems_1.Add(new ServerItem() { ServerId = 180, ServerIp = $"{ip}:20375", ServerName = "生命之树", ServerOpenTime = 1761908400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+
+
+                //2025/11/07 19:00:00 1762513200000 合区 xx-xx   xx/xx
+                //2025/11/07 19:00:00 1762513200000 新区 浮生若梦 181
+                serverItems_1.Add(new ServerItem() { ServerId = 181, ServerIp = $"{ip}:20405", ServerName = "浮生若梦", ServerOpenTime = 1762513200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
