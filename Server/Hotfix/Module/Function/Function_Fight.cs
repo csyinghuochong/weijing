@@ -494,6 +494,27 @@ namespace ET
                     ifHit = false;
                 }
 
+                if (skillconfig.SkillActType == 0) {
+
+                    float dodgeNowValue = numericComponentDefend.GetAsFloat(NumericType.Now_CommonActDodgePro);
+
+                    //玩家闪避最多不超过60%
+                    if (defendUnit.Type == UnitType.Player)
+                    {
+                        if (dodgeNowValue >= 0.5)
+                        {
+                            dodgeNowValue = 0.5f;
+                        }
+                    }
+
+                    if (RandomHelper.RandFloat() <= dodgeNowValue)
+                    {
+                        ifHit = false;
+                    }
+                    
+                }
+
+
                 //技能闪避
                 if (skillconfig.SkillActType == 1)
                 {
