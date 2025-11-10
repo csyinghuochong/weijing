@@ -46,12 +46,6 @@ namespace ET
                     weizhi = itemConfig.ItemSubType;
                 }
 
-                if (itemConfig != null)  
-                {
-                    reply();
-                    return;
-                }
-
                 //通知客户端背包刷新
                 M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
                 //使用道具
