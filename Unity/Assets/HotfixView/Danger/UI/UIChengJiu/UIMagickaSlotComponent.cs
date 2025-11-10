@@ -561,7 +561,19 @@ namespace ET
                 self.UICommonCostItemList[i].GameObject.SetActive(false);
             }
 
-            self.Text_NeedTotalLevel.text = $"总等级达到{magickaSlotConfig.NeedTotalLevel}级";
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            int totallevel = chengJiuComponent.GetCurrentMagickaTotalLevel();
+            string str1 = GameSettingLanguge.LoadLocalization("总等级达到");
+            string str2 = GameSettingLanguge.LoadLocalization("级");
+            if (totallevel < magickaSlotConfig.NeedTotalLevel)
+            {
+                self.Text_NeedTotalLevel.text = $"<color=#B6FF39>{str1}<color=#FF0000>{totallevel}/{magickaSlotConfig.NeedTotalLevel}</color>{str2}</color>";
+            }
+            else
+            {
+                self.Text_NeedTotalLevel.text = $"<color=#B6FF39>{str1}{totallevel}/{magickaSlotConfig.NeedTotalLevel}{str2}</color>";
+            }
+            
         }
     }
 }

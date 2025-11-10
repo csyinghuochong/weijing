@@ -129,6 +129,17 @@ namespace ET
             return id;
         }
 
+        public static int GetCurrentMagickaTotalLevel(this ChengJiuComponent self)
+        {
+            int totallevel = 0;
+            foreach (var magicinfo in self.MagickaSlotIdList)
+            {
+                MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(magicinfo.SlotId);
+                totallevel += magickaSlotConfig.MagicLevel;
+            }
+            return totallevel;
+        }
+
         public static int GetNextMagickaSlotIdByPosition(this ChengJiuComponent self, int position)
         {
             int id = self.GetCurrentMagickaSlotIdByPosition(position);
