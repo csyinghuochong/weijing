@@ -125,7 +125,6 @@ namespace ET
             self.OnInitUI();
             self.OnUpdateSlotUI();
             self.OnClickSlotHandler(0);
-            self.UIPageButton.OnSelectIndex(0);
 
             DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
             DataUpdateComponent.Instance.AddListener(DataType.EquipWear, self);
@@ -476,7 +475,8 @@ namespace ET
             }
             self.ShowSlotPros();
 
-            self.OnClickPageButton(self.UIPageButton.CurrentIndex);
+            self.UIPageButton.OnSelectIndex(curid > 0 ? 0 : 1);
+            //self.OnClickPageButton(self.UIPageButton.CurrentIndex);
         }
 
         public static void ShowSlotPros(this UIMagickaSlotComponent self)
@@ -510,6 +510,7 @@ namespace ET
             }
             self.UICommonItem.Image_ItemIcon.SetActive(bagInfo != null);   
             self.UICommonItem.Label_ItemName.GetComponent<Text>().text = magickaSlotConfig.GetName();
+
         }
 
         public static void ShowCostItems(this UIMagickaSlotComponent self, int nextd)
