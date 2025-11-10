@@ -109,6 +109,8 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_AlreadyOpen, "该栏位已经开启!");
             ErrorHintList.Add(ErrorCode.ERR_AlreadyMaxLevel, "该栏位已经升级到最大等级!");
             ErrorHintList.Add(ErrorCode.ERR_MagicLevelNotEnough, "总的魔能等级不足!");
+            ErrorHintList.Add(ErrorCode.ERR_MagicNotOpen, "魔能栏位未开启!");
+
 
             ErrorHintList.Add(ErrorCode.ERR_TeamIsFull, "队伍已满");
             ErrorHintList.Add(ErrorCode.ERR_LevelIsNot, "等级不足");

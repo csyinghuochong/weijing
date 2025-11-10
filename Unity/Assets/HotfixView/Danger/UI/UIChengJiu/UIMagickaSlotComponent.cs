@@ -415,18 +415,19 @@ namespace ET
                 return;
             }
 
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            BagInfo bagInfo = bagComponent.GetBagInfo(self.EquipInfoId);
+            if (bagInfo == null)
+            {
+                return;
+            }
+
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             MagickaSlotInfo magickaSlotInfo = chengJiuComponent.GetCurrentMagickaSlotByPosition(self.Position);
             int curid = magickaSlotInfo != null ? magickaSlotInfo.SlotId : 0;
             if (curid <= 0)
             {
-                return;
-            }
-
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            BagInfo bagInfo =  bagComponent.GetBagInfo(self.EquipInfoId);
-            if (bagInfo == null)
-            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCode.ERR_MagicNotOpen));
                 return;
             }
             Log.ILog.Debug($"OnBtn_Equip:  {self.EquipInfoId}");

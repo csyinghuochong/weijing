@@ -178,6 +178,7 @@ namespace ET
         public const int ERR_AlreadyOpen = 300712;
         public const int ERR_MagicLevelNotEnough = 300713;
         public const int ERR_AlreadyMaxLevel = 300714;
+        public const int ERR_MagicNotOpen = 300715;
 
         /// <summary>
         /// 技能CD中
