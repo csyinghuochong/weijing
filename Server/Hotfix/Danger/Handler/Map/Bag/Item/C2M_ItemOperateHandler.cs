@@ -46,7 +46,7 @@ namespace ET
                     weizhi = itemConfig.ItemSubType;
                 }
 
-                if (itemConfig != null && itemConfig.EquipType == 401)
+                if (itemConfig != null)  
                 {
                     reply();
                     return;

@@ -204,13 +204,14 @@ namespace ET
                 {
                     continue;
                 }
+
+
                 int subtype = itemConfig.ItemSubType - 4001; //0 1 2
                 int curtype = self.Position / 3;
-                if (curtype != subtype)
+                if (curtype != subtype && curtype!=2)
                 {
                     continue;
                 }
-
 
                 UIItemComponent uI_1 = null;
                 if (number < self.EquiItemUIlist.Count)
