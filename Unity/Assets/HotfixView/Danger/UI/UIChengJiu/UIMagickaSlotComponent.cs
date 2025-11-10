@@ -501,6 +501,14 @@ namespace ET
             }
             self.Text_ZiZhiValue.GetComponent<Text>().text = $"{curex}/{magickaSlotConfig.NeedExp}";
             self.Text_ZiZhiName.GetComponent<Text>().text = magickaSlotConfig.GetDes();
+
+            int subtype = ItemHelper.GetMagicItemSubType(self.Position);
+            BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetMagicEquipBySubType(ItemLocType.ItemLocBag, subtype, self.Position);
+            if (bagInfo != null)
+            {
+                self.UICommonItem.UpdateItem(bagInfo, ItemOperateEnum.None);
+            }
+            self.UICommonItem.Image_ItemIcon.SetActive(bagInfo != null);   
             self.UICommonItem.Label_ItemName.GetComponent<Text>().text = magickaSlotConfig.GetName();
         }
 
