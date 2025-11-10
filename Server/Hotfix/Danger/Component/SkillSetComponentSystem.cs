@@ -1122,8 +1122,11 @@ namespace ET
 			itemSkills.AddRange(bagInfo.InheritSkills);
 			self.OnAddItemSkill(itemSkills);
 
-			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
-			self.TianFuAdd(equipConfig.TianFuId);
+			if (itemConfig.ItemEquipID > 0)
+			{
+                EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
+                self.TianFuAdd(equipConfig.TianFuId);
+            }
 		}
 
 		public static int SetSkillIdByPosition(this SkillSetComponent self, C2M_SkillSet request)

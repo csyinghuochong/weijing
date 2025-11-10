@@ -91,17 +91,19 @@ namespace ET
 
                     unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(ItemLocType.ItemLocEquip, beforeequip);
                     unit.GetComponent<SkillSetComponent>().OnWearEquip(useBagInfo);
+                    beforeequip.EquipIndex = -1;
+                    useBagInfo.EquipIndex = equipposition;
                     m2c_bagUpdate.BagInfoUpdate.Add(beforeequip);
                 }
                 else
                 {
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocEquip, ItemLocType.ItemLocBag);
                     unit.GetComponent<SkillSetComponent>().OnWearEquip(useBagInfo);
+                    useBagInfo.EquipIndex = equipposition;
                 }
                
                 Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
                 useBagInfo.isBinging = true;
-                useBagInfo.EquipIndex = equipposition;
                 m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
 
                 if (weizhi == (int)ItemSubTypeEnum.Wuqi)
