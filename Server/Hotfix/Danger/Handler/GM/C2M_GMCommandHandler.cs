@@ -321,6 +321,12 @@ namespace ET
 					case 14:
                         unit.GetComponent<BagComponent>().OnAddJianDing();
                         break;
+					case 17: //进入副本
+						break;
+					case 18: //添加技能
+						int skillid = int.Parse(commands[1]);
+						unit.GetComponent<SkillSetComponent>().OnAddSkillBook(  SkillSourceEnum.Skill, skillid);
+                        break;
 					default:
 						break;
 				}
