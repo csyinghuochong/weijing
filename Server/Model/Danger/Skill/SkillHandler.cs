@@ -92,6 +92,8 @@ namespace ET
 
         public List<long> ComboTimeList = new List<long>();
 
+        public List<int> PassiveTypeEnum_22 = new List<int>();
+
 
         public abstract void OnInit(SkillInfo skillId, Unit theUnitFrom);
 

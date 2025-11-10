@@ -398,6 +398,30 @@ namespace ET
         //目标附加Buff
         public static void TriggerSkillBuff(this SkillHandler self, Unit uu)
         {
+            if (self.SkillConf.SkillType == SkillTypeEnum.PassiveSkill 
+                && SkillHelp.havePassiveSkillType(self.SkillConf.PassiveSkillType, SkillPassiveTypeEnum.PassiveTypeEnum_22))
+            {
+                return;
+            }
+
+            if (self.PassiveTypeEnum_22!=null)
+            {
+                List<int> addbuff = new List<int>();    
+                for(int i = 0; i < self.PassiveTypeEnum_22.Count; i++)
+                {
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.PassiveTypeEnum_22[i] );
+                    if (skillConfig.BuffID != null)
+                    {
+                        addbuff.AddRange(skillConfig.BuffID);
+                    }
+                }
+
+                for (int y = 0; y < addbuff.Count; y++)
+                {
+                    self.SkillBuff(addbuff[y], uu);
+                }
+            }
+
             //触发Buff
             if (self.SkillConf.BuffID != null && self.SkillConf.BuffID[0] != 0)
             {

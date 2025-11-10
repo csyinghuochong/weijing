@@ -568,12 +568,27 @@ namespace ET
 
             self.InterruptSing(skillcmd.SkillID, false);
 
+
+            List<int> passiveTypeEnum_22 = null;
+            SkillPassiveComponent skillPassiveComponent = unit.GetComponent<SkillPassiveComponent>();
+            if (skillPassiveComponent == null)
+            {
+                Log.Debug($"skillPassiveComponent == null: {unit.Type}");
+            }
+            if (zhudong && skillPassiveComponent!= null
+                && !SkillHelp.NOPassiveSkill.Contains(weaponSkillConfig.Id) 
+                && !SkillHelp.IsChongJi(weaponSkillConfig.GameObjectName))
+            {
+                passiveTypeEnum_22 = skillPassiveComponent.IsTrigegerPassiveTypeEnum_22();
+            }
+
             List<SkillHandler> handlerList = new List<SkillHandler>();  
             for (int i = 0; i < skillList.Count; i++)
             {
                 skillList[i].SingValue = skillcmd.SingValue;
                 SkillHandler skillAction = self.SkillFactory(skillList[i], unit);
                 skillAction.OriginalSkill = skillcmd.SkillID;
+                skillAction.PassiveTypeEnum_22 = passiveTypeEnum_22;
                 skillList[i].SkillBeginTime = skillAction.SkillBeginTime;
                 skillList[i].SkillEndTime = skillAction.SkillEndTime;
                 handlerList.Add(skillAction);
@@ -602,11 +617,6 @@ namespace ET
             }
             if (zhudong && !SkillHelp.NOPassiveSkill.Contains(weaponSkillConfig.Id)  && !SkillHelp.IsChongJi(weaponSkillConfig.GameObjectName))
             {
-                SkillPassiveComponent skillPassiveComponent = unit.GetComponent<SkillPassiveComponent>();
-                if (skillPassiveComponent == null)
-                {
-                    Log.Debug($"skillPassiveComponent == null: {unit.Type}");
-                }
                 if (weaponSkillConfig.SkillActType == 0)
                 {
                     skillPassiveComponent?.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.AckNumber_16, skillcmd.TargetID, skillcmd.SkillID);
@@ -615,6 +625,7 @@ namespace ET
                 skillPassiveComponent?.OnTrigegerPassiveSkill(weaponSkillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7, skillcmd.TargetID, skillcmd.SkillID);
                 skillPassiveComponent?.OnTrigegerPassiveSkill(weaponSkillConfig.SkillRangeSize <= 4 ? SkillPassiveTypeEnum.AckDistance_9 : SkillPassiveTypeEnum.AckDistance_10, skillcmd.TargetID, skillcmd.SkillID);
                 skillPassiveComponent?.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.AllSkill_17, skillcmd.TargetID, skillcmd.SkillID);
+                skillPassiveComponent?.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.PassiveTypeEnum_22, skillcmd.TargetID, skillcmd.SkillID, passiveTypeEnum_22);
             }
             if (unit.Type == UnitType.Player && weaponSkillConfig.SkillUseMP > 0)
             {

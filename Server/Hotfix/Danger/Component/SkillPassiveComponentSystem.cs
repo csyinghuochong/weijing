@@ -546,7 +546,43 @@ namespace ET
             return 0;
         }
 
-        public static void OnTrigegerPassiveSkill(this SkillPassiveComponent self, int skillPassiveTypeEnum, long targetId = 0, int skillid = 0)
+        public static List<int> IsTrigegerPassiveTypeEnum_22(this SkillPassiveComponent self)
+        {
+            List<int> listskills = new List<int>();   
+            using ListComponent<SkillPassiveInfo> skillPassiveInfos = ListComponent<SkillPassiveInfo>.Create();
+            for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
+            {
+                if (!self.SkillPassiveInfos[i].SkillPassiveTypeEnum.Contains(SkillPassiveTypeEnum.PassiveTypeEnum_22))
+                {
+                    continue;
+                }
+
+                skillPassiveInfos.Add(self.SkillPassiveInfos[i]);
+            }
+            if (skillPassiveInfos.Count == 0)
+            {
+                return listskills;
+            }
+
+            long serverTime = TimeHelper.ServerNow();
+
+            for (int s = 0; s < skillPassiveInfos.Count; s++)
+            {
+                SkillPassiveInfo skillIfo = skillPassiveInfos[s];
+
+                float skillproValue = skillIfo.SkillPro[skillIfo.SkillPassiveTypeEnum.IndexOf(SkillPassiveTypeEnum.PassiveTypeEnum_22)];
+
+                bool trigger = skillproValue >= RandomHelper.RandFloat01();
+
+                if (trigger)
+                {
+                    listskills.Add(skillIfo.SkillId);
+                }
+            }
+            return listskills;
+        }
+
+        public static void OnTrigegerPassiveSkill(this SkillPassiveComponent self, int skillPassiveTypeEnum, long targetId = 0, int skillid = 0, List<int> passiveTypeEnum_22 = null)
         {
             Unit unit = self.GetParent<Unit>();
 
@@ -567,7 +603,6 @@ namespace ET
                 if (!self.SkillPassiveInfos[i].SkillPassiveTypeEnum.Contains(skillPassiveTypeEnum) )
                 {
                     continue;
-                    
                 }
 
                 if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum.Contains(SkillPassiveTypeEnum.AckNumber_16))
@@ -652,6 +687,9 @@ namespace ET
                     case SkillPassiveTypeEnum.AckCritical_19:
                     case SkillPassiveTypeEnum.FanGunCD_20:
                         trigger = skillproValue >= RandomHelper.RandFloat01();
+                        break;
+                    case SkillPassiveTypeEnum.PassiveTypeEnum_22:
+                        trigger = passiveTypeEnum_22.Contains(skillIfo.SkillId ); 
                         break;
                     case SkillPassiveTypeEnum.TeamerEnter_12:
                         trigger = true;
