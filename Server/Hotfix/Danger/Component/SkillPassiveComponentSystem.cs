@@ -548,7 +548,13 @@ namespace ET
 
         public static List<int> IsTrigegerPassiveTypeEnum_22(this SkillPassiveComponent self)
         {
-            List<int> listskills = new List<int>();   
+            Unit unit = self.GetParent<Unit>();
+
+            if (unit.Type != UnitType.Player)
+            {
+                return null;
+            }
+            List<int> listskills = new List<int>();
             using ListComponent<SkillPassiveInfo> skillPassiveInfos = ListComponent<SkillPassiveInfo>.Create();
             for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
             {
@@ -563,8 +569,6 @@ namespace ET
             {
                 return listskills;
             }
-
-            long serverTime = TimeHelper.ServerNow();
 
             for (int s = 0; s < skillPassiveInfos.Count; s++)
             {
