@@ -1,33 +1,36 @@
 
-��"一号位攻击型魔能1级*Lava Soul Level 10:10000165;1@10000166;1R205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
-��"一号位攻击型魔能2级*Lava Soul Level 20:10000165;1@10000166;1@H
+��"魔能攻击孔位*Lava Soul Level 10:	1;1000000R205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
+��"魔能攻击孔位*Lava Soul Level 20:10000180;10@H
 R205703;0.02Z&降低受到玩家普通攻击伤害2%b0Reduce damage from player's normal attacks by 2%
-��"一号位攻击型魔能3级*Lava Soul Level 30:10000165;1@10000166;1@HR205703;0.03Z&降低受到玩家普通攻击伤害3%b5Reduces damage taken from player basic attacks by 2%.
-��"一号位攻击型魔能4级*Lava Soul Level 40:10000165;1@10000166;1@HR205703;0.04Z&降低受到玩家普通攻击伤害4%b0Reduce damage from player's normal attacks by 3%
-��"一号位攻击型魔能5级*Lava Soul Level 50:10000165;1@10000166;1@H(R205703;0.05Z&降低受到玩家普通攻击伤害5%b5Reduces damage taken from player basic attacks by 3%.
-��"一号位攻击型魔能6级*Lava Soul Level 60:10000165;1@10000166;1@H2R205703;0.06Z&降低受到玩家普通攻击伤害6%b0Reduce damage from player's normal attacks by 4%
-��"一号位攻击型魔能7级*Lava Soul Level 70:10000165;1@10000166;1@H<R205703;0.07Z&降低受到玩家普通攻击伤害7%b5Reduces damage taken from player basic attacks by 4%.
-��"一号位攻击型魔能8级*Lava Soul Level 80:10000165;1@10000166;1@HFR205703;0.08Z&降低受到玩家普通攻击伤害8%b0Reduce damage from player's normal attacks by 5%
-��"二号位攻击型魔能1级*Lava Soul Level 10:10000165;11@10000166;1R205803;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
-��"二号位攻击型魔能2级*Lava Soul Level 10:10000165;1@10000166;1@H
+��"魔能攻击孔位*Lava Soul Level 30:10000180;10@HR205703;0.03Z&降低受到玩家普通攻击伤害3%b5Reduces damage taken from player basic attacks by 2%.
+��"魔能攻击孔位*Lava Soul Level 40:10000180;10@HR205703;0.04Z&降低受到玩家普通攻击伤害4%b0Reduce damage from player's normal attacks by 3%
+��"魔能攻击孔位*Lava Soul Level 50:10000180;10@H(R205703;0.05Z&降低受到玩家普通攻击伤害5%b5Reduces damage taken from player basic attacks by 3%.
+��"魔能攻击孔位*Lava Soul Level 60:10000180;10@H2R205703;0.06Z&降低受到玩家普通攻击伤害6%b0Reduce damage from player's normal attacks by 4%
+��"魔能攻击孔位*Lava Soul Level 70:10000180;10@H<R205703;0.07Z&降低受到玩家普通攻击伤害7%b5Reduces damage taken from player basic attacks by 4%.
+��"魔能攻击孔位*Lava Soul Level 80:10000180;10@HFR205703;0.08Z&降低受到玩家普通攻击伤害8%b0Reduce damage from player's normal attacks by 5%
+��"魔能攻击孔位*Lava Soul Level 10:1;10000000@10000180;10R205803;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
+��"魔能攻击孔位*Lava Soul Level 10:10000180;10@H
 R205803;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
-��"二号位攻击型魔能3级*Lava Soul Level 20:10000165;1@10000166;2@HR205803;0.03Z&降低受到玩家普通攻击伤害3%b5Reduces damage taken from player basic attacks by 3%.
-��"二号位攻击型魔能4级*Lava Soul Level 30:10000165;1@10000166;3@HR205803;0.04Z&降低受到玩家普通攻击伤害4%b5Reduces damage taken from player basic attacks by 4%.
-��"二号位攻击型魔能5级*Lava Soul Level 40:10000165;1@10000166;4@H(R205803;0.05Z&降低受到玩家普通攻击伤害5%b5Reduces damage taken from player basic attacks by 5%.
-��"二号位攻击型魔能6级*Lava Soul Level 50:10000165;1@10000166;5@H2R205803;0.06Z&降低受到玩家普通攻击伤害6%b5Reduces damage taken from player basic attacks by 6%.
-��"二号位攻击型魔能7级*Lava Soul Level 60:10000165;1@10000166;6@H<R205803;0.07Z&降低受到玩家普通攻击伤害7%b5Reduces damage taken from player basic attacks by 7%.
-��"二号位攻击型魔能8级*Lava Soul Level 70:10000165;1@10000166;7@HFR205803;0.08Z&降低受到玩家普通攻击伤害8%b5Reduces damage taken from player basic attacks by 8%.
-��"三号位攻击型魔能1级*Lava Soul Level 10:10000165;4@10000166;7@HPR205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
-��"三号位攻击型魔能2级*Lava Soul Level 20:10000165;1@10000166;8@HZR205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
-��"一号位恢复型魔能1级*Lava Soul Level 10:10000165;1@10000166;7@HdR205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
-��"一号位攻击型魔能2级*Lava Soul Level 20:10000165;1@10000166;8@HnR205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
-��'"二号位恢复型魔能1级*Lava Soul Level 10:10000165;8@10000166;7@HxR205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
-��'"二号位攻击型魔能2级*Lava Soul Level 20:10000165;1@10000166;8@H�R205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
-��."三号位恢复型魔能1级*Lava Soul Level 10:10000165;6@10000166;7@H�R205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
-��."三号位攻击型魔能2级*Lava Soul Level 20:10000165;1@10000166;8@H�R205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
-��6"一号位全能型魔能1级*Lava Soul Level 10:10000165;4@10000166;7@H�R205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
-��6"一号位全能型魔能2级*Lava Soul Level 20:10000165;1@10000166;8@H�R205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
-��>"二号位全能型魔能1级*Lava Soul Level 10:10000165;6@10000166;7@H�R205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
-��>"二号位全能型魔能2级*Lava Soul Level 20:10000165;1@10000166;8@H�R205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
-��F	"三号位全能型魔能1级*Lava Soul Level 10:10000165;5@10000166;7@H�R205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
-��F	"三号位全能型魔能2级*Lava Soul Level 20:10000165;1@10000166;8@H�R205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
+��"魔能攻击孔位*Lava Soul Level 20:10000180;10@HR205803;0.03Z&降低受到玩家普通攻击伤害3%b5Reduces damage taken from player basic attacks by 3%.
+��"魔能攻击孔位*Lava Soul Level 30:10000180;10@HR205803;0.04Z&降低受到玩家普通攻击伤害4%b5Reduces damage taken from player basic attacks by 4%.
+��"魔能攻击孔位*Lava Soul Level 40:10000180;10@H(R205803;0.05Z&降低受到玩家普通攻击伤害5%b5Reduces damage taken from player basic attacks by 5%.
+��"魔能攻击孔位*Lava Soul Level 50:10000180;10@H2R205803;0.06Z&降低受到玩家普通攻击伤害6%b5Reduces damage taken from player basic attacks by 6%.
+��"魔能攻击孔位*Lava Soul Level 60:10000180;10@H<R205803;0.07Z&降低受到玩家普通攻击伤害7%b5Reduces damage taken from player basic attacks by 7%.
+��"魔能攻击孔位*Lava Soul Level 70:10000180;10@HFR205803;0.08Z&降低受到玩家普通攻击伤害8%b5Reduces damage taken from player basic attacks by 8%.
+��"魔能攻击孔位*Lava Soul Level 10:1;10000000@10000180;10@HPR205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
+��"魔能攻击孔位*Lava Soul Level 20:10000180;10@HZR205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
+��"魔能防护孔位*Lava Soul Level 10:1;10000000@10000180;10@HdR205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
+��"魔能防护孔位*Lava Soul Level 20:10000180;10@HnR205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
+��'"魔能防护孔位*Lava Soul Level 10:1;10000000@10000180;10@HxR205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
+��'"魔能防护孔位*Lava Soul Level 20:10000180;10@H�R205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
+��."魔能防护孔位*Lava Soul Level 10:1;10000000@10000180;10@H�R205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
+��."魔能防护孔位*Lava Soul Level 20:10000180;10@H�R205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
+��6"全能孔位*Lava Soul Level 10:
+10000181;1@H�R205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
+��6"全能孔位*Lava Soul Level 20:10000180;10@H�R205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
+��>"全能孔位*Lava Soul Level 10:
+10000181;1@H�R205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
+��>"全能孔位*Lava Soul Level 20:10000180;10@H�R205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
+��F	"全能孔位*Lava Soul Level 10:
+10000181;1@H�R205703;0.01Z&降低受到玩家普通攻击伤害1%b5Reduces damage taken from player basic attacks by 1%.
+��F	"全能孔位*Lava Soul Level 20:10000180;10@H�R205703;0.02Z&降低受到玩家普通攻击伤害2%b5Reduces damage taken from player basic attacks by 2%.
