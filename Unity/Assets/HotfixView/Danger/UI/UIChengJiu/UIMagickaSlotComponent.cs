@@ -9,6 +9,7 @@ namespace ET
     public class UIMagickaSlotComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject ImageLockNode;
         public UIItemComponent UICommonItem;
 
         public GameObject SlotProItem;
@@ -111,6 +112,9 @@ namespace ET
 
             GameObject uiitem = rc.Get<GameObject>("UICommonItem");
             self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(uiitem);
+
+            self.ImageLockNode = rc.Get<GameObject>("ImageLockNode");
+            self.ImageLockNode.SetActive(false);
 
             //单选组件
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
@@ -502,7 +506,6 @@ namespace ET
             MagickaSlotInfo magickaSlotInfo = chengJiuComponent.GetCurrentMagickaSlotByPosition(self.Position);
             int curid = magickaSlotInfo != null ? magickaSlotInfo.SlotId : 0;
            
-
             long curex = magickaSlotInfo != null ? magickaSlotInfo.Exp : 0;
             int nexid = chengJiuComponent.GetNextMagickaSlotIdByPosition(self.Position);
             MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(nexid);
@@ -519,12 +522,18 @@ namespace ET
             self.Text_ZiZhiValue.GetComponent<Text>().text = $"{curex}/{magickaSlotConfig.NeedExp}";
             self.Text_ZiZhiName.GetComponent<Text>().text = magickaSlotConfig.GetDes();
 
-            BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetMagicEquipBySubType(ItemLocType.ItemLocBag, self.Position);
+            BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetMagicEquipBySubType(ItemLocType.ItemLocEquip, self.Position);
             if (bagInfo != null)
             {
                 self.UICommonItem.UpdateItem(bagInfo, ItemOperateEnum.None);
+                self.UICommonItem.Image_ItemIcon.SetActive(true);
             }
-            self.UICommonItem.Image_ItemIcon.SetActive(bagInfo != null);   
+            else
+            {
+                self.UICommonItem.Image_ItemIcon.SetActive(false);
+            }
+            self.ImageLockNode.SetActive(curid== 0);
+            self.UICommonItem.Image_Lock.SetActive(false);
             self.UICommonItem.Label_ItemName.GetComponent<Text>().text = magickaSlotConfig.GetName();
             self.UICommonItem.Label_ItemName.GetComponent<Text>().fontSize = 40;
         }
