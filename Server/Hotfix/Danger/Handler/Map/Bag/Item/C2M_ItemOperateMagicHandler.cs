@@ -57,11 +57,10 @@ namespace ET
                 return;
             }
 
-            //4001   攻击型
-            //4002   恢复型
-            //4003   全能型
-            int subtype = ItemHelper.GetMagicItemSubType(equipposition);
-            if (subtype != itemConfig.ItemSubType)
+
+            int subtype = itemConfig.ItemSubType - 4001; //0 1 2
+            int curtype = equipposition / 3;
+            if (curtype != subtype && curtype != 2)
             {
                 reply();
                 return;
@@ -84,7 +83,7 @@ namespace ET
                 }
 
                 //获取之前的位置是否有装备
-                BagInfo beforeequip = unit.GetComponent<BagComponent>().GetMagicEquipBySubType(ItemLocType.ItemLocEquip, weizhi, equipposition);
+                BagInfo beforeequip = unit.GetComponent<BagComponent>().GetMagicEquipBySubType(ItemLocType.ItemLocEquip,  equipposition);
                 if (beforeequip != null)
                 {
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(beforeequip, ItemLocType.ItemLocBag, ItemLocType.ItemLocEquip);

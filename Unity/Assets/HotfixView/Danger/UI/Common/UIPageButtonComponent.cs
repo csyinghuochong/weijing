@@ -80,10 +80,10 @@ namespace ET
             self.ButtonList[index].Find("Reddot").gameObject.SetActive(active);
         }
 
-        public static void OnSelectIndex(this UIPageButtonComponent self, int index, bool handler = true)
+        public static bool OnSelectIndex(this UIPageButtonComponent self, int index, bool handler = true)
         {
             if (index == self.CurrentIndex)
-                return;
+                return false;
 
             for (int i = 0; i < self.ButtonList.Count; i++)
             {
@@ -96,6 +96,7 @@ namespace ET
             {
                 self.ClickHandler(index);
             }
+            return true;
         }
 
         public static int GetCurrentIndex(this UIPageButtonComponent self)

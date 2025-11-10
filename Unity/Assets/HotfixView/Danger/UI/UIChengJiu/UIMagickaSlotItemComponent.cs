@@ -15,7 +15,7 @@ namespace ET
         public GameObject DiButton_1;
         public UIItemComponent UICommonItem;
 
-        public Action<int> ClickLockHandler;
+        public Action<int, int> ClickLockHandler;
     }
 
     public class UIMagickaSlotItemComponentAwake : AwakeSystem<UIMagickaSlotItemComponent, GameObject>
@@ -41,7 +41,7 @@ namespace ET
     public static class UIMagickaSlotItemComponentSystem
     {
 
-        public static void InitData(this UIMagickaSlotItemComponent self, int position, Action<int> click)
+        public static void InitData(this UIMagickaSlotItemComponent self, int position, Action<int, int> click)
         {
             self.Position = position;
             self.ClickLockHandler = click;
@@ -55,8 +55,8 @@ namespace ET
             self.Image_Lock.SetActive(curid == 0);
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            int subtype = ItemHelper.GetMagicItemSubType( self.Position );
-            BagInfo bagInfo = bagComponent.GetMagicEquipBySubType( ItemLocType.ItemLocEquip, subtype, self.Position);
+
+            BagInfo bagInfo = bagComponent.GetMagicEquipBySubType( ItemLocType.ItemLocEquip, self.Position);
             if (bagInfo == null)
             {
                 self.UICommonItem.GameObject.SetActive(false);
@@ -69,7 +69,7 @@ namespace ET
 
         public static void OnClickImage_Lock(this UIMagickaSlotItemComponent self)
         {
-            self.ClickLockHandler?.Invoke( self.Position );
+            self.ClickLockHandler?.Invoke( self.Position, -2 );
          }
 
         public static void SetSelected(this UIMagickaSlotItemComponent self, bool active)

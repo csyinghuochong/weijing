@@ -107,7 +107,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_GemShiShiNumFull, "史诗宝石最多可镶嵌4个!");
             ErrorHintList.Add(ErrorCode.ERR_ActivityNotOpen, "活动还没开启!");
             ErrorHintList.Add(ErrorCode.ERR_AlreadyOpen, "该栏位已经开启!");
-            ErrorHintList.Add(ErrorCode.ERR_AlreadyMaxLevel, "该栏位已经升级到最大等级!");
+            ErrorHintList.Add(ErrorCode.ERR_MagicMaxLevel, "该栏位已经升级到最大等级!");
             ErrorHintList.Add(ErrorCode.ERR_MagicLevelNotEnough, "总的魔能等级不足!");
             ErrorHintList.Add(ErrorCode.ERR_MagicNotOpen, "魔能栏位未开启!");
 

@@ -1244,22 +1244,6 @@ namespace ET
             return showup;
         }
 
-        public static int GetMagicItemSubType(int position)
-        {
-            if (position >= 0 && position <= 2)
-            {
-                return 4001;
-            }
-            if (position >= 3 && position <= 5)
-            {
-                return 4002;
-            }
-            if (position >= 6 && position <= 8)
-            {
-                return 4003;
-            }
-            return 0;
-        }
 
         //获取装备的鉴定属性
         public static JianDingDate GetEquipZhuanJingPro(int equipID, int itemID, int jianDingPinZhi, bool ifItem)

@@ -124,7 +124,7 @@ namespace ET
 
             self.OnInitUI();
             self.OnUpdateSlotUI();
-            self.OnClickSlotHandler(0);
+            self.OnClickSlotHandler(0, -1);
 
             DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
             DataUpdateComponent.Instance.AddListener(DataType.EquipWear, self);
@@ -185,7 +185,7 @@ namespace ET
         public static void OnEquipWear(this UIMagickaSlotComponent self)
         {
             self.OnUpdateSlotUI();
-            self.OnClickSlotHandler(self.Position);
+            self.OnClickSlotHandler(self.Position, 0);
         }
 
         public static void UpdateEquipList(this UIMagickaSlotComponent self)
@@ -400,7 +400,7 @@ namespace ET
             {
                 return;
             }
-            self.OnClickSlotHandler(self.Position);
+            self.OnClickSlotHandler(self.Position, 1);
             await ETTask.CompletedTask;
         }
 
@@ -450,10 +450,10 @@ namespace ET
             }
 
             self.OnUpdateSlotUI();
-            self.OnClickSlotHandler(self.Position);
+            self.OnClickSlotHandler(self.Position, 1);
         }
 
-        public static void OnClickSlotHandler(this UIMagickaSlotComponent self, int position)
+        public static void OnClickSlotHandler(this UIMagickaSlotComponent self, int position, int page)
         {
             Log.ILog.Debug("OnClickLockHandler " + position);
             self.Position = position;
@@ -476,8 +476,24 @@ namespace ET
             }
             self.ShowSlotPros();
 
-            self.UIPageButton.OnSelectIndex(curid > 0 ? 0 : 1);
-            //self.OnClickPageButton(self.UIPageButton.CurrentIndex);
+            int newpage = 0;
+            if (page == 0 || page == 1)
+            {
+                newpage = page;
+            }
+            else if (page == -1)
+            {
+                newpage = curid > 0 ? 0 : 1;
+            }
+            else 
+            {
+                newpage = curid > 0 ? self.UIPageButton.CurrentIndex : 1;
+            }
+
+            if (!self.UIPageButton.OnSelectIndex(newpage))
+            {
+                self.OnClickPageButton(newpage);
+            }
         }
 
         public static void ShowSlotPros(this UIMagickaSlotComponent self)
@@ -503,8 +519,7 @@ namespace ET
             self.Text_ZiZhiValue.GetComponent<Text>().text = $"{curex}/{magickaSlotConfig.NeedExp}";
             self.Text_ZiZhiName.GetComponent<Text>().text = magickaSlotConfig.GetDes();
 
-            int subtype = ItemHelper.GetMagicItemSubType(self.Position);
-            BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetMagicEquipBySubType(ItemLocType.ItemLocBag, subtype, self.Position);
+            BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetMagicEquipBySubType(ItemLocType.ItemLocBag, self.Position);
             if (bagInfo != null)
             {
                 self.UICommonItem.UpdateItem(bagInfo, ItemOperateEnum.None);

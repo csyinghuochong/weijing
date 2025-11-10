@@ -15,6 +15,7 @@ namespace ET
             int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(request.Position);
             if (nexid <= curid)
             {
+                response.Error = ErrorCode.ERR_MagicMaxLevel;
                 reply();
                 return;
             }

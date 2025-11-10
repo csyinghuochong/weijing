@@ -745,13 +745,13 @@ namespace ET
         }
 
         //获取某个装备位置的道具数据
-        public static BagInfo GetMagicEquipBySubType(this BagComponent self, ItemLocType equipIndex, int subType, int position)
+        public static BagInfo GetMagicEquipBySubType(this BagComponent self, ItemLocType equipIndex, int position)
         {
             List<BagInfo> equipList = self.GetItemByLoc(equipIndex);
             for (int i = 0; i < equipList.Count; i++)
             {
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(equipList[i].ItemID);
-                if (itemCof.ItemSubType == subType && equipList[i].EquipIndex == position)
+                if ((itemCof.ItemSubType == 4001 || itemCof.ItemSubType == 4002) && equipList[i].EquipIndex == position)
                 {
                     return equipList[i];
                 }
