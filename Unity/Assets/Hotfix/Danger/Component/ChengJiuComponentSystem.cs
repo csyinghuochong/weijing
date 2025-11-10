@@ -38,8 +38,6 @@ namespace ET
             if(response.Error == ErrorCode.ERR_Success)
             {
                 self.MagickaSlotIdList = response.MagickaSlotIds;
-
-
             }
             return response.Error;
         }

@@ -526,7 +526,7 @@ namespace ET
             }
             self.UICommonItem.Image_ItemIcon.SetActive(bagInfo != null);   
             self.UICommonItem.Label_ItemName.GetComponent<Text>().text = magickaSlotConfig.GetName();
-
+            self.UICommonItem.Label_ItemName.GetComponent<Text>().fontSize = 40;
         }
 
         public static void ShowCostItems(this UIMagickaSlotComponent self, int nextd)
