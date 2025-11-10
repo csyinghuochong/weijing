@@ -1097,8 +1097,11 @@ namespace ET
             itemSkills.AddRange(bagInfo.InheritSkills);
             self.OnRmItemSkill(itemSkills, baginfoid);
 
-            EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
-            self.TianFuRemove(equipConfig.TianFuId);
+			if (itemConfig.ItemEquipID > 0)
+			{
+                EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
+                self.TianFuRemove(equipConfig.TianFuId);
+            }
         }
 
         /// <summary>
