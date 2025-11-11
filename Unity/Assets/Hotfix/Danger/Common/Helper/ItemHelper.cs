@@ -1240,7 +1240,7 @@ namespace ET
                 }
             }
             bool showup = userInfo.Lv >= itemConfig.UseLv
-                && itemConfig.UseLv > curLevel && itemConfig.ItemQuality > curQulity && itemConfig.EquipType != 20;
+                && itemConfig.UseLv > curLevel && itemConfig.ItemQuality > curQulity && itemConfig.EquipType != 20 && itemConfig.EquipType != 401;
             return showup;
         }
 

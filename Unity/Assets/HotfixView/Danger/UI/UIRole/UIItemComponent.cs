@@ -269,7 +269,7 @@ namespace ET
                     self.Image_ItemQuality.GetComponent<Image>().sprite = sp;
                     int itemType = itemconfig.ItemType;
                     //装备数字显示为空
-                    if (itemType == 3)
+                    if (itemType == 3 && itemconfig.EquipType!= 401)
                     {
                         self.Label_ItemNum.GetComponent<Text>().text = "";
                     }
@@ -281,7 +281,8 @@ namespace ET
                 //显示道具数量
                 if (ComHelp.IfNull(self.ItemNum) == false)
                 {
-                    if (long.Parse(self.ItemNum) >= 1 && itemconfig.ItemType != 3 && itemconfig.ItemType != 5)
+                    if ( (long.Parse(self.ItemNum) >= 1 && itemconfig.ItemType != 3 && itemconfig.ItemType != 5)
+                        || itemconfig.EquipType == 401)
                     {
                         self.Label_ItemNum.GetComponent<Text>().text = ItemViewHelp.ReturnNumStr(long.Parse(self.ItemNum));
                     }
