@@ -1345,6 +1345,10 @@ namespace ET
                         {
                             useBagInfo.IfJianDing = itemCof.ItemQuality >= 5;
                         }
+                        if (itemCof.EquipType == 401)
+                        {
+                            useBagInfo.IfJianDing = false;
+                        }
                     }
                     //默认洗练
                     if (!ItemHelper.IsBuyItem(getType) && itemCof.ItemEquipID != 0)

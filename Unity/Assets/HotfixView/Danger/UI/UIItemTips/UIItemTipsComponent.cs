@@ -395,6 +395,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往家园装备增幅系统"));
                 return;
             }
+            if (itemConfig.EquipType == 401)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请前往魔能系统"));
+                return;
+            }
 
             //材料
             if (itemConfig.ItemType == (int)ItemTypeEnum.Material)
