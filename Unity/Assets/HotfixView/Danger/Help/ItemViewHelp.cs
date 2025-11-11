@@ -868,6 +868,11 @@ namespace ET
         {
             int properShowNum = 0;
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
+            if (itemconf.ItemEquipID == 0)
+            {
+                return properShowNum;
+            }
+
             string ItemIcon = itemconf.Icon;
             int ItemQuality = itemconf.ItemQuality;
             string equip_ID = itemconf.ItemEquipID.ToString();

@@ -533,7 +533,7 @@ namespace ET
                 self.UICommonItem.Image_ItemIcon.SetActive(false);
             }
             self.ImageLockNode.SetActive(curid== 0);
-            self.UICommonItem.Image_Lock.SetActive(false);
+            self.UICommonItem.Image_Binding.SetActive(false);
             self.UICommonItem.Label_ItemName.GetComponent<Text>().text = magickaSlotConfig.GetName();
             self.UICommonItem.Label_ItemName.GetComponent<Text>().fontSize = 40;
         }

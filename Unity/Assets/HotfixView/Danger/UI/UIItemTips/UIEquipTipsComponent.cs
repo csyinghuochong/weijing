@@ -848,7 +848,6 @@ namespace ET
         public static void ShowBaseAttribute(this UIEquipTipsComponent self)
         {
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-            EquipConfig equipconf = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);
             string ItemIcon = itemconf.Icon;
             int ItemQuality = itemconf.ItemQuality;
             string equip_ID = itemconf.ItemEquipID.ToString();
@@ -1177,11 +1176,13 @@ namespace ET
             self.BagInfo = baginfo;
             self.ItemOpetateType = equipTipsType;
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
-            if(itemconf.ItemEquipID == 0)
+
+            EquipConfig equipconf = null;
+            if (itemconf.ItemEquipID != 0)
             {
-                return;
+                equipconf  = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);
             }
-            EquipConfig equipconf = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);
+            
             string qualityiconLine = FunctionUI.GetInstance().ItemQualityLine(itemconf.ItemQuality);
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, qualityiconLine);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
@@ -1230,7 +1231,16 @@ namespace ET
             startPostionY -= (hideSkillNumber > 0 ? self.TitleMiniHeight_50 : 0);
             startPostionY -= hideSkillNumber * self.TextItemHeight_40;
 
-            int suitEquipNumber = self.ShowSuitEquipInfo(itemconf, equipconf.EquipSuitID, startPostionY, equipItemList);
+            int suitEquipNumber = 0;
+            if (equipconf != null)
+            {
+                suitEquipNumber = self.ShowSuitEquipInfo(itemconf, equipconf.EquipSuitID, startPostionY, equipItemList);
+            }
+            else 
+            {
+                self.Obj_UIEquipSuit.SetActive(false);
+            }
+
             suitEquipNumber = suitEquipNumber + (suitEquipNumber > 0 ? 2 : 0);
             startPostionY = startPostionY - self.TitleMiniHeight_50 - suitEquipNumber * self.TextItemHeight_40 ;
             startPostionY -= 5;
