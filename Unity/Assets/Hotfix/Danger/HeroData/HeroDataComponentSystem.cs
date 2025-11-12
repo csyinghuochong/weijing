@@ -245,6 +245,7 @@ namespace ET
 
             if (numericComponent.GetAsInt(NumericType.SeasonBossFuben) >= ConfigHelper.GMDungeonId)
             {
+                Console.WriteLine($"赛季boss地图：  {numericComponent.GetAsInt(NumericType.SeasonBossFuben)}");
                 numericComponent.ApplyValue(NumericType.SeasonBossFuben, SeasonHelper.GetFubenId(userInfoComponent.UserInfo.Lv));
             }
 
