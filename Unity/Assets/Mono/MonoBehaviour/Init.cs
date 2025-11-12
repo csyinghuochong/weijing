@@ -1491,6 +1491,11 @@ namespace ET
 		/// </summary>
 		public void RequestStoreReview()
 		{
+			RequestStoreReview_1();
+        }
+
+        public void RequestStoreReview_1()
+        {
 #if UNITY_IPHONE && !UNITY_EDITOR
 			 Device.RequestStoreReview();
 #endif
