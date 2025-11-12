@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
@@ -16,6 +17,8 @@ namespace ET
         public UIItemComponent UICommonItem;
 
         public Action<int, int> ClickLockHandler;
+
+        public bool IsHoldDown = false;
     }
 
     public class UIMagickaSlotItemComponentAwake : AwakeSystem<UIMagickaSlotItemComponent, GameObject>
@@ -31,6 +34,9 @@ namespace ET
 
             GameObject uICommonItem = gameObject.transform.Find("UICommonItem").gameObject;
             self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(uICommonItem);
+            self.UICommonItem.SetEventTrigger(true);
+            self.UICommonItem.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
+            self.UICommonItem.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
             self.UICommonItem.GameObject.SetActive(false);
 
             self.DiButton_1.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
@@ -49,6 +55,27 @@ namespace ET
             self.OnUpdateUI();
         }
 
+        public static async ETTask OnPointerDown(this UIMagickaSlotItemComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            self.IsHoldDown = true;
+            self.OnClickImage_Lock();
+            await TimerComponent.Instance.WaitAsync(500);
+            if (!self.IsHoldDown)
+                return;
+            EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
+            EventType.ShowItemTips.Instance.bagInfo = binfo;
+            EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.MagicSlot;
+            EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
+            EventType.ShowItemTips.Instance.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
+        }
+
+        public static void OnPointerUp(this UIMagickaSlotItemComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            self.IsHoldDown = false;
+            //UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips);
+        }
+
         public static void OnUpdateUI(this UIMagickaSlotItemComponent self)
         {
             int curid = self.ZoneScene().GetComponent<ChengJiuComponent>().GetCurrentMagickaSlotIdByPosition(self.Position);
@@ -64,7 +91,6 @@ namespace ET
             }
             self.UICommonItem.GameObject.SetActive(true);
             self.UICommonItem.UpdateItem(bagInfo, ItemOperateEnum.MagicSlot);
-
         }
 
         public static void OnClickImage_Lock(this UIMagickaSlotItemComponent self)
