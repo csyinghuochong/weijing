@@ -177,6 +177,11 @@ namespace ET
 	  [DllImport("__Internal")]
      private static extern void FuncTapTapShare( string str );
 
+	  // 通过DllImport调用原生代码
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    private static extern void _requestReview();
+
+
 	 //[DllImport("__Internal")]
   //   private static extern string GetPhoneNum( string str );
 #endif
@@ -1502,7 +1507,12 @@ namespace ET
 #endif
         }
 
-
+        public void RequestStoreReview_3()
+        {
+#if UNITY_IPHONE && !UNITY_EDITOR
+			 _requestReview();
+#endif
+        }
 
     }
 }
