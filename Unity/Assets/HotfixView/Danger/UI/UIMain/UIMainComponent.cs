@@ -1577,11 +1577,12 @@ namespace ET
             FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000318);
         }
 
-        public static async ETTask OnCompleteTask(this UIMainComponent self, string taskid)
+        public static async ETTask OnCompleteTask(this UIMainComponent self, string paraminfo)
         {
+            int taskid = int.Parse(paraminfo);
             // 完成藏宝图任务后自动接取藏宝图任务
-            if (TaskConfigCategory.Instance.Contain(int.Parse(taskid)) &&
-                TaskConfigCategory.Instance.Get(int.Parse(taskid)).TaskType == TaskTypeEnum.Treasure)
+            if (TaskConfigCategory.Instance.Contain(taskid) &&
+                TaskConfigCategory.Instance.Get(taskid).TaskType == TaskTypeEnum.Treasure)
             {
                 // 任务使者赛纳
                 List<int> tasList = self.ZoneScene().GetComponent<TaskComponent>().GetOpenTaskIds(20000024);
@@ -1597,7 +1598,16 @@ namespace ET
             }
 
             await TimerComponent.Instance.WaitAsync(200);
-            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.CommitTask, taskid);
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.CommitTask, paraminfo);
+
+            if (taskid == 30010018 && GlobalHelp.GetBigVersion() >= 24)
+            {
+                Log.ILog.Debug($"init.RequestStoreReview");
+#if UNITY_IPHONE && !UNITY_EDITOR
+			    Init init = GameObject.Find("Global").GetComponent<Init>();
+                init.RequestStoreReview();
+#endif
+            }
         }
 
         public static void OnRecvTaskUpdate(this UIMainComponent self)
