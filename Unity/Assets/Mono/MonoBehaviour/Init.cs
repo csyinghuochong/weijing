@@ -1491,5 +1491,18 @@ namespace ET
 #endif
         }
 
+        public void RequestStoreReview_2()
+        {
+            string appId = "com.guangying.weijing2"; // 替换为你的App ID
+                                               // 构造评分页面的URL
+            string reviewUrl = $"itms-apps://itunes.apple.com/app/id{appId}?action=write-review";
+
+#if UNITY_IPHONE && !UNITY_EDITOR
+			 Application.OpenURL(reviewUrl);
+#endif
+        }
+
+
+
     }
 }
