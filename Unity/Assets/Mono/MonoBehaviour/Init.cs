@@ -30,6 +30,7 @@ using UnityEngine.Networking;
 
 #if UNITY_IPHONE && !UNITY_EDITOR
 using System.Runtime.InteropServices;
+using UnityEngine.iOS;
 #endif
 
 #if UNITY_ANDROID
@@ -1445,7 +1446,7 @@ namespace ET
 #endif
 #endif
 
-			public void SignInWithApple(string oldaccount)
+		public void SignInWithApple(string oldaccount)
         {
 			Log.ILog.Debug($"SignInWithApple Begin");
             var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
@@ -1479,5 +1480,16 @@ namespace ET
                 this.AppleSignInHandler?.Invoke(appkey);
             }
         }
+
+		/// <summary>
+		/// 跳转到ios评分界面
+		/// </summary>
+		public void RequestStoreReview()
+		{
+#if UNITY_IPHONE && !UNITY_EDITOR
+			 Device.RequestStoreReview();
+#endif
+        }
+
     }
 }
