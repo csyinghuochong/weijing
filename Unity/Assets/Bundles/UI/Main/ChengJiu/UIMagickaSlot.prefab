@@ -2966,6 +2966,8 @@ MonoBehaviour:
     gameObject: {fileID: 5586339206719138427}
   - key: ImageLockNode
     gameObject: {fileID: 8041145754506882898}
+  - key: Btn_OneKey
+    gameObject: {fileID: 3740134686694998057}
 --- !u!1 &4057351039609766260
 GameObject:
   m_ObjectHideFlags: 0

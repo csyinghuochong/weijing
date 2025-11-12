@@ -9,6 +9,7 @@ namespace ET
     public class UIMagickaSlotComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Btn_OneKey;
         public GameObject ImageLockNode;
         public UIItemComponent UICommonItem;
 
@@ -99,6 +100,10 @@ namespace ET
             self.BuildingList_2 = rc.Get<GameObject>("BuildingList_2");
             self.Btn_ZhuRu = rc.Get<GameObject>("Btn_ZhuRu");
             ButtonHelp.AddListenerEx(self.Btn_ZhuRu, () => { self.OnBtn_ZhuRu().Coroutine(); });
+
+            self.Btn_OneKey = rc.Get<GameObject>("Btn_OneKey");
+            ButtonHelp.AddListenerEx(self.Btn_OneKey, self.OnBtn_OneKey);
+
 
             self.ScrollView_1 = rc.Get<GameObject>("ScrollView_1");
             self.BuildingList_1 = rc.Get<GameObject>("BuildingList_1");
@@ -395,6 +400,24 @@ namespace ET
             {
                 self.UIMagickaSlotItemList[i].OnUpdateUI();
             }
+        }
+
+        public static void OnBtn_OneKey(this UIMagickaSlotComponent self)
+        {
+            self.HuiShouIdlist.Clear();
+
+            for (int i = 0; i < self.ZhuRuItemUIlist.Count; i++)
+            {
+                UIItemComponent uIItemComponent = self.ZhuRuItemUIlist[i];
+                BagInfo bagInfo = uIItemComponent.Baginfo;
+                if (bagInfo == null)
+                {
+                    continue;
+                }
+                self.HuiShouIdlist.Add(bagInfo.BagInfoID);
+            }
+
+            self.UpdateBagSelected();
         }
 
         public static async ETTask OnBtn_ZhuRu(this UIMagickaSlotComponent self)
