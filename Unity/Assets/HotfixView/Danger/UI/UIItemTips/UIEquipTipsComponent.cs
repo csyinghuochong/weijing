@@ -7,6 +7,10 @@ namespace ET
 {
     public class UIEquipTipsComponent : Entity, IAwake, IDestroy
     {
+
+        public Image ImageMagicQulityValue;
+        public GameObject MagicQulity;
+
         public GameObject Text_EquipSuitTip;
         public GameObject Text_HintSkillTip;
         public GameObject Text_BaseProTip;
@@ -124,6 +128,9 @@ namespace ET
             self.Img_back_btn = rc.Get<GameObject>("Img_back_btn");
             self.Img_back = rc.Get<GameObject>("Img_back");
             self.Img_backVector2 = self.Img_back.GetComponent<RectTransform>().sizeDelta;
+
+            self.ImageMagicQulityValue = rc.Get<GameObject>("ImageMagicQulityValue").GetComponent<Image>();
+            self.MagicQulity = rc.Get<GameObject>("MagicQulity");
 
             self.Obj_EquipIcon = rc.Get<GameObject>("Img_EquipIcon");
             self.Obj_EquipQuality = rc.Get<GameObject>("Img_EquipQuality");
@@ -1241,9 +1248,25 @@ namespace ET
                 self.Obj_UIEquipSuit.SetActive(false);
             }
 
+
             suitEquipNumber = suitEquipNumber + (suitEquipNumber > 0 ? 2 : 0);
             startPostionY = startPostionY - self.TitleMiniHeight_50 - suitEquipNumber * self.TextItemHeight_40 ;
-            startPostionY -= 5;
+           
+
+            //魔能装备
+            if (itemconf.ItemType == 3 && itemconf.EquipType == 401)
+            {
+                self.MagicQulity.SetActive(true);
+                Vector2 equipSuit_vec2 = new Vector2(0, startPostionY);
+                self.MagicQulity.transform.GetComponent<RectTransform>().anchoredPosition = equipSuit_vec2;
+                self.ImageMagicQulityValue.fillAmount = int.Parse(baginfo.ItemPar) * 1f / 100;
+                startPostionY -= 50;
+            }
+            else
+            {
+                self.MagicQulity.SetActive(false);
+                startPostionY -= 5;
+            }
 
             float DiHight = startPostionY * -1 + 70;
             if (DiHight > self.Img_backVector2.y)
