@@ -82,7 +82,7 @@ namespace ET
             
             Game.Scene.AddComponent<NavmeshComponent, Func<string, byte[]>>(RecastFileReader.Read);
 
-            ConfigData.OldNavMesh = true;/// !Game.Options.StartConfig.Contains("Google");
+            ConfigData.OldNavMesh =  !Game.Options.StartConfig.Contains("Google");
             Game.Scene.AddComponent<RecastPathComponent>();
 
             //添加db数据库的链接
