@@ -2044,6 +2044,7 @@ namespace ET
             int equipMaxDefSum = 0;
             int equipMinAdfSum = 0;
             int equipMaxAdfSum = 0;
+            int skillAddCombat = 0;
 
             //史诗宝石数量
             int equipShiShiGemNum = 0;
@@ -2118,6 +2119,9 @@ namespace ET
                             skillFightValue += hideProConfig.AddFightValue;
                         }
                     }
+
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(equipList[i].HideSkillLists[z]);
+                    skillAddCombat += skillConfig.AddCombat;
                 }
 
                 //强化登录（List长度13， 13个位置）
@@ -3055,6 +3059,8 @@ namespace ET
             //int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
             int zhanliValue = (int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 100 + (int)proLvAdd + addZhanLi + addShouHuFight + chuanchengProAdd + skillPointFight;
             //Console.WriteLine("ShiLi_Act = " + ShiLi_Act + " ShiLi_ActPro = " + ShiLi_ActPro + " ShiLi_Def = " + ShiLi_Def + " ShiLi_DefPro = "+ ShiLi_DefPro + " ShiLi_Hp = " + ShiLi_Hp + " ShiLi_HpPro = " + ShiLi_HpPro + " proLvAdd = " + proLvAdd + " addZhanLi = " + addZhanLi);
+
+            zhanliValue += skillAddCombat;
 
             //根据属性点整体放大发
             long oneProSum = Stamina_value + PointNaiLi + Intellect_value+ PointZhiLi + Agility_value + PointMinJie + Power_value + PointLiLiang + Constitution_value + PointTiZhi;
