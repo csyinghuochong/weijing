@@ -297,6 +297,9 @@ namespace ET
 		/// <summary>指定攻击怪物</summary>
 		[ProtoMember(75)]
 		public int[] SpecifiedMonster { get; set; }
+		/// <summary>附带固定战力</summary>
+		[ProtoMember(76)]
+		public int AddCombat { get; set; }
 
 	}
 }
