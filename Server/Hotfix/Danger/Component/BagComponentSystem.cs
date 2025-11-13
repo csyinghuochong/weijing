@@ -323,6 +323,21 @@ namespace ET
                 //        Console.WriteLine($"3089593540553015296 + 68000001");
                 //    }
                 //}
+
+                if (itemConfig.ItemSubType == 113 || itemConfig.ItemSubType == 127)
+                {
+                    if (bagInfoitem.ItemPar.Contains(ConfigHelper.GMDungeonId.ToString()))
+                    {
+                        Console.WriteLine($"藏宝图：bagInfoitem.ItemPar ");
+                        ItemAddHelper.TreasureItem(unit, bagInfoitem);
+                    }
+                }
+
+                if (itemConfig.ItemType == 3 && itemConfig.EquipType == 401 && string.IsNullOrEmpty(bagInfoitem.ItemPar))
+                {
+                    bagInfoitem.IfJianDing = false;
+                    bagInfoitem.ItemPar = RandomHelper.RandomNumber(1, 100).ToString();
+                }
             }
         }
 
@@ -1345,10 +1360,6 @@ namespace ET
                         {
                             useBagInfo.IfJianDing = itemCof.ItemQuality >= 5;
                         }
-                        if (itemCof.EquipType == 401)
-                        {
-                            useBagInfo.IfJianDing = false;
-                        }
                     }
                     //默认洗练
                     if (!ItemHelper.IsBuyItem(getType) && itemCof.ItemEquipID != 0)
@@ -1443,7 +1454,11 @@ namespace ET
                     {
                         useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 100).ToString();
                     }
-
+                    if (itemCof.ItemType == 3 && itemCof.EquipType == 401)
+                    {
+                        useBagInfo.IfJianDing = false;
+                        useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 100).ToString();
+                    }
 
                     //拾取到橙色装备
                     if (itemCof.ItemType == 3 && itemCof.ItemQuality >= 5 && getType == ItemGetWay.PickItem)
