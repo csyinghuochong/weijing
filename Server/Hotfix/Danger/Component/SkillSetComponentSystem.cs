@@ -347,6 +347,7 @@ namespace ET
                 {
                     continue;
                 }
+				int magicQulity = self.SkillList[i].MagicQulity;
 
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.SkillList[i].SkillID);
                 if (skillConfig.SkillType != (int)SkillTypeEnum.AddProToSpecifiedSkill)
@@ -357,7 +358,7 @@ namespace ET
                 string[] extrapro = skillConfig.ExtraProperty.Split('&');
                 if (extrapro.Length == 2 && extrapro[0] != "0" && extrapro[0].Contains(skillid.ToString()))
                 {
-                    NumericHelp.GetProList(extrapro[1], proList);
+                    NumericHelp.GetProList(extrapro[1], proList, magicQulity);
                 }
             }
             return proList;
@@ -756,12 +757,20 @@ namespace ET
 				{
 					continue;
 				}
-				SkillPro skillPro = new SkillPro();
+
+                int magicqulity = 0;
+                if (magicskills != null && magicskills.ContainsKey(skillId))
+                {
+                    magicqulity = magicskills[skillId];
+                }
+
+                SkillPro skillPro = new SkillPro();
 				skillPro.SkillID = skillId;
 				skillPro.SkillPosition = 0;
 				skillPro.SkillSetType = (int)SkillSetEnum.Skill;
 				skillPro.SkillSource = (int)SkillSourceEnum.Equip;
-				self.SkillList.Add(skillPro);
+				skillPro.MagicQulity = magicqulity;
+                self.SkillList.Add(skillPro);
                 unit.GetComponent<SkillPassiveComponent>().AddPassiveSkill(skillId, magicskills);
                 self.CheckSkillTianFu(skillId, true);
             }

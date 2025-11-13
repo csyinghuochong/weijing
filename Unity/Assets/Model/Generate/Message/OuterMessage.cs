@@ -5018,6 +5018,9 @@ namespace ET
 		[ProtoMember(6)]
 		public int ParamId { get; set; }
 
+		[ProtoMember(7)]
+		public int MagicQulity { get; set; }
+
 	}
 
 //通过奖励

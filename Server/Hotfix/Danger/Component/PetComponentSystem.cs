@@ -547,6 +547,8 @@ namespace ET
                 m2C_RolePetBag.RolePetBag = self.RolePetBag;
                 m2C_RolePetBag.UpdateMode = 1;
                 MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetBag);
+
+                Log.Debug($"AddPet: unitid:{unit.Id}  petconfigid:{newpet.Id}  {newpet.IfBaby}  RolePetBag");
             }
             else
             {
@@ -555,6 +557,8 @@ namespace ET
                 m2C_RolePetUpdate.PetInfoAdd = new List<RolePetInfo>();
                 m2C_RolePetUpdate.PetInfoAdd.Add(newpet);
                 MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetUpdate);
+
+                Log.Debug($"AddPet: unitid:{unit.Id}  petconfigid:{newpet.Id}  {newpet.IfBaby}  RolePetInfos {getWay}");
             }
 
             //如果有皮肤的话更新一次角色属性
@@ -1750,6 +1754,8 @@ namespace ET
             self.OnGmPetEquip(10060130, newpet);
 
             self.RolePetInfos.Add(newpet);
+
+            Log.Debug($"AddPet: unitid:{unit.Id}  petconfigid:{newpet.Id}  {newpet.IfBaby}  RolePetInfos.OnGmAddPet");
         }
 
         public static void OnGmPetEquip(this PetComponent self, int itemid, RolePetInfo rolePetInfo)
