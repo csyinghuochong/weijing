@@ -229,12 +229,11 @@ namespace ET
             }
         }
 
-        public static void AddPassiveSkill(this SkillPassiveComponent self, int skillId)
+        public static void AddPassiveSkill(this SkillPassiveComponent self, int skillId, Dictionary<int, int> magicskills = null)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-            self.AddPassiveSkillByType(skillConfig);
+            self.AddPassiveSkillByType(skillConfig, magicskills);
         }
-        
 
         public static void RemovePassiveSkill(this SkillPassiveComponent self, int skillId)
         {
@@ -378,7 +377,7 @@ namespace ET
             }
         }
 
-        public static void AddPassiveSkillByType(this SkillPassiveComponent self, SkillConfig skillConfig)
+        public static void AddPassiveSkillByType(this SkillPassiveComponent self, SkillConfig skillConfig, Dictionary<int, int> magicskills = null)
         {
             if (skillConfig.SkillType == 1 || SkillHelp.havePassiveSkillType(skillConfig.PassiveSkillType, 0))
             {
@@ -400,8 +399,15 @@ namespace ET
                 PassiveSkillPro.Add((float)skillConfig.PassiveSkillPro[i]);  
             }
 
+            int magicqulity = 0;
+            if (magicskills!=null && magicskills.ContainsKey(skillConfig.Id))
+            {
+                magicqulity = magicskills[skillConfig.Id];
+            }
+
             SkillPassiveInfo skillPassiveInfo = new SkillPassiveInfo(skillConfig.Id, PassiveSkillType,
                PassiveSkillPro, skillConfig.PassiveSkillTriggerOnce, skillConfig.SkillCD);
+            skillPassiveInfo.MagicQulity = magicqulity; 
             self.SkillPassiveInfos.Add(skillPassiveInfo);
         }
 

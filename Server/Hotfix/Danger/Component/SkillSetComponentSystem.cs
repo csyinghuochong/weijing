@@ -742,7 +742,7 @@ namespace ET
 			return ids;
         }
 
-		public static void OnAddItemSkill(this SkillSetComponent self, List<int> itemSkills)
+		public static void OnAddItemSkill(this SkillSetComponent self, List<int> itemSkills,  Dictionary<int, int> magicskills = null)
 		{
 			Unit unit = self.GetParent<Unit>();
             for (int i = 0; i < itemSkills.Count; i++)
@@ -762,7 +762,7 @@ namespace ET
 				skillPro.SkillSetType = (int)SkillSetEnum.Skill;
 				skillPro.SkillSource = (int)SkillSourceEnum.Equip;
 				self.SkillList.Add(skillPro);
-                unit.GetComponent<SkillPassiveComponent>().AddPassiveSkill(skillId);
+                unit.GetComponent<SkillPassiveComponent>().AddPassiveSkill(skillId, magicskills);
                 self.CheckSkillTianFu(skillId, true);
             }
 			for (int i = 0; i < itemSkills.Count; i++)
@@ -1118,12 +1118,23 @@ namespace ET
 				return;
 			}
 
+			Dictionary<int, int> magicSkills = null;
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-			List<int> itemSkills = ItemHelper.GetItemSkill(itemConfig.SkillID);
-           
-			itemSkills.AddRange(bagInfo.HideSkillLists);
+            List<int> itemSkills = ItemHelper.GetItemSkill(itemConfig.SkillID);
+
+            if (itemConfig.ItemType == 3 && itemConfig.EquipType == 401 && !string.IsNullOrEmpty(bagInfo.ItemPar))
+            {
+                magicSkills = new Dictionary<int, int>();
+				int magicQulity = int.Parse(bagInfo.ItemPar);
+				foreach(int skillid in itemSkills)
+				{
+                    magicSkills.Add(skillid, magicQulity);	
+                }
+            }
+
+            itemSkills.AddRange(bagInfo.HideSkillLists);
 			itemSkills.AddRange(bagInfo.InheritSkills);
-			self.OnAddItemSkill(itemSkills);
+			self.OnAddItemSkill(itemSkills, magicSkills);
 
 			if (itemConfig.ItemEquipID > 0)
 			{

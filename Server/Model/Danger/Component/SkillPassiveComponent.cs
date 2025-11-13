@@ -11,6 +11,7 @@ namespace ET
         public long TriggerInterval;           //触发间隔
         public long LastTriggerTime;            //上次触发时间
         public int TriggerNumber;
+        public int MagicQulity;                //魔能品质 会影响魔能技能触发概率
 
         public SkillPassiveInfo(int skillId, List<int> skillPassiveTypeEnum, List<float> skillPro, int triggerOnce, double triggerTime)
         {
