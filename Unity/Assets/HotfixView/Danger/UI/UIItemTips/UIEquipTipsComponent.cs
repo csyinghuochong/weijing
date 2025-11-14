@@ -1256,11 +1256,16 @@ namespace ET
             //魔能装备
             if (itemconf.ItemType == 3 && itemconf.EquipType == 401)
             {
+                self.Img_back.transform.Find("Img_Title_1").gameObject.SetActive(false);
+                self.Img_back.transform.Find("EquipHintSkill").gameObject.SetActive(false);
+                self.MagicQulity.transform.Find("TextMagicDesc").gameObject.GetComponent<Text>().text = itemconf.GetItemDes();
+                self.MagicQulity.transform.Find("TextMagicQulity").gameObject.GetComponent<Text>().text = $"{baginfo.ItemPar}/100";
+               
                 self.MagicQulity.SetActive(true);
-                Vector2 equipSuit_vec2 = new Vector2(0, startPostionY);
+                Vector2 equipSuit_vec2 = new Vector2(0, -190);
                 self.MagicQulity.transform.GetComponent<RectTransform>().anchoredPosition = equipSuit_vec2;
                 self.ImageMagicQulityValue.fillAmount = int.Parse(baginfo.ItemPar) * 1f / 100;
-                startPostionY -= 50;
+                startPostionY -= 80;
             }
             else
             {
