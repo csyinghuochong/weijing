@@ -133,7 +133,7 @@ namespace ET
 
             self.OnInitUI();
             self.OnUpdateSlotUI();
-            self.OnClickSlotHandler(0, -1);
+            //self.OnClickSlotHandler(0, -1);
 
             DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
             DataUpdateComponent.Instance.AddListener(DataType.EquipWear, self);
@@ -165,6 +165,7 @@ namespace ET
                 uIMagickaSlotItem.InitData( i, self.OnClickSlotHandler);
                 self.UIMagickaSlotItemList.Add(uIMagickaSlotItem);
             }
+            self.UIMagickaSlotItemList[0].OnClickImage_Lock();
         }
 
         public static void OnClickPageButton(this UIMagickaSlotComponent self, int page)
@@ -480,7 +481,7 @@ namespace ET
             self.OnClickSlotHandler(self.Position, 1);
         }
 
-        public static void OnClickSlotHandler(this UIMagickaSlotComponent self, int position, int page)
+        public static void OnClickSlotHandler(this UIMagickaSlotComponent self, int position, int pagetype)
         {
             Log.ILog.Debug("OnClickLockHandler " + position);
             self.Position = position;
@@ -493,6 +494,10 @@ namespace ET
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(position);
             int nexid = chengJiuComponent.GetNextMagickaSlotIdByPosition(position);
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            BagInfo bagInfo =  bagComponent.GetMagicEquipBySubType( ItemLocType.ItemLocEquip, self.Position );
+
             if (curid == nexid)
             {
                 Log.ILog.Debug("最高等级！！");
@@ -503,18 +508,32 @@ namespace ET
             }
             self.ShowSlotPros();
 
+            //pagetype==-1初始
+            //pagetype==-2切换
+            //0装备
+            //1开启升级
+
             int newpage = 0;
-            if (page == 0 || page == 1)
+            if (pagetype == 0 || pagetype == 1)
             {
-                newpage = page;
+                newpage = pagetype;
             }
-            else if (page == -1)
+            else if (pagetype == -1)
             {
                 newpage = curid > 0 ? 0 : 1;
             }
             else 
             {
                 newpage = curid > 0 ? self.UIPageButton.CurrentIndex : 1;
+
+                if (curid > 0 && bagInfo == null)
+                {
+                    newpage = 0;
+                }
+                if (newpage < 0)
+                {
+                    newpage = 0;
+                }
             }
 
             if (!self.UIPageButton.OnSelectIndex(newpage))
