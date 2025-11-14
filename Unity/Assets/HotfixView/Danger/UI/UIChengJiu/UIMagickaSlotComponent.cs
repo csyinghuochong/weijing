@@ -17,6 +17,7 @@ namespace ET
         public GameObject ImageExpValue;
         public GameObject Text_ZiZhiValue;
         public GameObject Text_ZiZhiName;
+        public GameObject Text_SkillDesc;
 
         /// <summary>
         /// 注入列表
@@ -85,6 +86,7 @@ namespace ET
             self.ImageExpValue = rc.Get<GameObject>("ImageExpValue");
             self.Text_ZiZhiValue = rc.Get<GameObject>("Text_ZiZhiValue");
             self.Text_ZiZhiName = rc.Get<GameObject>("Text_ZiZhiName");
+            self.Text_SkillDesc = rc.Get<GameObject>("Text_SkillDesc");
 
             self.EquipSlot = rc.Get<GameObject>("EquipSlot");
             self.OpenSlot = rc.Get<GameObject>("OpenSlot");
@@ -571,17 +573,22 @@ namespace ET
             BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetMagicEquipBySubType(ItemLocType.ItemLocEquip, self.Position);
             if (bagInfo != null)
             {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                self.Text_SkillDesc.GetComponent<Text>().text = itemConfig.GetItemDes();
                 self.UICommonItem.UpdateItem(bagInfo, ItemOperateEnum.None);
                 self.UICommonItem.Image_ItemIcon.SetActive(true);
             }
             else
             {
+                self.Text_SkillDesc.GetComponent<Text>().text = string.Empty;
                 self.UICommonItem.Image_ItemIcon.SetActive(false);
             }
             self.ImageLockNode.SetActive(curid== 0);
             self.UICommonItem.Image_Binding.SetActive(false);
-            self.UICommonItem.Label_ItemName.GetComponent<Text>().text = magickaSlotConfig.GetName();
-            self.UICommonItem.Label_ItemName.GetComponent<Text>().fontSize = 40;
+            Text text = self.UICommonItem.Label_ItemName.GetComponent<Text>();
+            text.text = magickaSlotConfig.GetName();
+            text.fontSize = 40;
+            text.color = Color.white;
         }
 
         public static void ShowCostItems(this UIMagickaSlotComponent self, int nextd)
