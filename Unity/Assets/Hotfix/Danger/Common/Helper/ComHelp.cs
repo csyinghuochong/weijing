@@ -13,6 +13,8 @@ namespace ET
 
 
         public const int MaxZone = 1024;
+
+        //3 版号服  128 主播服  171谷歌服
         //版号专区
         public static bool IsBanHaoZone(int zone)
         {
