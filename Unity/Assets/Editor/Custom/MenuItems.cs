@@ -273,7 +273,7 @@ namespace libx
                         path = "DLCBeta20220362";
                         break;
                     case VersionMode.BanHao:
-                        path = "DLCBanHao";
+                        path = "DLCBeta20220362/BanHao";
                         break;
                 }
             }

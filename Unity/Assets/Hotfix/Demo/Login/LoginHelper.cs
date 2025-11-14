@@ -186,6 +186,8 @@ namespace ET
                 return r2CLogin.Error;
             }
 
+            AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
+
             if (plaform == 7)
             {
                 //r2CLogin.GateAddress:  39.96.194.143:20567
@@ -194,8 +196,15 @@ namespace ET
                 string[] ipinfos = r2CLogin.GateAddress.Split(':');
                 IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServerGoogle).AddressList;
                 r2CLogin.GateAddress = $"{xxc[0]}:{ipinfos[1]}";
-
                 //HintHelp.GetInstance().ShowHint($"switchip:  {xxc[0]}");
+            }
+            if (plaform == 1 && ServerHelper.IsBanHaoServer(accountInfoComponent.ServerId)) //版号
+            {
+                Log.ILog.Debug($"r2CLogin.accountInfoComponent.VersionMode == 2");
+
+                string[] ipinfos = r2CLogin.GateAddress.Split(':');
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServerBanHao).AddressList;
+                r2CLogin.GateAddress = $"{xxc[0]}:{ipinfos[1]}";
             }
             Log.ILog.Debug($"r2CLogin.GateAddress:  {r2CLogin.GateAddress}");
 
@@ -225,7 +234,6 @@ namespace ET
 
             //3. 角色正式请求进入游戏逻辑服
             G2C_EnterGame g2CEnterGame = null;
-            AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
             try
             {
                 Log.ILog.Debug($"gateSession:  {gateSession.RemoteAddress}");
@@ -591,7 +599,12 @@ namespace ET
                  && !serverdomain[0].Contains("192")
                  && !serverdomain[0].Contains("39"))
                 {
-                    if (ServerHelper.IsGoogleServer(serverItems[i].ServerId))
+                    if (ServerHelper.IsBanHaoServer(serverItems[i].ServerId))
+                    {
+                        IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServerBanHao).AddressList;
+                        serverItems[i].ServerIp = $"{xxc[0]}:{serverdomain[1]}";
+                    }
+                    else if (ServerHelper.IsGoogleServer(serverItems[i].ServerId))
                     {
                         IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServerGoogle).AddressList;
                         serverItems[i].ServerIp = $"{xxc[0]}:{serverdomain[1]}";

@@ -7,6 +7,7 @@ namespace ET
     {
 
         private static int Platform = -1;   //平台
+        private static int VersionMode = 0;
 
         private static List<ServerItem> ServerItems = new List<ServerItem>();
 
@@ -91,11 +92,18 @@ namespace ET
                 Console.WriteLine("Platform == -1");
             }
 
+            if (innerNet)
+            {
+                return LocalIp;
+            }
+
             if (Platform == 7)
             {
-                return innerNet ? LocalIp : LogicServerGoogle;
+                return  LogicServerGoogle;
             }
-            return innerNet ? LocalIp : LogicServer;
+
+            return VersionMode == 1 ? LogicServer  : LogicServerBanHao;
+
             //switch (versionMode)
             //{
             //    case VersionMode.BanHao:
@@ -196,10 +204,13 @@ namespace ET
             ServerItems.Clear();
             List<ServerItem> serverItems_1 = ServerItems;
 
+            Log.ILog.Debug($"startConfig:  {startConfig}");
+
             ///国内服务器
             if (startConfig.Contains("Localhost") || startConfig.Contains("Beta"))
             {
                 Platform = 0;
+                VersionMode = 1;
 
                 if (startConfig.Contains("Localhost"))
                 {
@@ -458,12 +469,25 @@ namespace ET
             if (startConfig.Contains("Google"))
             {
                 Platform = 7;
+                VersionMode = 1;
 
                 //谷歌服务器
                 //2025/09/03 19:00:00 1756897200000 新区 ValorArena 171
 
                 ip = GetLogicServer(false);
                 serverItems_1.Add(new ServerItem() { ServerId = 171, ServerIp = $"{ip}:20575", ServerName = "ValorArena", ServerOpenTime = 1756897200000, New = 0, Show = 1, PlatformList = new List<int>() { 7 } });
+            }
+
+            //banhao服务器
+            if (startConfig.Contains("BanHao"))
+            {
+                Platform = 1;
+                VersionMode = 2;
+
+                Console.WriteLine($"BanHao:  3");
+
+                ip = GetLogicServer(false);
+                serverItems_1.Add(new ServerItem() { ServerId = 3, ServerIp = $"{ip}:20325", ServerName = "审核专区", ServerOpenTime = 1662189906681, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 20001 } });
             }
 
             if (Platform == -1)
@@ -497,6 +521,11 @@ namespace ET
         public static bool IsGoogleServer(int zone)
         {
             return Platform == 7;
+        }
+
+        public static bool IsBanHaoServer(int zone)
+        {
+            return VersionMode == 2;
         }
 
         public static List<ServerItem> GetServerList()

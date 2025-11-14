@@ -70,7 +70,8 @@ namespace ET
             {
                 if (GlobalHelp.IsOutNetMode)
                 {
-                    ServerHelper.InitServerList("StartConfig/Beta");
+                    VersionMode version = GlobalHelp.VersionMode;
+                    ServerHelper.InitServerList(version == VersionMode.BanHao ? "StartConfig/BanHao" : "StartConfig/Beta");
                 }
                 else
                 {

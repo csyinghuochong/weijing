@@ -30,7 +30,11 @@ namespace ET
                 case SceneType.LoginCenter:
                     scene.AddComponent<LoginInfoRecordComponent>();
                     scene.AddComponent<WeChatOACodeComponent>();
-                    scene.AddComponent<HttpComponent, string>($"http://*:80/");
+
+                    if (!ServerHelper.IsBanHaoServer(0))
+                    {
+                        scene.AddComponent<HttpComponent, string>($"http://*:80/");
+                    }
                     break;
                 case SceneType.AccountCenter:
 

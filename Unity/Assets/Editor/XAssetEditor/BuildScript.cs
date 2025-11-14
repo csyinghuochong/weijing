@@ -104,7 +104,7 @@ namespace libx
                         outputPath = "../Release/DLCBeta20220362/WJ/" + GetPlatformName();
                         break;
                     case VersionMode.BanHao:
-                        outputPath = "../Release/DLCBanHao/WJ/" + GetPlatformName();
+                        outputPath = "../Release/DLCBeta20220362/BanHao/WJ/" + GetPlatformName();
                         break;
                 }
             }
@@ -431,7 +431,7 @@ namespace libx
                         outputPath = "DLCBeta20220362/WJ";
                         break;
                     case VersionMode.BanHao:
-                        outputPath = "DLCBanHao/WJ";
+                        outputPath = "DLCBeta20220362/BanHao/WJ";
                         break;
                 }
             }
