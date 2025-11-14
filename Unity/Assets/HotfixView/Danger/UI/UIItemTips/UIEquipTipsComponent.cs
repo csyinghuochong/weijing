@@ -8,7 +8,6 @@ namespace ET
     public class UIEquipTipsComponent : Entity, IAwake, IDestroy
     {
 
-        public Image ImageMagicQulityValue;
         public GameObject MagicQulity;
 
         public GameObject Text_EquipSuitTip;
@@ -129,7 +128,7 @@ namespace ET
             self.Img_back = rc.Get<GameObject>("Img_back");
             self.Img_backVector2 = self.Img_back.GetComponent<RectTransform>().sizeDelta;
 
-            self.ImageMagicQulityValue = rc.Get<GameObject>("ImageMagicQulityValue").GetComponent<Image>();
+
             self.MagicQulity = rc.Get<GameObject>("MagicQulity");
 
             self.Obj_EquipIcon = rc.Get<GameObject>("Img_EquipIcon");
@@ -1259,12 +1258,13 @@ namespace ET
                 self.Img_back.transform.Find("Img_Title_1").gameObject.SetActive(false);
                 self.Img_back.transform.Find("EquipHintSkill").gameObject.SetActive(false);
                 self.MagicQulity.transform.Find("TextMagicDesc").gameObject.GetComponent<Text>().text = itemconf.GetItemDes();
-                self.MagicQulity.transform.Find("TextMagicQulity").gameObject.GetComponent<Text>().text = $"{baginfo.ItemPar}/100";
-               
+                self.MagicQulity.transform.Find("MagicQulityNode/TextMagicQulity").gameObject.GetComponent<Text>().text = $"{baginfo.ItemPar}/100";
+
+                Image ImageMagicQulityValue = self.MagicQulity.transform.Find("MagicQulityNode/ImageMagicQulityValue").GetComponent<Image>();
                 self.MagicQulity.SetActive(true);
                 Vector2 equipSuit_vec2 = new Vector2(0, -190);
                 self.MagicQulity.transform.GetComponent<RectTransform>().anchoredPosition = equipSuit_vec2;
-                self.ImageMagicQulityValue.fillAmount = int.Parse(baginfo.ItemPar) * 1f / 100;
+                ImageMagicQulityValue.fillAmount = int.Parse(baginfo.ItemPar) * 1f / 100;
                 startPostionY -= 80;
             }
             else
