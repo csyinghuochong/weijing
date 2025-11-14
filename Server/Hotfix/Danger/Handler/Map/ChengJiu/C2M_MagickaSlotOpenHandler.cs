@@ -11,12 +11,12 @@ namespace ET
             ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();
 
             int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(request.Position);
-            if (curid > 0)
-            {
-                response.Error = ErrorCode.ERR_AlreadyOpen;
-                reply();
-                return;
-            }
+            //if (curid > 0)
+            //{
+            //    response.Error = ErrorCode.ERR_AlreadyOpen;
+            //    reply();
+            //    return;
+            //}
 
             int nexid = chengJiuComponent.GetNextMagickaSlotIdByPosition(request.Position);
             if (curid == nexid)

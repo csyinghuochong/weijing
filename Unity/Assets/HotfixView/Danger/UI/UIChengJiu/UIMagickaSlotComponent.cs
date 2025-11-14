@@ -183,9 +183,13 @@ namespace ET
                     self.UpdateEquipList();
                     break;
                 case 1:
-                    self.NodeOpen.SetActive(curid == 0);
-                    self.NodeZhuRu.SetActive(curid != 0);
-                    self.UpdateZhuruList();
+                    self.NodeOpen.SetActive(true);
+                    string btntext = curid == 0 ? "开启位置" : "升级";
+                    btntext = GameSettingLanguge.LoadLocalization(btntext);
+                    self.Btn_OpenSlot.transform.Find("Text").GetComponent<Text>().text = btntext;
+                    //self.NodeOpen.SetActive(curid == 0);
+                    //self.NodeZhuRu.SetActive(curid != 0);
+                    //self.UpdateZhuruList();
                     break;
                 default:
                     break;
