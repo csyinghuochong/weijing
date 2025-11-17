@@ -19,7 +19,7 @@ namespace Douyin.Game
 #elif UNITY_ANDROID
             _douyinService = new AndroidDouyinServiceImpl();
 #elif UNITY_IOS
-            _douyinService = new iOSDouyinServiceImpl();
+            //_douyinService = new iOSDouyinServiceImpl();
 #endif
             return _douyinService;
         }

@@ -19,7 +19,7 @@ namespace Douyin.Game
 #elif UNITY_ANDROID
             _dataLinkService = new AndroidDataLinkServiceImpl();
 #elif UNITY_IOS
-            _dataLinkService = new iOSDataLinkServiceImpl();
+            //_dataLinkService = new iOSDataLinkServiceImpl();
 #endif
             return _dataLinkService;
         }

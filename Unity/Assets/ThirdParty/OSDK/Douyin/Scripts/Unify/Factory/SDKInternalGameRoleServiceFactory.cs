@@ -19,7 +19,7 @@ namespace Douyin.Game
 #elif UNITY_ANDROID
             _gameRoleService = new AndroidGameRoleServiceImpl();
 #elif UNITY_IOS
-            _gameRoleService = new iOSGameRoleServiceImpl();
+            //_gameRoleService = new iOSGameRoleServiceImpl();
 #endif
             return _gameRoleService;
         }
