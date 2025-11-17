@@ -283,6 +283,13 @@ namespace ET
                     EventType.GetSysRegionInfo.Instance.ZoneScene = self.ZoneScene();
                     Game.EventSystem.PublishClass(EventType.GetSysRegionInfo.Instance);
                 }
+
+				if (GlobalHelp.VersionMode == VersionMode.BanHao)
+				{
+					self.registerBtn.SetActive(false);
+                    self.ObjNoticeBtn.SetActive(false);
+                    self.ServerBtn.SetActive(false);
+                }
             }
 
 
