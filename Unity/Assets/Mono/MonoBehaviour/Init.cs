@@ -1496,6 +1496,7 @@ namespace ET
 
         public void RequestStoreReview_1()
         {
+			Log.ILog.Debug("RequestStoreReview_1");
 #if UNITY_IPHONE && !UNITY_EDITOR
 			 Device.RequestStoreReview();
 #endif
@@ -1503,6 +1504,8 @@ namespace ET
 
         public void RequestStoreReview_2()
         {
+            Log.ILog.Debug("RequestStoreReview_2");
+
             string appId = "com.guangying.weijing2"; // 替换为你的App ID
                                                // 构造评分页面的URL
             string reviewUrl = $"itms-apps://itunes.apple.com/app/id{appId}?action=write-review";
@@ -1514,6 +1517,8 @@ namespace ET
 
         public void RequestStoreReview_3()
         {
+            Log.ILog.Debug("RequestStoreReview_3");
+
 #if UNITY_IPHONE && !UNITY_EDITOR
 			 _requestReview();
 #endif

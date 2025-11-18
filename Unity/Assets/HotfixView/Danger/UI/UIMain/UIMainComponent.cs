@@ -1600,11 +1600,19 @@ namespace ET
             await TimerComponent.Instance.WaitAsync(200);
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.CommitTask, paraminfo);
 
+            /////++++++++
+            bool gm = false;
             if (GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account))
             {
+                gm = true;
                 taskid = 30010018;
             }
-            Log.ILog.Debug($"main taskid:  {taskid}");
+            else 
+            {
+                gm = false;
+                taskid = 0;
+            }
+            /////-------
 
             if (taskid == 30010018 && GlobalHelp.GetBigVersion() >= 24)
             {
