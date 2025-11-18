@@ -278,11 +278,13 @@ namespace ET
                 }
                 string[] attributeInfo = attributeInfoList[a].Split(';');
                 int numericType = int.Parse(attributeInfo[0]);
-                //long numericValue = 0;
+                long numericValue = 0;
                 if (GetNumericValueType(numericType) == 2)
                 {
                     float fvalue = float.Parse(attributeInfo[1]);
-                    proList.Add(new PropertyValue() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+                    numericValue = (long)(fvalue * 10000);
+
+                    //proList.Add(new PropertyValue() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
                 }
                 else
                 {
@@ -295,15 +297,18 @@ namespace ET
                     {
                         Log.Debug(ex.ToString() + $"报错 {prolist}");
                     }
-                    proList.Add(new PropertyValue() { HideID = numericType, HideValue = lvalue });
+                    numericValue = lvalue;
+
+                    //proList.Add(new PropertyValue() { HideID = numericType, HideValue = lvalue });
                 }
 
                 //触发概率公示：实际影响属性=(原始属性/2)+((原始属性/2)*(品质/80))
-                //if (magicQulity > 0)
-                //{
-                    //numericValue = (long)((numericValue / 2f) + ((numericValue / 2f) * (magicQulity / 80f)));
-                //}
-                //proList.Add(new PropertyValue() { HideID = numericType, HideValue = numericValue });
+                if (magicQulity > 0)
+                {
+                    Console.WriteLine($"magicQulity:  {magicQulity}");
+                    numericValue = (long)((numericValue / 2f) + ((numericValue / 2f) * (magicQulity / 80f)));
+                }
+                proList.Add(new PropertyValue() { HideID = numericType, HideValue = numericValue });
             }
         }
 

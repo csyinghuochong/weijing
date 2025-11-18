@@ -494,7 +494,7 @@ namespace ET
                     ifHit = false;
                 }
 
-                /*
+
                 if (skillconfig.SkillActType == 0) {
 
                     float dodgeNowValue = numericComponentDefend.GetAsFloat(NumericType.Now_CommonActDodgePro);
@@ -514,7 +514,6 @@ namespace ET
                     }
                     
                 }
-                */
 
                 //技能闪避
                 if (skillconfig.SkillActType == 1)
