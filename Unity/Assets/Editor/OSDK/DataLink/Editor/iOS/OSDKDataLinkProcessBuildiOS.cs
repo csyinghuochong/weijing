@@ -15,7 +15,8 @@ namespace OSDK.Douyin.Editor.iOS
         [PostProcessBuild((int)PostProcessBuildCallBackOrder.DataLink)]
         private static void OnPostprocessBuild(BuildTarget buildTarget, string buildPath)
         {
-            if (buildTarget != BuildTarget.iOS) return;
+              //if (buildTarget != BuildTarget.iOS) return;
+            return;
 
             // 需要还原文件夹重命名时，直接return，不需要加Framework
             string newFolderPath = OSDKProjectPathUtils.DataLinkModuleDir;
