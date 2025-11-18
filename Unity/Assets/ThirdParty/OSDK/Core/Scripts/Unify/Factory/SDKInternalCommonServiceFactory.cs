@@ -19,7 +19,7 @@ namespace Douyin.Game
 #elif UNITY_ANDROID
             _commonService = new AndroidCommonServiceImpl();
 #elif UNITY_IOS
-            _commonService = new iOSCommonServiceImpl();
+            //_commonService = new iOSCommonServiceImpl();
 #endif
             return _commonService;
         }
