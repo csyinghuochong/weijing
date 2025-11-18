@@ -278,7 +278,7 @@ namespace ET
                 }
                 string[] attributeInfo = attributeInfoList[a].Split(';');
                 int numericType = int.Parse(attributeInfo[0]);
-                long numericValue = 0;
+                //long numericValue = 0;
                 if (GetNumericValueType(numericType) == 2)
                 {
                     float fvalue = float.Parse(attributeInfo[1]);
@@ -303,7 +303,7 @@ namespace ET
                 //{
                     //numericValue = (long)((numericValue / 2f) + ((numericValue / 2f) * (magicQulity / 80f)));
                 //}
-                proList.Add(new PropertyValue() { HideID = numericType, HideValue = numericValue });
+                //proList.Add(new PropertyValue() { HideID = numericType, HideValue = numericValue });
             }
         }
 
