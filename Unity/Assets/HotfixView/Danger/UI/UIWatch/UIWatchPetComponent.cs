@@ -6,6 +6,8 @@ namespace ET
 {
     public class UIWatchPetComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject EquipSet;
         public GameObject ImageJinHua;
         public GameObject Text_ShouHu;
         public GameObject ImageShouHu;
@@ -73,6 +75,7 @@ namespace ET
         public List<UICommonSkillItemComponent> PetSkillUIList = new List<UICommonSkillItemComponent>();
         public List<UIPetSkinIconComponent> PetSkinList = new List<UIPetSkinIconComponent>();
         public UIPageButtonComponent uIPageButton;
+        public List<UIPetEquipSetItemComponent> EquipList = new List<UIPetEquipSetItemComponent>();
 
         public List<RolePetInfo> RolePetInfoList = new List<RolePetInfo>();
 
@@ -163,6 +166,20 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonCloseAddPoint, () => { self.OnButtonCloseAddPoint(); });
 
             self.AttributeNode = rc.Get<GameObject>("AttributeNode");
+
+            self.EquipSet = rc.Get<GameObject>("EquipSet");
+            self.EquipSet.SetActive(true);/// GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            for (int i = 0; i <= 2; i++)
+            {
+                GameObject go = self.EquipSet.transform.Find("Equip_" + i).gameObject;
+                UIPetEquipSetItemComponent uiitem = self.AddChild<UIPetEquipSetItemComponent, GameObject>(go);
+                uiitem.Btn_Equip.GetComponent<Button>().onClick.RemoveAllListeners();
+                int i1 = i;
+                //uiitem.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnChangeNode(4); });
+                //uiitem.Btn_Equip.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonPetEquipItem(i1); });
+                //uiitem.InitUI(FunctionUI.GetItemSubtypeByWeizhi_Pet(i));
+                self.EquipList.Add(uiitem);
+            }
 
             GameObject gameObject = rc.Get<GameObject>("PetAddPoint");
             self.PetAddPointComponent = self.AddChild<UIPetAddPointComponent, GameObject>(gameObject);
@@ -348,15 +365,18 @@ namespace ET
             self.LastSelectItem = null;
 
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIWatch);
-            self.OnInitUI(uI.GetComponent<UIWatchComponent>().F2C_WatchPlayerResponse.RolePetInfos);
+            self.OnInitUI(uI.GetComponent<UIWatchComponent>().F2C_WatchPlayerResponse);
         }
 
-        public static  void OnInitUI(this UIWatchPetComponent self, List<RolePetInfo> rolePetInfos)
+        public static  void OnInitUI(this UIWatchPetComponent self, F2C_WatchPlayerResponse  f2C_WatchPlayer)
         {
-            if (rolePetInfos == null)
+            if (f2C_WatchPlayer == null)
             {
                 return;
             }
+            List<RolePetInfo> rolePetInfos = f2C_WatchPlayer.RolePetInfos;
+
+
             self.RolePetInfoList = rolePetInfos;
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetListItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -404,6 +424,17 @@ namespace ET
             {
                 self.GameObject1.SetActive(false);
                 self.GameObject2.SetActive(true);
+            }
+
+            for (int i = 0; i < self.EquipList.Count; i++)
+            {
+                self.EquipList[i].InitUI(FunctionUI.GetItemSubtypeByWeizhi_Pet(i));
+            }
+            for (int i = 0; i < f2C_WatchPlayer.PetEquipList.Count; i++)
+            {
+                BagInfo bagInfo = f2C_WatchPlayer.PetEquipList[i];
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                self.EquipList[itemConfig.ItemSubType - 3001].UpdateData(bagInfo, ItemOperateEnum.None, null);
             }
 
             self.Text_PetNumber.GetComponent<Text>().text = string.Format("{0}", rolePetInfos.Count);

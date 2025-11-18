@@ -3584,6 +3584,7 @@ message F2C_WatchPlayerResponse // IFriendActorResponse
 	repeated int32 Ks = 11;
 	repeated int64 Vs = 12;
 	repeated int32 FashionIds = 13;
+	repeated BagInfo PetEquipList = 14;
 }
 
 //好友列表

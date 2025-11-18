@@ -7580,6 +7580,9 @@ namespace ET
 		[ProtoMember(13)]
 		public List<int> FashionIds = new List<int>();
 
+		[ProtoMember(14)]
+		public List<BagInfo> PetEquipList = new List<BagInfo>();
+
 	}
 
 //好友列表
