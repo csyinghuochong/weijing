@@ -1601,15 +1601,12 @@ namespace ET
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.CommitTask, paraminfo);
 
             /////++++++++
-            bool gm = false;
             if (GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account))
             {
-                gm = true;
                 taskid = 30010018;
             }
             else 
             {
-                gm = false;
                 taskid = 0;
             }
             /////-------
