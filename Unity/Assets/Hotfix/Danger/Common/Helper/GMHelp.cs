@@ -60,8 +60,15 @@ namespace ET
             "15326235215",           //奇迹之光+宝酷
             "17737051091",           //奇迹之光+跑的快
             "15518694173",           //风暴之怒+伊千依、
+            "18278712593",           //先锋一区 +十米十
         };
-        
+
+
+        public static bool IsZhuBoGm(int zone, string account)
+        {
+            return zone == 128 && account.Equals("18278712593");
+        }
+
 
         public static Dictionary<long, string> DebugPlayerList = new Dictionary<long, string>()
         {

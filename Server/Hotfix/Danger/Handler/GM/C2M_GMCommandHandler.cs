@@ -13,8 +13,8 @@ namespace ET
 		{
 			try
 			{
-				if (!GMHelp.GmAccount.Contains(message.Account)
-					&& !ComHelp.IsBanHaoZone(unit.DomainZone()))
+                bool gm = GMHelp.GmAccount.Contains(message.Account) || GMHelp.IsZhuBoGm(unit.DomainZone(), message.Account);
+                if (!gm  && !ComHelp.IsBanHaoZone(unit.DomainZone()))
 				{
 					return;
 				}
