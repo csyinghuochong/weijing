@@ -1489,9 +1489,23 @@ namespace ET
 		/// <summary>
 		/// 跳转到ios评分界面
 		/// </summary>
-		public void RequestStoreReview()
+		public void RequestStoreReview(int rtype)
 		{
-			RequestStoreReview_1();
+			switch (rtype)
+			{
+				case 1:
+                    RequestStoreReview_1();
+                    break;
+                case 2:
+					RequestStoreReview_2();
+                    break;
+                case 3:
+					RequestStoreReview_3();
+                    break;
+				default:
+					break;
+            }
+			
         }
 
         public void RequestStoreReview_1()

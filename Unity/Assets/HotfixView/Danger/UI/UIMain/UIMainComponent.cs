@@ -1619,7 +1619,7 @@ namespace ET
                 Log.ILog.Debug($"init.RequestStoreReview");
 #if UNITY_IPHONE && !UNITY_EDITOR
 			    Init init = GameObject.Find("Global").GetComponent<Init>();
-                init.RequestStoreReview();
+                init.RequestStoreReview(1);
 #endif
             }
         }
