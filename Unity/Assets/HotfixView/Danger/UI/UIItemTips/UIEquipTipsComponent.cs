@@ -876,6 +876,11 @@ namespace ET
                 textEquipType = self.GetPetEquipType(itemconf.ItemSubType);
                 textEquipTypeSon = GameSettingLanguge.LoadLocalization("宠物装备");
             }
+            if (itemconf.ItemType == 3 && itemconf.EquipType == 401)
+            {
+                string textson = itemconf.ItemSubType == 4001 ? "攻击型" : "恢复型";
+                textEquipTypeSon = GameSettingLanguge.LoadLocalization(textson);
+            }
 
             string langStr = GameSettingLanguge.LoadLocalization("强化");
             int qianghuaLevel = self.BagComponent.GetQiangHuaLevel(itemconf.ItemSubType);
