@@ -61,26 +61,6 @@
           <string>ttuZ8Yy6cSXVOR6AMRPj</string>
         </array>
       </dict>
-      <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLName</key>
-        <string>dygame</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>dygame</string>
-        </array>
-      </dict>
-      <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLName</key>
-        <string>douyin</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string></string>
-        </array>
-      </dict>
     </array>
     <key>CFBundleVersion</key>
     <string>155</string>
@@ -145,6 +125,8 @@
     <string>2d21337c7dc80</string>
     <key>MOBAppSecret</key>
     <string>a2c24f564def8b4a450a88491e5cc353</string>
+    <key>MOBNetLater</key>
+    <string>2</string>
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSAllowsArbitraryLoads</key>
