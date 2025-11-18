@@ -16,13 +16,13 @@ namespace Demo.Douyin.Game
             AndroidJavaObject clipData = clipDataClass.CallStatic<AndroidJavaObject>("newPlainText", "text", text);
             clipboardManager.Call("setPrimaryClip", clipData);
 #elif UNITY_IOS && !UNITY_EDITOR
-            OSDK_iOSCopyToClipboard(text);
+            //OSDK_iOSCopyToClipboard(text);
 #endif
         }
 
 #if UNITY_IOS
-        [DllImport("__Internal")]
-        private static extern void OSDK_iOSCopyToClipboard(string text);
+        //[DllImport("__Internal")]
+        //private static extern void OSDK_iOSCopyToClipboard(string text);
 #endif
     }
 }
