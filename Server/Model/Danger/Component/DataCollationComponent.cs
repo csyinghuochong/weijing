@@ -190,5 +190,7 @@ namespace ET
 
         //今日拍卖花费金币
         public long PaiMaiCostGoldToday;
+
+        public int Robot;   //1机器人  0真实玩家
     }
 }

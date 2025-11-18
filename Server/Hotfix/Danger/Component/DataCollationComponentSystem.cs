@@ -385,6 +385,7 @@ namespace ET
             self.Level = userInfoComponent.UserInfo.Lv;
             self.Account = userInfoComponent.Account;
             self.Password = userInfoComponent.Password;
+            self.Robot = unit.IsRobot() ?  1 : 0;
 
             self.CreateAccountTime = userInfoComponent.CreateAccountTime;
             self.CreateAccountTimeStr = TimeInfo.Instance.ToDateTime(self.CreateAccountTime).ToString();
