@@ -675,25 +675,29 @@ namespace ET
             {
                 if (GameSettingLanguge.Language == 0)
                 {
-                    if (num % 10000 == 0)
-                    {
-                        return (num / 10000).ToString() + "万";
-                    }
-                    else
-                    {
-                        return ((float)num / 10000f).ToString("F2") + "万";
-                    }
+                    //if (num % 10000 == 0)
+                    //{
+                    //    return (num / 10000).ToString() + "万";
+                    //}
+                    //else
+                    //{
+                    //    return ((float)num / 10000f).ToString("F2") + "万";
+                    //}
+
+                    return (num / 10000).ToString() + "万";
                 }
                 else
                 {
-                    if (num % 1000 == 0)
-                    {
-                        return (num / 1000).ToString() + "K";
-                    }
-                    else
-                    {
-                        return ((float)num / 1000f).ToString("F2") + "K";
-                    }
+                    //if (num % 1000 == 0)
+                    //{
+                    //    return (num / 1000).ToString() + "K";
+                    //}
+                    //else
+                    //{
+                    //    return ((float)num / 1000f).ToString("F2") + "K";
+                    //}
+
+                    return (num / 1000).ToString() + "K";
                 }
             }
             else
