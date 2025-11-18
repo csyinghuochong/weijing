@@ -282,9 +282,7 @@ namespace ET
                 if (GetNumericValueType(numericType) == 2)
                 {
                     float fvalue = float.Parse(attributeInfo[1]);
-                    numericValue = (long)(fvalue * 10000);
-
-                    //proList.Add(new PropertyValue() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+                    proList.Add(new PropertyValue() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
                 }
                 else
                 {
@@ -297,16 +295,14 @@ namespace ET
                     {
                         Log.Debug(ex.ToString() + $"报错 {prolist}");
                     }
-                    numericValue = lvalue;
-
-                    //proList.Add(new PropertyValue() { HideID = numericType, HideValue = lvalue });
+                    proList.Add(new PropertyValue() { HideID = numericType, HideValue = lvalue });
                 }
 
                 //触发概率公示：实际影响属性=(原始属性/2)+((原始属性/2)*(品质/80))
-                if (magicQulity > 0)
-                {
-                    numericValue = (long)((numericValue / 2f) + ((numericValue / 2f) * (magicQulity / 80f)));
-                }
+                //if (magicQulity > 0)
+                //{
+                    //numericValue = (long)((numericValue / 2f) + ((numericValue / 2f) * (magicQulity / 80f)));
+                //}
                 proList.Add(new PropertyValue() { HideID = numericType, HideValue = numericValue });
             }
         }
