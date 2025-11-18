@@ -14,8 +14,8 @@ namespace Douyin.Game
         [PostProcessBuild((int)PostProcessBuildCallBackOrder.Core)]
         private static void OnPostprocessBuild(BuildTarget buildTarget, string buildPath)
         {
-            //if (buildTarget != BuildTarget.iOS) return;
-            return;
+             if (buildTarget != BuildTarget.iOS) return;
+             if (buildTarget == BuildTarget.iOS) return;
 
             var projPath = PBXProject.GetPBXProjectPath(buildPath);
             var proj = new PBXProject();
