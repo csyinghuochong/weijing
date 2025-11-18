@@ -75,6 +75,7 @@ namespace ET
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
 
             self.Label_ItemName.GetComponent<Text>().text = itemConfig.GetItemName();
+            self.Label_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi(itemConfig.ItemQuality);
 
             //显示字
             //self.Label_ItemNum.GetComponent<Text>().text = $"{bagComponent.GetItemNumber(itemId)}/{itemNum}";
