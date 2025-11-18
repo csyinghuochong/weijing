@@ -9,6 +9,8 @@ namespace ET
     public class UIMagickaSlotComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Text_TotalLevel;
+
         public GameObject Btn_OneKey;
         public GameObject ImageLockNode;
         public UIItemComponent UICommonItem;
@@ -122,6 +124,8 @@ namespace ET
 
             self.ImageLockNode = rc.Get<GameObject>("ImageLockNode");
             self.ImageLockNode.SetActive(false);
+
+            self.Text_TotalLevel = rc.Get<GameObject>("Text_TotalLevel");
 
             //单选组件
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
@@ -625,17 +629,19 @@ namespace ET
 
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             int totallevel = chengJiuComponent.GetCurrentMagickaTotalLevel();
-            string str1 = GameSettingLanguge.LoadLocalization("总等级达到");
+            string str1 = GameSettingLanguge.LoadLocalization("总计达到");
             string str2 = GameSettingLanguge.LoadLocalization("级");
             if (totallevel < magickaSlotConfig.NeedTotalLevel)
             {
-                self.Text_NeedTotalLevel.text = $"<color=#B6FF39>{str1}<color=#FF0000>{totallevel}/{magickaSlotConfig.NeedTotalLevel}</color>{str2}</color>";
+                self.Text_NeedTotalLevel.text = $"<color=#B6FF39>{str1}<color=#FF0000>{magickaSlotConfig.NeedTotalLevel}</color>{str2}</color>";
             }
             else
             {
-                self.Text_NeedTotalLevel.text = $"<color=#B6FF39>{str1}{totallevel}/{magickaSlotConfig.NeedTotalLevel}{str2}</color>";
+                self.Text_NeedTotalLevel.text = $"<color=#B6FF39>{str1}{magickaSlotConfig.NeedTotalLevel}{str2}</color>";
             }
-            
+
+            string str3 = GameSettingLanguge.LoadLocalization("总等级:");
+            self.Text_TotalLevel.GetComponent<Text>().text = $"{str3}{totallevel}";
         }
     }
 }

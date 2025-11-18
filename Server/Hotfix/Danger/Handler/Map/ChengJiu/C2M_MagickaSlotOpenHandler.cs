@@ -45,7 +45,7 @@ namespace ET
                 return;
             }
 
-            chengJiuComponent.OnOpenMagicka(request.Position, nexid);
+            chengJiuComponent.OnOpenMagicka(request.Position,  nexid);
             response.MagickaSlotIds = chengJiuComponent.MagickaSlotIdList;
             reply();
             await ETTask.CompletedTask;

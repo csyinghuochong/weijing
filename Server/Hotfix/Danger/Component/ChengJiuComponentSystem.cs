@@ -412,8 +412,17 @@ namespace ET
             return totallevel;
         }
 
-        public static void OnOpenMagicka(this ChengJiuComponent self, int position, int magicid)
+        public static void OnOpenMagicka(this ChengJiuComponent self,int position, int magicid)
         {
+            for (int i = self.MagickaSlotIdList.Count - 1; i >= 0; i--)
+            {
+                MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(self.MagickaSlotIdList[i].SlotId);
+                if (magickaSlotConfig.Position == position + 1)
+                {
+                    self.MagickaSlotIdList.RemoveAt(i);
+                }
+            }
+
             self.MagickaSlotIdList.Add(new MagickaSlotInfo() { SlotId = magicid, Exp = 0 });
         }
 
