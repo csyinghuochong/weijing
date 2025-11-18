@@ -1604,6 +1604,7 @@ namespace ET
             {
                 taskid = 30010018;
             }
+            Log.ILog.Debug($"main taskid:  {taskid}");
 
             if (taskid == 30010018 && GlobalHelp.GetBigVersion() >= 24)
             {

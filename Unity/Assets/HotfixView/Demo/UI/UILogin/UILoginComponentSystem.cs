@@ -36,15 +36,24 @@ namespace ET
                     Screen.orientation = ScreenOrientation.AutoRotation;
                 }
 
+                if (bigversion == 24)
+                {
+					Log.ILog.Debug("bigversion == 24");
+                }
+ 
+                if (Application.version == "2.4.5")
+                {
+                    Log.ILog.Debug("Application.version == 2.4.5");
+                }
 #if UNITY_IPHONE || UNITY_IOS
 				if (bigversion == 24 && Application.version == "2.4.5")
-				{
-					self.IOSReview = true;
-				}
-				else
-				{
-					self.IOSReview = false;
-				}
+                {
+                    self.IOSReview = true;
+                }
+                else
+                {
+                    self.IOSReview = false;
+                }
 #endif
 
 #if UNITY_ANDROID
@@ -110,8 +119,7 @@ namespace ET
                 self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(taptap);
                 self.ZhuCe.transform.Find("Btn_Apple").gameObject.SetActive(bigversion >= 21 && platform == 20001);
 
-                Log.ILog.Debug($"self.IOSReview:  {self.IOSReview}  appversion: {Application.version}");
-                Log.ILog.Debug($"UILoginComponent  bigversion:{bigversion}   platform:{platform}");
+                Log.ILog.Debug($"self.IOSReview:  {self.IOSReview}  appversion: {Application.version}  bigversion:{bigversion}   platform:{platform}");
 
                 self.YanZheng = rc.Get<GameObject>("YanZheng");
 				self.SendYanzheng = rc.Get<GameObject>("SendYanzheng");
