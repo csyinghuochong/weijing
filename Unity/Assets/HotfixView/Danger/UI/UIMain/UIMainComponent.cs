@@ -1600,6 +1600,11 @@ namespace ET
             await TimerComponent.Instance.WaitAsync(200);
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.CommitTask, paraminfo);
 
+            if (GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account))
+            {
+                taskid = 30010018;
+            }
+
             if (taskid == 30010018 && GlobalHelp.GetBigVersion() >= 24)
             {
                 Log.ILog.Debug($"init.RequestStoreReview");
