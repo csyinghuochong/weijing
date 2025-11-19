@@ -606,8 +606,15 @@ namespace ET
 			}
 
 			self.BanHanNode.transform.localPosition = uppos ? new Vector3(0f, -20f, 0f) : new Vector3(0f,160f,0f);
+            if (self.YiJianDengLu.activeSelf)
+			{
+#if UNITY_IPHONE || UNITY_IOS
+				self.YiJianDengLu.transform.Find("ButtonYiJianLogin").gameObject.SetActive(false);
+				self.YiJianDengLu.transform.Find("ButtonOtherLogin").transform.localPosition = new Vector3(8f,-88f,0f);
+#endif
+            }
 
-			switch (int.Parse(self.LoginType))
+            switch (int.Parse(self.LoginType))
 			{
 				case LoginTypeEnum.RegisterLogin:
 					self.ZhuCe.SetActive(false);
