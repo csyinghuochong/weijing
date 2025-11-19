@@ -456,13 +456,12 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 179, ServerIp = $"{ip}:20595", ServerName = "巨刃降临", ServerOpenTime = 1761303600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 180, ServerIp = $"{ip}:20375", ServerName = "生命之树", ServerOpenTime = 1761908400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 181, ServerIp = $"{ip}:20405", ServerName = "浮生若梦", ServerOpenTime = 1762513200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-
-
-                //2025/11/14 19:00:00 1763118000000 合区 青云之巅-决战之巅   167/169
-                //2025/11/14 19:00:00 1763118000000 合区 龙息之谷-星界回廊   174/175
-                //2025/11/14 19:00:00 1763118000000 合区 普天同庆-长安旧梦   176/177
-                //2025/11/14 19:00:00 1763118000000 新区 泰坦之锤 182
                 serverItems_1.Add(new ServerItem() { ServerId = 182, ServerIp = $"{ip}:20415", ServerName = "泰坦之锤", ServerOpenTime = 1763118000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+
+
+                //2025/11/21 19:00:00 1763722800000 合区 xx-xx   xx/xx
+                //2025/11/21 19:00:00 1763722800000 新区 新区新区 183
+                serverItems_1.Add(new ServerItem() { ServerId = 183, ServerIp = $"{ip}:20455", ServerName = "新区新区", ServerOpenTime = 1763722800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
