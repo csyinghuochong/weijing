@@ -19,21 +19,25 @@ namespace ET
             ShouJiConfig shouJiConfig = ShouJiConfigCategory.Instance.Get(request.ChapterId);
             if (request.RewardIndex == 1 && shouJiChapterInfo.StarNum < shouJiConfig.ProList1_StartNum)
             {
+                response.Error = ErrorCode.ERR_AlreadyReceived;
                 reply();
                 return;
             }
             if (request.RewardIndex == 2 && shouJiChapterInfo.StarNum < shouJiConfig.ProList2_StartNum)
             {
+                response.Error = ErrorCode.ERR_AlreadyReceived;
                 reply();
                 return;
             }
             if (request.RewardIndex == 3 && shouJiChapterInfo.StarNum < shouJiConfig.ProList3_StartNum)
             {
+                response.Error = ErrorCode.ERR_AlreadyReceived;
                 reply();
                 return;
             }
             if ((shouJiChapterInfo.RewardInfo & 1 << request.RewardIndex) > 0)
             {
+                response.Error = ErrorCode.ERR_AlreadyReceived;
                 reply();
                 return;
             }
@@ -44,6 +48,7 @@ namespace ET
             if (request.RewardIndex == 1) rewards = shouJiConfig.RewardList_1;
             if (!unit.GetComponent<BagComponent>().OnAddItemData(rewards, $"{ItemGetWay.ShoujiReward}_{TimeHelper.ServerNow()}"))
             {
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
