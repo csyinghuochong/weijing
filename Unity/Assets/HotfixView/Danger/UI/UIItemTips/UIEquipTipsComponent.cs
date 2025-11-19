@@ -1270,7 +1270,7 @@ namespace ET
                 Vector2 equipSuit_vec2 = new Vector2(0, -190);
                 self.MagicQulity.transform.GetComponent<RectTransform>().anchoredPosition = equipSuit_vec2;
                 ImageMagicQulityValue.fillAmount = int.Parse(baginfo.ItemPar) * 1f / 100;
-                startPostionY -= 80;
+                startPostionY -= 120;
             }
             else
             {
