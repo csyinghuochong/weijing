@@ -58,7 +58,10 @@ namespace ET
             UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage1"), 1);
             UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage2"), 2);
             UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage3"), 3);
-            
+            UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage4"), 4);
+            UICommonHelper.ShowOccIcon(rc.Get<GameObject>("HeadIcomImage5"), 5);
+
+
             self.OnLanguageUpdate();
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
             
