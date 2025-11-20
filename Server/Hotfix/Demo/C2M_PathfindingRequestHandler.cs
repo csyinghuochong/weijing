@@ -7,20 +7,20 @@ namespace ET
 	{
 		protected override async ETTask Run(Unit unit, C2M_PathfindingRequest message)
 		{
-
             SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
             if (skillManagerComponent.HaveSkillType(SkillHelp.Skill_Other_ChongJi_1))
             {
                 return;
             }
-            else
-            {
-                unit.GetComponent<BuffManagerComponent>()?.AddBuffRecord(0, 0);
-            }
+            //else
+            //{
+            //    unit.GetComponent<BuffManagerComponent>()?.AddBuffRecord(0, 0);
+            //}
 
             unit.GetComponent<MoveComponent>().SyncPosition();
             unit.GetComponent<SkillPassiveComponent>().OnPlayerMove();
-            unit.GetComponent<BuffManagerComponent>().BuffRemoveType(1);
+            unit.GetComponent<BuffManagerComponent>()?.BuffRemoveType(1);
+            unit.GetComponent<BuffManagerComponent>()?.AddBuffRecord(0, 0);
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.Happy
              || mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi

@@ -460,8 +460,8 @@ namespace ET
 
 
                 //2025/11/21 19:00:00 1763722800000 合区 xx-xx   xx/xx
-                //2025/11/21 19:00:00 1763722800000 新区 新区新区 183
-                serverItems_1.Add(new ServerItem() { ServerId = 183, ServerIp = $"{ip}:20455", ServerName = "新区新区", ServerOpenTime = 1763722800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+                //2025/11/21 19:00:00 1763722800000 新区 圣光神域 183
+                serverItems_1.Add(new ServerItem() { ServerId = 183, ServerIp = $"{ip}:20455", ServerName = "圣光神域", ServerOpenTime = 1763722800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
