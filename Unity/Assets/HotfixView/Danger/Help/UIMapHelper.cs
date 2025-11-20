@@ -38,6 +38,7 @@ namespace ET
                 }
             }
 
+            self.RemoveComponent<PathfindingComponent>();
             self.AddComponent<PathfindingComponent, int>(navmesh);
             //unit.AddComponent<ClientPathfinding2Component>();
         }
