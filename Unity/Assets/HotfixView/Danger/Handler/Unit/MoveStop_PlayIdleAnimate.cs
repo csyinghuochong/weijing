@@ -49,6 +49,10 @@ namespace ET
             if (args.Unit.MainHero)
             {
                 UI uimain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
+                if (uimain == null)
+                {
+                    return;
+                }
                 uimain.GetComponent<UIMainComponent>().OnMoveStop();
                 Game.Scene.GetComponent<SoundComponent>().StopRunSound();
             }

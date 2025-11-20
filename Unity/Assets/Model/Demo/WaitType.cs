@@ -12,6 +12,7 @@
             }
         }
 
+
         public struct Wait_CreateMyUnit: IWaitType
         {
             public int Error
@@ -24,6 +25,16 @@
         }
         
         public struct Wait_SceneChangeFinish: IWaitType
+        {
+            public int Error
+            {
+                get;
+                set;
+            }
+        }
+
+
+        public struct Wait_ConfigLoadFinish : IWaitType
         {
             public int Error
             {

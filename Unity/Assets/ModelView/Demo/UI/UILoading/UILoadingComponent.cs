@@ -20,5 +20,8 @@ namespace ET
 		public List<string> ReleaseAssets = new List<string>();
 
 		public string AssetPath = string.Empty;
+
+
+		public bool InitFinish = false;	
 	}
 }
