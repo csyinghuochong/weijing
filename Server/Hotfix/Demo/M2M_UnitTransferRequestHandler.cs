@@ -323,7 +323,7 @@ namespace ET
 						else
 						{
                             //第二个玩家坐标
-                            unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
+                            unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f + 1f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f + 1f);
                             unit.Rotation = Quaternion.identity;
                         }
 

@@ -27,7 +27,7 @@ namespace ET
                     }
 
                     userInfoComponent.UpdateRoleMoneySub(UserDataType.Gold, (needGold * -1).ToString());
-					userInfoComponent.UpdateRoleData(UserDataType.Sp, (level - sp - 1).ToString());
+					userInfoComponent.UpdateRoleData(UserDataType.Sp, (level - sp).ToString());
 					unit.GetComponent<SkillSetComponent>().OnSkillReset(true);
 					break;
 				case 2:

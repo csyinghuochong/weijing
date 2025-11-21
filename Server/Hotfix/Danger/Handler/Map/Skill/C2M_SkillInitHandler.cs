@@ -185,7 +185,7 @@ namespace ET
                     Console.WriteLine($"区{unit.DomainZone()}   玩家:{unit.Id}   重置技能！！");
                     int level = userInfoComponent.UserInfo.Lv;
                     int sp = userInfoComponent.UserInfo.Sp;
-                    userInfoComponent.UpdateRoleData(UserDataType.Sp, (level - sp - 1).ToString(), false);
+                    userInfoComponent.UpdateRoleData(UserDataType.Sp, (level - sp).ToString(), false);
                     unit.GetComponent<SkillSetComponent>().ResetNengLiangZhiDi();
                     unit.GetComponent<SkillSetComponent>().OnSkillReset(false);
                 }

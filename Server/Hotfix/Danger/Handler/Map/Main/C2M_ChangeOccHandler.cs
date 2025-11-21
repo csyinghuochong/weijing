@@ -100,7 +100,7 @@ namespace ET
             int level = userInfoComponent.UserInfo.Lv;
             int sp = userInfoComponent.UserInfo.Sp;
 
-            userInfoComponent.UpdateRoleData(UserDataType.Sp, (level - sp - 1).ToString());
+            userInfoComponent.UpdateRoleData(UserDataType.Sp, (level - sp).ToString());
 
             
             SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();

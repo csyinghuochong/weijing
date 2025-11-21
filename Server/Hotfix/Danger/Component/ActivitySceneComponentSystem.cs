@@ -427,7 +427,7 @@ namespace ET
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                              (centerid, new A2A_ActivityUpdateRequest() { Hour = hour });
             }
-            if (/*!ComHelp.IsInnerNet() &&*/ self.DomainZone() != 3 && hour == 6)
+            if (!ComHelp.IsInnerNet() && self.DomainZone() != 3 && hour == 6)
             {
                 Log.Warning($"刷新机器人: {self.DomainZone()}");
                 self.CreateRobot(openServerDay).Coroutine();
