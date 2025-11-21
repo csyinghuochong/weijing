@@ -250,7 +250,7 @@ namespace ET
 						break;
 					case 6:
 						int newLevel = int.Parse(commands[1]);
-						if (newLevel <= 70)
+						if (newLevel <= GlobalValueConfigCategory.Instance.MaxLevel)
 						{
 							int level = newLevel - unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 							unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Lv, level.ToString());
