@@ -53,6 +53,8 @@ namespace ET
 
         public long LastPopularize_ListTime = 0;
 
+        public long OneChallengeOtherId = 0;
+
         public int GoToOperate = 0;
     }
 }
