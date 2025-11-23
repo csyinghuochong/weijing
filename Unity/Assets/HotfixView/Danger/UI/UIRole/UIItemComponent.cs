@@ -237,7 +237,7 @@ namespace ET
             self.EquipEffect = gameObject;
             gameObject.SetActive(true);
             UICommonHelper.SetParent(gameObject, self.GameObject);
-            gameObject.transform.localScale = Vector3.one * 20f;  
+            gameObject.transform.localScale = Vector3.one * 40f;  
         }
 
         //更新显示
