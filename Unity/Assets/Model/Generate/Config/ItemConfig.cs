@@ -162,6 +162,9 @@ namespace ET
 		/// <summary>总共使用次数</summary>
 		[ProtoMember(29)]
 		public int SumUseNum { get; set; }
+		/// <summary>显示特效</summary>
+		[ProtoMember(30)]
+		public string EquipEffect { get; set; }
 
 	}
 }
