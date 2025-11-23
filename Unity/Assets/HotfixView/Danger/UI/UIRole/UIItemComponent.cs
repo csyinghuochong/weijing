@@ -35,6 +35,9 @@ namespace ET
         public int ItemID;
         public bool ShowTip;
 
+        public string EffectPath;
+        public GameObject EquipEffect;
+
         public List<string> AssetPath = new List<string>();
     }
 
@@ -67,7 +70,12 @@ namespace ET
                     ResourcesComponent.Instance.UnLoadAsset(self.AssetPath[i]); 
                 }
             }
-            
+
+            if (!string.IsNullOrEmpty(self.EffectPath) && self.EquipEffect!=null)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.EffectPath, self.EquipEffect);
+            }
+
             DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
             
             self.AssetPath = null;
@@ -209,9 +217,27 @@ namespace ET
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
         }
 
+        public static void ShowEffet(this UIItemComponent self)
+        { 
+
+        }
+
         public static void UpdateUnLock(this UIItemComponent self, bool actived)
         { 
             self.Image_Lock.SetActive(!actived);
+        }
+
+        public static void OnLoadGameObject(this UIItemComponent self, GameObject gameObject, long formId)
+        {
+            if (self.IsDisposed || formId != self.InstanceId)
+            {
+                UnityEngine.Object.Destroy(gameObject);
+                return;
+            }
+            self.EquipEffect = gameObject;
+            gameObject.SetActive(true);
+            UICommonHelper.SetParent(gameObject, self.GameObject);
+            gameObject.transform.localScale = Vector3.one * 20;  
         }
 
         //更新显示
@@ -255,6 +281,13 @@ namespace ET
 
                 self.Image_Binding?.SetActive(bagInfo.isBinging);
                 self.Image_Protect?.SetActive(bagInfo.IsProtect);
+
+                if (!string.IsNullOrEmpty(itemconfig.EquipEffect) && string.IsNullOrEmpty(self.EffectPath))
+                {
+                    string effectpath = ABPathHelper.GetEffetPath($"UIEffect/{itemconfig.EquipEffect}");
+                    self.EffectPath = effectpath;
+                    GameObjectPoolComponent.Instance.AddLoadQueue(effectpath, self.InstanceId, self.OnLoadGameObject);
+                }
 
                 if (ifShowImg)
                 {
