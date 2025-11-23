@@ -16,6 +16,8 @@ namespace ET
         public int GemStoreInitCapacity = 0;
         public int GemStoreMaxCapacity = 0;
 
+        public int MaxLevel = 0;
+
         public Dictionary<int, int> ZhuaPuItem = new Dictionary<int, int>();
 
         public override void AfterEndInit()
@@ -26,7 +28,8 @@ namespace ET
             HourseMaxCapacity = this.Get(85).Value2 + HourseInitCapacity + 10;
             AccountBagMax = this.Get(115).Value2;
             GemStoreInitCapacity = this.Get(118).Value2; 
-            GemStoreMaxCapacity = this.Get(118).Value2; 
+            GemStoreMaxCapacity = this.Get(118).Value2;
+            MaxLevel = this.Get(41).Value2;
 
             string[] zhuabuItems = this.Get(82).Value.Split('@');
             for (int i = 0; i < zhuabuItems.Length; i++)

@@ -1058,8 +1058,10 @@ namespace ET
             ExpConfig xiulianconf1 = ExpConfigCategory.Instance.Get(self.UserInfo.Lv);
             long upNeedExp = xiulianconf1.UpExp;
 
+            TaskComponent taskComponent = self.GetParent<Unit>().GetComponent<TaskComponent>();
+
             //等级达到上限,则无法获得经验. 经验最多200%
-            if (addValue > 0 &&self.UserInfo.Lv >= GlobalValueConfigCategory.Instance.MaxLevel)
+            if (addValue > 0 &&self.UserInfo.Lv >= self.GetMaxLevel(taskComponent.RoleComoleteTaskList))
             {
                 long maxExp = upNeedExp * 2;
                 if (self.UserInfo.Exp > maxExp) 

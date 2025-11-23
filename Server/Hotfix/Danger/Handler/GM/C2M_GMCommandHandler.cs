@@ -242,7 +242,7 @@ namespace ET
 							//MessageHelper.Broadcast(unit, createSpilings);
 						}
 						break;
-					case 4: //直接接取某个任务      4#30090010
+					case 4: //直接接取某个任务      4#30080019
                         unit.GetComponent<TaskComponent>().OnGMGetTask(int.Parse(commands[1]));
 						break;
 					case 5: //直接获得某个宠物      5#1001301
@@ -250,10 +250,12 @@ namespace ET
 						break;
 					case 6:
 						int newLevel = int.Parse(commands[1]);
-						if (newLevel <= GlobalValueConfigCategory.Instance.MaxLevel)
+                        UserInfoComponent userInfoComponent =  unit.GetComponent<UserInfoComponent>();
+						TaskComponent taskComponent = unit.GetComponent<TaskComponent>();	
+                        if (newLevel <= userInfoComponent.GetMaxLevel(taskComponent.RoleComoleteTaskList))
 						{
 							int level = newLevel - unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-							unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Lv, level.ToString());
+                            userInfoComponent.UpdateRoleData(UserDataType.Lv, level.ToString());
 						}
 						break;
 					case 7:
@@ -262,7 +264,7 @@ namespace ET
 
 						List<string> componentList = new List<string>() { DBHelper.BagComponent, DBHelper.TaskComponent };
 						D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userID, Component = DBHelper.UserInfoComponent });
-						UserInfoComponent userInfoComponent = d2GGetUnit.Component as UserInfoComponent;
+						userInfoComponent = d2GGetUnit.Component as UserInfoComponent;
 						for (int i = 0; i < componentList.Count; i++)
 						{
 							d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userID, Component = componentList[i] });

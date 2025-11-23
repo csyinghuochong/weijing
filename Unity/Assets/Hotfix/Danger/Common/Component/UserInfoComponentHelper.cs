@@ -175,6 +175,17 @@ namespace ET
             }
         }
 
+        public static int GetMaxLevel(this UserInfoComponent self, List<int> compeltetask)
+        {
+            if (compeltetask.Contains(30080019))
+            {
+                return GlobalValueConfigCategory.Instance.MaxLevel;
+            }
+            else
+            {
+                return 70;
+            }
+        }
 
         public static void AddFubenTimes(this UserInfoComponent self, int sceneId, int times)
         {

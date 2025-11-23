@@ -66,7 +66,7 @@ namespace ET
             self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
             //上午重启不刷新世界等级
             DateTime dateTime = TimeHelper.DateTimeNow();
-            if (self.DBServerInfo.ServerInfo.WorldLv == 0|| dateTime.Hour >= 12)
+            if (self.DBServerInfo.ServerInfo.WorldLv == 0|| dateTime.Hour >= 12 || ComHelp.IsInnerNet())
             {
                 self.UpdateWorldLv();
             }
