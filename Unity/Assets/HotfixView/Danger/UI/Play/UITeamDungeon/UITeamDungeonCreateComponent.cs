@@ -24,6 +24,8 @@ namespace ET
         public List<int> FubenIdList = new List<int>() { };
         public List<Transform> ButtonList = new List<Transform>();
         public List<string> AssetPath = new List<string>();
+
+        public List<UIItemComponent> RewardItemList = new List<UIItemComponent>();
     }
 
 
@@ -152,7 +154,6 @@ namespace ET
         {
             self.FubenId = fubenId;
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
-            UICommonHelper.DestoryChild(self.ItemNodeList);
 
             int bossId = sceneConfig.BossId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
@@ -190,8 +191,57 @@ namespace ET
                 }
                 rewardItems.Add(rewardItem);
             }
+            rewardItems.Sort(delegate (RewardItem a, RewardItem b)
+            {
+                int itemIda = a.ItemID;
+                int itemIdb = b.ItemID;
+                int quliatya = ItemConfigCategory.Instance.Get(itemIda).ItemQuality;
+                int quliatyb = ItemConfigCategory.Instance.Get(itemIdb).ItemQuality;
+                if (quliatya == quliatyb)
+                {
+                    if (itemIda == itemIdb)
+                        return b.ItemNum - a.ItemNum;
+                    else
+                        return itemIda - itemIdb;
+                }
+                else
+                {
+                    return quliatyb - quliatya;
+                }
+            });
 
-            UICommonHelper.ShowItemList(rewardItems, self.ItemNodeList, self, 1f);
+            var path_item = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path_item);
+            for (int i = 0; i < rewardItems.Count; i++)
+            {
+                UIItemComponent uIItemComponent = null;
+                if (i < self.RewardItemList.Count)
+                {
+                    uIItemComponent = self.RewardItemList[i];
+                }
+                else
+                {
+                    GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(itemSpace, self.ItemNodeList);
+                    uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
+                    uIItemComponent.Label_ItemName.SetActive(false);
+                    uIItemComponent.Label_ItemNum.SetActive(true);
+                    uIItemComponent.Image_Binding.SetActive(false);
+                    itemSpace.transform.localScale = Vector3.one;
+
+                    self.RewardItemList.Add(uIItemComponent);
+                }
+
+                uIItemComponent.GameObject.SetActive(true);
+                uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
+            }
+
+            for (int i = rewardItems.Count;  i < self.RewardItemList.Count; i++)
+            {
+                self.RewardItemList[i].GameObject.SetActive(false);
+            }
+            //UICommonHelper.ShowItemList(rewardItems, self.ItemNodeList, self, 1f);
+
             self.TextLevelLimit.GetComponent<Text>().text = sceneConfig.EnterLv.ToString();
             self.TextPlayerLimit.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}-3人"), sceneConfig.PlayerLimit);
             self.TextFubenDesc.GetComponent<Text>().text = sceneConfig.GetChapterDes();
