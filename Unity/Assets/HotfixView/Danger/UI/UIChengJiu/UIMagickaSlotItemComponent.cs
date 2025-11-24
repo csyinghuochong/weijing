@@ -95,7 +95,7 @@ namespace ET
 
         public static void OnClickImage_Lock(this UIMagickaSlotItemComponent self)
         {
-            self.ClickLockHandler?.Invoke( self.Position, -2 );
+            self.ClickLockHandler?.Invoke( self.Position, -2);
          }
 
         public static void SetSelected(this UIMagickaSlotItemComponent self, bool active)

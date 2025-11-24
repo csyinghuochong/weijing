@@ -177,8 +177,8 @@ namespace ET
         public static void OnClickPageButton(this UIMagickaSlotComponent self, int page)
         {
             Log.ILog.Debug($"UIMagickaSlotComponent : {page}");
-            self.EquipSlot.SetActive(page == 0);
-            self.OpenSlot.SetActive(page == 1);
+            self.EquipSlot.SetActive(false);
+            self.OpenSlot.SetActive(false);
 
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(self.Position);
@@ -186,9 +186,7 @@ namespace ET
             switch (page)
             {
                 case 0:
-                    self.UpdateEquipList();
-                    break;
-                case 1:
+                    self.OpenSlot.SetActive(true);
                     self.NodeOpen.SetActive(true);
                     string btntext = curid == 0 ? "开启位置" : "升级";
                     btntext = GameSettingLanguge.LoadLocalization(btntext);
@@ -197,6 +195,11 @@ namespace ET
                     //self.NodeZhuRu.SetActive(curid != 0);
                     //self.UpdateZhuruList();
                     break;
+                case 1:
+                    self.EquipSlot.SetActive(true);
+                    self.UpdateEquipList();
+                    break;
+                   
                 default:
                     break;
             }
@@ -205,7 +208,7 @@ namespace ET
         public static void OnEquipWear(this UIMagickaSlotComponent self)
         {
             self.OnUpdateSlotUI();
-            self.OnClickSlotHandler(self.Position, 0);
+            self.OnClickSlotHandler(self.Position, 1);
         }
 
         public static void UpdateEquipList(this UIMagickaSlotComponent self)
@@ -438,7 +441,7 @@ namespace ET
             {
                 return;
             }
-            self.OnClickSlotHandler(self.Position, 1);
+            self.OnClickSlotHandler(self.Position, 0);
             await ETTask.CompletedTask;
         }
 
@@ -488,7 +491,7 @@ namespace ET
             }
 
             self.OnUpdateSlotUI();
-            self.OnClickSlotHandler(self.Position, 1);
+            self.OnClickSlotHandler(self.Position, 0);
         }
 
         public static void OnClickSlotHandler(this UIMagickaSlotComponent self, int position, int pagetype)
@@ -520,11 +523,11 @@ namespace ET
 
             //pagetype==-1初始
             //pagetype==-2切换
-            //0装备
-            //1开启升级
+            //0开启升级
+            //1装备
 
             int newpage = 0;
-            if (pagetype == 0 || pagetype == 1)
+            if (pagetype >= 0)
             {
                 newpage = pagetype;
             }
@@ -534,11 +537,11 @@ namespace ET
             }
             else 
             {
-                newpage = curid > 0 ? self.UIPageButton.CurrentIndex : 1;
+                newpage = curid > 0 ? self.UIPageButton.CurrentIndex : 0;
 
                 if (curid > 0 && bagInfo == null)
                 {
-                    newpage = 0;
+                    newpage = 1;
                 }
                 if (newpage < 0)
                 {

@@ -1355,5 +1355,32 @@ namespace ET
             new TimerChouKaItemn(){  Interval = 30, Weight = 10,  ItemInfo =  "10010088;1" },      //体力补充
             new TimerChouKaItemn(){  Interval = 30,  Weight = 10,  ItemInfo =  "10000158;1" },     //封印之塔挑战凭证
         };
+
+
+        //魔能合成 
+        public static Dictionary<int, List<int>> MagicHeChengList = new Dictionary<int, List<int>>
+        {
+            { 1, new List<int>()
+            {
+                11600101,
+                11600102,
+                11600103,
+            } },
+
+            { 2, new List<int>()
+            {
+                11600201,
+                11600202,
+                11600203,
+            } },
+
+            { 3, new List<int>()
+            {
+                11600301,
+                11600302,
+                11600303,
+            } },
+        };
+
     }
 }
