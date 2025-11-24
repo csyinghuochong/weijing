@@ -1061,7 +1061,8 @@ namespace ET
             TaskComponent taskComponent = self.GetParent<Unit>().GetComponent<TaskComponent>();
 
             //等级达到上限,则无法获得经验. 经验最多200%
-            if (addValue > 0 &&self.UserInfo.Lv >= self.GetMaxLevel(taskComponent.RoleComoleteTaskList))
+            int maxlevel = self.GetMaxLevel(taskComponent.RoleComoleteTaskList);
+            if (addValue > 0 &&self.UserInfo.Lv >= maxlevel)
             {
                 long maxExp = upNeedExp * 2;
                 if (self.UserInfo.Exp > maxExp) 
@@ -1072,6 +1073,11 @@ namespace ET
             }
 
             self.UserInfo.Exp = self.UserInfo.Exp + (int)(addValue * (1.0f + expAdd));
+
+            if (self.UserInfo.Lv >= maxlevel)
+            {
+                return;
+            }
 
             //判定是否升级
             if (self.UserInfo.Lv >= serverInfo.WorldLv)
