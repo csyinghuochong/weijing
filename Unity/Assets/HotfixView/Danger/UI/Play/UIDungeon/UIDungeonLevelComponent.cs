@@ -133,7 +133,10 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             DungeonSectionConfig chapterSectionConfig = DungeonSectionConfigCategory.Instance.Get(chapterid);
             self.chapterSectionConfig1 = chapterSectionConfig;
-         
+
+            AccountInfoComponent accountInfoComponent1 = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            bool isGmaccount = GMHelp.GmAccount.Contains(accountInfoComponent1.Account);
+
             int number = 0;
             for (int i = 0; i < chapterSectionConfig.RandomArea.Length; i++)
             {
@@ -144,7 +147,7 @@ namespace ET
                     break;
                 }
                 
-                if (chapterCof.Id >= ConfigHelper.GMDungeonId)
+                if (!isGmaccount && chapterCof.Id >= ConfigHelper.GMDungeonId)
                 {
                     break;
                 }
