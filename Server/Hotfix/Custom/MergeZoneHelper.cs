@@ -109,8 +109,8 @@ namespace ET
 
                 for (int i = 0; i < entity.PlayerInfo.RechargeInfos.Count; i++)
                 {
-                    //5月份
-                    if (entity.PlayerInfo.RechargeInfos[i].Time > 1732982400000 && entity.PlayerInfo.RechargeInfos[i].Time < 1735574400000)
+                    //11月份
+                    if (entity.PlayerInfo.RechargeInfos[i].Time > 1761926400000 && entity.PlayerInfo.RechargeInfos[i].Time < 1764518400000)
                     {
                         if (entity.Password == "6")
                         {
