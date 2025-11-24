@@ -47232,7 +47232,7 @@ GameObject:
   - component: {fileID: 520392001}
   - component: {fileID: 520392000}
   - component: {fileID: 520391999}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: Terrain (1)
   m_TagString: NavMesh
   m_Icon: {fileID: 0}
