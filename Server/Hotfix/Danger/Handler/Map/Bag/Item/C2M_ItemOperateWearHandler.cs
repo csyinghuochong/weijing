@@ -24,6 +24,7 @@ namespace ET
                 BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(locType, bagInfoID);
                 if (useBagInfo == null)
                 {
+                    response.Error = ErrorCode.ERR_ItemNotExist;    
                     reply();
                     return;
                 }
@@ -113,6 +114,11 @@ namespace ET
                     {
                         findIndex = equipIndex == 0 ? 1 : 0;
                     }
+                }
+
+                if (itemConfig.Id == 10030001 || itemConfig.Id == 10030003)
+                {
+                    findIndex = 0;
                 }
 
 
