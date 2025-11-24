@@ -85,6 +85,8 @@ namespace ET
                     {
                         return;
                     }
+                    Console.WriteLine($" NoticeType.TeamDungeon {message.Message}");
+
                     if (robotManagerComponent.TeamRobot.ContainsKey(teamId))
                     {
                         robotManagerComponent.TeamRobot[teamId] = TimeHelper.ServerNow();
