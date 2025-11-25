@@ -71,7 +71,12 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton.OnSelectIndex(0);
+            self.UIPageButton.CheckHandler = (int page) => { return self.CheckPageButton_1(page); };
 
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            bool magicopen = userInfoComponent.UserInfo.Lv >= 65;
+            UICommonHelper.SetImageGray(self.Btn_Magic.transform.Find("WeiXuanZhong/Image (2)").gameObject, !magicopen);
+            UICommonHelper.SetImageGray(self.Btn_Magic.transform.Find("WeiXuanZhong/Image (1)").gameObject, !magicopen);
 
             //IOS适配
             IPHoneHelper.SetPosition(BtnItemTypeSet, new Vector2(300f, 316f));
@@ -97,6 +102,26 @@ namespace ET
 
     public static class UIChengJiuComponentSystem
     {
+
+        public static bool CheckPageButton_1(this UIChengJiuComponent self, int page)
+        {
+            if (page == (int)ChengJiuPageEnum.MagickaSlot)
+            {
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                if (userInfoComponent.UserInfo.Lv < 65)
+                {
+                    FloatTipManager.Instance.ShowFloatTip(string.Format(GameSettingLanguge.LoadLocalization("等级达到{0}级开启"), 65));
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            return true;
+        }
+
+
         public static void OnLanguageUpdate(this UIChengJiuComponent self)
         {
             Transform tt = self.UIPageButton.GetParent<UI>().GameObject.transform;
