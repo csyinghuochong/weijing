@@ -11,7 +11,7 @@ namespace ET
         public GameObject Refresh;
         public GameObject Btn_Refresh;
         public GameObject RefreshCostItemNode;
-        public List<UICommonCostItemComponent> RefreshCostItemList = new List<UICommonCostItemComponent>();
+        public UICommonCostItemComponent RefreshCostItem = null;
 
         public GameObject HeCheng;
         public GameObject Btn_HeCheng;
@@ -90,6 +90,9 @@ namespace ET
             self.Refresh = rc.Get<GameObject>("Refresh");
             self.Btn_Refresh = rc.Get<GameObject>("Btn_Refresh");
             self.RefreshCostItemNode = rc.Get<GameObject>("RefreshCostItemNode");
+            GameObject refreshCostItem = self.RefreshCostItemNode.transform.Find("UICommonCostItem").gameObject;
+            self.RefreshCostItem = self.AddChild<UICommonCostItemComponent, GameObject>(refreshCostItem);
+            self.RefreshCostItem.UpdateItem(ConfigHelper.MagitFefreshItemId, 1);
 
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
             self.UIMagickaSlotItem = rc.Get<GameObject>("UIMagickaSlotItem");

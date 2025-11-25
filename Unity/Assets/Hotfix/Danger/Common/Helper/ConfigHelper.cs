@@ -1357,6 +1357,9 @@ namespace ET
         };
 
 
+        //魔能刷新道具
+        public static int MagitFefreshItemId = 10000183;
+
         //魔能合成 
         public static Dictionary<int, List<int>> MagicHeChengList = new Dictionary<int, List<int>>
         {
