@@ -2677,6 +2677,8 @@ message M2C_MagickaHeChengResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+
+	repeated BagInfo RewardList = 1;
 }
 
 //魔能刷新

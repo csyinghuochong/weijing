@@ -90,9 +90,14 @@ namespace ET
             int idindex =  RandomHelper.RandomNumber(0, newmagicids.Count);
             int newmagid = newmagicids[idindex];
 
-            unit.GetComponent<BagComponent>().OnCostItemData(request.OperateBagID, ItemLocType.ItemLocBag);
-            unit.GetComponent<BagComponent>().OnAddItemData($"{newmagid};1", $"{ItemGetWay.GemHeCheng}_{TimeHelper.ServerNow()}");
+            bagComponent.OnCostItemData(request.OperateBagID, ItemLocType.ItemLocBag);
+            bagComponent.OnAddItemData($"{newmagid};1", $"{ItemGetWay.GemHeCheng}_{TimeHelper.ServerNow()}");
 
+            List<BagInfo> bagInfos =  bagComponent.GetIdItemList(newmagid);
+            if (bagInfos.Count > 0)
+            {
+                response.RewardList.Add(bagInfos[^1]);
+            }
             reply();
             await ETTask.CompletedTask;
         }

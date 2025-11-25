@@ -52,5 +52,10 @@ namespace ET
         {
             UICommonHelper.ShowItemList(rewardItems, self.ChouKaItemSet, self , 1f, true, true);
         }
+
+        public static void OnUpdateUI_2(this UICommonRewardComponent self, List<BagInfo> rewardItems)
+        {
+            UICommonHelper.ShowItemList_2(rewardItems, self.ChouKaItemSet, self, 1f, true, true);
+        }
     }
 }

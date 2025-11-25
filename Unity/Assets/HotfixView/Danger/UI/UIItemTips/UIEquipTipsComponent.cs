@@ -1269,6 +1269,10 @@ namespace ET
                 self.MagicQulity.SetActive(true);
                 Vector2 equipSuit_vec2 = new Vector2(0, -190);
                 self.MagicQulity.transform.GetComponent<RectTransform>().anchoredPosition = equipSuit_vec2;
+                if (string.IsNullOrEmpty(baginfo.ItemPar))
+                {
+                    baginfo.ItemPar = "0";
+                }
                 ImageMagicQulityValue.fillAmount = int.Parse(baginfo.ItemPar) * 1f / 100;
                 startPostionY -= 120;
             }

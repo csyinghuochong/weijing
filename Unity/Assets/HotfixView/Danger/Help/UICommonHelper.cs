@@ -351,6 +351,42 @@ namespace ET
             }
         }
 
+        public static void ShowItemList_2(List<BagInfo> rewardItems, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true, bool showName = false, int getWay = 0)
+        {
+            rewardItems.Sort(delegate (BagInfo a, BagInfo b)
+            {
+                int itemIda = a.ItemID;
+                int itemIdb = b.ItemID;
+                int quliatya = ItemConfigCategory.Instance.Get(itemIda).ItemQuality;
+                int quliatyb = ItemConfigCategory.Instance.Get(itemIdb).ItemQuality;
+                if (quliatya == quliatyb)
+                {
+                    if (itemIda == itemIdb)
+                        return b.ItemNum - a.ItemNum;
+                    else
+                        return itemIda - itemIdb;
+                }
+                else
+                {
+                    return quliatyb - quliatya;
+                }
+            });
+
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            for (int i = 0; i < rewardItems.Count; i++)
+            {
+                GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(itemSpace, itemNodeList);
+                UIItemComponent uIItemComponent = entity.AddChild<UIItemComponent, GameObject>(itemSpace);
+                uIItemComponent.UpdateItem(rewardItems[i], ItemOperateEnum.None);
+                uIItemComponent.Label_ItemName.SetActive(showName);
+                uIItemComponent.Label_ItemNum.SetActive(showNumber);
+                uIItemComponent.Image_Binding.SetActive(getWay == ItemGetWay.Activity_DayTeHui || getWay == ItemGetWay.ActivityNewYear);
+                itemSpace.transform.localScale = Vector3.one * scale;
+            }
+        }
+
         public static void ShowItemList(string itemList, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true, int getWay =0)
         {
             if (string.IsNullOrEmpty(itemList))

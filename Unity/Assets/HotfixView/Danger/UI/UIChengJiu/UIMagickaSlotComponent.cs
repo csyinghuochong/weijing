@@ -744,12 +744,14 @@ namespace ET
                 return;
             }
 
-            int error = await self.ZoneScene().GetComponent<ChengJiuComponent>().RequestMagicHeCheng( self.HeChengIdlist);
-            if (error != ErrorCode.ERR_Success || self.IsDisposed)
+            M2C_MagickaHeChengResponse response = await self.ZoneScene().GetComponent<ChengJiuComponent>().RequestMagicHeCheng( self.HeChengIdlist);
+            if (response == null || response.Error != ErrorCode.ERR_Success || self.IsDisposed)
             {
                 return;
             }
             self.OnClickSlotHandler(self.Position, 2);
+            UI ui = await UIHelper.Create(self.DomainScene(), UIType.UICommonReward);
+            ui.GetComponent<UICommonRewardComponent>().OnUpdateUI_2(response.RewardList);
         }
 
         public static async ETTask OnBtn_Equip(this UIMagickaSlotComponent self)
