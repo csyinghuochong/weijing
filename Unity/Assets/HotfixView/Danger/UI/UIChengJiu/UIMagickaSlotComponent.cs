@@ -8,6 +8,10 @@ namespace ET
 
     public class UIMagickaSlotComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Refresh;
+        public GameObject Btn_Refresh;
+        public GameObject RefreshCostItemNode;
+        public List<UICommonCostItemComponent> RefreshCostItemList = new List<UICommonCostItemComponent>();
 
         public GameObject HeCheng;
         public GameObject Btn_HeCheng;
@@ -16,7 +20,6 @@ namespace ET
         public List<UIItemComponent> HeChengItemList = new List<UIItemComponent>();
         public List<UIItemComponent> HeChengCostList = new List<UIItemComponent>();
         public List<long> HeChengIdlist = new List<long>();
-
 
         public GameObject Text_TotalLevel;
 
@@ -64,7 +67,6 @@ namespace ET
         public GameObject UICommonCostItem;
 
         public List<UIMagickaSlotItemComponent> UIMagickaSlotItemList = new List<UIMagickaSlotItemComponent>();
-
         public List<UICommonCostItemComponent> UICommonCostItemList = new List<UICommonCostItemComponent>();
 
         public UIPageButtonComponent UIPageButton;
@@ -84,6 +86,10 @@ namespace ET
         public override void Awake(UIMagickaSlotComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.Refresh = rc.Get<GameObject>("Refresh");
+            self.Btn_Refresh = rc.Get<GameObject>("Btn_Refresh");
+            self.RefreshCostItemNode = rc.Get<GameObject>("RefreshCostItemNode");
 
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
             self.UIMagickaSlotItem = rc.Get<GameObject>("UIMagickaSlotItem");
@@ -206,6 +212,7 @@ namespace ET
             self.OpenSlot.SetActive(false);
             self.HeCheng.SetActive(false);
             self.SlotProItem.SetActive(false);
+            self.Refresh.SetActive(false);
 
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(self.Position);
@@ -233,6 +240,10 @@ namespace ET
                     self.HeCheng.SetActive(true);
                     self.UpdateHeChengList();
                     self.UpdateHeChengSelected();
+                    break;
+                 case 3:
+                    self.SlotProItem.SetActive(true);
+                    self.Refresh.SetActive(true);
                     break;
                 default:
                     break;
