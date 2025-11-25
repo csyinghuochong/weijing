@@ -9,6 +9,8 @@ namespace ET
     public class UIMagickaSlotComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject HeCheng;
+
         public GameObject Text_TotalLevel;
 
         public GameObject Btn_OneKey;
@@ -100,6 +102,9 @@ namespace ET
             self.NodeOpen.SetActive(false);
             self.NodeZhuRu.SetActive(false);
 
+            self.HeCheng = rc.Get<GameObject>("HeCheng");
+            self.HeCheng.SetActive(false);
+
             self.ScrollView_2 = rc.Get<GameObject>("ScrollView_2");
             self.BuildingList_2 = rc.Get<GameObject>("BuildingList_2");
             self.Btn_ZhuRu = rc.Get<GameObject>("Btn_ZhuRu");
@@ -179,6 +184,8 @@ namespace ET
             Log.ILog.Debug($"UIMagickaSlotComponent : {page}");
             self.EquipSlot.SetActive(false);
             self.OpenSlot.SetActive(false);
+            self.HeCheng.SetActive(false);
+            self.SlotProItem.SetActive(false);
 
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(self.Position);
@@ -188,6 +195,7 @@ namespace ET
                 case 0:
                     self.OpenSlot.SetActive(true);
                     self.NodeOpen.SetActive(true);
+                    self.SlotProItem.SetActive(true);
                     string btntext = curid == 0 ? "开启位置" : "升级";
                     btntext = GameSettingLanguge.LoadLocalization(btntext);
                     self.Btn_OpenSlot.transform.Find("Text").GetComponent<Text>().text = btntext;
@@ -197,9 +205,12 @@ namespace ET
                     break;
                 case 1:
                     self.EquipSlot.SetActive(true);
+                    self.SlotProItem.SetActive(true);
                     self.UpdateEquipList();
                     break;
-                   
+                case 2:
+                    self.HeCheng.SetActive(true);
+                    break;
                 default:
                     break;
             }
