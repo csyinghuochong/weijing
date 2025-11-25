@@ -3971,4 +3971,5 @@
 {"_t":"MulLanguageConfig","_id":300131,"Des":"","Chinese":"魔能列表","English":"MagicKa List"},
 {"_t":"MulLanguageConfig","_id":300132,"Des":"","Chinese":"提示：放置三个同等级魔能，有50%概率合成下一级魔能","English":"Combine three same-level Magicka for a 50% chance to create a higher-level one."},
 {"_t":"MulLanguageConfig","_id":300133,"Des":"","Chinese":"开始合成","English":"Begin Crafting"},
+{"_t":"MulLanguageConfig","_id":300134,"Des":"","Chinese":"需要道具","English":"Need Items"},
 ]}
