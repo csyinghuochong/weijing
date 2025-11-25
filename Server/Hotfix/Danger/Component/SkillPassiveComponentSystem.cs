@@ -713,7 +713,7 @@ namespace ET
                             //skillproValue为SkillConfig的 PassiveSkillPro（被动技能触发参数）
 
                             //实际触发概率=(原始触发概率/2)+((原始触发概率/2)*(品质/80))
-                            skillproValue = (skillproValue / 2f) + ((skillproValue / 2f) * (skillIfo.MagicQulity / 80f));
+                            skillproValue = (skillproValue / 2f) + ((skillproValue / 2f) * (skillIfo.MagicQulity / 100f));
                         }
                         trigger = skillproValue >= RandomHelper.RandFloat01();
 

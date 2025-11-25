@@ -306,7 +306,7 @@ namespace ET
                 if (magicQulity > 0)
                 {
                     Console.WriteLine($"magicQulity:  {magicQulity}");
-                    numericValue = (long)((numericValue / 2f) + ((numericValue / 2f) * (magicQulity / 80f)));
+                    numericValue = (long)((numericValue / 2f) + ((numericValue / 2f) * (magicQulity / 100f)));
                 }
                 proList.Add(new PropertyValue() { HideID = numericType, HideValue = numericValue });
             }
