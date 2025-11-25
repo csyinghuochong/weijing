@@ -109,6 +109,7 @@ namespace ET
         public const int Fashion = 98;
         public const int PetEggPutOut = 99;
         public const int Activity = 100;                //活动
+        public const int MagicKa = 101;
 
 
         //以下途径获取的道具绑定道具,其他途径为非绑定道具

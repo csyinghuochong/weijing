@@ -1085,6 +1085,7 @@ namespace ET
                 { ItemGetWay.Fashion, "时装" },
                 { ItemGetWay.PetEggPutOut, "宠物蛋取回" },
                 { ItemGetWay.Activity, "活动" },
+                 { ItemGetWay.MagicKa, "魔能" },
         };
 
         public static List<int> GetItemSkill(string skillpar)

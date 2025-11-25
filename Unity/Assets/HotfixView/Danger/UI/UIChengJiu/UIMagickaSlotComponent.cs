@@ -649,7 +649,37 @@ namespace ET
 
         public static async ETTask OnBtn_Refresh(this UIMagickaSlotComponent self)
         {
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(self.Position);
+            if (curid == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_MagicNotOpen]);
+                return;
+            }
 
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            BagInfo beforeequip = bagComponent.GetMagicEquipBySubType(ItemLocType.ItemLocEquip, self.Position);
+
+            if (beforeequip == null)
+            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_MagicRefresh_1]);
+                return;
+            }
+
+            if (bagComponent.GetItemNumber(ConfigHelper.MagitFefreshItemId) < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_ItemNotEnoughError]);
+                return;
+            }
+
+            int error = await self.ZoneScene().GetComponent<ChengJiuComponent>().RequestMagicRefresh(self.Position);
+            if (error != ErrorCode.ERR_Success || self.IsDisposed)
+            {
+                return;
+            }
+            self.OnUpdateSlotUI();
+            self.OnClickSlotHandler(self.Position, 3);
+            self.RefreshCostItem.UpdateItem(ConfigHelper.MagitFefreshItemId, 1);
             await ETTask.CompletedTask;
         }
 

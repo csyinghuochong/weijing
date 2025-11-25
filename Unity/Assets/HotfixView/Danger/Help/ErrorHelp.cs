@@ -113,6 +113,8 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_MagicHeCheng_1, "需要三个魔能!");
             ErrorHintList.Add(ErrorCode.ERR_MagicHeCheng_2, "必须同等级魔能!");
             ErrorHintList.Add(ErrorCode.ERR_MagicHeCheng_3, "魔能已经最大等级，无法合成!");
+            ErrorHintList.Add(ErrorCode.ERR_MagicRefresh_1, "未装备魔能!");
+
 
             ErrorHintList.Add(ErrorCode.ERR_TeamIsFull, "队伍已满");
             ErrorHintList.Add(ErrorCode.ERR_LevelIsNot, "等级不足");

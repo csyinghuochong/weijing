@@ -411,6 +411,17 @@ namespace ET
             self.SkillPassiveInfos.Add(skillPassiveInfo);
         }
 
+        public static void UpdateMagicQulity(this SkillPassiveComponent self, int skillid, int magicqulity)
+        {
+            for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
+            {
+                if (self.SkillPassiveInfos[i].SkillId == skillid)
+                {
+                    self.SkillPassiveInfos[i].MagicQulity = magicqulity;
+                }
+            }
+        }
+
         public static  void BeginSingSkill(this SkillPassiveComponent self, SkillPassiveInfo skillIfo, long targetId = 0)
         {
             self.SingSkillIfo = skillIfo;
