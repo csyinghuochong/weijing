@@ -81,7 +81,7 @@ namespace ET
             //self.Label_ItemNum.GetComponent<Text>().text = $"{bagComponent.GetItemNumber(itemId)}/{itemNum}";
             self.Label_ItemNum.GetComponent<Text>().text = $"{UICommonHelper.NumToWString(bagComponent.GetItemNumber(itemId))}/{UICommonHelper.NumToWString(itemNum)}";
             //显示颜色
-            self.Label_ItemNum.GetComponent<Text>().color = (itemNum< bagComponent.GetItemNumber(itemId)) ? Color.green : Color.red;
+            self.Label_ItemNum.GetComponent<Text>().color = (itemNum<= bagComponent.GetItemNumber(itemId)) ? Color.green : Color.red;
             string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemIcon, itemConfig.Icon);
             Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
             if (!self.AssetPath.Contains(path))
