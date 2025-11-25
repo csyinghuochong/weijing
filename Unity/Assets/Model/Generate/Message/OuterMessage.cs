@@ -5635,6 +5635,38 @@ namespace ET
 
 	}
 
+//魔能合成
+	[ResponseType(nameof(M2C_MagickaHeChengResponse))]
+	[Message(OuterOpcode.C2M_MagickaHeChengRequest)]
+	[ProtoContract]
+	public partial class C2M_MagickaHeChengRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public List<long> OperateBagID = new List<long>();
+
+	}
+
+	[Message(OuterOpcode.M2C_MagickaHeChengResponse)]
+	[ProtoContract]
+	public partial class M2C_MagickaHeChengResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 //激活成就
 	[Message(OuterOpcode.M2C_ChengJiuActiveMessage)]
 	[ProtoContract]

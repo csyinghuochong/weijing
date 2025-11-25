@@ -179,6 +179,9 @@ namespace ET
         public const int ERR_MagicLevelNotEnough = 300713;
         public const int ERR_MagicMaxLevel = 300714;
         public const int ERR_MagicNotOpen = 300715;
+        public const int ERR_MagicHeCheng_1 = 300716;
+        public const int ERR_MagicHeCheng_2 = 300717;
+        public const int ERR_MagicHeCheng_3 = 300718;
 
         /// <summary>
         /// 技能CD中

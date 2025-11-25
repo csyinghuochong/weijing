@@ -10,6 +10,13 @@ namespace ET
     {
 
         public GameObject HeCheng;
+        public GameObject Btn_HeCheng;
+        public GameObject HeChengList_1;
+        public GameObject ScrollView_HeCheng;
+        public List<UIItemComponent> HeChengItemList = new List<UIItemComponent>();
+        public List<UIItemComponent> HeChengCostList = new List<UIItemComponent>();
+        public List<long> HeChengIdlist = new List<long>();
+
 
         public GameObject Text_TotalLevel;
 
@@ -104,6 +111,19 @@ namespace ET
 
             self.HeCheng = rc.Get<GameObject>("HeCheng");
             self.HeCheng.SetActive(false);
+
+            self.Btn_HeCheng = rc.Get<GameObject>("Btn_HeCheng");
+            self.HeChengList_1 = rc.Get<GameObject>("HeChengList_1");
+            self.ScrollView_HeCheng = rc.Get<GameObject>("ScrollView_HeCheng");
+            ButtonHelp.AddListenerEx(self.Btn_HeCheng, () => { self.OnBtn_HeCheng().Coroutine(); });
+
+            GameObject heChengCostItem_1 = rc.Get<GameObject>("HeChengCostItem_1");
+            self.HeChengCostList.Add(self.AddChild<UIItemComponent, GameObject>(heChengCostItem_1));
+            GameObject heChengCostItem_2 = rc.Get<GameObject>("HeChengCostItem_2");
+            self.HeChengCostList.Add(self.AddChild<UIItemComponent, GameObject>(heChengCostItem_2));
+            GameObject heChengCostItem_3 = rc.Get<GameObject>("HeChengCostItem_3");
+            self.HeChengCostList.Add(self.AddChild<UIItemComponent, GameObject>(heChengCostItem_3));
+
 
             self.ScrollView_2 = rc.Get<GameObject>("ScrollView_2");
             self.BuildingList_2 = rc.Get<GameObject>("BuildingList_2");
@@ -209,7 +229,10 @@ namespace ET
                     self.UpdateEquipList();
                     break;
                 case 2:
+                    self.HeChengIdlist.Clear();
                     self.HeCheng.SetActive(true);
+                    self.UpdateHeChengList();
+                    self.UpdateHeChengSelected();
                     break;
                 default:
                     break;
@@ -273,6 +296,78 @@ namespace ET
             }
         }
 
+        public static void UpdateHeChengList(this UIMagickaSlotComponent self)
+        {
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+
+            List<BagInfo> allInfos = new List<BagInfo>();
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Equipment));
+            int number = 0;
+            for (int i = 0; i < allInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(allInfos[i].ItemID);
+                if (itemConfig.EquipType != 401)
+                {
+                    continue;
+                }
+
+                UIItemComponent uI_1 = null;
+                if (number < self.HeChengItemList.Count)
+                {
+                    uI_1 = self.HeChengItemList[number];
+                    uI_1.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(go, self.HeChengList_1);
+                    go.transform.localScale = Vector3.one;
+                    uI_1 = self.AddChild<UIItemComponent, GameObject>(go);
+                    //uI_1.ClickItemHandler = (BagInfo baginfo) => { self.OnClickHeChengItem(baginfo.BagInfoID); };
+                    uI_1.SetEventTrigger(true);
+                    uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown_HeCheng(binfo, pdata).Coroutine(); };
+                    uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp_HeCheng(binfo, pdata); };
+      
+                    self.HeChengItemList.Add(uI_1);
+                }
+                uI_1.UpdateItem(allInfos[i], ItemOperateEnum.HuishouBag);
+                uI_1.HideItemName();
+                number++;
+            }
+
+            for (int i = number; i < self.HeChengItemList.Count; i++)
+            {
+               self.HeChengItemList[i].UpdateItem(null,ItemOperateEnum.None);
+               self.HeChengItemList[i].GameObject.SetActive(false);
+            }
+        }
+
+        public static async ETTask OnPointerDown_HeCheng(this UIMagickaSlotComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            self.IsHoldDown = true;
+            self.ClickTime = TimeHelper.ClientNow();
+            await TimerComponent.Instance.WaitAsync(500);
+            if (!self.IsHoldDown)
+                return;
+            EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
+            EventType.ShowItemTips.Instance.bagInfo = binfo;
+            EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.None;
+            EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
+            EventType.ShowItemTips.Instance.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
+        }
+
+        public static void OnPointerUp_HeCheng(this UIMagickaSlotComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            if (TimeHelper.ClientNow() - self.ClickTime < 200)
+            {
+                HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{binfo.BagInfoID}");
+            }
+            self.IsHoldDown = false;
+        }
+
         public static void UpdateZhuruList(this UIMagickaSlotComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
@@ -307,9 +402,9 @@ namespace ET
                     uI_1.SetEventTrigger(true);
                     uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
                     uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
-                    uI_1.BeginDragHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnBeginDrag(binfo, pdata); };
-                    uI_1.DragingHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnDraging(binfo, pdata); };
-                    uI_1.EndDragHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnEndDrag(binfo, pdata); };
+                    //uI_1.BeginDragHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnBeginDrag(binfo, pdata); };
+                    //uI_1.DragingHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnDraging(binfo, pdata); };
+                    //uI_1.EndDragHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnEndDrag(binfo, pdata); };
                     self.ZhuRuItemUIlist.Add(uI_1);
                 }
                 uI_1.UpdateItem(allInfos[i], ItemOperateEnum.HuishouBag);
@@ -338,6 +433,7 @@ namespace ET
             self.ScrollView_2.GetComponent<ScrollRect>().OnEndDrag(pdata);
             self.IsDrag = false;
         }
+
         public static async ETTask OnPointerDown(this UIMagickaSlotComponent self, BagInfo binfo, PointerEventData pdata)
         {
             self.IsHoldDown = true;
@@ -364,8 +460,41 @@ namespace ET
 
         public static void OnHuiShouSelect(this UIMagickaSlotComponent self, string dataparams)
         {
-            self.UpdateHuiShouInfo(dataparams);
-            self.UpdateBagSelected();
+            int curindex = self.UIPageButton.CurrentIndex;
+            
+            if (curindex == 1)
+            {
+                self.UpdateHuiShouInfo(dataparams);
+                self.UpdateBagSelected();
+            }
+            if (curindex == 2)
+            {
+                self.UpdateHeChengInfo(dataparams);
+                self.UpdateHeChengSelected();
+            }
+        }
+
+        public static void UpdateHeChengInfo(this UIMagickaSlotComponent self, string dataparams)
+        {
+            string[] huishouInfo = dataparams.Split('_');
+            BagInfo bagInfo = self.BagComponent.GetBagInfo(long.Parse(huishouInfo[1]));
+            if (bagInfo == null)
+            {
+                return;
+            }
+
+            //1新增  2移除 
+            if (!self.HeChengIdlist.Contains(bagInfo.BagInfoID))
+            {
+                if (self.HeChengIdlist.Count < 3)
+                {
+                    self.HeChengIdlist.Add(bagInfo.BagInfoID);
+                }
+            }
+            else
+            {
+                self.HeChengIdlist.Remove(bagInfo.BagInfoID);
+            }
         }
 
         public static void UpdateHuiShouInfo(this UIMagickaSlotComponent self, string dataparams)
@@ -403,6 +532,39 @@ namespace ET
             }
         }
 
+        public static void UpdateHeChengSelected(this UIMagickaSlotComponent self)
+        {
+            for (int i = 0; i < self.HeChengCostList.Count; i++)
+            {
+                self.HeChengCostList[i].Image_ItemIcon.SetActive(false);
+                self.HeChengCostList[i].Label_ItemName.GetComponent<Text>().text = string.Empty;
+            }
+
+            int number = 0;
+            for (int i = 0; i < self.HeChengItemList.Count; i++)
+            {
+                UIItemComponent uIItemComponent = self.HeChengItemList[i];
+                if (!uIItemComponent.GameObject.activeSelf)
+                {
+                    continue;
+                }
+
+                BagInfo bagInfo = uIItemComponent.Baginfo;
+                if (bagInfo == null)
+                {
+                    continue;
+                }
+                bool have = self.HeChengIdlist.Contains(bagInfo.BagInfoID);
+                uIItemComponent.Image_XuanZhong.SetActive(have);
+
+                if (have)
+                {
+                    self.HeChengCostList[number].UpdateItem(bagInfo, ItemOperateEnum.None);
+                    number++;
+                }
+            }
+        }
+
         public static void OnClickPaiMaiItem(this UIMagickaSlotComponent self, long paimaiId)
         {
             self.EquipInfoId = paimaiId;
@@ -416,6 +578,21 @@ namespace ET
                 }
                 bool have = self.EquipInfoId == bagInfo.BagInfoID;
                 uIItemComponent.Image_XuanZhong.SetActive(have);
+            }
+        }
+
+        public static void OnClickHeChengItem(this UIMagickaSlotComponent self, long paimaiId)
+        {
+            Log.ILog.Debug($"OnClickHeChengItem:  {paimaiId}");
+            for (int i = 0; i < self.EquiItemUIlist.Count; i++)
+            {
+                UIItemComponent uIItemComponent = self.EquiItemUIlist[i];
+                BagInfo bagInfo = uIItemComponent.Baginfo;
+                if (bagInfo == null)
+                {
+                    continue;
+                }
+               
             }
         }
 
@@ -453,7 +630,75 @@ namespace ET
                 return;
             }
             self.OnClickSlotHandler(self.Position, 0);
-            await ETTask.CompletedTask;
+        }
+
+        public static async ETTask OnBtn_HeCheng(this UIMagickaSlotComponent self)
+        {
+            if (self.HeChengIdlist.Count != 3)
+            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_MagicHeCheng_1]);
+                return;
+            }
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<int> removeids = new List<int>();
+
+            for (int i = 0; i < self.HeChengIdlist.Count; i++)
+            {
+                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, self.HeChengIdlist[i]);
+
+                if (bagInfo == null)
+                {
+                    FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_ItemNotExist]);
+                    return;
+                }
+
+                removeids.Add(bagInfo.ItemID);
+            }
+
+            if (removeids.Count != 3)
+            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_ItemNotExist]);
+                return;
+            }
+
+            int magiclevel = 0;
+
+            foreach (int itemid in removeids)
+            {
+                foreach ((int key, List<int> idlist) in ConfigHelper.MagicHeChengList)
+                {
+                    if (!idlist.Contains(itemid))
+                    {
+                        continue;
+                    }
+                    if (magiclevel == 0)
+                    {
+                        magiclevel = key;
+                        continue;
+                    }
+                    if (magiclevel != key)
+                    {
+                        //必须相同等级。
+                        FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_MagicHeCheng_2]);
+                        return;
+                    }
+                }
+            }
+
+            //已经最大等级了。
+            if (magiclevel >= ConfigHelper.MagicHeChengList.Count)
+            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_MagicHeCheng_3]);
+                return;
+            }
+
+            int error = await self.ZoneScene().GetComponent<ChengJiuComponent>().RequestMagicHeCheng( self.HeChengIdlist);
+            if (error != ErrorCode.ERR_Success || self.IsDisposed)
+            {
+                return;
+            }
+            self.OnClickSlotHandler(self.Position, 2);
         }
 
         public static async ETTask OnBtn_Equip(this UIMagickaSlotComponent self)

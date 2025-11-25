@@ -2663,6 +2663,22 @@ message M2C_MagickaZhuruResponse // IActorLocationResponse
 	repeated MagickaSlotInfo MagickaSlotIds = 2;
 }
 
+//魔能合成
+//ResponseType M2C_MagickaHeChengResponse
+message C2M_MagickaHeChengRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	repeated int64 OperateBagID = 2;    //消耗的道具列表
+}
+
+message M2C_MagickaHeChengResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //激活成就
 message M2C_ChengJiuActiveMessage // IActorMessage
 {

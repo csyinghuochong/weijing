@@ -42,6 +42,13 @@ namespace ET
             return response.Error;
         }
 
+        public static async ETTask<int> RequestMagicHeCheng(this ChengJiuComponent self, List<long> costs)
+        {
+            C2M_MagickaHeChengRequest request = new C2M_MagickaHeChengRequest() {  OperateBagID = costs };
+            M2C_MagickaHeChengResponse response = (M2C_MagickaHeChengResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            return response.Error;
+        }
+
         public static async ETTask GetChengJiuList(this ChengJiuComponent self)
         {
             M2C_ChengJiuListResponse r2C_Respose = (M2C_ChengJiuListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(new C2M_ChengJiuListRequest());
