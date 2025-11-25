@@ -2679,6 +2679,22 @@ message M2C_MagickaHeChengResponse // IActorLocationResponse
 	string Message = 92;
 }
 
+//魔能刷新
+//ResponseType M2C_MagickaFefreshResponse
+message C2M_MagickaFefreshRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 Position = 1;				//操作的魔能孔位
+}
+
+message M2C_MagickaFefreshResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //激活成就
 message M2C_ChengJiuActiveMessage // IActorMessage
 {

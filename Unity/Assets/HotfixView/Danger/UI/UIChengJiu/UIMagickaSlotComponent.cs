@@ -93,6 +93,7 @@ namespace ET
             GameObject refreshCostItem = self.RefreshCostItemNode.transform.Find("UICommonCostItem").gameObject;
             self.RefreshCostItem = self.AddChild<UICommonCostItemComponent, GameObject>(refreshCostItem);
             self.RefreshCostItem.UpdateItem(ConfigHelper.MagitFefreshItemId, 1);
+            ButtonHelp.AddListenerEx(self.Btn_Refresh, () => { self.OnBtn_Refresh().Coroutine(); });
 
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
             self.UIMagickaSlotItem = rc.Get<GameObject>("UIMagickaSlotItem");
@@ -644,6 +645,12 @@ namespace ET
                 return;
             }
             self.OnClickSlotHandler(self.Position, 0);
+        }
+
+        public static async ETTask OnBtn_Refresh(this UIMagickaSlotComponent self)
+        {
+
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask OnBtn_HeCheng(this UIMagickaSlotComponent self)

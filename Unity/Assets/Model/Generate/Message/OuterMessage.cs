@@ -5667,6 +5667,38 @@ namespace ET
 
 	}
 
+//魔能刷新
+	[ResponseType(nameof(M2C_MagickaFefreshResponse))]
+	[Message(OuterOpcode.C2M_MagickaFefreshRequest)]
+	[ProtoContract]
+	public partial class C2M_MagickaFefreshRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int Position { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_MagickaFefreshResponse)]
+	[ProtoContract]
+	public partial class M2C_MagickaFefreshResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 //激活成就
 	[Message(OuterOpcode.M2C_ChengJiuActiveMessage)]
 	[ProtoContract]
