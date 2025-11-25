@@ -227,6 +227,7 @@ namespace ET
                     self.OpenSlot.SetActive(true);
                     self.NodeOpen.SetActive(true);
                     self.SlotProItem.SetActive(true);
+                    self.ShowSlotPros();
                     string btntext = curid == 0 ? "开启位置" : "升级";
                     btntext = GameSettingLanguge.LoadLocalization(btntext);
                     self.Btn_OpenSlot.transform.Find("Text").GetComponent<Text>().text = btntext;
@@ -237,6 +238,7 @@ namespace ET
                 case 1:
                     self.EquipSlot.SetActive(true);
                     self.SlotProItem.SetActive(true);
+                    self.ShowSlotPros();
                     self.UpdateEquipList();
                     break;
                 case 2:
@@ -247,6 +249,7 @@ namespace ET
                     break;
                  case 3:
                     self.SlotProItem.SetActive(true);
+                    self.ShowSlotPros();
                     self.Refresh.SetActive(true);
                     break;
                 default:
@@ -828,7 +831,6 @@ namespace ET
             {
                 self.ShowCostItems(nexid);
             }
-            self.ShowSlotPros();
 
             //pagetype==-1初始
             //pagetype==-2切换
@@ -905,6 +907,23 @@ namespace ET
             text.text = magickaSlotConfig.GetName();
             text.fontSize = 40;
             text.color = Color.white;
+
+            if (self.UIPageButton.CurrentIndex == 3)
+            {
+                if (bagInfo != null)
+                {
+                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                    text.text = itemConfig.GetItemName();
+                    int magicqulity = int.Parse(bagInfo.ItemPar);
+                    self.ImageExpValue.GetComponent<Image>().fillAmount = magicqulity * 1f / 100;
+                    self.Text_ZiZhiValue.GetComponent<Text>().text = $"{magicqulity}/100";
+                }
+                else
+                {
+                    text.text = string.Empty;
+                    self.Text_ZiZhiValue.GetComponent<Text>().text = "0/0";
+                }
+            }
         }
 
         public static void ShowCostItems(this UIMagickaSlotComponent self, int nextd)
