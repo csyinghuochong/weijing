@@ -720,8 +720,11 @@ namespace ET
 
             foreach (int itemid in removeids)
             {
-                foreach ((int key, List<int> idlist) in ConfigHelper.MagicHeChengList)
+                foreach (var hechegn in ConfigHelper.MagicHeChengList)
                 {
+                    int key = hechegn.Key;
+                    List<int> idlist = hechegn.Value;
+
                     if (!idlist.Contains(itemid))
                     {
                         continue;

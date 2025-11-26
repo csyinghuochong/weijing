@@ -206,7 +206,6 @@ namespace ET
                 int number = 0;
                 for (int i = 0; i < showSkillPros.Count; i++)
                 {
-
                     SkillPro skillPro = showSkillPros[i];
                     if (skillPro.SkillSetType == (int)SkillSetEnum.Item)
                     {
