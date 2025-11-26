@@ -147,13 +147,25 @@ namespace ET
             {
                 self.ButtonList[i].Find("ImageSelect").gameObject.SetActive(i == index);
             }
-            self.OnUpdatUI(self.FubenIdList[index]);
+            self.OnUpdatUI(self.FubenIdList[index]).Coroutine();
         }
 
-        public static void OnUpdatUI(this UITeamDungeonCreateComponent self, int fubenId)
+        public static async ETTask OnUpdatUI(this UITeamDungeonCreateComponent self, int fubenId)
         {
             self.FubenId = fubenId;
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
+
+            self.TextLevelLimit.GetComponent<Text>().text = sceneConfig.EnterLv.ToString();
+            self.TextPlayerLimit.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}-3人"), sceneConfig.PlayerLimit);
+            self.TextFubenDesc.GetComponent<Text>().text = sceneConfig.GetChapterDes();
+            self.TextFubenName2.GetComponent<Text>().text = sceneConfig.GetName();
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, sceneConfig.Icon2);
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            if (!self.AssetPath.Contains(path))
+            {
+                self.AssetPath.Add(path);
+            }
+            self.DungeonImg.GetComponent<Image>().sprite = sp;
 
             int bossId = sceneConfig.BossId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
@@ -214,6 +226,15 @@ namespace ET
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path_item);
             for (int i = 0; i < rewardItems.Count; i++)
             {
+                if (i > 0 && i % 5 == 0)
+                {
+                    await TimerComponent.Instance.WaitFrameAsync();
+                    if (self.IsDisposed)
+                    {
+                        return;
+                    }
+                }
+
                 UIItemComponent uIItemComponent = null;
                 if (i < self.RewardItemList.Count)
                 {
@@ -241,18 +262,6 @@ namespace ET
                 self.RewardItemList[i].GameObject.SetActive(false);
             }
             //UICommonHelper.ShowItemList(rewardItems, self.ItemNodeList, self, 1f);
-
-            self.TextLevelLimit.GetComponent<Text>().text = sceneConfig.EnterLv.ToString();
-            self.TextPlayerLimit.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}-3人"), sceneConfig.PlayerLimit);
-            self.TextFubenDesc.GetComponent<Text>().text = sceneConfig.GetChapterDes();
-            self.TextFubenName2.GetComponent<Text>().text = sceneConfig.GetName();
-            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.TiTleIcon, sceneConfig.Icon2);
-            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-            if (!self.AssetPath.Contains(path))
-            {
-                self.AssetPath.Add(path);
-            }
-            self.DungeonImg.GetComponent<Image>().sprite = sp;
         }
 
         public static void OnButton_Close(this UITeamDungeonCreateComponent self)
