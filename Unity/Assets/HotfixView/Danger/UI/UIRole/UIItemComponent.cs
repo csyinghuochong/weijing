@@ -71,9 +71,11 @@ namespace ET
                 }
             }
 
-            if (!string.IsNullOrEmpty(self.EffectPath) && self.EquipEffect!=null)
+            if (!string.IsNullOrEmpty(self.EffectPath) && self.EquipEffect != null)
             {
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.EffectPath, self.EquipEffect);
+                self.EquipEffect = null;
+                self.EffectPath = null;
             }
 
             DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
@@ -259,6 +261,14 @@ namespace ET
             //{
             //    ifShowImg = false;
             //}
+
+            if (!string.IsNullOrEmpty(self.EffectPath) && self.EquipEffect != null)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.EffectPath, self.EquipEffect);
+                self.EquipEffect = null;
+                self.EffectPath = null; 
+            }
+
             if (self.ItemID != 0)
             {
                 self.Image_ItemQuality.SetActive(true);
