@@ -91,6 +91,7 @@ namespace ET
             }
             self.UICommonItem.GameObject.SetActive(true);
             self.UICommonItem.UpdateItem(bagInfo, ItemOperateEnum.MagicSlot);
+            self.UICommonItem.Image_Lock.SetActive(false);
         }
 
         public static void OnClickImage_Lock(this UIMagickaSlotItemComponent self)
