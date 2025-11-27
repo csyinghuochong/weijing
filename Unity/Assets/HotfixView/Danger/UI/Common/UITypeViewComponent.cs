@@ -226,6 +226,7 @@ namespace ET
     public class UITypeButtonItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Lab_TaskName;
+        public int InitNameTextSize = 40;
         public GameObject Ima_SelectStatus;
         public GameObject Ima_Di;
         public GameObject GameObject;
@@ -246,6 +247,7 @@ namespace ET
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Lab_TaskName = rc.Get<GameObject>("Lab_TaskName");
+            self.InitNameTextSize = self.Lab_TaskName.GetComponent<Text>().fontSize;
             self.Ima_Di = rc.Get<GameObject>("Ima_Di");
             self.Ima_SelectStatus = rc.Get<GameObject>("Ima_SelectStatus");
             self.Ima_Di.GetComponent<Button>().onClick.AddListener(() => { self.OnClickButtoin(); });
@@ -272,7 +274,7 @@ namespace ET
                 return;
             }
 
-            self.Lab_TaskName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 40 : 32;
+            self.Lab_TaskName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? self.InitNameTextSize : 32;
         }
 
         public static void SetSelected(this UITypeButtonItemComponent self, int subTypeid)
