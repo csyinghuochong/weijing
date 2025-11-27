@@ -36,17 +36,9 @@ namespace ET
                     Screen.orientation = ScreenOrientation.AutoRotation;
                 }
 
-                if (bigversion == 24)
-                {
-					Log.ILog.Debug("bigversion == 24");
-                }
- 
-                if (Application.version == "2.4.5")
-                {
-                    Log.ILog.Debug("Application.version == 2.4.5");
-                }
+                Log.ILog.Debug($"bigversion == {bigversion}   appversion: {Application.version}");
 #if UNITY_IPHONE || UNITY_IOS
-				if (bigversion == 24 && Application.version == "2.4.5")
+				if (bigversion == 24 && Application.version == "2.4.6")
                 {
                     self.IOSReview = true;
                 }
