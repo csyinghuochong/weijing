@@ -50,7 +50,7 @@ namespace ET
 
                 if (mapComponent.SceneId == 6000001 && path[^1].x >= 22f)
                 {
-                    Console.WriteLine($"角斗场target3.x >= 22f:  start:{unit.Position.x} {unit.Position.z}    target:{target.x}  {target.z}");
+                    Console.WriteLine($"角斗场target3.x >= 22f:  start:{unit.Position.x} {unit.Position.z}    target:{target.x}  {target.z}   yaogan:{yaogan}");
                 }
 
                 // 广播寻路路径
