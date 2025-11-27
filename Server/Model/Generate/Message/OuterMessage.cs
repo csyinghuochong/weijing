@@ -15841,6 +15841,9 @@ namespace ET
 		[ProtoMember(11)]
 		public List<int> OpenGuessIds = new List<int>();
 
+		[ProtoMember(12)]
+		public List<int> PointsReward = new List<int>();
+
 	}
 
 //v1活动.抽奖

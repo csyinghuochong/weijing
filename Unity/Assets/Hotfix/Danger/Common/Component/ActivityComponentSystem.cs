@@ -90,6 +90,13 @@ namespace ET
             self.LastTimerChouKaPassTime += TimeHelper.Second;
         }
 
+
+        public static void ActivityV1Reset(this ActivityComponent self, bool notice)
+        {
+            self.ActivityV1Info.ConsumeDiamondReward.Clear();
+            self.ActivityV1Info.PointsReward.Clear();
+        }
+
         public static void OnZeroClockUpdate(this ActivityComponent self, int level)
         {
             self.DayTeHui = DayTeHuiHelper.GetDayTeHuiList(2, level);
@@ -121,8 +128,7 @@ namespace ET
             self.ActivityV1Info.LiBaoBuyIds.Clear();
             self.ActivityV1Info.LastGuessReward.Clear();
             self.ActivityV1Info.ChouKaNumberReward.Clear(); 
-            self.ActivityV1Info.ConsumeDiamondReward.Clear();
-
+            
             //self.LastTimerChouKaPassTime = 0;
             //self.TimerChouKaReceiveIndex = 0;
     }

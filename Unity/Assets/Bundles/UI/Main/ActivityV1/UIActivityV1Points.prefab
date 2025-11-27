@@ -275,7 +275,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7D2F\u8BA1\u6D88\u8017\uFF1A"
+  m_Text: "\u7D2F\u8BA1\uFF1A"
 --- !u!114 &2552196749629556821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6D88\u8017"
+  m_Text: "\u7D2F\u8BA1"
 --- !u!114 &784031880603173920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 7257415263498617036}
   - component: {fileID: 4742003991254181302}
   m_Layer: 5
-  m_Name: UIActivityV1ConsumeListNode
+  m_Name: UIActivityV1PointsListNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -726,7 +726,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "100\u94BB\u77F3"
+  m_Text: "100\u79EF\u5206"
 --- !u!114 &6417163072730340097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 747820879701141788}
   - component: {fileID: 433451681703339933}
   m_Layer: 5
-  m_Name: UIActivityV1ConsumeItem
+  m_Name: UIActivityV1PointsItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -911,7 +911,7 @@ GameObject:
   - component: {fileID: 7853329724956979435}
   - component: {fileID: 938999115918675609}
   m_Layer: 5
-  m_Name: UIActivityV1Consume
+  m_Name: UIActivityV1Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -955,10 +955,10 @@ MonoBehaviour:
   data:
   - key: ConsumeNumText
     gameObject: {fileID: 7303800569593257916}
-  - key: UIActivityV1ConsumeItem
-    gameObject: {fileID: 7220900316622839172}
-  - key: UIActivityV1ConsumeListNode
+  - key: UIActivityV1PointsListNode
     gameObject: {fileID: 5816326766105529738}
+  - key: UIActivityV1PointsItem
+    gameObject: {fileID: 7220900316622839172}
 --- !u!1 &7980572031948635027
 GameObject:
   m_ObjectHideFlags: 0

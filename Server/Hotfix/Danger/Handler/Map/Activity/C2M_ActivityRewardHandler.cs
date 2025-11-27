@@ -71,6 +71,31 @@ namespace ET
                     unit.GetComponent<BagComponent>().OnAddItemData(rewarditem, $"{ItemGetWay.ActivityConsume}_{TimeHelper.ServerNow()}");
                     activityComponent.ActivityV1Info.ConsumeDiamondReward.Add(request.RewardId);
                     break;
+                case ActivityConfigHelper.ActivityV1_Points:
+
+                    if (!ActivityConfigHelper.PointsRewardList.ContainsKey(request.RewardId))
+                    {
+                        Log.Error($"C2M_ActivityReceiveRequest.6");
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+                    if (activityComponent.ActivityV1Info.PointsReward.Contains(request.RewardId))
+                    {
+                        response.Error = ErrorCode.ERR_AlreadyReceived;
+                        reply();
+                        return;
+                    }
+                    if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.V1TotalPoints) < request.RewardId)
+                    {
+                        response.Error = ErrorCode.Pre_Condition_Error;
+                        reply();
+                        return;
+                    }
+                    rewarditem = ActivityConfigHelper.PointsRewardList[request.RewardId];
+                    unit.GetComponent<BagComponent>().OnAddItemData(rewarditem, $"{ItemGetWay.ActivityConsume}_{TimeHelper.ServerNow()}");
+                    activityComponent.ActivityV1Info.PointsReward.Add(request.RewardId);
+                    break;
                 case ActivityConfigHelper.ActivityV1_HongBao:
                     int hongbaoNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.V1HongBaoNumber);
                     long v1rechargeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.V1RechageNumber);

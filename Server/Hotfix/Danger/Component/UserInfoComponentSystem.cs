@@ -903,6 +903,10 @@ namespace ET
                     {
                         unit.GetComponent<ChengJiuComponent>().OnCostDiamond(addDiamond);
                         unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.V1DayCostDiamond, addDiamond * - 1, 0);
+                        long costdiamond = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.V1DayCostDiamond);
+                        //累计消耗钻石转换为积分
+                        long v1points = costdiamond * 10;
+                        unit.GetComponent<NumericComponent>().ApplyValue(null, NumericType.V1TotalPoints, v1points, 0);
                     }
                     break;
                 case UserDataType.Occ:

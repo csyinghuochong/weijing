@@ -164,7 +164,7 @@
         public const int CardTransform = 3164;                                     //怪物卡片变身
         public const int V1ChouKaNumber = 3165;
         public const int V1HongBaoNumber = 3166;                                //已经抽卡的红包数量，总数量根据
-        public const int V1DayCostDiamond = 3167;                               //今日消耗钻石
+        public const int V1DayCostDiamond = 3167;                               //活动周期消耗钻石
         public const int V1RechageNumber = 3168;
         public const int PetExploreNumber = 3169;                               //宠物探宝次数
         public const int PetExploreLuckly = 3170;                               //宠物探索幸运
@@ -195,6 +195,7 @@
         public const int UnionAttributeFail_2 = 3195;
         public const int JinYanEndTime = 3196;
         public const int WeChatOABind = 3197;
+        public const int V1TotalPoints = 3198;                               //活动周期累计积分
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

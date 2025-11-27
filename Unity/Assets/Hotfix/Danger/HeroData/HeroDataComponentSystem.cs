@@ -266,6 +266,15 @@ namespace ET
             }
         }
 
+        public static void ActivityV1Reset(this HeroDataComponent self, bool notice)
+        {
+            Unit unit = self.GetParent<Unit>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
+            numericComponent.ApplyValue(NumericType.V1DayCostDiamond, 0, notice);
+            numericComponent.ApplyValue(NumericType.V1TotalPoints, 0, notice);
+        }
+
         /// <summary>
         /// 重置。隔天登录或者零点刷新
         /// </summary>
@@ -321,8 +330,6 @@ namespace ET
             numericComponent.ApplyValue(NumericType.DrawReward, 0, notice);
 
             numericComponent.ApplyValue(NumericType.PetMineReset, 0, notice);
-
-            numericComponent.ApplyValue(NumericType.V1DayCostDiamond, 0, notice);
             numericComponent.ApplyValue(NumericType.V1ChouKaNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.V1RechageNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.PetExploreNumber, 0, notice);

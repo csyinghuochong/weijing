@@ -9,13 +9,14 @@ namespace ET
         ActivityV1ChouKa = 0,
         ActivityV1Guess = 1,
         ActivityV1Consume = 2,
-        ActivityV1HongBao = 3,
-        ActivityV1Shop = 4,
-        ActivityV1DuiHuanWord = 5,
-        ActivityV1ChouKa2 = 6,
-        ActivityV1Task = 7,
-        ActivityV1LiBao = 8,
-        ActivityV1Feed = 9,
+        ActivityV1Points = 3,
+        ActivityV1HongBao = 4,
+        ActivityV1Shop = 5,
+        ActivityV1DuiHuanWord = 6,
+        ActivityV1ChouKa2 = 7,
+        ActivityV1Task = 8,
+        ActivityV1LiBao = 9,
+        ActivityV1Feed = 10,
         Number,
     }
 
@@ -47,6 +48,8 @@ namespace ET
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Guess");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1Consume] =
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Consume");
+            pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1Points] =
+                    ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Points");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1HongBao] =
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1HongBao");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1Shop] =
@@ -65,6 +68,7 @@ namespace ET
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1ChouKa] = typeof (UIActivityV1ChouKaComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Guess] = typeof (UIActivityV1GuessComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Consume] = typeof (UIActivityV1ConsumeComponent);
+            pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Points] = typeof(UIActivityV1PointsComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1HongBao] = typeof (UIActivityV1HongBaoComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Shop] = typeof (UIActivityV1ShopComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1DuiHuanWord] = typeof (UIActivityV1DuiHuanWordComponent);

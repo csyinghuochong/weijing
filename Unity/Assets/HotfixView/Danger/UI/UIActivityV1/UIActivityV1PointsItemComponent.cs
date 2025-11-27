@@ -1,0 +1,96 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace ET
+{
+    public class UIActivityV1PointsItemComponent : Entity, IAwake<GameObject>
+    {
+        public GameObject GameObject;
+        public GameObject ConsumeNumText;
+        public GameObject RewardListNode;
+        public GameObject ReceiveBtn;
+        public GameObject ReceivedImg;
+
+        public int Key;
+    }
+
+    public class UIActivityV1PointsItemComponentAwake : AwakeSystem<UIActivityV1PointsItemComponent, GameObject>
+    {
+        public override void Awake(UIActivityV1PointsItemComponent self, GameObject gameObject)
+        {
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
+
+            self.ConsumeNumText = rc.Get<GameObject>("ConsumeNumText");
+            self.RewardListNode = rc.Get<GameObject>("RewardListNode");
+            self.ReceiveBtn = rc.Get<GameObject>("ReceiveBtn");
+            self.ReceivedImg = rc.Get<GameObject>("ReceivedImg");
+
+            self.ReceivedImg.SetActive(false);
+            self.ReceiveBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnReceiveBtn().Coroutine(); });
+        }
+    }
+
+    public static class UIActivityV1PointsItemComponentSystem
+    {
+        public static void OnUpdateData(this UIActivityV1PointsItemComponent self, int key)
+        {
+            self.Key = key;
+            self.ConsumeNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}积分"), self.Key);
+            UICommonHelper.DestoryChild(self.RewardListNode);
+            UICommonHelper.ShowItemList(ActivityConfigHelper.PointsRewardList[key], self.RewardListNode, self, 0.8f);
+
+            ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
+            if (activityV1Info.PointsReward.Contains(self.Key))
+            {
+                self.ReceiveBtn.SetActive(false);
+                self.ReceivedImg.SetActive(true);
+            }
+        }
+
+        public static async ETTask OnReceiveBtn(this UIActivityV1PointsItemComponent self)
+        {
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足"));
+                return;
+            }
+
+            if (!ActivityConfigHelper.PointsRewardList.ContainsKey(self.Key))
+            {
+                return;
+            }
+
+            ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
+            if (activityV1Info.PointsReward.Contains(self.Key))
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取"));
+                return;
+            }
+
+            if (UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1TotalPoints) <
+                self.Key)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到条件"));
+                return;
+            }
+
+            C2M_ActivityRewardRequest request = new C2M_ActivityRewardRequest()
+            {
+                ActivityType = ActivityConfigHelper.ActivityV1_Points,
+                RewardId = self.Key
+            };
+            M2C_ActivityRewardResponse response =
+                    (M2C_ActivityRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.PointsReward.Add(self.Key);
+
+            if (response.Error != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+
+            self.ReceiveBtn.SetActive(false);
+            self.ReceivedImg.SetActive(true);
+        }
+    }
+}

@@ -1,0 +1,55 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace ET
+{
+    public class UIActivityV1PointsComponent : Entity, IAwake
+    {
+        public GameObject UIActivityV1PointsListNode;
+        public GameObject UIActivityV1PointsItem;
+        public GameObject ConsumeNumText;
+    }
+
+    public class UIActivityV1PointsComponentAwake : AwakeSystem<UIActivityV1PointsComponent>
+    {
+        public override void Awake(UIActivityV1PointsComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.UIActivityV1PointsListNode = rc.Get<GameObject>("UIActivityV1PointsListNode");
+            self.UIActivityV1PointsItem = rc.Get<GameObject>("UIActivityV1PointsItem");
+            self.ConsumeNumText = rc.Get<GameObject>("ConsumeNumText");
+
+            self.UIActivityV1PointsItem.SetActive(false);
+
+            self.GetInfo().Coroutine();
+        }
+    }
+
+    public static class UIActivityV1PointsComponentSystem
+    {
+        public static async ETTask GetInfo(this UIActivityV1PointsComponent self)
+        {
+            C2M_ActivityInfoRequest request = new C2M_ActivityInfoRequest();
+            M2C_ActivityInfoResponse response =
+                    (M2C_ActivityInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info = response.ActivityV1Info;
+
+            self.InitInfo();
+        }
+
+        public static void InitInfo(this UIActivityV1PointsComponent self)
+        {
+            foreach (int key in ActivityConfigHelper.PointsRewardList.Keys)
+            {
+                GameObject go = UnityEngine.Object.Instantiate(self.UIActivityV1PointsItem);
+                UIActivityV1PointsItemComponent component = self.AddChild<UIActivityV1PointsItemComponent, GameObject>(go);
+                component.OnUpdateData(key);
+                UICommonHelper.SetParent(go, self.UIActivityV1PointsListNode);
+                go.SetActive(true);
+            }
+
+            self.ConsumeNumText.GetComponent<Text>().text =
+                    string.Format(GameSettingLanguge.LoadLocalization("{0}积分"), UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1TotalPoints));
+        }
+    }
+}

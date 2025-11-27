@@ -13,20 +13,21 @@ namespace ET
         public const int ActivityV1_ChouKa = 1;    //抽卡
         public const int ActivityV1_Guess = 2;     //竞猜
         public const int ActivityV1_Consume = 3;     //消费
-        public const int ActivityV1_HongBao = 4;     //红包
-        public const int ActivityV1_Shop = 5;          //商店
-        public const int ActivityV1_DuiHuanWord = 6;   //兑换
-        public const int ActivityV1_ChouKa2 = 7;            //抽卡2  当奖励已经领取超过50%可进行奖励刷新
-        public const int ActivityV1_Task = 8;           //活动任务，每日刷新  TaskComponent.TaskCountryList   TaskCountryType.ActivityV1
-        public const int ActivityV1_LiBao = 9;          //每日礼包  ActivityConfig ActivityType = 102
-        public const int ActivityV1_Feed = 10;          //喂食
+        public const int ActivityV1_Points = 4;      //积分
+        public const int ActivityV1_HongBao = 5;     //红包
+        public const int ActivityV1_Shop = 6;          //商店
+        public const int ActivityV1_DuiHuanWord = 7;   //兑换
+        public const int ActivityV1_ChouKa2 = 8;            //抽卡2  当奖励已经领取超过50%可进行奖励刷新
+        public const int ActivityV1_Task = 9;           //活动任务，每日刷新  TaskComponent.TaskCountryList   TaskCountryType.ActivityV1
+        public const int ActivityV1_LiBao = 10;          //每日礼包  ActivityConfig ActivityType = 102
+        public const int ActivityV1_Feed = 11;          //喂食
 
 
         /// <summary>
         /// UI切页也据此显示
         /// </summary>
         public static List<int> ActivityV1OpenList = new List<int>() { 
-            ActivityV1_ChouKa, ActivityV1_Guess, ActivityV1_Consume,ActivityV1_HongBao, ActivityV1_Shop,
+            ActivityV1_ChouKa, ActivityV1_Guess, ActivityV1_Consume, ActivityV1_Points, ActivityV1_HongBao, ActivityV1_Shop,
             ActivityV1_DuiHuanWord, ActivityV1_ChouKa2, ActivityV1_Task,ActivityV1_LiBao, ActivityV1_Feed };  
         
         /// <summary>
@@ -96,7 +97,14 @@ namespace ET
             {  100, "1;1000" },
             {  200, "1;1000" }
         };
-        
+
+        public static Dictionary<int, string> PointsRewardList = new Dictionary<int, string>()
+        {
+            {  1000, "1;1000" },
+            {  2000, "2;1000" },
+            {  3000, "3;1000" },
+        };
+
         /// <summary>
         /// 红包奖励
         /// </summary>
