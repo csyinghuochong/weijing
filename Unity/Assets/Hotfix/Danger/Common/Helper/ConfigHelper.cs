@@ -1285,7 +1285,7 @@ namespace ET
         /// <summary>
         /// 组队副本  gm账号显示副本和新地图,大于等于指定副本id不显示
         /// </summary>
-        public static int GmTeamdungeonId = 10110006;
+        public static int GmTeamdungeonId = 110007;
 
         /// <summary>
         /// 击败过的BossId,包含在这个列表的才记录

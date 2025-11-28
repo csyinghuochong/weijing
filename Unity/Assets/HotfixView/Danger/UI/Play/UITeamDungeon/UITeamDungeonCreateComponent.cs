@@ -222,46 +222,52 @@ namespace ET
                 }
             });
 
-            var path_item = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path_item);
-            for (int i = 0; i < rewardItems.Count; i++)
+            if (GlobalHelp.BigVersion >= 24)
             {
-                if (i > 0 && i % 5 == 0)
+                var path_item = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+                var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path_item);
+                for (int i = 0; i < rewardItems.Count; i++)
                 {
-                    await TimerComponent.Instance.WaitFrameAsync();
-                    if (self.IsDisposed)
+                    if (i > 0 && i % 5 == 0)
                     {
-                        return;
+                        await TimerComponent.Instance.WaitFrameAsync();
+                        if (self.IsDisposed)
+                        {
+                            return;
+                        }
                     }
+
+                    UIItemComponent uIItemComponent = null;
+                    if (i < self.RewardItemList.Count)
+                    {
+                        uIItemComponent = self.RewardItemList[i];
+                    }
+                    else
+                    {
+                        GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
+                        UICommonHelper.SetParent(itemSpace, self.ItemNodeList);
+                        uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
+                        uIItemComponent.Label_ItemName.SetActive(false);
+                        uIItemComponent.Label_ItemNum.SetActive(true);
+                        uIItemComponent.Image_Binding.SetActive(false);
+                        itemSpace.transform.localScale = Vector3.one;
+
+                        self.RewardItemList.Add(uIItemComponent);
+                    }
+
+                    uIItemComponent.GameObject.SetActive(true);
+                    uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
                 }
 
-                UIItemComponent uIItemComponent = null;
-                if (i < self.RewardItemList.Count)
+                for (int i = rewardItems.Count; i < self.RewardItemList.Count; i++)
                 {
-                    uIItemComponent = self.RewardItemList[i];
+                    self.RewardItemList[i].GameObject.SetActive(false);
                 }
-                else
-                {
-                    GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
-                    UICommonHelper.SetParent(itemSpace, self.ItemNodeList);
-                    uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
-                    uIItemComponent.Label_ItemName.SetActive(false);
-                    uIItemComponent.Label_ItemNum.SetActive(true);
-                    uIItemComponent.Image_Binding.SetActive(false);
-                    itemSpace.transform.localScale = Vector3.one;
-
-                    self.RewardItemList.Add(uIItemComponent);
-                }
-
-                uIItemComponent.GameObject.SetActive(true);
-                uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
             }
-
-            for (int i = rewardItems.Count;  i < self.RewardItemList.Count; i++)
+            else
             {
-                self.RewardItemList[i].GameObject.SetActive(false);
+                UICommonHelper.ShowItemList(rewardItems, self.ItemNodeList, self, 1f);
             }
-            //UICommonHelper.ShowItemList(rewardItems, self.ItemNodeList, self, 1f);
         }
 
         public static void OnButton_Close(this UITeamDungeonCreateComponent self)
