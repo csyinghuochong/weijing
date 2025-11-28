@@ -169,6 +169,7 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton = uIPageViewComponent;
+            self.UIPageButton.CheckHandler = (int page) => { return self.CheckPageButton_1(page); };
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
             self.OnInitUI();
@@ -206,6 +207,22 @@ namespace ET
                 self.UIMagickaSlotItemList.Add(uIMagickaSlotItem);
             }
             self.UIMagickaSlotItemList[0].OnClickImage_Lock();
+        }
+
+        public static bool CheckPageButton_1(this UIMagickaSlotComponent self, int page)
+        {
+            if (page == 0)
+            {
+                return true;
+            }
+
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            int curid = chengJiuComponent.GetCurrentMagickaSlotIdByPosition(self.Position);
+            if (curid <= 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCode.ERR_MagicNotOpen));
+            }
+            return curid > 0;
         }
 
         public static void OnClickPageButton(this UIMagickaSlotComponent self, int page)

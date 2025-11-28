@@ -109,7 +109,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_AlreadyOpen, "该栏位已经开启!");
             ErrorHintList.Add(ErrorCode.ERR_MagicMaxLevel, "该栏位已经升级到最大等级!");
             ErrorHintList.Add(ErrorCode.ERR_MagicLevelNotEnough, "总的魔能等级不足!");
-            ErrorHintList.Add(ErrorCode.ERR_MagicNotOpen, "魔能栏位未开启!");
+            ErrorHintList.Add(ErrorCode.ERR_MagicNotOpen, "当前栏位未开启!");
             ErrorHintList.Add(ErrorCode.ERR_MagicHeCheng_1, "需要三个魔能!");
             ErrorHintList.Add(ErrorCode.ERR_MagicHeCheng_2, "必须同等级魔能!");
             ErrorHintList.Add(ErrorCode.ERR_MagicHeCheng_3, "魔能已经最大等级，无法合成!");

@@ -1360,6 +1360,7 @@ namespace ET
         //魔能刷新道具
         public static int MagitFefreshItemId = 10000183;
 
+        //不同等级的魔能刷新品质需求的道具数量不一样
         public static int GetMagitFefreshNeedNum(int magitId)
         {
             int magiclevel = 1;
