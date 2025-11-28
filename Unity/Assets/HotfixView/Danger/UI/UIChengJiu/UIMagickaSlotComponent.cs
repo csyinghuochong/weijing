@@ -79,6 +79,7 @@ namespace ET
         public long ClickTime;
 
         public bool IsHoldDown;
+        public bool IsDrag2;
     }
 
     public class UIMagickaSlotComponentAwake : AwakeSystem<UIMagickaSlotComponent>
@@ -368,7 +369,9 @@ namespace ET
                     uI_1.SetEventTrigger(true);
                     uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown_HeCheng(binfo, pdata).Coroutine(); };
                     uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp_HeCheng(binfo, pdata); };
-      
+                    uI_1.BeginDragHandler =  (BagInfo binfo, PointerEventData pdata) => { self.OnBeginDrag_HeCheng(binfo, pdata); };
+                    uI_1.DragingHandler =  (BagInfo binfo, PointerEventData pdata) => { self.OnDrag_HeCheng(binfo, pdata); };
+                    uI_1.EndDragHandler =  (BagInfo binfo, PointerEventData pdata) => { self.OnEndDrag_HeCheng(binfo, pdata); };
                     self.HeChengItemList.Add(uI_1);
                 }
                 uI_1.UpdateItem(allInfos[i], ItemOperateEnum.HuishouBag);
@@ -385,10 +388,11 @@ namespace ET
 
         public static async ETTask OnPointerDown_HeCheng(this UIMagickaSlotComponent self, BagInfo binfo, PointerEventData pdata)
         {
+            self.IsDrag2 = false;
             self.IsHoldDown = true;
             self.ClickTime = TimeHelper.ClientNow();
             await TimerComponent.Instance.WaitAsync(500);
-            if (!self.IsHoldDown)
+            if (!self.IsHoldDown || self.IsDrag2)
                 return;
             EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
             EventType.ShowItemTips.Instance.bagInfo = binfo;
@@ -400,11 +404,28 @@ namespace ET
 
         public static void OnPointerUp_HeCheng(this UIMagickaSlotComponent self, BagInfo binfo, PointerEventData pdata)
         {
-            if (TimeHelper.ClientNow() - self.ClickTime < 200)
+            if (!self.IsDrag2 && TimeHelper.ClientNow() - self.ClickTime < 200)
             {
                 HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{binfo.BagInfoID}");
             }
+            self.IsDrag2 = false;
             self.IsHoldDown = false;
+        }
+        
+        private static void OnBeginDrag_HeCheng(this UIMagickaSlotComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            self.IsDrag2 = true;
+            self.ScrollView_HeCheng.GetComponent<ScrollRect>().OnBeginDrag(pdata);
+        }
+        
+        private static void OnDrag_HeCheng(this UIMagickaSlotComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            self.ScrollView_HeCheng.GetComponent<ScrollRect>().OnDrag(pdata);
+        }
+        
+        private static void OnEndDrag_HeCheng(this UIMagickaSlotComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            self.ScrollView_HeCheng.GetComponent<ScrollRect>().OnEndDrag(pdata);
         }
 
         public static void UpdateZhuruList(this UIMagickaSlotComponent self)
