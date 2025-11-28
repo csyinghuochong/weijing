@@ -38,7 +38,7 @@ namespace ET
             self.Key = key;
             self.ConsumeNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}积分"), self.Key);
             UICommonHelper.DestoryChild(self.RewardListNode);
-            UICommonHelper.ShowItemList(ActivityConfigHelper.PointsRewardList[key], self.RewardListNode, self, 0.8f);
+            UICommonHelper.ShowItemList(ActivityConfigHelper.PointsRewardList[key], self.RewardListNode, self, 1f);
 
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
             if (activityV1Info.PointsReward.Contains(self.Key))
