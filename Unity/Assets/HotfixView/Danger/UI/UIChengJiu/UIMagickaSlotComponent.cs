@@ -321,7 +321,7 @@ namespace ET
                     UICommonHelper.SetParent(go, self.BuildingList_1);
                     go.transform.localScale = Vector3.one;
                     uI_1 = self.AddChild<UIItemComponent, GameObject>(go);
-                    uI_1.ClickItemHandler = (BagInfo baginfo) => { self.OnClickPaiMaiItem(baginfo.BagInfoID); };
+                    uI_1.ClickItemHandler = (BagInfo baginfo) => { self.OnClickEquipItem(baginfo.BagInfoID); };
                     self.EquiItemUIlist.Add(uI_1);
                 }
                 uI_1.UpdateItem(allInfos[i], ItemOperateEnum.None);
@@ -604,7 +604,7 @@ namespace ET
             }
         }
 
-        public static void OnClickPaiMaiItem(this UIMagickaSlotComponent self, long paimaiId)
+        public static void OnClickEquipItem(this UIMagickaSlotComponent self, long paimaiId)
         {
             self.EquipInfoId = paimaiId;
             for (int i = 0; i < self.EquiItemUIlist.Count; i++)
