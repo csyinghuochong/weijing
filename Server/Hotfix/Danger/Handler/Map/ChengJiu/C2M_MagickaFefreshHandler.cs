@@ -20,7 +20,9 @@ namespace ET
                 return; 
             }
 
-            if (!bagComponent.OnCostItemData($"{ConfigHelper.MagitFefreshItemId};1", ItemLocType.ItemLocBag, ItemGetWay.MagicKa))
+            int neednum = ConfigHelper.GetMagitFefreshNeedNum(beforeequip.ItemID);
+
+            if (!bagComponent.OnCostItemData($"{ConfigHelper.MagitFefreshItemId};{neednum}", ItemLocType.ItemLocBag, ItemGetWay.MagicKa))
             {
                 response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();

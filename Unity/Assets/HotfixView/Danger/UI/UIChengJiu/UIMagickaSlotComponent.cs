@@ -92,7 +92,6 @@ namespace ET
             self.RefreshCostItemNode = rc.Get<GameObject>("RefreshCostItemNode");
             GameObject refreshCostItem = self.RefreshCostItemNode.transform.Find("UICommonCostItem").gameObject;
             self.RefreshCostItem = self.AddChild<UICommonCostItemComponent, GameObject>(refreshCostItem);
-            self.RefreshCostItem.UpdateItem(ConfigHelper.MagitFefreshItemId, 1);
             ButtonHelp.AddListenerEx(self.Btn_Refresh, () => { self.OnBtn_Refresh().Coroutine(); });
 
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
@@ -251,6 +250,11 @@ namespace ET
                     self.SlotProItem.SetActive(true);
                     self.ShowSlotPros();
                     self.Refresh.SetActive(true);
+
+                    BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+                    BagInfo beforeequip = bagComponent.GetMagicEquipBySubType(ItemLocType.ItemLocEquip, self.Position);
+                    int neednum = beforeequip!=null ? ConfigHelper.GetMagitFefreshNeedNum(beforeequip.ItemID) : 1;
+                    self.RefreshCostItem.UpdateItem(ConfigHelper.MagitFefreshItemId, neednum);
                     break;
                 default:
                     break;
@@ -669,7 +673,9 @@ namespace ET
                 return;
             }
 
-            if (bagComponent.GetItemNumber(ConfigHelper.MagitFefreshItemId) < 1)
+            int neednum = ConfigHelper.GetMagitFefreshNeedNum(beforeequip.ItemID);
+
+            if (bagComponent.GetItemNumber(ConfigHelper.MagitFefreshItemId) < neednum)
             {
                 FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_ItemNotEnoughError]);
                 return;
@@ -682,7 +688,7 @@ namespace ET
             }
             self.OnUpdateSlotUI();
             self.OnClickSlotHandler(self.Position, 3);
-            self.RefreshCostItem.UpdateItem(ConfigHelper.MagitFefreshItemId, 1);
+            self.RefreshCostItem.UpdateItem(ConfigHelper.MagitFefreshItemId, neednum);
             await ETTask.CompletedTask;
         }
 

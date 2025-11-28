@@ -1360,6 +1360,31 @@ namespace ET
         //魔能刷新道具
         public static int MagitFefreshItemId = 10000183;
 
+        public static int GetMagitFefreshNeedNum(int magitId)
+        {
+            int magiclevel = 1;
+            foreach ((int key, List<int> idlist) in ConfigHelper.MagicHeChengList)
+            {
+                if (!idlist.Contains(magitId))
+                {
+                    continue;
+                }
+                magiclevel = key;
+            }
+            if (magiclevel == 1)   //1级魔能
+            {
+                return 1;
+            }
+            else if (magiclevel == 2)  //2级魔能
+            {
+                return 2;
+            }
+            else
+            {
+                return 3; //3级魔能
+            }
+        }
+
         //魔能合成 
         public static Dictionary<int, List<int>> MagicHeChengList = new Dictionary<int, List<int>>
         {
