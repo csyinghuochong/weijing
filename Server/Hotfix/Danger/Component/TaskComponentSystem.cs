@@ -1355,6 +1355,13 @@ namespace ET
             for (int i = 0; i < self.TaskCountryList.Count; i++)
             {
                 TaskPro taskPro = self.TaskCountryList[i];
+
+                if (!TaskCountryConfigCategory.Instance.Contain(taskPro.taskID))
+                {
+                    self.TaskCountryList.RemoveAt(i);
+                    continue;
+                }
+
                 TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPro.taskID);
                 int taskCountryTargetType = taskConfig.TargetType;
                 if (taskCountryTargetType != targetType)
