@@ -84,6 +84,7 @@ SpriteAtlas:
     - 19febf255d2f06c4ba68a0ce611a7d12: 21300000
     - be9df9359dfe8254e91525e76dbc9bd3: 21300000
     - 0eb0d3b5bdc3c97449574e9b517c49b5: 21300000
+    - 6856e4b50fbaec74992ed3c935915299: 21300000
     - ad22c6c5be8ebb04c8c3c6de3fc78af0: 21300000
     - 0ff935f59d16bef47be6f9c8cb1378c1: 21300000
     - 6a57f24663f85404cb8ed36701989d6d: 21300000
@@ -239,6 +240,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 19febf255d2f06c4ba68a0ce611a7d12, type: 3}
   - {fileID: 21300000, guid: be9df9359dfe8254e91525e76dbc9bd3, type: 3}
   - {fileID: 21300000, guid: 0eb0d3b5bdc3c97449574e9b517c49b5, type: 3}
+  - {fileID: 21300000, guid: 6856e4b50fbaec74992ed3c935915299, type: 3}
   - {fileID: 21300000, guid: ad22c6c5be8ebb04c8c3c6de3fc78af0, type: 3}
   - {fileID: 21300000, guid: 0ff935f59d16bef47be6f9c8cb1378c1, type: 3}
   - {fileID: 21300000, guid: 6a57f24663f85404cb8ed36701989d6d, type: 3}
@@ -393,6 +395,7 @@ SpriteAtlas:
   - Btn_107
   - main_touxiang_jy05
   - Btn_105
+  - Btn_143
   - Btn_108
   - Img_Head_3
   - main_38
