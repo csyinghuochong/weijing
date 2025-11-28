@@ -116,4 +116,5 @@
 {"_t":"GlobalValueConfig","_id":117,"Value":"6","Value2":6},
 {"_t":"GlobalValueConfig","_id":118,"Value":"50","Value2":50},
 {"_t":"GlobalValueConfig","_id":119,"Value":"60","Value2":60},
+{"_t":"GlobalValueConfig","_id":120,"Value":"700101;700201;700301;700401;700501;700601;700701;700801;700901;701001","Value2":0},
 ]}

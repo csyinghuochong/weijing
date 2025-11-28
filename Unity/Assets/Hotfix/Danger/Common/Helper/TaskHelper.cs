@@ -225,6 +225,12 @@ namespace ET
                 do
                 {
                     writeTaskID = writeTaskID_Next;
+
+                    if (!TaskCountryConfigCategory.Instance.Contain(writeTaskID))
+                    {
+                        break;
+                    }
+
                     taskCountryConfig = TaskCountryConfigCategory.Instance.Get(writeTaskID);
 
                     if (taskCountryConfig.TriggerType == 1 && playerLv < taskCountryConfig.TargetValue[0])

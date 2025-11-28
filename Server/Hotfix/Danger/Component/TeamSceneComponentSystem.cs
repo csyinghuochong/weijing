@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Apis.AndroidPublisher.v3.Data;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -129,6 +130,12 @@ namespace ET
         public static  void OnRecvUnitLeave(this TeamSceneComponent self, long userId, bool exitgame = false)
         {
             Log.Debug($"TeamSceneComponent Leave {userId} {exitgame}");
+
+            if (self.DomainZone() == 5)
+            {
+                Console.WriteLine($"TeamSceneComponent.OnRecvUnitLeave:  {userId}");
+            }
+
             TeamInfo teamInfo = self.GetTeamInfo(userId);
             if (teamInfo == null)
             {
@@ -171,15 +178,46 @@ namespace ET
         /// <returns></returns>
         public static void  OnUnitReturn(this TeamSceneComponent self, Scene fubnescene, long unitId)
         {
+            if (self.DomainZone() == 5)
+            {
+                Console.WriteLine($"TeamSceneComponent.OnUnitReturn:  {unitId}");
+            }
+
+            int realPlayerNumber = 0;
+            int robotNumber = 0;
+            TeamInfo teamInfo = self.GetTeamInfo(unitId);
+
             List<Unit> allunits = UnitHelper.GetUnitList(fubnescene, UnitType.Player);
             for (int i = 0; i < allunits.Count; i++)
             {
                 if (allunits[i].GetComponent<UserInfoComponent>().UserInfo.RobotId == 0)
                 {
+                    realPlayerNumber++;
                     continue;
                 }
-                MessageHelper.SendToClient(allunits[i], self.M2C_TeamDungeonQuitMessage);
+
+                if (teamInfo != null && unitId == teamInfo.TeamId)
+                {
+                    robotNumber++;
+                    MessageHelper.SendToClient(allunits[i], self.M2C_TeamDungeonQuitMessage);
+                }
             }
+
+            if (self.DomainZone() == 5 && teamInfo != null && unitId == teamInfo.TeamId && realPlayerNumber >= 2)
+            {
+                Console.WriteLine($"TeamSceneComponent.OnUnitReturn [队长离开 解算队伍！]");
+                
+                if (teamInfo != null)
+                {
+                    List<TeamPlayerInfo> userIDList = new List<TeamPlayerInfo>();
+                    userIDList.AddRange(teamInfo.PlayerList);
+                    self.SyncTeamInfo(teamInfo, userIDList).Coroutine();
+
+                    teamInfo.PlayerList.Clear();   //队伍解算
+                    self.TeamList.Remove(teamInfo);
+                }
+            }
+
             if (allunits.Count > 0)
             {
                 return;
