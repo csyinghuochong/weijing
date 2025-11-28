@@ -30,6 +30,7 @@ namespace ET
             self.RewardItemListNode = rc.Get<GameObject>("RewardItemListNode");
 
             self.ShowRewardList();
+            self.ShowLeftPoints();
             self.OnUpdateUI();
         }
     }
@@ -63,6 +64,12 @@ namespace ET
         public static void OnUpdateUI(this UIActivityV1PointsChouKaComponent self)
         {
 
+        }
+
+        public static void ShowLeftPoints(this UIActivityV1PointsChouKaComponent self)
+        {
+            self.TextTip.GetComponent<Text>().text =
+                 string.Format(GameSettingLanguge.LoadLocalization("{0}"), UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1TotalPoints));
         }
 
         public static async ETTask OnButton_TimerChouKa(this UIActivityV1PointsChouKaComponent self)
