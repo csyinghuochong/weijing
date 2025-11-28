@@ -17,6 +17,7 @@ namespace ET
         ActivityV1Task = 8,
         ActivityV1LiBao = 9,
         ActivityV1Feed = 10,
+        ActivityV1PointsChouKa = 11,
         Number,
     }
 
@@ -64,6 +65,8 @@ namespace ET
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1LiBao");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1Feed] =
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Feed");
+            pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1PointsChouKa] =
+                    ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1PointsChouKa");
 
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1ChouKa] = typeof (UIActivityV1ChouKaComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Guess] = typeof (UIActivityV1GuessComponent);
@@ -76,6 +79,7 @@ namespace ET
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Task] = typeof (UIActivityV1TaskComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1LiBao] = typeof (UIActivityV1LiBaoComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Feed] = typeof (UIActivityV1FeedComponent);
+            pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1PointsChouKa] = typeof(UIActivityV1PointsChouKaComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");

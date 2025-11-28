@@ -21,14 +21,14 @@ namespace ET
         public const int ActivityV1_Task = 9;           //活动任务，每日刷新  TaskComponent.TaskCountryList   TaskCountryType.ActivityV1
         public const int ActivityV1_LiBao = 10;          //每日礼包  ActivityConfig ActivityType = 102
         public const int ActivityV1_Feed = 11;          //喂食
-
+        public const int ActivityV1_PointsChouKa = 12;      //积分抽卡
 
         /// <summary>
         /// UI切页也据此显示
         /// </summary>
         public static List<int> ActivityV1OpenList = new List<int>() { 
             ActivityV1_ChouKa, ActivityV1_Guess, ActivityV1_Consume,  ActivityV1_HongBao, 
-            ActivityV1_DuiHuanWord, ActivityV1_ChouKa2, ActivityV1_LiBao, ActivityV1_Feed };  
+            ActivityV1_DuiHuanWord, ActivityV1_ChouKa2, ActivityV1_LiBao, ActivityV1_Feed ,ActivityV1_PointsChouKa};  
         
         /// <summary>
         /// 抽奖奖励，每个区每天随机一个掉落ID
