@@ -11,6 +11,7 @@ namespace ET
         public GameObject TextHuoyueValue;
         public GameObject TextTaskProgress;
         public GameObject TextTaskDesc;
+        public GameObject RewardListNode;
         public GameObject TextTaskName;
         public GameObject ImageIcon;
         public GameObject ItemNumber;
@@ -36,6 +37,7 @@ namespace ET
             self.TextHuoyueValue = rc.Get<GameObject>("TextHuoyueValue");
             self.TextTaskProgress = rc.Get<GameObject>("TextTaskProgress");
             self.TextTaskDesc = rc.Get<GameObject>("TextTaskDesc");
+            self.RewardListNode = rc.Get<GameObject>("RewardListNode");
             self.TextTaskName = rc.Get<GameObject>("TextTaskName");
             self.ImageIcon = rc.Get<GameObject>("ImageIcon");
             self.ItemNumber = rc.Get<GameObject>("ItemNumber");
@@ -83,6 +85,8 @@ namespace ET
             self.ImageIcon.GetComponent<Image>().sprite = sp;
             //self.ImageIcon.GetComponent<Image>()
 
+            UICommonHelper.ShowItemList(taskConfig.RewardItem, self.RewardListNode, self, 1f);
+            
             //更新金币
             self.ItemNumber.GetComponent<Text>().text = " +" + taskConfig.RewardGold;
 
