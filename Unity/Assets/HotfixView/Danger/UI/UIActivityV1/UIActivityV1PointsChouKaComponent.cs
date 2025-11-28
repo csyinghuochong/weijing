@@ -53,6 +53,7 @@ namespace ET
                 uIItemComponent.Label_ItemName.SetActive(false);
                 uIItemComponent.Label_ItemNum.SetActive(false);
                 uIItemComponent.Image_Binding.SetActive(true);
+                itemSpace.transform.Find("Image_Recvived").gameObject.SetActive(false);
                 itemSpace.transform.localScale = Vector3.one * 1f;
 
                 self.UIItemList.Add(uIItemComponent);
