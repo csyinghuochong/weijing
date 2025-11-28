@@ -475,6 +475,12 @@ namespace ET
             taskids.AddRange(taskComponent.GetOpenTaskIds(self.NpcID));
             taskids.AddRange(self.GetAddtionTaskId(self.NpcID));
 
+            bool gm = GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account );
+            if (taskids.Contains(30080001) && !gm)
+            {
+                taskids.Remove(30080001);
+            }
+
             //bool haveloopids = false;
             //for (int i = 0; i < taskids.Count; i++)
             //{
