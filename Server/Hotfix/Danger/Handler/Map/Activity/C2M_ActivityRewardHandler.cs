@@ -93,6 +93,7 @@ namespace ET
                         return;
                     }
                     rewarditem = ActivityConfigHelper.PointsRewardList[request.RewardId];
+                    unit.GetComponent<NumericComponent>().ApplyChange(null,NumericType.V1TotalPoints, request.RewardId * -1, 0);
                     unit.GetComponent<BagComponent>().OnAddItemData(rewarditem, $"{ItemGetWay.ActivityConsume}_{TimeHelper.ServerNow()}");
                     activityComponent.ActivityV1Info.PointsReward.Add(request.RewardId);
                     break;

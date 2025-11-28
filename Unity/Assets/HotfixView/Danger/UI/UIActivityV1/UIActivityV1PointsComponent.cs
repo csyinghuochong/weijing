@@ -43,13 +43,18 @@ namespace ET
             {
                 GameObject go = UnityEngine.Object.Instantiate(self.UIActivityV1PointsItem);
                 UIActivityV1PointsItemComponent component = self.AddChild<UIActivityV1PointsItemComponent, GameObject>(go);
-                component.OnUpdateData(key);
+                component.OnUpdateData(key, self.OnRecvHandler);
                 UICommonHelper.SetParent(go, self.UIActivityV1PointsListNode);
                 go.SetActive(true);
             }
 
+            self.OnRecvHandler();
+        }
+
+        public static void OnRecvHandler(this UIActivityV1PointsComponent self)
+        {
             self.ConsumeNumText.GetComponent<Text>().text =
-                    string.Format(GameSettingLanguge.LoadLocalization("{0}积分"), UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1TotalPoints));
+                   string.Format(GameSettingLanguge.LoadLocalization("{0}积分"), UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1TotalPoints));
         }
     }
 }

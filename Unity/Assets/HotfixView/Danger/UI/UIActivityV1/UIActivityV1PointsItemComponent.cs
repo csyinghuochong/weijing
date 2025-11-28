@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ namespace ET
         public GameObject RewardListNode;
         public GameObject ReceiveBtn;
         public GameObject ReceivedImg;
+        public Action OnRecvHandler;
 
         public int Key;
     }
@@ -33,9 +35,10 @@ namespace ET
 
     public static class UIActivityV1PointsItemComponentSystem
     {
-        public static void OnUpdateData(this UIActivityV1PointsItemComponent self, int key)
+        public static void OnUpdateData(this UIActivityV1PointsItemComponent self, int key, Action action)
         {
             self.Key = key;
+            self.OnRecvHandler = action;
             self.ConsumeNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}积分"), self.Key);
             UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(ActivityConfigHelper.PointsRewardList[key], self.RewardListNode, self, 1f);
@@ -91,6 +94,7 @@ namespace ET
 
             self.ReceiveBtn.SetActive(false);
             self.ReceivedImg.SetActive(true);
+            self.OnRecvHandler?.Invoke();
         }
     }
 }
