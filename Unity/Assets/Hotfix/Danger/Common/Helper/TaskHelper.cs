@@ -213,7 +213,7 @@ namespace ET
             int playerLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 
             List<int> taskCountryList = new List<int>();
-            string[] dayTaskID = GlobalValueConfigCategory.Instance.Get(20).Value.Split(';');
+            string[] dayTaskID = GlobalValueConfigCategory.Instance.Get(120).Value.Split(';');
             for (int i = 0; i < dayTaskID.Length; i++)
             {
                 //获取任务概率
