@@ -23,7 +23,7 @@ namespace ET
             }
 
             string logFolderPath = "../Logs/";
-            
+
             // 大于1G的日志直接删除
             if (Directory.Exists(logFolderPath))
             {
@@ -33,7 +33,7 @@ namespace ET
                     foreach (string logFilePath in logFiles)
                     {
                         long fileSizeInBytes = new FileInfo(logFilePath).Length;
-                        
+
                         if (fileSizeInBytes >= 1073741824) // 1G = 1024 * 1024 * 1024 = 1073741824
                         {
                             File.Delete(logFilePath);
@@ -51,7 +51,7 @@ namespace ET
                 Console.WriteLine("日志文件不存在!");
             }
         }
-        
+
         public static void LogWarning(string msg, bool log = false)
         {
             if (LogLevel >= 3 && log)
@@ -80,12 +80,12 @@ namespace ET
                 return;
             }
             int zone = attack.DomainZone();
-            ServerItem serverItem  = ServerHelper.GetGetServerItem(false, zone);
+            ServerItem serverItem = ServerHelper.GetGetServerItem(false, zone);
             if (serverItem == null)
             {
                 return;
             }
-            
+
             MapComponent mapComponent = attack.DomainScene().GetComponent<MapComponent>();
             if (!SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
             {
@@ -111,6 +111,14 @@ namespace ET
                 WriteLogList(KillInfoList, filePath);
                 KillInfoList.Clear();
             }
+        }
+
+        public static void ZhenPingDuiHuanLog(string loginfo)
+        {
+            string log = $"{TimeHelper.DateTimeNow().ToString()}:  {loginfo}";
+
+            string filePath = "../Logs/WJ_ZhenPingDuiHuan.txt";
+            WriteLogList(new List<string>() { log }, filePath);
         }
 
         public static void TrialBattleInfo(int zone, string loginfo)

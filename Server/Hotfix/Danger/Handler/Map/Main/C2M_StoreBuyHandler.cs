@@ -92,6 +92,18 @@ namespace ET
                         unit.GetComponent<BagComponent>().OnCostItemData($"{costType};{storeSellConfig.SellValue * request.SellItemNum}", ItemLocType.ItemLocBag, ItemGetWay.StoreBuy);
                         unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
                     }
+
+                    if (costType == 10000151)
+                    {
+                        int zone = unit.DomainZone();
+                        string playername = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                        string servername = ServerHelper.GetGetServerItem(false, zone).ServerName;
+                        string itemname = ItemConfigCategory.Instance.Get(rewardItems[0].ItemID).ItemName;
+                        string loginfo = $"{servername}: {playername} 消耗:珍品羽毛X{storeSellConfig.SellValue * request.SellItemNum} 兑换:{itemname}X{rewardItems[0].ItemNum}";
+
+                        LogHelper.ZhenPingDuiHuanLog(loginfo);
+                    }
+
                     break;
             }
 
