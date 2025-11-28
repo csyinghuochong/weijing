@@ -1364,8 +1364,11 @@ namespace ET
         public static int GetMagitFefreshNeedNum(int magitId)
         {
             int magiclevel = 1;
-            foreach ((int key, List<int> idlist) in ConfigHelper.MagicHeChengList)
+            foreach (var hehengitem in ConfigHelper.MagicHeChengList)
             {
+                int key = hehengitem.Key;
+                List<int> idlist = hehengitem.Value;
+
                 if (!idlist.Contains(magitId))
                 {
                     continue;

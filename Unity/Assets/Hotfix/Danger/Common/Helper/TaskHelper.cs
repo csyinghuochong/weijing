@@ -191,18 +191,72 @@ namespace ET
             return allTaskIds[index];
         }
 
-        public static List<int> GetActivityV1Task()
+        public static List<int> GetActivityV1Task(Unit unit)
         {
-            List<int> taskIds = new List<int>();
-            Dictionary<int, TaskCountryConfig> keyValuePairs = TaskCountryConfigCategory.Instance.GetAll();
-            foreach (var item in keyValuePairs)
+            //List<int> taskIds = new List<int>();
+            //Dictionary<int, TaskCountryConfig> keyValuePairs = TaskCountryConfigCategory.Instance.GetAll();
+            //foreach (var item in keyValuePairs)
+            //{
+            //    if (item.Value.TaskType == TaskCountryType.ActivityV1)
+            //    {
+            //        taskIds.Add(item.Key);
+            //    }
+            //}
+            //return taskIds;
+
+            /// <summary>
+            /// 活跃任务
+            /// </summary>
+            /// <returns></returns>
+
+            //活跃任务
+            int playerLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+
+            List<int> taskCountryList = new List<int>();
+            string[] dayTaskID = GlobalValueConfigCategory.Instance.Get(20).Value.Split(';');
+            for (int i = 0; i < dayTaskID.Length; i++)
             {
-                if (item.Value.TaskType == TaskCountryType.ActivityV1)
+                //获取任务概率
+                float taskRandValue = RandomHelper.RandFloat01();
+                int writeTaskID = int.Parse(dayTaskID[i]);
+                int writeTaskID_Next = writeTaskID;
+                TaskCountryConfig taskCountryConfig = null;
+                double triggerPro = 0;
+                do
                 {
-                    taskIds.Add(item.Key);
-                }
+                    writeTaskID = writeTaskID_Next;
+                    taskCountryConfig = TaskCountryConfigCategory.Instance.Get(writeTaskID);
+
+                    if (taskCountryConfig.TriggerType == 1 && playerLv < taskCountryConfig.TargetValue[0])
+                    {
+                        //条件不满足
+                        if (taskCountryConfig.NextTask == 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            writeTaskID_Next = taskCountryConfig.NextTask;
+                            continue;
+                        }
+                    }
+
+
+                    triggerPro = taskCountryConfig.TriggerPro;
+                    writeTaskID_Next = taskCountryConfig.NextTask;
+
+                    if (writeTaskID_Next == 0)
+                    {
+                        taskRandValue = -1;
+                    }
+
+                } while (taskRandValue >= triggerPro);
+
+                taskCountryList.Add(writeTaskID);
             }
-            return taskIds;
+
+            return taskCountryList;
+
         }
 
         /// <summary>
