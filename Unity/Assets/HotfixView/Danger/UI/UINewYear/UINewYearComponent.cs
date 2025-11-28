@@ -9,6 +9,9 @@ namespace ET
     {
         CollectionWord = 0,
         Monster = 1,
+        ActivityV1Points = 2,
+        ActivityV1Task = 3,
+        ActivityV1Shop = 4,
         Number,
     }
 
@@ -38,14 +41,28 @@ namespace ET
 
             pageViewComponent.UISubViewPath[(int)NewYearPageEnum.CollectionWord] = ABPathHelper.GetUGUIPath("Main/NewYear/UINewYearCollectionWord");
             pageViewComponent.UISubViewPath[(int)NewYearPageEnum.Monster] = ABPathHelper.GetUGUIPath("Main/NewYear/UINewYearMonster");
+            pageViewComponent.UISubViewPath[(int)NewYearPageEnum.ActivityV1Points] = ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Points");
+            pageViewComponent.UISubViewPath[(int)NewYearPageEnum.ActivityV1Task] = ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Task");            
+            pageViewComponent.UISubViewPath[(int)NewYearPageEnum.ActivityV1Shop] = ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Shop");
 
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.CollectionWord] = typeof(UINewYearCollectionWordComponent);
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.Monster] = typeof(UINewYearMonsterComponent);
+            pageViewComponent.UISubViewType[(int)NewYearPageEnum.ActivityV1Points] = typeof(UIActivityV1PointsComponent);
+            pageViewComponent.UISubViewType[(int)NewYearPageEnum.ActivityV1Task] = typeof (UIActivityV1TaskComponent);
+            pageViewComponent.UISubViewType[(int)NewYearPageEnum.ActivityV1Shop] = typeof (UIActivityV1ShopComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI uiPageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 
+
+            if (!GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account))
+            {
+                self.FunctionSetBtn.transform.Find("Btn_Type3").gameObject.SetActive(false);
+                self.FunctionSetBtn.transform.Find("Btn_Type4").gameObject.SetActive(false);
+                self.FunctionSetBtn.transform.Find("Btn_Type5").gameObject.SetActive(false);
+            }
+            
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
 
