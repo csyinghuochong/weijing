@@ -15912,6 +15912,34 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_PointChouKaRewardResponse))]
+	[Message(OuterOpcode.C2M_PointChouKaRewardRequest)]
+	[ProtoContract]
+	public partial class C2M_PointChouKaRewardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PointChouKaRewardResponse)]
+	[ProtoContract]
+	public partial class M2C_PointChouKaRewardResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 	[ResponseType(nameof(M2C_ActivityGuessResponse))]
 	[Message(OuterOpcode.C2M_ActivityGuessRequest)]
 	[ProtoContract]

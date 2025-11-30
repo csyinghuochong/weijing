@@ -111,14 +111,14 @@ namespace ET
         //积分抽卡   权重-奖励
         public static List<TimerChouKaItemn> PointsChouKaList = new List<TimerChouKaItemn>()
         {
-             new TimerChouKaItemn(){   Weight = 10,  ItemInfo =  "10010001;1" },     //小型生命药水
-            new TimerChouKaItemn(){   Weight = 10, ItemInfo =  "10010091;1" },      //幼小的宠物蛋
-            new TimerChouKaItemn(){   Weight = 10, ItemInfo =  "10010080;1" },      //武器  
-            new TimerChouKaItemn(){   Weight = 10, ItemInfo =  "10010041;2" },      //经验盒子
-            new TimerChouKaItemn(){    Weight = 10, ItemInfo =  "10010039;1" },      //藏宝图
-            new TimerChouKaItemn(){  Weight = 10,  ItemInfo =  "10000121;1" },      //一章装备盒子
-            new TimerChouKaItemn(){  Weight = 10,  ItemInfo =  "10010088;1" },      //体力补充
-            new TimerChouKaItemn(){  Weight = 10,  ItemInfo =  "10000158;1" },     //封印之塔挑战凭证
+             new TimerChouKaItemn(){   Weight = 10,  ItemInfo =  "10010001;1" },     
+            new TimerChouKaItemn(){   Weight = 10, ItemInfo =  "10010091;1" },    
+            new TimerChouKaItemn(){   Weight = 10, ItemInfo =  "10010080;1" },    
+            new TimerChouKaItemn(){   Weight = 10, ItemInfo =  "10010041;2" },  
+            new TimerChouKaItemn(){    Weight = 10, ItemInfo =  "10010039;1" },   
+            new TimerChouKaItemn(){  Weight = 10,  ItemInfo =  "10000121;1" },    
+            new TimerChouKaItemn(){  Weight = 10,  ItemInfo =  "10010079;1" },    
+            new TimerChouKaItemn(){  Weight = 10,  ItemInfo =  "10000158;1" },    
         };
 
 

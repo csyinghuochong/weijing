@@ -97,6 +97,29 @@ namespace ET
                     unit.GetComponent<BagComponent>().OnAddItemData(rewarditem, $"{ItemGetWay.ActivityConsume}_{TimeHelper.ServerNow()}");
                     activityComponent.ActivityV1Info.PointsReward.Add(request.RewardId);
                     break;
+                case ActivityConfigHelper.ActivityV1_PointsChouKa:
+
+                    if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.V1TotalPoints) < 200)
+                    {
+                        response.Error = ErrorCode.Pre_Condition_Error;
+                        reply();
+                        return;
+                    }
+
+                    int choukaindex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.V1PointsChouKaIndex);
+                    if (choukaindex <= 0 || choukaindex > ActivityConfigHelper.PointsChouKaList.Count)
+                    {
+                        List<int> weights = new List<int>();
+                        for (int i = 0; i < ActivityConfigHelper.PointsChouKaList.Count; i++)
+                        {
+                            weights.Add(ActivityConfigHelper.PointsChouKaList[i].Weight);
+                        }
+                        int index = RandomHelper.RandomByWeight(weights);
+                        choukaindex = index + 1;
+                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.V1PointsChouKaIndex, choukaindex);
+                    }
+                    response.Message = choukaindex.ToString();
+                    break;
                 case ActivityConfigHelper.ActivityV1_HongBao:
                     int hongbaoNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.V1HongBaoNumber);
                     long v1rechargeNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.V1RechageNumber);

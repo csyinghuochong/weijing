@@ -181,7 +181,7 @@ namespace ET
                 }
                 if (message.GMMsg == "#completetask")
 				{
-					unit.GetComponent<TaskComponent>().CompletCurrentTask();
+					unit.GetComponent<TaskComponent>().GMCompletCurrentTask();
 					return;
 				}
 				if (message.GMMsg.Contains("#addack"))  //#addack#400000

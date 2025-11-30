@@ -7616,6 +7616,20 @@ message M2C_ActivityRewardResponse // IActorLocationResponse
 	ActivityV1Info ActivityV1Info = 1;
 }
 
+//ResponseType M2C_PointChouKaRewardResponse
+message C2M_PointChouKaRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2C_PointChouKaRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //ResponseType M2C_ActivityGuessResponse
 message C2M_ActivityGuessRequest // IActorLocationRequest
 {

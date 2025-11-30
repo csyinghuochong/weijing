@@ -1151,7 +1151,7 @@ namespace ET
             self.TriggerTaskCountryEvent(TaskTargetType.ItemID_Number_2, itemId, 0);
         }
 
-        public static void CompletCurrentTask(this TaskComponent self)
+        public static void GMCompletCurrentTask(this TaskComponent self)
         {
             for (int i = 0; i < self.RoleTaskList.Count; i++)
             {
@@ -1176,6 +1176,31 @@ namespace ET
                 }
                 taskPro.taskStatus = (int)TaskStatuEnum.Completed;
             }
+
+            for (int i = 0; i < self.TaskCountryList.Count; i++)
+            {
+                TaskPro taskPro = self.TaskCountryList[i];
+                TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPro.taskID);
+
+                if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
+                {
+                    continue;
+                }
+
+                for (int t = 0; t < taskConfig.Target.Length; t++)
+                {
+                    if (t == 0 && taskConfig.TargetValue.Length > 0)
+                    {
+                        taskPro.taskTargetNum_1 = taskConfig.TargetValue[0];
+                    }
+                    if (t == 1 && taskConfig.TargetValue.Length > 1)
+                    {
+                        taskPro.taskTargetNum_2 = taskConfig.TargetValue[1];
+                    }
+                }
+                taskPro.taskStatus = (int)TaskStatuEnum.Completed;
+            }
+
 
             M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
             m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;

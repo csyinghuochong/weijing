@@ -74,7 +74,82 @@ namespace ET
 
         public static async ETTask OnButton_TimerChouKa(this UIActivityV1PointsChouKaComponent self)
         {
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < 1)
+            {
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_BagIsFull);
+                return;
+            }
+
+            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
+            if (numericComponent.GetAsLong(NumericType.V1TotalPoints) < 200)
+            {
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_PointNotEnough);
+                return;
+            }
+
+            int drawIndex = numericComponent.GetAsInt(NumericType.V1PointsChouKaIndex);
+            if (drawIndex <= 0)
+            {
+                C2M_ActivityRewardRequest request = new C2M_ActivityRewardRequest()
+                {
+                    ActivityType = ActivityConfigHelper.ActivityV1_PointsChouKa,
+                };
+                M2C_ActivityRewardResponse response =
+                        (M2C_ActivityRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+                if (response.Error != ErrorCode.ERR_Success || self.IsDisposed)
+                {
+                    return;
+                }
+
+                drawIndex = numericComponent.GetAsInt(NumericType.V1PointsChouKaIndex);
+            }
+            if (drawIndex <= 0)
+            {
+                return;
+            }
+
+            self.StartRotation(drawIndex - 1).Coroutine();
+
+
             await ETTask.CompletedTask;
+        }
+
+        public static async ETTask StartRotation(this UIActivityV1PointsChouKaComponent self, int index)
+        {
+            self.OpenBtn.interactable = false;
+            int ran = RandomHelper.RandomNumber(20, 30);
+            int i = 0;
+
+
+            while (!self.IsDisposed)
+            {
+                int curindex = i % self.UIItemList.Count;
+
+                for (int item = 0; item < self.UIItemList.Count; item++)
+                {
+                    self.UIItemList[item].Image_XuanZhong.SetActive(curindex == item);
+                }
+
+                if (i > ran && curindex == index)
+                {
+                    // 抽奖有一个转圈的效果，转圈结束后获取道具
+                    C2M_PointChouKaRewardRequest reques3 = new C2M_PointChouKaRewardRequest();
+                    M2C_PointChouKaRewardResponse response13 =
+                            (M2C_PointChouKaRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reques3);
+                    break;
+                }
+
+                i++;
+                await TimerComponent.Instance.WaitAsync(250);
+                if (self.IsDisposed)
+                {
+                    return;
+                }
+            }
+
+            self.OpenBtn.interactable = true;
+            self.ShowLeftPoints();
         }
 
     }
