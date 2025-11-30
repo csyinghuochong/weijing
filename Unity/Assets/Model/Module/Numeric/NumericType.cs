@@ -164,7 +164,7 @@
         public const int CardTransform = 3164;                                     //怪物卡片变身
         public const int V1ChouKaNumber = 3165;
         public const int V1HongBaoNumber = 3166;                                //已经抽卡的红包数量，总数量根据
-        public const int V1DayCostDiamond = 3167;                               //活动周期消耗钻石
+        public const int V1DayCostDiamond = 3167;                               //活动周期累计消耗钻石
         public const int V1RechageNumber = 3168;
         public const int PetExploreNumber = 3169;                               //宠物探宝次数
         public const int PetExploreLuckly = 3170;                               //宠物探索幸运

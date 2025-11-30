@@ -36,6 +36,12 @@ namespace ET
             return activityId;
         }
 
+        public static void ActivityV1Reset(this ActivityComponent self, bool notice)
+        {
+            self.ActivityV1Info.ConsumeDiamondReward.Clear();
+            self.ActivityV1Info.PointsReward.Clear();
+        }
+
 #if SERVER
         public static int GetMaxActivityId(this ActivityComponent self, int rechargeNumb)
         {
@@ -88,13 +94,6 @@ namespace ET
         public static void Check(this ActivityComponent self)
         {
             self.LastTimerChouKaPassTime += TimeHelper.Second;
-        }
-
-
-        public static void ActivityV1Reset(this ActivityComponent self, bool notice)
-        {
-            self.ActivityV1Info.ConsumeDiamondReward.Clear();
-            self.ActivityV1Info.PointsReward.Clear();
         }
 
         public static void OnZeroClockUpdate(this ActivityComponent self, int level)

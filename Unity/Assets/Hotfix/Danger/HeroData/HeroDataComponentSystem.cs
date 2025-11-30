@@ -266,13 +266,24 @@ namespace ET
             }
         }
 
-        public static void ActivityV1Reset(this HeroDataComponent self, bool notice)
+        public static void ActivityV1Reset(this HeroDataComponent self,bool kouchu, bool notice)
         {
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
             numericComponent.ApplyValue(NumericType.V1DayCostDiamond, 0, notice);
-            numericComponent.ApplyValue(NumericType.V1TotalPoints, 0, notice);
+
+            //每次活动扣除100积分， 对话任意积分可免扣除
+            long v1points = numericComponent.GetAsLong(NumericType.V1TotalPoints);
+            if (kouchu)
+            {
+                v1points -= 1000000;
+            }
+            if (v1points < 0) 
+            {
+                v1points = 0;
+            }
+            numericComponent.ApplyValue(NumericType.V1TotalPoints, v1points, notice);
         }
 
         /// <summary>

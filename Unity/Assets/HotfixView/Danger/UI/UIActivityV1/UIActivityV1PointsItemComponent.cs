@@ -71,8 +71,9 @@ namespace ET
                 return;
             }
 
-            if (UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1TotalPoints) <
-                self.Key)
+            int points = (int)(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsFloat(NumericType.V1TotalPoints));
+
+            if (points <self.Key)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到条件"));
                 return;

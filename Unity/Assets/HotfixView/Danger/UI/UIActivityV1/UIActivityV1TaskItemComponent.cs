@@ -85,6 +85,7 @@ namespace ET
             self.ImageIcon.GetComponent<Image>().sprite = sp;
             //self.ImageIcon.GetComponent<Image>()
 
+            UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(taskConfig.RewardItem, self.RewardListNode, self, 1f);
             
             //更新金币

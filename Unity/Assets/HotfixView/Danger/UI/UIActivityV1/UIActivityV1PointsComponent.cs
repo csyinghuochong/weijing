@@ -56,8 +56,10 @@ namespace ET
 
         public static void OnRecvHandler(this UIActivityV1PointsComponent self)
         {
+            int points = (int)(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsFloat(NumericType.V1TotalPoints));
+
             self.ConsumeNumText.GetComponent<Text>().text =
-                   string.Format(GameSettingLanguge.LoadLocalization("{0}积分"), UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1TotalPoints));
+                   string.Format(GameSettingLanguge.LoadLocalization("{0}积分"), points);
         }
     }
 }

@@ -68,8 +68,10 @@ namespace ET
 
         public static void ShowLeftPoints(this UIActivityV1PointsChouKaComponent self)
         {
+            int points = (int)(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsFloat(NumericType.V1TotalPoints));
+
             self.TextTip.GetComponent<Text>().text =
-                 string.Format(GameSettingLanguge.LoadLocalization("{0}"), UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsLong(NumericType.V1TotalPoints));
+                 string.Format(GameSettingLanguge.LoadLocalization("{0}"), points);
         }
 
         public static async ETTask OnButton_TimerChouKa(this UIActivityV1PointsChouKaComponent self)
@@ -81,7 +83,7 @@ namespace ET
             }
 
             NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
-            if (numericComponent.GetAsLong(NumericType.V1TotalPoints) < 200)
+            if (numericComponent.GetAsFloat(NumericType.V1TotalPoints) < 200f)
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_PointNotEnough);
                 return;

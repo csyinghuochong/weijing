@@ -1423,7 +1423,7 @@ namespace ET
                 Log.Debug($"更新活跃任务ERROE:  {unit.Id} {notice} {self.DomainZone()} ");
             }
 
-            //赛季任务每周清空
+            //赛季任务  新活动任务 每周清空 
             for (int i = self.TaskCountryList.Count - 1;i >= 0; i--)
             {
                 if (!TaskCountryConfigCategory.Instance.Contain(self.TaskCountryList[i].taskID))
@@ -1433,7 +1433,8 @@ namespace ET
                 }
 
                 TaskCountryConfig taskCountry = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
-                if (taskCountry.TaskType == TaskCountryType.Season)
+                if (taskCountry.TaskType == TaskCountryType.Season
+                    || taskCountry.TaskType == TaskCountryType.ActivityV1)
                 {
                     continue;
                 }
@@ -1447,7 +1448,6 @@ namespace ET
             taskCountryList.AddRange(TaskHelper.GetShowLieTask());
             taskCountryList.AddRange(TaskHelper.GetUnionRaceTask());
             taskCountryList.AddRange(TaskHelper.GetMineTask());
-            taskCountryList.AddRange(TaskHelper.GetActivityV1Task(unit));
             
             for (int i = 0; i < taskCountryList.Count; i++)
             {
@@ -1708,11 +1708,11 @@ namespace ET
             if( dateTime.DayOfWeek == System.DayOfWeek.Monday)
             {
                 //Log.Console($"ResetWeeklyTask: passday:{self.Id} {dateTime.DayOfWeek == System.DayOfWeek.Monday}");
-                self.ResetWeeklyTask();
+                self.ResetWeeklyTask(true);
             }
         }
 
-        public static void ResetWeeklyTask(this TaskComponent self)
+        public static void ResetWeeklyTask(this TaskComponent self, bool notice)
         {
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
@@ -1736,6 +1736,11 @@ namespace ET
             }
             for (int i = self.RoleComoleteTaskList.Count - 1; i >= 0; i--)
             {
+                if (!TaskConfigCategory.Instance.Contain(self.RoleComoleteTaskList[i]))
+                {
+                    continue;
+                }
+
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleComoleteTaskList[i]);
                 if (taskConfig.TaskType == TaskTypeEnum.Weekly)
                 {
@@ -1754,6 +1759,53 @@ namespace ET
             numericComponent.ApplyValue(NumericType.WeeklyTaskId, TaskHelper.GetTaskIdByType(TaskTypeEnum.Weekly, roleLv), false);
 
             self.UpdateSeasonWeekTask(false);
+            self.UpdateActivityWeekTask(notice);
+        }
+
+        public static void UpdateActivityWeekTask(this TaskComponent self, bool notice)
+        {
+            Unit unit = self.GetParent<Unit>();
+            Log.Warning($"新活动任务清空: {unit.DomainZone()} {unit.Id}");
+
+            bool isduihuan = false;
+
+            //新活动任务每周清空
+            for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
+            {
+                if (!TaskCountryConfigCategory.Instance.Contain(self.TaskCountryList[i].taskID))
+                {
+                    self.TaskCountryList.RemoveAt(i);
+                    continue;
+                }
+
+                TaskCountryConfig taskCountry = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                if (taskCountry.TaskType == TaskCountryType.ActivityV1)
+                {
+                    self.TaskCountryList.RemoveAt(i);
+                    continue;
+                }
+            }
+
+            List<int> taskCountryList = TaskHelper.GetActivityV1Task(unit);
+            for (int i = 0; i < taskCountryList.Count; i++)
+            {
+                self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
+            }
+
+            if (notice)
+            {
+                M2C_TaskCountryUpdate m2C_TaskUpdate = self.m2C_TaskCountryUpdate;
+                m2C_TaskUpdate.UpdateMode = 2;
+                m2C_TaskUpdate.TaskCountryList = self.TaskCountryList;
+                MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
+            }
+
+            isduihuan = unit.GetComponent<ActivityComponent>().ActivityV1Info.PointsReward.Count > 0;
+
+            //每次活动扣除100积分， 对话任意积分可免扣除
+
+            unit.GetComponent<HeroDataComponent>().ActivityV1Reset(!isduihuan, notice);
+            unit.GetComponent<ActivityComponent>().ActivityV1Reset(notice);
         }
 
         public static void UpdateSeasonWeekTask(this TaskComponent self, bool notice)
@@ -1806,7 +1858,7 @@ namespace ET
             if (passday >= 7)
             {
                 //Log.Warning($"ResetWeeklyTask: passday:{self.Id} {passday}");
-                self.ResetWeeklyTask();
+                self.ResetWeeklyTask(false);
             }
             else
             {
@@ -1816,7 +1868,7 @@ namespace ET
                  || (curdateTime.DayOfWeek > lastdateTime.DayOfWeek && lastdateTime.DayOfWeek == 0))
                 {
                     Log.Warning($"ResetWeeklyTask:{self.Id} {curdateTime.DayOfWeek} {lastdateTime.DayOfWeek}");
-                    self.ResetWeeklyTask();
+                    self.ResetWeeklyTask(false);
                 }
                 //int curday = curdateTime.DayOfWeek == DayOfWeek.Sunday ? 7 : (int)(curdateTime.DayOfWeek);
                 //int lastday = lastdateTime.DayOfWeek == DayOfWeek.Sunday ? 7 : (int)(lastdateTime.DayOfWeek);
