@@ -184,7 +184,12 @@ namespace ET
 					unit.GetComponent<TaskComponent>().GMCompletCurrentTask();
 					return;
 				}
-				if (message.GMMsg.Contains("#addack"))  //#addack#400000
+                if (message.GMMsg == "#resetweek")
+                {
+                    unit.GetComponent<TaskComponent>().ResetWeeklyTask(true);
+                    return;
+                }
+                if (message.GMMsg.Contains("#addack"))  //#addack#400000
                 {
 					int addAck = int.Parse(commands[2]);
 					unit.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_MaxAct_Add, addAck);

@@ -120,7 +120,7 @@ namespace ET
         public static async ETTask StartRotation(this UIActivityV1PointsChouKaComponent self, int index)
         {
             self.OpenBtn.interactable = false;
-            int ran = RandomHelper.RandomNumber(20, 30);
+            int ran = RandomHelper.RandomNumber(16, 24);
             int i = 0;
 
 
