@@ -5,6 +5,7 @@ namespace ET
 {
     public class UIActivityV1PointsComponent : Entity, IAwake
     {
+        public GameObject Text_CurWeek;
         public GameObject UIActivityV1PointsListNode;
         public GameObject UIActivityV1PointsItem;
         public GameObject ConsumeNumText;
@@ -18,8 +19,10 @@ namespace ET
             self.UIActivityV1PointsListNode = rc.Get<GameObject>("UIActivityV1PointsListNode");
             self.UIActivityV1PointsItem = rc.Get<GameObject>("UIActivityV1PointsItem");
             self.ConsumeNumText = rc.Get<GameObject>("ConsumeNumText");
+            self.Text_CurWeek = rc.Get<GameObject>("Text_CurWeek");
 
             self.UIActivityV1PointsItem.SetActive(false);
+            self.Text_CurWeek.GetComponent<Text>().text = UICommonHelper.GetCurrentWeekRange();
 
             self.GetInfo().Coroutine();
         }

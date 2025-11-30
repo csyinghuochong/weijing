@@ -703,6 +703,41 @@ namespace ET
             }
         }
 
+        public static string GetCurrentWeekRange()
+        {
+            // 获取当前日期
+            DateTime today = DateTime.Today;
+
+            // 计算本周第一天（周一）
+            int delta = DayOfWeek.Monday - today.DayOfWeek;
+            DateTime startOfWeek = today.AddDays(delta);
+
+            // 如果当前是周日，需要特殊处理
+            if (today.DayOfWeek == DayOfWeek.Sunday)
+            {
+                startOfWeek = startOfWeek.AddDays(-7);
+            }
+
+            // 本周最后一天（周日）
+            DateTime endOfWeek = startOfWeek.AddDays(6);
+
+            // 格式化输出
+            return $"{startOfWeek:MM.dd}-{endOfWeek:MM.dd}";
+        }
+
+        public static string GetWeekRange(DateTime date, DayOfWeek firstDayOfWeek = DayOfWeek.Monday)
+        {
+            int diff = (7 + (date.DayOfWeek - firstDayOfWeek)) % 7;
+            DateTime startOfWeek = date.AddDays(-diff);
+            DateTime endOfWeek = startOfWeek.AddDays(6);
+
+            //// 使用示例
+            //string week1 = GetWeekRange(DateTime.Now); // 默认从周一开始
+            //string week2 = GetWeekRange(DateTime.Now, DayOfWeek.Sunday); // 从周日开始
+
+            return $"{startOfWeek:MM.dd}-{endOfWeek:MM.dd}";
+        }
+
         //数字转换万
         public static string NumToWString(long num)
         {
