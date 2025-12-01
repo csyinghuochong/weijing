@@ -18,6 +18,7 @@ namespace ET
         public GameObject ItemListNode;
         public GameObject UIBattleShopItem;
         public List<UIStoreItemComponent> SellList = new List<UIStoreItemComponent>();
+        public int NeedItemId = 10000148;
     }
 
     public class UIActivityV1ShopComponentAwake: AwakeSystem<UIActivityV1ShopComponent>
@@ -119,6 +120,7 @@ namespace ET
                 uIItemComponent.OnUpdateData(storeSellConfig);
                 uIItemComponent.SetClickHandler(self.OnClickHandler);
                 self.SellList.Add(uIItemComponent);
+                self.NeedItemId = storeSellConfig.SellType;
             }
 
             self.UpdateItemNum();
@@ -126,7 +128,8 @@ namespace ET
 
         public static void UpdateItemNum(this UIActivityV1ShopComponent self)
         {
-            long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(3);
+
+            long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(self.NeedItemId);
             // 货币拥有数量显示
             self.Obj_Lab_BuyPrice.GetComponent<Text>().text = itemNum.ToString();
         }
