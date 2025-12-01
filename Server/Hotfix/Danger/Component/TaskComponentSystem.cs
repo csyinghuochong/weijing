@@ -1104,6 +1104,7 @@ namespace ET
             }
 
             self.UpdateTargetTask(false);
+            self.InitActivityWeekTask();
             self.TriggerTaskCountryEvent(  TaskTargetType.Login_1001, 0, 1, false );
 
             //numericComponent.ApplyValue(NumericType.RankID, chat2G_EnterChat.RankId, false, false);
@@ -1760,6 +1761,35 @@ namespace ET
 
             self.UpdateSeasonWeekTask(false);
             self.UpdateActivityWeekTask(notice);
+        }
+
+        public static void InitActivityWeekTask(this TaskComponent self)
+        {
+            bool havetask = false;
+            for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
+            {
+                if (!TaskCountryConfigCategory.Instance.Contain(self.TaskCountryList[i].taskID))
+                {
+                    self.TaskCountryList.RemoveAt(i);
+                    continue;
+                }
+
+                TaskCountryConfig taskCountry = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                if (taskCountry.TaskType == TaskCountryType.ActivityV1)
+                {
+                    havetask = true;
+                    continue;
+                }
+            }
+            if (havetask)
+            {
+                return;
+            }
+            List<int> taskCountryList = TaskHelper.GetActivityV1Task(self.GetParent<Unit>()) ;
+            for (int i = 0; i < taskCountryList.Count; i++)
+            {
+                self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
+            }
         }
 
         public static void UpdateActivityWeekTask(this TaskComponent self, bool notice)
