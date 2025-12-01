@@ -135,7 +135,6 @@ namespace ET
 
                 if (i > ran && curindex == index)
                 {
-                    // 抽奖有一个转圈的效果，转圈结束后获取道具
                     C2M_PointChouKaRewardRequest reques3 = new C2M_PointChouKaRewardRequest();
                     M2C_PointChouKaRewardResponse response13 =
                             (M2C_PointChouKaRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reques3);
