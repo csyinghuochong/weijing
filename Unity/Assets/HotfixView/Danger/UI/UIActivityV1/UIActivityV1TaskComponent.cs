@@ -41,9 +41,21 @@ namespace ET
                 int completeb = b.taskStatus == (int)TaskStatuEnum.Completed? 1 : 0;
 
                 if (commita == commitb)
-                    return completeb - completea; //可以领取的在前
+                {
+                    if (completea == completeb)
+                    {
+                        return a.taskID - b.taskID; //可以领取的在前
+                    }
+                    else
+                    {
+                        return completeb - completea; //可以领取的在前
+                    }
+                }
                 else
+                {
+
                     return commitb - commita; //已经完成的在前
+                }
             });
 
             int number = 0;
