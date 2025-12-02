@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -76,6 +75,9 @@ namespace ET
             
             self.OnLanguageUpdate();
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
+
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.RegisterReddot(ReddotType.NewYear, self.Reddot_NewYear);
         }
     }
     
@@ -84,11 +86,20 @@ namespace ET
         public override void Destroy(UINewYearComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
+
+
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent?.UnRegisterReddot(ReddotType.NewYear, self.Reddot_NewYear);
         }
     }
 
     public static class UINewYearComponentAwakeSystem
     {
+        public static void Reddot_NewYear(this UINewYearComponent self, int num)
+        {
+            self.UIPageButtonComponent.SetButtonReddot((int)NewYearPageEnum.ActivityV1Task, num > 0);
+        }
+
         public static void OnLanguageUpdate(this UINewYearComponent self)
         {
             Transform tt = self.UIPageButtonComponent.GetParent<UI>().GameObject.transform;

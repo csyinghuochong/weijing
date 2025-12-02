@@ -216,6 +216,10 @@ namespace ET
         //活动
         public const int Activity = 800;
         public const int SingleRecharge = 801;
+
+        //限时活动
+        public const int NewYear = 900;
+        public const int ActivityV1Task = 901;
     }
 
     public enum GameSettingEnum

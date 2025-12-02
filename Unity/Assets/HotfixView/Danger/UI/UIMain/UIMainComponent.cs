@@ -524,6 +524,7 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.TaskCountryComplete, self);
             DataUpdateComponent.Instance.AddListener(DataType.UpdateTimerChouKa, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnUseSealWeapon, self);
+            DataUpdateComponent.Instance.AddListener(DataType.TaskCountryUpdate , self);
         }
     }
 
@@ -645,6 +646,7 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.TaskCountryComplete, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.UpdateTimerChouKa, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.OnUseSealWeapon, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.TaskCountryUpdate, self);
 
             if (self.TianQiEffectObj != null)
             {
@@ -1621,6 +1623,11 @@ namespace ET
             }
         }
 
+        public static void OnRecvTaskCountryUpdate(this UIMainComponent self)
+        {
+            self.ZoneScene().GetComponent<ReddotComponent>().UpdateReddont(ReddotType.ActivityV1Task);
+        }
+
         public static void OnRecvTaskUpdate(this UIMainComponent self)
         {
             self.UIMainTask.OnUpdateUI();
@@ -1628,7 +1635,7 @@ namespace ET
             self.UpdateNpcTaskUI();
 
             self.ZoneScene().GetComponent<ReddotComponent>().UpdateReddont(ReddotType.WelfareTask);
-            
+           
 #if UNITY_ANDROID
 
             if (GlobalHelp.GetPlatform() == 1)
@@ -2316,6 +2323,8 @@ namespace ET
             redPointComponent.UnRegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
             redPointComponent.UnRegisterReddot(ReddotType.PetSet, self.Reddot_PetSet);
             redPointComponent.UnRegisterReddot(ReddotType.Welfare, self.Reddot_Welfare);
+            redPointComponent.UnRegisterReddot(ReddotType.Activity, self.Reddot_Activity);
+            redPointComponent.UnRegisterReddot(ReddotType.NewYear, self.Reddot_NewYear);
         }
 
         public static void RegisterReddot(this UIMainComponent self)
@@ -2329,6 +2338,7 @@ namespace ET
             redPointComponent.RegisterReddot(ReddotType.PetSet, self.Reddot_PetSet);
             redPointComponent.RegisterReddot(ReddotType.Welfare, self.Reddot_Welfare);
             redPointComponent.RegisterReddot(ReddotType.Activity, self.Reddot_Activity);
+            redPointComponent.RegisterReddot(ReddotType.NewYear, self.Reddot_NewYear);
 
             ReddotComponent reddotComponent = self.ZoneScene().GetComponent<ReddotComponent>();
             if (reddotComponent.GetReddot(ReddotType.UnionApply) > 0)
@@ -2352,6 +2362,7 @@ namespace ET
             reddotComponent.UpdateReddont(ReddotType.FriendApply);
             reddotComponent.UpdateReddont(ReddotType.FriendChat);
             reddotComponent.UpdateReddont(ReddotType.SingleRecharge);
+            reddotComponent.UpdateReddont(ReddotType.ActivityV1Task);
         }
 
         public static void BeginWaterMove(this UIMainComponent self)
@@ -2379,6 +2390,11 @@ namespace ET
         public static void Reddot_Activity(this UIMainComponent self, int num)
         { 
            self.Btn_HuoDong.transform.Find("Reddot").gameObject.SetActive(num > 0);
+        }
+
+        public static void Reddot_NewYear(this UIMainComponent self, int num)
+        {
+            self.Button_NewYear.transform.Find("Reddot").gameObject.SetActive(num > 0);
         }
 
         public static void Reddot_Team(this UIMainComponent self, int num)

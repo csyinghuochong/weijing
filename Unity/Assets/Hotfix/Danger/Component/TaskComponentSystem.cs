@@ -284,6 +284,19 @@ namespace ET
             return null;
         }
 
+        public static bool ActivityV1Reward(this TaskComponent self)
+        {
+            for (int i = 0; i < self.TaskCountryList.Count; i++)
+            {
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                if (taskCountryConfig.TaskType == TaskCountryType.ActivityV1 && self.TaskCountryList[i].taskStatus == (int)TaskStatuEnum.Completed)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool HaveWelfareReward(this TaskComponent self)
         {
             for (int i = 0; i < ConfigHelper.WelfareTaskList.Count; i++)
@@ -628,18 +641,21 @@ namespace ET
             if (message.UpdateMode == 2)
             {
                 self.TaskCountryList = message.TaskCountryList;
-                return;
             }
-            for (int i = 0; i < message.TaskCountryList.Count; i++)
+            else
             {
-                for (int k = 0; k < self.TaskCountryList.Count; k++)
+                for (int i = 0; i < message.TaskCountryList.Count; i++)
                 {
-                    if (message.TaskCountryList[i].taskID == self.TaskCountryList[k].taskID)
+                    for (int k = 0; k < self.TaskCountryList.Count; k++)
                     {
-                        self.TaskCountryList[k] = message.TaskCountryList[i];
+                        if (message.TaskCountryList[i].taskID == self.TaskCountryList[k].taskID)
+                        {
+                            self.TaskCountryList[k] = message.TaskCountryList[i];
+                        }
                     }
                 }
             }
+            HintHelp.GetInstance().DataUpdate(DataType.TaskCountryUpdate);
         }
     }
 

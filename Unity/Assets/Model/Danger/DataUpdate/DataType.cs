@@ -140,5 +140,7 @@
         public const int OnUseSealWeapon = 54;
         
         public const int SkillGet = 55;
+
+        public const int TaskCountryUpdate = 56;
     }
 }

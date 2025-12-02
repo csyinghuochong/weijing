@@ -97,6 +97,9 @@
                 case ReddotType.WelfareTask:
                     showReddot = self.ZoneScene().GetComponent<TaskComponent>().HaveWelfareReward();
                     break;
+                case ReddotType.ActivityV1Task:
+                    showReddot = self.ZoneScene().GetComponent<TaskComponent>().ActivityV1Reward();
+                    break;
                 case ReddotType.WelfareDraw:
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     int drawReward = numericComponent.GetAsInt(NumericType.DrawReward);
