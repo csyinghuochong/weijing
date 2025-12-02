@@ -80,8 +80,9 @@ namespace ET
                      taskConfig.TargetType == (int)TaskTargetType.TeamDungeonHurt_136 ||
                      taskConfig.TargetType == (int)TaskTargetType.MakeQulityNumber_29)
             {
+                int curnumber = self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed ? 1 : 0;    
                 self.TextTaskProgress.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度") + ": " +
-                   string.Format("{0}/{1}", 0, 1);
+                   string.Format("{0}/{1}", curnumber, 1);
             }
             else
             {
