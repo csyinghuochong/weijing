@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,30 +34,10 @@ namespace ET
         {
             List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().TaskCountryList;
 
-            taskPros.Sort(delegate(TaskPro a, TaskPro b)
-            {
-                int commita = a.taskStatus == (int)TaskStatuEnum.Commited? 1 : 0;
-                int commitb = b.taskStatus == (int)TaskStatuEnum.Commited? 1 : 0;
-                int completea = a.taskStatus == (int)TaskStatuEnum.Completed? 1 : 0;
-                int completeb = b.taskStatus == (int)TaskStatuEnum.Completed? 1 : 0;
-
-                if (commita == commitb)
-                {
-                    if (completea == completeb)
-                    {
-                        return a.taskID - b.taskID; //可以领取的在前
-                    }
-                    else
-                    {
-                        return completeb - completea; //可以领取的在前
-                    }
-                }
-                else
-                {
-
-                    return commitb - commita; //已经完成的在前
-                }
-            });
+            taskPros = taskPros.OrderBy(p => p.taskStatus == (int)TaskStatuEnum.Completed ? 0 :
+                                     p.taskStatus == (int)TaskStatuEnum.Commited ? 2 : 1)
+                        .ThenBy(p => p.taskID)
+                        .ToList();
 
             int number = 0;
             for (int i = 0; i < taskPros.Count; i++)
