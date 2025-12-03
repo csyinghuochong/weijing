@@ -236,6 +236,11 @@ namespace ET
                     continue;
                 }
 
+                if (AIHelp.IsNotSelected(unit))
+                {
+                    continue;
+                }
+
                 if (!isMini)
                 {
                     //找到目标直接跳出来
@@ -591,6 +596,15 @@ namespace ET
                 this.Distacne = dis;
                 this.UnitID = unitid;
             }
+        }
+
+        public static bool IsNotSelected(Unit unitForm)
+        {
+            if (unitForm.Type == UnitType.Monster && unitForm.ConfigId == 90000102)
+            {
+                return true;
+            }
+            return false;
         }
       
         public static Unit GetNearestUnit(Unit unitForm, Vector3 position, float maxdis, List<long> hurtids)
