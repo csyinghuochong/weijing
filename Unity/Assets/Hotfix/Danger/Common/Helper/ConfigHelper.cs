@@ -1279,13 +1279,13 @@ namespace ET
         /// <summary>
         /// 个人副本  gm账号显示副本和新地图,大于等于指定副本id不显示
         /// </summary>
-        public static int GMDungeonId = 60004;   //完成之后改成1060004
+        public static int GMDungeonId = 1060004;   //60004完成之后改成1060004
 
 
         /// <summary>
         /// 组队副本  gm账号显示副本和新地图,大于等于指定副本id不显示
         /// </summary>
-        public static int GmTeamdungeonId = 110007;
+        public static int GmTeamdungeonId = 10110007;//110007完成之后改成10110007
 
         /// <summary>
         /// 击败过的BossId,包含在这个列表的才记录

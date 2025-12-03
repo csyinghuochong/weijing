@@ -38,7 +38,6 @@ namespace ET
             unit.GetComponent<SkillSetComponent>().OnChangeOccTwoRequest(request.OccTwoID);
             unit.GetComponent<TaskComponent>().OnChangeOccTwo();
 
-            //if (OccTwo == 0 && !GMHelp.GmAccount.Contains(unit.GetComponent<UserInfoComponent>().Account))
             if (OccTwo == 0)
             {
                 string userName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;

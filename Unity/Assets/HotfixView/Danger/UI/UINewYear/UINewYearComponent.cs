@@ -54,14 +54,6 @@ namespace ET
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI uiPageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 
-
-            if (!GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account))
-            {
-                self.FunctionSetBtn.transform.Find("Btn_Type3").gameObject.SetActive(false);
-                self.FunctionSetBtn.transform.Find("Btn_Type4").gameObject.SetActive(false);
-                self.FunctionSetBtn.transform.Find("Btn_Type5").gameObject.SetActive(false);
-            }
-            
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
 

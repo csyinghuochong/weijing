@@ -116,15 +116,15 @@ namespace ET
 
             self.LenDepthSet = rc.Get<GameObject>("LenDepthSet");
             self.LenDepthSet.transform.GetComponentInChildren<Slider>().onValueChanged.AddListener((value) => { self.OnLenDepth(value);});
-            self.LenDepthSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) || GlobalHelp.BigVersion >= 19);
+            self.LenDepthSet.gameObject.SetActive( GlobalHelp.BigVersion >= 19);
 
             self.RotaAngleSet = rc.Get<GameObject>("RotaAngleSet");
             self.RotaAngleSet.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_RotaAngle);
-            self.RotaAngleSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) || GlobalHelp.BigVersion >= 19);
+            self.RotaAngleSet.gameObject.SetActive( GlobalHelp.BigVersion >= 19);
 
             self.ReSetCameraBtn = rc.Get<GameObject>("ReSetCameraBtn");
             self.ReSetCameraBtn.GetComponent<Button>().onClick.AddListener(self.OnReSetCameraBtn);
-            self.ReSetCameraBtn.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) || GlobalHelp.BigVersion >= 19);
+            self.ReSetCameraBtn.gameObject.SetActive( GlobalHelp.BigVersion >= 19);
 
             self.ZhuBoSet = rc.Get<GameObject>("ZhuBoSet");
             self.ZhuBoSet.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_ZhuBo);

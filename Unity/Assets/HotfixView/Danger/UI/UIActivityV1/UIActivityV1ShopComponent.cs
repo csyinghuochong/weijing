@@ -70,7 +70,7 @@ namespace ET
 
     public static class UIActivityV1ShopComponentSystem
     {
-        public static void OnButtonBuy(this UIActivityV1ShopComponent self)
+        public static async ETTask OnButtonBuy(this UIActivityV1ShopComponent self)
         {
             if (self.SellId == 0)
             {
@@ -78,7 +78,12 @@ namespace ET
                 return;
             }
 
-            self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.SellId, self.BuyNum).Coroutine();
+            await  self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.SellId, self.BuyNum);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            self.UpdateItemNum();
         }
 
         public static void OnUpdateUI(this UIActivityV1ShopComponent self)
