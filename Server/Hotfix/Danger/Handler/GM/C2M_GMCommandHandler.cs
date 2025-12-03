@@ -179,6 +179,13 @@ namespace ET
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonTowerId, 0);
                     return;
                 }
+                if (message.GMMsg == "#ceshi1203")
+                {
+                    int level = 70 - unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+                    level = level > 0 ? level : 0;		
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Lv, level.ToString());
+                    return;
+                }
                 if (message.GMMsg == "#completetask")
 				{
 					unit.GetComponent<TaskComponent>().GMCompletCurrentTask();
