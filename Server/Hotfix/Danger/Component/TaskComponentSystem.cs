@@ -305,6 +305,9 @@ namespace ET
                 case (int)TaskTargetType.JiaYuanLevel_22:
                     taskPro.taskTargetNum_1 = unit.GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv - 10000;
                     break;
+                case (int)TaskTargetType.CombatToValue_133:
+                    taskPro.taskTargetNum_1 = unit.GetComponent<UserInfoComponent>().UserInfo.Combat;
+                    break;
                 case (int)TaskTargetType.TrialTowerCeng_134:
                     int curtrialid = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TrialDungeonId);
                     if (curtrialid > taskConfig.Target[0])

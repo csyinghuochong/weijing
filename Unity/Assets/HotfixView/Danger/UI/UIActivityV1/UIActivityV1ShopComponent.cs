@@ -33,7 +33,7 @@ namespace ET
             self.UIBattleShopItem.SetActive(false);
 
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
-            ButtonHelp.AddListenerEx(self.ButtonBuy, self.OnButtonBuy);
+            ButtonHelp.AddListenerEx(self.ButtonBuy, () => { self.OnButtonBuy().Coroutine();  });
 
             self.Btn_BuyNum_jia1 = rc.Get<GameObject>("Btn_BuyNum_jia1");
             self.Btn_BuyNum_jia1.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChangeBuyNum(1); });
