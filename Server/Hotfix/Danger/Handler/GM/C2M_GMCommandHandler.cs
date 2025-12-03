@@ -219,7 +219,7 @@ namespace ET
 						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}", true, true);
 						break;
                     //70001001  0    71001010    1       70001003     2      70001011    3
-                    case 2:       //72009041死亡技能      //2#7.2#0#-2#70002007#1  90000005-爆炸怪 72002013-脱战技能没移除2#-78#0#0.7#72004002#1  70001001  72009001
+                    case 2:       //72009041死亡技能      //2#7.2#0#-2#71001010#1  90000005-爆炸怪 72002013-脱战技能没移除2#-78#0#0.7#72004002#1  70001001  72009001
                         float posX = float.Parse(commands[1]);
 						float posY = float.Parse(commands[2]); 
 						float posZ = float.Parse(commands[3]);

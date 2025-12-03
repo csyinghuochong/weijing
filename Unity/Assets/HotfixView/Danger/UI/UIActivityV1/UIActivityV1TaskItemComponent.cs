@@ -172,10 +172,6 @@ namespace ET
             if (errorCode == ErrorCode.ERR_Success)
             {
                 self.GetParent<UIActivityV1TaskComponent>().UpdateTaskCountrys();
-
-                //显示领取
-                self.ButtonComplete.SetActive(true);
-                self.ButtonReceive.SetActive(false);
             }
         }
     }
