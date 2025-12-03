@@ -7,6 +7,8 @@ namespace ET
 {
     public class UIActivityV1TaskComponent: Entity, IAwake
     {
+
+        public GameObject Text_CurWeek;
         public GameObject TaskListNode;
         public GameObject UIActivityV1TaskItem;
 
@@ -21,8 +23,10 @@ namespace ET
 
             self.TaskListNode = rc.Get<GameObject>("TaskListNode");
             self.UIActivityV1TaskItem = rc.Get<GameObject>("UIActivityV1TaskItem");
-
             self.UIActivityV1TaskItem.SetActive(false);
+
+            self.Text_CurWeek = rc.Get<GameObject>("Text_CurWeek");
+            self.Text_CurWeek.GetComponent<Text>().text = UICommonHelper.GetCurrentWeekRange();
 
             self.UpdateTaskCountrys();
         }
