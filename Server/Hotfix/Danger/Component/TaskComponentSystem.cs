@@ -1797,8 +1797,6 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             Log.Warning($"新活动任务清空: {unit.DomainZone()} {unit.Id}");
 
-            bool isduihuan = false;
-
             //新活动任务每周清空
             for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
             {
@@ -1830,7 +1828,7 @@ namespace ET
                 MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
             }
 
-            isduihuan = unit.GetComponent<ActivityComponent>().ActivityV1Info.PointsReward.Count > 0;
+            bool isduihuan = unit.GetComponent<ActivityComponent>().ActivityV1Info.PointsReward.Count > 0;
 
             //每次活动扣除100积分， 对话任意积分可免扣除
 

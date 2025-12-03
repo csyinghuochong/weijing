@@ -38,7 +38,9 @@ namespace ET
 
         public static void ActivityV1Reset(this ActivityComponent self, bool notice)
         {
-            self.ActivityV1Info.ConsumeDiamondReward.Clear();
+            //累计消耗钻石奖励
+            //self.ActivityV1Info.ConsumeDiamondReward.Clear();
+            //限时活动积分兑换
             self.ActivityV1Info.PointsReward.Clear();
         }
 

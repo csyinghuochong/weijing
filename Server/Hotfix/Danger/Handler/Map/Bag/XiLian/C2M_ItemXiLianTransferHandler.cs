@@ -16,6 +16,7 @@ namespace ET
             BagInfo bagInfo_2 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID_2);
             if (bagInfo_1 == null || bagInfo_2 == null)
             {
+                response.Error = ErrorCode.ERR_ItemNotExist;
                 reply();
                 return;
             }
@@ -36,6 +37,7 @@ namespace ET
             //紫色品质以上才可以转移
             if (itemConfig_0.ItemQuality < 4 || itemConfig_1.ItemQuality < 4)
             {
+                response.Error = ErrorCode.Pre_Condition_Error;
                 reply();
                 return;
             }
@@ -46,6 +48,7 @@ namespace ET
                 //相同部位
                 if (itemConfig_0.EquipType != itemConfig_1.EquipType)
                 {
+                    response.Error = ErrorCode.Pre_Condition_Error;
                     reply();
                     return;
                 }
@@ -56,6 +59,7 @@ namespace ET
                 //相同部位  只有相同部位的装备才能转移
                 if (itemConfig_0.ItemSubType != itemConfig_1.ItemSubType)
                 {
+                    response.Error = ErrorCode.Pre_Condition_Error;
                     reply();
                     return;
                 }
@@ -74,7 +78,7 @@ namespace ET
                 bagInfo_2.XiLianHideTeShuProLists = new List<HideProList>(bagInfo_1.XiLianHideTeShuProLists);
                 bagInfo_2.XiLianHideProLists = new List<HideProList>(bagInfo_1.XiLianHideProLists);
                 bagInfo_2.HideSkillLists = new List<int>(bagInfo_1.HideSkillLists);
-
+                //XiLianHideTeShuProLists 1012幸运值
                 bagInfo_1.XiLianHideTeShuProLists.Clear();
                 bagInfo_1.XiLianHideProLists.Clear();
                 bagInfo_1.HideSkillLists.Clear();
