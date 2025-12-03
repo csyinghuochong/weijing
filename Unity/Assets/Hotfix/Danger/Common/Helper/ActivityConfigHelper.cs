@@ -111,14 +111,14 @@ namespace ET
         //积分抽卡   权重-奖励
         public static List<TimerChouKaItemn> PointsChouKaList = new List<TimerChouKaItemn>()
         {
-             new TimerChouKaItemn(){   Weight = 10,  ItemInfo =  "10010001;1" },     
-            new TimerChouKaItemn(){   Weight = 10, ItemInfo =  "10010091;1" },    
-            new TimerChouKaItemn(){   Weight = 10, ItemInfo =  "10010080;1" },    
-            new TimerChouKaItemn(){   Weight = 10, ItemInfo =  "10010041;2" },  
-            new TimerChouKaItemn(){    Weight = 10, ItemInfo =  "10010039;1" },   
-            new TimerChouKaItemn(){  Weight = 10,  ItemInfo =  "10000121;1" },    
-            new TimerChouKaItemn(){  Weight = 10,  ItemInfo =  "10010079;1" },    
-            new TimerChouKaItemn(){  Weight = 10,  ItemInfo =  "10000158;1" },    
+             new TimerChouKaItemn(){   Weight = 15,  ItemInfo =  "10000143;3" },     
+            new TimerChouKaItemn(){   Weight = 15, ItemInfo =  "10000151;1" },    
+            new TimerChouKaItemn(){   Weight = 15, ItemInfo =  "10010040;1" },    
+            new TimerChouKaItemn(){   Weight = 5, ItemInfo =  "10010094;1" },  
+            new TimerChouKaItemn(){    Weight = 15, ItemInfo =  "10000150;1" },   
+            new TimerChouKaItemn(){  Weight = 15,  ItemInfo =  "10000135;1" },    
+            new TimerChouKaItemn(){  Weight = 5,  ItemInfo =  "10000151;3" },    
+            new TimerChouKaItemn(){  Weight = 15,  ItemInfo =  "10010046;1" },    
         };
 
 
