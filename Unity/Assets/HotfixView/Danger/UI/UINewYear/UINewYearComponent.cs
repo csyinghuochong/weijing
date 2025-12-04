@@ -18,6 +18,7 @@ namespace ET
     {
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
+        public GameObject ScrollView;
 
         public UIPageViewComponent UIPageView;
         public UIPageButtonComponent UIPageButtonComponent;
@@ -30,6 +31,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.SubViewNode = rc.Get<GameObject>("SubViewNode");
+            self.ScrollView = rc.Get<GameObject>("ScrollView");
 
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
@@ -55,7 +57,7 @@ namespace ET
             UI uiPageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 
             //IOS适配
-            IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
+            IPHoneHelper.SetPosition(self.ScrollView, new Vector2(120f, -77f));
 
             UIPageButtonComponent uIPageButtonComponent = uiPageButton.AddComponent<UIPageButtonComponent>();
             uIPageButtonComponent.SetClickHandler((int page) =>
