@@ -160,7 +160,7 @@ namespace ET
             {
                 return;
             }
-            if (self.m_BuffRecord.Count >= 100)
+            if (self.m_BuffRecord.Count >= 200)
             {
                 self.m_BuffRecord.RemoveAt(0);
             }

@@ -25,8 +25,15 @@ namespace ET
                     bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocEquip_2, request.OperateBagID); 
                     itemLocType = ItemLocType.ItemLocEquip_2;
                 }
-                
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                if (bagInfo == null)
+                {
+                    response.Error = ErrorCode.ERR_ItemNotExist;
+                    reply();
+                    return;
+                }
+
+
+               ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 
                 if (itemConfig.EquipType > 100)
                 {

@@ -178,16 +178,12 @@ namespace ET
         /// <returns></returns>
         public static void  OnUnitReturn(this TeamSceneComponent self, Scene fubnescene, long unitId)
         {
-            if (self.DomainZone() == 5)
-            {
-                Console.WriteLine($"TeamSceneComponent.OnUnitReturn:  {unitId}");
-            }
-
             int realPlayerNumber = 0;
             int robotNumber = 0;
             TeamInfo teamInfo = self.GetTeamInfo(unitId);
 
             List<Unit> allunits = UnitHelper.GetUnitList(fubnescene, UnitType.Player);
+
             for (int i = 0; i < allunits.Count; i++)
             {
                 if (allunits[i].GetComponent<UserInfoComponent>().UserInfo.RobotId == 0)
@@ -195,15 +191,14 @@ namespace ET
                     realPlayerNumber++;
                     continue;
                 }
-
                 if (teamInfo != null && unitId == teamInfo.TeamId)
                 {
                     robotNumber++;
                     MessageHelper.SendToClient(allunits[i], self.M2C_TeamDungeonQuitMessage);
                 }
             }
-
-            if (self.DomainZone() == 5 && teamInfo != null && unitId == teamInfo.TeamId && realPlayerNumber >= 2)
+            //self.DomainZone() == 5 &&
+            if ( teamInfo != null && unitId == teamInfo.TeamId && realPlayerNumber >= 1)
             {
                 Console.WriteLine($"TeamSceneComponent.OnUnitReturn [队长离开 解算队伍！]");
                 
