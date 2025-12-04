@@ -32,8 +32,15 @@ namespace ET
 
             if (teamInfo.FubenType == TeamFubenType.ShenYuan)
             {
-                int postionid = ConfigHelper.ShenYuanCreateConfig[teamInfo.SceneId];
-                FubenHelp.CreateMonsterByPos(fubnescene, postionid);
+                if (ConfigHelper.ShenYuanCreateConfig.ContainsKey(teamInfo.SceneId))
+                {
+                    int postionid = ConfigHelper.ShenYuanCreateConfig[teamInfo.SceneId];
+                    FubenHelp.CreateMonsterByPos(fubnescene, postionid);
+                }
+                else
+                {
+                    Console.WriteLine($"ConfigHelper.ShenYuanCreateConfig.error: {teamInfo.SceneId}");
+                }
             }
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
         }

@@ -354,16 +354,17 @@ namespace libx
 
             UnityEngine.Debug.Log("检测开始");
 
-            string[] files = Directory.GetFiles(folderPath, "*.*", SearchOption.AllDirectories)
-                    .Where(file => file.EndsWith(".bin", System.StringComparison.OrdinalIgnoreCase)
-                            && !file.EndsWith(string.Empty))
-                    .ToArray();
+            //string[] files = Directory.GetFiles(folderPath, "*.*", SearchOption.AllDirectories)
+            //        .Where(file => file.EndsWith(".bin", System.StringComparison.OrdinalIgnoreCase)
+            //                && !file.EndsWith(string.Empty))
+            //        .ToArray();
 
-            foreach (string file in files)
+            string[] binFiles = Directory.GetFiles(folderPath, "*.bin", SearchOption.AllDirectories);
+
+            foreach (string file in binFiles)
             {
-                string newFilePath = Path.Combine(Path.GetDirectoryName(file) ?? string.Empty, Path.GetFileNameWithoutExtension(file));
-                File.Move(file, newFilePath);
-                UnityEngine.Debug.Log($"Renamed: {file} -> {newFilePath}");
+                string newFile = Path.ChangeExtension(file, ".bytes");
+                File.Move(file, newFile);
             }
 
             AssetDatabase.Refresh();
