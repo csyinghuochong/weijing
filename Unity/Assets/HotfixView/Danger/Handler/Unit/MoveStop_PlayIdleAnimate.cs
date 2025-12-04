@@ -31,12 +31,11 @@ namespace ET
                 heroTransformComponent.RunEffect.GetComponent<ParticleSystem>().Stop();
             }
 
-
             bool chatidle = true;
             if (args.Unit.MainHero && args.Error == -1)
             {
                 UI uimain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
-                bool isstop = uimain.GetComponent<UIMainComponent>().UIJoystickMoveComponent.Timer == 0;
+                bool isstop = uimain.GetComponent<UIMainComponent>().GetJoystickTimer() == 0;
                 bool isskill = args.Unit.GetComponent<StateComponent>().IsRigidity();
                 bool iswait = args.Unit.GetComponent<StateComponent>().IsNetWaitEndTime();
                 chatidle = isstop || isskill || iswait;

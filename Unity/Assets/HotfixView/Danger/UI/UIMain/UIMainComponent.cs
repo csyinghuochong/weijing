@@ -2541,12 +2541,12 @@ namespace ET
                     self.UIMainSkill.SetActive(false);
                     self.UIMainTask.GameObject.SetActive(true);
                     self.FunctionSetBtn.SetActive(true);
-                    self.UIJoystickMoveComponent.GameObject.SetActive(true);
+                    self.ShowJoystick(true);
                     break;
                 case SceneTypeEnum.Happy:
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(false);
-                    self.UIJoystickMoveComponent.GameObject.SetActive(false);
+                    self.ShowJoystick(false);
                     break;
                 case SceneTypeEnum.RunRace:
                     self.HomeButton.SetActive(false);
@@ -2559,14 +2559,14 @@ namespace ET
                 case SceneTypeEnum.JiaYuan:
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(false);
-                    self.UIJoystickMoveComponent.GameObject.SetActive(true);
+                    self.ShowJoystick(true);
                     break;
                 case SceneTypeEnum.TowerOfSeal:
                     self.UIMainTask.GameObject.SetActive(false);
                     self.FunctionSetBtn.SetActive(false);
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(true);
-                    self.UIJoystickMoveComponent.GameObject.SetActive(true);
+                    self.ShowJoystick(true);
                     break;
                 case SceneTypeEnum.LocalDungeon:
                     DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(sceneid);
@@ -2577,19 +2577,19 @@ namespace ET
                             self.UIMainSkill.SetActive(false);
                             self.Btn_TopRight_1.SetActive(false);
                             self.Btn_TopRight_2.SetActive(false);
-                            self.UIJoystickMoveComponent.GameObject.SetActive(false);
+                            self.ShowJoystick(false);
                             break;
                         default:
                             self.HomeButton.SetActive(false);
                             self.UIMainSkill.SetActive(true);
-                            self.UIJoystickMoveComponent.GameObject.SetActive(true);
+                            self.ShowJoystick(true);
                             break;
                     }
                     break;
                 default:
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(true);
-                    self.UIJoystickMoveComponent.GameObject.SetActive(true);
+                    self.ShowJoystick(true);
                     break;
             }
 
@@ -3488,6 +3488,23 @@ namespace ET
             string value = usevalue != "" ? usevalue :  userInfoComponent.GetGameSettingValue(GameSettingEnum.Shadow);
             Light light = gameObject.GetComponent<Light>();
             light.shadows = value == "0" ? LightShadows.None : LightShadows.Soft;
+        }
+
+        public static void OnUseFangunSkill(this UIMainComponent self)
+        {
+            self.UIJoystickMoveComponent.checkTime = 0;
+            self.UIJoystickMoveComponent.noCheckTime = TimeHelper.ClientNow() + TimeHelper.Minute;
+            self.UIJoystickMoveComponent.lastDirection = -1000;
+        }
+
+        public static void ShowJoystick(this UIMainComponent self, bool val)
+        {
+            self.UIJoystickMoveComponent.GameObject.SetActive(val);
+        }
+
+        public static long GetJoystickTimer(this UIMainComponent self)
+        {
+            return self.UIJoystickMoveComponent.Timer;
         }
 
         //停止挂机

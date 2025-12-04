@@ -52,10 +52,7 @@ namespace ET
         public static void OnUseFangunSkill(this UIFangunSkillComponent self)
         {
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            UIJoystickMoveComponent uIJoystickMoveComponent = uimain.GetComponent<UIMainComponent>().UIJoystickMoveComponent;
-            uIJoystickMoveComponent.checkTime = 0;
-            uIJoystickMoveComponent.noCheckTime = TimeHelper.ClientNow() + TimeHelper.Minute;
-            uIJoystickMoveComponent.lastDirection = -1000;
+            uimain.GetComponent<UIMainComponent>().OnUseFangunSkill();
             if (Time.time - self.LastSkillTime < 0.2f)
             {
                 return;

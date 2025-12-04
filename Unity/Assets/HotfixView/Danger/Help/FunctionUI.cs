@@ -106,7 +106,7 @@ namespace ET
             UIHelper.CurrentNpcId = npcid;
             UIHelper.CurrentNpcUI = GetUIPath(funtionOpenConfig.Name);
             UI uimain = UIHelper.GetUI(zoneScene, UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().UIJoystickMoveComponent.GameObject.SetActive(false);
+            uimain.GetComponent<UIMainComponent>().ShowJoystick(false);
 
             CameraComponent cameraComponent = zoneScene.CurrentScene().GetComponent<CameraComponent>();
             cameraComponent.SetBuildEnter(npc, () => { OnBuildEnter(npcid); });
@@ -166,7 +166,7 @@ namespace ET
             FuntionConfig funtionOpenConfig = FuntionConfigCategory.Instance.Get(FunctionId);
 
             UI uimain = UIHelper.GetUI(ZoneScene, UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().UIJoystickMoveComponent.GameObject.SetActive(true);
+            uimain.GetComponent<UIMainComponent>().ShowJoystick(true);
 
             //创建UI
             UIHelper.Create(ZoneScene, GetUIPath(funtionOpenConfig.Name)).Coroutine();
