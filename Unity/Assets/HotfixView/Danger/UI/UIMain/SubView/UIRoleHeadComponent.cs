@@ -70,6 +70,10 @@ namespace ET
 
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             string serverName = accountInfoComponent.ServerName;
+            if (accountInfoComponent.ServerName.Contains("新区"))
+            {
+                serverName = ServerHelper.GetGetServerItem(false, accountInfoComponent.ServerId).ServerName;
+            }
             self.Lab_ServerName.GetComponent<Text>().text = serverName;
 
             self.InitShow();
