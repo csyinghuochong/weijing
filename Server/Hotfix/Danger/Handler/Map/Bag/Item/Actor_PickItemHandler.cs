@@ -178,14 +178,19 @@ namespace ET
                     {
                         byboxen = "By Diamond Chest";
                     }
+                    if (itemConfig.Id == 1)
+                    {
+                        numShow = drops[i].ItemNum.ToString();
+                    }
+
                     long ownderid = unit.Id;
                     string pick_name = teamDungeonComponent.TeamPlayers[ownderid].PlayerName;
                     pick_name += (owner == null ? "(未在副本中)" : string.Empty);
-                    m2C_SyncChatInfo.ChatInfo.ChatMsg = m2C_SyncChatInfo.ChatInfo.ChatMsg + $"{pick_name} {bybox}拾取{itemConfig.ItemName}";
+                    m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{pick_name}</color>{bybox}拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
 
                     string pick_nam_en = teamDungeonComponent.TeamPlayers[ownderid].PlayerName;
                     pick_nam_en += (owner == null ? "(not in the dungeon)" : string.Empty);
-                    m2C_SyncChatInfo.ChatInfo.ChatMsg_EN = m2C_SyncChatInfo.ChatInfo.ChatMsg_EN + $"{pick_nam_en} {byboxen}pick up{itemConfig.ItemName}";
+                    m2C_SyncChatInfo.ChatInfo.ChatMsg_EN = $"<color=#FDD376>{pick_nam_en}</color>{byboxen}拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
                 }
                 else
                 {
