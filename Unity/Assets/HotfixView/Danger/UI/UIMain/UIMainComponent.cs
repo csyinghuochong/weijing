@@ -984,8 +984,8 @@ namespace ET
                 {
                     FloatTipManager.Instance.ShowFloatTip(zstring.Format(GameSettingLanguge.LoadLocalization("获得{0}经验"), updateValue));
                 }
-                self.UpdateShowRoleExp();
             }
+            self.UpdateShowRoleExp();
         }
 
         public static void ShowPing(this UIMainComponent self)
