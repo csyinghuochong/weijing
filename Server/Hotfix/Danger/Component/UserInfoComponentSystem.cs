@@ -1074,18 +1074,18 @@ namespace ET
 
                 if (self.UserInfo.Exp > maxExp && maxlevel == 70)
                 {
-                    self.UpdateRoleData(UserDataType.Message, "当前经验超过200%无法获得新的经验！请完成进阶之路任务开启新的等级，或前往主城经验老头处用多余的经验兑换奖励喔!");
+                    self.UpdateRoleData(UserDataType.Message, "当前经验超过200%无法获得新的经验！请完成进阶之路任务开启新的等级，或前往主城经验老头处用多余的经验兑换奖励喔！");
                     return;
                 }
                 if (self.UserInfo.Exp > maxExp && maxlevel == 75)
                 {
-                    self.UpdateRoleData(UserDataType.Message, "当前经验超过200%，请前往主城经验老头处用多余的经验兑换奖励喔!");
+                    self.UpdateRoleData(UserDataType.Message, "当前经验超过200%，请前往主城经验老头处用多余的经验兑换奖励喔！");
                     return;
                 }
 
                 if (self.UserInfo.Exp > maxExp) 
                 {
-                    self.UpdateRoleData(UserDataType.Message, "当前经验超过200%，请前往主城经验老头处用多余的经验兑换奖励喔!");
+                    self.UpdateRoleData(UserDataType.Message, "当前经验超过200%，请前往主城经验老头处用多余的经验兑换奖励喔！");
                     return;
                 }
             }

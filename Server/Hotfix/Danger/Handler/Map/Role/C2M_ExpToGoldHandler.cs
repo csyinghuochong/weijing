@@ -12,11 +12,23 @@ namespace ET
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             UserInfo userInfo = userInfoComponent.UserInfo;
             ServerInfo serverInfo = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo;
-            //if (userInfo.Lv < serverInfo.WorldLv)
+            if (userInfo.Lv < 70 &&  userInfo.Lv < serverInfo.WorldLv)
+            {
+                response.Error = ErrorCode.ERR_LevelNoEnough;
+                reply();
+                return;
+            }
+
+            //满级经验兑换效验等级
+            //GlobalValueConfig globalCof = GlobalValueConfigCategory.Instance.Get(41);
+            //if (request.OperateType == 2)
             //{
-            //    response.Error = ErrorCode.ERR_LevelNoEnough;
-            //    reply();
-            //    return;
+            //    if (userInfo.Lv < globalCof.Value2)
+            //    {
+            //        response.Error = ErrorCode.ERR_ExpNoEnough;
+            //        reply();
+            //        return;
+            //    }
             //}
 
             if (userInfo.Lv != 70 && userInfo.Lv != 75  )
@@ -31,16 +43,6 @@ namespace ET
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
-            }
-
-            //满级经验兑换效验等级
-            GlobalValueConfig globalCof = GlobalValueConfigCategory.Instance.Get(41);
-            if (request.OperateType == 2) {
-                if (userInfo.Lv < globalCof.Value2) {
-                    response.Error = ErrorCode.ERR_ExpNoEnough;
-                    reply();
-                    return;
-                }
             }
 
             //低于20%经验无法兑换
