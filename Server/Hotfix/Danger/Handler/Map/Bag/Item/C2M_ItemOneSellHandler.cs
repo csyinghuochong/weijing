@@ -20,6 +20,14 @@ namespace ET
                 }
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
 
+
+                //魔能不出售
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 401)
+                {
+                    continue;
+                }
+
+
                 //默认出售全部
                 //给与对应金币或货币奖励
                 string[] gemids = useBagInfo.GemIDNew.Split('_');

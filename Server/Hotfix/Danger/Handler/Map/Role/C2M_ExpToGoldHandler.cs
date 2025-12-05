@@ -12,7 +12,14 @@ namespace ET
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             UserInfo userInfo = userInfoComponent.UserInfo;
             ServerInfo serverInfo = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo;
-            if (userInfo.Lv < serverInfo.WorldLv)
+            //if (userInfo.Lv < serverInfo.WorldLv)
+            //{
+            //    response.Error = ErrorCode.ERR_LevelNoEnough;
+            //    reply();
+            //    return;
+            //}
+
+            if (userInfo.Lv != 70 && userInfo.Lv != 75  )
             {
                 response.Error = ErrorCode.ERR_LevelNoEnough;
                 reply();

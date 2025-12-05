@@ -1165,6 +1165,12 @@ namespace ET
 
                 if (itemConfig.ItemType == ItemTypeEnum.Equipment)
                 {
+                    //魔能不出售
+                    if (itemConfig.EquipType == 401)
+                    {
+                        continue;
+                    }
+
                     if (setvalues[0] == "1" && itemConfig.ItemQuality <= 2)
                     {
                         // 绿色品质的生肖不出售
