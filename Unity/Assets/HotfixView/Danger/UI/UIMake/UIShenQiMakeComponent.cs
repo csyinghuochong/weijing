@@ -27,6 +27,7 @@ namespace ET
     {
         public GameObject TextVitality;
         public GameObject Text_Current;
+        public GameObject Text_SucessPro;
         public GameObject Lab_MakeNum;
         public GameObject Lab_MakeName;
         public GameObject UIItemMake;
@@ -69,6 +70,7 @@ namespace ET
             self.Lab_MakeName = rc.Get<GameObject>("Lab_MakeName");
             self.Lab_MakeNum = rc.Get<GameObject>("Lab_MakeNum"); self.Lab_MakeCDTime = rc.Get<GameObject>("Lab_MakeCDTime");
             self.Lab_MakeCDTime = rc.Get<GameObject>("Lab_MakeCDTime");
+            self.Text_SucessPro = rc.Get<GameObject>("Text_SucessPro");
 
             self.Btn_Make = rc.Get<GameObject>("Btn_Make");
             ButtonHelp.AddListenerEx(self.Btn_Make, () => { self.OnBtn_Make().Coroutine(); });
@@ -174,6 +176,18 @@ namespace ET
             self.Lab_MakeName.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID).ItemQuality);
             self.Lab_MakeNum.GetComponent<Text>().text = equipMakeConfig.MakeEquipNum.ToString();
 
+            if (equipMakeConfig.MakeSuccesPro >= 1f)
+            {
+                self.Text_SucessPro.SetActive(false);
+            }
+            else
+            {
+                self.Text_SucessPro.SetActive(true);
+                string tip1 = GameSettingLanguge.LoadLocalization("成功率:");
+                int sucessrate = (int)(equipMakeConfig.MakeSuccesPro * 100);
+                self.Text_SucessPro.GetComponent<Text>().text = tip1 + $"%{sucessrate}";
+            }
+
             //显示消耗活力
             self.TextVitality.GetComponent<Text>().text = equipMakeConfig.MakeNeedGold.ToString();
             self.Text_Current.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("当前金币:  {0}"), self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Gold);
@@ -275,7 +289,8 @@ namespace ET
             chapterMakeids.Add(3, new List<int>());   //<= 40
             chapterMakeids.Add(4, new List<int>());  //<= 50
             chapterMakeids.Add(5, new List<int>());     //<= 100
-            chapterMakeids.Add(6, new List<int>());     //其他
+            chapterMakeids.Add(6, new List<int>());     //传承其他
+            chapterMakeids.Add(7, new List<int>());//其他
 
             for (int i = 0; i < makeList.Count; i++)
             {
@@ -288,7 +303,12 @@ namespace ET
                 int chapterindex = -1;
                 int itemid = equipMakeConfig.MakeItemID;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
-                if (itemConfig.ItemType == 1 || itemConfig.ItemType == 2)
+
+                if (equipMakeConfig.Id == 5001101)
+                {
+                    chapterindex = 7;
+                }
+                else if (itemConfig.ItemType == 1 || itemConfig.ItemType == 2)
                 {
                     chapterindex = 0;
                 }
