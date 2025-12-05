@@ -784,6 +784,16 @@ namespace ET
                 UnitId = unit.Id,
                 Level = level,
             });
+
+            if (level == 70)
+            {
+                MailInfo mailInfo = new MailInfo();
+                mailInfo.Status = 0;
+                mailInfo.Context = "完成所有进阶之路后，可以将等级上限突破至75级！";
+                mailInfo.Title = "进阶之路系列任务";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                MailHelp.SendUserMail(self.DomainZone(), self.Id, mailInfo).Coroutine();
+            }
         }
 
         //需要通知客户端

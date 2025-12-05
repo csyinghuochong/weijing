@@ -3975,4 +3975,6 @@
 {"_t":"MulLanguageConfig","_id":300135,"Des":"","Chinese":"当前栏位未开启!","English":"This slot is inactive!"},
 {"_t":"MulLanguageConfig","_id":300136,"Des":"","Chinese":"当前经验超过200%无法获得新的经验！请完成进阶之路任务开启新的等级，或前往主城经验老头处用多余的经验兑换奖励喔！","English":"XP capped at 200%! Complete Adv. Path tasks to unlock new levels, or trade surplus XP with the XP Merchant in the main city!"},
 {"_t":"MulLanguageConfig","_id":300137,"Des":"","Chinese":"当前经验超过200%，请前往主城经验老头处用多余的经验兑换奖励喔！","English":"XP capped at 200%! Visit the XP Merchant in the main city to trade surplus XP for rewards!"},
+{"_t":"MulLanguageConfig","_id":300138,"Des":"","Chinese":"进阶之路系列任务","English":"Advanced Path Series Missions"},
+{"_t":"MulLanguageConfig","_id":300139,"Des":"","Chinese":"完成所有进阶之路后，可以将等级上限突破至75级！","English":"After completing all Advanced Path Missions, the level cap can be increased to 75!"},
 ]}
