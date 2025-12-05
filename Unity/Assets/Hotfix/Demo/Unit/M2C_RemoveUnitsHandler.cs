@@ -42,7 +42,8 @@ namespace ET
                 if (delayRemove > 0)
 				{
 					//RunAsyncRemove(unit, delayRemove).Coroutine();
-					unit.AddComponent<DeleyRemoveComponent, long>(delayRemove);
+					unit.RemoveComponent<DeleyRemoveComponent>();
+                    unit.AddComponent<DeleyRemoveComponent, long>(delayRemove);
                 }
 				else
 				{
