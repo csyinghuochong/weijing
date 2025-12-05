@@ -3973,4 +3973,6 @@
 {"_t":"MulLanguageConfig","_id":300133,"Des":"","Chinese":"开始合成","English":"Begin Crafting"},
 {"_t":"MulLanguageConfig","_id":300134,"Des":"","Chinese":"需要道具","English":"Need Items"},
 {"_t":"MulLanguageConfig","_id":300135,"Des":"","Chinese":"当前栏位未开启!","English":"This slot is inactive!"},
+{"_t":"MulLanguageConfig","_id":300136,"Des":"","Chinese":"当前经验超过200%无法获得新的经验！请完成进阶之路任务开启新的等级，或前往主城经验老头处用多余的经验兑换奖励喔！","English":"XP capped at 200%! Complete Adv. Path tasks to unlock new levels, or trade surplus XP with the XP Merchant in the main city!"},
+{"_t":"MulLanguageConfig","_id":300137,"Des":"","Chinese":"当前经验超过200%，请前往主城经验老头处用多余的经验兑换奖励喔！","English":"XP capped at 200%! Visit the XP Merchant in the main city to trade surplus XP for rewards!"},
 ]}
