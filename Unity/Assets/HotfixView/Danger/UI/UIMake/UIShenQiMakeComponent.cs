@@ -275,7 +275,8 @@ namespace ET
             chapterMakeids.Add(3, new List<int>());   //<= 40
             chapterMakeids.Add(4, new List<int>());  //<= 50
             chapterMakeids.Add(5, new List<int>());     //<= 100
-            chapterMakeids.Add(6, new List<int>());     //其他
+            chapterMakeids.Add(6, new List<int>());     //传承其他
+            chapterMakeids.Add(7, new List<int>());//其他
 
             for (int i = 0; i < makeList.Count; i++)
             {
@@ -288,7 +289,12 @@ namespace ET
                 int chapterindex = -1;
                 int itemid = equipMakeConfig.MakeItemID;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
-                if (itemConfig.ItemType == 1 || itemConfig.ItemType == 2)
+
+                if (equipMakeConfig.Id == 5001101)
+                {
+                    chapterindex = 7;
+                }
+                else if (itemConfig.ItemType == 1 || itemConfig.ItemType == 2)
                 {
                     chapterindex = 0;
                 }

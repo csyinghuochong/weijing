@@ -60,6 +60,11 @@ namespace ET
                 self.Text_Name.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("传承");
                 //self.OnClickMakeItem(self.MakeListUI[0].MakeID);
             }
+            else if (chaptet == 7)
+            {
+                self.Text_Name.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("其他");
+                //self.OnClickMakeItem(self.MakeListUI[0].MakeID);
+            }
             else
             {
                 self.Text_Name.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("第{0}章"), chaptet);
