@@ -161,20 +161,38 @@ namespace ET
                 m2C_SyncChatInfo.ChatInfo.Time = TimeHelper.ServerNow();
                 string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
                 string numShow = "";
-                if (itemConfig.Id == 1)
-                {
-                    numShow = unitDrop.GetComponent<DropComponent>().ItemNum.ToString();
-                }
-
                 Unit owner = null;
                 if (drops[i].DropType == 1)
                 {
                     owner = unit;
                     m2C_SyncChatInfo.ChatInfo.UserId = unit.Id;   //拾取道具的消息，此为玩家id
                     m2C_SyncChatInfo.ChatInfo.ParamId = drops[i].UnitId;//拾取道具的消息，此为道具unitid
+
+                    string bybox = string.Empty;
+                    string byboxen = string.Empty;
+                    if (drops[i].BeKillConfig == 80002010)
+                    {
+                        bybox = "通过钻石宝箱";
+                    }
+                    else
+                    {
+                        byboxen = "By Diamond Chest";
+                    }
+                    long ownderid = unit.Id;
+                    string pick_name = teamDungeonComponent.TeamPlayers[ownderid].PlayerName;
+                    pick_name += (owner == null ? "(未在副本中)" : string.Empty);
+                    m2C_SyncChatInfo.ChatInfo.ChatMsg = m2C_SyncChatInfo.ChatInfo.ChatMsg + $"{pick_name} {bybox}拾取{itemConfig.ItemName}";
+
+                    string pick_nam_en = teamDungeonComponent.TeamPlayers[ownderid].PlayerName;
+                    pick_nam_en += (owner == null ? "(not in the dungeon)" : string.Empty);
+                    m2C_SyncChatInfo.ChatInfo.ChatMsg_EN = m2C_SyncChatInfo.ChatInfo.ChatMsg_EN + $"{pick_nam_en} {byboxen}pick up{itemConfig.ItemName}";
                 }
                 else
                 {
+                    if (itemConfig.Id == 1)
+                    {
+                        numShow = unitDrop.GetComponent<DropComponent>().ItemNum.ToString();
+                    }
                     //已经分配过的
                     if (teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                     {
@@ -262,6 +280,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, Actor_PickItemRequest request, Actor_PickItemResponse response, Action reply)
         {
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
+
             //DropType ==  0 公共掉落 2保护掉落   1私有掉落
             for (int i = request.ItemIds.Count - 1; i >= 0; i--) 
             {
@@ -272,8 +291,9 @@ namespace ET
                 bool have = false;
                 for (int d = unitInfoComponent.Drops.Count - 1; d >= 0; d--)
                 {
-                    if (unitInfoComponent.Drops[d].ItemID == request.ItemIds[i].ItemID
-                      && unitInfoComponent.Drops[d].ItemNum == request.ItemIds[i].ItemNum)
+                    DropInfo dropInfo = unitInfoComponent.Drops[d]; 
+                    if (dropInfo.ItemID == request.ItemIds[i].ItemID
+                      && dropInfo.ItemNum == request.ItemIds[i].ItemNum)
                     {
                         have = true;
                         unitInfoComponent.Drops.RemoveAt(d);
@@ -286,6 +306,7 @@ namespace ET
                     request.ItemIds.RemoveAt(i);
                 }
             }
+
             if (request.ItemIds.Count ==0)
             {
                 response.Error = ErrorCode.ERR_ItemNotExist;

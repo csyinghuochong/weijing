@@ -1124,6 +1124,7 @@ message DropInfo
      int32 DropType = 8; //0 公共掉落    1私人掉落
 	 int32 CellIndex = 9;
 	 int64 BeKillId = 10;
+	 int32 BeKillConfig = 11;
 }
 
 message TransferInfo

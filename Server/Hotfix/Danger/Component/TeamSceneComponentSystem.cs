@@ -1,5 +1,4 @@
-﻿using Google.Apis.AndroidPublisher.v3.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,6 +41,37 @@ namespace ET
                     Console.WriteLine($"ConfigHelper.ShenYuanCreateConfig.error: {teamInfo.SceneId}");
                 }
             }
+
+            //69和 72的2个副本 有10%概率 在每个BOSS附近刷新出 80002010 这个宝箱，
+            //这个宝箱的掉落是只有自己的可以拾取的，并且宝箱和掉落只有自己可见，
+            //在聊天广播中提示要加入XXX玩家通过XXX宝箱拾取XXX,而不是之前的那个通用的广播
+
+            if (RandomHelper.RandFloat01() < 0.1f && sceneConfig.EnterLv >= 69)
+            {
+                int bossid = sceneConfig.BossId;
+                Vector3 bosspostion = Vector3.zero;
+                List<Unit> monsterlist = UnitHelper.GetUnitList(fubnescene, UnitType.Monster);
+                for (int i = 0; i < monsterlist.Count; i++)
+                {
+                    if (monsterlist[i].ConfigId == bossid)
+                    {
+                        bosspostion = monsterlist[i].Position;
+                    }
+                }
+
+                bosspostion = new Vector3(
+                    bosspostion.x + RandomHelper.RandFloat01(),
+                    bosspostion.y,
+                    bosspostion.z + RandomHelper.RandFloat01());
+
+                long masterid = teamInfo.PlayerList[RandomHelper.RandomNumber(0, teamInfo.PlayerList.Count)].UserID;
+                UnitFactory.CreateMonster(fubnescene, 80002010, bosspostion, new CreateMonsterInfo()
+                {
+                    Camp = CampEnum.CampMonster1,
+                    MasterID = masterid,
+                });
+            }
+
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
         }
 

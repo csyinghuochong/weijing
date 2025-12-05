@@ -569,9 +569,21 @@ namespace ET
 				numShow = dropInfo.ItemNum.ToString();
 			}
 			string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
-			m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
 
-            m2C_SyncChatInfo.ChatInfo.ChatMsg_EN = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>pick up<color=#{colorValue}>{numShow}{itemConfig.ItemName_EN}</color>";
+            string bybox = string.Empty;
+            string byboxen = string.Empty;
+            if (dropInfo.BeKillConfig == 80002010)
+            {
+                bybox = "通过钻石宝箱";
+            }
+            else
+            {
+                byboxen = "By Diamond Chest";
+            }
+
+            m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name} {bybox}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
+
+            m2C_SyncChatInfo.ChatInfo.ChatMsg_EN = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name} {byboxen}</color>pick up<color=#{colorValue}>{numShow}{itemConfig.ItemName_EN}</color>";
 
             //MessageHelper.SendToClient(GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
             //Log.Warning($"SendFubenPickMessage: {unit.Id} {dropInfo.ItemID}");

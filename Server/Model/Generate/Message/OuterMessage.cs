@@ -2405,6 +2405,9 @@ namespace ET
 		[ProtoMember(10)]
 		public long BeKillId { get; set; }
 
+		[ProtoMember(11)]
+		public int BeKillConfig { get; set; }
+
 	}
 
 	[Message(OuterOpcode.TransferInfo)]

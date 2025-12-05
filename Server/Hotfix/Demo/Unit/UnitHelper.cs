@@ -134,6 +134,13 @@ namespace ET
                     return;
                 }
             }
+            if (sendUnit.Type == UnitType.Monster && sendUnit.ConfigId == 80002010)
+            {
+                if (sendUnit.MasterId != unit.Id)
+                {
+                    return;
+                }
+            }
 
             M2C_CreateUnits createUnits = new M2C_CreateUnits();
             GetUnitInfo(sendUnit, createUnits);
@@ -242,6 +249,7 @@ namespace ET
             dropinfo.ItemNum = dropComponent.ItemNum;
             dropinfo.CellIndex = dropComponent.CellIndex;
             dropinfo.BeKillId = dropComponent.BeKillId;
+            dropinfo.BeKillConfig = dropComponent.BeKillConfig;
             dropinfo.X = unit.Position.x;
             dropinfo.Y = unit.Position.y;
             dropinfo.Z = unit.Position.z;

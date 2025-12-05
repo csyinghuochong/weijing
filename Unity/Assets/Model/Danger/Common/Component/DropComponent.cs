@@ -14,6 +14,8 @@ namespace ET
         public long ProtectTime;
 
         public long BeKillId;
+
+        public int BeKillConfig;
 #if SERVER
         public int IfDamgeDrop;
         public List<long> BeAttackPlayerList = new List<long>();

@@ -759,6 +759,7 @@ namespace ET
                     dropComponent.BeAttackPlayerList = beattackIds;
                     dropComponent.DropType = monsterCof.DropType;
                     dropComponent.BeKillId = bekill.Id;
+                    dropComponent.BeKillConfig = bekill.ConfigId;
                     dropitem.ConfigId = droplist[i].ItemID;
                     //掉落归属问题 掉落类型为2 原来为： 最后一刀 修改为 第一拾取权限为优先攻击他的人,如果这个人死了，那么拾取权限清空，下一次伤害是谁归属权就是谁。
 
@@ -847,6 +848,7 @@ namespace ET
                             Y = bekill.Position.y,
                             Z = bekill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
                             UnitId = IdGenerater.Instance.GenerateId(),
+                            BeKillConfig = bekill.ConfigId
                         };
                         m2C_CreateDropItems.Drops.Add(dropInfo);
                         beAttack.GetComponent<UnitInfoComponent>().Drops.Add(dropInfo);
@@ -906,6 +908,7 @@ namespace ET
                     dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
                     dropComponent.DropType = dropType;
                     dropComponent.BeKillId = beKill.Id;
+                    dropComponent.BeKillConfig = beKill.ConfigId;
                     dropitem.ConfigId = droplist[i].ItemID;
                 }
             }
