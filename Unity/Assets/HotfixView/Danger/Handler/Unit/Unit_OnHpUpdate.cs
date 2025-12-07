@@ -93,6 +93,7 @@ namespace ET
                 && unitDefend.Type == UnitType.Monster)
             {
                 UI trialmain = UIHelper.GetUI(zoneScene, UIType.UITrialMain);
+                trialmain?.GetComponent<UITrialMainComponent>()?.OnUpdateHurt_2(args);
                 trialmain?.GetComponent<UITrialMainComponent>()?.OnUpdateHurt(args.ChangeHpValue);
             }
         }

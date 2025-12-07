@@ -70,6 +70,11 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
+        public static void OnUpdateHurt_2(this UITrialMainComponent self, EventType.UnitHpUpdate args)
+        { 
+
+        }
+
         public static void OnUpdateHurt(this UITrialMainComponent self, long hurt)
         {
             if (hurt > 0)

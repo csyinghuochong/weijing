@@ -236,11 +236,6 @@ namespace ET
                     continue;
                 }
 
-                if (AIHelp.IsNotSelected(unit))
-                {
-                    continue;
-                }
-
                 if (!isMini)
                 {
                     //找到目标直接跳出来

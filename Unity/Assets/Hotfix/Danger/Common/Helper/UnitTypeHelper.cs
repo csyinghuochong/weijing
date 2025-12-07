@@ -239,6 +239,11 @@ namespace ET
                 return false;
             }
 
+            if (AIHelp.IsNotSelected(self))
+            {
+                return false; 
+            }
+
             if (self.Type == UnitType.Monster && (self.GetMonsterType() == (int)MonsterTypeEnum.SceneItem))
             {
                 return false;
