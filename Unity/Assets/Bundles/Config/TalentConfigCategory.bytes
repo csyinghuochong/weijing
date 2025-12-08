@@ -2,7 +2,7 @@
 ��N生命恢复Life Recovery �N(2Z新增被动技能生命恢复,受到伤害有一定概率恢复自身最大生命值的5%:dNew passive skill: Life Recovery. When taking damage, there is a chance to restore 5% of maximum HP.BSkillIdAdd;62000001
 ��N强击Power Strike �N(2:新增强击技能,立即对目标造成400%+1000点伤害:KNew Power Strike skill: Immediately deals 400% + 1000 damage to the target.BSkillIdAdd;62000002
 ��N伤害上升	Damage Up �N(2$裂地击和裂波击伤害提升75%:2Earthshatter Slash and Rip Wave Slash damage +75%.B�SkillPropertyAdd;61011102,61011103,61011104,61011105,61011106;2;0.75@SkillPropertyAdd;61012102,61012103,61012104,61012105,61012106;2;0.75
-��N技能刷新Skill Refresh �N(2[每次攻击有10%的概率自动触发裂地击技能,且不影响主技能的冷却时间:uEach attack has a 10% chance to automatically trigger Earthshatter Slash without affecting the main skill's cooldown.BSkillIdAdd;62000003
+��N技能刷新Skill Refresh �N(2[每次攻击有15%的概率自动触发裂地击技能,且不影响主技能的冷却时间:uEach attack has a 15% chance to automatically trigger Earthshatter Slash without affecting the main skill's cooldown.BSkillIdAdd;62000003
 ��N进退自由Freedom of Movement �N(26跳跃斩和冲锋斩会对目标区域伤害提升75%:;Leap Slash and Charge Slash damage to the target area +75%.B�SkillPropertyAdd;61011302,61011303,61011304,61011305,61011306;2;0.75@SkillPropertyAdd;61012302,61012303,61012304,61012305,61012306;2;0.75
 ��N圣光之速Speed of Light �N(2X圣光之速,使自身移动速度大幅度提升,并使自身闪避提升10%,持续6秒:KSpeed of Light: Greatly increases movement speed and evasion by 10% for 6s.BSkillIdAdd;62000004
 ��N暴击上升Critical Up �N(2暴击概率永久提升5%:$Critical hit chance permanently +5%.BRolePropertyAdd;200103;0.05
@@ -23,15 +23,15 @@
 ��N职业专精Class Mastery �N(42v元素引力波技能冷却时间降低4秒;光之击冷却时间降低5秒;能量之地附加的攻击效果提升10%:^Elemental Gravity Wave cooldown -4s; Light Blast cooldown -5s; Energy Land attack effect +10%.B�SkillPropertyAdd;61021402,61021403,61021404,61021405,61021406;4;4@SkillPropertyAdd;61022402,61022403,61022404,61022405,61022406;4;5@BuffPropertyAdd;92011001,92011002,92011003,92011004,92011005;1;0.2
 s�N时间掌握Time Control �N(42技能冷却时间降低10%:Skill cooldown -10%.BRolePropertyAdd;203603;0.1
 ���伤害增幅Damage Amplification ��(2*魔法闪击和龙卷雨击伤害提升75%:+Magic Blitz and Tornado Strike damage +75%.B�SkillPropertyAdd;62011102,62011103,62011104,62011105,62011106;2;0.75@SkillPropertyAdd;62011202,62011203,62011204,62011205,62011206;2;0.75
-���轰击Blast ��(2G新增技能:轰击 立即对目标及其范围造成350%+1000点伤害:NNew Skill: Blast. Immediately deals 350% + 1000 damage to the target and area.BSkillIdAdd;62000101
-���减速之术
-Slow Spell ��(2,普通攻击附带30%减速效果,持续3秒:$Basic attacks apply 30% slow for 3s.B6BuffIdAdd;60000301,60000302,60000401,60000402;90000301
-���龙卷增强Tornado Enhancement ��(2-攻击有10%概率对目标释放龙卷雨击:?Attacks have a 10% chance to cast Tornado Strike on the target.BSkillIdAdd;62000102
+���轰击Blast ��(2�新增技能:轰击 立即对目标及其范围造成350%+1000点伤害,如果目标生命低于50%,则最终技能伤害再提升50%。:�New Skill: Blast. Immediately deals 350% + 1000 damage to the target and area,  the final skill damage will be boosted by an extra 50%.BSkillIdAdd;62000101
+���减速之术
+Slow Spell ��(2V普通攻击附带30%减速效果,持续3秒，且自身普攻永久增加10%伤害。:ZBasic attacks apply 30% slow for 3s, Permanently increases your auto-attack damage by 10%.BJBuffIdAdd;60000301,60000302,60000401,60000402;90000301@SkillIdAdd;62000121
+���龙卷增强Tornado Enhancement ��(2-攻击有15%概率对目标释放龙卷雨击:?Attacks have a 15% chance to cast Tornado Strike on the target.BSkillIdAdd;62000102
 ���	冰冻击Freezing Strike ��(2m新增技能:冰冻击 蓄力1秒,立即对前方矩形范围的目标造成350%伤害,并使目标禁锢2秒:vNew Skill: Freezing Strike. Charge for 1s, deals 350% damage to front rectangular area and immobilizes targets for 2s.BSkillIdAdd;62000103
 ���伤害增加Increased Damage ��(23守护之击和冰锥之击造成的伤害增加75%:1Guardian Strike and Ice Spike Strike damage +75%.B�SkillPropertyAdd;62012202,62012203,62012204,62012205,62012206;2;0.75@SkillPropertyAdd;62012302,62012303,62012304,62012305,62012306;2;0.75
 ���英勇守护Valorous Guard ��(2*受到伤害有15%概率触发守护之击:915% chance to trigger Guardian Strike when taking damage.BSkillIdAdd;62000104
 ���技能专精Skill Mastery ��(2x冲击波:技能伤害效果提升75%;精灵之击:技能伤害效果提升75%;治愈之境: 技能伤害效果提升25%:tShockwave: skill damage effect +75%; Elf Strike: skill damage effect +75%; Healing Realm: skill healing effect +25%.B�SkillPropertyAdd;62021202,62021203,62021204,62021205,62021206;2;0.75@SkillPropertyAdd;62022102,62022103,62022104,62022105,62022106;2;0.75@SkillPropertyAdd;62023202,62023203,62023204,62023205,62023206;2;0.25
-���意念之勇Courage of Will ��(2<攻击有10%概率使自身获得30%伤害加成,持续10秒:<Attacks have a 10% chance to grant 30% damage bonus for 10s.BSkillIdAdd;62000105
+���意念之勇Courage of Will ��(2<攻击有15%概率使自身获得30%伤害加成,持续10秒:<Attacks have a 15% chance to grant 30% damage bonus for 10s.BSkillIdAdd;62000105
 r��攻击提升Attack Boost ��( 2攻击永久提升5%:Attack permanently +5%.BRolePropertyAdd;100402;0.05
 ���技能专精Skill Mastery ��( 2{魔法磁场: 技能伤害效果提升75%;爆焰燃烧:效果延长时间增加4秒;治愈之境:恢复效果额外提升3%:gMagic Field: skill damage effect +75%; Flaming Burst: duration +4s; Healing Realm: recovery effect +3%.B�SkillPropertyAdd;62021102,62021103,62021104,62021105,62021106;2;0.75@SkillPropertyAdd;62022202,62022203,62022204,62022205,62022206;5;4@BuffPropertyAdd;92032001;1;0.03
 ���坚韧之手Hand of Tenacity ��( 2Y当生命值降低至30%后,受到伤害减免75%,持续6秒，45秒内只能触发一次:CWhen HP drops to 30%, take 75% less damage for 6s (once every 45s).BSkillIdAdd;62000106
@@ -89,27 +89,27 @@ t��时间掌握Time Control ��(*2技能冷却时间降低5%:Skill coold
 ���召唤仪式Summoning Ritual ��(42N每次使用技能会有概率额外召唤一个仪式怪物协助自身战斗:MEach skill use has a chance to summon an additional ritual monster to assist.BSkillIdAdd;62000070
 ���防御守护Defensive Guardian ��(42�新增防御守护技能,受到伤害有一定概率立即对自身范围内的怪物造成350%攻击伤害+2000,并击退周围附近敌方目标:�New Defensive Guardian Skill: When taking damage, chance to immediately deal 350% attack damage + 2000 to nearby monsters and knock them back.BSkillIdAdd;62000064
 ���技之能力Technique Ability ��(42<释放技能有10%的概率造成技能伤害的双倍伤害:410% chance to deal double skill damage when casting.BRolePropertyAdd;204103;0.1
-�ц技能专精	Damage Up ц(2*破界巨刃和裂空之击伤害提升75%:2Earthshatter Slash and Rip Wave Slash damage +75%.B�SkillPropertyAdd;65011102,65011103,65011104,65011105,65011106;2;0.75@SkillPropertyAdd;65012102,65012103,65012104,65012105,65012106;2;0.75
-�҆伤害之力Courage of Will ҆(2;攻击有10%概率使自身获得30%伤害加成,持续6秒:<Attacks have a 10% chance to grant 30% damage bonus for 10s.BSkillIdAdd;62000110
-�ӆ恢复之手Hand of Restoration ӆ(2?每次使用技能有一定概率恢复自身的一定生命值:*Each skill use has a chance to restore HP.BSkillIdAdd;62000111
-�ۆ咆哮震荡Skill Mastery ۆ(2_释放咆哮之击可以使移动速度降低50%，并使其命中属性降低30%,持续3秒。:bShockwave: immobilizes damaged targets for 3s; Burn Blast: duration +4s; Mind Strike: damage +50%.BHBuffIdAdd;65011202,65011203,65011204,65011205,65011206;92000046,92000047
-�܆抵御之力Power of Valor ܆(2E受到怪物伤害降低20%，且受到玩家的普攻伤害降低20%:Self basic attack damage +25%.BPRolePropertyAdd;205703;0.2@RolePropertyAdd;203201;0.2@RolePropertyAdd;203303;0.2
-�݆技能冷却Skill Mastery ݆(2(跃空击技能冷却时间降低2秒。:VIce Trap: cooldown -2s; Scorching Arrow: damage +75%; Beast Power: burst duration +3s.BASkillPropertyAdd;65011302,65011303,65011304,65011305,65011306;4;2
-��技能专精Skill Mastery �(2j巨力震击伤害提升75%；隐匿一击冷却时间降低3秒；召唤的镜像攻击和生命提升20%:VIce Trap: cooldown -2s; Scorching Arrow: damage +75%; Beast Power: burst duration +3s.B�SkillPropertyAdd;65021102,65021103,65021104,65021105,65021106;2;0.75@SkillPropertyAdd;65022102,65022103,65022104,65022105,65022106;4;3
-��伤害屏障Evasion Mastery �(2受到所有伤害降低5%:Evasion cap permanently +5%.BRolePropertyAdd;201003;0.05
-��巨力余震Skill Refresh �(2H每次普通攻击有一定概率对前方区域触发巨力震击技能:uEach attack has a 10% chance to automatically trigger Earthshatter Slash without affecting the main skill's cooldown.BSkillIdAdd;62000119
-��技能专精Class Mastery �( 2�守护冲击伤害提升25%；精灵共鸣可以额外召唤出2个精灵协助战斗；战灵怒吼会对目标额外造成1秒眩晕。:ZMagic Flash Strike cooldown -1s; Burning Magic Orb damage +75%; Contract Land damage +25%.B�SkillPropertyAdd;65021202,65021203,65021204,65021205,65021206;2;0.75@SkillPropertyAdd;65022302,65022303,65022304,65022305,65022306;2;0.75@BuffIdAdd;65023202,65023203,65023204,65023205,65023206;92000049@SkillPropertyAdd;65022201,65022202,65022203,65022204,65022205,65022206;8;2
-���伤害印记Eye for an Eye ��( 2�成功闪避会给自身增加一个伤害印记，使己方伤害提升5%，最多叠加5层，每个伤害印记持续6秒，每次附加新的印记会刷新伤害印记的冷却时间。:AEach evasion of an attack deals 100% attack damage to the target.BSkillIdAdd;62000112
-y�攻击增幅Attack Boost �( 2攻击速度永久提升15%:Attack permanently +5%.BRolePropertyAdd;205003;0.15
-���技能专精Class Mastery ��(&2�巨剑之力冷却时间降低3秒；破风之击伤害提升75%；幻影冲击如果目标血量低于50%，则大幅度提升自身技能伤害。:ZMagic Flash Strike cooldown -1s; Burning Magic Orb damage +75%; Contract Land damage +25%.B�SkillPropertyAdd;65021302,65021303,65021304,65021305,65021306;4;2@SkillPropertyAdd;65022302,65022303,65022304,65022305,65022306;2;0.75@SkillPropertyAdd;64015102,64015103,64015104,64015105,64015106;2;0.25@SkillPropertyAdd;65023301,65023302,65023303,65023304,65023305,65023306;9;0.5;0.5
-���	爆裂击Freezing Strike ��(&2a新增技能:爆裂击,立即对前方矩形范围的目标造成350%伤害,并使目标置空秒:vNew Skill: Freezing Strike. Charge for 1s, deals 350% damage to front rectangular area and immobilizes targets for 2s.BSkillIdAdd;62000113
-���普攻加持Attack Boost ��(&2$普通攻击造成的伤害提升20%:Attack permanently +5%.BRolePropertyAdd;202703;0.2
-���技能专精Skill Mastery ��(*2v守护天使伤害提升75%；释放唤灵之契有概率不进入冷却时间；逆转之力冷却时间降低3秒。:VIce Trap: cooldown -2s; Scorching Arrow: damage +75%; Beast Power: burst duration +3s.B�SkillPropertyAdd;65021402,65021403,65021404,65021405,65021406;2;0.75@SkillPropertyAdd;65022401,65022402,65022403,65022404,65022405,65022406;7;0.2@SkillPropertyAdd;65023402,65023403,65023404,65023405,65023406;4;3
-���逆境反击Hand of Tenacity ��(*2<生命值低于50%时，自身伤害提升30%,持续10秒。:CWhen HP drops to 30%, take 75% less damage for 6s (once every 45s).BSkillIdAdd;62000114
-���闪避印记Courage of Will ��(*2�普通攻击和释放技能有一定的概率对目标身上附加闪避标记，每个闪避标记可以降低目标10%的闪避,最多叠加5层。:<Attacks have a 10% chance to grant 30% damage bonus for 10s.BSkillIdAdd;62000115
-���黑暗印记Courage of Will ��(42�普通攻击和释放技能有概率为目标附加1层黑暗印记，当黑暗印记达到5层时，造成范围350%伤害和1秒置空。:<Attacks have a 10% chance to grant 30% damage bonus for 10s.BSkillIdAdd;62000116
-���坚韧之力Hand of Tenacity ��(42i当生命值降低至50%后,闪避提升40%,自身伤害提升50%,持续3秒，30秒内只能触发一次:CWhen HP drops to 30%, take 75% less damage for 6s (once every 45s).BSkillIdAdd;62000117
-���腐蚀破甲Power of Attack ��(42K每次攻击目标会有一定概率使其所有防御降低为0,持续5秒:@Each attack has a chance to reduce target's defense to 0 for 5s.BSkillIdAdd;62000118
+�ц技能专精	Damage Up ц(2*破界巨刃和裂空之击伤害提升75%: B�SkillPropertyAdd;65011102,65011103,65011104,65011105,65011106;2;0.75@SkillPropertyAdd;65012102,65012103,65012104,65012105,65012106;2;0.75
+}҆伤害之力Courage of Will ҆(2;攻击有15%概率使自身获得30%伤害加成,持续6秒: BSkillIdAdd;62000110
+�ӆ恢复之手Hand of Restoration ӆ(2?每次使用技能有一定概率恢复自身的一定生命值: BSkillIdAdd;62000111
+�ۆ咆哮震荡Skill Mastery ۆ(2_释放咆哮之击可以使移动速度降低60%，并使其命中属性降低30%,持续3秒。: BHBuffIdAdd;65011202,65011203,65011204,65011205,65011206;92000046,92000047
+�܆抵御之力Power of Valor ܆(2E受到怪物伤害降低20%，且受到玩家的普攻伤害降低20%: BPRolePropertyAdd;205703;0.2@RolePropertyAdd;203201;0.2@RolePropertyAdd;203303;0.2
+�݆技能冷却Skill Mastery ݆(2(跃空击技能冷却时间降低3秒。: BASkillPropertyAdd;65011302,65011303,65011304,65011305,65011306;4;3
+��技能专精Skill Mastery �(2f巨力震击伤害提升75%;隐匿一击冷却时间降低3秒;召唤的镜像攻击和生命提升20%: B�SkillPropertyAdd;65021102,65021103,65021104,65021105,65021106;2;0.75@SkillPropertyAdd;65022102,65022103,65022104,65022105,65022106;4;3
+d�伤害屏障Evasion Mastery �(2受到所有伤害降低5%: BRolePropertyAdd;201003;0.05
+��巨力余震Skill Refresh �(2H每次普通攻击有一定概率对前方区域触发巨力震击技能: BSkillIdAdd;62000119
+��技能专精Class Mastery �( 2�守护冲击伤害提升25%;精灵共鸣可以额外召唤出2个精灵协助战斗;战灵怒吼会对目标额外造成1秒眩晕。: B�SkillPropertyAdd;65021202,65021203,65021204,65021205,65021206;2;0.75@SkillPropertyAdd;65022302,65022303,65022304,65022305,65022306;2;0.75@BuffIdAdd;65023202,65023203,65023204,65023205,65023206;92000049@SkillPropertyAdd;65022201,65022202,65022203,65022204,65022205,65022206;8;2
+���伤害印记Eye for an Eye ��( 2�成功闪避会给自身增加一个伤害印记，使己方伤害提升5%，最多叠加5层，每个伤害印记持续6秒，每次附加新的印记会刷新伤害印记的冷却时间。: BSkillIdAdd;62000112
+b�攻击增幅Attack Boost �( 2攻击速度永久提升15%: BRolePropertyAdd;205003;0.15
+���技能专精Class Mastery ��(&2�巨剑之力冷却时间降低3秒;破风之击伤害提升75%;幻影冲击如果目标血量低于50%，则大幅度提升自身技能伤害。: B�SkillPropertyAdd;65021302,65021303,65021304,65021305,65021306;4;2@SkillPropertyAdd;65022302,65022303,65022304,65022305,65022306;2;0.75@SkillPropertyAdd;64015102,64015103,64015104,64015105,64015106;2;0.25@SkillPropertyAdd;65023301,65023302,65023303,65023304,65023305,65023306;9;0.5;0.5
+���	爆裂击Freezing Strike ��(&2a新增技能:爆裂击,立即对前方矩形范围的目标造成350%伤害,并使目标置空秒: BSkillIdAdd;62000113
+j��普攻加持Attack Boost ��(&2$普通攻击造成的伤害提升20%: BRolePropertyAdd;202703;0.2
+���技能专精Skill Mastery ��(*2r守护天使伤害提升75%;释放唤灵之契有概率不进入冷却时间;逆转之力冷却时间降低3秒。: B�SkillPropertyAdd;65021402,65021403,65021404,65021405,65021406;2;0.75@SkillPropertyAdd;65022401,65022402,65022403,65022404,65022405,65022406;7;0.2@SkillPropertyAdd;65023402,65023403,65023404,65023405,65023406;4;3
+��逆境反击Hand of Tenacity ��(*2<生命值低于50%时，自身伤害提升30%,持续10秒。: BSkillIdAdd;62000114
+���闪避印记Courage of Will ��(*2�普通攻击和释放技能有一定的概率对目标身上附加闪避标记，每个闪避标记可以降低目标10%的闪避,最多叠加5层。: BSkillIdAdd;62000115
+���黑暗印记Courage of Will ��(42�普通攻击和释放技能有概率为目标附加1层黑暗印记，当黑暗印记达到5层时，造成范围350%伤害和1秒置空。: BSkillIdAdd;62000116
+���坚韧之力Hand of Tenacity ��(42i当生命值降低至50%后,闪避提升40%,自身伤害提升50%,持续3秒，30秒内只能触发一次: BSkillIdAdd;62000117
+���腐蚀破甲Power of Attack ��(42K每次攻击目标会有一定概率使其所有防御降低为0,持续5秒: BSkillIdAdd;62000118
 ���生命提升Health increase ���(2攻击+10;攻击+20;攻击+30:"Attack +10; Attack +20; Attack +30BRolePropertyAdd;100203;50
 ���光环技能范围Auras Skill Range ���(2A旋风斩的技能伤害范围+1;旋风斩的技能伤害范围+2:rThe skill damage range of Whirlwind Slash increases by 1; The skill damage range of Whirlwind Slash increases by 2BSkillPropertyAdd;80000013;1;10
 ���6元素法球附带给自身加血对敌人定身效果:Elemental Ball attaches health to itself and stuns enemies ���(2前冲距离延长3码距离:-Forward movement distance extended by 3 yardsB;BuffIdAdd;61021201;90001021@BuffInitIdAdd;61021201;90000005
