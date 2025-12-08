@@ -70,6 +70,7 @@ namespace ET
             self.TextCoundown = rc.Get<GameObject>("TextCoundown");
             self.ButtonTiaozhan = rc.Get<GameObject>("ButtonTiaozhan");
             self.ButtonDetails = rc.Get<GameObject>("ButtonDetails");
+            self.ButtonDetails.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             self.TextHurt = rc.Get<GameObject>("TextHurt").GetComponent<Text>();
             self.OnUpdateHurt(0);
             self.iTrialHurtDatas.Clear();
