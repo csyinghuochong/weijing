@@ -246,6 +246,7 @@ namespace ET
         FirstUnionName = 19,         //优先显示家族称号
         SkillAttackPlayerFirst = 20, //技能优先攻击玩家
         PickSet = 21,               // 自动拾取过滤
+        JiaYuanSet = 22,    
 
         //挂机相关设置
         GuaJiSell = 201,      //一键出售  

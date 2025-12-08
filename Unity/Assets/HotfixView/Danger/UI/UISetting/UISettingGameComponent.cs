@@ -14,6 +14,7 @@ namespace ET
         public GameObject Page_2;
         public GameObject Page_3;
 
+        public GameObject JiaYuanSet;
         public GameObject LanguageSet;
         public GameObject ZhuBoSet;
         public GameObject ReSetCameraBtn;
@@ -136,6 +137,9 @@ namespace ET
             self.LanguageSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) || GlobalHelp.BigVersion >= 19);
 
             self.LanguageSet.gameObject.SetActive(GlobalHelp.GetPlatform() == 7 || GlobalHelp.IsEditorMode);
+
+            self.JiaYuanSet = rc.Get<GameObject>("JiaYuanSet");
+            self.JiaYuanSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_JiaYuanSet(); });
 
             self.FirstUnionName = rc.Get<GameObject>("FirstUnionName");
             self.FirstUnionName.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_FirstUnionName);
@@ -402,6 +406,13 @@ namespace ET
             self.SaveSettings(GameSettingEnum.OneSellSet, value);
         }
 
+        public static void OnBtn_JiaYuanSet(this UISettingGameComponent self)
+        {
+            string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.JiaYuanSet);
+            self.JiaYuanSet.transform.Find("Image_Click_0").gameObject.SetActive(value == "0");
+            self.SaveSettings(GameSettingEnum.JiaYuanSet, value == "0" ? "1" : "0");
+        }
+
         public static void OnBtn_LanguageSet(this UISettingGameComponent self, int index)
         {
             int oldIndex = GameSettingLanguge.Language;
@@ -548,6 +559,8 @@ namespace ET
             self.HideLeftBottom.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.HideLeftBottom) == "1");
             self.NoShowOther.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther) == "1");
             self.RotaAngleSet.transform.Find("Image_Click").gameObject.SetActive(PlayerPrefsHelp.GetInt(PlayerPrefsHelp.RotaAngle) == 1);
+            self.JiaYuanSet.transform.Find("Image_Click_0").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.JiaYuanSet) == "1");
+
             float va = PlayerPrefsHelp.GetFloat(PlayerPrefsHelp.LenDepth);
             if (va <= 0)
             {
