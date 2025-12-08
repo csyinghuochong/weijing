@@ -431,6 +431,13 @@ namespace ET
             WriteLogList(new List<string>() { log }, filePath);
         }
 
+        public static void OccTwoNumer(string log)
+        {
+            log = TimeHelper.DateTimeNow().ToString() + " " + log;
+            string filePath = "../Logs/WJ_OccTwoNumer.txt";
+            WriteLogList(new List<string>() { log }, filePath, false);
+        }
+
         public static void SoloInfo(string soloInfo, int zone)
         { 
             

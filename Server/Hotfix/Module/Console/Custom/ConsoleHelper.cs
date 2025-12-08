@@ -8,6 +8,93 @@ namespace ET
     public static class ConsoleHelper
     {
 
+
+        //occtwo 12
+        public static async ETTask ChaXunOccTwoHandler(string content)
+        {
+            Console.WriteLine($"request.Context:  ChaXunOccTwoHandler: {content}");
+            await ETTask.CompletedTask;
+            string[] chaxunInfo = content.Split(" ");
+            if (chaxunInfo.Length != 2)
+            {
+                Console.WriteLine($"C must have allonline zone");
+                Log.Warning($"C must have allonline zone");
+                return;
+            }
+
+#if SERVER
+         
+            int zone = int.Parse(chaxunInfo[1]);
+            List<int> zonlist = new List<int> { };
+            if (zone == 0)
+            {
+                zonlist = ServerMessageHelper.GetAllZone();
+            }
+            else
+            {
+                zonlist.Add(zone);
+            }
+
+            Dictionary<int, Dictionary<int, int>> occtwoNumber = new Dictionary<int, Dictionary<int, int>>();
+
+            for (int i = 0; i < zonlist.Count; i++)
+            {
+                int pyzone = StartZoneConfigCategory.Instance.Get(zonlist[i]).PhysicZone;
+
+                occtwoNumber.Add( pyzone, new Dictionary<int, int>() );
+                occtwoNumber[pyzone][101] = 0;
+                occtwoNumber[pyzone][102] = 0;
+                occtwoNumber[pyzone][103] = 0;
+                occtwoNumber[pyzone][201] = 0;
+                occtwoNumber[pyzone][202] = 0;
+                occtwoNumber[pyzone][203] = 0;
+                occtwoNumber[pyzone][301] = 0;
+                occtwoNumber[pyzone][302] = 0;
+                occtwoNumber[pyzone][303] = 0;
+                occtwoNumber[pyzone][401] = 0;
+                occtwoNumber[pyzone][402] = 0;
+                occtwoNumber[pyzone][403] = 0;
+                occtwoNumber[pyzone][501] = 0;
+                occtwoNumber[pyzone][502] = 0;
+                occtwoNumber[pyzone][503] = 0;
+
+                List<UserInfoComponent> userinfoComponentList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(pyzone, d => d.Id > 0);
+                for (int userinfo = 0; userinfo < userinfoComponentList.Count; userinfo++)
+                {
+                    UserInfoComponent userInfoComponent = userinfoComponentList[userinfo];
+                    if (userInfoComponent.UserInfo.RobotId != 0)
+                    {
+                        continue;
+                    }
+
+                    int occtwo = userInfoComponent.UserInfo.OccTwo;
+                    if (occtwo == 0)
+                    {
+                        continue;
+                    }
+
+                    occtwoNumber[pyzone][occtwo]++;
+                }
+
+            }
+
+            string fenhaoTip = string.Empty;
+            foreach ((int pyzone, Dictionary<int,int> occnumber) in occtwoNumber)
+            {
+                fenhaoTip += $"{pyzone}区二转职业数量:\n";
+                //fenhaoTip += $"封角色:{pyzone}   {account}   {unitids[i]}";
+
+                foreach ((int occ ,int number) in  occnumber)
+                {
+                    fenhaoTip += $"二级转职： {occ}    人数： {number}\n";
+                }
+                fenhaoTip += $"\n";
+            }
+            LogHelper.OccTwoNumer(fenhaoTip);
+#endif
+        }
+
+
         //新的账号： wxoVumu0idnDSrvRw9NfgxY4iRVz2Y  实名都不一样
         /// <summary>
         /// archive 167 3069979043303587840 1       //wxoVumu0kGTgy4EmcNn9FJPYduhJDo 你

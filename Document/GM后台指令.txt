@@ -1,3 +1,7 @@
+occtwo 0  //所有区服二转职业数量输出日志WJ_OccTwoNumer.txt
+occtwo 区服id  //单个区服二转职业数量
+
+
 attribute 0 10   //所有区服排名前10的玩家属性。 输出文件WJ_ZuoBi
 
 后台查询当前服务器各个等级的人数列表 level 0 所有区 level zone 指定区

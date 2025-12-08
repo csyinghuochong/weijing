@@ -138,6 +138,10 @@ namespace ET
             {
                 ConsoleHelper.ArchiveConsoleHandler(request.Context).Coroutine();
             }
+            if (infoList[0] == "occtwo")
+            {
+                ConsoleHelper.ChaXunOccTwoHandler(request.Context).Coroutine();
+            }
             if (infoList[0] == "savedb")
             {
                 //ArchiveHelper.ExecuteBatchFileOld().Coroutine();
