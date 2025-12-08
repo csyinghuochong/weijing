@@ -40,7 +40,6 @@ namespace ET
 
             taskPros = taskPros.OrderBy(p => p.taskStatus == (int)TaskStatuEnum.Completed ? 0 :
                                      p.taskStatus == (int)TaskStatuEnum.Commited ? 2 : 1)
-                        .ThenBy(p => p.taskID)
                         .ToList();
 
             int number = 0;

@@ -49,12 +49,14 @@ namespace ET
 
             //更新当前血量
             UIUnitHpComponent heroHeadBarComponent = unitDefend.GetComponent<UIUnitHpComponent>();
+            bool showfloattext = unitAttack != null && UnitTypeHelper.GetMasterId(unitAttack) == myunitid;
+
             if (SettingHelper.ShowBlood && heroHeadBarComponent != null && heroHeadBarComponent.GameObject)
             {
                 heroHeadBarComponent.UpdateBlood();
 
                 GameObject  GameObject = heroHeadBarComponent.GameObject;
-                bool showfloattext = unitAttack != null && UnitTypeHelper.GetMasterId(unitAttack) == myunitid;
+               
                 if (unitDefend.MainHero || UnitTypeHelper.GetMasterId(unitDefend) == myunitid || showfloattext)
                 {
                     FallingFontComponent fallingFontComponent = unitDefend.DomainScene().GetComponent<FallingFontComponent>();
@@ -90,7 +92,7 @@ namespace ET
                 }
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.TrialDungeon
-                && unitDefend.Type == UnitType.Monster)
+                && unitDefend.Type == UnitType.Monster && showfloattext)
             {
                 UI trialmain = UIHelper.GetUI(zoneScene, UIType.UITrialMain);
                 trialmain?.GetComponent<UITrialMainComponent>()?.OnUpdateHurt_2(args);
