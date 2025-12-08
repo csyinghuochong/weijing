@@ -185,7 +185,7 @@ namespace ET
                 self.Text_SucessPro.SetActive(true);
                 string tip1 = GameSettingLanguge.LoadLocalization("成功率:");
                 int sucessrate = (int)(equipMakeConfig.MakeSuccesPro * 100);
-                self.Text_SucessPro.GetComponent<Text>().text = tip1 + $"%{sucessrate}";
+                self.Text_SucessPro.GetComponent<Text>().text = tip1 + $"{sucessrate}%";
             }
 
             //显示消耗活力
