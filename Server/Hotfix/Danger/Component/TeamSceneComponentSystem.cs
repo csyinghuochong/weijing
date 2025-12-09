@@ -233,8 +233,10 @@ namespace ET
                     MessageHelper.SendToClient(allunits[i], self.M2C_TeamDungeonQuitMessage);
                 }
             }
+
             //self.DomainZone() == 5 &&
-            if ( teamInfo != null && unitId == teamInfo.TeamId && realPlayerNumber >= 1)
+            //队长中途退出并且还有其他玩家才解算退伍。。。。
+            if ( teamInfo != null && teamInfo.FubenInstanceId > 0 && unitId == teamInfo.TeamId && realPlayerNumber >= 1)
             {
                 Console.WriteLine($"TeamSceneComponent.OnUnitReturn [队长离开 解算队伍！]");
                 

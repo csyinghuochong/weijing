@@ -18,6 +18,7 @@ namespace ET
             long unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
             if (unionid == 0)
             {
+                reply();
                 return;
             }
 
