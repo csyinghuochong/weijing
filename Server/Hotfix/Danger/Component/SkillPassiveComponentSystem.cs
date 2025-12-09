@@ -709,9 +709,8 @@ namespace ET
                     case SkillPassiveTypeEnum.FanGunCD_20:
                         if (skillIfo.MagicQulity > 0)
                         {
-                            Console.WriteLine($"skillIfo.MagicQulity > 0:  {skillIfo.MagicQulity}");
+                            //Console.WriteLine($"skillIfo.MagicQulity > 0:  {skillIfo.MagicQulity}");
                             //skillproValue为SkillConfig的 PassiveSkillPro（被动技能触发参数）
-
                             //实际触发概率=(原始触发概率/2)+((原始触发概率/2)*(品质/80))
                             skillproValue = (skillproValue / 2f) + ((skillproValue / 2f) * (skillIfo.MagicQulity / 100f));
                         }
