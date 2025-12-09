@@ -54,6 +54,7 @@ namespace ET
             response.PurchaseItemList = jiaYuanComponent.PurchaseItemList_7;
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_7;
             response.JiaYuanPastureList = jiaYuanComponent.JiaYuanPastureList_7;
+            response.JianYuanPlantList = jiaYuanComponent.JianYuanPlantList_7;
             response.JiaYuanProList = jiaYuanComponent.JiaYuanProList_7;
             response.JiaYuanDaShiTime = jiaYuanComponent.JiaYuanDaShiTime_1;
             response.JiaYuanPetList = jiaYuanComponent.JiaYuanPetList_2;

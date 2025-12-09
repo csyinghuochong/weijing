@@ -2477,6 +2477,12 @@ namespace ET
 
         public static async ETTask CheckJiaYuanReddot(this UIMainComponent self)
         {
+            self.Button_JiaYuan.transform.Find("Reddot").gameObject.SetActive(false);
+            if (self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.JiaYuanSet) == "0")
+            {
+                return;
+            }
+
             C2M_JiaYuanInitRequest request = new C2M_JiaYuanInitRequest() { MasterId = UnitHelper.GetMyUnitId(self.ZoneScene() ) };
             M2C_JiaYuanInitResponse response = (M2C_JiaYuanInitResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
@@ -2495,6 +2501,17 @@ namespace ET
                     break;
                 }
             }
+            for (int i = 0; i < response.JianYuanPlantList.Count; i++)
+            {
+                JiaYuanPlant jiaYuanPastures = response.JianYuanPlantList[i];
+                if (JiaYuanHelper.GetPlanShouHuoItem(jiaYuanPastures.ItemId, jiaYuanPastures.StartTime, jiaYuanPastures.GatherNumber, jiaYuanPastures.GatherLastTime) == 0)
+                {
+                    showreddot = true;
+                    break;
+                }
+            }
+
+            self.Button_JiaYuan.transform.Find("Reddot").gameObject.SetActive(showreddot);
             //JiaYuanPastureList_7 家园动物
             //JianYuanPlantList_7  家园植物
 
