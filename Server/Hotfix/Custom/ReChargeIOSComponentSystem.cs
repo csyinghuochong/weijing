@@ -23,11 +23,11 @@ namespace ET
             string verifyURL = string.Empty;
             if (request.UnitId == 2025124307608338432)   //先锋一区 \敖安塔
             {
-                verifyURL = "https://sandbox.itunes.apple.com/verifyReceipt";
+                verifyURL = "https://sandbox.itunes.apple.com/verifyReceipt";  // 沙盒环境
             }
             else
             {
-                verifyURL = "https://buy.itunes.apple.com/verifyReceipt";
+                verifyURL = "https://buy.itunes.apple.com/verifyReceipt";       // 正式环境
             }
 
             string payLoad = request.payMessage;
