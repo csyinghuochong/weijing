@@ -2475,6 +2475,50 @@ namespace ET
             }
         }
 
+        public static async ETTask CheckJiaYuanReddot(this UIMainComponent self)
+        {
+            self.Button_JiaYuan.transform.Find("Reddot").gameObject.SetActive(false);
+            if (self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.JiaYuanSet) == "0")
+            {
+                return;
+            }
+
+            C2M_JiaYuanInitRequest request = new C2M_JiaYuanInitRequest() { MasterId = UnitHelper.GetMyUnitId(self.ZoneScene() ) };
+            M2C_JiaYuanInitResponse response = (M2C_JiaYuanInitResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            if (self.IsDisposed || response == null || response.Error != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+
+            bool showreddot = false;
+            for (int i = 0; i < response.JiaYuanPastureList.Count; i++)
+            {
+                JiaYuanPastures jiaYuanPastures = response.JiaYuanPastureList[i];
+                if (JiaYuanHelper.GetPastureShouHuoItem(jiaYuanPastures.ConfigId, jiaYuanPastures.StartTime, jiaYuanPastures.GatherNumber, jiaYuanPastures.GatherLastTime) == 0)
+                {
+                    showreddot = true;
+                    break;
+                }
+            }
+            for (int i = 0; i < response.JianYuanPlantList.Count; i++)
+            {
+                JiaYuanPlant jiaYuanPastures = response.JianYuanPlantList[i];
+                if (JiaYuanHelper.GetPlanShouHuoItem(jiaYuanPastures.ItemId, jiaYuanPastures.StartTime, jiaYuanPastures.GatherNumber, jiaYuanPastures.GatherLastTime) == 0)
+                {
+                    showreddot = true;
+                    break;
+                }
+            }
+
+            self.Button_JiaYuan.transform.Find("Reddot").gameObject.SetActive(showreddot);
+            //JiaYuanPastureList_7 家园动物
+            //JianYuanPlantList_7  家园植物
+
+            //JiaYuanHelper.GetPastureShouHuoItem(self.GetParent<Unit>().ConfigId, startTime, gatherNumber, gatherLastTime) == 0
+            //JiaYuanHelper.GetPlanShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == 0
+        }
+
         public static async ETTask CheckMailReddot(this UIMainComponent self)
         {
             if (!self.MailHintTip.activeSelf)
@@ -2630,7 +2674,11 @@ namespace ET
 
             self.OnButtonGoToOperate();
 
-            self.CheckMailReddot().Coroutine();
+            if (sceneTypeEnum == SceneTypeEnum.MainCityScene)
+            {
+                self.CheckMailReddot().Coroutine();
+                self.CheckJiaYuanReddot().Coroutine();
+            }
         }
 
         public static void OnButtonGoToOperate(this UIMainComponent self)
