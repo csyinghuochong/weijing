@@ -11457,6 +11457,9 @@ namespace ET
 		[ProtoMember(15)]
 		public List<JiaYuanPurchaseItem> PurchaseItemList = new List<JiaYuanPurchaseItem>();
 
+		[ProtoMember(16)]
+		public List<JiaYuanPlant> JianYuanPlantList = new List<JiaYuanPlant>();
+
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanPlantResponse))]

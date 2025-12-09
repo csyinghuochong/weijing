@@ -5457,6 +5457,7 @@ message M2C_JiaYuanInitResponse // IActorLocationResponse
 	repeated JiaYuanRecord JiaYuanRecordList = 13;
 	repeated JiaYuanPastures JiaYuanPastureList = 14;
 	repeated JiaYuanPurchaseItem PurchaseItemList = 15;
+	repeated JiaYuanPlant JianYuanPlantList = 16;
 }
 
 //ResponseType M2C_JiaYuanPlantResponse
