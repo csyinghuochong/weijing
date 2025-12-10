@@ -223,10 +223,10 @@ namespace ET
             }
             if (numericComponent.GetAsInt(NumericType.V1TotalPoints) > 0)
             {
-                Console.WriteLine($"转换积分！！！");
-                //float vipoints = numericComponent.GetAsFloat(NumericType.V1TotalPoints);
-                //numericComponent.Set(NumericType.V1TotalPoints, 0, false);
-                //self.UserInfo.V1TotalPoints += vipoints;
+                float vipoints = numericComponent.GetAsFloat(NumericType.V1TotalPoints);
+                Console.WriteLine($"转换积分！！！：{numericComponent.Id}  {vipoints}");
+                numericComponent.Set(NumericType.V1TotalPoints, 0, false);
+                self.UserInfo.V1TotalPoints += vipoints;
             }
 
             DataCollationComponent dataCollationComponent = self.GetParent<Unit>().GetComponent<DataCollationComponent>();
