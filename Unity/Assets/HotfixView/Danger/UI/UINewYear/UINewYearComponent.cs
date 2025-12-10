@@ -86,9 +86,11 @@ namespace ET
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
 
-
-            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
-            redPointComponent?.UnRegisterReddot(ReddotType.NewYear, self.Reddot_NewYear);
+            if (self.ZoneScene() != null)
+            {
+                ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+                redPointComponent?.UnRegisterReddot(ReddotType.NewYear, self.Reddot_NewYear);
+            }
         }
     }
 
