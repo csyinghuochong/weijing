@@ -27,7 +27,7 @@ namespace ET
                         list.Add(new Vector3(message.Xs[i], message.Ys[i], message.Zs[i]));
                     }
                     unit.SpeedRate = messagelist.PathList[0].SpeedRate;
-                    unit.GetComponent<MoveComponent>().MoveToAsync(list, speed).Coroutine();
+                    unit.GetComponent<MoveComponent>().MoveToAsync(list, speed * (message.SpeedRate * 0.01f)).Coroutine();
                 }
             }
 

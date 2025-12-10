@@ -35,9 +35,9 @@ namespace ET
             this.TargetPosition = theUnitBelongto.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitBelongto,theUnitBelongto.Position, vector3);
 
             theUnitBelongto.Stop(-2);
-            theUnitBelongto.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, newSpeed - oldSpeed);
+            //theUnitBelongto.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, newSpeed - oldSpeed);
             theUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.JiTui);
-            theUnitBelongto.FindPathMoveToAsync(this.TargetPosition, null, false).Coroutine();
+            theUnitBelongto.FindPathMoveToAsync(this.TargetPosition, null, false, Math.Max(100, (int)(newSpeed * 100f / oldSpeed))).Coroutine();
         }
 
         public override void OnUpdate()
@@ -51,7 +51,7 @@ namespace ET
         public override void OnFinished()
         {
             this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.JiTui);
-            this.TheUnitBelongto.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, 0);
+            //this.TheUnitBelongto.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, 0);
         }
 
     }

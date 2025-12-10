@@ -50,7 +50,7 @@ namespace ET
                     }
                 }
 				unit.SpeedRate = message.SpeedRate;
-                unit.GetComponent<MoveComponent>().MoveToAsync(pointsList, speed).Coroutine();
+                unit.GetComponent<MoveComponent>().MoveToAsync(pointsList, speed * (message.SpeedRate * 0.01f)).Coroutine();
 			}
 		}
 	}

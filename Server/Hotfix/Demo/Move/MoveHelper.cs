@@ -80,7 +80,7 @@ namespace ET
 
                 float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
                 MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-                bool ret = await moveComponent.MoveToAsync(path, speed, 0, cancellationToken);
+                bool ret = await moveComponent.MoveToAsync(path, speed * (speedrate * 0.01f), 0, cancellationToken);
                 if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
                 {
                     unit.SendStop(0);

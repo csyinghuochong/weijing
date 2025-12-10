@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ET
 {
@@ -117,8 +118,8 @@ namespace ET
                 if (distacne > 1.5f && errorCode == ErrorCode.ERR_Success)
                 {
                     Vector3 nextTarget = GetFollowPosition(unit, master);
-                    unit.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, speedadd);
-                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
+                    //unit.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, speedadd);
+                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, false, Math.Max(100, (int)((speedadd+nowspeed) * 100f / nowspeed))).Coroutine();
                 }
                 bool result = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
                 if (!result)

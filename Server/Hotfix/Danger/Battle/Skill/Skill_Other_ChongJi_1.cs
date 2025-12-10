@@ -44,7 +44,7 @@ namespace ET
             if (newSpeed > oldSpeed && newspeedAdd > oldspeedAdd)
             {
                 this.SpeedAddValue = newspeedAdd - oldspeedAdd;
-                numericComponent.Set(NumericType.Extra_Buff_Speed_Add, newspeedAdd);
+                //numericComponent.Set(NumericType.Extra_Buff_Speed_Add, newspeedAdd);
             }
             else
             {
@@ -56,7 +56,8 @@ namespace ET
             Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
             this.TargetPosition = this.TheUnitFrom.Position + rotation * Vector3.forward * moveDistance;
             this.TargetPosition = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom,this.TheUnitFrom.Position, TargetPosition);
-            this.TheUnitFrom.FindPathMoveToAsync(this.TargetPosition, null, false).Coroutine();
+            
+            this.TheUnitFrom.FindPathMoveToAsync(this.TargetPosition, null, false, Mathf.Max(100, (int)(newSpeed * 100f / oldSpeed))).Coroutine();
             this.NowPosition = this.TheUnitFrom.Position;
             this.TheUnitFrom.GetComponent<BuffManagerComponent>().AddBuffRecord(1, 1);
         }
@@ -121,8 +122,8 @@ namespace ET
             this.TheUnitFrom.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.ChongJi);
 
             NumericComponent numericComponent = this.TheUnitFrom.GetComponent<NumericComponent>();
-            float curspeedAdd = numericComponent.GetAsFloat(NumericType.Extra_Buff_Speed_Add) - this.SpeedAddValue;
-            numericComponent.Set(NumericType.Extra_Buff_Speed_Add, Mathf.Max(0, curspeedAdd));
+            //float curspeedAdd = numericComponent.GetAsFloat(NumericType.Extra_Buff_Speed_Add) - this.SpeedAddValue;
+            //numericComponent.Set(NumericType.Extra_Buff_Speed_Add, Mathf.Max(0, curspeedAdd));
             this.Clear();
         }
     }

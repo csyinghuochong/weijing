@@ -91,9 +91,10 @@ namespace ET
                 {
                     Vector3 nextTarget = GetFollowPosition(unit, master);
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                    float addspeed = nowspeed * 0.0001f - numericComponent.GetAsFloat(NumericType.Base_Speed_Base);
-                    numericComponent.Set(NumericType.Extra_Buff_Speed_Add, addspeed);
-                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, true).Coroutine();
+                    long oldspeed = numericComponent.GetAsLong(NumericType.Now_Speed);
+                    //float addspeed = nowspeed * 0.0001f - numericComponent.GetAsFloat(NumericType.Base_Speed_Base);
+                    //numericComponent.Set(NumericType.Extra_Buff_Speed_Add, addspeed);
+                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, true, (int)(nowspeed * 100f/ oldspeed)).Coroutine();
                 }
                 bool result = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
                 if (!result)

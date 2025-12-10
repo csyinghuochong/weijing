@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ET
 {
@@ -104,18 +105,20 @@ namespace ET
 
             if (newSpeed > oldSpeed && newspeedAdd > oldspeedAdd)
             {
-                this.SpeedAddValue = newspeedAdd - oldspeedAdd;
-                numericComponent.Set(NumericType.Extra_Buff_Speed_Add, newspeedAdd);
+                //this.SpeedAddValue = newspeedAdd - oldspeedAdd;
+                //numericComponent.Set(NumericType.Extra_Buff_Speed_Add, newspeedAdd);
+
+                this.SpeedAddValue = newSpeed * 1f / oldSpeed;
             }
             else
             {
-                this.SpeedAddValue = 0f;
+                this.SpeedAddValue = 1f;
             }
 
             unit.GetComponent<StateComponent>().SetRigidityEndTime(0);
             unit.FindPathMoveToAsync(this.UnitTargetPos,
                 null,
-                false).Coroutine();
+                false, Math.Max(100, (int)(this.SpeedAddValue * 100f))).Coroutine();
         }
 
         public void ReSetPush(Unit unit)
@@ -123,15 +126,15 @@ namespace ET
             unit.GetComponent<StateComponent>().SetRigidityEndTime(0);
             unit.FindPathMoveToAsync(this.UnitTargetPos,
                 null,
-                false).Coroutine();
+                false, Math.Max(100, (int)(this.SpeedAddValue * 100f))).Coroutine();
         }
 
         public void ReSetUnit(Unit unit)
         {
             unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            float curspeedAdd = numericComponent.GetAsFloat(NumericType.Extra_Buff_Speed_Add) - this.SpeedAddValue;
-            numericComponent.Set(NumericType.Extra_Buff_Speed_Add, Mathf.Max(0, curspeedAdd));
+            //NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            //float curspeedAdd = numericComponent.GetAsFloat(NumericType.Extra_Buff_Speed_Add) - this.SpeedAddValue;
+            //numericComponent.Set(NumericType.Extra_Buff_Speed_Add, Mathf.Max(0, curspeedAdd));
         }
 
         public Vector3 GetBulletTargetPoint(int angle)
