@@ -11,6 +11,7 @@ namespace ET
         ActivityV1Task = 2,
         ActivityV1Points = 3,
         ActivityV1Shop = 4,
+        ActivityV1PointsChouKa = 5,
         Number,
     }
 
@@ -45,16 +46,20 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)NewYearPageEnum.ActivityV1Task] = ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Task");
             pageViewComponent.UISubViewPath[(int)NewYearPageEnum.ActivityV1Points] = ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Points");
             pageViewComponent.UISubViewPath[(int)NewYearPageEnum.ActivityV1Shop] = ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Shop");
+            pageViewComponent.UISubViewPath[(int)NewYearPageEnum.ActivityV1PointsChouKa] = ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1PointsChouKa");
 
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.CollectionWord] = typeof(UINewYearCollectionWordComponent);
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.Monster] = typeof(UINewYearMonsterComponent);
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.ActivityV1Task] = typeof (UIActivityV1TaskComponent);
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.ActivityV1Points] = typeof(UIActivityV1PointsComponent);
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.ActivityV1Shop] = typeof(UIActivityV1ShopComponent);
+            pageViewComponent.UISubViewType[(int)NewYearPageEnum.ActivityV1PointsChouKa] = typeof(UIActivityV1PointsChouKaComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI uiPageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
+
+            self.FunctionSetBtn.transform.Find("Btn_Type6").gameObject.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             //IOS适配
             IPHoneHelper.SetPosition(self.ScrollView, new Vector2(120f, -77f));
@@ -80,7 +85,6 @@ namespace ET
         public override void Destroy(UINewYearComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
-
 
             ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
             redPointComponent?.UnRegisterReddot(ReddotType.NewYear, self.Reddot_NewYear);
