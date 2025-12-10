@@ -51,8 +51,8 @@ namespace ET
                 UICommonHelper.SetParent(itemSpace, self.RewardItemListNode);
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
                 uIItemComponent.UpdateItem(new BagInfo() { ItemID = ItemID, ItemNum = ItemNum }, ItemOperateEnum.None);
-                uIItemComponent.Label_ItemName.SetActive(false);
-                uIItemComponent.Label_ItemNum.SetActive(false);
+                uIItemComponent.Label_ItemName.SetActive(true);
+                uIItemComponent.Label_ItemNum.SetActive(true);
                 uIItemComponent.Image_Binding.SetActive(true);
                 itemSpace.transform.Find("Image_Recvived").gameObject.SetActive(false);
                 itemSpace.transform.localScale = Vector3.one * 1f;
