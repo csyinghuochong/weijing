@@ -181,8 +181,15 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该生活技能已学习！"));
                 return;
             }
+
+            long instanceid = self.InstanceId;
             C2M_MakeSelectRequest request = new C2M_MakeSelectRequest() { MakeType = makeId , Plan = self.Plan == -1 ? 1 : self.Plan };
             M2C_MakeSelectResponse response = (M2C_MakeSelectResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (instanceid != self.InstanceId || response == null || response.Error != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+
             self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList.Clear();
             self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList = response.MakeList;
             self.CheckMakeType();

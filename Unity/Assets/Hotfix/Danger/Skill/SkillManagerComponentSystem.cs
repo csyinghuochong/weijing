@@ -503,7 +503,7 @@ namespace ET
             long leftPublicCD = self.SkillPublicCDTime - TimeHelper.ServerNow();
             if (leftPublicCD > 1500)
             {
-                Log.Error($"leftPublicCD > 1000 {leftPublicCD}");
+                Log.Error($"leftPublicCD > 1500 {leftPublicCD}");
                 self.SkillPublicCDTime = TimeHelper.ServerNow();
                 leftPublicCD = 0;
             }

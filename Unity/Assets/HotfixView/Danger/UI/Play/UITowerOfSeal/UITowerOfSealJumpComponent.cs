@@ -99,6 +99,10 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("操作错误！！"));
                 return;
             }
+            if (self.IsDisposed)
+            {
+                return;
+            }
 
             // 更新面板信息
             UI uITowerOfSealMain = UIHelper.GetUI(self.ZoneScene(), UIType.UITowerOfSealMain);

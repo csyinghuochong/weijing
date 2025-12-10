@@ -271,10 +271,20 @@ namespace ET
             self.Lab_SellSumPro.GetComponent<Text>().text = ((int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum)).ToString();
         }
 
-        public static void OnChange(this UIPaiMaiSellPriceComponent self, string str) {
-
-            self.nowPrice = int.Parse(str);
-
+        public static void OnChange(this UIPaiMaiSellPriceComponent self, string str)
+        {
+            int number;
+            bool success = int.TryParse(str, out number);
+            if (success)
+            {
+                // 转换成功，使用 number
+                self.nowPrice = number;
+            }
+            else
+            {
+                // 转换失败，处理错误
+                self.nowPrice = 0;
+            }
         }
 
     }

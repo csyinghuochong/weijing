@@ -11,8 +11,10 @@ namespace ET
             }
 
             UIUnitHpComponent uIUnitHpComponent = args.Unit.GetComponent<UIUnitHpComponent>();
-
-            uIUnitHpComponent.EnableHeadBarUI(args.OperateType == 1);
+            if (uIUnitHpComponent != null)
+            {
+                uIUnitHpComponent.EnableHeadBarUI(args.OperateType == 1);
+            }
         }
     }
 }
