@@ -296,15 +296,4 @@
 		}
 	}
 
-    [NumericWatcher((int)NumericType.V1TotalPoints)]
-    public class NumericWatcher_V1TotalPoints : INumericWatcher
-    {
-        public void Run(EventType.NumericChangeEvent args)
-        {
-#if !SERVER
-			ActivityComponent activityComponent = args.Defend.ZoneScene().GetComponent<ActivityComponent>();
-			activityComponent.ActivityV1Reset(true);
-#endif
-		}
-    }
 }

@@ -41,7 +41,7 @@ namespace ET
             //累计消耗钻石奖励
             //self.ActivityV1Info.ConsumeDiamondReward.Clear();
             //限时活动积分兑换
-            self.ActivityV1Info.PointsReward.Clear();
+            //self.ActivityV1Info.PointsReward.Clear();
         }
 
 #if SERVER
