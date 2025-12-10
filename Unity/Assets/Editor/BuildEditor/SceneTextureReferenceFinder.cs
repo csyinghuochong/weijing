@@ -95,8 +95,12 @@ namespace ET
         [MenuItem("Tools/检测场景中引用的贴图")]
         public static void FindTextureReferences()
         {
-            Debug.Log("查找开始！");
+            if (Application.unityVersion.Contains("2022"))
+            {
+                return;
+            }
 
+            Debug.Log("查找开始！");
             List<string> result = new List<string>();
 
             // 查找场景文件

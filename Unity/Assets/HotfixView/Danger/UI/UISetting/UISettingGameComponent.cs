@@ -134,15 +134,11 @@ namespace ET
             self.LanguageSet = rc.Get<GameObject>("LanguageSet");
             self.LanguageSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_LanguageSet(0); });
             self.LanguageSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_LanguageSet(1); });
-            self.LanguageSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) || GlobalHelp.BigVersion >= 19);
-
             self.LanguageSet.gameObject.SetActive(GlobalHelp.GetPlatform() == 7 || GlobalHelp.IsEditorMode);
 
             self.JiaYuanSet = rc.Get<GameObject>("JiaYuanSet");
             self.JiaYuanSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_JiaYuanSet(); });
-            self.JiaYuanSet.gameObject.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-
-
+            
             self.FirstUnionName = rc.Get<GameObject>("FirstUnionName");
             self.FirstUnionName.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_FirstUnionName);
 
