@@ -48,6 +48,7 @@ namespace ET
         public const int InvestMent = 34;                       //投资资金
         public const int UnionGold = 35;                        //家族金币
         public const int WeiJingGold = 36;                  //危境币
+        public const int V1TotalPoints = 37;               //活动积分
 
         public const int Max = 100;
     }

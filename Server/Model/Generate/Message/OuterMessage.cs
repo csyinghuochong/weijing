@@ -750,6 +750,9 @@ namespace ET
 		[ProtoMember(67)]
 		public List<KeyValuePairInt> TotalUseTimes = new List<KeyValuePairInt>();
 
+		[ProtoMember(68)]
+		public float V1TotalPoints { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

@@ -78,6 +78,10 @@ namespace ET
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.Diamond).ToString();
                     userInfo.Diamond = long.Parse(message.UpdateTypeValue);
                     break;
+                case UserDataType.V1TotalPoints:
+                    updateValue = (float.Parse(message.UpdateTypeValue) - userInfo.V1TotalPoints).ToString();
+                    userInfo.V1TotalPoints = float.Parse(message.UpdateTypeValue);
+                    break;
                 case (int)UserDataType.DungeonTimes:
                     userInfo.DayFubenTimes.Clear();
                     break;

@@ -10,6 +10,7 @@ namespace ET
         public Button OpenBtn;
         public GameObject RewardItemListNode;
         public GameObject UICommonItem;
+        public UIItemComponent UICostCommonItem;
         public List<UIItemComponent> UIItemList = new List<UIItemComponent>();
 
     }
@@ -23,11 +24,19 @@ namespace ET
             self.UICommonItem = rc.Get<GameObject>("UICommonItem");
             self.UICommonItem.SetActive(false);
 
+            GameObject  iCostCommonItem = rc.Get<GameObject>("UICostCommonItem");
+            UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(iCostCommonItem);
+            uIItemComponent.UpdateItem(new BagInfo() { ItemID = 37, ItemNum = 200 }, ItemOperateEnum.None);
+            self.UICostCommonItem = uIItemComponent;
+            self.UICostCommonItem.Label_ItemNum.GetComponent<Text>().text = "X200";
+
             self.TextTip = rc.Get<GameObject>("TextTip").GetComponent<Text>();
             self.OpenBtn = rc.Get<GameObject>("OpenBtn").GetComponent<Button>();
             ButtonHelp.AddListenerEx(self.OpenBtn.gameObject, () => { self.OnButton_TimerChouKa().Coroutine(); });
 
             self.RewardItemListNode = rc.Get<GameObject>("RewardItemListNode");
+
+            self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
             self.ShowRewardList();
             self.ShowLeftPoints();
@@ -37,6 +46,8 @@ namespace ET
 
     public static class UIActivityV1PointsChouKaComponentSystem
     {
+
+
         public static void ShowRewardList(this UIActivityV1PointsChouKaComponent self)
         {
             foreach(var choukaitem in ActivityConfigHelper.PointsChouKaList)
@@ -63,15 +74,15 @@ namespace ET
 
         public static void OnUpdateUI(this UIActivityV1PointsChouKaComponent self)
         {
-
+            self.ShowLeftPoints();
         }
 
         public static void ShowLeftPoints(this UIActivityV1PointsChouKaComponent self)
         {
-            int points = (int)(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsFloat(NumericType.V1TotalPoints));
+            int points = (int)self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints;
 
-            self.TextTip.GetComponent<Text>().text =
-                 string.Format(GameSettingLanguge.LoadLocalization("{0}"), points);
+            self.TextTip.GetComponent<Text>().text = points.ToString();
+                 //string.Format(GameSettingLanguge.LoadLocalization("{0}"), points);
         }
 
         public static async ETTask OnButton_TimerChouKa(this UIActivityV1PointsChouKaComponent self)
@@ -82,13 +93,14 @@ namespace ET
                 return;
             }
 
-            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
-            if (numericComponent.GetAsFloat(NumericType.V1TotalPoints) < 200f)
+          
+            if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints < 200f)
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_PointNotEnough);
                 return;
             }
 
+            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
             int drawIndex = numericComponent.GetAsInt(NumericType.V1PointsChouKaIndex);
             if (drawIndex <= 0)
             {

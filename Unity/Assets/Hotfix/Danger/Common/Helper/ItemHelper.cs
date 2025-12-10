@@ -362,6 +362,7 @@ namespace ET
             { 34, UserDataType.InvestMent },
             { 35, UserDataType.UnionGold },
             { 36, UserDataType.WeiJingGold},
+            { 37, UserDataType.V1TotalPoints }
         };
 
         public static int GetItemToUserDataType(int itemid)

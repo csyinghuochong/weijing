@@ -27,8 +27,8 @@ namespace ET
             }
 
             string itmeinfo = ActivityConfigHelper.PointsChouKaList[choukaindex - 1].ItemInfo;
-            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.V1TotalPoints, -200 * 10000, 0);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.V1PointsChouKaIndex, 0);
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.V1TotalPoints, "-200");
             unit.GetComponent<BagComponent>().OnAddItemData(itmeinfo, $"{ItemGetWay.ActivityChouKa}_{TimeHelper.ServerNow()}");
             reply();
             await ETTask.CompletedTask;

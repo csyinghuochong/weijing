@@ -24,12 +24,20 @@ namespace ET
             self.UIActivityV1PointsItem.SetActive(false);
             self.Text_CurWeek.GetComponent<Text>().text = UICommonHelper.GetCurrentWeekRange();
 
+            self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
+
             self.GetInfo().Coroutine();
         }
     }
 
     public static class UIActivityV1PointsComponentSystem
     {
+        public static void OnUpdateUI(this UIActivityV1PointsComponent self)
+        {
+            self.OnRecvHandler();
+        }
+
+
         public static async ETTask GetInfo(this UIActivityV1PointsComponent self)
         {
             C2M_ActivityInfoRequest request = new C2M_ActivityInfoRequest();
@@ -56,7 +64,7 @@ namespace ET
 
         public static void OnRecvHandler(this UIActivityV1PointsComponent self)
         {
-            int points = (int)(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsFloat(NumericType.V1TotalPoints));
+            int points = (int)(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints);
 
             self.ConsumeNumText.GetComponent<Text>().text =
                    string.Format(GameSettingLanguge.LoadLocalization("{0}积分"), points);

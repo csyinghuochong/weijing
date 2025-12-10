@@ -482,6 +482,9 @@ namespace ET
                 case UserDataType.Diamond:
                     number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Diamond;
                     break;
+                case UserDataType.V1TotalPoints:
+                    number = (long)self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints;
+                    break;
                 case UserDataType.RongYu:
                     number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.RongYu;
                     break;
@@ -1680,6 +1683,12 @@ namespace ET
                 {
                     itemNum = -1 * itemNum;
                     unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, itemNum.ToString(), true, itemGetWay);
+                    continue;
+                }
+                if (itemID == (int)UserDataType.V1TotalPoints)
+                {
+                    itemNum = -1 * itemNum;
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.V1TotalPoints, itemNum.ToString(), true, itemGetWay);
                     continue;
                 }
                 if (itemID == (int)UserDataType.RongYu)

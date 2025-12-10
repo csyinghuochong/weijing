@@ -731,6 +731,9 @@ namespace ET
                 case UserDataType.Diamond:
                     number = userInfo.Diamond;
                     break;
+                case UserDataType.V1TotalPoints:
+                    number = (int)userInfo.V1TotalPoints;
+                    break;
                 case UserDataType.JiaYuanFund:
                     number = userInfo.JiaYuanFund;
                     break;

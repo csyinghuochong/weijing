@@ -295,5 +295,4 @@
 			args.Defend.GetComponent<MoveComponent>().ChangeSpeed(speed);
 		}
 	}
-
 }

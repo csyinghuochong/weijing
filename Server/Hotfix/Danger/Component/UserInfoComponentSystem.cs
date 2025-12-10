@@ -221,6 +221,14 @@ namespace ET
                 self.GetParent<Unit>().GetComponent<ActivityComponent>().ClearJieRiActivty();
                 numericComponent.Set(NumericType.UpdateActivty, 1, false);
             }
+            if (numericComponent.GetAsInt(NumericType.V1TotalPoints) > 0)
+            {
+                Console.WriteLine($"转换积分！！！");
+                //float vipoints = numericComponent.GetAsFloat(NumericType.V1TotalPoints);
+                //numericComponent.Set(NumericType.V1TotalPoints, 0, false);
+                //self.UserInfo.V1TotalPoints += vipoints;
+            }
+
             DataCollationComponent dataCollationComponent = self.GetParent<Unit>().GetComponent<DataCollationComponent>();
             int recharge = numericComponent.GetAsInt(NumericType.RechargeNumber);
             if (recharge!=0 && dataCollationComponent.ChouKaTimes > (recharge * 2) && dataCollationComponent.ChouKaTimes > 100)
@@ -916,10 +924,13 @@ namespace ET
                         long costdiamond = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.V1DayCostDiamond);
 
                         //累计消耗钻石转换为积分
-                        double v1points =  unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.V1TotalPoints);
-                        v1points += addDiamond * -0.01f;
-                        unit.GetComponent<NumericComponent>().ApplyValue( NumericType.V1TotalPoints, (long)(v1points * 10000));
+                        self.UpdateRoleData( UserDataType.V1TotalPoints,  (addDiamond * -0.01f).ToString());
                     }
+                    break;
+                case UserDataType.V1TotalPoints:
+                    self.UserInfo.V1TotalPoints += float.Parse(value);
+                    self.UserInfo.V1TotalPoints = Math.Max(self.UserInfo.V1TotalPoints, 0);
+                    saveValue = self.UserInfo.V1TotalPoints.ToString();
                     break;
                 case UserDataType.Occ:
                     break;

@@ -86,20 +86,20 @@ namespace ET
                         reply();
                         return;
                     }
-                    if (unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.V1TotalPoints) < request.RewardId)
+                    if (unit.GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints < request.RewardId)
                     {
                         response.Error = ErrorCode.Pre_Condition_Error;
                         reply();
                         return;
                     }
                     rewarditem = ActivityConfigHelper.PointsRewardList[request.RewardId];
-                    unit.GetComponent<NumericComponent>().ApplyChange(null,NumericType.V1TotalPoints, request.RewardId * -10000, 0);
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.V1TotalPoints, (request.RewardId * -1).ToString());
                     unit.GetComponent<BagComponent>().OnAddItemData(rewarditem, $"{ItemGetWay.ActivityConsume}_{TimeHelper.ServerNow()}");
                     activityComponent.ActivityV1Info.PointsReward.Add(request.RewardId);
                     break;
                 case ActivityConfigHelper.ActivityV1_PointsChouKa:
 
-                    if (unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.V1TotalPoints) < 200f)
+                    if (unit.GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints < 200f)
                     {
                         response.Error = ErrorCode.Pre_Condition_Error;
                         reply();

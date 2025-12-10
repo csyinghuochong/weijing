@@ -274,16 +274,12 @@ namespace ET
             numericComponent.ApplyValue(NumericType.V1DayCostDiamond, 0, notice);
 
             //每次活动扣除100积分， 对话任意积分可免扣除
-            long v1points = numericComponent.GetAsLong(NumericType.V1TotalPoints);
+            float v1points =unit.GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints;  
             if (kouchu)
             {
-                v1points -= 1000000;
+                v1points = Math.Min(100f, v1points);
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.V1TotalPoints, (v1points * -1).ToString());
             }
-            if (v1points < 0) 
-            {
-                v1points = 0;
-            }
-            numericComponent.ApplyValue(NumericType.V1TotalPoints, v1points, notice);
         }
 
         /// <summary>
