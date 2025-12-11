@@ -34,6 +34,12 @@ namespace ET
                     numericComponent.ApplyChange(null, NumericType.JiaYuanExchangeZiJin, 1, 0);
                     break;
                 case 2: //资金兑换经验
+                    if (jiaYuanConfig.NextID == 0)
+                    {
+                        response.Error = ErrorCode.ERR_JiaYuanLevelMax;
+                        reply();
+                        return;
+                    }
                     if (numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp) >= 10)
                     {
                         response.Error = ErrorCode.ERR_TimesIsNot;

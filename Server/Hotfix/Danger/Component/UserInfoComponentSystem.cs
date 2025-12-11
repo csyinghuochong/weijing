@@ -65,6 +65,10 @@ namespace ET
         public static void OnJiaYuanExp(this UserInfoComponent self, float hour)
         {
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(self.UserInfo.JiaYuanLv);
+            if (jiaYuanConfig.NextID == 0)
+            {
+                return;
+            }
             //self.UserInfo.JiaYuanExp += jiaYuanConfig.JiaYuanAddExp;
             int addexp = Mathf.FloorToInt(hour * jiaYuanConfig.JiaYuanAddExp);
             self.UpdateRoleMoneyAdd(UserDataType.JiaYuanExp, $"{addexp}", true, ItemGetWay.JiaYuanExchange);
@@ -252,6 +256,10 @@ namespace ET
                 {
                     self.UserInfo.UnionKeJiList.Add(UnionKeJiConfigCategory.Instance.GetFristId( keji ) );
                 }
+            }
+            if (JiaYuanConfigCategory.Instance.Get(self.UserInfo.JiaYuanLv).NextID <= 0 && self.UserInfo.JiaYuanExp > 0)
+            {
+                Console.WriteLine($"清空家园经验: {self.Id}  {self.UserInfo.JiaYuanLv}  {self.UserInfo.JiaYuanExp}");
             }
 
             if (self.IsZhuBoLevel16())

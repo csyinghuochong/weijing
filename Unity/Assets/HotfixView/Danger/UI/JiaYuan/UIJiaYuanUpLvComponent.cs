@@ -204,6 +204,12 @@ namespace ET
             self.Text_ZiZhiValue.GetComponent<Text>().text = userInfoCom.UserInfo.JiaYuanExp + "/" + jiayuanCof.Exp;
             self.ImageExpValue.GetComponent<Image>().fillAmount = (float)userInfoCom.UserInfo.JiaYuanExp / (float)jiayuanCof.Exp;
 
+            if (jiayuanCof.NextID == 0)
+            {
+                self.Text_ZiZhiValue.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已达到最大等级");
+                self.ImageExpValue.GetComponent<Image>().fillAmount = 1f;
+            }
+
             self.Lab_GengDi.GetComponent<Text>().text = jiayuanCof.FarmNumMax.ToString();
             self.Lab_RenKou.GetComponent<Text>().text = jiayuanCof.PeopleNumMax.ToString();
 
