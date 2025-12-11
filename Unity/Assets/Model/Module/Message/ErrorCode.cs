@@ -295,6 +295,7 @@ namespace ET
         public const int ERR_PlantNotExist = 301807;
         public const int ERR_PeopleNoEnough = 301808;
         public const int ERR_LvNoHigh = 301809;
+        public const int ERR_JiaYuanLevelMax = 301810;
 
         //推广
         public const int ERR_PopularizeNot = 301901;
