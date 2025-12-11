@@ -169,7 +169,7 @@ namespace ET
 
             if (self.DomainZone() == 5)
             {
-                Console.WriteLine($"TeamSceneComponent.OnRecvUnitLeave:  {userId}");
+                //Console.WriteLine($"TeamSceneComponent.OnRecvUnitLeave:  {userId}");
             }
 
             TeamInfo teamInfo = self.GetTeamInfo(userId);

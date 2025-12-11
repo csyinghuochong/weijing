@@ -196,7 +196,8 @@
         public const int JinYanEndTime = 3196;
         public const int WeChatOABind = 3197;
         public const int V1TotalPoints = 3198;                               //活动周期累计积分
-        public const int V1PointsChouKaIndex = 3199;                             
+        public const int V1PointsChouKaIndex = 3199;
+        public const int DiamondWeeklyCard = 3200;                              //钻石周卡
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

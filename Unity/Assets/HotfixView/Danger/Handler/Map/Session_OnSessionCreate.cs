@@ -9,7 +9,7 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.SessionCreate args = cls as EventType.SessionCreate;
-            PlayerPrefsHelp.RecordRelinkMessage($"SessionCreate : {args.SessionId}   {args.RemoteAddress}£¡£¡");
+            PlayerPrefsHelp.RecordRelinkMessage($"SessionCreate : {args.SessionId}   {args.RemoteAddress}");
         }
     }
 
@@ -20,7 +20,7 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.SessionDispose args = cls as EventType.SessionDispose;
-            PlayerPrefsHelp.RecordRelinkMessage($"SessionDispose : {args.SessionId}   {args.RemoteAddress}£¡£¡");
+            PlayerPrefsHelp.RecordRelinkMessage($"SessionDispose : {args.SessionId}   {args.RemoteAddress}");
         }
     }
 
@@ -31,7 +31,7 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.LoginException args = cls as EventType.LoginException;
-            PlayerPrefsHelp.RecordRelinkMessage($"LoginException :    {args.Exception}£¡£¡");
+            PlayerPrefsHelp.RecordRelinkMessage($"LoginException :    {args.Exception}");
         }
     }
 }

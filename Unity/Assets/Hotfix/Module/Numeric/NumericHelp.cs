@@ -322,7 +322,17 @@ namespace ET
             else {
                 return (int)(value);
             }
+        }
 
+        /// <summary>
+        /// 钻石周卡状态 每天副本次数+1
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static bool IsDiamondWeeklyCard(this Unit self)
+        {
+            NumericComponent numericComponent = self.GetComponent<NumericComponent>();
+            return  numericComponent.GetAsLong(NumericType.DiamondWeeklyCard) - TimeHelper.ServerNow() > 0;
         }
 
         public static bool IsYueKaStates(this Unit self)
