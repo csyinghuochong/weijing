@@ -8,6 +8,72 @@ namespace ET
     public static class ConsoleHelper
     {
 
+        //unityversion 12
+        public static async ETTask ChaXunUnityVersionHandler(string content)
+        {
+            Console.WriteLine($"request.Context:  ChaXunUnityVersionHandler: {content}");
+            await ETTask.CompletedTask;
+            string[] chaxunInfo = content.Split(" ");
+            if (chaxunInfo.Length != 2)
+            {
+                Console.WriteLine($"C must have allonline zone");
+                Log.Warning($"C must have allonline zone");
+                return;
+            }
+
+#if SERVER
+            int zone = int.Parse(chaxunInfo[1]);
+            List<int> zonlist = new List<int> { };
+            if (zone == 0)
+            {
+                zonlist = ServerMessageHelper.GetAllZone();
+            }
+            else
+            {
+                zonlist.Add(zone);
+            }
+
+            Dictionary<int, Dictionary<string, int>> occtwoNumber = new Dictionary<int, Dictionary<string, int>>();
+
+            for (int i = 0; i < zonlist.Count; i++)
+            {
+                int pyzone = StartZoneConfigCategory.Instance.Get(zonlist[i]).PhysicZone;
+
+                occtwoNumber.Add( pyzone, new Dictionary<string, int>() );
+
+                List<DataCollationComponent> dataCollationComponents = await Game.Scene.GetComponent<DBComponent>().Query<DataCollationComponent>(pyzone, d => d.Id > 0);
+                for (int userinfo = 0; userinfo < dataCollationComponents.Count; userinfo++)
+                {
+                    DataCollationComponent dataCollation = dataCollationComponents[userinfo];
+                    if (string.IsNullOrEmpty(dataCollation.Name) 
+                        || string.IsNullOrEmpty(dataCollation.UnityVersion))
+                    {
+                        continue;
+                    }
+
+                    if (!occtwoNumber[pyzone].ContainsKey(dataCollation.UnityVersion))
+                    {
+                        occtwoNumber[pyzone].Add(dataCollation.UnityVersion, 0);
+                    }
+                    occtwoNumber[pyzone][dataCollation.UnityVersion]++;
+                }
+            }
+
+            string fenhaoTip = string.Empty;
+            foreach ((int pyzone, Dictionary<string, int> occnumber) in occtwoNumber)
+            {
+                fenhaoTip += $"{pyzone}区各版本玩家数量:\n";
+                //fenhaoTip += $"封角色:{pyzone}   {account}   {unitids[i]}";
+
+                foreach ((string unityversion, int number) in occnumber)
+                {
+                    fenhaoTip += $"UnityVersion： {unityversion}    人数： {number}\n";
+                }
+                fenhaoTip += $"\n";
+            }
+            LogHelper.UnityVersionoNumer(fenhaoTip);
+#endif
+        }
 
         //occtwo 12
         public static async ETTask ChaXunOccTwoHandler(string content)

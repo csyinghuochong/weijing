@@ -438,6 +438,14 @@ namespace ET
             WriteLogList(new List<string>() { log }, filePath, false);
         }
 
+        public static void UnityVersionoNumer(string log)
+        {
+            log = TimeHelper.DateTimeNow().ToString() + " " + log;
+            string filePath = "../Logs/WJ_UnityVersionNumer.txt";
+            WriteLogList(new List<string>() { log }, filePath, false);
+        }
+
+
         public static void SoloInfo(string soloInfo, int zone)
         { 
             

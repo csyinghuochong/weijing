@@ -142,6 +142,10 @@ namespace ET
             {
                 ConsoleHelper.ChaXunOccTwoHandler(request.Context).Coroutine();
             }
+            if (infoList[0] == "unityversion")
+            {
+                ConsoleHelper.ChaXunUnityVersionHandler(request.Context).Coroutine();
+            }
             if (infoList[0] == "savedb")
             {
                 //ArchiveHelper.ExecuteBatchFileOld().Coroutine();
