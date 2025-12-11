@@ -194,7 +194,6 @@ namespace ET
                     }
                     if (itemConfig.ItemSubType == 138)
                     {
-                        // int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
                         if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TeamDungeonTimes) <= 0)
                         {
                             response.Error = ErrorCode.ERR_TeamDungeonTimesMax;

@@ -174,6 +174,17 @@ namespace ET
 					unit.GetComponent<UserInfoComponent>().UserInfo.DayFubenTimes.Clear();
 					return;
 				}
+				if (message.GMMsg == "#zuanshizhouka")
+				{
+					if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.DiamondWeeklyCard) <= 0)
+					{
+                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DiamondWeeklyCard, TimeHelper.ServerNow() + TimeHelper.OneDay * 7);
+                    }
+					else
+					{
+						unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DiamondWeeklyCard, 0);
+                    }
+				}
                 if (message.GMMsg == "#resettower")
                 {
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SeasonTowerId, 0);

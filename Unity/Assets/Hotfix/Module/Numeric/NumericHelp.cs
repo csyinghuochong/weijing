@@ -324,6 +324,11 @@ namespace ET
             }
         }
 
+        public static int GetTotalDungeonTimes(this Unit self)
+        { 
+            return GlobalValueConfigCategory.Instance.Get(19).Value2 + (self.IsDiamondWeeklyCard() ? 1 : 0);  
+        }
+
         /// <summary>
         /// 钻石周卡状态 每天副本次数+1
         /// </summary>

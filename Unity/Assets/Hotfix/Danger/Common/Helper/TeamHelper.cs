@@ -22,7 +22,7 @@
                 || fubenType == TeamFubenType.ShenYuan
                 || (fubenType == TeamFubenType.XieZhu && !leader))
             {
-                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
+                int totalTimes = unit.GetTotalDungeonTimes();
                 int times = unit.GetTeamDungeonTimes();
                 if (totalTimes - times <= 0)
                 {
@@ -31,7 +31,7 @@
             }
             else
             {
-                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
+                int totalTimes = unit.GetTotalDungeonTimes();
                 int times = unit.GetTeamDungeonTimes();
 
                 int totalTimes_2 = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);

@@ -66,7 +66,7 @@
         public const int BattleCamp = 3062;                                     //战斗阵营
         public const int DailyTaskNumber = 3063;                                 //赏金任务完成数量                          
         public const int YueKaRemainTimes = 3066;                               //月卡剩余次数                    
-        public const int TeamDungeonTimes = 3067;
+        public const int TeamDungeonTimes = 3067;                               //已进入副本次数
         public const int Now_AI = 3068;
         public const int TrialDungeonId = 3069;                       
         public const int TeamId = 3072;

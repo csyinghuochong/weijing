@@ -292,7 +292,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (dungeonType == TeamFubenType.XieZhu && sceneConfig.EnterLv <= userInfo.Lv - 10)
             {
-                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
+                int totalTimes = unit.GetTotalDungeonTimes();
                 int times = unit.GetTeamDungeonTimes();
 
                 int totalTimes_2 = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);

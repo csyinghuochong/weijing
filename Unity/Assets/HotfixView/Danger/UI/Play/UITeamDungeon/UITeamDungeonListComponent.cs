@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -115,8 +116,9 @@ namespace ET
                 self.TeamUIList[i].GameObject.SetActive(false);
             }
 
-            int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
-            int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int totalTimes = unit.GetTotalDungeonTimes();
+            int times = unit.GetTeamDungeonTimes();
             self.Text_LeftTime.SetActive(true);
             self.Text_LeftTime.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("副本次数：{0}/{1}"), totalTimes - times, totalTimes);
 
