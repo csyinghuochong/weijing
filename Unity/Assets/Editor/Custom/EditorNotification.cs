@@ -23,8 +23,9 @@ namespace ET
             isFocused = UnityEditorInternal.InternalEditorUtility.isApplicationActive;
             OnEditorFocus(isFocused);
         }
+
         /// <summary>
-        /// Unity���ھ۽�״̬�ı�ص�
+        /// Unity
         /// </summary>
         /// <param name="focus"></param>
         private static void OnEditorFocus(bool focus)
@@ -38,12 +39,10 @@ namespace ET
             }
         }
 
-        /// <summary>
-        /// Asset���ļ��ı�ʱ�ص�
-        /// </summary>
+
         private void OnPreprocessAsset()
         {
-            //Debug.Log("Asset���ļ��ı�ʱ�ص�");
+            //Debug.Log("OnPreprocessAsset");
         }
     }
 }

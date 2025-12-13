@@ -632,7 +632,6 @@ public class MyEditorScript
 	//	UnityEngine.GameObject go = selectgo as UnityEngine.GameObject;
 	//	UI_FunctionOpen ttt = go.GetComponent<UI_FunctionOpen>();
 
-	//	//��ȡʵ������������ֶΣ�BindingFlags����ö�٣�
 	//	FieldInfo[] allFieldInfo = (ttt.GetType()).GetFields(BindingFlags.NonPublic | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Static);
 
 	//	string prefabPath = "";

@@ -965,14 +965,14 @@ namespace ET
             float DiHight = self.ItemDi.GetComponent<RectTransform>().sizeDelta.y;
             Debug.Log("DiHight = " + DiHight);
             float screen_higeValue = 768 * FunctionUI.GetInstance().ReturnScreenScalePro();
-            float UIHeadValue = screen_higeValue - self.GetParent<UI>().GameObject.transform.localPosition.y - DiHight / 2;            //UI�Ͷ����ľ���
+            float UIHeadValue = screen_higeValue - self.GetParent<UI>().GameObject.transform.localPosition.y - DiHight / 2;           
             float UIHightValue = UIHeadValue + DiHight + 50.0f;
 
             if (UIHightValue >= screen_higeValue)
             {
                 ////////////this.transform.localPosition = new Vector3(this.transform.localPosition.x, 50 + DiHight / 2, 0);
             }
-            //���UI�Ƿ񳬹��˶�����ʾ
+            
             if (UIHeadValue <= 30)
             {
                 ////////////this.transform.localPosition = new Vector3(this.transform.localPosition.x, screen_higeValue - DiHight / 2 - 50, 0);

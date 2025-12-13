@@ -678,12 +678,12 @@ namespace ET
         public static Action<int, string> AntiAddictionHandler;
 
         /// <summary>
-        /// �����
-        /// -1	δ֪
-        ///0	0 �� 7 ��
-        ///8	8 �� 15 ��
-        ///16	16 �� 17 ��
-        ///18	�������
+        ///
+        /// -1	
+        ///0	0-7 
+        ///8	8-15
+        ///16	16-17
+        ///18	
         /// </summary>
         /// <returns></returns>
         public static int GetAgeRange()

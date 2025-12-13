@@ -523,9 +523,9 @@ namespace ET
 
             RaycastHit hit;
             int mapMask = (1 << LayerMask.NameToLayer(LayerEnum.Map.ToString()));
-            Physics.Raycast(wordpos, Vector3.down, out hit, 1000, mapMask);
+            bool rasret =  Physics.Raycast(wordpos, Vector3.down, out hit, 1000, mapMask);
 
-            if (hit.collider != null)
+            if (rasret && hit.collider != null)
             {
                 //EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
                 //EventType.DataUpdate.Instance.DataParamString = "1";
