@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System.Collections.Generic;
+
+namespace ET
 {
 
 	[NumericWatcher((int)NumericType.Now_Damage)]
@@ -36,7 +38,10 @@
                 if (numericComponent.GetAsInt(NumericType.HorseFightID) == no1_horse
 					|| numericComponent.GetAsInt(NumericType.HorseRide) == no1_horse)
                 {
-                    numericComponent.ApplyValue(NumericType.HorseFightID, 0);
+					List<int> HorseIds = unit.GetComponent<UserInfoComponent>().UserInfo.HorseIds;
+					int neezuoqiid = HorseIds.Count > 0 ? HorseIds[0] : 0;
+
+                    numericComponent.ApplyValue(NumericType.HorseFightID, neezuoqiid);
                     numericComponent.ApplyValue(NumericType.HorseRide, 0);
                 }
             }
@@ -80,7 +85,9 @@
 				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 				if (numericComponent.GetAsInt(NumericType.HorseFightID) == no1_horse)
 				{
-					numericComponent.ApplyValue(NumericType.HorseFightID, 0);
+                    List<int> HorseIds = unit.GetComponent<UserInfoComponent>().UserInfo.HorseIds;
+                    int neezuoqiid = HorseIds.Count > 0 ? HorseIds[0] : 0;
+                    numericComponent.ApplyValue(NumericType.HorseFightID, neezuoqiid);
 					numericComponent.ApplyValue(NumericType.HorseRide, 0);
 				}
 			}
