@@ -618,7 +618,7 @@ namespace ET
             //    FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物矿场队伍中,不能分解！");
             //    return;
             //}
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("确定放生?"),
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("确定放生当前宠物么？\n放生宠物可以获得一定数量的宠物之核和宠物之尘哦！"),
                 () => { self.PetComponent.RequestFenJie(self.LastSelectItem.Id).Coroutine(); },
                 null).Coroutine();
         }
@@ -856,7 +856,7 @@ namespace ET
                 self.PetUIList[i].GameObject.SetActive(false);
             }
 
-            if (self.PetUIList.Count > 0)
+            if (showList.Count > 0)
             {
                 self.GameObject1.SetActive(true);
                 self.GameObject2.SetActive(false);
