@@ -51,7 +51,8 @@ namespace ET
 
         public static async ETTask OnReceiveBtn(this UIActivityV1WeeklyCardItemComponent self)
         {
-            
+            Log.ILog.Debug($"OnReceiveBtn:  {self.Type}  {self.Key}");
+
             C2M_ActivityRewardRequest request = new C2M_ActivityRewardRequest()
             {
                 ActivityType = self.Type ,
