@@ -105,13 +105,12 @@ namespace ET
                 Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
                 useBagInfo.isBinging = true;
                 m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
-
-                if (weizhi == (int)ItemSubTypeEnum.Wuqi)
-                {
-                    unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WandBuff_8, useBagInfo.ItemID);
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Weapon, useBagInfo.ItemID);
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.WearWeaponFisrt, 1, true, true);
-                }
+                //if (weizhi == (int)ItemSubTypeEnum.Wuqi)
+                //{
+                //    unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WandBuff_8, useBagInfo.ItemID);
+                //    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Weapon, useBagInfo.ItemID);
+                //    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.WearWeaponFisrt, 1, true, true);
+                //}
             }
 
             //卸下装备

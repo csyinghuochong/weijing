@@ -22,8 +22,9 @@ namespace ET
         public const int ActivityV1_LiBao = 10;          //每日礼包  ActivityConfig ActivityType = 102
         public const int ActivityV1_Feed = 11;          //喂食
         public const int ActivityV1_PointsChouKa = 12;      //积分抽卡
-
-     
+        public const int ActivityV1_GoldWeeklyCard = 13;
+        public const int ActivityV1_DiamondWeeklyCard = 14;
+      
         /// <summary>
         /// 抽奖奖励，每个区每天随机一个掉落ID
         /// </summary>
@@ -81,6 +82,37 @@ namespace ET
                 return costitem[costitem.Length - 1];
             }
             return costitem[index - 1]; 
+        }
+
+        public static string ConvertToChineseDay(int day)
+        {
+            string[] chineseNumbers = { "一", "二", "三", "四", "五", "六", "七", "八", "九", "十" };
+
+            if (day >= 1 && day <= 10)
+            {
+                return $"第{chineseNumbers[day - 1]}天";
+            }
+            else if (day > 10)
+            {
+                // 处理大于10的情况（如十一、十二等）
+                return $"第{ConvertToChinese(day)}天";
+            }
+
+            return $"第{day}天";
+        }
+
+        // 简单的数字转中文方法（处理1-99）
+        private static string ConvertToChinese(int number)
+        {
+            if (number == 10) return "十";
+            if (number < 10) return new string[] { "一", "二", "三", "四", "五", "六", "七", "八", "九" }[number - 1];
+            if (number < 20) return "十" + ConvertToChinese(number % 10);
+
+            int tens = number / 10;
+            int ones = number % 10;
+            string result = new string[] { "", "十", "二十", "三十", "四十", "五十", "六十", "七十", "八十", "九十" }[tens];
+            if (ones > 0) result += ConvertToChinese(ones);
+            return result;
         }
 
         /// <summary>

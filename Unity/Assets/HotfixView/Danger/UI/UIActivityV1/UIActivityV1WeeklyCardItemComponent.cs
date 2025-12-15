@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,10 @@ namespace ET
     public class UIActivityV1WeeklyCardItemComponent : Entity, IAwake<GameObject>
     {
 
+        public Text TextDayIndex;
+        public GameObject ItemRewardList;
+        public GameObject ButtonReceive;
+        public GameObject CompleteStatu;
         public GameObject GameObject;
         public int Type;
         public int Key;
@@ -18,8 +23,13 @@ namespace ET
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
-         
-            //self.ReceiveBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnReceiveBtn().Coroutine(); });
+            Transform transform = gameObject.transform;
+            self.ItemRewardList = transform.Find("ItemRewardList").gameObject;
+            self.ButtonReceive = transform.Find("ButtonReceive").gameObject; 
+            self.CompleteStatu = transform.Find("CompleteStatu").gameObject; 
+            self.TextDayIndex = transform.Find("TextDayIndex").gameObject.GetComponent<Text>();
+
+            self.ButtonReceive.GetComponent<Button>().onClick.AddListener(() => { self.OnReceiveBtn().Coroutine(); });
         }
     }
 
@@ -27,9 +37,16 @@ namespace ET
     {
         public static void OnUpdateData(this UIActivityV1WeeklyCardItemComponent self, int type, int key)
         {
-            self.Type = type;
+            self.Type = type ;
             self.Key = key;
-           
+
+            self.TextDayIndex.text = ActivityConfigHelper.ConvertToChineseDay(key + 1);
+
+            List<string> rewardlist = ActivityConfigHelper.ActivityV1WeeklyCardReward[type - ActivityConfigHelper.ActivityV1_GoldWeeklyCard + 1];
+            string rewarditem = rewardlist[key];
+
+            UICommonHelper.DestoryChild( self.ItemRewardList );
+            UICommonHelper.ShowItemList(rewarditem, self.ItemRewardList, self);
         }
 
         public static async ETTask OnReceiveBtn(this UIActivityV1WeeklyCardItemComponent self)
@@ -37,7 +54,7 @@ namespace ET
             
             C2M_ActivityRewardRequest request = new C2M_ActivityRewardRequest()
             {
-                ActivityType = ActivityConfigHelper.ActivityV1_Consume,
+                ActivityType = self.Type ,
                 RewardId = self.Key
             };
             M2C_ActivityRewardResponse response =

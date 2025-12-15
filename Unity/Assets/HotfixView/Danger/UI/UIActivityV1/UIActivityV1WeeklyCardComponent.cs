@@ -26,6 +26,7 @@ namespace ET
             self.WeeklyCardItemList.Clear();
 
             self.UIActivityV1WeeklyCardItem = rc.Get<GameObject>("UIActivityV1WeeklyCardItem");
+            self.UIActivityV1WeeklyCardItem.SetActive(false);
             self.TaskListNode = rc.Get<GameObject>("TaskListNode");
 
             UI uiPage = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
@@ -46,8 +47,8 @@ namespace ET
 
         public static void UpdateInfo(this UIActivityV1WeeklyCardComponent self)
         {
-            int dtype = self.uIPageViewComponent.CurrentIndex + 1;
-            List<string> rewardlist = ActivityConfigHelper.ActivityV1WeeklyCardReward[dtype];
+            int dtype = self.uIPageViewComponent.CurrentIndex ;
+            List<string> rewardlist = ActivityConfigHelper.ActivityV1WeeklyCardReward[dtype + 1];
 
             for (int i = 0; i < rewardlist.Count; i++)
             {
@@ -67,7 +68,7 @@ namespace ET
                     self.WeeklyCardItemList.Add(component);
                 }
 
-                component.OnUpdateData(dtype, i);
+                component.OnUpdateData(dtype + ActivityConfigHelper.ActivityV1_GoldWeeklyCard, i);
             }
 
             for (int i = 0; i < self.WeeklyCardItemList.Count; i++)
