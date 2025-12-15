@@ -12,6 +12,8 @@ namespace ET
         public GameObject TaskListNode;
         public GameObject BtnItemTypeSet;
         public UIPageButtonComponent uIPageViewComponent;
+
+        public List<UIActivityV1WeeklyCardItemComponent> WeeklyCardItemList = new List<UIActivityV1WeeklyCardItemComponent>();    
     }
 
     public class UIActivityV1WeeklyCardComponentAwake : AwakeSystem<UIActivityV1WeeklyCardComponent>
@@ -21,6 +23,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+            self.WeeklyCardItemList.Clear();
 
             self.UIActivityV1WeeklyCardItem = rc.Get<GameObject>("UIActivityV1WeeklyCardItem");
             self.TaskListNode = rc.Get<GameObject>("TaskListNode");
@@ -43,13 +46,34 @@ namespace ET
 
         public static void UpdateInfo(this UIActivityV1WeeklyCardComponent self)
         {
-            List<string> rewardlist = ActivityConfigHelper.ActivityV1WeeklyCardReward[ self.uIPageViewComponent.CurrentIndex + 1];
-            foreach (string rewarditem in rewardlist)
+            int dtype = self.uIPageViewComponent.CurrentIndex + 1;
+            List<string> rewardlist = ActivityConfigHelper.ActivityV1WeeklyCardReward[dtype];
+
+            for (int i = 0; i < rewardlist.Count; i++)
             {
-                GameObject go = UnityEngine.Object.Instantiate(self.UIActivityV1WeeklyCardItem);
-               
-                UICommonHelper.SetParent(go, self.TaskListNode);
-                go.SetActive(true);
+                string rewarditem = rewardlist[i];
+                UIActivityV1WeeklyCardItemComponent component = null;
+
+                if (i < self.WeeklyCardItemList.Count)
+                {
+                    component = self.WeeklyCardItemList[i];
+                }
+                else
+                {
+                    GameObject go = UnityEngine.Object.Instantiate(self.UIActivityV1WeeklyCardItem);
+                    component = self.AddChild<UIActivityV1WeeklyCardItemComponent, GameObject>(go);
+                    UICommonHelper.SetParent(go, self.TaskListNode);
+                    go.SetActive(true);
+                    self.WeeklyCardItemList.Add(component);
+                }
+
+                component.OnUpdateData(dtype, i);
+            }
+
+            for (int i = 0; i < self.WeeklyCardItemList.Count; i++)
+            {
+                
+
             }
         }
     }
