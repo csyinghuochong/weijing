@@ -15853,6 +15853,12 @@ namespace ET
 		[ProtoMember(12)]
 		public List<int> PointsReward = new List<int>();
 
+		[ProtoMember(13)]
+		public List<int> GoldWeeklyCardRewards = new List<int>();
+
+		[ProtoMember(14)]
+		public List<int> DiamondWeeklyCardRewards = new List<int>();
+
 	}
 
 //v1活动.抽奖

@@ -44,6 +44,10 @@ namespace ET
             self.UpdateInfo();
         }
 
+        public static void ShowLeftTimes(this UIActivityV1WeeklyCardComponent self)
+        { 
+            
+        }
 
         public static void UpdateInfo(this UIActivityV1WeeklyCardComponent self)
         {

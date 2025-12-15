@@ -9,8 +9,9 @@ namespace ET
 
         public Text TextDayIndex;
         public GameObject ItemRewardList;
-        public GameObject ButtonReceive;
-        public GameObject CompleteStatu;
+        public GameObject ButtonReceive;     //可领取状态
+        public GameObject CompleteStatu;     //已领取状态
+        public GameObject NoActivatedStatu;  //未激活状态
         public GameObject GameObject;
         public int Type;
         public int Key;
@@ -28,6 +29,7 @@ namespace ET
             self.ButtonReceive = transform.Find("ButtonReceive").gameObject; 
             self.CompleteStatu = transform.Find("CompleteStatu").gameObject; 
             self.TextDayIndex = transform.Find("TextDayIndex").gameObject.GetComponent<Text>();
+            self.NoActivatedStatu = transform.Find("NoActivatedStatu").gameObject;
 
             self.ButtonReceive.GetComponent<Button>().onClick.AddListener(() => { self.OnReceiveBtn().Coroutine(); });
         }
@@ -42,17 +44,54 @@ namespace ET
 
             self.TextDayIndex.text = ActivityConfigHelper.ConvertToChineseDay(key + 1);
 
-            List<string> rewardlist = ActivityConfigHelper.ActivityV1WeeklyCardReward[type - ActivityConfigHelper.ActivityV1_GoldWeeklyCard + 1];
-            string rewarditem = rewardlist[key];
+            List<string> rewardlists = ActivityConfigHelper.ActivityV1WeeklyCardReward[type - ActivityConfigHelper.ActivityV1_GoldWeeklyCard + 1];
+            string rewarditem = rewardlists[key];
 
             UICommonHelper.DestoryChild( self.ItemRewardList );
             UICommonHelper.ShowItemList(rewarditem, self.ItemRewardList, self);
+
+            self.ButtonReceive.SetActive(false);//可领取状态
+            self.CompleteStatu.SetActive(false);//已领取状态
+            self.NoActivatedStatu.SetActive(false);//未激活状态
+
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
+            long weeklycardtime = 0;
+            int status = 3;
+            if (self.Type == ActivityConfigHelper.ActivityV1_GoldWeeklyCard)
+            {
+                weeklycardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.GoldWeeklyCard);
+                if (activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Contains(self.Key))
+                {
+                    status = 2;
+                }
+            }
+            if(self.Type == ActivityConfigHelper.ActivityV1_DiamondWeeklyCard)
+            {
+                weeklycardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.DiamondWeeklyCard);
+                if (activityComponent.ActivityV1Info.DiamondWeeklyCardRewards.Contains(self.Key))
+                {
+                    status = 2;
+                }
+            }
+
+            long servertimer = TimeHelper.ServerNow();
+            int diffday = ComHelp.GetDaysDiffByDate(servertimer, weeklycardtime - TimeHelper.OneDay * 7);
+            if (status!=2 && (diffday < rewardlists.Count) && (diffday >= self.Key ))
+            {
+                status = 1;
+            }
+            self.ButtonReceive.SetActive(status == 1);
+            self.CompleteStatu.SetActive(status == 2);
+            self.NoActivatedStatu.SetActive(status == 3);
         }
 
         public static async ETTask OnReceiveBtn(this UIActivityV1WeeklyCardItemComponent self)
         {
             Log.ILog.Debug($"OnReceiveBtn:  {self.Type}  {self.Key}");
 
+            Scene zonescene = self.ZoneScene();
+            ActivityComponent activityComponent = zonescene.GetComponent<ActivityComponent>();
             C2M_ActivityRewardRequest request = new C2M_ActivityRewardRequest()
             {
                 ActivityType = self.Type ,
@@ -60,14 +99,18 @@ namespace ET
             };
             M2C_ActivityRewardResponse response =
                     (M2C_ActivityRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ConsumeDiamondReward.Add(self.Key);
-
-            if (response.Error != ErrorCode.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success || response == null)
             {
                 return;
             }
-
-          
+            activityComponent.ActivityV1Info = response.ActivityV1Info;
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            self.ButtonReceive.SetActive(false);
+            self.CompleteStatu.SetActive(true);
+            self.NoActivatedStatu.SetActive(false);
         }
     }
 }

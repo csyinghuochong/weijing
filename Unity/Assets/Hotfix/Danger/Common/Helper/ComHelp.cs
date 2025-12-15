@@ -171,11 +171,30 @@ namespace ET
             return createNumber;
         }
 
-
+        /// <summary>
+        /// 只能用来判断是否同一天 不能相减
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
         public static int GetDayByTime(long time)
         {
             DateTime dateTime = TimeInfo.Instance.ToDateTime(time);
             return dateTime.Year * 10000 + dateTime.Month * 100 + dateTime.Day;
+        }
+
+        // 将时间戳转换为 DateTime 并获取具体日期
+        public static int GetDaysDiffByDate(long time1, long time2)
+        {
+            DateTime dt1 = TimeInfo.Instance.ToDateTime(time1);
+            DateTime dt2 = TimeInfo.Instance.ToDateTime(time2);
+
+            // 使用 Date 属性获取日期部分（年-月-日）
+            DateTime date1 = dt1.Date;
+            DateTime date2 = dt2.Date;
+
+            // 计算日期差（取绝对值）
+            TimeSpan diff = date1 > date2 ? date1 - date2 : date2 - date1;
+            return diff.Days;
         }
 
         //字符串转换整形List

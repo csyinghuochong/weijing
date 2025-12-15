@@ -1309,8 +1309,7 @@ namespace ET
 
             long time1 = long.Parse(registerTime);
             long time2 = TimeHelper.ServerNow();
-
-            if (ComHelp.GetDayByTime(time2) - ComHelp.GetDayByTime(time1) == 1)
+            if (ComHelp.GetDaysDiffByDate(time1 , time2) == 1)
             {
                 PlayerPrefsHelp.SetInt(PlayerPrefsHelp.TapRepCiLiu, 1);
                 TapSDKHelper.TapReqEvent(accountInfoComponent.TaprepRequest, 4, string.Empty).Coroutine();

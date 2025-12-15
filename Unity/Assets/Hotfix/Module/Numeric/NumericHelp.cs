@@ -337,14 +337,8 @@ namespace ET
         public static bool IsDiamondWeeklyCard(this Unit self)
         {
             NumericComponent numericComponent = self.GetComponent<NumericComponent>();
-            long cardtime = numericComponent.GetAsLong(NumericType.DiamondWeeklyCard);
-            if (cardtime <= 0)
-            {
-                return false;
-            }
-
             long serverNow = TimeHelper.ServerNow();
-            if (ComHelp.GetDayByTime(cardtime) - ComHelp.GetDayByTime(serverNow) <= 6)
+            if (ComHelp.GetDaysDiffByDate(serverNow, numericComponent.GetAsLong(NumericType.DiamondWeeklyCard)) <= 6)
             {
                 return true;
             }

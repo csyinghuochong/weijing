@@ -205,6 +205,92 @@ namespace ET
                         activityComponent.ActivityV1Info.ChouKa2ItemList = ActivityConfigHelper.GetChouKa2RewardList();
                     }
                     break;
+                case ActivityConfigHelper.ActivityV1_GoldWeeklyCard:
+                    long weeklycardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.GoldWeeklyCard);
+                    if (weeklycardtime <= 0)
+                    {
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+
+                    List<string> rewardlists = ActivityConfigHelper.ActivityV1WeeklyCardReward[1];
+                    if (request.RewardId >= rewardlists.Count)
+                    {
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+                    if (activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Contains(request.RewardId))
+                    {
+                        response.Error = ErrorCode.ERR_AlreadyReceived;
+                        reply();
+                        return;
+                    }
+                    long servertimer = TimeHelper.ServerNow();
+                    int diffday = ComHelp.GetDaysDiffByDate(servertimer, weeklycardtime - TimeHelper.OneDay * 7);
+
+                    //已经过了周卡时间
+                    if (diffday >= rewardlists.Count)
+                    {
+                        response.Error = ErrorCode.ERR_AlreadyReceived;
+                        reply();
+                        return;
+                    }
+                    //提前领取？
+                    if (diffday <= request.RewardId )
+                    {
+                        response.Error = ErrorCode.ERR_AlreadyReceived;
+                        reply();
+                        return;
+                    }
+
+                    bagComponent.OnAddItemData(rewardlists[request.RewardId], $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+                    activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Add(request.RewardId);
+                    break;
+                case ActivityConfigHelper.ActivityV1_DiamondWeeklyCard:
+                    weeklycardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.DiamondWeeklyCard);
+                    if (weeklycardtime <= 0)
+                    {
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+
+                    rewardlists = ActivityConfigHelper.ActivityV1WeeklyCardReward[2];
+                    if (request.RewardId >= rewardlists.Count)
+                    {
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+                    if (activityComponent.ActivityV1Info.DiamondWeeklyCardRewards.Contains(request.RewardId))
+                    {
+                        response.Error = ErrorCode.ERR_AlreadyReceived;
+                        reply();
+                        return;
+                    }
+                    servertimer = TimeHelper.ServerNow();
+                    diffday = ComHelp.GetDaysDiffByDate(servertimer, weeklycardtime - TimeHelper.OneDay * 7);
+
+                    //已经过了周卡时间
+                    if (diffday >= rewardlists.Count)
+                    {
+                        response.Error = ErrorCode.ERR_AlreadyReceived;
+                        reply();
+                        return;
+                    }
+                    //提前领取？
+                    if (diffday < request.RewardId)
+                    {
+                        response.Error = ErrorCode.ERR_AlreadyReceived;
+                        reply();
+                        return;
+                    }
+
+                    bagComponent.OnAddItemData(rewardlists[request.RewardId], $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+                    activityComponent.ActivityV1Info.DiamondWeeklyCardRewards.Add(request.RewardId);
+                    break;
                 case ActivityConfigHelper.ActivityV1_LiBao:
                     if (bagComponent.GetBagLeftCell() < 6)
                     {

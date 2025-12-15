@@ -7586,6 +7586,8 @@ message ActivityV1Info
 	repeated int32 ChouKa2RewardIds = 10;	//抽卡2已抽取奖励   达到一半可以刷新奖励
 	repeated int32 OpenGuessIds = 11;       //竞猜开奖字
 	repeated int32 PointsReward = 12;	//积分奖励
+	repeated int32 GoldWeeklyCardRewards = 13;  //黄金周卡
+	repeated int32 DiamondWeeklyCardRewards = 14;//钻石周卡
 }
 
 //v1活动.抽奖
