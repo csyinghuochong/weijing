@@ -260,14 +260,15 @@ namespace ET
         /// </summary>
         public static Dictionary<int, KeyValuePair> LiBaoList = new Dictionary<int, KeyValuePair>()
         {
-            { 1,  new KeyValuePair(){ Value = "3;900", Value2 = "10030013;1@10030013;1" } }, //Value消耗钻石Value2道具
-            { 2,  new KeyValuePair(){ Value = "3;900", Value2 = "10030013;1@10030013;1" }},
-            { 3,  new KeyValuePair(){ Value = "3;900", Value2 = "10030013;1@10030013;1" }},
+            { 1,  new KeyValuePair(){ Value = "37;498", Value2 = "10010060;1@10000180;100@10000183;2@10000184;300" }}, //Value消耗钻石Value2道具
+            { 2,  new KeyValuePair(){ Value = "37;498", Value2 = "10010053;1@10010037;50@10010052;2@10000184;300" }},
+            { 3,  new KeyValuePair(){ Value = "37;498", Value2 = "10000107;1@10045108;1@10000108;2@10000184;300" }},
+            { 4,  new KeyValuePair(){ Value = "37;498", Value2 = "10010093;3@10000166;20@10000131;100@10000184;300" }},
         };
 
         public static List<int> GetLiBaoList()
         {
-            return new List<int> { 1, 2, 3 };
+            return new List<int> { 1, 2, 3, 4 };
         }
 
 
