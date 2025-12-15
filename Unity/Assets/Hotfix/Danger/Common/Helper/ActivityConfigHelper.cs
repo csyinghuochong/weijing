@@ -173,16 +173,16 @@ namespace ET
         /// <summary>
         /// 抽卡消耗道具(幸运卷轴)
         /// </summary>
-        public static int Chou2CostItem = 10030013;
+        public static int Chou2CostItem = 10000184;
 
         /// <summary>
         /// 每档随机取几个。抽满一半可以刷新
         /// </summary>
         public static Dictionary<int, List<string>> ChouKa2ItemList = new Dictionary<int, List<string>>()
         {
-            {  1, new List<string>(){ "10030013;1", "10030013;1",  "10030013;1",  "10030013;1",  "10030013;1"} },
-            {  2, new List<string>(){ "10030013;1", "10030013;1", "10030013;1", "10030013;1", "10030013;1" } },
-            {  3, new List<string>(){ "10030013;1", "10030013;1", "10030013;1", "10030013;1", "10030013;1"  } },
+            {  1, new List<string>(){ "10010083;1", "10010083;3", "10000132;2", "10000132;5", "10000131;1", "10000131;3", "10010039;1", "10010041;2" , "10010042;2", "10010098;2", "10010098;2", "10010085;10", "10010091;1", "10010034;1", "10000184;30" } },
+            {  2, new List<string>(){ "10000166;1", "10010028;1", "10010033;1", "10010043;2", "10010037;2", "10010083;5", "10000142;1", "10010092;1" , "10010085;20", "10000184;60" } },
+            {  3, new List<string>(){ "10000150;1", "10000141;1", "10010040;1", "10010086;1", "10010046;1", "10010045;1", "10000143;1", "10010093;1" } },
         };
 
         public static List<string> GetRewardListByType(int id, int number)
@@ -203,7 +203,7 @@ namespace ET
             List<string> allrewardList = new List<string>();
 
             ////每一档取不同的数量
-            allrewardList.AddRange(GetRewardListByType(1, 2) );
+            allrewardList.AddRange(GetRewardListByType(1, 6) );
             allrewardList.AddRange(GetRewardListByType(2, 4));
             allrewardList.AddRange(GetRewardListByType(3, 2));
 
