@@ -129,7 +129,14 @@ namespace ET
                 self.Transform.localPosition = self.HeadBar.transform.localPosition +  new Vector3(0, 80f +  self.DamgeFlyTimeSum * 10f, 0);
             }
 
-            return self.DamgeFlyTimeSum >= 0.5f || !self.HeadBar.activeSelf;
+            if (self.HeadBar != null)
+            {
+                return self.DamgeFlyTimeSum >= 0.5f || !self.HeadBar.activeSelf;
+            }
+            else
+            {
+                return self.DamgeFlyTimeSum >= 0.5f;
+            }
         }
     }
 }

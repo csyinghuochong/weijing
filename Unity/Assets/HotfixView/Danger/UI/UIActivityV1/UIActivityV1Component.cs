@@ -14,6 +14,7 @@ namespace ET
         ActivityV1ChouKa2 = 5,
         ActivityV1LiBao = 6,
         ActivityV1Feed = 7,
+        ActivityV1WeeklyCard = 8,
         Number,
     }
 
@@ -55,7 +56,9 @@ namespace ET
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1LiBao");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1Feed] =
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Feed");
-
+            pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1WeeklyCard] =
+                    ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1WeeklyCard");
+            
 
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1ChouKa] = typeof (UIActivityV1ChouKaComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Guess] = typeof (UIActivityV1GuessComponent);
@@ -65,6 +68,7 @@ namespace ET
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1ChouKa2] = typeof (UIActivityV1ChouKa2Component);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1LiBao] = typeof (UIActivityV1LiBaoComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Feed] = typeof (UIActivityV1FeedComponent);
+            pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1WeeklyCard] = typeof(UIActivityV1WeeklyCardComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
@@ -75,12 +79,6 @@ namespace ET
 
             UIPageButtonComponent uIPageButtonComponent = ui.AddComponent<UIPageButtonComponent>();
             uIPageButtonComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
-
-            for (int i = 1; i <= (int)ActivityV1PageEnum.Number; i++)
-            {
-                GameObject go = rc.Get<GameObject>($"Btn_{i}");
-                go.SetActive(true);
-            }
 
             uIPageButtonComponent.OnSelectIndex(0);
             self.UIPageButton = uIPageButtonComponent;
