@@ -28,21 +28,23 @@ namespace ET
         /// <summary>
         /// 抽奖奖励，每个区每天随机一个掉落ID
         /// </summary>
-        public static List<int> ChouKaDropId = new List<int> { 601901001 };
+        public static List<int> ChouKaDropId = new List<int> { 61400301 };
 
         /// <summary>
         /// 抽奖消耗道具
         /// </summary>
-        public static string ChouKaCostItem = "1;100";
+        public static string ChouKaCostItem = "37;30";
 
         /// <summary>
         /// 抽奖次数奖励
         /// </summary>
         public static Dictionary<int, string> ChouKaNumberReward = new Dictionary<int, string>()
         {
-            {  1,   "1;1" },
-            {  3,   "1;3" },
-            {  10,  "1;10" },
+            {  5,   "10000184;200@1;200000@10010086;1" },
+            {  10,   "10000184;200@1;200000@10010093;1" },
+            {  20,  "10000184;400@1;500000@10010040;1" },
+            {  30,  "10000184;400@1;500000@10000141;1" },
+            {  50,  "10000184;800@1;1000000@10010026;1" },
         };
         
         ///可供竞猜的数量。（数量6对应对个字）
