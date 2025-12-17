@@ -76,12 +76,12 @@ namespace ET
             }
 
             long servertime = TimeHelper.ServerNow();
-            int diffday = ComHelp.GetDaysDiffByDate(servertime, weeklycardtime - TimeHelper.OneDay * 7);
+            int diffday = ComHelp.GetDaysDiffByDate(servertime, weeklycardtime );
             if (status!=2 && (diffday < rewardlists.Count) && (diffday >= self.Key ))
             {
                 status = 1;
             }
-            if(weeklycardtime <= servertime)
+            if(diffday >= 7)
             {
                 status = 3;
             }

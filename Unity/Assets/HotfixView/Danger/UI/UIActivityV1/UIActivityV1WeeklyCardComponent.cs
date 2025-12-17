@@ -75,12 +75,14 @@ namespace ET
         public static void OnButtonAliPay(this UIActivityV1WeeklyCardComponent self)
         {
             self.PayType = PayTypeEnum.AliPay;
+            self.RechargeSelectUI.SetActive(false);
             self.RequestRecharge().Coroutine();
         }
 
         public static void OnButtonWeiXix(this UIActivityV1WeeklyCardComponent self)
         {
             self.PayType = PayTypeEnum.WeiXinPay;
+            self.RechargeSelectUI.SetActive(false);
             self.RequestRecharge().Coroutine();
         }
 
@@ -172,30 +174,23 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int dtype = self.uIPageViewComponent.CurrentIndex;
-            long weekendtime = 0;
+            long weeklycardtime = 0;
             int lefttimes = 0;
             int recvtimes = 0;
             if (dtype == 0)
             {
-                weekendtime = numericComponent.GetAsLong(NumericType.GoldWeeklyCard);
+                weeklycardtime = numericComponent.GetAsLong(NumericType.GoldWeeklyCard);
                 recvtimes = activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Count;
             }
             else
             {
-                weekendtime = numericComponent.GetAsLong(NumericType.DiamondWeeklyCard);
+                weeklycardtime = numericComponent.GetAsLong(NumericType.DiamondWeeklyCard);
                 recvtimes = activityComponent.ActivityV1Info.DiamondWeeklyCardRewards.Count;
             }
 
             long servertime = TimeHelper.ServerNow();
-            if (weekendtime <= servertime)
-            {
-                lefttimes = 0;
-            }
-            else
-            {
-                lefttimes = ComHelp.GetDaysDiffByDate(servertime, weekendtime);// - recvtimes;
-            }
-            if (lefttimes > 0)
+            lefttimes = ComHelp.GetDaysDiffByDate(servertime, weeklycardtime);
+            if (lefttimes < 7)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("周卡还未到期！"));
                 return;
@@ -291,30 +286,34 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int dtype = self.uIPageViewComponent.CurrentIndex;
-            long weekendtime = 0;
+            long weekstarttime = 0;
             int lefttimes = 0;
             int recvtimes = 0;
             if (dtype == 0)
             {
-                weekendtime = numericComponent.GetAsLong( NumericType.GoldWeeklyCard );
+                weekstarttime = numericComponent.GetAsLong( NumericType.GoldWeeklyCard );
                 recvtimes = activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Count;
             }
             else
             {
-                weekendtime = numericComponent.GetAsLong(NumericType.DiamondWeeklyCard);
+                weekstarttime = numericComponent.GetAsLong(NumericType.DiamondWeeklyCard);
                 recvtimes = activityComponent.ActivityV1Info.DiamondWeeklyCardRewards.Count;
             }
 
             long servertime = TimeHelper.ServerNow();
-            if (weekendtime <= servertime)
+            if (weekstarttime <= 0)
             {
                 lefttimes = 0;
             }
             else
             {
-                lefttimes = ComHelp.GetDaysDiffByDate(servertime, weekendtime ) - recvtimes;
+                int passday = ComHelp.GetDaysDiffByDate(servertime, weekstarttime);
+                if (passday < 7)
+                {
+                    lefttimes = passday + 1 - recvtimes;
+                }
             }
-
+   
             self.Text_Number.GetComponent<Text>().text = $"{lefttimes}/{7}";
         }
 

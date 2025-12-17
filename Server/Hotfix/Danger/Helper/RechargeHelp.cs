@@ -38,11 +38,13 @@ namespace ET
             {
                 if (rechargeNumber == 30)
                 {
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.GoldWeeklyCard, TimeHelper.ServerNow() + TimeHelper.OneDay * 7);
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.GoldWeeklyCard, TimeHelper.ServerNow());
+                    unit.GetComponent<ActivityComponent>().ActivityV1Info.GoldWeeklyCardRewards.Clear();
                 }
                 else if (rechargeNumber == 98)
                 {
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DiamondWeeklyCard, TimeHelper.ServerNow() + TimeHelper.OneDay * 7);
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DiamondWeeklyCard, TimeHelper.ServerNow());
+                    unit.GetComponent<ActivityComponent>().ActivityV1Info.DiamondWeeklyCardRewards.Clear();
                 }
                 else
                 {

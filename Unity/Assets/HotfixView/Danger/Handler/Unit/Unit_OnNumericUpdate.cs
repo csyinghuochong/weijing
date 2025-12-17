@@ -30,6 +30,15 @@ namespace ET
                     break;
                 case NumericType.GoldWeeklyCard:
                 case NumericType.DiamondWeeklyCard:
+                    ActivityComponent activityComponent = args.Unit.ZoneScene().GetComponent<ActivityComponent>();
+                    if (args.NumericType == NumericType.GoldWeeklyCard)
+                    {
+                        activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Clear();
+                    }
+                    if (args.NumericType == NumericType.DiamondWeeklyCard)
+                    {
+                        activityComponent.ActivityV1Info.DiamondWeeklyCardRewards.Clear();
+                    }
                     long newweektime = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.GoldWeeklyCard);
                     Log.ILog.Debug($"GoldWeeklyCard:  {args.OldValue}  {newweektime}");
                     UI uiactivity = UIHelper.GetUI( args.Unit.ZoneScene(), UIType.UIActivityV1 );
