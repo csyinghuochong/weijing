@@ -175,7 +175,7 @@ namespace ET
         /// <summary>
         /// 抽卡消耗道具
         /// </summary>
-        public static string Chou2CostItem = "10000184;1";
+        public static string Chou2CostItem = "10000184;30";
 
         /// <summary>
         /// 每档随机取几个。抽满一半可以刷新
