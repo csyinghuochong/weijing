@@ -21,12 +21,12 @@ namespace ET
 			long roleId = accountInfoComponent.CurrentRoleId;
 			args.ZoneScene.GetComponent<FangChenMiComponent>().OnLogin().Coroutine();
 			GameObject.Find("Global").GetComponent<Init>().OpenBuglyAgent($"{accountInfoComponent.ServerId}_{roleId}");
-
+			int rechargeType = 0;
 #if UNITY_IPHONE
 			GlobalHelp.InitIOSPurchase();
 
 			string info = PlayerPrefsHelp.GetString("IOS_" + roleId.ToString());
-			int rechargeType = PlayerPrefsHelp.GetInt("IOSRecgargeType_" + accountInfoComponent.CurrentRoleId.ToString());
+			rechargeType = PlayerPrefsHelp.GetInt("IOSRecgargeType_" + accountInfoComponent.CurrentRoleId.ToString());
 			if (!string.IsNullOrEmpty(info))
 			{
 				NetHelper.SendIOSPayVerifyRequest(zoneScene, info, rechargeType).Coroutine();
@@ -42,7 +42,7 @@ namespace ET
 				GlobalHelp.InitGooglePurchase();
 
 				string googleInfo = PlayerPrefsHelp.GetString("Google_" + roleId.ToString());
-				int rechargeType = PlayerPrefsHelp.GetInt("GoogleRecharge_" + roleId.ToString());
+				rechargeType = PlayerPrefsHelp.GetInt("GoogleRecharge_" + roleId.ToString());
                 if (!string.IsNullOrEmpty(googleInfo))
 				{
 					NetHelper.SendGooglePayVerifyRequest(zoneScene, googleInfo, rechargeType).Coroutine();

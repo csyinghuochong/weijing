@@ -209,7 +209,7 @@ namespace ET
             C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { 
             RechargeNumber = chargetNumber,
             PayType = PayTypeEnum.IOSPay,
-            RechargeType =  RechargeType = self.ZoneScene().GetComponent<AccountInfoComponent>().RechargeType
+            RechargeType = self.ZoneScene().GetComponent<AccountInfoComponent>().RechargeType
             };
             self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest).Coroutine();
 #else
