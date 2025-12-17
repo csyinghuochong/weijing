@@ -5,6 +5,7 @@ namespace ET
 {
     public class UIActivityV1LiBaoItemComponent: Entity, IAwake<GameObject>
     {
+        public GameObject TextName;
         public GameObject GameObject;
         public GameObject ConsumeNumText;
         public GameObject RewardListNode;
@@ -25,6 +26,7 @@ namespace ET
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
             self.ReceiveBtn = rc.Get<GameObject>("ReceiveBtn");
             self.ReceivedImg = rc.Get<GameObject>("ReceivedImg");
+            self.TextName = rc.Get<GameObject>("TextName");
 
             self.ReceivedImg.SetActive(false);
             self.ReceiveBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnReceiveBtn().Coroutine(); });
@@ -36,10 +38,11 @@ namespace ET
         public static void OnUpdateData(this UIActivityV1LiBaoItemComponent self, int key)
         {
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
-            KeyValuePair keyValuePair = ActivityConfigHelper.LiBaoList[key];
+            LiBaoListItem keyValuePair = ActivityConfigHelper.LiBaoList[key];
 
             self.Key = key;
             self.ConsumeNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("钻石:{0}"), keyValuePair.Value.Split(';')[1]);
+            self.TextName.GetComponent<Text>().text = keyValuePair.Name;
             UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(keyValuePair.Value2, self.RewardListNode, self, 0.8f);
 
@@ -69,7 +72,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取"));
                 return;
             }
-
+            
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (!bagComponent.CheckNeedItem(ActivityConfigHelper.LiBaoList[self.Key].Value))
             {

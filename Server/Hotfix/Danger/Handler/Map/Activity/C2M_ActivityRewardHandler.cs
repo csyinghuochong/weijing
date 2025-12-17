@@ -313,7 +313,7 @@ namespace ET
                         reply();
                         return;
                     }
-                    KeyValuePair keyValuePair = ActivityConfigHelper.LiBaoList[request.RewardId];
+                    LiBaoListItem keyValuePair = ActivityConfigHelper.LiBaoList[request.RewardId];
                     if (!bagComponent.OnCostItemData(keyValuePair.Value, ItemLocType.ItemLocBag, ItemGetWay.Activity    ))
                     {
                         response.Error = ErrorCode.ERR_ItemNotEnoughError;

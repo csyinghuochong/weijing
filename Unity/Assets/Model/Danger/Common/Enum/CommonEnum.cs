@@ -120,6 +120,13 @@ namespace ET
         public int BuyMaxZiJin;
     }
 
+    public struct LiBaoListItem
+    {
+        public string Value; ///购买消耗
+        public string Value2;  //礼包道具
+        public string Name;
+    }
+
     public struct PetMiningItem
     {
         public float X;
@@ -270,5 +277,6 @@ namespace ET
         public const int ZhaoHuan = 4;
         public const int SceneItem = 5;
     }
+
 
 }

@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 2894270727350190975}
   - component: {fileID: 1946482082533791394}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TextName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -663,8 +663,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80.30372, y: -137}
-  m_SizeDelta: {x: 1600, y: 1000}
+  m_AnchoredPosition: {x: 80.30372, y: -87}
+  m_SizeDelta: {x: 1600, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1602072214315242402
 CanvasRenderer:
@@ -1120,6 +1120,8 @@ MonoBehaviour:
     gameObject: {fileID: 9161047361224370449}
   - key: ConsumeNumText
     gameObject: {fileID: 5554720394383774204}
+  - key: TextName
+    gameObject: {fileID: 5774205374862551048}
 --- !u!1 &9015813060589177709
 GameObject:
   m_ObjectHideFlags: 0
