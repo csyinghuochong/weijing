@@ -77,13 +77,17 @@ namespace ET
             }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            self.NumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗幸运卷轴:{0}/1"), bagComponent.GetItemNumber(ActivityConfigHelper.Chou2CostItem));
+            string[] iteminfo = ActivityConfigHelper.Chou2CostItem.Split(';');
+            int itemid = int.Parse(iteminfo[0]);
+            int itemnumer = int.Parse(iteminfo[1]);
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+            self.NumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗{0}:{1}/{2}"), itemConfig.GetItemName(), itemnumer,  bagComponent.GetItemNumber(itemid));
         }
 
         public static async ETTask OnOpenBtn(this UIActivityV1ChouKa2Component self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            if (bagComponent.GetItemNumber(ActivityConfigHelper.Chou2CostItem) < 1)
+            if (!bagComponent.CheckNeedItem(ActivityConfigHelper.Chou2CostItem))
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具数量不足！"));
                 return;

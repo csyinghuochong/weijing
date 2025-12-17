@@ -186,7 +186,7 @@ namespace ET
                         reply();
                         return;
                     }
-                    if (bagComponent.GetItemNumber(ActivityConfigHelper.Chou2CostItem) < 1)
+                    if (!bagComponent.CheckCostItem(ActivityConfigHelper.Chou2CostItem))
                     {
                         response.Error = ErrorCode.ERR_ItemNotEnoughError;
                         reply();
@@ -196,7 +196,7 @@ namespace ET
                     activityComponent.ActivityV1Info.ChouKa2RewardIds.Add(rewardIndex);
                     string[] rewardList = activityComponent.ActivityV1Info.ChouKa2ItemList.Split('@');
                     rewardItem = rewardList[rewardIndex];
-                    bagComponent.OnCostItemData($"{ActivityConfigHelper.Chou2CostItem};1", ItemLocType.ItemLocBag, ItemGetWay.Activity);
+                    bagComponent.OnCostItemData(ActivityConfigHelper.Chou2CostItem, ItemLocType.ItemLocBag, ItemGetWay.Activity);
                     bagComponent.OnAddItemData(rewardItem, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     //全部抽完则自动刷新
                     if (activityComponent.ActivityV1Info.ChouKa2RewardIds.Count >= rewardList.Length )

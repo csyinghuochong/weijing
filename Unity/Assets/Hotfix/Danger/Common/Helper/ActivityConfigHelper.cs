@@ -173,9 +173,9 @@ namespace ET
 
 
         /// <summary>
-        /// 抽卡消耗道具(幸运卷轴)
+        /// 抽卡消耗道具
         /// </summary>
-        public static int Chou2CostItem = 10000184;
+        public static string Chou2CostItem = "10000184;1";
 
         /// <summary>
         /// 每档随机取几个。抽满一半可以刷新
