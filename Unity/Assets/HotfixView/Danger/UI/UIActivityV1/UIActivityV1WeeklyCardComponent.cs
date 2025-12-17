@@ -190,7 +190,7 @@ namespace ET
 
             long servertime = TimeHelper.ServerNow();
             lefttimes = ComHelp.GetDaysDiffByDate(servertime, weeklycardtime);
-            if (lefttimes < 7)
+            if (lefttimes < 7 && recvtimes < 7)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("周卡还未到期！"));
                 return;
@@ -301,7 +301,7 @@ namespace ET
             }
 
             long servertime = TimeHelper.ServerNow();
-            if (weekstarttime <= 0)
+            if (weekstarttime <= 0 || servertime < weekstarttime)
             {
                 lefttimes = 0;
             }

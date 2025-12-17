@@ -81,7 +81,7 @@ namespace ET
             {
                 status = 1;
             }
-            if(diffday >= 7)
+            if(diffday >= 7 || servertime < weeklycardtime)
             {
                 status = 3;
             }

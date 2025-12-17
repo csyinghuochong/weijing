@@ -208,7 +208,7 @@ namespace ET
                 case ActivityConfigHelper.ActivityV1_GoldWeeklyCard:
                     long servertimer = TimeHelper.ServerNow();
                     long weeklycardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.GoldWeeklyCard);
-                    if (weeklycardtime <= 0 )
+                    if (weeklycardtime <= 0 || servertimer < weeklycardtime)
                     {
                         response.Error = ErrorCode.ERR_NoWeeklyCard;
                         reply();
@@ -252,7 +252,7 @@ namespace ET
                 case ActivityConfigHelper.ActivityV1_DiamondWeeklyCard:
                     servertimer = TimeHelper.ServerNow();
                     weeklycardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.DiamondWeeklyCard);
-                    if (weeklycardtime <= 0 )
+                    if (weeklycardtime <= 0 || servertimer < weeklycardtime)
                     {
                         response.Error = ErrorCode.ERR_NoWeeklyCard;
                         reply();
@@ -273,7 +273,7 @@ namespace ET
                         return;
                     }
                    
-                    diffday = ComHelp.GetDaysDiffByDate(servertimer);
+                    diffday = ComHelp.GetDaysDiffByDate(servertimer, weeklycardtime);
 
                     //已经过了周卡时间
                     if (diffday >= rewardlists.Count)

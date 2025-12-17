@@ -38,12 +38,38 @@ namespace ET
             {
                 if (rechargeNumber == 30)
                 {
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.GoldWeeklyCard, TimeHelper.ServerNow());
+                    long serverTime = TimeHelper.ServerNow();
+                    long cardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.GoldWeeklyCard);
+
+                    //如果是在第七天开启的， 当天不能领取奖励， 则把时间设置到零点
+                    if (serverTime > cardtime && ComHelp.GetDaysDiffByDate(serverTime, cardtime) == 6)
+                    {
+                        cardtime = ComHelp.GetNextDayZeroOneTimestampMilliseconds(serverTime);
+                    }
+                    else
+                    {
+                        cardtime = serverTime;
+                    }
+
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.GoldWeeklyCard, cardtime);
                     unit.GetComponent<ActivityComponent>().ActivityV1Info.GoldWeeklyCardRewards.Clear();
                 }
                 else if (rechargeNumber == 98)
                 {
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DiamondWeeklyCard, TimeHelper.ServerNow());
+                    long serverTime = TimeHelper.ServerNow();
+                    long cardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.DiamondWeeklyCard);
+
+                    //如果是在第七天开启的， 当天不能领取奖励， 则把时间设置到零点
+                    if (serverTime > cardtime && ComHelp.GetDaysDiffByDate(serverTime, cardtime) == 6)
+                    {
+                        cardtime = ComHelp.GetNextDayZeroOneTimestampMilliseconds(serverTime);
+                    }
+                    else
+                    {
+                        cardtime = serverTime;
+                    }
+
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DiamondWeeklyCard, cardtime);
                     unit.GetComponent<ActivityComponent>().ActivityV1Info.DiamondWeeklyCardRewards.Clear();
                 }
                 else

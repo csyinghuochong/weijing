@@ -198,6 +198,25 @@ namespace ET
             return diff.Days;
         }
 
+
+        /// <summary>
+        /// 获取给定时间戳对应的第二天00:00:01的时间戳（毫秒级版本）
+        /// </summary>
+        /// <param name="timestamp">原始时间戳（毫秒级）</param>
+        /// <returns>第二天00:00:01的时间戳（毫秒级）</returns>
+        public static long GetNextDayZeroOneTimestampMilliseconds(long timestamp)
+        {
+            // 将毫秒级时间戳转换为DateTime（假设时间戳是UTC时间）
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(timestamp);
+
+            // 获取第二天的00:00:01时间
+            DateTime nextDayZeroOne = dateTime.Date.AddDays(1).AddSeconds(1);
+
+            // 转换为时间戳（毫秒级）
+            //return new DateTimeOffset(nextDayZeroOne, TimeSpan.Zero).ToUnixTimeMilliseconds();
+            return TimeInfo.Instance.Transition(nextDayZeroOne);
+        }
+
         //字符串转换整形List
         public static List<int> StringArrToIntList(string[] stringArr) {
 
