@@ -312,7 +312,7 @@ namespace ET
             }
             else
             {
-                lefttimes = ComHelp.GetDaysDiffByDate(servertime, weekendtime );
+                lefttimes = ComHelp.GetDaysDiffByDate(servertime, weekendtime ) - recvtimes;
             }
 
             self.Text_Number.GetComponent<Text>().text = $"{lefttimes}/{7}";
