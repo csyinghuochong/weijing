@@ -41,7 +41,10 @@ namespace ET
             LiBaoListItem keyValuePair = ActivityConfigHelper.LiBaoList[key];
 
             self.Key = key;
-            self.ConsumeNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("钻石:{0}"), keyValuePair.Value.Split(';')[1]);
+
+            int itemid = int.Parse(keyValuePair.Value.Split(';')[0]);
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid); ;
+            self.ConsumeNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}:{1}"), itemConfig.GetItemName(), keyValuePair.Value.Split(';')[1]);
             self.TextName.GetComponent<Text>().text = keyValuePair.Name;
             UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(keyValuePair.Value2, self.RewardListNode, self, 1f);
@@ -76,7 +79,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (!bagComponent.CheckNeedItem(ActivityConfigHelper.LiBaoList[self.Key].Value))
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("货币不足"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("积分不足"));
                 return;
             }
 
