@@ -22,16 +22,16 @@ namespace ET
                 {
                     LogHelper.LogWarning($"充值[版号服]SendDiamondToUnit: {unit.Id}");
                     Console.WriteLine($"充值[版号服]SendDiamondToUnit: {unit.Id}");
-                    RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber, "版号服");
+                    RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber, "版号服", 0);
                     reply();
                     return;
                 }
-                if (ComHelp.IsInnerNet())
-                {
-                    //RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber, "内测服");
-                    reply();
-                    return;
-                }
+                //if (ComHelp.IsInnerNet())
+                //{
+                //    //RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber, "内测服");
+                //    reply();
+                //    return;
+                //}
 
                 if (request.RechargeNumber <= 0 || ConfigHelper.GetDiamondNumber(request.RechargeNumber, unit.DomainZone()) <= 0)
                 {
@@ -97,7 +97,8 @@ namespace ET
                     RechargeNumber = request.RechargeNumber,
                     Account = userInfoComponent.Account,
                     payMessage = request.RiskControlInfo,
-                    ClientIp = userInfoComponent.RemoteAddress
+                    ClientIp = userInfoComponent.RemoteAddress,
+                    RechargeType = request.RechargeType,    
                 });
 
                 response.Message = r2M_RechargeResponse.Message;

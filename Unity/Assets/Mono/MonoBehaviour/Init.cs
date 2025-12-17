@@ -1119,6 +1119,7 @@ namespace ET
 		public void WeChatPay(string orderInfo)
 		{
 			string[] orderInfos = orderInfo.Split(',');
+			
 			string appid = orderInfos[0];
 			string mchid = orderInfos[1];
 			string prepayid = orderInfos[2];

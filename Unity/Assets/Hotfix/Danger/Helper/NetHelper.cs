@@ -252,7 +252,7 @@ namespace ET
             F2C_FriendBlacklistResponse f2C_FriendApplyResponse = (F2C_FriendBlacklistResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2F_FriendApplyReplyRequest);
         }
 
-        public static async ETTask<string> SendIOSPayVerifyRequest(Scene zoneScene, string info)
+        public static async ETTask<string> SendIOSPayVerifyRequest(Scene zoneScene, string info, int rechargeType)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
 
@@ -267,14 +267,15 @@ namespace ET
             {   
                 UnitId = unit.Id, 
                 payMessage = receipt.Payload,
-                UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
+                UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name,
+                RechargeType = rechargeType,
             };
             zoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
             await ETTask.CompletedTask;
             return string.Empty;
         }
         
-        public static async ETTask<string> SendGooglePayVerifyRequest(Scene zoneScene, string info)
+        public static async ETTask<string> SendGooglePayVerifyRequest(Scene zoneScene, string info, int rechargeType)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
 
@@ -284,7 +285,8 @@ namespace ET
             {   
                 UnitId = unit.Id, 
                 payMessage = receipt.Payload,
-                UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
+                UnitName = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Name,
+                RechargeType = rechargeType    
             };
             zoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
             await ETTask.CompletedTask;

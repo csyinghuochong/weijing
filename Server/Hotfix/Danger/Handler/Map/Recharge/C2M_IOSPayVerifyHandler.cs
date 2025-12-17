@@ -94,6 +94,9 @@ namespace ET
         public int status { get; set; }
     }
 
+    /// <summary>
+    /// 已经废弃了，
+    /// </summary>
     [ActorMessageHandler]
     public class C2M_IOSPayVerifyHandler : AMActorLocationRpcHandler<Unit, C2M_IOSPayVerifyRequest, M2C_IOSPayVerifyResponse>
     {
@@ -117,6 +120,7 @@ namespace ET
                     payMessage = request.payMessage,
                     UnitName = userInfoComponent.UserInfo.Name,
                     Account = userInfoComponent.Account,
+                    RechargeType = request.RechargeType,
                 });
             }
             reply();

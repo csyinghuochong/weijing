@@ -74,6 +74,7 @@ message M2R_RechargeRequest // IActorRequest
 	string UnitName = 5;
 	string Account = 6;
 	string ClientIp = 7;
+	int32 RechargeType = 8;   //0充值钻石   1购买周卡
 }
 
 message R2M_RechargeResponse // IActorResponse
@@ -94,7 +95,8 @@ message R2G_RechargeResultRequest // IActorRequest
     int64 UserID = 3;
     string OrderInfo = 4;
 	string CpOrder = 5;   
-	int32 RechargetType = 6;
+	int32 PayType = 6;
+	int32 RechargeType = 7;   //0充值钻石   1购买周卡
 }
 
 message G2R_RechargeResultResponse // IActorResponse
@@ -112,6 +114,7 @@ message G2M_RechargeResultRequest // IActorRequest
     int64 Id = 1;
     int32 RechargeNumber = 2;
     string OrderInfo = 4;
+	int32 RechargeType = 7;   //0充值钻石   1购买周卡
 }
 
 message M2G_RechargeResultResponse // IActorResponse

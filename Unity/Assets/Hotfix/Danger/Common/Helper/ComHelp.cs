@@ -183,6 +183,7 @@ namespace ET
         }
 
         // 将时间戳转换为 DateTime 并获取具体日期
+        // 同一天返回0
         public static int GetDaysDiffByDate(long time1, long time2)
         {
             DateTime dt1 = TimeInfo.Instance.ToDateTime(time1);

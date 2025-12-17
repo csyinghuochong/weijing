@@ -2922,6 +2922,9 @@ namespace ET
 		[ProtoMember(3)]
 		public string RiskControlInfo { get; set; }
 
+		[ProtoMember(4)]
+		public int RechargeType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_RechargeResponse)]
@@ -10527,6 +10530,9 @@ namespace ET
 		[ProtoMember(2)]
 		public string payMessage { get; set; }
 
+		[ProtoMember(3)]
+		public int RechargeType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_IOSPayVerifyResponse)]
@@ -10748,6 +10754,9 @@ namespace ET
 		[ProtoMember(3)]
 		public string UnitName { get; set; }
 
+		[ProtoMember(4)]
+		public int RechargeType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.R2C_IOSPayVerifyResponse)]
@@ -10784,6 +10793,9 @@ namespace ET
 
 		[ProtoMember(3)]
 		public string UnitName { get; set; }
+
+		[ProtoMember(4)]
+		public int RechargeType { get; set; }
 
 	}
 

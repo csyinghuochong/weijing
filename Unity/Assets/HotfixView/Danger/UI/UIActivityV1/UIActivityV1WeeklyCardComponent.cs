@@ -1,19 +1,35 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIActivityV1WeeklyCardComponent : Entity, IAwake
+    public class UIActivityV1WeeklyCardComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject ButtonAliPay;
+        public GameObject ButtonWeiXix;
+        public GameObject ButtonDiClose;
+        public GameObject RechargeSelectUI;
         public GameObject Text_Number;
         public GameObject ButtonOpen;
         public GameObject UIActivityV1WeeklyCardItem;
         public GameObject TaskListNode;
         public GameObject BtnItemTypeSet;
         public UIPageButtonComponent uIPageViewComponent;
+        public int ReChargeNumber;
+        public int PayType;
 
         public List<UIActivityV1WeeklyCardItemComponent> WeeklyCardItemList = new List<UIActivityV1WeeklyCardItemComponent>();    
+    }
+
+    public class UIActivityV1WeeklyCardComponentDestroy : DestroySystem<UIActivityV1WeeklyCardComponent>
+    {
+        public override void Destroy(UIActivityV1WeeklyCardComponent self)
+        {
+
+        }
     }
 
     public class UIActivityV1WeeklyCardComponentAwake : AwakeSystem<UIActivityV1WeeklyCardComponent>
@@ -33,20 +49,278 @@ namespace ET
             UIPageButtonComponent uIPageViewComponent = uiPage.AddComponent<UIPageButtonComponent>();
             self.uIPageViewComponent = uIPageViewComponent;
             uIPageViewComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
+           
+
+            self.ButtonAliPay = rc.Get<GameObject>("ButtonAliPay");
+            self.ButtonWeiXix = rc.Get<GameObject>("ButtonWeiXix"); 
+            self.ButtonDiClose = rc.Get<GameObject>("ButtonDiClose"); 
+            self.RechargeSelectUI = rc.Get<GameObject>("RechargeSelectUI");
+            self.RechargeSelectUI.SetActive(false);
+            self.Text_Number = rc.Get<GameObject>("Text_Number"); 
+            self.ButtonOpen = rc.Get<GameObject>("ButtonOpen");
+
+            self.ButtonOpen.GetComponent<Button>().onClick.AddListener(() => { self.OnClickRechargeItem().Coroutine();  } );
+            self.ButtonDiClose.GetComponent<Button>().onClick.AddListener(self.OnButtonDiClose);
+            self.ButtonAliPay.GetComponent<Button>().onClick.AddListener(self.OnButtonAliPay);
+            self.ButtonWeiXix.GetComponent<Button>().onClick.AddListener(self.OnButtonWeiXix);
+
+            self.ZoneScene().GetComponent<AccountInfoComponent>().RechargeType = 1;
+
             uIPageViewComponent.OnSelectIndex(0);
         }
     }
 
     public static class UIActivityV1WeeklyCardComponentSystem
     {
+        public static void OnButtonAliPay(this UIActivityV1WeeklyCardComponent self)
+        {
+            self.PayType = PayTypeEnum.AliPay;
+            self.RequestRecharge().Coroutine();
+        }
+
+        public static void OnButtonWeiXix(this UIActivityV1WeeklyCardComponent self)
+        {
+            self.PayType = PayTypeEnum.WeiXinPay;
+            self.RequestRecharge().Coroutine();
+        }
+
+        /// <summary>
+        /// 抖音
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="riskControl"></param>
+        public static void OnGetRiskControlInfo(this UIActivityV1WeeklyCardComponent self, string riskControl)
+        {
+            Log.ILog.Debug($"OnGetRiskControlInfo: {riskControl}");
+            self.RequestRecharge(riskControl).Coroutine();
+        }
+
+        /// <summary>
+        /// 像服务器请求支付订单
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="riskControl"></param>
+        /// <returns></returns>
+        public static async ETTask RequestRecharge(this UIActivityV1WeeklyCardComponent self, string riskControl = "")
+        {
+            int rechargeNumber = self.ReChargeNumber;
+            C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest()
+            {
+                RiskControlInfo = riskControl,
+                RechargeNumber = rechargeNumber,
+                PayType = self.PayType,
+                RechargeType = self.ZoneScene().GetComponent<AccountInfoComponent>().RechargeType
+            };
+
+            M2C_RechargeResponse sendChatResponse = (M2C_RechargeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
+
+            if (sendChatResponse.Error != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+            if (GlobalHelp.IsBanHaoMode || string.IsNullOrEmpty(sendChatResponse.Message))
+            {
+                return;
+            }
+            if (self.PayType == PayTypeEnum.AliPay)
+            {
+                //拉起支付宝支付
+                GlobalHelp.AliPay(sendChatResponse.Message);
+            }
+            if (self.PayType == PayTypeEnum.WeiXinPay)
+            {
+                //拉起微信支付
+                GlobalHelp.WeChatPay(sendChatResponse.Message);
+            }
+            if (self.PayType == PayTypeEnum.TikTok)
+            {
+                if (GlobalHelp.GetBigVersion() >= 17 && GlobalHelp.GetPlatform() == 5)
+                {
+#if UNITY_ANDROID
+                    //拉起抖音支付
+                    Log.ILog.Debug($"M2C_RechargeResponse: {sendChatResponse.Message}");
+                    EventType.TikTokPayRequest.Instance.ZoneScene = self.ZoneScene();
+                    EventType.TikTokPayRequest.Instance.PayMessage = sendChatResponse.Message;
+                    EventType.TikTokPayRequest.Instance.RechargeNumber = self.ReChargeNumber;
+                    EventSystem.Instance.PublishClass(EventType.TikTokPayRequest.Instance);
+#endif
+                }
+            }
+            if (self.PayType == PayTypeEnum.QuDaoPay)
+            {
+                // //拉起渠道支付
+                EventType.QuDaoOnPay.Instance.ZoneScene = self.ZoneScene();
+                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                string payinfo = $"{rechargeNumber}_{accountInfoComponent.CurrentRoleId}_{userInfoComponent.UserInfo.Lv}_{userInfoComponent.UserInfo.Name}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{sendChatResponse.Message}";
+                EventType.QuDaoOnPay.Instance.PayInfo = payinfo;
+                EventSystem.Instance.PublishClass(EventType.QuDaoOnPay.Instance);
+
+                //test-----------------------------------------------------------
+                //EventType.QuDaoOnPay.Instance.ZoneScene = self.ZoneScene();
+                //AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                //UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                //string payinfo = $"{1}_{accountInfoComponent.CurrentRoleId}_{userInfoComponent.UserInfo.Lv}_{userInfoComponent.UserInfo.Name}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{sendChatResponse.Message}";
+                //EventType.QuDaoOnPay.Instance.PayInfo = payinfo;
+                //EventSystem.Instance.PublishClass(EventType.QuDaoOnPay.Instance);
+            }
+        }
+
+        public static async ETTask OnClickRechargeItem(this UIActivityV1WeeklyCardComponent self)
+        {
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int dtype = self.uIPageViewComponent.CurrentIndex;
+            long weekendtime = 0;
+            int lefttimes = 0;
+            int recvtimes = 0;
+            if (dtype == 0)
+            {
+                weekendtime = numericComponent.GetAsLong(NumericType.GoldWeeklyCard);
+                recvtimes = activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Count;
+            }
+            else
+            {
+                weekendtime = numericComponent.GetAsLong(NumericType.DiamondWeeklyCard);
+                recvtimes = activityComponent.ActivityV1Info.DiamondWeeklyCardRewards.Count;
+            }
+
+            long servertime = TimeHelper.ServerNow();
+            if (weekendtime <= servertime)
+            {
+                lefttimes = 0;
+            }
+            else
+            {
+                lefttimes = ComHelp.GetDaysDiffByDate(servertime, weekendtime);// - recvtimes;
+            }
+            if (lefttimes > 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("周卡还未到期！"));
+                return;
+            }
+
+            await ETTask.CompletedTask;
+            int chargetNumber = self.uIPageViewComponent.CurrentIndex == 0 ? 30 : 98;
+            self.ReChargeNumber = chargetNumber;
+#if UNITY_IPHONE
+            //拉起ios支付
+                                self.PayType = PayTypeEnum.IOSPay;
+             GlobalHelp.OnIOSPurchase(chargetNumber);
+            self.RechargeSelectUI.SetActive(false);
+
+             //ios主要用来服务器打印日志
+            C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { 
+            RechargeNumber = chargetNumber,
+            PayType = PayTypeEnum.IOSPay,
+            RechargeType =  RechargeType = self.ZoneScene().GetComponent<AccountInfoComponent>().RechargeType
+            };
+            self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest).Coroutine();
+#else
+
+            if (GlobalHelp.GetPlatform() == 5 && GlobalHelp.GetBigVersion() >= 17)
+            {
+#if UNITY_ANDROID
+                //授权后才拉起抖音支付
+                self.PayType = PayTypeEnum.TikTok;
+                self.RechargeSelectUI.SetActive(false);
+                EventType.TikTokRiskControlInfo.Instance.ZoneScene = self.ZoneScene();
+                EventType.TikTokRiskControlInfo.Instance.RiskControlInfoHandler = (string text) => { self.OnGetRiskControlInfo(text); };
+                EventSystem.Instance.PublishClass(EventType.TikTokRiskControlInfo.Instance);
+#endif
+            }
+            else if (GlobalHelp.GetPlatform() == 100 && GlobalHelp.GetBigVersion() >= 23)
+            {
+                //渠道支付
+                self.PayType = PayTypeEnum.QuDaoPay;
+                self.RechargeSelectUI.SetActive(false);
+                self.RequestRecharge(string.Empty).Coroutine();
+            }
+            else if (GlobalHelp.GetPlatform() == 7 && GlobalHelp.GetBigVersion() >= 23)
+            {
+                //拉起google支付
+                self.PayType = PayTypeEnum.Google;
+                self.RechargeSelectUI.SetActive(false);
+                GlobalHelp.OnGooglePurchase(chargetNumber);
+                //google 主要用来服务器打印日志
+                C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() 
+                { 
+                    RechargeNumber = chargetNumber, 
+                    PayType = PayTypeEnum.Google, 
+                    RechargeType = self.ZoneScene().GetComponent<AccountInfoComponent>().RechargeType
+                };
+                self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest).Coroutine();
+            }
+            else
+            {
+                self.RechargeSelectUI.SetActive(true);
+            }
+
+            //记录tap数据
+            try
+            {
+                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                string serverName = accountInfoComponent.ServerName;
+                UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+                TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 4, chargetNumber);
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("UIRecharge ex:" + ex);
+            }
+
+#endif
+           
+        }
+
+        public static void OnButtonDiClose(this UIActivityV1WeeklyCardComponent self)
+        {
+            self.RechargeSelectUI.SetActive(false);
+        }
+
         public static void OnClickPageButton(this UIActivityV1WeeklyCardComponent self, int page)
         {
             self.UpdateInfo();
+            self.ShowLeftTimes();
         }
 
         public static void ShowLeftTimes(this UIActivityV1WeeklyCardComponent self)
-        { 
-            
+        {
+            ActivityComponent activityComponent  = self.ZoneScene().GetComponent<ActivityComponent>();  
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int dtype = self.uIPageViewComponent.CurrentIndex;
+            long weekendtime = 0;
+            int lefttimes = 0;
+            int recvtimes = 0;
+            if (dtype == 0)
+            {
+                weekendtime = numericComponent.GetAsLong( NumericType.GoldWeeklyCard );
+                recvtimes = activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Count;
+            }
+            else
+            {
+                weekendtime = numericComponent.GetAsLong(NumericType.DiamondWeeklyCard);
+                recvtimes = activityComponent.ActivityV1Info.DiamondWeeklyCardRewards.Count;
+            }
+
+            long servertime = TimeHelper.ServerNow();
+            if (weekendtime <= servertime)
+            {
+                lefttimes = 0;
+            }
+            else
+            {
+                lefttimes = ComHelp.GetDaysDiffByDate(servertime, weekendtime );
+            }
+
+            self.Text_Number.GetComponent<Text>().text = $"{lefttimes}/{7}";
+        }
+
+        public static void OnWeeklyCardUpdate(this UIActivityV1WeeklyCardComponent self)
+        {
+            self.OnClickPageButton(self.uIPageViewComponent.CurrentIndex);
         }
 
         public static void UpdateInfo(this UIActivityV1WeeklyCardComponent self)

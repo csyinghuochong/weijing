@@ -62,68 +62,6 @@ namespace ET
 
     public static class ReChargeGoogleComponentSystem
     {
-        public static async ETTask<int> OnGooglePayVerify(this ReChargeGoogleComponent self, M2R_RechargeRequest request)
-        {
-            Log.Warning($"支付订单[Google]回调执行 id:" + request.UnitId);
-            Log.Warning($"支付订单[Google]回调执行 request.payMessage: " +  request.payMessage);
-
-            try
-            {
-                string payLoad = request.payMessage;
-                Payload_Google payloadGoogle = JsonHelper.FromJson<Payload_Google>(payLoad);
-                Payload_Google_json payloadGoogleJson = JsonHelper.FromJson<Payload_Google_json>(payloadGoogle.json);
-
-                if (self.PayLoadList.Contains(payloadGoogleJson.purchaseToken))
-                {
-                    return ErrorCode.ERR_GoogleVerify;
-                }
-
-                // 验证订单 国内云服务器可能访问不了外网
-                Google.Apis.AndroidPublisher.v3.Data.ProductPurchase response = await self.AndroidPublisherService.Purchases.Products.Get("com.goinggame.weijing", payloadGoogleJson.productId, payloadGoogleJson.purchaseToken).ExecuteAsync();
-
-                if (response == null)
-                {
-                    Log.Warning($"Google充值回调ERROR1 返回消息null");
-                    return ErrorCode.ERR_GoogleVerify;
-                }
-
-                // 检查订单是否有效
-                if (response.PurchaseState != 0)
-                {
-                    Log.Warning($"Google充值回调ERROR1 {response.PurchaseState}");
-                    return ErrorCode.ERR_GoogleVerify;
-                }
-
-                string prefix = "pay_";
-                if (!payloadGoogleJson.productId.Contains(prefix))
-                {
-                    Log.Warning($"Google充值回调ERROR6 : !{prefix}");
-                    return ErrorCode.ERR_GoogleVerify;
-                }
-                
-                int rechargeNumber = int.Parse(payloadGoogleJson.productId.Substring(prefix.Length));
-                
-                string postReturnStr = JsonHelper.ToJson(response);
-
-                self.PayLoadList.Add(payloadGoogleJson.purchaseToken);
-                if (self.PayLoadList.Count >= 100)
-                {
-                    self.PayLoadList.RemoveAt(0);
-                }
-
-                string serverName = ServerHelper.GetGetServerItem(false, request.Zone).ServerName;
-                Log.Warning($"支付订单[Google]支付成功: 区：{serverName}    玩家名字：{request.UnitName}     充值额度：{rechargeNumber}");
-                Log.Console($"支付订单[Google]支付成功: 区：{serverName}    玩家名字：{request.UnitName}     充值额度：{rechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
-                await RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, postReturnStr, PayTypeEnum.Google);
-            }
-            catch (Exception ex)
-            {
-                Log.Warning($"Google支付验证未知错误: {ex}");
-                return ErrorCode.ERR_GoogleVerify;
-            }
-
-            return ErrorCode.ERR_Success;
-        }
 
         public static async ETTask<int> OnGooglePayVerify2(this ReChargeGoogleComponent self, M2R_RechargeRequest request)
         {
@@ -172,7 +110,7 @@ namespace ET
                 string serverName = ServerHelper.GetGetServerItem(false, request.Zone).ServerName;
                 Log.Warning($"支付订单[Google]支付成功: 区：{serverName}    玩家名字：{request.UnitName}     充值额度：{rechargeNumber}");
                 Log.Console($"支付订单[Google]支付成功: 区：{serverName}    玩家名字：{request.UnitName}     充值额度：{rechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
-                await RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, payLoad, PayTypeEnum.Google);
+                await RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, payLoad, PayTypeEnum.Google, request.RechargeType);
             }
             catch (Exception ex)
             {

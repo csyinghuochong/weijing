@@ -47,7 +47,8 @@ namespace ET
             model.userId = request.UnitId;
             model.amount = request.RechargeNumber;
             model.objID = request.RechargeNumber;
-            model.UnitName = request.UnitName;  
+            model.UnitName = request.UnitName;
+            model.RechargeType = request.RechargeType;  
             self.orderDic.Add(dingDanID, model);
             string toClientStr = model.objID + "," + dingDanID;
 
@@ -278,7 +279,7 @@ namespace ET
 
                         //修改数据库订单描述
                         string toClientMsg = "SendPay," + "1" + "@" + "1" + "@" + orderinfo.objID + "@" + dingdanid + "@" + "服务器支付";
-                        RechargeHelp.OnPaySucessToGate(orderinfo.zone, orderinfo.userId, orderinfo.amount, dingdanid, PayTypeEnum.QuDaoPay).Coroutine();
+                        RechargeHelp.OnPaySucessToGate(orderinfo.zone, orderinfo.userId, orderinfo.amount, dingdanid, PayTypeEnum.QuDaoPay, orderinfo.RechargeType).Coroutine();
                     }
                     else
                     {

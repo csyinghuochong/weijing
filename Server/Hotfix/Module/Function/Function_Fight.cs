@@ -1864,7 +1864,7 @@ namespace ET
                 }
                 else
                 {
-                    Log.Debug($"无效的装备: {itemCof.Id}");
+                    //Log.Debug($"无效的装备: {itemCof.Id}");
                 }
             }
 

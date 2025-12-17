@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 namespace ET
 {
-
+    /// <summary>
+    /// ios支付结果效验
+    /// </summary>
     [ActorMessageHandler]
     public class C2R_IOSPayVerifyHandler : AMActorRpcHandler<Scene, C2R_IOSPayVerifyRequest, R2C_IOSPayVerifyResponse>
     {
@@ -23,6 +25,7 @@ namespace ET
                     UnitId = request.UnitId,
                     payMessage = request.payMessage,
                     UnitName = request.UnitId.ToString(),
+                    RechargeType = request.RechargeType,    
                 });
 
                 ////////////////222222

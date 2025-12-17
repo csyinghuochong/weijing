@@ -1369,6 +1369,7 @@ message C2M_RechargeRequest // IActorLocationRequest
 	int32 RechargeNumber = 1;
 	int64 PayType = 2;
 	string RiskControlInfo = 3;
+	int32 RechargeType = 4;   //0充值钻石   1购买周卡
 }
 
 message M2C_RechargeResponse // IActorLocationResponse
@@ -5012,6 +5013,7 @@ message C2M_IOSPayVerifyRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	string payMessage = 2;
+	int32 RechargeType = 3;
 }
 
 message M2C_IOSPayVerifyResponse // IActorLocationResponse
@@ -5118,6 +5120,7 @@ message C2R_IOSPayVerifyRequest // IRechargeActorRequest
 	int64 UnitId = 1;
 	string payMessage = 2;
 	string UnitName = 3;
+	int32 RechargeType = 4;
 }
 
 message R2C_IOSPayVerifyResponse // IRechargeActorResponse
@@ -5135,6 +5138,7 @@ message C2R_GooglePayVerifyRequest // IRechargeActorRequest
 	int64 UnitId = 1;
 	string payMessage = 2;
 	string UnitName = 3;
+	int32 RechargeType = 4;
 }
 
 message R2C_GooglePayVerifyResponse // IRechargeActorResponse

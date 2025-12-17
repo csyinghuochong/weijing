@@ -39,7 +39,7 @@ namespace ET
             }
             string dingDanID = $"{nowTime}{self.DingdanXuHao}_{request.Zone}_{request.RechargeNumber}";
             self.DingdanlastTime = nowTime;
-            self.OrderDic.Add(dingDanID, $"{request.UnitId}_{request.UnitName}");
+            self.OrderDic.Add(dingDanID, $"{request.UnitId}_{request.UnitName}_{request.RechargeType}");
 
             paramlist.Add("aid", TikTokHelper.AppID.ToString());
             paramlist.Add("cp_order_id", dingDanID);
@@ -162,15 +162,16 @@ namespace ET
                 {
                     string userInfo = self.OrderDic[orderId];
                     long userId = long.Parse(userInfo.Split('_')[0]);
+                    int rechargeType = int.Parse(userInfo.Split('_')[2]);
                     Log.Warning($"支付成功[抖音]  {userId}  {int.Parse(orderId.Split('_')[2])}");
 
                     int zone = int.Parse(orderId.Split('_')[1]);
                     int amount = int.Parse(orderId.Split('_')[2]);
-
+ 
                     string serverName = ServerHelper.GetGetServerItem(false, zone).ServerName;
                     Log.Warning($"支付成功[抖音]: 区：{serverName}     玩家名字：{userInfo.Split('_')[1]}   充值额度：{amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
 
-                    RechargeHelp.OnPaySucessToGate(zone, userId, amount, orderId, PayTypeEnum.TikTok).Coroutine();
+                    RechargeHelp.OnPaySucessToGate(zone, userId, amount, orderId, PayTypeEnum.TikTok, rechargeType).Coroutine();
                     self.OrderDic.Remove(orderId);
                 }
                 else 

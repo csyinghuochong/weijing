@@ -277,6 +277,8 @@ namespace ET
     [NumericWatcher((int)NumericType.WeeklyTaskId)]
     [NumericWatcher((int)NumericType.FirstUnionName)]
     [NumericWatcher((int)NumericType.WeChatOABind)]
+    [NumericWatcher((int)NumericType.GoldWeeklyCard)]
+    [NumericWatcher((int)NumericType.DiamondWeeklyCard)]
     public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

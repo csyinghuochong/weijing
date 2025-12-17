@@ -61,7 +61,7 @@
         public const int BossInCombat = 3057;                                    //进入战斗
         public const int UseMasterModel = 3058;                                  //使用主人形象，直接用主人的职业id
         public const int RechargeSign = 3059;                                     //签到充值奖励，每日重置 0不能领取1 可以领取2已领取
-        public const int RechargeBuChang = 3060;                                 //充值补偿
+        public const int RechargeBuChang = 3060;                                 //充值补偿  目前主要用于玩家充值成功但是掉线的情况上线后给与补偿
         public const int Now_Lv = 3061;                                         //当前等级
         public const int BattleCamp = 3062;                                     //战斗阵营
         public const int DailyTaskNumber = 3063;                                 //赏金任务完成数量                          
@@ -197,8 +197,9 @@
         public const int WeChatOABind = 3197;
         public const int V1TotalPoints = 3198;                               //活动周期累计积分
         public const int V1PointsChouKaIndex = 3199;
-        public const int GoldWeeklyCard = 3200;                                 //黄金周卡
+        public const int GoldWeeklyCard = 3200;                                 //黄金周卡结束时间
         public const int DiamondWeeklyCard = 3201;                              //钻石周卡ComHelp.GetDayByTime
+        public const int RechargeType = 3061;                                    //0充值钻石   1购买周卡
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

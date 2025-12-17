@@ -28,6 +28,16 @@ namespace ET
                     uI = UIHelper.GetUI(zoneScene, UIType.UIRecharge);
                     uI?.GetComponent<UIRechargeComponent>()?.OnRechageSucess(addNumer, rechargeNumber);
                     break;
+                case NumericType.GoldWeeklyCard:
+                case NumericType.DiamondWeeklyCard:
+                    long newweektime = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.GoldWeeklyCard);
+                    Log.ILog.Debug($"GoldWeeklyCard:  {args.OldValue}  {newweektime}");
+                    UI uiactivity = UIHelper.GetUI( args.Unit.ZoneScene(), UIType.UIActivityV1 );
+                    if (uiactivity != null)
+                    {
+                        uiactivity.GetComponent<UIActivityV1Component>().OnWeeklyCardUpdate();
+                    }
+                    break;
                 case NumericType.PetExploreLuckly:
                     uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIPetEgg);
                     uI?.GetComponent<UIPetEggComponent>().OnUpdateLuckly();

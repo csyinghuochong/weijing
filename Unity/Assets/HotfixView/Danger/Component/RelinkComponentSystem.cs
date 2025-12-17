@@ -174,7 +174,8 @@ namespace ET
             string info = PlayerPrefsHelp.GetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString());
             if (!string.IsNullOrEmpty(info))
             {
-                NetHelper.SendIOSPayVerifyRequest(zoneScene, info).Coroutine();
+                int rechargeType = PlayerPrefsHelp.GetInt("IOSRecgargeType_" + accountInfoComponent.CurrentRoleId.ToString());
+                NetHelper.SendIOSPayVerifyRequest(zoneScene, info, rechargeType).Coroutine();
                 PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), string.Empty);
                 FloatTipManager.Instance.ShowFloatTip("重连成功_IOS！");
             }
@@ -186,9 +187,10 @@ namespace ET
             if (GlobalHelp.GetPlatform() == 7)
             {
                 info = PlayerPrefsHelp.GetString("Google_" + accountInfoComponent.CurrentRoleId.ToString());
+                int rechargetType = PlayerPrefsHelp.GetInt("GoogleRecharge_" + accountInfoComponent.CurrentRoleId.ToString());
                 if (!string.IsNullOrEmpty(info))
                 {
-                    NetHelper.SendGooglePayVerifyRequest(zoneScene, info).Coroutine();
+                    NetHelper.SendGooglePayVerifyRequest(zoneScene, info, rechargetType).Coroutine();
                     PlayerPrefsHelp.SetString("Google_" + accountInfoComponent.CurrentRoleId.ToString(), string.Empty);
                     FloatTipManager.Instance.ShowFloatTip("重连成功_Google！");
                 }

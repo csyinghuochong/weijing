@@ -115,7 +115,7 @@ namespace ET
             self.ButtonWeiXin.SetActive(false);    
 #endif
 
-
+            self.ZoneScene().GetComponent<AccountInfoComponent>().RechargeType = 0;
         }
     }
 
@@ -175,7 +175,8 @@ namespace ET
             {
                 RiskControlInfo = riskControl,
                 RechargeNumber = rechargeNumber,
-                PayType = self.PayType
+                PayType = self.PayType,
+                RechargeType = 0,
             };
 
             M2C_RechargeResponse sendChatResponse = (M2C_RechargeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
@@ -262,7 +263,7 @@ namespace ET
 #if UNITY_IPHONE
             self.Loading.SetActive(true);
             GlobalHelp.OnIOSPurchase(chargetNumber);
-            C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { RechargeNumber = chargetNumber, PayType = PayTypeEnum.IOSPay };
+            C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { RechargeNumber = chargetNumber, PayType = PayTypeEnum.IOSPay,RechargeType = 0 };
             self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest).Coroutine();
 #else
 
@@ -281,7 +282,7 @@ namespace ET
                 //test
                 //chargetNumber = 1;
                 GlobalHelp.OnGooglePurchase(chargetNumber);
-                C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { RechargeNumber = chargetNumber, PayType = PayTypeEnum.Google };
+                C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { RechargeNumber = chargetNumber, PayType = PayTypeEnum.Google, RechargeType = 0 };
                 self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest).Coroutine();
             }
             else

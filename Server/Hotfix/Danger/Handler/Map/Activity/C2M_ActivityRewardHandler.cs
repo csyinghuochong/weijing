@@ -206,10 +206,11 @@ namespace ET
                     }
                     break;
                 case ActivityConfigHelper.ActivityV1_GoldWeeklyCard:
+                    long servertimer = TimeHelper.ServerNow();
                     long weeklycardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.GoldWeeklyCard);
-                    if (weeklycardtime <= 0)
+                    if (weeklycardtime <= 0 || servertimer > weeklycardtime)
                     {
-                        response.Error = ErrorCode.ERR_ModifyData;
+                        response.Error = ErrorCode.ERR_NoWeeklyCard;
                         reply();
                         return;
                     }
@@ -227,7 +228,7 @@ namespace ET
                         reply();
                         return;
                     }
-                    long servertimer = TimeHelper.ServerNow();
+                   
                     int diffday = ComHelp.GetDaysDiffByDate(servertimer, weeklycardtime - TimeHelper.OneDay * 7);
 
                     //已经过了周卡时间
@@ -238,7 +239,7 @@ namespace ET
                         return;
                     }
                     //提前领取？
-                    if (diffday <= request.RewardId )
+                    if (diffday < request.RewardId )
                     {
                         response.Error = ErrorCode.ERR_AlreadyReceived;
                         reply();
@@ -249,10 +250,11 @@ namespace ET
                     activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Add(request.RewardId);
                     break;
                 case ActivityConfigHelper.ActivityV1_DiamondWeeklyCard:
+                    servertimer = TimeHelper.ServerNow();
                     weeklycardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.DiamondWeeklyCard);
-                    if (weeklycardtime <= 0)
+                    if (weeklycardtime <= 0 || servertimer > weeklycardtime)
                     {
-                        response.Error = ErrorCode.ERR_ModifyData;
+                        response.Error = ErrorCode.ERR_NoWeeklyCard;
                         reply();
                         return;
                     }
@@ -270,7 +272,7 @@ namespace ET
                         reply();
                         return;
                     }
-                    servertimer = TimeHelper.ServerNow();
+                   
                     diffday = ComHelp.GetDaysDiffByDate(servertimer, weeklycardtime - TimeHelper.OneDay * 7);
 
                     //已经过了周卡时间

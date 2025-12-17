@@ -42,12 +42,14 @@ namespace ET
             if (sessionComponent == null)
             {
                 PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), info);
+                PlayerPrefsHelp.SetInt("IOSRecgargeType_" + accountInfoComponent.CurrentRoleId.ToString(), accountInfoComponent.RechargeType);
                 return;
             }
             Session session = sessionComponent.Session;
             if (session == null || session.IsDisposed)
             {
                 PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), info);
+                PlayerPrefsHelp.SetInt("IOSRecgargeType_" + accountInfoComponent.CurrentRoleId.ToString(), accountInfoComponent.RechargeType);
                 return;
             }
 
@@ -55,6 +57,7 @@ namespace ET
             if (mapComponent.SceneTypeEnum < (int)SceneTypeEnum.MainCityScene)
             {
                 PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), info);
+                PlayerPrefsHelp.SetInt("IOSRecgargeType_" + accountInfoComponent.CurrentRoleId.ToString(), accountInfoComponent.RechargeType);
                 return;
             }
 
@@ -96,7 +99,8 @@ namespace ET
             {
                 UnitId = UnitHelper.GetMyUnitId(ZoneScene),
                 payMessage = receipt.Payload,
-                UnitName = ZoneScene.GetComponent<UserInfoComponent>().UserInfo.Name
+                UnitName = ZoneScene.GetComponent<UserInfoComponent>().UserInfo.Name,
+                RechargeType = ZoneScene.GetComponent<AccountInfoComponent>().RechargeType
             };
             ZoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
 

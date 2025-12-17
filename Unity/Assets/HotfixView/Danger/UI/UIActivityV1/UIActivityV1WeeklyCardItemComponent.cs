@@ -75,11 +75,15 @@ namespace ET
                 }
             }
 
-            long servertimer = TimeHelper.ServerNow();
-            int diffday = ComHelp.GetDaysDiffByDate(servertimer, weeklycardtime - TimeHelper.OneDay * 7);
+            long servertime = TimeHelper.ServerNow();
+            int diffday = ComHelp.GetDaysDiffByDate(servertime, weeklycardtime - TimeHelper.OneDay * 7);
             if (status!=2 && (diffday < rewardlists.Count) && (diffday >= self.Key ))
             {
                 status = 1;
+            }
+            if(weeklycardtime <= servertime)
+            {
+                status = 3;
             }
             self.ButtonReceive.SetActive(status == 1);
             self.CompleteStatu.SetActive(status == 2);
@@ -108,9 +112,7 @@ namespace ET
             {
                 return;
             }
-            self.ButtonReceive.SetActive(false);
-            self.CompleteStatu.SetActive(true);
-            self.NoActivatedStatu.SetActive(false);
+            self.GetParent<UIActivityV1WeeklyCardComponent>().OnWeeklyCardUpdate();
         }
     }
 }

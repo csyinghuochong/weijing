@@ -26,9 +26,10 @@ namespace ET
 			GlobalHelp.InitIOSPurchase();
 
 			string info = PlayerPrefsHelp.GetString("IOS_" + roleId.ToString());
+			int rechargeType = PlayerPrefsHelp.GetInt("IOSRecgargeType_" + accountInfoComponent.CurrentRoleId.ToString());
 			if (!string.IsNullOrEmpty(info))
 			{
-				NetHelper.SendIOSPayVerifyRequest(zoneScene, info).Coroutine();
+				NetHelper.SendIOSPayVerifyRequest(zoneScene, info, rechargeType).Coroutine();
 				PlayerPrefsHelp.SetString("IOS_" + roleId.ToString(), string.Empty);
 				FloatTipManager.Instance.ShowFloatTip("重连成功_IOS！");
 			}
@@ -36,14 +37,15 @@ namespace ET
 			ShareSdkHelper.MobPushOperate(1);
 #endif
 
-			if (GlobalHelp.GetPlatform() == 7)
+            if (GlobalHelp.GetPlatform() == 7)
 			{
 				GlobalHelp.InitGooglePurchase();
 
 				string googleInfo = PlayerPrefsHelp.GetString("Google_" + roleId.ToString());
-				if (!string.IsNullOrEmpty(googleInfo))
+				int rechargeType = PlayerPrefsHelp.GetInt("GoogleRecharge_" + roleId.ToString());
+                if (!string.IsNullOrEmpty(googleInfo))
 				{
-					NetHelper.SendGooglePayVerifyRequest(zoneScene, googleInfo).Coroutine();
+					NetHelper.SendGooglePayVerifyRequest(zoneScene, googleInfo, rechargeType).Coroutine();
 					PlayerPrefsHelp.SetString("Google_" + roleId.ToString(), string.Empty);
 					FloatTipManager.Instance.ShowFloatTip("重连成功_Google！");
 				}

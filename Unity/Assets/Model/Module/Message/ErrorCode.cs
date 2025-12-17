@@ -184,6 +184,7 @@ namespace ET
         public const int ERR_MagicHeCheng_3 = 300718;
         public const int ERR_MagicRefresh_1 = 300719;
         public const int ERR_PointNotEnough = 300720;
+        public const int ERR_NoWeeklyCard = 300721;
 
         /// <summary>
         /// 技能CD中

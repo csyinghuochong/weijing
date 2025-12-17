@@ -157,6 +157,9 @@ namespace ET
 		[ProtoMember(7)]
 		public string ClientIp { get; set; }
 
+		[ProtoMember(8)]
+		public int RechargeType { get; set; }
+
 	}
 
 	[Message(InnerOpcode.R2M_RechargeResponse)]
@@ -204,7 +207,10 @@ namespace ET
 		public string CpOrder { get; set; }
 
 		[ProtoMember(6)]
-		public int RechargetType { get; set; }
+		public int PayType { get; set; }
+
+		[ProtoMember(7)]
+		public int RechargeType { get; set; }
 
 	}
 
@@ -242,6 +248,9 @@ namespace ET
 
 		[ProtoMember(4)]
 		public string OrderInfo { get; set; }
+
+		[ProtoMember(7)]
+		public int RechargeType { get; set; }
 
 	}
 

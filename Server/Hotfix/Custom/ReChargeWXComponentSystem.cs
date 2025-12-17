@@ -73,11 +73,38 @@ namespace ET
             }
 
             //存储订单信息,方便面收到返回数据进行比对
-            self.orderDic.Add(dingDanID, $"{request.Zone}_{request.UnitId}_{request.UnitName}");
+            self.orderDic.Add(dingDanID, $"{request.Zone}_{request.UnitId}_{request.UnitName}_{request.RechargeType}");
+
+            if (ComHelp.IsInnerNet())
+            {
+                self.TestRecharge(dingDanID).Coroutine();
+            }
+
 
             ////第三步:将返回的参数再进行签名 并且按照我们跟客户端协定好的格式拼接
             self.orderNumber++;
             return self.PayOrder(result);
+        }
+        private static async ETTask TestRecharge(this ReChargeWXComponent self, string dingdanStr)
+        {
+            await TimerComponent.Instance.WaitAsync(1000);
+
+            //消息协议 SendProps,会话ID/订单号，道具ID,数量...(道具实体)
+
+            string userinfo = self.orderDic[dingdanStr];
+            //向客户端发送道具
+            //   self.orderDic.Add(dingDanID, $"{request.Zone}_{request.UnitId}_{request.UnitName}_{request.RechargeType}");
+            string[] userparams = userinfo.Split('_');
+
+            int zone = int.Parse(userparams[0]);
+            long userId = long.Parse(userparams[1]);
+            int rechargetype = int.Parse(userparams[3]);
+          
+            string serverName = ServerHelper.GetGetServerItem(false, zone).ServerName;
+            Console.WriteLine($"支付成功[微信]:  区：{serverName}     玩家名字：{userparams[2]}   充值额度：{30}  时间:{TimeHelper.DateTimeNow().ToString()}");
+            RechargeHelp.OnPaySucessToGate(zone, userId, 30, dingdanStr, PayTypeEnum.WeiXinPay, rechargetype).Coroutine();
+            //删除本地缓存的订单
+            self.orderDic.Remove(dingdanStr);
         }
 
         public static void WeChatPayResultListener(this ReChargeWXComponent self)
@@ -246,14 +273,18 @@ namespace ET
                     {
                         //消息协议 SendProps,会话ID/订单号，道具ID,数量...(道具实体)
                         //向客户端发送道具
-                        int zone = int.Parse(userinfo.Split('_')[0]);
-                        long userId = long.Parse(userinfo.Split('_')[1]);
+                        //   self.orderDic.Add(dingDanID, $"{request.Zone}_{request.UnitId}_{request.UnitName}_{request.RechargeType}");
+                        string[] userparams = userinfo.Split('_');
+
+                        int zone = int.Parse(userparams[0]);
+                        long userId = long.Parse(userparams[1]);
+                        int rechargetype = int.Parse(userparams[3]);
                         amount /= 100;
                         Log.Warning($"支付成功[微信] {userId}  {amount}");
 
                         string serverName = ServerHelper.GetGetServerItem(false, zone).ServerName;
-                        Log.Warning($"支付成功[微信]:  区：{serverName}     玩家名字：{userinfo.Split('_')[2]}   充值额度：{amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
-                        RechargeHelp.OnPaySucessToGate( zone, userId, amount, dingdanStr, PayTypeEnum.WeiXinPay).Coroutine();
+                        Log.Warning($"支付成功[微信]:  区：{serverName}     玩家名字：{userparams[2]}   充值额度：{amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
+                        RechargeHelp.OnPaySucessToGate( zone, userId, amount, dingdanStr, PayTypeEnum.WeiXinPay, rechargetype).Coroutine();
                         //删除本地缓存的订单
                         self.orderDic.Remove(dingdanStr);
                     }

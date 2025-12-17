@@ -154,7 +154,7 @@ namespace ET
                 string serverName = ServerHelper.GetGetServerItem(false, request.Zone).ServerName;
                 Log.Warning($"支付订单[IOS]支付成功: 区：{serverName}    玩家名字：{request.UnitName}     充值额度：{rechargeNumber}");
                 Log.Console($"支付订单[IOS]支付成功: 区：{serverName}    玩家名字：{request.UnitName}     充值额度：{rechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
-                await RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, postReturnStr, PayTypeEnum.IOSPay);
+                await RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, postReturnStr, PayTypeEnum.IOSPay, request.RechargeType);
             }
 
             return ErrorCode.ERR_Success;

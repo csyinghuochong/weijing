@@ -91,5 +91,15 @@ namespace ET
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();
         }
+
+        public static void OnWeeklyCardUpdate(this UIActivityV1Component self)
+        {
+            UI ui = self.UIPageView.UISubViewList[(int)ActivityV1PageEnum.ActivityV1WeeklyCard];
+            if (ui == null)
+            {
+                return;
+            }
+            ui.GetComponent<UIActivityV1WeeklyCardComponent>().OnWeeklyCardUpdate();
+        }
     }
 }
