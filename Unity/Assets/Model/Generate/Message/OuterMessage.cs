@@ -16905,7 +16905,7 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_ActivityOrderOperateRequest))]
+	[ResponseType(nameof(M2C_ActivityOrderOperateResponse))]
 	[Message(OuterOpcode.C2M_ActivityOrderOperateRequest)]
 	[ProtoContract]
 	public partial class C2M_ActivityOrderOperateRequest: Object, IActorLocationRequest
@@ -16921,9 +16921,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_ActivityOrderOperateRequest)]
+	[Message(OuterOpcode.M2C_ActivityOrderOperateResponse)]
 	[ProtoContract]
-	public partial class M2C_ActivityOrderOperateRequest: Object, IActorLocationResponse
+	public partial class M2C_ActivityOrderOperateResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

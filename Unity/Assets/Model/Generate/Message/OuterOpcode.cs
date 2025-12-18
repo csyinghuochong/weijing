@@ -924,7 +924,7 @@ namespace ET
 		 public const ushort C2M_TimerChouKaRequest = 10921;
 		 public const ushort M2C_TimerChouKaResponse = 10922;
 		 public const ushort C2M_ActivityOrderOperateRequest = 10923;
-		 public const ushort M2C_ActivityOrderOperateRequest = 10924;
+		 public const ushort M2C_ActivityOrderOperateResponse = 10924;
 		 public const ushort C2Center_QueryAccountRequest = 10925;
 		 public const ushort Center2C_QueryAccountResponse = 10926;
 	}

@@ -8090,7 +8090,7 @@ message M2C_TimerChouKaResponse // IActorLocationResponse
 }
 
 
-//ResponseType M2C_ActivityOrderOperateRequest
+//ResponseType M2C_ActivityOrderOperateResponse
 message C2M_ActivityOrderOperateRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
@@ -8098,7 +8098,7 @@ message C2M_ActivityOrderOperateRequest // IActorLocationRequest
 	int32 OperatateType = 1;    //1更换订单 2提交订单
 }
 
-message M2C_ActivityOrderOperateRequest // IActorLocationResponse
+message M2C_ActivityOrderOperateResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
