@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace ET
 {
@@ -2592,6 +2593,99 @@ namespace ET
 #endif
             return ErrorCode.ERR_Success;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static async ETTask StringValidation(string content)
+        {
+            await ETTask.CompletedTask;
+            string[] chaxunInfo = content.Split(" ");
+            if (chaxunInfo.Length != 2)
+            {
+                Console.WriteLine($"Error: {content}");
+            }
+#if SERVER
+            int transfer = int.Parse(chaxunInfo[1]);
+            var startZoneConfig = StartZoneConfigCategory.Instance.Get(202);
+            Game.Scene.GetComponent<DBComponent>().InitDatabase(startZoneConfig);
+            List<DBCenterAccountInfo> dBAccountInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id > 0);
+            foreach (var entity in dBAccountInfos_new)
+            {
+                if ( string.IsNullOrEmpty(entity.Account) )
+                {
+                    continue;
+                }
+
+                string input = entity.Account;
+                if (transfer == 0)
+                {
+                    var result = ConvertUppercaseToLower(input);
+                    entity.IsUpperList = result.positions;
+                    entity.Account = result.result;
+                    Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(202, entity).Coroutine();
+                }
+                else
+                {
+                    if (entity.IsUpperList.Count > 0)
+                    {
+                        input = input.RestoreUppercase(entity.IsUpperList);
+                        entity.IsUpperList.Clear();
+                        entity.Account = input;
+                        Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(202, entity).Coroutine();
+                    }
+                }
+            }
+#endif
+        }
+
+        public static (string result, List<int> positions) ConvertUppercaseToLower(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return (input, new List<int>());
+            }
+
+            // 使用LINQ找到所有大写字母的位置
+            List<int> uppercasePositions = input
+                .Select((c, i) => new { Character = c, Index = i })
+                .Where(x => char.IsUpper(x.Character))
+                .Select(x => x.Index)
+                .ToList();
+
+            // 转换所有字符为小写
+            string result = new string(input.Select(c => char.ToLower(c)).ToArray());
+
+            return (result, uppercasePositions);
+        }
+
+        /// <summary>
+        /// 根据大写字母位置将小写字符串还原
+        /// </summary>
+        public static string RestoreUppercase(this string lowercaseString, List<int> uppercasePositions)
+        {
+            if (string.IsNullOrEmpty(lowercaseString) || uppercasePositions == null)
+            {
+                return lowercaseString;
+            }
+
+            // 使用HashSet提高查找效率
+            HashSet<int> positionSet = new HashSet<int>(
+                uppercasePositions.Where(p => p >= 0 && p < lowercaseString.Length)
+            );
+
+            StringBuilder result = new StringBuilder(lowercaseString.Length);
+
+            for (int i = 0; i < lowercaseString.Length; i++)
+            {
+                char c = lowercaseString[i];
+                result.Append(positionSet.Contains(i) ? char.ToUpper(c) : c);
+            }
+
+            return result.ToString();
+        }
+
 
         public static async ETTask<int> MailConsoleHandler(string content)
         {

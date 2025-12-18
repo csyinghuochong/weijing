@@ -171,6 +171,28 @@ namespace ET
         //一套字可以兑换一个金条.  DuiHuanWordReward.keys
         public static string GroupsWordReward = "10010045;1";
 
+        /// <summary>
+        /// 订单刷新券
+        /// </summary>
+        public static string ActivityOrderRefreshItem = "10000184;3";
+
+        /// <summary>
+        /// 订单刷新时间（毫秒）
+        /// </summary>
+        public static long ActivityOrderRefreshTime = TimeHelper.Hour;
+
+        /// <summary>
+        /// 订单仓库
+        /// </summary>
+        public static List<ActivityOrderItem> ActivityOrderItemList = new List<ActivityOrderItem>()
+        {
+            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;3@10000132;2", Get = "10000132;5@10000131;1@10000131;3" },
+            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;4@10000132;2", Get = "10000132;5@10000131;1@10000131;4" },
+            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;5@10000132;2", Get = "10000132;5@10000131;1@10000131;5" },
+            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;6@10000132;2", Get = "10000132;5@10000131;1@10000131;6" },
+            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;7@10000132;2", Get = "10000132;5@10000131;1@10000131;7" },
+            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
+        };
 
         /// <summary>
         /// 抽卡消耗道具
@@ -321,6 +343,7 @@ namespace ET
         {
             return new List<int> { 1, 2, 3, 4 };
         }
+
 
 
         /// <summary>

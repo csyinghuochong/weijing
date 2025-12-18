@@ -39,6 +39,7 @@ namespace ET
 
         public List<KeyValuePairLong> CreateRoleList = new List<KeyValuePairLong>();
 
+        public List<int> IsUpperList = new List<int>(); 
 
         public int GetTotalRecharge()
         {

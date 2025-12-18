@@ -18,6 +18,7 @@ namespace ET
         public TikTokOAuthData data;
     }
 
+
     public sealed class TikTokOAuthData
     {
         public int error_code;
@@ -118,6 +119,14 @@ namespace ET
         public int ItemNum;
         public int BuyMinZiJin;
         public int BuyMaxZiJin;
+    }
+
+
+    public struct ActivityOrderItem
+    {
+        public int Weight;
+        public string Give;
+        public string Get;
     }
 
     public struct ChouKa2Item

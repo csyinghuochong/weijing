@@ -146,6 +146,10 @@ namespace ET
             {
                 ConsoleHelper.ChaXunUnityVersionHandler(request.Context).Coroutine();
             }
+            if (infoList[0] == "lowerstring")
+            {
+                ConsoleHelper.StringValidation(request.Context).Coroutine();
+            }
             if (infoList[0] == "savedb")
             {
                 //ArchiveHelper.ExecuteBatchFileOld().Coroutine();
