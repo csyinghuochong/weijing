@@ -53,7 +53,7 @@ namespace ET
                     }
 
                     bagComponent.OnCostItemData(activityOrderItem.Give, ItemLocType.ItemLocBag, ItemGetWay.Activity);
-                    bagComponent.OnAddItemData(activityOrderItem.Give, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()};
+                    bagComponent.OnAddItemData(activityOrderItem.Get, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     activityComponent.ActivityV1Info.OrderId = ActivityConfigHelper.GenerateActivityOrderId();
                     activityComponent.ActivityV1Info.OrderLastFefreshTime = TimeHelper.ServerNow();
                     break;
