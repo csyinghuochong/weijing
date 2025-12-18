@@ -195,6 +195,25 @@ namespace ET
         };
 
         /// <summary>
+        /// 获取订单Id ..
+        /// </summary>
+        /// <returns></returns>
+        public static int GenerateActivityOrderId()
+        {
+            int weightindex = 0;
+            int[] weightlist = new int[ActivityOrderItemList.Count];
+ 
+            for (int i = 0; i < ActivityOrderItemList.Count; i++)
+            {
+                ActivityOrderItem chouKa2Item = ActivityOrderItemList[i];
+                weightlist[i] = chouKa2Item.Weight;
+            }
+
+            weightindex = RandomHelper.RandomByWeight(weightlist);
+            return weightindex; 
+        }
+
+        /// <summary>
         /// 抽卡消耗道具
         /// </summary>
         public static string Chou2CostItem = "10000184;30";
