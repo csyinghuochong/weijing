@@ -177,24 +177,36 @@ namespace ET
         /// </summary>
         public static string Chou2CostItem = "10000184;30";
 
+
+        /// <summary>
+        /// 抽卡刷新道具   抽取6次也就是50%可以免费刷新，没到之前需要花费40冬季积分
+        /// </summary>
+        public static string Chou2FreshItem = "10000184;40";
+
         /// <summary>
         /// 每档随机取几个。抽满一半可以刷新
         /// </summary>
-        public static Dictionary<int, List<string>> ChouKa2ItemList = new Dictionary<int, List<string>>()
+        public static List<ChouKa2Item> ChouKa2ItemList = new List<ChouKa2Item>()
         {
-            {  1, new List<string>(){ "10010083;1", "10010083;3", "10000132;2", "10000132;5", "10000131;1", "10000131;3", "10010039;1", "10010041;2" , "10010042;2", "10010098;2", "10010098;2", "10010085;10", "10010091;1", "10010034;1", "10000184;30" } },
-            {  2, new List<string>(){ "10000166;1", "10010028;1", "10010033;1", "10010043;2", "10010037;2", "10010083;5", "10000142;1", "10010092;1" , "10010085;20", "10000184;60" } },
-            {  3, new List<string>(){ "10000150;1", "10000141;1", "10010040;1", "10010086;1", "10010046;1", "10010045;1", "10000143;1", "10010093;1" } },
+           new ChouKa2Item(){ Numer = 6, Weight = 50, Items =   new List<string>(){ "10010083;1", "10010083;3", "10000132;2", "10000132;5", "10000131;1", "10000131;3", "10010039;1", "10010041;2" , "10010042;2", "10010098;2", "10010098;2", "10010085;10", "10010091;1", "10010034;1", "10000184;30" }   },
+           new ChouKa2Item(){ Numer = 4, Weight = 35, Items =  new List<string>(){ "10000166;1", "10010028;1", "10010033;1", "10010043;2", "10010037;2", "10010083;5", "10000142;1", "10010092;1" , "10010085;20", "10000184;60" } },
+           new ChouKa2Item(){ Numer = 2, Weight = 15, Items = new List<string>(){ "10000150;1", "10000141;1", "10010040;1", "10010086;1", "10010046;1", "10010045;1", "10000143;1", "10010093;1" }  }
         };
 
-        public static List<string> GetRewardListByType(int id, int number)
+        public static List<string> GetRewardListByType()
         {
-            List<string> randomList = new List<string>();   
-            List<string> rewardList = ChouKa2ItemList[id];
-            int[] randomIds = RandomHelper.GetRandoms(number, 0, rewardList.Count);
-            for (int i = 0; i < randomIds.Length; i++)
+            List<string> randomList = new List<string>();
+
+            for (int i = 0; i < ChouKa2ItemList.Count; i++)
             {
-                randomList.Add(rewardList[randomIds[i]]);
+                ChouKa2Item chouKa2Item = ChouKa2ItemList[i];
+                List<string> rewardList = chouKa2Item.Items;
+
+                int[] randomIds = RandomHelper.GetRandoms(chouKa2Item.Numer, 0, rewardList.Count);
+                for (int random = 0; random < randomIds.Length; random++)
+                {
+                    randomList.Add(rewardList[randomIds[random]]);
+                }
             }
             return randomList;
         }
@@ -205,9 +217,7 @@ namespace ET
             List<string> allrewardList = new List<string>();
 
             ////每一档取不同的数量
-            allrewardList.AddRange(GetRewardListByType(1, 6) );
-            allrewardList.AddRange(GetRewardListByType(2, 4));
-            allrewardList.AddRange(GetRewardListByType(3, 2));
+            allrewardList.AddRange(GetRewardListByType() );
 
             for (int i = 0; i < allrewardList.Count; i++)
             {
@@ -221,20 +231,59 @@ namespace ET
             return rewardList;
         }
 
+        /// <summary>
+        /// 1 2 3 档增加概率 1 档50% 2档35% 3档 15% 每次抽取先随机档位在随机
+        /// </summary>
+        /// <param name="rewardList"></param>
+        /// <param name="rewardIds"></param>
+        /// <returns></returns>
         public static int GetChouKa2RewardIndex(string rewardList, List<int> rewardIds)
         {
-            List<int> leftIds = new List<int>();  
+            int weightindex = 0;
+            int[] weightlist = new int[ChouKa2ItemList.Count];
+            int id_lower = 0;
+            int id_upper = 0;
+
+            for (int i = 0; i < ChouKa2ItemList.Count; i++)
+            {
+                ChouKa2Item chouKa2Item = ChouKa2ItemList[i];
+                weightlist[i]  = chouKa2Item.Weight;        
+            }
+
+            weightindex = RandomHelper.RandomByWeight(weightlist);
+            for (int i = 0; i < ChouKa2ItemList.Count; i++)
+            {
+                id_upper += ChouKa2ItemList[i].Numer;
+                if (i >= weightindex)
+                {
+                    break;
+                }
+                id_lower += ChouKa2ItemList[i].Numer;
+            }
+
             int allnumber = rewardList.Split('@').Length;
+            List<int> leftIds = new List<int> {  };   
+            List<int> weightids = new List<int> { };    
             for (int i = 0; i < allnumber; i++)
             {
-                if (!rewardIds.Contains(i))
+                if (rewardIds.Contains(i))
                 {
-                    leftIds.Add(i);
+                    continue;
                 }
+                if (i >= id_lower && i < id_upper)
+                {
+                    weightids.Add(i);   
+                }
+                leftIds.Add(i);
             }
+
             if (leftIds.Count == 0)
             {
                 return -1;
+            }
+            if (weightids.Count > 0)
+            {
+                return weightids[RandomHelper.RandomNumber(0, weightids.Count)];
             }
             return leftIds[ RandomHelper.RandomNumber(0, leftIds.Count) ];
         }

@@ -3152,8 +3152,8 @@ namespace ET
             //M2C_ActivityRewardResponse response_1 = (M2C_ActivityRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest_1);
             //C2M_ActivityFeedRequest reuqest_1 = new C2M_ActivityFeedRequest() {  ItemID = 10030013 };
             //M2C_ActivityFeedResponse response_1 = (M2C_ActivityFeedResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest_1);
-            C2M_ChouKa2RefreshRequest request_3 = new C2M_ChouKa2RefreshRequest() { };
-            M2C_ChouKa2RefreshResponse response_3 = (M2C_ChouKa2RefreshResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_3);
+            //C2M_ChouKa2RefreshRequest request_3 = new C2M_ChouKa2RefreshRequest() { };
+            //M2C_ChouKa2RefreshResponse response_3 = (M2C_ChouKa2RefreshResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_3);
         }
 
         public static void OnButton_RechargeReward(this UIMainComponent self)

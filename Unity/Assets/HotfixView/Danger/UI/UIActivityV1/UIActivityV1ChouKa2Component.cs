@@ -26,7 +26,7 @@ namespace ET
             self.RefreshBtn = rc.Get<GameObject>("RefreshBtn");
 
             self.OpenBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBtn().Coroutine(); });
-            self.RefreshBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnRefreshBtn().Coroutine(); });
+            self.RefreshBtn.GetComponent<Button>().onClick.AddListener(self.OnRefreshBtn);
 
             self.UpdateInfo();
         }
@@ -113,13 +113,16 @@ namespace ET
             self.UpdateInfo();
         }
 
-        public static async ETTask OnRefreshBtn(this UIActivityV1ChouKa2Component self)
+        public static async ETTask RequestFefresh(this UIActivityV1ChouKa2Component self, bool needtitem)
         {
-            ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
-            if (activityV1Info.ChouKa2RewardIds.Count < activityV1Info.ChouKa2ItemList.Split('@').Length / 2)
+            if (needtitem)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达刷新条件"));
-                return;
+                BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+                if (!bagComponent.CheckNeedItem(ActivityConfigHelper.Chou2FreshItem))
+                {
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具不足"));
+                    return;
+                }
             }
 
             C2M_ChouKa2RefreshRequest request = new C2M_ChouKa2RefreshRequest();
@@ -133,6 +136,30 @@ namespace ET
 
             self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info = response.ActivityV1Info;
             self.UpdateInfo();
+        }
+
+        public static void  OnRefreshBtn(this UIActivityV1ChouKa2Component self)
+        {
+            ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
+            if (activityV1Info.ChouKa2RewardIds.Count < activityV1Info.ChouKa2ItemList.Split('@').Length / 2)
+            {
+                //FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达刷新条件"));
+                string itemneeddes = string.Empty;
+                string[] iteminfo = ActivityConfigHelper.Chou2FreshItem.Split(';');
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(iteminfo[0]));
+                itemneeddes += GameSettingLanguge.LoadLocalization("是否花费 ");
+                itemneeddes += itemConfig.GetItemName();
+                itemneeddes += $" X{iteminfo[1]} ";
+                itemneeddes += GameSettingLanguge.LoadLocalization("刷新道具?");
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("刷新道具"), itemneeddes,
+                () =>
+                {
+                    self.RequestFefresh(true).Coroutine();
+                }, null).Coroutine();
+                return;
+            }
+
+            self.RequestFefresh(false).Coroutine();
         }
     }
 }

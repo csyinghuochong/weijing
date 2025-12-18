@@ -120,6 +120,14 @@ namespace ET
         public int BuyMaxZiJin;
     }
 
+    public struct ChouKa2Item
+    {
+        public int ItemID;
+        public int Numer;
+        public int Weight;
+        public List<string> Items;
+    }
+
     public struct LiBaoListItem
     {
         public string Value; ///购买消耗
