@@ -15871,6 +15871,12 @@ namespace ET
 		[ProtoMember(14)]
 		public List<int> DiamondWeeklyCardRewards = new List<int>();
 
+		[ProtoMember(15)]
+		public int OrderId { get; set; }
+
+		[ProtoMember(16)]
+		public long OrderLastFefreshTime { get; set; }
+
 	}
 
 //v1活动.抽奖
@@ -16896,6 +16902,40 @@ namespace ET
 
 		[ProtoMember(10)]
 		public long LastTimerChouKaPassTime { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_ActivityOrderOperateRequest))]
+	[Message(OuterOpcode.C2M_ActivityOrderOperateRequest)]
+	[ProtoContract]
+	public partial class C2M_ActivityOrderOperateRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperatateType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ActivityOrderOperateRequest)]
+	[ProtoContract]
+	public partial class M2C_ActivityOrderOperateRequest: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(8)]
+		public ActivityV1Info ActivityV1Info { get; set; }
 
 	}
 
