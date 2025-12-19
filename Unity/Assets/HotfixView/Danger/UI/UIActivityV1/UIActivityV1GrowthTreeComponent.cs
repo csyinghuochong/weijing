@@ -9,6 +9,7 @@ namespace ET
         public Text Text_AddNum;
         public GameObject UIActivityV1GrowthTreeCostItem;
         public GameObject GiveItemList;
+        public List<UIActivityV1GrowthTreeCostItemComponent> UIGiveItemList = new List<UIActivityV1GrowthTreeCostItemComponent>();
 
         public GameObject UICommonItem;
         public GameObject ShowItemList;
@@ -53,6 +54,7 @@ namespace ET
             self.Tree_Icon = rc.Get<GameObject>("Tree_Icon").GetComponent<Image>();
 
             self.InitUIShowItemList();
+            self.InitUIGiveItemList();
             self.UpdateInfo();
         }
     }
@@ -89,6 +91,36 @@ namespace ET
                 self.UIShowItemList.Add(uIItemComponent);
             }
             
+        }
+
+        public static void InitUIGiveItemList(this UIActivityV1GrowthTreeComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+
+            foreach (var costitem in ActivityConfigHelper.ActivityTreeCostItem)
+            {
+                int itemid = costitem.Key;
+
+                long havenum = bagComponent.GetItemNumber(itemid);
+
+                GameObject itemSpace = GameObject.Instantiate(self.UIActivityV1GrowthTreeCostItem);
+                itemSpace.SetActive(true);
+                UICommonHelper.SetParent(itemSpace, self.GiveItemList);
+
+                UIActivityV1GrowthTreeCostItemComponent costitemcomponent = self.AddChild<UIActivityV1GrowthTreeCostItemComponent, GameObject>(itemSpace);
+
+                costitemcomponent.OnInitData(itemid, havenum);
+
+                self.UIGiveItemList.Add(costitemcomponent);
+            }
+        }
+
+        public static void UpdateUIGiveItemList(this UIActivityV1GrowthTreeComponent self)
+        {
+            for (int i = 0; i < self.UIGiveItemList.Count; i++)
+            {
+                self.UIGiveItemList[i].OnUpdateUI();
+            }
         }
 
         public static void UpdateInfo(this UIActivityV1GrowthTreeComponent self)

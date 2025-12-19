@@ -611,6 +611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3952779540939520923}
   - component: {fileID: 1428572558841741639}
+  - component: {fileID: 2845931973653752429}
   m_Layer: 5
   m_Name: UIActivityV1GrowthTreeCostItem
   m_TagString: Untagged
@@ -650,6 +651,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298749593409925070}
   m_CullTransparentMesh: 1
+--- !u!114 &2845931973653752429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298749593409925070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: UICommonItem
+    gameObject: {fileID: 103911284135523925}
+  - key: ButtonSub
+    gameObject: {fileID: 429183647462320214}
+  - key: ButtonAdd
+    gameObject: {fileID: 7927699965724431753}
+  - key: Label_ItemNum
+    gameObject: {fileID: 8363456946761349437}
 --- !u!1 &401648899090192983
 GameObject:
   m_ObjectHideFlags: 0
@@ -2777,7 +2799,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 200}
-  m_Spacing: {x: 30, y: 0}
+  m_Spacing: {x: 50, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 5
 --- !u!1 &6370382866541421713
