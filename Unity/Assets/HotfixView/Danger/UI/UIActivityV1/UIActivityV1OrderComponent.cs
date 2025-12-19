@@ -22,7 +22,7 @@ namespace ET
         }
     }
 
-    public class UIActivityV1OrderComponent : Entity, IAwake
+    public class UIActivityV1OrderComponent : Entity, IAwake, IDestroy
     {
         public Text TextLeftTime;
         public Text TextHaveNumber;
@@ -31,11 +31,21 @@ namespace ET
         public GameObject GetItemList;
         public GameObject UICommonCostItem;
 
+        public UIItemComponent UINeedItem;
+
         public GameObject GiveItemList;
         public List<UICommonCostItemComponent> UICommonCostItemList = new List<UICommonCostItemComponent>();
 
         public GameObject ButtonGive;
         public GameObject ButtonChange;
+    }
+
+    public class UIActivityV1OrderComponentDestroy : DestroySystem<UIActivityV1OrderComponent>
+    {
+        public override void Destroy(UIActivityV1OrderComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.OrderTimer);
+        }
     }
 
     public class UIActivityV1OrderComponentAwake : AwakeSystem<UIActivityV1OrderComponent>
@@ -51,18 +61,22 @@ namespace ET
             self.UICommonCostItem = rc.Get<GameObject>("UICommonCostItem");
             self.UICommonCostItem.SetActive(false);
 
+            GameObject uineeditem = rc.Get<GameObject>("UINeedItem");
+            self.UINeedItem = self.AddChild<UIItemComponent, GameObject>(uineeditem);
+
+
             self.GiveItemList = rc.Get<GameObject>("GiveItemList");
 
             self.ButtonGive = rc.Get<GameObject>("ButtonGive");
             self.ButtonGive.GetComponent<Button>().onClick.AddListener(() =>
             {
-               
+                self.RequestFefreshOrder(2).Coroutine();
             });
 
             self.ButtonChange = rc.Get<GameObject>("ButtonChange");
             self.ButtonChange.GetComponent<Button>().onClick.AddListener(() =>
             {
-
+                self.RequestFefreshOrder(1).Coroutine();
             });
 
             self.UpdateInfo().Coroutine();
@@ -131,16 +145,16 @@ namespace ET
 
         public static void ShowOrderRefreshTime(this UIActivityV1OrderComponent self)
         {
+            TimerComponent.Instance.Remove(ref self.OrderTimer);
             long refreshTime = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.OrderLastFefreshTime;
             long leftTime = refreshTime + ActivityConfigHelper.ActivityOrderRefreshTime -  TimeHelper.ServerNow();
             if (leftTime <= 0)
             {
-                TimerComponent.Instance.Remove( ref self.OrderTimer );
-                self.RequestFefreshOrder().Coroutine();
+                self.RequestFefreshOrder(3).Coroutine();
             }
             else
             {
-                string showstr = UICommonHelper.ShowLeftTime_3(leftTime, GameSettingLanguge.Language);
+                string showstr = UICommonHelper.ShowLeftTime_2(leftTime, GameSettingLanguge.Language);
                 self.TextLeftTime.text = string.Format(GameSettingLanguge.LoadLocalization("订单剩余时间:{0}"), showstr);
                 self.OrderTimer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.ActivityV1OrderTimer, self);
             }
@@ -148,19 +162,40 @@ namespace ET
 
         public static void OnTimerChouKaTimer(this UIActivityV1OrderComponent self)
         {
-            self.ShowOrderRefreshTime();
+            long refreshTime = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.OrderLastFefreshTime;
+            long leftTime = refreshTime + ActivityConfigHelper.ActivityOrderRefreshTime - TimeHelper.ServerNow();
+            if (leftTime <= 0)
+            {
+                TimerComponent.Instance.Remove(ref self.OrderTimer);
+                self.RequestFefreshOrder(3).Coroutine();
+            }
+            else
+            {
+                string showstr = UICommonHelper.ShowLeftTime_2(leftTime, GameSettingLanguge.Language);
+                self.TextLeftTime.text = string.Format(GameSettingLanguge.LoadLocalization("订单剩余时间:{0}"), showstr);
+            }
         }
 
-        public static async ETTask RequestFefreshOrder(this UIActivityV1OrderComponent self)
+        public static async ETTask RequestFefreshOrder(this UIActivityV1OrderComponent self, int otype)
         {
-            C2M_ActivityOrderOperateRequest request = new C2M_ActivityOrderOperateRequest() {  OperatateType  =3};
+            if (otype == 1)
+            {
+                BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+                if (!bagComponent.CheckNeedItem(ActivityConfigHelper.ActivityOrderRefreshItem))
+                {
+                    ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_ItemNotEnoughError);
+                    return;
+                }
+            }
+
+            C2M_ActivityOrderOperateRequest request = new C2M_ActivityOrderOperateRequest() {  OperatateType  = otype };
             M2C_ActivityOrderOperateResponse response =
                     (M2C_ActivityOrderOperateResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (self.IsDisposed)
             {
                 return;
             }
-            if (response.Error == ErrorCode.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }
@@ -169,12 +204,26 @@ namespace ET
             ActivityV1Info activityV1Info = activityComponent.ActivityV1Info;
             self.ShowOrderDetail(activityV1Info.OrderId);
             self.ShowOrderRefreshTime();
+            self.UpdateCostItemNumber();
         }
 
 
         public static void UpdateCostItemNumber(this UIActivityV1OrderComponent self)
-        { 
-            
+        {
+            string[] iteminfo = ActivityConfigHelper.ActivityOrderRefreshItem.Split(';');
+            int itemid = int.Parse(iteminfo[0]);    
+            int neednum = int.Parse(iteminfo[1]);
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(  itemid );
+
+            long havenum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(itemid);
+            string showstr = GameSettingLanguge.LoadLocalization("拥有");
+            self.TextHaveNumber.text = $"{showstr}:{havenum}";
+
+            self.UINeedItem.UpdateItem( new BagInfo() { ItemID = itemid }, ItemOperateEnum.None );
+            self.UINeedItem.Label_ItemNum.SetActive(false);
+
+            self.UINeedItem.Label_ItemName.GetComponent<Text>().text = $"{itemConfig.GetItemName()}*{neednum}";
         }
 
     }

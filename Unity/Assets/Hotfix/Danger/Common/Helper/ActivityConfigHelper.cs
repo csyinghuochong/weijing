@@ -179,7 +179,7 @@ namespace ET
         /// <summary>
         /// 订单刷新时间（毫秒）
         /// </summary>
-        public static long ActivityOrderRefreshTime = TimeHelper.Minute * 2;
+        public static long ActivityOrderRefreshTime = TimeHelper.Minute ;   // * 60
 
         /// <summary>
         /// 订单列表
