@@ -220,22 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: ButtonChange
-    gameObject: {fileID: 0}
-  - key: ButtonGive
-    gameObject: {fileID: 9156259190463419512}
-  - key: GiveItemList
-    gameObject: {fileID: 0}
-  - key: UICommonCostItem
-    gameObject: {fileID: 0}
-  - key: GetItemList
-    gameObject: {fileID: 5416899873444181324}
-  - key: TextHaveNumber
+  - key: TextGrowNumber
     gameObject: {fileID: 6586247946763214316}
-  - key: TextLeftTime
-    gameObject: {fileID: 0}
-  - key: UINeedItem
-    gameObject: {fileID: 0}
 --- !u!1 &1822024773115512492
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,7 +2590,7 @@ GameObject:
   - component: {fileID: 7140479767874150543}
   - component: {fileID: 4459858314787601926}
   m_Layer: 5
-  m_Name: TextHaveNumber
+  m_Name: TextGrowNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
