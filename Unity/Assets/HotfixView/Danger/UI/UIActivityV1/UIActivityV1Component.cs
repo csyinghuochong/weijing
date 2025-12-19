@@ -16,6 +16,7 @@ namespace ET
         ActivityV1Feed = 7,
         ActivityV1WeeklyCard = 8,
         ActivityV1Order = 9,
+        ActivityV1GrowthTree = 10,
         Number,
     }
 
@@ -61,6 +62,8 @@ namespace ET
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1WeeklyCard");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1Order] =
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Order");
+            pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1GrowthTree] =
+                    ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1GrowthTree");
 
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1ChouKa] = typeof (UIActivityV1ChouKaComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Guess] = typeof (UIActivityV1GuessComponent);
@@ -72,6 +75,7 @@ namespace ET
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Feed] = typeof (UIActivityV1FeedComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1WeeklyCard] = typeof(UIActivityV1WeeklyCardComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Order] = typeof(UIActivityV1OrderComponent);
+            pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1GrowthTree] = typeof(UIActivityV1GrowthTreeComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");

@@ -62,6 +62,7 @@ namespace ET
                     activityComponent.ActivityV1Info.OrderLastFefreshTime = TimeHelper.ServerNow();
                     break;
             }
+
             response.ActivityV1Info = activityComponent.ActivityV1Info;
             reply();
             await ETTask.CompletedTask;

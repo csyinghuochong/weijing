@@ -171,6 +171,41 @@ namespace ET
         //一套字可以兑换一个金条.  DuiHuanWordReward.keys
         public static string GroupsWordReward = "10010045;1";
 
+
+        //成长树
+        /// <summary>
+        /// 成长树消耗道具列表
+        /// </summary>
+        public static Dictionary<int, (int, int)> ActivityTreeCostItem = new Dictionary<int, (int, int)>()
+        {
+            { 10035001,(10, 110) },
+            { 10035002,(20, 120) },
+            { 10035003,(30, 120) },
+            { 10035004,(40, 120) }
+        };
+
+        /// <summary>
+        /// 成长树阶段奖励
+        /// </summary>
+        public static List<ActivityTreeStageItem> ActivityTreeStageDesc = new List<ActivityTreeStageItem>()
+        {
+            new ActivityTreeStageItem(){ GrowthValue = 500, Name = "幼苗期", Reward = "10010083;3@10000132;2" },
+            new ActivityTreeStageItem(){ GrowthValue = 1500, Name = "成长期", Reward = "10010083;8@10000132;2" },
+            new ActivityTreeStageItem(){ GrowthValue = 4500, Name = "结果期", Reward = "10010083;9@10000132;2" },
+            new ActivityTreeStageItem(){ GrowthValue = 10000, Name = "大数期", Reward = "10010083;10@10000132;2" },
+        };
+
+        /// <summary>
+        /// 成长树施肥奖励
+        /// </summary>
+        public static List<ActivityTreeTendItem> ActivityTreeTendRewardItem = new List<ActivityTreeTendItem>()
+        {
+            new ActivityTreeTendItem(){ GrowthValueLower = 5, GrowthValueUpper = 20, Reward = "10010083;3@10000132;2" },
+            new ActivityTreeTendItem(){ GrowthValueLower = 21, GrowthValueUpper = 50, Reward = "10010083;8@10000132;2" },
+            new ActivityTreeTendItem(){ GrowthValueLower = 51, GrowthValueUpper = 100, Reward = "10010083;9@10000132;2" },
+            new ActivityTreeTendItem(){ GrowthValueLower = 101, GrowthValueUpper = 9999,  Reward = "10010083;10@10000132;2" },
+        };
+
         /// <summary>
         /// 订单刷新券
         /// </summary>

@@ -122,6 +122,20 @@ namespace ET
     }
 
 
+    public struct ActivityTreeStageItem
+    {
+        public int GrowthValue;
+        public string Name;
+        public string Reward;
+    }
+
+    public struct ActivityTreeTendItem
+    {
+        public int GrowthValueLower;
+        public int GrowthValueUpper;
+        public string Reward;
+    }
+
     public struct ActivityOrderItem
     {
         public int Weight;
