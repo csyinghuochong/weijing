@@ -96,6 +96,7 @@ namespace ET
             self.OnInitUI(jiaYuanPastureConfig, index);
             self.MysteryItemInfo = mysteryItemInfo;
 
+
             // 判断家园等级是否足够
             int jiayuanid = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv;
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanid);
@@ -103,7 +104,7 @@ namespace ET
             {
                 self.Text_RenKou.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("人口") + "：" + jiaYuanPastureConfig.PeopleNum;
                 self.Text_Name.GetComponent<Text>().text = jiaYuanPastureConfig.GetName();
-                self.Text_value2.GetComponent<Text>().text = ((int)(jiaYuanPastureConfig.BuyGold * 1.5f)).ToString();
+                self.Text_value2.GetComponent<Text>().text = ((int)(jiaYuanPastureConfig.BuyGold * ComHelp.JiaYuanPastureBuy())).ToString();
 
                 int hour = jiaYuanPastureConfig.UpTime[3] / 3600;
                 self.Text_value.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}小时"), hour);
@@ -153,7 +154,9 @@ namespace ET
 
             C2M_JiaYuanPastureBuyRequest c2M_MysteryBuyRequest = new C2M_JiaYuanPastureBuyRequest()
             {
-                MysteryId = self.MysteryItemInfo.MysteryId, ProductId = self.MysteryItemInfo.ProductId,
+                MysteryId = self.MysteryItemInfo.MysteryId, 
+                ProductId = self.MysteryItemInfo.ProductId,
+                BuyType = 1
             };
             M2C_JiaYuanPastureBuyResponse r2c_roleEquip =
                     (M2C_JiaYuanPastureBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_MysteryBuyRequest);

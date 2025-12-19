@@ -57,10 +57,12 @@ namespace ET
                     activityComponent.ActivityV1Info.OrderId = ActivityConfigHelper.GenerateActivityOrderId();
                     activityComponent.ActivityV1Info.OrderLastFefreshTime = TimeHelper.ServerNow();
                     break;
+                case 3:  //自动刷新
+                    activityComponent.ActivityV1Info.OrderId = ActivityConfigHelper.GenerateActivityOrderId();
+                    activityComponent.ActivityV1Info.OrderLastFefreshTime = TimeHelper.ServerNow();
+                    break;
             }
-
             response.ActivityV1Info = activityComponent.ActivityV1Info;
-
             reply();
             await ETTask.CompletedTask;
         }

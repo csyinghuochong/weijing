@@ -97,7 +97,7 @@ namespace ET
                 {
                     GameObject storeItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(storeItem, self.cellContainer1);
-
+                    
                     ui_1 = self.AddChild<UIJiaYuanPastureItem_AComponent, GameObject>(storeItem);
                     self.SellList.Add(ui_1);
                 }

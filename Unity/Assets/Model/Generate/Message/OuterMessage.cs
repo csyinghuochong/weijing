@@ -11783,6 +11783,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int MysteryId { get; set; }
 
+		[ProtoMember(3)]
+		public int BuyType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_JiaYuanPastureBuyResponse)]

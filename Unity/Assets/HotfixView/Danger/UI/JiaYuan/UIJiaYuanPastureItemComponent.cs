@@ -120,6 +120,7 @@ namespace ET
             {
                 MysteryId = self.MysteryItemInfo.MysteryId,
                 ProductId = self.MysteryItemInfo.ProductId,
+                BuyType = 2,
             };
             M2C_JiaYuanPastureBuyResponse r2c_roleEquip = (M2C_JiaYuanPastureBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_MysteryBuyRequest);
             

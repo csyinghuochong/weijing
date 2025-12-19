@@ -106,6 +106,7 @@
         public const int PickItemTimer = 1119;
         public const int MainTimerChouKaTimer = 1120;
         public const int DelayRemoveTimer = 1121;
+        public const int ActivityV1OrderTimer = 1122;
         // 不能超过10000
     }
 }

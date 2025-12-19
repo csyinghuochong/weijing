@@ -5614,6 +5614,7 @@ message C2M_JiaYuanPastureBuyRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int32 ProductId = 1;
 	int32 MysteryId = 2;
+	int32 BuyType  = 3; //1 A1.5倍  2 B正常
 }
 
 message M2C_JiaYuanPastureBuyResponse // IActorLocationResponse

@@ -25,7 +25,14 @@ namespace ET
                 return;
             }
 
-            if (!unit.GetComponent<BagComponent>().CheckCostItem($"13;{(int)(jiaYuanPastureConfig.BuyGold * 1.5f)}"))
+
+            float jiagerate = 1f;
+            if (request.BuyType == 1)
+            {
+                jiagerate = ComHelp.JiaYuanPastureBuy();
+            }
+
+            if (!unit.GetComponent<BagComponent>().CheckCostItem($"13;{(int)(jiaYuanPastureConfig.BuyGold * jiagerate)}"))
             {
                 response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
@@ -66,9 +73,9 @@ namespace ET
                     return;
                 }
             }
-            
+
             unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
-            unit.GetComponent<BagComponent>().OnCostItemData($"13;{(int)(jiaYuanPastureConfig.BuyGold * 1.5f)}", ItemLocType.ItemLocBag, ItemGetWay.JiaYuanCost);
+            unit.GetComponent<BagComponent>().OnCostItemData($"13;{(int)(jiaYuanPastureConfig.BuyGold * jiagerate)}", ItemLocType.ItemLocBag, ItemGetWay.JiaYuanCost);
             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JiaYuanPastureNumber_94, 0, 1);
             unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.JiaYuanPastureNumber_94, 0, 1);
 

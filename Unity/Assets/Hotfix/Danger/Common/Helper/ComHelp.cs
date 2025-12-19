@@ -59,6 +59,11 @@ namespace ET
             return GlobalValueConfigCategory.Instance.Get(45).Value2;
         }
 
+        public static float JiaYuanPastureBuy()
+        {
+            return float.Parse(GlobalValueConfigCategory.Instance.Get(121).Value);
+        }
+
         public static int GetSkillCdRate(int sceneType)
         {
             int cdRate =  (sceneType == SceneTypeEnum.Arena || sceneType == SceneTypeEnum.Solo) ? 2 : 1;

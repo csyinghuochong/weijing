@@ -1,13 +1,32 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
+
+    [Timer(TimerType.ActivityV1OrderTimer)]
+    public class ActivityV1OrderTimer : ATimer<UIActivityV1OrderComponent>
+    {
+        public override void Run(UIActivityV1OrderComponent self)
+        {
+            try
+            {
+                self.OnTimerChouKaTimer();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
     public class UIActivityV1OrderComponent : Entity, IAwake
     {
         public Text TextLeftTime;
         public Text TextHaveNumber;
+        public long OrderTimer;
 
         public GameObject GetItemList;
         public GameObject UICommonCostItem;
@@ -69,7 +88,7 @@ namespace ET
             self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info = response.ActivityV1Info;
 
             self.ShowOrderDetail(response.ActivityV1Info.OrderId);
-            self.ShowOrderRefreshTime(response.ActivityV1Info.OrderLastFefreshTime);
+            self.ShowOrderRefreshTime();
             self.UpdateCostItemNumber();
         }
 
@@ -110,10 +129,48 @@ namespace ET
             UICommonHelper.ShowItemList(rewardItems, self.GetItemList, self, 1f, true, true);
         }
 
-        public static void ShowOrderRefreshTime(this UIActivityV1OrderComponent self, long refreshTime)
-        { 
-            
+        public static void ShowOrderRefreshTime(this UIActivityV1OrderComponent self)
+        {
+            long refreshTime = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.OrderLastFefreshTime;
+            long leftTime = refreshTime + ActivityConfigHelper.ActivityOrderRefreshTime -  TimeHelper.ServerNow();
+            if (leftTime <= 0)
+            {
+                TimerComponent.Instance.Remove( ref self.OrderTimer );
+                self.RequestFefreshOrder().Coroutine();
+            }
+            else
+            {
+                string showstr = UICommonHelper.ShowLeftTime_3(leftTime, GameSettingLanguge.Language);
+                self.TextLeftTime.text = string.Format(GameSettingLanguge.LoadLocalization("订单剩余时间:{0}"), showstr);
+                self.OrderTimer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.ActivityV1OrderTimer, self);
+            }
         }
+
+        public static void OnTimerChouKaTimer(this UIActivityV1OrderComponent self)
+        {
+            self.ShowOrderRefreshTime();
+        }
+
+        public static async ETTask RequestFefreshOrder(this UIActivityV1OrderComponent self)
+        {
+            C2M_ActivityOrderOperateRequest request = new C2M_ActivityOrderOperateRequest() {  OperatateType  =3};
+            M2C_ActivityOrderOperateResponse response =
+                    (M2C_ActivityOrderOperateResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            if (response.Error == ErrorCode.ERR_Success)
+            {
+                return;
+            }
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            activityComponent.ActivityV1Info = response.ActivityV1Info;
+            ActivityV1Info activityV1Info = activityComponent.ActivityV1Info;
+            self.ShowOrderDetail(activityV1Info.OrderId);
+            self.ShowOrderRefreshTime();
+        }
+
 
         public static void UpdateCostItemNumber(this UIActivityV1OrderComponent self)
         { 
