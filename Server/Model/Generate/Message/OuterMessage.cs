@@ -15883,6 +15883,9 @@ namespace ET
 		[ProtoMember(16)]
 		public long OrderLastFefreshTime { get; set; }
 
+		[ProtoMember(17)]
+		public int GrowthTreeValue { get; set; }
+
 	}
 
 //v1活动.抽奖

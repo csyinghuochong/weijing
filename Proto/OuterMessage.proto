@@ -4510,22 +4510,6 @@ message M2C_ItemTreasureOpenResponse // IActorLocationResponse
 	RewardItem ReardItem = 5;
 }
 
-//ResponseType A2C_ActivityInfoResponse
-message C2A_ActivityInfoRequest // IActivityActorRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int32 ActivityType = 1;
-}
-
-message A2C_ActivityInfoResponse // IActivityActorResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	string ActivityContent = 1;
-}
-
 //激活称号
 //ResponseType M2C_TitleUseResponse
 message C2M_TitleUseRequest    // IActorLocationRequest
@@ -6885,6 +6869,7 @@ message ActivityV1Info
 	repeated int32 DiamondWeeklyCardRewards = 14;//钻石周卡
 	int32 OrderId = 15;                           //订单ID
 	int64 OrderLastFefreshTime = 16;              //上次订单刷新时间
+	int32 GrowthTreeValue = 17;                   //成长树
 }
 
 //v1活动.抽奖
