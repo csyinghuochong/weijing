@@ -104,8 +104,7 @@ namespace ET
 
         public static void UpdateInfo(this UIActivityV1ChouKaComponent self)
         {
-            self.NumText.GetComponent<Text>().text =
-                    string.Format(GameSettingLanguge.LoadLocalization("抽奖次数：{0}"), UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.V1ChouKaNumber));
+            self.NumText.GetComponent<Text>().text = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.V1ChouKaNumber).ToString();
         }
     }
 }
