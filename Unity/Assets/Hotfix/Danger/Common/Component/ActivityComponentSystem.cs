@@ -177,6 +177,7 @@ namespace ET
                 }
             }
 
+            self.ActivityV1Info.LiBaoBuyIds.Clear();
             //self.LastTimerChouKaPassTime = 0;
             //self.TimerChouKaReceiveIndex = 0;
 
