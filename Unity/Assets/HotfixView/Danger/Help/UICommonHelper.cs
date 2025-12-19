@@ -421,6 +421,25 @@ namespace ET
             }
         }
 
+        public static void ShowCostItemList(string itemList, GameObject itemNodeList, GameObject bundleGameObject, Entity entity, float scale = 1f)
+        {
+            if (string.IsNullOrEmpty(itemList))
+            {
+                return;
+            }
+            string[] rewardItems = itemList.Split('@');
+            for (int i = 0; i < rewardItems.Length; i++)
+            {
+                string[] itemInfo = rewardItems[i].Split(';');
+                GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
+                itemSpace.SetActive(true);
+                UICommonHelper.SetParent(itemSpace, itemNodeList);
+                UICommonCostItemComponent uIItemComponent = entity.AddChild<UICommonCostItemComponent, GameObject>(itemSpace);
+                uIItemComponent.UpdateItem(int.Parse(itemInfo[0]), int.Parse(itemInfo[1]));
+                itemSpace.transform.localScale = Vector3.one * scale;
+            }
+        }
+
         public static void ShowSkillItem(GameObject itemObj, GameObject itemParent, Entity entity, int[] skills, string aBAtlas)
         {
             for (int i = 0; i < skills.Length; i++)

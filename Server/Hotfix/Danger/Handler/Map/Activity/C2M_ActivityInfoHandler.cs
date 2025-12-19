@@ -30,8 +30,14 @@ namespace ET
             response.TimerChouKaReceiveIndex = activityComponent.TimerChouKaReceiveIndex;
             response.LastTimerChouKaPassTime = activityComponent.LastTimerChouKaPassTime;
 
-
             ActivityV1Info activityV1Info = activityComponent.ActivityV1Info;
+            long servertime = TimeHelper.ServerNow();
+            if (servertime - activityV1Info.OrderLastFefreshTime >= ActivityConfigHelper.ActivityOrderRefreshTime)
+            {
+                activityV1Info.OrderLastFefreshTime = TimeHelper.ServerNow();
+                activityV1Info.OrderId  = ActivityConfigHelper.GenerateActivityOrderId();
+            }
+
             activityV1Info.ChouKaDropId = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo.ChouKaDropId;
             activityV1Info.GuessIds.Clear();
 

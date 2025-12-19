@@ -35,7 +35,7 @@ namespace ET
         public static void OnUpdateData(this UIActivityV1ChouKaItemComponent self, int key)
         {
             self.Key = key;
-            self.NumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("今日抽奖次数x{0}"), key);
+            self.NumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}次"), key);
             UICommonHelper.ShowItemList(ActivityConfigHelper.ChouKaNumberReward[key], self.RewardListNode, self, 0.8f);
 
             self.ReceivedImg.SetActive(self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Contains(self.Key));

@@ -755,7 +755,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: []
+  data:
+  - key: ButtonChange
+    gameObject: {fileID: 8301008218787119462}
+  - key: ButtonGive
+    gameObject: {fileID: 9156259190463419512}
+  - key: GiveItemList
+    gameObject: {fileID: 5956716275744138743}
+  - key: UICommonCostItem
+    gameObject: {fileID: 4344064768768774810}
+  - key: GetItemList
+    gameObject: {fileID: 5416899873444181324}
+  - key: TextHaveNumber
+    gameObject: {fileID: 6586247946763214316}
+  - key: TextLeftTime
+    gameObject: {fileID: 3588411136089015454}
 --- !u!1 &2140283427585782905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,7 +1382,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4344064768768774810}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.25653}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1792,7 +1806,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5416899873444181324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.25653}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1852,7 +1866,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5956716275744138743}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.25653}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2101,7 +2115,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6362\u8BA2\u5355"
+  m_Text: "\u63D0\u4EA4\u8BA2\u5355"
 --- !u!114 &8336030703784071134
 MonoBehaviour:
   m_ObjectHideFlags: 0
