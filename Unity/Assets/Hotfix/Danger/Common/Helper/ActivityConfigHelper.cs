@@ -387,10 +387,10 @@ namespace ET
         /// </summary>
         public static Dictionary<int, LiBaoListItem> LiBaoList = new Dictionary<int, LiBaoListItem>()
         {
-            { 1,  new LiBaoListItem(){ Value = "37;498", Name = "洗练礼包1", Value2 = "10010060;1@10000180;100@10000183;2@10000184;300" }}, //Value消耗钻石Value2道具
-            { 2,  new LiBaoListItem(){ Value = "37;498", Name = "洗练礼包2", Value2 = "10010053;1@10010037;50@10010052;2@10000184;300" }},
-            { 3,  new LiBaoListItem(){ Value = "37;498", Name = "洗练礼包3", Value2 = "10000107;1@10045108;1@10000108;2@10000184;300" }},
-            { 4,  new LiBaoListItem(){ Value = "37;498", Name = "洗练礼包4", Value2 = "10010093;3@10000166;20@10000131;100@10000184;300" }},
+            { 1,  new LiBaoListItem(){ Value = "37;498", Name = "魔能礼包", Value2 = "10010060;1@10000180;100@10000183;2@10000184;300" }}, //Value消耗钻石Value2道具
+            { 2,  new LiBaoListItem(){ Value = "37;498", Name = "生肖礼包", Value2 = "10010053;1@10010037;50@10010052;2@10000184;300" }},
+            { 3,  new LiBaoListItem(){ Value = "37;498", Name = "宝石礼包", Value2 = "10000107;1@10045108;1@10000108;2@10000184;300" }},
+            { 4,  new LiBaoListItem(){ Value = "37;498", Name = "宠物礼包", Value2 = "10010093;3@10000166;20@10000131;100@10000184;300" }},
         };
 
         public static List<int> GetLiBaoList()
