@@ -98,6 +98,7 @@ namespace ET
 
             self.ReceiveBtn.SetActive(false);
             self.ReceivedImg.SetActive(true);
+            self.GetParent<UIActivityV1LiBaoComponent>().UpdateScore();
         }
     }
 }
