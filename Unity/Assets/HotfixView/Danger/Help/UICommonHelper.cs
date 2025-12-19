@@ -670,6 +670,10 @@ namespace ET
             {
                 return;
             }
+            if (UIHelper.GetUI(zonescene, UIType.UISeasonJingHeZhuru) != null)
+            {
+                return;
+            }
 
             UI uirole = UIHelper.GetUI(zonescene, UIType.UIRole);
             if (uirole == null)
