@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ET
@@ -7,13 +8,14 @@ namespace ET
     public class UIActivityV1GrowthTreeCostItemComponent : Entity, IAwake<GameObject>
     {
         public Text Label_ItemNum;
-        public GameObject ButtonAdd;
-        public GameObject ButtonSub;
+        public GameObject Btn_Add;
+        public GameObject Btn_Cost;
         public UIItemComponent UICommonItem;
 
         public int ItemId;
         public long ItemTotalNum;
-        public long ItemGiveNum;
+        public long UseNum;
+        public bool IsHoldDown;
     }
 
     public class UIActivityV1GrowthTreeCostItemComponentAwake : AwakeSystem<UIActivityV1GrowthTreeCostItemComponent, GameObject>
@@ -23,8 +25,18 @@ namespace ET
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Label_ItemNum = rc.Get<GameObject>("Label_ItemNum").GetComponent<Text>();
-            self.ButtonAdd = rc.Get<GameObject>("ButtonAdd");
-            self.ButtonSub = rc.Get<GameObject>("ButtonSub");
+            
+            self.Btn_Add = rc.Get<GameObject>("ButtonAdd");
+            self.Btn_Cost = rc.Get<GameObject>("ButtonSub");
+            ButtonHelp.AddEventTriggers(self.Btn_Cost, (PointerEventData pdata) => { self.PointerDown_Btn_CostNum(pdata).Coroutine(); },
+              EventTriggerType.PointerDown);
+            ButtonHelp.AddEventTriggers(self.Btn_Cost, (PointerEventData pdata) => { self.PointerUp_Btn_CostNum(pdata); },
+                EventTriggerType.PointerUp);
+
+            ButtonHelp.AddEventTriggers(self.Btn_Add, (PointerEventData pdata) => { self.PointerDown_Btn_AddNum(pdata).Coroutine(); },
+                EventTriggerType.PointerDown);
+            ButtonHelp.AddEventTriggers(self.Btn_Add, (PointerEventData pdata) => { self.PointerUp_Btn_AddNum(pdata); }, EventTriggerType.PointerUp);
+
 
             GameObject UICommonItem = rc.Get<GameObject>("UICommonItem");
             self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(UICommonItem );
@@ -33,6 +45,82 @@ namespace ET
 
     public static class UIActivityV1GrowthTreeCostItemComponentSystem
     {
+
+        public static void OnCostNum(this UIActivityV1GrowthTreeCostItemComponent self)
+        {
+            self.UseNum -= 1;
+            if (self.UseNum <= 0)
+            {
+                self.UseNum = 0;
+            }
+
+            self.Label_ItemNum.text = self.UseNum.ToString();
+        }
+
+        public static void OnAddNum(this UIActivityV1GrowthTreeCostItemComponent self)
+        {
+            self.UseNum += 1;
+            if (self.UseNum >= self.ItemTotalNum)
+            {
+                self.UseNum = self.ItemTotalNum;
+            }
+
+            self.Label_ItemNum.text = self.UseNum.ToString();
+        }
+
+        public static async ETTask PointerDown_Btn_CostNum(this UIActivityV1GrowthTreeCostItemComponent self, PointerEventData pdata)
+        {
+            int interval = 0;
+            self.IsHoldDown = true;
+            self.OnCostNum();
+            while (self.IsHoldDown)
+            {
+                interval++;
+                if (interval > 60)
+                {
+                    self.OnCostNum();
+                }
+
+                if (self.UseNum == 1)
+                {
+                    break;
+                }
+
+                await TimerComponent.Instance.WaitFrameAsync();
+            }
+        }
+
+        public static void PointerUp_Btn_CostNum(this UIActivityV1GrowthTreeCostItemComponent self, PointerEventData pdata)
+        {
+            self.IsHoldDown = false;
+        }
+
+        public static async ETTask PointerDown_Btn_AddNum(this UIActivityV1GrowthTreeCostItemComponent self, PointerEventData pdata)
+        {
+            int interval = 0;
+            self.IsHoldDown = true;
+            self.OnAddNum();
+            while (self.IsHoldDown)
+            {
+                interval++;
+                if (interval > 60)
+                {
+                    self.OnAddNum();
+                }
+
+                if (self.UseNum >= self.ItemTotalNum)
+                {
+                    break;
+                }
+
+                await TimerComponent.Instance.WaitFrameAsync();
+            }
+        }
+
+        public static void PointerUp_Btn_AddNum(this UIActivityV1GrowthTreeCostItemComponent self, PointerEventData pdata)
+        {
+            self.IsHoldDown = false;
+        }
 
         public static void OnInitData(this UIActivityV1GrowthTreeCostItemComponent self, int itemid, long itemnumber)
         {
@@ -53,6 +141,7 @@ namespace ET
             self.UICommonItem.Label_ItemName.SetActive(true);
             self.UICommonItem.Label_ItemNum.SetActive(true);
             self.UICommonItem.Label_ItemNum.GetComponent<Text>().text = itemnumber.ToString();
+            self.Label_ItemNum.text = "0";
         }
     }
 }
