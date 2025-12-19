@@ -38,7 +38,9 @@ namespace ET
             self.NumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}次"), key);
             UICommonHelper.ShowItemList(ActivityConfigHelper.ChouKaNumberReward[key], self.RewardListNode, self, 0.8f);
 
-            self.ReceivedImg.SetActive(self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Contains(self.Key));
+            bool recv = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.ChouKaNumberReward.Contains(self.Key);
+            self.ReceivedImg.SetActive(recv);
+            self.ClickBtn.SetActive(!recv);
         }
 
         public static async ETTask OnClickBtn(this UIActivityV1ChouKaItemComponent self)
@@ -57,7 +59,7 @@ namespace ET
             if (UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.V1ChouKaNumber) <
                 self.Key)
             {
-               FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("前置条件不足"));
+               FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("次数不足"));
                 return;
             }
 
@@ -72,6 +74,7 @@ namespace ET
             }
 
             self.ReceivedImg.SetActive(true);
+            self.ClickBtn.SetActive(false);
         }
     }
 }
