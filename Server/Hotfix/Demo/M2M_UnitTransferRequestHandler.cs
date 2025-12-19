@@ -353,7 +353,9 @@ namespace ET
 						// 通知客户端创建My Unit
 						m2CCreateUnits = new M2C_CreateMyUnit();
 						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
-						MessageHelper.SendToClient(unit, m2CCreateUnits);
+						m2CCreateUnits.SceneType = request.SceneType;
+
+                        MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
 						unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 

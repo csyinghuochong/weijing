@@ -8,17 +8,18 @@ namespace ET
         public static async ETTask SceneChangeTo(Scene zoneScene, int sceneType, int chapterId, int fubenDifficulty, string pagramInfo)
         {
             //zoneScene.RemoveComponent<AIComponent>();
-            int lastSceneType = zoneScene.GetComponent<MapComponent>().SceneTypeEnum;
-            int lastChapterid = zoneScene.GetComponent<MapComponent>().SceneId;
+            MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
+            int lastSceneType = mapComponent.SceneTypeEnum;
+            int lastChapterid = mapComponent.SceneId;
             if (sceneType == SceneTypeEnum.PetMing)
             {
-                zoneScene.GetComponent<MapComponent>().SetMapInfo(sceneType, chapterId, 0);
+                mapComponent.SetMapInfo(sceneType, chapterId, 0);
             }
             else
             {
-                zoneScene.GetComponent<MapComponent>().SetMapInfo(sceneType, chapterId, int.Parse(pagramInfo));
+                mapComponent.SetMapInfo(sceneType, chapterId, int.Parse(pagramInfo));
             }
-            zoneScene.GetComponent<MapComponent>().FubenDifficulty = fubenDifficulty;   
+            mapComponent.FubenDifficulty = fubenDifficulty;   
             CurrentScenesComponent currentScenesComponent = zoneScene.GetComponent<CurrentScenesComponent>();
             currentScenesComponent.Scene?.Dispose(); // 删除之前的CurrentScene，创建新的
 
@@ -44,6 +45,14 @@ namespace ET
                 {
                     return;
                 }
+                if (m2CCreateMyUnit.SceneType!= 0 && m2CCreateMyUnit.SceneType!=mapComponent.SceneTypeEnum)
+                {
+                    EventType.ReturnLogin.Instance.ZoneScene = zoneScene;
+                    EventType.ReturnLogin.Instance.ErrorCode = 0;
+                    Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+                    return;
+                }
+
                 Unit unit  = UnitFactory.CreateUnit(currentScene, m2CCreateMyUnit.Unit, true);
                 unitComponent.Add(unit);
                 zoneScene.GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
