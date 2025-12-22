@@ -6,6 +6,9 @@ namespace ET
 {
     public class UIActivityV1GrowthTreeComponent : Entity, IAwake
     {
+        public Text Text_Growth;
+        public Image ImageGrowthValue;
+
         public GameObject UIRewardDescListItem;
         public GameObject UIRewardDescList;
         public GameObject RewardButtonClose;
@@ -91,6 +94,8 @@ namespace ET
             self.Tree_Icon = rc.Get<GameObject>("Tree_Icon").GetComponent<Image>();
             self.TextGrowNumber = rc.Get<GameObject>("TextGrowNumber").GetComponent<Text>();
             self.TextTreeName = rc.Get<GameObject>("TextTreeName").GetComponent<Text>();
+            self.Text_Growth = rc.Get<GameObject>("Text_Growth").GetComponent<Text>();
+            self.ImageGrowthValue = rc.Get<GameObject>("ImageGrowthValue").GetComponent<Image>();
 
             self.InitUIShowItemList();
             self.InitUIGiveItemList();
@@ -253,6 +258,11 @@ namespace ET
 
             self.TextGrowNumber.text = activityComponent.ActivityV1Info.GrowthTreeValue.ToString();
             self.TextTreeName.text = activityTreeStageItem.Name;
+
+
+            float progress = activityComponent.ActivityV1Info.GrowthTreeValue * 1f / activityTreeStageItem.GrowthValue;
+            self.Text_Growth.text = $"{activityComponent.ActivityV1Info.GrowthTreeValue}/{activityTreeStageItem.GrowthValue}";
+            self.ImageGrowthValue.fillAmount = progress;
         }
 
         public static void UpdateText_AddNum(this UIActivityV1GrowthTreeComponent self)
