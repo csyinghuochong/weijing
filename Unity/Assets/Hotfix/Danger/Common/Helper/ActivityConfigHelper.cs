@@ -174,7 +174,7 @@ namespace ET
 
         //成长树
         /// <summary>
-        /// 成长树消耗道具列表
+        /// 成长树消耗道具列表  key道具id,  value获得成长值
         /// </summary>
         public static Dictionary<int, (int, int)> ActivityTreeCostItem = new Dictionary<int, (int, int)>()
         {
@@ -197,7 +197,7 @@ namespace ET
 
         public static int GetActivityTreeStageItem(long growthvalue)
         {
-            for (int i = 0; i <= ActivityTreeStageDesc.Count; i++)
+            for (int i = 0; i < ActivityTreeStageDesc.Count; i++)
             {
                 if (growthvalue < ActivityTreeStageDesc[i].GrowthValue)
                 {
