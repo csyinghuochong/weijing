@@ -27,6 +27,9 @@ namespace ET
         public const int ActivityV1_Order = 15;             //订单
         public const int ActivityV1_GrowthTree = 16;        //成长树
 
+
+
+
         /// <summary>
         /// 抽奖奖励，每个区每天随机一个掉落ID
         /// </summary>

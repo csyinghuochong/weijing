@@ -36,6 +36,12 @@ namespace ET
             return activityId;
         }
 
+#if SERVER
+         /// <summary>
+        /// 每周一零点刷新
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="notice"></param>
         public static void ActivityV1Reset(this ActivityComponent self, bool notice)
         {
             //累计消耗钻石奖励
@@ -44,7 +50,6 @@ namespace ET
             self.ActivityV1Info.PointsReward.Clear();
         }
 
-#if SERVER
         public static int GetMaxActivityId(this ActivityComponent self, int rechargeNumb)
         {
             int activityId = 0;
