@@ -15886,6 +15886,9 @@ namespace ET
 		[ProtoMember(17)]
 		public int GrowthTreeValue { get; set; }
 
+		[ProtoMember(18)]
+		public List<int> V1ActivityList = new List<int>();
+
 	}
 
 //v1活动.抽奖

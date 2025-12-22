@@ -28,7 +28,22 @@ namespace ET
         public const int ActivityV1_GrowthTree = 16;        //成长树
 
 
+        /// <summary>
+        /// 随机生成活动列表
+        /// </summary>
+        /// <returns></returns>
+        public static List<int> RandomGenerateActivityList()
+        { 
+            List<int> ids = new List<int>();
 
+            //默认全部生成 方便测试
+            for (int i = ActivityConfigHelper.ActivityV1_ChouKa; i <= ActivityConfigHelper.ActivityV1_GrowthTree; i++ )
+            { 
+                ids.Add(i); 
+            }
+
+            return ids;
+        }
 
         /// <summary>
         /// 抽奖奖励，每个区每天随机一个掉落ID

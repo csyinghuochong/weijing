@@ -6735,6 +6735,7 @@ message ActivityV1Info
 	int32 OrderId = 15;                           //订单ID
 	int64 OrderLastFefreshTime = 16;              //上次订单刷新时间
 	int32 GrowthTreeValue = 17;                   //成长树
+	repeated int32 V1ActivityList = 18;
 }
 
 //v1活动.抽奖
