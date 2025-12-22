@@ -208,10 +208,9 @@ namespace ET
         /// </summary>
         public static Dictionary<int, (int, int)> ActivityTreeCostItem = new Dictionary<int, (int, int)>()
         {
-            { 10035001,(10, 30) },
-            { 10035002,(20, 40) },
-            { 10035003,(30, 50) },
-            { 10035004,(40, 60) }
+            { 10035001,(1, 3) },
+            { 10035002,(5, 10) },
+            { 10035003,(10, 20) }
         };
 
         /// <summary>
@@ -219,10 +218,9 @@ namespace ET
         /// </summary>
         public static List<ActivityTreeStageItem> ActivityTreeStageDesc = new List<ActivityTreeStageItem>()
         {
-            new ActivityTreeStageItem(){ GrowthValue = 500, Name = "幼苗期", Reward = "10010083;3@10000132;2" },
-            new ActivityTreeStageItem(){ GrowthValue = 1500, Name = "成长期", Reward = "10010083;8@10000132;2" },
-            new ActivityTreeStageItem(){ GrowthValue = 4500, Name = "结果期", Reward = "10010083;9@10000132;2" },
-            new ActivityTreeStageItem(){ GrowthValue = 10000, Name = "大树期", Reward = "10010083;10@10000132;2" },
+            new ActivityTreeStageItem(){ GrowthValue = 250, Name = "幼苗期", Reward = "10000184;50@1;150000@10010083;10@10010085;100@10000102;1" },
+            new ActivityTreeStageItem(){ GrowthValue = 600, Name = "成长期", Reward = "10000184;100@1;300000@10010083;20@10010085;200@10000158;1" },
+            new ActivityTreeStageItem(){ GrowthValue = 1200, Name = "盛开期", Reward = "10000184;150@1;500000@10010083;30@10010085;300@10010093;1" },
         };
 
         public static int GetActivityTreeStageItem(long growthvalue)
@@ -242,11 +240,9 @@ namespace ET
         /// </summary>
         public static List<ActivityTreeTendItem> ActivityTreeTendRewardItem = new List<ActivityTreeTendItem>()
         {
-            new ActivityTreeTendItem(){ GrowthValueLower = 5, GrowthValueUpper = 20, Reward = "10010083;3@10000132;2" },
-            new ActivityTreeTendItem(){ GrowthValueLower = 21, GrowthValueUpper = 50, Reward = "10010083;8@10000132;2" },
-            new ActivityTreeTendItem(){ GrowthValueLower = 51, GrowthValueUpper = 100, Reward = "10010083;9@10000132;2" },
-            new ActivityTreeTendItem(){ GrowthValueLower = 101, GrowthValueUpper = 200,  Reward = "10010083;10@10000132;2" },
-            new ActivityTreeTendItem(){ GrowthValueLower = 201, GrowthValueUpper = 99999,  Reward = "10010083;11@10000132;2" },
+            new ActivityTreeTendItem(){ GrowthValueLower = 1, GrowthValueUpper = 10, Reward = "1;5000@10010085;3@10000132;1" },
+            new ActivityTreeTendItem(){ GrowthValueLower = 11, GrowthValueUpper = 20, Reward = "1;15000@10010083;1@10010042;1@10000131;1@10000101;1" },
+            new ActivityTreeTendItem(){ GrowthValueLower = 21, GrowthValueUpper = 100, Reward = "1;30000@10010083;3@10010034;1@10010039;1@10000103;1" }
         };
 
         public static ActivityTreeTendItem GetActivityTreeTendItem(int score)
