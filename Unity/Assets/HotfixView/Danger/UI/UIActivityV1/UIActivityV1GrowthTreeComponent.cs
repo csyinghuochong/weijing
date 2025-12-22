@@ -6,6 +6,16 @@ namespace ET
 {
     public class UIActivityV1GrowthTreeComponent : Entity, IAwake
     {
+        public GameObject UIRewardDescListItem;
+        public GameObject UIRewardDescList;
+        public GameObject RewardButtonClose;
+        public GameObject UIRewardDesc;
+
+        public GameObject UIStageDesc;
+        public GameObject StageButtonClose;
+        public GameObject UIStageDescList;
+        public GameObject UIStageDescItem;
+
         public Text Text_AddNum;
         public GameObject UIActivityV1GrowthTreeCostItem;
         public GameObject GiveItemList;
@@ -28,6 +38,28 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.UIRewardDescListItem = rc.Get<GameObject>("UIRewardDescListItem");
+            self.UIRewardDescListItem.SetActive(false);
+            self.UIRewardDescList = rc.Get<GameObject>("UIRewardDescList");
+            self.RewardButtonClose = rc.Get<GameObject>("RewardButtonClose");
+            self.RewardButtonClose.GetComponent<Button>().onClick.AddListener(() => 
+            {
+                self.UIRewardDesc.SetActive(false);
+            });
+            self.UIRewardDesc = rc.Get<GameObject>("UIRewardDesc");
+            self.UIRewardDesc.SetActive(false);
+
+            self.UIStageDesc = rc.Get<GameObject>("UIStageDesc");
+            self.StageButtonClose = rc.Get<GameObject>("StageButtonClose");
+            self.StageButtonClose.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                self.UIStageDesc.SetActive(false);
+            });
+            self.UIStageDescList = rc.Get<GameObject>("UIStageDescList");
+            self.UIStageDescItem = rc.Get<GameObject>("UIStageDescItem");
+             self.UIStageDescItem.SetActive(false);
+            self.UIStageDesc.SetActive(false);
+
             self.Text_AddNum = rc.Get<GameObject>("Text_AddNum").GetComponent<Text>();
 
             self.UIActivityV1GrowthTreeCostItem = rc.Get<GameObject>("UIActivityV1GrowthTreeCostItem");
@@ -44,7 +76,10 @@ namespace ET
             self.ButtonStageDesc.GetComponent<Button>().onClick.AddListener(() => { });
 
             self.ButtonRewardDesc = rc.Get<GameObject>("ButtonRewardDesc");
-            self.ButtonRewardDesc.GetComponent<Button>().onClick.AddListener(() => { });
+            self.ButtonRewardDesc.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                self.UIRewardDesc.SetActive(true);
+            });
 
             self.ButtonGive = rc.Get<GameObject>("ButtonGive");
             self.ButtonGive.GetComponent<Button>().onClick.AddListener(() => { });
@@ -55,12 +90,33 @@ namespace ET
 
             self.InitUIShowItemList();
             self.InitUIGiveItemList();
+            self.InitUIRewardDescList();
             self.UpdateInfo();
         }
     }
 
     public static class UIActivityV1GrowthTreeComponentSystem
     {
+
+        public static void InitUIStageDesc(this UIActivityV1GrowthTreeComponent self)
+        {
+            foreach (var costitem in ActivityConfigHelper.ActivityTreeStageDesc)
+            {
+                GameObject itemSpace = GameObject.Instantiate(self.UIStageDescItem);
+                itemSpace.SetActive(true);
+                UICommonHelper.SetParent(itemSpace, self.UIStageDescList);
+            }
+        }
+
+        public static void InitUIRewardDescList(this UIActivityV1GrowthTreeComponent self)
+        {
+            foreach (var costitem in ActivityConfigHelper.ActivityTreeTendRewardItem)
+            {
+                GameObject itemSpace = GameObject.Instantiate(self.UIRewardDescListItem);
+                itemSpace.SetActive(true);
+                UICommonHelper.SetParent(itemSpace, self.UIRewardDescList);
+            }
+        }
 
         public static void InitUIShowItemList(this UIActivityV1GrowthTreeComponent self)
         {

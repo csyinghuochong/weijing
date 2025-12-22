@@ -203,7 +203,8 @@ namespace ET
             new ActivityTreeTendItem(){ GrowthValueLower = 5, GrowthValueUpper = 20, Reward = "10010083;3@10000132;2" },
             new ActivityTreeTendItem(){ GrowthValueLower = 21, GrowthValueUpper = 50, Reward = "10010083;8@10000132;2" },
             new ActivityTreeTendItem(){ GrowthValueLower = 51, GrowthValueUpper = 100, Reward = "10010083;9@10000132;2" },
-            new ActivityTreeTendItem(){ GrowthValueLower = 101, GrowthValueUpper = 9999,  Reward = "10010083;10@10000132;2" },
+            new ActivityTreeTendItem(){ GrowthValueLower = 101, GrowthValueUpper = 200,  Reward = "10010083;10@10000132;2" },
+            new ActivityTreeTendItem(){ GrowthValueLower = 201, GrowthValueUpper = 99999,  Reward = "10010083;11@10000132;2" },
         };
 
         /// <summary>
