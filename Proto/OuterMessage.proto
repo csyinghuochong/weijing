@@ -1592,72 +1592,6 @@ message FubenPassInfo
 	int32 Difficulty = 2;			//1 difficulty普通 2 挑战  3困难
 }
 
-//ResponseType Actor_GetFubenInfoResponse
-message Actor_GetFubenInfoRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-}
-
-message Actor_GetFubenInfoResponse // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	repeated FubenPassInfo FubenPassInfos = 1;
-}
-
-
-//ResponseType Actor_EnterSonFubenResponse
-message Actor_EnterSonFubenRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int32 CurrentCell = 2;
-	int32 DirectionType = 3;
-	int32 ChuansongId = 4;
-}
-
-message Actor_EnterSonFubenResponse // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	SonFubenInfo SonFubenInfo = 1;
-}
-
-
-//ResponseType Actor_QuitFubenResponse
-message Actor_QuitFubenRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int32 MapIndex = 1;
-}
-
-message Actor_QuitFubenResponse // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-}
-
-//ResponseType Actor_SendReviveResponse
-message Actor_SendReviveRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int32 MapIndex = 1;
-	bool Revive = 2;     //
-}
-
-message Actor_SendReviveResponse // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-}
-
 message M2C_FubenSettlement // IActorMessage
 {
 	int32 RpcId = 90;
@@ -1674,60 +1608,6 @@ message M2C_FubenSettlement // IActorMessage
 
 	repeated int32 StarInfos = 7;			//领主 时间 伤害
 }
-
-//ResponseType Actor_GetFubenRewardReponse
-message Actor_GetFubenRewardRequest	// IActorLocationRequest
-{
-	int32 RpcId = 90;
-	RewardItem RewardItem = 1;
-}
-
-message Actor_GetFubenRewardReponse	// IActorLocationResponse
-{
-	int32 RpcId = 90;
-	string Message = 91;
-	int32 Error = 92;
-}
-
-//ResponseType Actor_PickItemResponse
-message Actor_PickItemRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	repeated DropInfo ItemIds = 1;
-}
-
-message Actor_PickItemResponse // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	repeated long RemoveIds = 1; //不存在的掉落
-}
-
-//ResponseType Actor_ItemInitResponse
-message Actor_ItemInitRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-}
-
-message Actor_ItemInitResponse  // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	string Message = 91;
-	int32 Error = 92;
-	repeated BagInfo BagInfos = 1;
-	repeated int32 QiangHuaLevel = 2;
-	repeated int32 QiangHuaFails = 3;
-	//int32 BagAddedCell = 4;
-	repeated int32 WarehouseAddedCell = 5;
-	repeated int32 FashionActiveIds = 6;
-	repeated int32 FashionEquipList = 7;
-	int32 SeasonJingHePlan = 8;
-	repeated int32 AdditionalCellNum = 9;
-}
-
 
 //活跃宝箱
 //ResponseType M2C_TaskHuoYueRewardResponse
@@ -3030,21 +2910,6 @@ message M2C_MysteryBuyResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
-}
-
-//ResponseType Actor_FubenMoNengResponse
-message Actor_FubenMoNengRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-}
-
-message Actor_FubenMoNengResponse // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	repeated MysteryItemInfo MysteryItemInfos = 1;
 }
 
 //ResponseType M2C_RolePetChouKaResponse
@@ -7148,7 +7013,6 @@ message M2C_TimerChouKaResponse // IActorLocationResponse
 	int64 LastTimerChouKaPassTime = 10;
 }
 
-
 //ResponseType M2C_ActivityOrderOperateResponse
 message C2M_ActivityOrderOperateRequest // IActorLocationRequest
 {
@@ -7158,6 +7022,22 @@ message C2M_ActivityOrderOperateRequest // IActorLocationRequest
 }
 
 message M2C_ActivityOrderOperateResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	ActivityV1Info ActivityV1Info = 8;
+}
+
+//ResponseType M2C_ActivityTreeTendResponse
+message C2M_ActivityTreeTendRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	repeated RewardItem CostList = 5;		//消耗列表
+}
+
+message M2C_ActivityTreeTendResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

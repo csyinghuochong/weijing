@@ -16948,6 +16948,40 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_ActivityTreeTendResponse))]
+	[Message(OuterOpcode.C2M_ActivityTreeTendRequest)]
+	[ProtoContract]
+	public partial class C2M_ActivityTreeTendRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(5)]
+		public List<RewardItem> CostList = new List<RewardItem>();
+
+	}
+
+	[Message(OuterOpcode.M2C_ActivityTreeTendResponse)]
+	[ProtoContract]
+	public partial class M2C_ActivityTreeTendResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(8)]
+		public ActivityV1Info ActivityV1Info { get; set; }
+
+	}
+
 ////////////////////////////////////////////////
 //#################一定要放在最后
 	[ResponseType(nameof(Center2C_BlackAccountResponse))]
