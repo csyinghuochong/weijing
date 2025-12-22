@@ -10,21 +10,23 @@ namespace ET
     public static class ActivityConfigHelper
     {
 
-        public const int ActivityV1_ChouKa = 1;    //抽卡
+        public const int ActivityV1_ChouKa = 1;    //好运
         public const int ActivityV1_Guess = 2;     //竞猜
-        public const int ActivityV1_Consume = 3;     //消费
+        public const int ActivityV1_Consume = 3;     //豪掷
         public const int ActivityV1_Points = 4;      //积分
         public const int ActivityV1_HongBao = 5;     //红包
         public const int ActivityV1_Shop = 6;          //商店
         public const int ActivityV1_DuiHuanWord = 7;   //兑换
-        public const int ActivityV1_ChouKa2 = 8;            //抽卡2  当奖励已经领取超过50%可进行奖励刷新
+        public const int ActivityV1_ChouKa2 = 8;            //抽取  当奖励已经领取超过50%可进行奖励刷新
         public const int ActivityV1_Task = 9;           //活动任务，每日刷新  TaskComponent.TaskCountryList   TaskCountryType.ActivityV1
         public const int ActivityV1_LiBao = 10;          //每日礼包  ActivityConfig ActivityType = 102
         public const int ActivityV1_Feed = 11;          //喂食
         public const int ActivityV1_PointsChouKa = 12;      //积分抽卡
-        public const int ActivityV1_GoldWeeklyCard = 13;
-        public const int ActivityV1_DiamondWeeklyCard = 14;
-      
+        public const int ActivityV1_GoldWeeklyCard = 13;    //黄金周卡
+        public const int ActivityV1_DiamondWeeklyCard = 14; //钻石周卡
+        public const int ActivityV1_Order = 15;             //订单
+        public const int ActivityV1_GrowthTree = 16;        //成长树
+
         /// <summary>
         /// 抽奖奖励，每个区每天随机一个掉落ID
         /// </summary>
