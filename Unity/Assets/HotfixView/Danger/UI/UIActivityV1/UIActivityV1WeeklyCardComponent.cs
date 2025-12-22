@@ -16,7 +16,8 @@ namespace ET
         public GameObject ButtonDiClose;
         public GameObject RechargeSelectUI;
         public GameObject Text_Number;
-        public GameObject ButtonOpen;
+        public GameObject ButtonOpen_1;
+        public GameObject ButtonOpen_2;
         public GameObject UIActivityV1WeeklyCardItem;
         public GameObject TaskListNode;
         public GameObject BtnItemTypeSet;
@@ -65,9 +66,12 @@ namespace ET
             self.RechargeSelectUI = rc.Get<GameObject>("RechargeSelectUI");
             self.RechargeSelectUI.SetActive(false);
             self.Text_Number = rc.Get<GameObject>("Text_Number"); 
-            self.ButtonOpen = rc.Get<GameObject>("ButtonOpen");
+            self.ButtonOpen_1 = rc.Get<GameObject>("ButtonOpen_1");
+            self.ButtonOpen_1.GetComponent<Button>().onClick.AddListener(() => { self.OnClickRechargeItem().Coroutine();  } );
 
-            self.ButtonOpen.GetComponent<Button>().onClick.AddListener(() => { self.OnClickRechargeItem().Coroutine();  } );
+            self.ButtonOpen_2 = rc.Get<GameObject>("ButtonOpen_2");
+            self.ButtonOpen_2.GetComponent<Button>().onClick.AddListener(() => { self.OnClickRechargeItem().Coroutine(); });
+
             self.ButtonDiClose.GetComponent<Button>().onClick.AddListener(self.OnButtonDiClose);
             self.ButtonAliPay.GetComponent<Button>().onClick.AddListener(self.OnButtonAliPay);
             self.ButtonWeiXix.GetComponent<Button>().onClick.AddListener(self.OnButtonWeiXix);
