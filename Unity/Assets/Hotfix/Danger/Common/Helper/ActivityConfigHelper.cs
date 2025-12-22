@@ -24,9 +24,19 @@ namespace ET
         public const int ActivityV1_PointsChouKa = 12;      //积分抽卡
         public const int ActivityV1_GoldWeeklyCard = 13;    //黄金周卡
         public const int ActivityV1_DiamondWeeklyCard = 14; //钻石周卡
-        public const int ActivityV1_Order = 15;             //订单
+        public const int ActivityV1_Order = 15;             //商人订单
         public const int ActivityV1_GrowthTree = 16;        //成长树
 
+
+        //成长树和商人活动这两个活动会有2个掉落ID（分别对应小怪和BOSS掉落，其中小怪只有在有体力的时候才能触发掉落），
+        //这个ID只有在活动期间才会激活，只有关卡里的小怪和BOSS会额外附加对应的活动掉落ID，这些掉落的东西会在活动结束后自动消失。 
+
+        //商人活动期间才激活这个掉落
+        public static int OrderDropId = 50031011;
+
+        //成长树活动期间才激活这个掉落
+        public static int GrowthTreeDropId = 50031001;
+        
 
         /// <summary>
         /// 随机生成活动列表
