@@ -188,6 +188,29 @@ namespace ET
             }
         }
 
+        public static void UpdateText_AddNum(this UIActivityV1GrowthTreeComponent self)
+        {
+            int lower = 0;
+            int upper = 0;
+            for (int i = 0; i < self.UIGiveItemList.Count; i++)
+            {
+                int itemid = self.UIGiveItemList[i].ItemId;
+                int usenum = (int)self.UIGiveItemList[i].UseNum;
+
+                ActivityConfigHelper.ActivityTreeCostItem.TryGetValue(itemid, out var costitemcomponent);
+                if (costitemcomponent == default)
+                {
+                    continue;
+                }
+
+                lower += usenum * costitemcomponent.Item1;
+                upper += usenum * costitemcomponent.Item2;
+            }
+            string str1 = GameSettingLanguge.LoadLocalization("预计增加");
+            string str2 = GameSettingLanguge.LoadLocalization("点成长值");
+            self.Text_AddNum.text = $"{str1}{lower}-{upper}{str2}";
+        }
+
         public static void UpdateUIGiveItemList(this UIActivityV1GrowthTreeComponent self)
         {
             for (int i = 0; i < self.UIGiveItemList.Count; i++)

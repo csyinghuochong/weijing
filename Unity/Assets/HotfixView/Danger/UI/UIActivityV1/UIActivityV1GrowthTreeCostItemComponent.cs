@@ -55,6 +55,7 @@ namespace ET
             }
 
             self.Label_ItemNum.text = self.UseNum.ToString();
+            self.GetParent<UIActivityV1GrowthTreeComponent>().UpdateText_AddNum();
         }
 
         public static void OnAddNum(this UIActivityV1GrowthTreeCostItemComponent self)
@@ -66,6 +67,7 @@ namespace ET
             }
 
             self.Label_ItemNum.text = self.UseNum.ToString();
+            self.GetParent<UIActivityV1GrowthTreeComponent>().UpdateText_AddNum();
         }
 
         public static async ETTask PointerDown_Btn_CostNum(this UIActivityV1GrowthTreeCostItemComponent self, PointerEventData pdata)
@@ -81,12 +83,17 @@ namespace ET
                     self.OnCostNum();
                 }
 
-                if (self.UseNum == 1)
+                if (self.UseNum <= 0)
                 {
+                    self.UseNum = 0;
                     break;
                 }
 
                 await TimerComponent.Instance.WaitFrameAsync();
+                if (self.IsDisposed)
+                {
+                    break;
+                }
             }
         }
 
@@ -114,6 +121,10 @@ namespace ET
                 }
 
                 await TimerComponent.Instance.WaitFrameAsync();
+                if (self.IsDisposed)
+                {
+                    break;
+                }
             }
         }
 

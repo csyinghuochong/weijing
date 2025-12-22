@@ -178,10 +178,10 @@ namespace ET
         /// </summary>
         public static Dictionary<int, (int, int)> ActivityTreeCostItem = new Dictionary<int, (int, int)>()
         {
-            { 10035001,(10, 110) },
-            { 10035002,(20, 120) },
-            { 10035003,(30, 120) },
-            { 10035004,(40, 120) }
+            { 10035001,(10, 30) },
+            { 10035002,(20, 40) },
+            { 10035003,(30, 50) },
+            { 10035004,(40, 60) }
         };
 
         /// <summary>
