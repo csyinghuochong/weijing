@@ -23,9 +23,7 @@ namespace ET
             { 
                 return; 
             }
-
-            Console.WriteLine($"OnRechage: {unit.Id}   {rechargetType}");
-
+        
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
             //0 砖石  1周卡
@@ -36,6 +34,9 @@ namespace ET
             }
             else
             {
+
+                Console.WriteLine($"OnRechage: {unit.Id}   {rechargetType}  {rechargeNumber}");
+
                 if (rechargeNumber == 30)
                 {
                     long serverTime = TimeHelper.ServerNow();
@@ -74,7 +75,7 @@ namespace ET
                 }
                 else
                 {
-                    Console.WriteLine($"OnRechage: {unit.Id}   {rechargetType}  {rechargeNumber}");
+                    Console.WriteLine($"OnRechage.Error: {unit.Id}   {rechargetType}  {rechargeNumber}");
                 }
             }
 

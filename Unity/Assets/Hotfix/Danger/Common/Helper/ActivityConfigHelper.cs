@@ -192,8 +192,20 @@ namespace ET
             new ActivityTreeStageItem(){ GrowthValue = 500, Name = "幼苗期", Reward = "10010083;3@10000132;2" },
             new ActivityTreeStageItem(){ GrowthValue = 1500, Name = "成长期", Reward = "10010083;8@10000132;2" },
             new ActivityTreeStageItem(){ GrowthValue = 4500, Name = "结果期", Reward = "10010083;9@10000132;2" },
-            new ActivityTreeStageItem(){ GrowthValue = 10000, Name = "大数期", Reward = "10010083;10@10000132;2" },
+            new ActivityTreeStageItem(){ GrowthValue = 10000, Name = "大树期", Reward = "10010083;10@10000132;2" },
         };
+
+        public static int GetActivityTreeStageItem(long growthvalue)
+        {
+            for (int i = 0; i <= ActivityTreeStageDesc.Count; i++)
+            {
+                if (growthvalue < ActivityTreeStageDesc[i].GrowthValue)
+                {
+                    return i;
+                }
+            }
+            return ActivityTreeStageDesc.Count;
+        }
 
         /// <summary>
         /// 成长树施肥奖励
@@ -206,6 +218,25 @@ namespace ET
             new ActivityTreeTendItem(){ GrowthValueLower = 101, GrowthValueUpper = 200,  Reward = "10010083;10@10000132;2" },
             new ActivityTreeTendItem(){ GrowthValueLower = 201, GrowthValueUpper = 99999,  Reward = "10010083;11@10000132;2" },
         };
+
+        public static ActivityTreeTendItem GetActivityTreeTendItem(int score)
+        {
+            if (score < ActivityTreeTendRewardItem[0].GrowthValueLower)
+            {
+                return default;
+            }
+
+            for (int i = 0; i < ActivityTreeTendRewardItem.Count; i++)
+            {
+                if (score >= ActivityTreeTendRewardItem[i].GrowthValueLower 
+                    && score <= ActivityTreeTendRewardItem[i].GrowthValueUpper)
+                { 
+                    return ActivityTreeTendRewardItem[i];   
+                }
+            }
+
+            return ActivityTreeTendRewardItem[ActivityTreeTendRewardItem.Count - 1];
+        }
 
         /// <summary>
         /// 订单刷新券

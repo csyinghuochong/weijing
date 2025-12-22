@@ -29,6 +29,7 @@ namespace ET
         public GameObject ButtonRewardDesc;
         public GameObject ButtonGive;
         public Text TextGrowNumber;
+        public Text TextTreeName;
         public Image Tree_Icon;
     }
 
@@ -85,17 +86,18 @@ namespace ET
             });
 
             self.ButtonGive = rc.Get<GameObject>("ButtonGive");
-            self.ButtonGive.GetComponent<Button>().onClick.AddListener(() => { });
-
-            self.TextGrowNumber = rc.Get<GameObject>("TextGrowNumber").GetComponent<Text>();
+            self.ButtonGive.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonGive().Coroutine();  });
 
             self.Tree_Icon = rc.Get<GameObject>("Tree_Icon").GetComponent<Image>();
+            self.TextGrowNumber = rc.Get<GameObject>("TextGrowNumber").GetComponent<Text>();
+            self.TextTreeName = rc.Get<GameObject>("TextTreeName").GetComponent<Text>();
 
             self.InitUIShowItemList();
             self.InitUIGiveItemList();
             self.InitUIStageDescList();
             self.InitUIRewardDescList();
             self.UpdateInfo();
+            self.UpdateTextGrowNumber();
         }
     }
 
@@ -185,6 +187,72 @@ namespace ET
 
                 self.UIGiveItemList.Add(costitemcomponent);
             }
+        }
+
+        public static async ETTask OnButtonGive(this UIActivityV1GrowthTreeComponent self)
+        {
+            List<RewardItem> costitems = new List<RewardItem>();
+
+            for (int i = 0; i < self.UIGiveItemList.Count; i++)
+            {
+                int itemid = self.UIGiveItemList[i].ItemId;
+                int usenum = (int)self.UIGiveItemList[i].UseNum;
+
+                if (itemid == 0 || usenum == 0)
+                {
+                    continue;
+                }
+                ActivityConfigHelper.ActivityTreeCostItem.TryGetValue(itemid, out var costitemcomponent);
+                if (costitemcomponent == default)
+                {
+                    continue;
+                }
+                costitems.Add( new RewardItem() { ItemID = itemid,ItemNum = usenum } );
+            }
+            if (costitems.Count == 0)
+            {
+                return;
+            }
+
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            C2M_ActivityTreeTendRequest c2E_GetAllMailRequest = new C2M_ActivityTreeTendRequest()
+            {
+               CostList = costitems
+            };
+            M2C_ActivityTreeTendResponse sendChatResponse = (M2C_ActivityTreeTendResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
+
+            if (sendChatResponse == null || sendChatResponse.Error != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+            activityComponent.ActivityV1Info = sendChatResponse.ActivityV1Info;
+
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            self.UpdateTextGrowNumber();
+            await ETTask.CompletedTask;
+        }
+
+        public static void UpdateTextGrowNumber(this UIActivityV1GrowthTreeComponent self)
+        {
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            int newstate = ActivityConfigHelper.GetActivityTreeStageItem(activityComponent.ActivityV1Info.GrowthTreeValue);
+            if (newstate >= ActivityConfigHelper.ActivityTreeStageDesc.Count)
+            {
+                newstate = ActivityConfigHelper.ActivityTreeStageDesc.Count - 1;
+            }
+            ActivityTreeStageItem activityTreeStageItem = ActivityConfigHelper.ActivityTreeStageDesc[newstate];
+
+            string path = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, $"ImgBig_10{newstate+1}");
+            Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+           
+            self.Tree_Icon.sprite = sp;
+
+            self.TextGrowNumber.text = activityComponent.ActivityV1Info.GrowthTreeValue.ToString();
+            self.TextTreeName.text = activityTreeStageItem.Name;
         }
 
         public static void UpdateText_AddNum(this UIActivityV1GrowthTreeComponent self)

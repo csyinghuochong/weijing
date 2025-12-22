@@ -7,10 +7,10 @@ namespace ET
 {
     public class UIActivityV1WeeklyCardComponent : Entity, IAwake, IDestroy
     {
-
-
         public GameObject Node_1;
         public GameObject Node_2;
+        public GameObject OpenStatus_1;
+        public GameObject OpenStatus_2;
         public GameObject ButtonAliPay;
         public GameObject ButtonWeiXix;
         public GameObject ButtonDiClose;
@@ -49,6 +49,11 @@ namespace ET
             self.Node_2 = rc.Get<GameObject>("Node_2");
             self.Node_1.SetActive(false);
             self.Node_2.SetActive(false);
+
+            self.OpenStatus_1 = rc.Get<GameObject>("OpenStatus_1");
+            self.OpenStatus_2 = rc.Get<GameObject>("OpenStatus_2");
+            self.OpenStatus_1.SetActive(false);
+            self.OpenStatus_2.SetActive(false);
 
             self.UIActivityV1WeeklyCardItem = rc.Get<GameObject>("UIActivityV1WeeklyCardItem");
             self.UIActivityV1WeeklyCardItem.SetActive(false);
@@ -293,6 +298,12 @@ namespace ET
 
             self.UpdateInfo();
             self.ShowLeftTimes();
+            self.ShowOpenStatus();
+        }
+
+        public static void ShowOpenStatus(this UIActivityV1WeeklyCardComponent self)
+        {
+           
         }
 
         public static void ShowLeftTimes(this UIActivityV1WeeklyCardComponent self)
@@ -301,19 +312,29 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int dtype = self.uIPageViewComponent.CurrentIndex;
+
+            self.OpenStatus_1.SetActive(false);
+            self.OpenStatus_2.SetActive(false);
+            GameObject openstatus = self.OpenStatus_1;
+            List<int> recvList = null;
+
             long weekstarttime = 0;
             int lefttimes = 0;
             int recvtimes = 0;
             if (dtype == 0)
             {
                 weekstarttime = numericComponent.GetAsLong( NumericType.GoldWeeklyCard );
-                recvtimes = activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Count;
+                recvList = activityComponent.ActivityV1Info.GoldWeeklyCardRewards;
+                openstatus = self.OpenStatus_1;
             }
             else
             {
                 weekstarttime = numericComponent.GetAsLong(NumericType.DiamondWeeklyCard);
-                recvtimes = activityComponent.ActivityV1Info.DiamondWeeklyCardRewards.Count;
+                recvList = activityComponent.ActivityV1Info.DiamondWeeklyCardRewards;
+                openstatus = self.OpenStatus_2;
+
             }
+            recvtimes = recvList.Count;
 
             long servertime = TimeHelper.ServerNow();
             if (weekstarttime <= 0 || servertime < weekstarttime)
@@ -323,9 +344,12 @@ namespace ET
             else
             {
                 int passday = ComHelp.GetDaysDiffByDate(servertime, weekstarttime);
+                //当前是否领取
+                bool dayrecv = recvList.Contains(passday );
                 if (passday < 7)
                 {
-                    lefttimes = passday + 1 - recvtimes;
+                    lefttimes = 7 - passday  - (dayrecv ?1: 0);
+                    openstatus.SetActive(true);
                 }
             }
    
