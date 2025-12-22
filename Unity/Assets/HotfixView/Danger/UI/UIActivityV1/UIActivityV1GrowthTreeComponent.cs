@@ -110,9 +110,18 @@ namespace ET
 
         public static void InitUIRewardDescList(this UIActivityV1GrowthTreeComponent self)
         {
-            foreach (var costitem in ActivityConfigHelper.ActivityTreeTendRewardItem)
+            foreach (var treeTendItem in ActivityConfigHelper.ActivityTreeTendRewardItem)
             {
+                
                 GameObject itemSpace = GameObject.Instantiate(self.UIRewardDescListItem);
+
+                Text TextGrowValue = itemSpace.transform.Find("TextGrowValue").GetComponent<Text>();
+                string str = GameSettingLanguge.LoadLocalization("成长值");
+                TextGrowValue.text = $"{treeTendItem.GrowthValueLower}-{treeTendItem.GrowthValueUpper}{str}";
+
+                GameObject ItemRewardList = itemSpace.transform.Find("ItemRewardList").gameObject;
+                UICommonHelper.ShowItemList(treeTendItem.Reward, ItemRewardList, self);
+
                 itemSpace.SetActive(true);
                 UICommonHelper.SetParent(itemSpace, self.UIRewardDescList);
             }
