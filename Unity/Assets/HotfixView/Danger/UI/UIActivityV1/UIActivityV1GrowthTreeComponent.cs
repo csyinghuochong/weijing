@@ -138,7 +138,6 @@ namespace ET
         public static void InitUIShowItemList(this UIActivityV1GrowthTreeComponent self)
         {
 
-            string showstr_1 = GameSettingLanguge.LoadLocalization("增长");
             string showstr_2 = GameSettingLanguge.LoadLocalization("点");
 
             foreach ( var costitem in ActivityConfigHelper.ActivityTreeCostItem)
@@ -159,7 +158,7 @@ namespace ET
 
                 uIItemComponent.Label_ItemNum.SetActive(false);
                 uIItemComponent.Label_ItemName.SetActive(true);
-                uIItemComponent.Label_ItemName.GetComponent<Text>().text = $"{showstr_1}{lower}-{upper}{showstr_2}";
+                uIItemComponent.Label_ItemName.GetComponent<Text>().text = $"{lower}-{upper}{showstr_2}";
 
                 self.UIShowItemList.Add(uIItemComponent);
             }
