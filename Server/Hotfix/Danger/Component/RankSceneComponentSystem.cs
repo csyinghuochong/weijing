@@ -140,6 +140,7 @@ namespace ET
         {
             //更新服务器拍卖行数据
             //TimeHelper. self.OpenServiceTime
+            self.RandomGenerateActivity();
             self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
             self.SendCombatReward().Coroutine();
             self.SendPetReward().Coroutine();
@@ -213,6 +214,20 @@ namespace ET
             }
 
             self.DBServerInfo.ServerInfo.ChouKaDropId = ActivityConfigHelper.ChouKaDropId[RandomHelper.RandomNumber(0, ActivityConfigHelper.ChouKaDropId.Count)];
+        }
+
+
+        /// <summary>
+        /// 每周一刷新
+        /// </summary>
+        /// <param name="self"></param>
+        public static void RandomGenerateActivity(this RankSceneComponent self)
+        {
+            System.DateTime dateTime = TimeHelper.DateTimeNow();
+            if (dateTime.DayOfWeek == System.DayOfWeek.Monday || self.DBServerInfo.ServerInfo.V1ActivityList.Count == 0)
+            {
+                self.DBServerInfo.ServerInfo.V1ActivityList = ActivityConfigHelper.RandomGenerateActivityList();
+            }
         }
 
         public static async ETTask InitDBRankInfo(this RankSceneComponent self)

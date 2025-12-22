@@ -38,7 +38,9 @@ namespace ET
                 activityV1Info.OrderId  = ActivityConfigHelper.GenerateActivityOrderId();
             }
 
-            activityV1Info.ChouKaDropId = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo.ChouKaDropId;
+            ServerInfo dBServerInfo = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo;
+            activityV1Info.ChouKaDropId = dBServerInfo.ChouKaDropId;
+            activityV1Info.V1ActivityList = dBServerInfo.V1ActivityList;
             activityV1Info.GuessIds.Clear();
 
             long activitySceneid = DBHelper.GetActivityServerId(  unit.DomainZone() );
