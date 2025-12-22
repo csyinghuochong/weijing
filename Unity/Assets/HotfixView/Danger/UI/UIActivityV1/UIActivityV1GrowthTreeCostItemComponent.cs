@@ -152,7 +152,9 @@ namespace ET
             self.UICommonItem.Label_ItemName.SetActive(true);
             self.UICommonItem.Label_ItemNum.SetActive(true);
             self.UICommonItem.Label_ItemNum.GetComponent<Text>().text = itemnumber.ToString();
-            self.Label_ItemNum.text = "0";
+            self.UseNum = Math.Min(itemnumber, self.UseNum);
+          
+            self.Label_ItemNum.text = self.UseNum.ToString();
         }
     }
 }

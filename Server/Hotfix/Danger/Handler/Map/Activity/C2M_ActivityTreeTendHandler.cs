@@ -24,10 +24,16 @@ namespace ET
                     request.CostList.RemoveAt(i);
                     continue;
                 }
-
-                if (usenum == 0 ||  bagComponent.GetItemNumber(itemid) < usenum)
+                if (usenum == 0 || itemid == 0)
                 {
                     request.CostList.RemoveAt(i);
+                    continue;
+                }
+
+                if (bagComponent.GetItemNumber(itemid) < usenum)
+                {
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                    reply();
                     continue;
                 }
 

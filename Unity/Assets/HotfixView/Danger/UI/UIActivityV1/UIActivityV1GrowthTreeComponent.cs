@@ -231,7 +231,7 @@ namespace ET
             {
                 return;
             }
-
+            self.UpdateUIGiveItemList();
             self.UpdateTextGrowNumber();
             await ETTask.CompletedTask;
         }
