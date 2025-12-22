@@ -83,6 +83,10 @@ MonoBehaviour:
     gameObject: {fileID: 25910476618961453}
   - key: Node_2
     gameObject: {fileID: 4380826648135849076}
+  - key: ButtonOpen_1
+    gameObject: {fileID: 3745182885254604629}
+  - key: ButtonOpen_2
+    gameObject: {fileID: 7942389009271377353}
 --- !u!1 &1540529850370136
 GameObject:
   m_ObjectHideFlags: 0
