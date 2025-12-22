@@ -73,7 +73,10 @@ namespace ET
             self.ShowItemList = rc.Get<GameObject>("ShowItemList");
 
             self.ButtonStageDesc = rc.Get<GameObject>("ButtonStageDesc");
-            self.ButtonStageDesc.GetComponent<Button>().onClick.AddListener(() => { });
+            self.ButtonStageDesc.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                self.UIStageDesc.SetActive(true);
+            });
 
             self.ButtonRewardDesc = rc.Get<GameObject>("ButtonRewardDesc");
             self.ButtonRewardDesc.GetComponent<Button>().onClick.AddListener(() =>
@@ -90,6 +93,7 @@ namespace ET
 
             self.InitUIShowItemList();
             self.InitUIGiveItemList();
+            self.InitUIStageDescList();
             self.InitUIRewardDescList();
             self.UpdateInfo();
         }
@@ -98,11 +102,15 @@ namespace ET
     public static class UIActivityV1GrowthTreeComponentSystem
     {
 
-        public static void InitUIStageDesc(this UIActivityV1GrowthTreeComponent self)
+        public static void InitUIStageDescList(this UIActivityV1GrowthTreeComponent self)
         {
             foreach (var costitem in ActivityConfigHelper.ActivityTreeStageDesc)
             {
                 GameObject itemSpace = GameObject.Instantiate(self.UIStageDescItem);
+
+                Text text = itemSpace.transform.Find("Text").GetComponent<Text>();
+                text.text = $"{costitem.Name} {costitem.GrowthValue}";
+
                 itemSpace.SetActive(true);
                 UICommonHelper.SetParent(itemSpace, self.UIStageDescList);
             }
