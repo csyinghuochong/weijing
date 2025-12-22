@@ -8,6 +8,9 @@ namespace ET
     public class UIActivityV1WeeklyCardComponent : Entity, IAwake, IDestroy
     {
 
+
+        public GameObject Node_1;
+        public GameObject Node_2;
         public GameObject ButtonAliPay;
         public GameObject ButtonWeiXix;
         public GameObject ButtonDiClose;
@@ -40,6 +43,11 @@ namespace ET
 
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
             self.WeeklyCardItemList.Clear();
+
+            self.Node_1 = rc.Get<GameObject>("Node_1");
+            self.Node_2 = rc.Get<GameObject>("Node_2");
+            self.Node_1.SetActive(false);
+            self.Node_2.SetActive(false);
 
             self.UIActivityV1WeeklyCardItem = rc.Get<GameObject>("UIActivityV1WeeklyCardItem");
             self.UIActivityV1WeeklyCardItem.SetActive(false);
@@ -276,6 +284,9 @@ namespace ET
 
         public static void OnClickPageButton(this UIActivityV1WeeklyCardComponent self, int page)
         {
+            self.Node_1.SetActive(page == 0);
+            self.Node_2.SetActive(page == 1);
+
             self.UpdateInfo();
             self.ShowLeftTimes();
         }
