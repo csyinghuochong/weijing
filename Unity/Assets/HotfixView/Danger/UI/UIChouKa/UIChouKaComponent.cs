@@ -24,6 +24,11 @@ namespace ET
 
     public class UIChouKaComponent : Entity, IAwake, IDestroy
     {
+
+        public UIItemComponent UITenCostCommonItem;
+
+        public GameObject ItemChouKeTen;
+        public GameObject DiamondChouKeTen;
         public GameObject Btn_ChouKaProbExplain;
         public GameObject Btn_Warehouse;
         public GameObject Text_TotalNumber;
@@ -91,6 +96,14 @@ namespace ET
             self.Btn_AddZuanShi = rc.Get<GameObject>("Btn_AddZuanShi");
             self.Btn_AddZuanShi.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AddZuanShi(); });
 
+            GameObject tencostitem = rc.Get<GameObject>("UITenCostCommonItem");
+            self.UITenCostCommonItem = self.AddChild<UIItemComponent, GameObject>(tencostitem);
+        
+            self.UITenCostCommonItem.UpdateItem( new BagInfo() { ItemID = ConfigHelper.ZuanShiTenChoukaItem }, ItemOperateEnum.None );
+
+            self.ItemChouKeTen = rc.Get<GameObject>("ItemChouKeTen");
+            self.DiamondChouKeTen = rc.Get<GameObject>("DiamondChouKeTen");
+
             GameObject uiChouKaChapterSelect = rc.Get<GameObject>("UIChouKaChapterSelect");
             self.UIChouKaChapterSelect = self.AddChild<UI, string, GameObject>( "UIChouKaChapterSelect", uiChouKaChapterSelect);
             self.UIChouKaChapterSelect.AddComponent<UIChouKaChapterSelectComponent>();
@@ -102,6 +115,7 @@ namespace ET
 
             self.OnSelectChapterID(self.GetChouKaId());
             self.OnUpdateUI();
+            self.Update_TextItemTenCost();
 
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000,TimerType.UIChouKaTimer, self);
             DataUpdateComponent.Instance.AddListener(DataType.UpdateUserData, self);
@@ -137,6 +151,23 @@ namespace ET
             uiChouKaChapterSelect.Text_5.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0 ? 30 : 28;
             
             self.Btn_Warehouse.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0 ? 40 : 36;
+        }
+
+        public static void Update_TextItemTenCost(this UIChouKaComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            long leftnum = bagComponent.GetItemNumber(ConfigHelper.ZuanShiTenChoukaItem);
+            if (leftnum > 0)
+            {
+                self.ItemChouKeTen.SetActive(true);
+                self.DiamondChouKeTen.SetActive(false);
+                self.UITenCostCommonItem.Label_ItemNum.GetComponent<Text>().text = $"{leftnum}/1";
+            }
+            else
+            {
+                self.ItemChouKeTen.SetActive(false);
+                self.DiamondChouKeTen.SetActive(true);
+            }
         }
 
         public static int GetChouKaId(this UIChouKaComponent self)
@@ -215,15 +246,31 @@ namespace ET
 
         public static async ETTask OnBtn_ChouKaOne(this UIChouKaComponent self, int times)
         {
-            C2M_ChouKaRequest m_ItemOperateWear = new C2M_ChouKaRequest() { ChapterId = self.TakeCardId, ChouKaType = times };
+            int costType = 1;
+            if (times == 10 && self.ItemChouKeTen.activeSelf)
+            {
+                costType = 2;
+            }
+
+            C2M_ChouKaRequest m_ItemOperateWear = new C2M_ChouKaRequest()
+            { 
+                ChapterId = self.TakeCardId,
+                ChouKaType = times,
+                CostType = costType,
+            };
             M2C_ChouKaResponse r2c_roleEquip = (M2C_ChouKaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
             if (r2c_roleEquip.Error != 0)
+            {
+                return;
+            }
+            if (self.IsDisposed)
             {
                 return;
             }
 
             self.OnUpdateUI();
             self.OnUpdateCost();
+            self.Update_TextItemTenCost();
             self.ShowRewardView(r2c_roleEquip.RewardList).Coroutine();
 
             //记录tap数据

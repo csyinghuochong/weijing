@@ -36,25 +36,39 @@ namespace ET
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
+
+            //钻石抽卡券
             bool mianfei = false;
-            long cdTime = long.Parse(GlobalValueConfigCategory.Instance.Get(request.ChouKaType == 1 ? 35:36).Value) * 1000;
-            
-            long lastTime = unit.GetComponent<NumericComponent>().GetAsLong(request.ChouKaType == 1 ? NumericType.ChouKaOneTime: NumericType.ChouKaTenTime);
-            mianfei = TimeHelper.ServerNow() - lastTime >= cdTime;
-
-            TakeCardConfig takeCardConfig = TakeCardConfigCategory.Instance.Get(request.ChapterId);
-            int needZuanshi = request.ChouKaType == 1 ? takeCardConfig.ZuanShiNum : takeCardConfig.ZuanShiNum_Ten;
-            int totalTimes = numericComponent.GetAsInt(NumericType.ChouKa);
-            if (totalTimes >= 250)
+            int needZuanshi = 0;
+            if (request.CostType == 2)
             {
-                needZuanshi = Mathf.CeilToInt(needZuanshi * 0.8f);
+                if (bagComponent.GetItemNumber(ConfigHelper.ZuanShiTenChoukaItem) < 1)
+                {
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                    reply();
+                    return;
+                }
             }
-
-            if (!mianfei && userInfo.Diamond < needZuanshi)
+            else
             {
-                response.Error = ErrorCode.ERR_DiamondNotEnoughError;
-                reply();
-                return;
+                long cdTime = long.Parse(GlobalValueConfigCategory.Instance.Get(request.ChouKaType == 1 ? 35 : 36).Value) * 1000;
+
+                long lastTime = unit.GetComponent<NumericComponent>().GetAsLong(request.ChouKaType == 1 ? NumericType.ChouKaOneTime : NumericType.ChouKaTenTime);
+                mianfei = TimeHelper.ServerNow() - lastTime >= cdTime;
+                TakeCardConfig takeCardConfig = TakeCardConfigCategory.Instance.Get(request.ChapterId);
+                needZuanshi = request.ChouKaType == 1 ? takeCardConfig.ZuanShiNum : takeCardConfig.ZuanShiNum_Ten;
+                int totalTimes = numericComponent.GetAsInt(NumericType.ChouKa);
+                if (totalTimes >= 250)
+                {
+                    needZuanshi = Mathf.CeilToInt(needZuanshi * 0.8f);
+                }
+
+                if (!mianfei && userInfo.Diamond < needZuanshi)
+                {
+                    response.Error = ErrorCode.ERR_DiamondNotEnoughError;
+                    reply();
+                    return;
+                }
             }
 
             int dropid = TakeCardConfigCategory.Instance.Get(request.ChapterId).DropID;
@@ -123,7 +137,11 @@ namespace ET
             }
 
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ChouKa, request.ChouKaType, 0);
-            if (mianfei)
+            if (request.CostType == 2)
+            {
+                bagComponent.OnCostItemData($"{ConfigHelper.ZuanShiTenChoukaItem};1", ItemLocType.ItemLocBag, ItemGetWay.ChouKa);
+            }
+            else if (mianfei)
             {
                 unit.GetComponent<NumericComponent>().ApplyValue(request.ChouKaType == 1 ? NumericType.ChouKaOneTime : NumericType.ChouKaTenTime, TimeHelper.ServerNow());
             }

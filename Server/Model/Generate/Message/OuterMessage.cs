@@ -5781,6 +5781,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int ChapterId { get; set; }
 
+		[ProtoMember(3)]
+		public int CostType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_ChouKaResponse)]

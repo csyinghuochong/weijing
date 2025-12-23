@@ -646,6 +646,7 @@ namespace ET
             //钻石抽奖券
             if (itemConfig.ItemSubType == 143)
             {
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("请到抽卡界面使用!"));
                 return;
             }
 

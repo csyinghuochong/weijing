@@ -14,6 +14,7 @@ namespace ET
 
         public static string ChangeOccItem = "10000178;1";
 
+        public static int ZuanShiTenChoukaItem = 10010081;
 
         /// <summary>
         /// 竞技场buff
