@@ -267,7 +267,7 @@ namespace ET
         /// <summary>
         /// 订单刷新券
         /// </summary>
-        public static string ActivityOrderRefreshItem = "10000184;3";
+        public static string ActivityOrderRefreshItem = "10030040;1";
 
         /// <summary>
         /// 订单刷新时间（毫秒）
