@@ -208,9 +208,9 @@ namespace ET
         /// </summary>
         public static Dictionary<int, (int, int)> ActivityTreeCostItem = new Dictionary<int, (int, int)>()
         {
-            { 10035001,(1, 3) },
-            { 10035002,(5, 10) },
-            { 10035003,(10, 20) }
+            { 10030031,(1, 3) },
+            { 10030032,(5, 10) },
+            { 10030033,(10, 20) }
         };
 
         /// <summary>
