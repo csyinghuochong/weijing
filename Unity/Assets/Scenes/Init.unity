@@ -1334,8 +1334,8 @@ MonoBehaviour:
   Development: 1
   EditorMode: 1
   OueNetMode: 0
-  BigVersion: 24
-  BigVersionIOS: 24
+  BigVersion: 25
+  BigVersionIOS: 25
   CodeMode: 4
   VersionMode: 1
   Updater: {fileID: 2018631435}
