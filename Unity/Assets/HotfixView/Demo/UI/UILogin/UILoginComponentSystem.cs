@@ -283,8 +283,14 @@ namespace ET
                     EventType.GetSysRegionInfo.Instance.ZoneScene = self.ZoneScene();
                     Game.EventSystem.PublishClass(EventType.GetSysRegionInfo.Instance);
                 }
+                if (GlobalHelp.GetBigVersion() >= 25)
+                {
+                    Log.ILog.Debug("eventType.NetworkChangeDetector.Instance");
+                    EventType.NetworkChangeDetector.Instance.ZoneScene = self.ZoneScene();
+                    Game.EventSystem.PublishClass(EventType.NetworkChangeDetector.Instance);
+                }
 
-				if (GlobalHelp.VersionMode == VersionMode.BanHao)
+                if (GlobalHelp.VersionMode == VersionMode.BanHao)
 				{
 					self.registerBtn.SetActive(false);
                     self.ObjNoticeBtn.SetActive(false);

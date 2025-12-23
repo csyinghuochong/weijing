@@ -1023,6 +1023,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        //bigversion >= 25才可以获取
+        public class NetworkChangeDetector: DisposeObject
+        {
+            public static readonly NetworkChangeDetector Instance = new NetworkChangeDetector();
+            public Scene ZoneScene;
+        }
+
         public class TapTapSdkInit : DisposeObject
         {
             public static readonly TapTapSdkInit Instance = new TapTapSdkInit();
