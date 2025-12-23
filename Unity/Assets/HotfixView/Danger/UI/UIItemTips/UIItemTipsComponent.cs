@@ -643,6 +643,11 @@ namespace ET
                 self.OnCloseTips();
                 return;
             }
+            //钻石抽奖券
+            if (itemConfig.ItemSubType == 143)
+            {
+                return;
+            }
 
             long instanceid = self.InstanceId;
             errorCode = await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, usrPar);
