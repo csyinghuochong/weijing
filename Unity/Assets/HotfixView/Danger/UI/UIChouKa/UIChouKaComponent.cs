@@ -26,7 +26,6 @@ namespace ET
     {
 
         public UIItemComponent UITenCostCommonItem;
-
         public GameObject ItemChouKeTen;
         public GameObject DiamondChouKeTen;
         public GameObject Btn_ChouKaProbExplain;
@@ -48,7 +47,6 @@ namespace ET
         public GameObject Lab_ZuanShi;
 
         public int TakeCardId;
-        public List<UI> DropShowList;
         public UI UIChouKaChapterSelect;
 
         public long Timer;
@@ -59,7 +57,6 @@ namespace ET
     {
         public override void Awake(UIChouKaComponent self)
         {
-            self.DropShowList = new List<UI>();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Btn_ChouKaProbExplain = rc.Get<GameObject>("Btn_ChouKaProbExplain");
@@ -98,9 +95,7 @@ namespace ET
 
             GameObject tencostitem = rc.Get<GameObject>("UITenCostCommonItem");
             self.UITenCostCommonItem = self.AddChild<UIItemComponent, GameObject>(tencostitem);
-        
             self.UITenCostCommonItem.UpdateItem( new BagInfo() { ItemID = ConfigHelper.ZuanShiTenChoukaItem }, ItemOperateEnum.None );
-
             self.ItemChouKeTen = rc.Get<GameObject>("ItemChouKeTen");
             self.DiamondChouKeTen = rc.Get<GameObject>("DiamondChouKeTen");
 

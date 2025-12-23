@@ -52,18 +52,34 @@ namespace ET
             }
             else if (request.ChouKaType == 10)
             {
-                
                 UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
                 int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[0]);
                 dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[1]);
-                if (userInfo.Diamond < (int)(needDimanond * discount))
+
+                if (request.CostType == 2)
                 {
-                    response.Error = ErrorCode.ERR_DiamondNotEnoughError;
-                    reply();
-                    return;
+                    BagComponent bagComponent = unit.GetComponent<BagComponent>();
+                    if (bagComponent.GetItemNumber(ConfigHelper.ZuanShiTenChoukaItem) < 1)
+                    {
+                        response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                        reply();
+                        return;
+                    }
+
+                    bagComponent.OnCostItemData($"{ConfigHelper.ZuanShiTenChoukaItem};1", ItemLocType.ItemLocBag, ItemGetWay.ChouKa);
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreNumber, 10, 0);
                 }
-                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (-1 * (int)(needDimanond * discount)).ToString(), true,ItemGetWay.PetChouKa);
-                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreNumber, 10, 0);
+                else
+                {
+                    if (userInfo.Diamond < (int)(needDimanond * discount))
+                    {
+                        response.Error = ErrorCode.ERR_DiamondNotEnoughError;
+                        reply();
+                        return;
+                    }
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (-1 * (int)(needDimanond * discount)).ToString(), true, ItemGetWay.PetChouKa);
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExploreNumber, 10, 0);
+                }
             }
 
             int oldValue = exlporeNumber / 10;

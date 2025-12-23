@@ -6,6 +6,10 @@ namespace ET
 {
     public class UIPetEggChouKaComponent : Entity, IAwake,IDestroy
     {
+
+        public UIItemComponent UITenCostCommonItem;
+        public GameObject ItemChouKeTen;
+        public GameObject DiamondChouKeTen;
         public GameObject RewardItemListNode;
         public GameObject Btn_PetEggLucklyExplain;
         public GameObject Btn_RolePetHeXin;
@@ -57,12 +61,19 @@ namespace ET
             self.PetLucky = rc.Get<GameObject>("PetLucky");
             self.PetLucky.SetActive( true) ;
 
+            GameObject tencostitem = rc.Get<GameObject>("UITenCostCommonItem");
+            self.UITenCostCommonItem = self.AddChild<UIItemComponent, GameObject>(tencostitem);
+            self.UITenCostCommonItem.UpdateItem(new BagInfo() { ItemID = ConfigHelper.ZuanShiTenChoukaItem }, ItemOperateEnum.None);
+            self.ItemChouKeTen = rc.Get<GameObject>("ItemChouKeTen");
+            self.DiamondChouKeTen = rc.Get<GameObject>("DiamondChouKeTen");
+
             self.OnLanguageUpdate();
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
             
             self.UpdateMoney();
             self.OnUpdateInfo();
             self.UpdateReward();
+            self.Update_TextItemTenCost();
             //self.UpdateChouKaTime();
         }
 
@@ -88,6 +99,23 @@ namespace ET
         public static void OnLanguageUpdate(this UIPetEggChouKaComponent self)
         {
             self.Btn_PetEggLucklyExplain.SetActive(GameSettingLanguge.Language == 0);
+        }
+
+        public static void Update_TextItemTenCost(this UIPetEggChouKaComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            long leftnum = bagComponent.GetItemNumber(ConfigHelper.ZuanShiTenChoukaItem);
+            if (leftnum > 0)
+            {
+                self.ItemChouKeTen.SetActive(true);
+                self.DiamondChouKeTen.SetActive(false);
+                self.UITenCostCommonItem.Label_ItemNum.GetComponent<Text>().text = $"{leftnum}/1";
+            }
+            else
+            {
+                self.ItemChouKeTen.SetActive(false);
+                self.DiamondChouKeTen.SetActive(true);
+            }
         }
 
         public static void UpdateReward(this UIPetEggChouKaComponent self)
@@ -174,6 +202,12 @@ namespace ET
                 return;
             }
 
+            int costType = 1;
+            if (choukaType == 10 && self.ItemChouKeTen.activeSelf)
+            {
+                costType = 2;
+            }
+
             string needItems = GlobalValueConfigCategory.Instance.Get(39).Value.Split('@')[0];
             if (choukaType == 1 && !self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(needItems))
             {
@@ -181,6 +215,7 @@ namespace ET
                 return;
             }
 
+         
             int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[0]);
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int exlporeNumber = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>().GetAsInt(NumericType.PetExploreNumber);
@@ -194,10 +229,13 @@ namespace ET
             {
                 discount = float.Parse(set[1]);
             }
-            if (choukaType == 10 && userInfo.Diamond < (int)(needDimanond * discount))
+            if (choukaType == 10 )
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_DiamondNotEnoughError);
-                return;
+                if (costType == 1 && userInfo.Diamond < (int)(needDimanond * discount))
+                {
+                    ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_DiamondNotEnoughError);
+                    return;
+                }
             }
 
             //Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -208,7 +246,11 @@ namespace ET
             //    return;
             //}
             long instanceid = self.InstanceId;
-            C2M_PetEggChouKaRequest m_ItemOperateWear = new C2M_PetEggChouKaRequest() { ChouKaType = choukaType };
+            C2M_PetEggChouKaRequest m_ItemOperateWear = new C2M_PetEggChouKaRequest() 
+            { 
+                ChouKaType = choukaType ,
+                CostType = costType,
+            };
             M2C_PetEggChouKaResponse r2c_roleEquip = (M2C_PetEggChouKaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
             if (r2c_roleEquip.Error != 0 || instanceid != self.InstanceId)
             {
@@ -216,6 +258,7 @@ namespace ET
             }
             self.UpdateMoney();
             self.OnUpdateInfo();
+            self.Update_TextItemTenCost();
 
             UI ui = await UIHelper.Create(self.DomainScene(), UIType.UICommonReward);
             ui.GetComponent<UICommonRewardComponent>().OnUpdateUI(r2c_roleEquip.ReardList);

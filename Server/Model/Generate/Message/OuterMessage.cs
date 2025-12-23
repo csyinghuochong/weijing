@@ -9562,6 +9562,9 @@ namespace ET
 		[ProtoMember(1)]
 		public int ChouKaType { get; set; }
 
+		[ProtoMember(2)]
+		public int CostType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_PetEggChouKaResponse)]
