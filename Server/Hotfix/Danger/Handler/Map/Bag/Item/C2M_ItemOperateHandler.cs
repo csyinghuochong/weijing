@@ -544,6 +544,9 @@ namespace ET
                                 List<int> weaponids = ItemHelper.GetSealWeaponList(occ, itemConfig.Id);
                                 unit.GetComponent<BagComponent>().OnAddItemData($"{weaponids[useindex]};1", $"{ItemGetWay.ItemBox_8}_{TimeHelper.ServerNow()}");
                                 break;
+                            case 143:
+                                //钻石抽奖券
+                                break;
                             default:
                                 break;
                         }
