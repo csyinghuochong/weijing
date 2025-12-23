@@ -133,7 +133,7 @@ namespace ET
     {
         public int GrowthValueLower;
         public int GrowthValueUpper;
-        public string Reward;
+        public int Reward;
     }
 
     public struct ActivityOrderItem

@@ -135,7 +135,11 @@ namespace ET
                 TextGrowValue.text = $"{treeTendItem.GrowthValueLower}-{treeTendItem.GrowthValueUpper}{str}";
 
                 GameObject ItemRewardList = itemSpace.transform.Find("ItemRewardList").gameObject;
-                UICommonHelper.ShowItemList(treeTendItem.Reward, ItemRewardList, self);
+
+                List<RewardItem> droplist = new List<RewardItem>();
+                DropHelper.DropIDToDropItem_2(treeTendItem.Reward, droplist);
+
+                UICommonHelper.ShowItemList(droplist, ItemRewardList, self);
 
                 itemSpace.SetActive(true);
                 UICommonHelper.SetParent(itemSpace, self.UIRewardDescList);

@@ -43,7 +43,11 @@ namespace ET
 
             int addscore = RandomHelper.RandomNumber(lower, upper + 1);
             ActivityTreeTendItem activityTreeTendItem =  ActivityConfigHelper.GetActivityTreeTendItem(addscore);
-            if (bagComponent.GetBagLeftCell() < ItemHelper.GetNeedCell(activityTreeTendItem.Reward))
+
+            List<RewardItem> droplist = new List<RewardItem>();
+            DropHelper.DropIDToDropItem_2(activityTreeTendItem.Reward, droplist);
+
+            if (bagComponent.GetBagLeftCell() < droplist.Count)
             {
                 response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
@@ -58,11 +62,8 @@ namespace ET
                 return;
             }
 
-            if (!string.IsNullOrEmpty(activityTreeTendItem.Reward))
-            {
-                bagComponent.OnAddItemData(activityTreeTendItem.Reward, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
-            }
-           
+            bagComponent.OnAddItemData(droplist, string.Empty, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+
             ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();
             long oldtreevalue = activityComponent.ActivityV1Info.GrowthTreeValue;
             int oldstage = ActivityConfigHelper.GetActivityTreeStageItem(oldtreevalue);
