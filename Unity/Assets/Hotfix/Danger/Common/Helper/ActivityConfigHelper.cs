@@ -240,9 +240,9 @@ namespace ET
         /// </summary>
         public static List<ActivityTreeTendItem> ActivityTreeTendRewardItem = new List<ActivityTreeTendItem>()
         {
-            new ActivityTreeTendItem(){ GrowthValueLower = 1, GrowthValueUpper = 10, Reward = 50031001 },
-            new ActivityTreeTendItem(){ GrowthValueLower = 11, GrowthValueUpper = 20, Reward = 50031001 },
-            new ActivityTreeTendItem(){ GrowthValueLower = 21, GrowthValueUpper = 100, Reward = 50031001 }
+            new ActivityTreeTendItem(){ GrowthValueLower = 1, GrowthValueUpper = 10, Reward = 61400410 },
+            new ActivityTreeTendItem(){ GrowthValueLower = 11, GrowthValueUpper = 20, Reward = 61400420 },
+            new ActivityTreeTendItem(){ GrowthValueLower = 21, GrowthValueUpper = 100, Reward = 61400430 }
         };
 
         public static ActivityTreeTendItem GetActivityTreeTendItem(int score)
