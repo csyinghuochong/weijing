@@ -252,6 +252,20 @@ namespace ET
 
         public static void RemoveBuffByNumericType(this BuffManagerComponent self, long state)
         {
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
+            {
+                if (self.m_Buffs[i].mBuffConfig.BuffType != 1)
+                {
+                    continue;
+                }
+                long curState =  self.m_Buffs[i].mBuffConfig.buffParameterType / 100;
+                if (state == curState)
+                {
+                    self.OnRemoveBuffItem(self.m_Buffs[i]);
+                    self.m_Buffs.RemoveAt(i);
+                }
+            }
         }
 
         /// <summary>
