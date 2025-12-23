@@ -556,7 +556,7 @@ namespace ET
         }
 
         /// <summary>
-        /// 
+        /// 击杀掉落
         /// </summary>
         /// <param name="bekill"></param>
         /// <param name="main"></param>
@@ -867,6 +867,15 @@ namespace ET
             }
         }
 
+
+        /// <summary>
+        /// 特殊掉落
+        /// </summary>
+        /// <param name="main"></param>
+        /// <param name="beKill"></param>
+        /// <param name="dropType"></param>
+        /// <param name="dropId"></param>
+        /// <param name="par"></param>
         public static void CreateDropItems(Unit main, Unit beKill, int dropType,  int dropId, string par)
         {
             Scene domainScene = beKill.DomainScene();
