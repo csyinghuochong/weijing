@@ -115,9 +115,11 @@ namespace ET
             {
                 GameObject itemSpace = GameObject.Instantiate(self.UIStageDescItem);
 
-                Text text = itemSpace.transform.Find("Text").GetComponent<Text>();
+                Text text = itemSpace.transform.Find("TextGrowValue").GetComponent<Text>();
                 text.text = $"{costitem.Name} {costitem.GrowthValue}";
 
+                GameObject ItemRewardList = itemSpace.transform.Find("ItemRewardList").gameObject;
+                UICommonHelper.ShowItemList(costitem.Reward, ItemRewardList, self);
                 itemSpace.SetActive(true);
                 UICommonHelper.SetParent(itemSpace, self.UIStageDescList);
             }
