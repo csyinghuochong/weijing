@@ -30,7 +30,6 @@ namespace ET
             self.EnergySkillId = 0;
             self.ZhaohuanIds.Clear();
             self.FashionEquipList.Clear();
-            self.Buffs.Clear();
             self.Drops.Clear();
         }
 

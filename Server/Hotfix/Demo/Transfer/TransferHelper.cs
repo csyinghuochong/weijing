@@ -694,7 +694,9 @@ namespace ET
             }
         }
 
-        public static void BeforeTransfer(Unit unit)
+
+
+        public static void BeforeTransfer(Unit unit,  int transfer = 1)
         {
             //删除unit,让其它进程发送过来的消息找不到actor，重发
             //Game.EventSystem.Remove(unitId);
@@ -705,7 +707,7 @@ namespace ET
                 unit.RemoveComponent<MailBoxComponent>();
                 unit.GetComponent<DataCollationComponent>()?.UpdateData();
                 unit.GetComponent<SkillPassiveComponent>()?.Stop();
-                unit.GetComponent<BuffManagerComponent>().BeforeTransfer();
+                unit.GetComponent<BuffManagerComponent>().BeforeTransfer(transfer);
                 unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(null);
                 RemovePetAndJingLing(unit);
             }

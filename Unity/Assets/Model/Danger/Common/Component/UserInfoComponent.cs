@@ -1,5 +1,6 @@
 ﻿#if SERVER
 using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 #endif
 
 
@@ -102,6 +103,8 @@ namespace ET
 
         [BsonIgnore]
         public long ShouLieUpLoadTimer;
+
+        public List<KeyValuePair> Buffs = new List<KeyValuePair>();
 #else
         public string[] PickSet;
 

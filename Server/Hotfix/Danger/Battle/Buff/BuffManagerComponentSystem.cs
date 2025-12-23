@@ -916,13 +916,23 @@ namespace ET
         public static void InitBuff(this BuffManagerComponent self, int sceneType)
         {
             Unit unit = self.GetParent<Unit>();
-            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
+            if (unit.Type != UnitType.Player)
+            {
+                return;
+            }
+            long serverTime = TimeHelper.ServerNow();
+            UserInfoComponent unitInfoComponent = unit.GetComponent<UserInfoComponent>();
             for (int i = 0; i < unitInfoComponent.Buffs.Count; i++)
             {
+                long endTime = long.Parse(unitInfoComponent.Buffs[i].Value2);
+                if (endTime <= serverTime)
+                {
+                    continue;
+                }
                 BuffData buffData_1 = new BuffData();
                 buffData_1.SkillId = 67000278;
                 buffData_1.BuffId = unitInfoComponent.Buffs[i].KeyId;
-                buffData_1.BuffEndTime = long.Parse(unitInfoComponent.Buffs[i].Value2);
+                buffData_1.BuffEndTime = endTime;
                 self.BuffFactory(buffData_1, self.GetParent<Unit>(), null, true);
             }
             unitInfoComponent.Buffs.Clear();
@@ -1091,9 +1101,14 @@ namespace ET
             return Buffs;
         }
 
-        public static void BeforeTransfer(this BuffManagerComponent self)
+        public static void BeforeTransfer(this BuffManagerComponent self, int transfer)
         {
-            UnitInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();
+            Unit unit = self.GetParent<Unit>();
+            if (unit.Type != UnitType.Player)
+            {
+                return;
+            }
+            UserInfoComponent unitInfoComponent = unit.GetComponent<UserInfoComponent>();
             unitInfoComponent.Buffs.Clear();
             int buffcnt = self.m_Buffs.Count;
             for (int i = buffcnt - 1; i >= 0; i--)
@@ -1102,7 +1117,7 @@ namespace ET
                 buffHandler.OnFinished();
                 ObjectPool.Instance.Recycle(buffHandler);
                 self.m_Buffs.RemoveAt(i);
-                if (buffHandler.mBuffConfig.Transfer < 1)
+                if (buffHandler.mBuffConfig.Transfer < transfer)
                 {
                     continue;
                 }

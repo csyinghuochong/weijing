@@ -198,6 +198,7 @@ namespace ET
                 unit.RecordPostion(sceneTypeEnum, ComHelp.MainCityID());
             }
             unit.GetComponent<EnergyComponent>().OnDisconnect();
+            TransferHelper.BeforeTransfer(unit, 2);
             if (!unit.IsRobot())
             {
                 self.LogTest();
@@ -209,8 +210,6 @@ namespace ET
             long unitId = unit.Id;
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             long userId = userInfo.UserId;
-
-            TransferHelper.BeforeTransfer(unit);
             unit.GetParent<UnitComponent>().Remove(unitId);
 
             Game.EventSystem.Publish(new EventType.PlayerDisconnect() { DomainScene = scene, UnitId = userId });
