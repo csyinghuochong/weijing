@@ -1102,7 +1102,7 @@ namespace ET
                 buffHandler.OnFinished();
                 ObjectPool.Instance.Recycle(buffHandler);
                 self.m_Buffs.RemoveAt(i);
-                if (buffHandler.mBuffConfig.Transfer != 1)
+                if (buffHandler.mBuffConfig.Transfer < 1)
                 {
                     continue;
                 }
