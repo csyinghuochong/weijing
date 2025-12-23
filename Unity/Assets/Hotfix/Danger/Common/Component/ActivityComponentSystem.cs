@@ -48,6 +48,9 @@ namespace ET
             //self.ActivityV1Info.ConsumeDiamondReward.Clear();
             //限时活动积分兑换
             self.ActivityV1Info.PointsReward.Clear();
+            self.ActivityV1Info.GrowthTreeValue = 0;
+            self.ActivityV1Info.GoldWeeklyCardRewards.Clear();
+            self.ActivityV1Info.DiamondWeeklyCardRewards.Clear();
         }
 
         public static int GetMaxActivityId(this ActivityComponent self, int rechargeNumb)

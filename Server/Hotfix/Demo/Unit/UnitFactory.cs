@@ -597,7 +597,7 @@ namespace ET
                 int userlv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
                 if( monsterConfig.Lv >= 60 || Mathf.Abs(userlv - monsterConfig.Lv) <= 9 ) 
                 {
-                    drop = true;    
+                    drop = true;
                 }
             }
 
@@ -696,8 +696,22 @@ namespace ET
                     }
                 }
             }
-            
-            List<RewardItem> droplist = AI_MonsterDrop(main, monsterCof.Id, dropAdd_Pro, false);
+
+            int adddropid = 0;
+            ServerInfo serverInfo = bekill.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo;
+            if (serverInfo != null)
+            {
+                if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree) && !bekill.IsBoss())
+                {
+                    adddropid = ActivityConfigHelper.GrowthTreeDropId;
+                }
+                if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Order) && bekill.IsBoss())
+                {
+                    adddropid = ActivityConfigHelper.OrderDropId;
+                }
+            }
+
+            List <RewardItem> droplist = AI_MonsterDrop(main, monsterCof.Id, dropAdd_Pro, false);
            
             List<RewardItem> droplist_2 = null;
             if (main!=null && !main.IsDisposed)
@@ -709,6 +723,12 @@ namespace ET
             {
                 droplist.AddRange(droplist_2);
             }
+
+            if (adddropid != 0)
+            {
+                DropHelper.DropIDToDropItem(adddropid, droplist);
+            }
+
             if ((monsterCof.MonsterSonType == 55 || monsterCof.MonsterSonType == 56) && droplist.Count == 0)
             {
                 Log.Warning($"宝箱掉落为空{monsterCof.Id} {main.Id}");

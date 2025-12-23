@@ -71,6 +71,7 @@ namespace ET
                 self.UpdateWorldLv();
             }
             self.BroadcastWorldLv().Coroutine();
+            self.RandomGenerateActivity();
         }
 
         public static void UpdateWorldLv(this RankSceneComponent self)
@@ -140,13 +141,13 @@ namespace ET
         {
             //更新服务器拍卖行数据
             //TimeHelper. self.OpenServiceTime
-            self.RandomGenerateActivity();
             self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
             self.SendCombatReward().Coroutine();
             self.SendPetReward().Coroutine();
             self.SendTrialReward().Coroutine();
             self.SendSeasonTowerReward().Coroutine();
             self.BroadcastWorldLv().Coroutine();
+            self.RandomGenerateActivity();
 
             self.DBRankInfo.rankShowLie.Clear();
             self.DBRankInfo.rankUnionRace.Clear();
@@ -223,6 +224,11 @@ namespace ET
         /// <param name="self"></param>
         public static void RandomGenerateActivity(this RankSceneComponent self)
         {
+            if (!ComHelp.IsInnerNet())
+            {
+                return;
+            }
+
             System.DateTime dateTime = TimeHelper.DateTimeNow();
             if (dateTime.DayOfWeek == System.DayOfWeek.Monday || self.DBServerInfo.ServerInfo.V1ActivityList.Count == 0)
             {
