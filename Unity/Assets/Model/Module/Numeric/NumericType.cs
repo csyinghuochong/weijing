@@ -1191,10 +1191,12 @@
         public const int Extra__SkillUseMP_Add = Max_SkillUseMP * 100 + 11;              //属性Buff附加加法
         public const int Extra__SkillUseMP_Mul = Max_SkillUseMP * 100 + 12;              //属性Buff附加乘法
 
-
-
-
-
-
+        //游戏爆率。。。
+        public const int Max_KillMonsterDropRate = 2445;          //击杀怪物附加爆率
+        public const int Max_KillMonsterDropRate_Base = Max_KillMonsterDropRate * 100 + 1;                  //属性累加
+        public const int Max_KillMonsterDropRate_Mul = Max_KillMonsterDropRate * 100 + 2;                   //属性乘法
+        public const int Max_KillMonsterDropRate_Add = Max_KillMonsterDropRate * 100 + 3;                   //属性附加
+        public const int Extra_KillMonsterDropRate_Add = Max_KillMonsterDropRate * 100 + 11;            //属性Buff附加加法
+        public const int Extra_KillMonsterDropRate_Mul = Max_KillMonsterDropRate * 100 + 12;            //属性Buff附加乘法
     }
 }

@@ -46,6 +46,10 @@ namespace ET
                 {
                     self.IOSReview = false;
                 }
+				if(Application.version == "10.0.0")
+				{
+					self.IOSReview = true;
+				}
 #endif
 
 #if UNITY_ANDROID

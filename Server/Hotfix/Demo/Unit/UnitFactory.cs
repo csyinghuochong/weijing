@@ -682,6 +682,13 @@ namespace ET
                 }
             }
 
+            if (bekill.IsBoss())
+            {
+                float dropadd = main.GetComponent<NumericComponent>().GetAsFloat(NumericType.Max_KillMonsterDropRate);
+                main.GetComponent<BuffManagerComponent>().RemoveBuffByNumericType(NumericType.Max_KillMonsterDropRate);
+                dropAdd_Pro += dropadd;
+            }
+
             //创建掉落
             if (main != null && monsterCof.MonsterSonType == 1)
             {
