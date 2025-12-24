@@ -419,12 +419,14 @@ namespace ET
                 if (state == ResponseState.Success)
                 {
                     result = self.ssdk.GetAuthInfo(type);
+					string openId = string.Empty;
+                    string userId = string.Empty;
 #if UNITY_ANDROID
-                    string openId = result["unionID"].ToString();
-                    string userId = result["userID"].ToString();
+                    openId = result["unionID"].ToString();
+                    userId = result["userID"].ToString();
 #elif UNITY_IPHONE
-					string openId = result["uid"].ToString();
-					string userId = result["token"].ToString();
+					openId = result["uid"].ToString();
+					userId = result["token"].ToString();
 #endif
                     Log.ILog.Debug($"openId: {openId}:  userId:{userId}");
                     self.OnGetUserInfo($"qq{openId};qq{userId}");
