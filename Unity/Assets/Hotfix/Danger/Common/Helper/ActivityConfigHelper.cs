@@ -315,11 +315,16 @@ namespace ET
             int levelIndex = RandomHelper.RandomByWeight(levelWeight);
             int levelId = levelWeight[levelIndex];
 
-
+            int preTotalIndex = 0;
             List <ActivityOrderItem>  levelItemList = new List<ActivityOrderItem>();
             for (int i = 0; i < ActivityOrderItemList.Count; i++)
             {
                 ActivityOrderItem chouKa2Item = ActivityOrderItemList[i];
+
+                if (chouKa2Item.Level < levelId)
+                {
+                    preTotalIndex++;    
+                }
                 if (chouKa2Item.Level == levelId)
                 {
                     levelItemList.Add(chouKa2Item); 
@@ -337,7 +342,7 @@ namespace ET
 
             weightindex = RandomHelper.RandomByWeight(weightlist);
 
-            //
+            weightindex += preTotalIndex;
 
             return weightindex; 
         }
