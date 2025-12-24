@@ -1,6 +1,0 @@
-framework module WeChatConnector {
-    umbrella header "WeChatConnector.h"
-    
-    export *
-    module * { export * }
-}

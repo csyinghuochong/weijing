@@ -138,6 +138,8 @@ namespace ET
 
     public struct ActivityOrderItem
     {
+        public int Level;
+        public int LevelWeight;
         public int Weight;
         public string Give;
         public string Get;

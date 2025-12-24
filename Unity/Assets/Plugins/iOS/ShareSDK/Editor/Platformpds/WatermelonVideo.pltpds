@@ -1,8 +1,0 @@
-{
-    "framework": [
-        "/SDK/ShareSDK/Support/PlatformConnector/WatermelonVideoConnector.xcframework"
-    ],
-    "LSApplicationQueriesSchemes": [
-        "xiguaalipayshare"
-    ]
-}

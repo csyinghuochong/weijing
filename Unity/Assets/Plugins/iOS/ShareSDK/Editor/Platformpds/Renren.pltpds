@@ -1,7 +1,0 @@
-{
-    "buildSettings": {
-        "ENABLE_BITCODE": [
-            "0"
-        ]
-    }
-}

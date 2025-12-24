@@ -275,16 +275,22 @@ namespace ET
         public static long ActivityOrderRefreshTime = TimeHelper.Minute ;   // * 60
 
         /// <summary>
-        /// 订单列表
+        /// 订单列表  先随机档次 在从每个档次随机奖励
+        /// 每个档次只配一个LevelWeight
         /// </summary>
         public static List<ActivityOrderItem> ActivityOrderItemList = new List<ActivityOrderItem>()
         {
-            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;3@10000132;2", Get = "10000132;5@10000131;1@10000131;3" },
-            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;4@10000132;2", Get = "10000132;5@10000131;1@10000131;4" },
-            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;5@10000132;2", Get = "10000132;5@10000131;1@10000131;5" },
-            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;6@10000132;2", Get = "10000132;5@10000131;1@10000131;6" },
-            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;7@10000132;2", Get = "10000132;5@10000131;1@10000131;7" },
-            new ActivityOrderItem(){ Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
+            new ActivityOrderItem(){ Level = 1, LevelWeight = 1,  Weight = 1, Give = "10010083;1@10010083;3@10000132;2", Get = "10000132;5@10000131;1@10000131;3" },
+            new ActivityOrderItem(){ Level = 1, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;4@10000132;2", Get = "10000132;5@10000131;1@10000131;4" },
+            new ActivityOrderItem(){ Level = 1, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;4@10000132;2", Get = "10000132;5@10000131;1@10000131;4" },
+            new ActivityOrderItem(){ Level = 2, LevelWeight = 1,  Weight = 1, Give = "10010083;1@10010083;5@10000132;2", Get = "10000132;5@10000131;1@10000131;5" },
+            new ActivityOrderItem(){ Level = 2, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;6@10000132;2", Get = "10000132;5@10000131;1@10000131;6" },
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 1,  Weight = 1, Give = "10010083;1@10010083;7@10000132;2", Get = "10000132;5@10000131;1@10000131;7" },
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
         };
 
         /// <summary>

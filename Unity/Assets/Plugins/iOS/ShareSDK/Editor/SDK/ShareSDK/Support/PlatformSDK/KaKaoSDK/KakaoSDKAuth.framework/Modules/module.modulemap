@@ -1,4 +1,0 @@
-framework module KakaoSDKAuth {
-  header "KakaoSDKAuth-Swift.h"
-  requires objc
-}

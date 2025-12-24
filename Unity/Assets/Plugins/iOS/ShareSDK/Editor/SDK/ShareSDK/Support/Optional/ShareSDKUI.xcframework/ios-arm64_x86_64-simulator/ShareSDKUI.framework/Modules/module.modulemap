@@ -1,6 +1,0 @@
-framework module ShareSDKUI {
-    umbrella header "ShareSDKUI_H.h"
-    
-    export *
-    module * { export * }
-}

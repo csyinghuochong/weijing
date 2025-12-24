@@ -1,5 +1,0 @@
-{
-    "framework": [
-        "/SDK/ShareSDK/Support/PlatformConnector/DropboxConnector.xcframework"
-    ]
-}

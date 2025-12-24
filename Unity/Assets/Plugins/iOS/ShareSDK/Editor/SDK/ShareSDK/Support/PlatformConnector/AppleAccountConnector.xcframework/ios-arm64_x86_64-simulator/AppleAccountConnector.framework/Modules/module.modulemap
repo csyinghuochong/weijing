@@ -1,6 +1,0 @@
-framework module AppleAccountConnector {
-    umbrella header "AppleAccountConnector.h"
-    
-    export *
-    module * { export * }
-}
