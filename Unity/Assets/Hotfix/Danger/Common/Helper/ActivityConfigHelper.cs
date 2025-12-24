@@ -299,21 +299,21 @@ namespace ET
         /// <returns></returns>
         public static int GenerateActivityOrderId()
         {
-            List<int> levelList = new List<int>();
+            List<int> levelIdList = new List<int>();
             List<int> levelWeight = new List<int>();
 
             for (int i = 0; i < ActivityOrderItemList.Count; i++)
             {
                 ActivityOrderItem chouKa2Item = ActivityOrderItemList[i];
-                if (!levelList.Contains(chouKa2Item.Level))
+                if (!levelIdList.Contains(chouKa2Item.Level))
                 {
-                    levelList.Add(chouKa2Item.Level);
+                    levelIdList.Add(chouKa2Item.Level);
                     levelWeight.Add(chouKa2Item.Weight);
                 }
             }
 
             int levelIndex = RandomHelper.RandomByWeight(levelWeight);
-            int levelId = levelWeight[levelIndex];
+            int levelId = levelIdList[levelIndex];
 
             int preTotalIndex = 0;
             List <ActivityOrderItem>  levelItemList = new List<ActivityOrderItem>();
