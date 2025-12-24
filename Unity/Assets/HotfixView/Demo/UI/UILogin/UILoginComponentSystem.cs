@@ -393,15 +393,17 @@ namespace ET
                 if (state == ResponseState.Success)
                 {
                     result = self.ssdk.GetAuthInfo(type);
+					string openId = string.Empty;
+                    string userId = string.Empty;
 #if UNITY_ANDROID
-                    string openId = result["openID"].ToString();  //openID == userID
+                    openId = result["openID"].ToString();  //openID == userID
                     Log.ILog.Debug("get user info openId :" + openId);
-                    string userId = result["unionID"].ToString();
+                    userId = result["unionID"].ToString();
                     Log.ILog.Debug("get user info userId :" + userId);
 #elif UNITY_IPHONE
-					string openId = result["uid"].ToString();  //openID == userID
+					openId = result["uid"].ToString();  //openID == userID
 					Log.ILog.Debug("get user info openId :" + openId);
-					string userId = result["token"].ToString();
+					userId = result["token"].ToString();
 					Log.ILog.Debug("get user info userId :" + userId);
 #endif
                     self.OnGetUserInfo($"wx{openId};wx{userId}");
