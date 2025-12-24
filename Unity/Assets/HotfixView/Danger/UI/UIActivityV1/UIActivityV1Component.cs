@@ -79,8 +79,22 @@ namespace ET
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
-            UI ui = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 
+            ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
+            self.FunctionSetBtn.transform.Find("Btn_1").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_ChouKa));
+            self.FunctionSetBtn.transform.Find("Btn_2").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Guess));
+            self.FunctionSetBtn.transform.Find("Btn_3").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Consume));
+            self.FunctionSetBtn.transform.Find("Btn_4").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_HongBao));
+            self.FunctionSetBtn.transform.Find("Btn_5").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_DuiHuanWord));
+            self.FunctionSetBtn.transform.Find("Btn_6").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_ChouKa2));
+            self.FunctionSetBtn.transform.Find("Btn_7").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_LiBao));
+            self.FunctionSetBtn.transform.Find("Btn_8").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Feed));
+            self.FunctionSetBtn.transform.Find("Btn_9").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GoldWeeklyCard));
+            self.FunctionSetBtn.transform.Find("Btn_10").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Order));
+            self.FunctionSetBtn.transform.Find("Btn_10").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree));
+
+
+            UI ui = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
             //IOS适配
             IPHoneHelper.SetPosition(rc.Get<GameObject>("ScrollView"), new Vector2(300f, -30f));
 
