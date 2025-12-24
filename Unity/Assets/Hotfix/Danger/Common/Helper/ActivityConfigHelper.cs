@@ -272,7 +272,7 @@ namespace ET
         /// <summary>
         /// 订单刷新时间（毫秒）
         /// </summary>
-        public static long ActivityOrderRefreshTime = TimeHelper.Minute ;   // * 60
+        public static long ActivityOrderRefreshTime = TimeHelper.Minute * 60;
 
         /// <summary>
         /// 订单列表  先随机档次 在从每个档次随机奖励
