@@ -299,16 +299,46 @@ namespace ET
         /// <returns></returns>
         public static int GenerateActivityOrderId()
         {
-            int weightindex = 0;
-            int[] weightlist = new int[ActivityOrderItemList.Count];
- 
+            List<int> levelList = new List<int>();
+            List<int> levelWeight = new List<int>();
+
             for (int i = 0; i < ActivityOrderItemList.Count; i++)
             {
                 ActivityOrderItem chouKa2Item = ActivityOrderItemList[i];
+                if (!levelList.Contains(chouKa2Item.Level))
+                {
+                    levelList.Add(chouKa2Item.Level);
+                    levelWeight.Add(chouKa2Item.Weight);
+                }
+            }
+
+            int levelIndex = RandomHelper.RandomByWeight(levelWeight);
+            int levelId = levelWeight[levelIndex];
+
+
+            List <ActivityOrderItem>  levelItemList = new List<ActivityOrderItem>();
+            for (int i = 0; i < ActivityOrderItemList.Count; i++)
+            {
+                ActivityOrderItem chouKa2Item = ActivityOrderItemList[i];
+                if (chouKa2Item.Level == levelId)
+                {
+                    levelItemList.Add(chouKa2Item); 
+                }
+            }
+
+            int weightindex = 0;
+            int[] weightlist = new int[levelItemList.Count];
+ 
+            for (int i = 0; i < levelItemList.Count; i++)
+            {
+                ActivityOrderItem chouKa2Item = levelItemList[i];
                 weightlist[i] = chouKa2Item.Weight;
             }
 
             weightindex = RandomHelper.RandomByWeight(weightlist);
+
+            //
+
             return weightindex; 
         }
 
