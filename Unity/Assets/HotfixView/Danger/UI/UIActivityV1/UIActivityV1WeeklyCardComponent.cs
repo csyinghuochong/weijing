@@ -272,10 +272,12 @@ namespace ET
             //记录tap数据
             try
             {
+#if UNITY_ANDROID
                 AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
                 string serverName = accountInfoComponent.ServerName;
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
                 TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 4, chargetNumber);
+#endif
             }
             catch (Exception ex)
             {
