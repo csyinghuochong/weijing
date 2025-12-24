@@ -25,6 +25,7 @@ namespace ET
         public const int Welfare = 9;           //福利任务
         public const int Ring = 10;             //跑环任务
         public const int System = 11;           //系统任务
+        public const int ActivityWeekly = 12;            //活动周任务
     }
 
     public static class TaskCountryType
