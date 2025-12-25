@@ -715,6 +715,10 @@ namespace ET
                 {
                     adddropidlist.Add ( ActivityConfigHelper.GrowthTreeDropId );
                 }
+                if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Feed) && !bekill.IsBoss())
+                {
+                    adddropidlist.Add(ActivityConfigHelper.OrderDropId);
+                }
                 if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Order) && bekill.IsBoss())
                 {
                     adddropidlist.Add(ActivityConfigHelper.OrderDropId);
