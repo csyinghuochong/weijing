@@ -26,6 +26,7 @@ namespace ET
         public const int ActivityV1_DiamondWeeklyCard = 14; //钻石周卡
         public const int ActivityV1_Order = 15;             //商人订单
         public const int ActivityV1_GrowthTree = 16;        //成长树
+        public const int ActivityV1_WeeklyTask = 17;        //周任务
 
 
         //成长树和商人活动这两个活动会有2个掉落ID（分别对应小怪和BOSS掉落，其中小怪只有在有体力的时候才能触发掉落），
@@ -47,7 +48,7 @@ namespace ET
             List<int> ids = new List<int>();
 
             //默认全部生成 方便测试
-            for (int i = ActivityConfigHelper.ActivityV1_ChouKa; i <= ActivityConfigHelper.ActivityV1_GrowthTree; i++ )
+            for (int i = ActivityConfigHelper.ActivityV1_ChouKa; i <= ActivityConfigHelper.ActivityV1_WeeklyTask; i++ )
             { 
                 ids.Add(i); 
             }

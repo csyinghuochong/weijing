@@ -17,6 +17,7 @@ namespace ET
         ActivityV1WeeklyCard = 8,
         ActivityV1Order = 9,
         ActivityV1GrowthTree = 10,
+        ActivityV1WeeklyTask = 11,
         Number,
     }
 
@@ -64,6 +65,8 @@ namespace ET
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Order");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1GrowthTree] =
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1GrowthTree");
+            pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1WeeklyTask] =
+                    ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1WeeklyTask");
 
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1ChouKa] = typeof (UIActivityV1ChouKaComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Guess] = typeof (UIActivityV1GuessComponent);
@@ -76,6 +79,7 @@ namespace ET
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1WeeklyCard] = typeof(UIActivityV1WeeklyCardComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Order] = typeof(UIActivityV1OrderComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1GrowthTree] = typeof(UIActivityV1GrowthTreeComponent);
+            pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1WeeklyTask] = typeof(UIActivityV1WeeklyTaskComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
@@ -91,8 +95,8 @@ namespace ET
             self.FunctionSetBtn.transform.Find("Btn_8").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Feed));
             self.FunctionSetBtn.transform.Find("Btn_9").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GoldWeeklyCard));
             self.FunctionSetBtn.transform.Find("Btn_10").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Order));
-            self.FunctionSetBtn.transform.Find("Btn_10").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree));
-
+            self.FunctionSetBtn.transform.Find("Btn_11").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree));
+            self.FunctionSetBtn.transform.Find("Btn_12").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask));
 
             UI ui = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
             //IOS适配

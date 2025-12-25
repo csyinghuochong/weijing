@@ -25,7 +25,6 @@ namespace ET
         public const int Welfare = 9;           //福利任务
         public const int Ring = 10;             //跑环任务
         public const int System = 11;           //系统任务
-        public const int ActivityWeekly = 12;            //活动周任务
     }
 
     public static class TaskCountryType
@@ -37,6 +36,7 @@ namespace ET
         public const int Mine = 5;       //宠物矿场
         public const int Season = 6;    //赛季每日任务
         public const int ActivityV1 = 7; //活动每周任务
+        public const int ActivityWeekly = 8;            //活动限时周任务
     }
 
     //1：杀怪
