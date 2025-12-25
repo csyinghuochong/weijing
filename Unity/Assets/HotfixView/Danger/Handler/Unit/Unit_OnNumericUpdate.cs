@@ -41,10 +41,10 @@ namespace ET
                     }
                     long newweektime = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.GoldWeeklyCard);
                     Log.ILog.Debug($"GoldWeeklyCard:  {args.OldValue}  {newweektime}");
-                    UI uiactivity = UIHelper.GetUI( args.Unit.ZoneScene(), UIType.UIActivityV1 );
+                    UI uiactivity = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UICountry);
                     if (uiactivity != null)
                     {
-                        uiactivity.GetComponent<UIActivityV1Component>().OnWeeklyCardUpdate();
+                        uiactivity.GetComponent<UICountryComponent>().OnWeeklyCardUpdate();
                     }
                     break;
                 case NumericType.PetExploreLuckly:

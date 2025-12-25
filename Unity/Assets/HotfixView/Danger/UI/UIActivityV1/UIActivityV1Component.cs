@@ -14,10 +14,9 @@ namespace ET
         ActivityV1ChouKa2 = 5,
         ActivityV1LiBao = 6,
         ActivityV1Feed = 7,
-        ActivityV1WeeklyCard = 8,
-        ActivityV1Order = 9,
-        ActivityV1GrowthTree = 10,
-        ActivityV1WeeklyTask = 11,
+        ActivityV1Order = 8,
+        ActivityV1GrowthTree = 9,
+        ActivityV1WeeklyTask = 10,
         Number,
     }
 
@@ -59,8 +58,6 @@ namespace ET
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1LiBao");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1Feed] =
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Feed");
-            pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1WeeklyCard] =
-                    ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1WeeklyCard");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1Order] =
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1Order");
             pageViewComponent.UISubViewPath[(int)ActivityV1PageEnum.ActivityV1GrowthTree] =
@@ -76,7 +73,6 @@ namespace ET
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1ChouKa2] = typeof (UIActivityV1ChouKa2Component);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1LiBao] = typeof (UIActivityV1LiBaoComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Feed] = typeof (UIActivityV1FeedComponent);
-            pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1WeeklyCard] = typeof(UIActivityV1WeeklyCardComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1Order] = typeof(UIActivityV1OrderComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1GrowthTree] = typeof(UIActivityV1GrowthTreeComponent);
             pageViewComponent.UISubViewType[(int)ActivityV1PageEnum.ActivityV1WeeklyTask] = typeof(UIActivityV1WeeklyTaskComponent);
@@ -93,10 +89,9 @@ namespace ET
             self.FunctionSetBtn.transform.Find("Btn_6").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_ChouKa2));
             self.FunctionSetBtn.transform.Find("Btn_7").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_LiBao));
             self.FunctionSetBtn.transform.Find("Btn_8").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Feed));
-            self.FunctionSetBtn.transform.Find("Btn_9").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GoldWeeklyCard));
-            self.FunctionSetBtn.transform.Find("Btn_10").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Order));
-            self.FunctionSetBtn.transform.Find("Btn_11").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree));
-            self.FunctionSetBtn.transform.Find("Btn_12").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask));
+            self.FunctionSetBtn.transform.Find("Btn_9").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Order));
+            self.FunctionSetBtn.transform.Find("Btn_10").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree));
+            self.FunctionSetBtn.transform.Find("Btn_11").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask));
 
             UI ui = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
             //IOS适配
@@ -115,16 +110,6 @@ namespace ET
         public static void OnClickPageButton(this UIActivityV1Component self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();
-        }
-
-        public static void OnWeeklyCardUpdate(this UIActivityV1Component self)
-        {
-            UI ui = self.UIPageView.UISubViewList[(int)ActivityV1PageEnum.ActivityV1WeeklyCard];
-            if (ui == null)
-            {
-                return;
-            }
-            ui.GetComponent<UIActivityV1WeeklyCardComponent>().OnWeeklyCardUpdate();
         }
     }
 }
