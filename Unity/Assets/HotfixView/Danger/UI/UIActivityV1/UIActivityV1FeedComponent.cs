@@ -147,7 +147,8 @@ namespace ET
             
 
             float baoshiduprogress = activityV1Info.BaoShiDu * 1f / nextvalue;
-            self.Text_Growth.text = activityV1Info.BaoShiDu.ToString();
+            baoshiduprogress = Mathf.Min(1f, baoshiduprogress);
+            self.Text_Growth.text = $"{activityV1Info.BaoShiDu}/{nextvalue}";
             self.ImageGrowthValue.fillAmount = baoshiduprogress;
         }
 
