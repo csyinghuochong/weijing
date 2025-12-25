@@ -130,7 +130,25 @@ namespace ET
                     havedNum >= 1 ? new Color(0, 1, 0) : new Color(245f / 255f, 43f / 255f, 96f / 255f);
 
 
+            int nextvalue = 0;
+            foreach(var item in ActivityConfigHelper.Feed1RewardList)
+            {
+                if (activityV1Info.BaoShiDu <= item.Key)
+                {
+                    nextvalue = item.Key;
+                }
+            }
+
+            if (nextvalue <= 0)
+            {
+                // 获取最大key的键值对
+                nextvalue = ActivityConfigHelper.Feed1RewardList.Keys.OrderByDescending(x => x).First();
+            }
+            
+
+            float baoshiduprogress = activityV1Info.BaoShiDu * 1f / nextvalue;
             self.Text_Growth.text = activityV1Info.BaoShiDu.ToString();
+            self.ImageGrowthValue.fillAmount = baoshiduprogress;
         }
 
         public static async ETTask OnFeedBtn(this UIActivityV1FeedComponent self, int itemId)
