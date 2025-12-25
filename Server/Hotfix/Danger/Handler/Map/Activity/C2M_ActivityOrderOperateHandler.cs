@@ -11,7 +11,7 @@ namespace ET
         {
             BagComponent bagComponent  = unit.GetComponent<BagComponent>(); 
             ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();
-
+            
             switch (request.OperatateType)
             {
                 case 1:
@@ -54,8 +54,8 @@ namespace ET
 
                     bagComponent.OnCostItemData(activityOrderItem.Give, ItemLocType.ItemLocBag, ItemGetWay.Activity);
                     bagComponent.OnAddItemData(activityOrderItem.Get, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
-                    activityComponent.ActivityV1Info.OrderId = ActivityConfigHelper.GenerateActivityOrderId();
-                    activityComponent.ActivityV1Info.OrderLastFefreshTime = TimeHelper.ServerNow();
+                    //activityComponent.ActivityV1Info.OrderId = ActivityConfigHelper.GenerateActivityOrderId();
+                    //activityComponent.ActivityV1Info.OrderLastFefreshTime = TimeHelper.ServerNow();
                     break;
                 case 3:  //自动刷新
                     activityComponent.ActivityV1Info.OrderId = ActivityConfigHelper.GenerateActivityOrderId();
