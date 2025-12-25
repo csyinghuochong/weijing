@@ -11,6 +11,7 @@ namespace ET
         Task = 0,
         SingIn = 1,
         HuoDong = 2,
+        ActivityV1WeeklyCard = 3,
 
         Number ,
     }
@@ -41,6 +42,7 @@ namespace ET
             //增加每日活跃
             pageViewComponent.UISubViewPath[(int)CountryPageEnum.Task] = ABPathHelper.GetUGUIPath("Main/Country/UICountryTask");
             pageViewComponent.UISubViewType[(int)CountryPageEnum.Task] = typeof(UICountryTaskComponent);
+         
 
             //增加活动列表
             pageViewComponent.UISubViewPath[(int)CountryPageEnum.HuoDong] = ABPathHelper.GetUGUIPath("Main/Country/UICountryHuoDong");
@@ -52,6 +54,9 @@ namespace ET
 
             pageViewComponent.UISubViewPath[(int)CountryPageEnum.SingIn] = ABPathHelper.GetUGUIPath("Main/Activity/UIActivitySingIn");
             pageViewComponent.UISubViewType[(int)CountryPageEnum.SingIn] = typeof(UIActivitySingInComponent);
+
+            pageViewComponent.UISubViewPath[(int)CountryPageEnum.ActivityV1WeeklyCard] = ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1WeeklyCard");
+            pageViewComponent.UISubViewType[(int)CountryPageEnum.ActivityV1WeeklyCard] = typeof(UIActivityV1WeeklyCardComponent);
 
             GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
             UI uiPageButton = self.AddChild<UI, string, GameObject>("FunctionBtnSet", BtnItemTypeSet);
@@ -132,6 +137,16 @@ namespace ET
         {
             UI uI = self.UIPageView.UISubViewList[(int)CountryPageEnum.Task];
             uI.GetComponent<UICountryTaskComponent>().OnTaskCountryUpdate();
+        }
+
+        public static void OnWeeklyCardUpdate(this UICountryComponent self)
+        {
+            UI ui = self.UIPageView.UISubViewList[(int)CountryPageEnum.ActivityV1WeeklyCard];
+            if (ui == null)
+            {
+                return;
+            }
+            ui.GetComponent<UIActivityV1WeeklyCardComponent>().OnWeeklyCardUpdate();
         }
 
         public static void OnClickPageButton(this UICountryComponent self, int page)
