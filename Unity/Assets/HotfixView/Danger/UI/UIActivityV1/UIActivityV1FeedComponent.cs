@@ -133,9 +133,10 @@ namespace ET
             int nextvalue = 0;
             foreach(var item in ActivityConfigHelper.Feed1RewardList)
             {
-                if (activityV1Info.BaoShiDu <= item.Key)
+                nextvalue = item.Key;
+                if (activityV1Info.BaoShiDu > item.Key)
                 {
-                    nextvalue = item.Key;
+                    break;  
                 }
             }
 
