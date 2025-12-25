@@ -86,6 +86,11 @@ namespace ET
 			List<DropItemInfo> totalItemId = new List<DropItemInfo>();
 			while (dropID != 0)
 			{
+				if (!DropConfigCategory.Instance.Contain(dropID))
+				{
+					break;
+				}
+
 				DropConfig dropconf = DropConfigCategory.Instance.Get(dropID);
 
 				totalWeight += dropconf.DropChance1;
