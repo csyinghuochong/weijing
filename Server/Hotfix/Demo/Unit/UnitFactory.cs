@@ -709,17 +709,17 @@ namespace ET
 
             List<int> adddropidlist = new List<int>();
             ServerInfo serverInfo = bekill.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo;
-            if (serverInfo != null)
+            if (serverInfo != null && !bekill.IsBoss())
             {
-                if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree) && !bekill.IsBoss())
+                if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree) )
                 {
                     adddropidlist.Add ( ActivityConfigHelper.GrowthTreeDropId );
                 }
-                if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Feed) && !bekill.IsBoss())
+                if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Feed))
                 {
-                    adddropidlist.Add(ActivityConfigHelper.OrderDropId);
+                    adddropidlist.Add(ActivityConfigHelper.FeedDropId);
                 }
-                if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Order) && bekill.IsBoss())
+                if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Order))
                 {
                     adddropidlist.Add(ActivityConfigHelper.OrderDropId);
                 }
