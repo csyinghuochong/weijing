@@ -131,16 +131,13 @@ namespace ET
 
 
             int nextvalue = 0;
-            foreach(var item in ActivityConfigHelper.Feed1RewardList)
-            {
-                nextvalue = item.Key;
-                if (activityV1Info.BaoShiDu > item.Key)
-                {
-                    break;  
-                }
-            }
+            int? result = ActivityConfigHelper.Feed1RewardList.Keys.FirstOrDefault(n => n > activityV1Info.BaoShiDu);
 
-            if (nextvalue <= 0)
+            if (result.HasValue && result != 0)
+            {
+                nextvalue = result.Value;   
+            }
+            else
             {
                 // 获取最大key的键值对
                 nextvalue = ActivityConfigHelper.Feed1RewardList.Keys.OrderByDescending(x => x).First();
