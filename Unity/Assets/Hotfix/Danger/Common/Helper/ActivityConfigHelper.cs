@@ -33,11 +33,17 @@ namespace ET
         //这个ID只有在活动期间才会激活，只有关卡里的小怪和BOSS会额外附加对应的活动掉落ID，这些掉落的东西会在活动结束后自动消失。 
 
         //商人活动期间才激活这个掉落
-        public static int OrderDropId = 50031011;
+        public static int OrderDropId = 61400610;
+
+        //喂食活动期间才激活这个掉落
+        public static int FeedDropId = 61400620;
 
         //成长树活动期间才激活这个掉落
-        public static int GrowthTreeDropId = 50031001;
-        
+        public static int GrowthTreeDropId = 61400630;
+
+        //集字活动激活这个掉落
+        public static int CollectionWordDropId = 61400640;
+
         /// <summary>
         /// 随机生成活动列表
         /// </summary>
@@ -479,16 +485,19 @@ namespace ET
 
         public static Dictionary<int, string> FeedItemReward = new Dictionary<int, string>()
         {
-            {  10030013,"1;100000" },
-            {  10030014,"1;100000" },
+            {  10030051,"61400711" },
+            {  10030052,"61400721" },
+            {  10030053,"61400731" },
         };
 
         ///当饱食度达到一定值时,会为每位贡献者赠送一个礼包哦
 
         public static Dictionary<int, string> Feed1RewardList = new Dictionary<int, string>()
         {
-            { 10, "10010045;1"},
-            { 2000, "10010045;1"},
+            { 1000, "1;100000@10000184;30@10000131;10@10010085;50@10010041;3"},
+            { 2000, "1;100000@10000184;30@10000131;10@10010085;50@10010041;3"},
+            { 3500, "1;100000@10000184;30@10000131;10@10010085;50@10010041;3"},
+            { 5000, "1;100000@10000184;30@10000131;10@10010085;50@10010041;3"},
         };
 
         /// <summary>
