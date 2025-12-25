@@ -191,29 +191,13 @@ namespace ET
             return allTaskIds[index];
         }
 
-        public static List<int> GetActivityV1Task(Unit unit)
+        public static List<int> GetActivityV1Task(Unit unit, int taskconfig)
         {
-            //List<int> taskIds = new List<int>();
-            //Dictionary<int, TaskCountryConfig> keyValuePairs = TaskCountryConfigCategory.Instance.GetAll();
-            //foreach (var item in keyValuePairs)
-            //{
-            //    if (item.Value.TaskType == TaskCountryType.ActivityV1)
-            //    {
-            //        taskIds.Add(item.Key);
-            //    }
-            //}
-            //return taskIds;
-
-            /// <summary>
-            /// 活跃任务
-            /// </summary>
-            /// <returns></returns>
-
             //活跃任务
             int playerLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 
             List<int> taskCountryList = new List<int>();
-            string[] dayTaskID = GlobalValueConfigCategory.Instance.Get(120).Value.Split(';');
+            string[] dayTaskID = GlobalValueConfigCategory.Instance.Get(taskconfig).Value.Split(';');
             for (int i = 0; i < dayTaskID.Length; i++)
             {
                 //获取任务概率

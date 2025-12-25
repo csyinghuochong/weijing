@@ -297,6 +297,19 @@ namespace ET
             return false;
         }
 
+        public static bool ActivityWeeklyTaskReward(this TaskComponent self)
+        {
+            for (int i = 0; i < self.TaskCountryList.Count; i++)
+            {
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                if (taskCountryConfig.TaskType == TaskCountryType.ActivityWeekly && self.TaskCountryList[i].taskStatus == (int)TaskStatuEnum.Completed)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool HaveWelfareReward(this TaskComponent self)
         {
             for (int i = 0; i < ConfigHelper.WelfareTaskList.Count; i++)

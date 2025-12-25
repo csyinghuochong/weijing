@@ -12,7 +12,7 @@ namespace ET
         public GameObject TaskListNode;
         public GameObject UIActivityV1WeeklyTaskItem;
 
-        //public List<UIActivityV1TaskItemComponent> TaskList = new List<UIActivityV1TaskItemComponent>();
+        public List<UIActivityV1WeeklyTaskItemComponent> TaskList = new List<UIActivityV1WeeklyTaskItemComponent>();
     }
 
     public class UIActivityV1WeeklyTaskComponentAwake : AwakeSystem<UIActivityV1WeeklyTaskComponent>
@@ -36,44 +36,44 @@ namespace ET
     {
         public static void UpdateTaskCountrys(this UIActivityV1WeeklyTaskComponent self)
         {
-            //List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().TaskCountryList;
+            List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().TaskCountryList;
 
-            //taskPros = taskPros.OrderBy(p => p.taskStatus == (int)TaskStatuEnum.Completed ? 0 :
-            //                         p.taskStatus == (int)TaskStatuEnum.Commited ? 2 : 1)
-            //            .ToList();
+            taskPros = taskPros.OrderBy(p => p.taskStatus == (int)TaskStatuEnum.Completed ? 0 :
+                                     p.taskStatus == (int)TaskStatuEnum.Commited ? 2 : 1)
+                        .ToList();
 
-            //int number = 0;
-            //for (int i = 0; i < taskPros.Count; i++)
-            //{
-            //    TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPros[i].taskID);
-            //    if (taskConfig.TaskType != TaskCountryType.ActivityV1)
-            //    {
-            //        continue;
-            //    }
+            int number = 0;
+            for (int i = 0; i < taskPros.Count; i++)
+            {
+                TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPros[i].taskID);
+                if (taskConfig.TaskType != TaskCountryType.ActivityWeekly)
+                {
+                    continue;
+                }
 
-            //    UIActivityV1TaskItemComponent ui_1 = null;
-            //    if (number < self.TaskList.Count)
-            //    {
-            //        ui_1 = self.TaskList[number];
-            //        ui_1.GameObject.SetActive(true);
-            //    }
-            //    else
-            //    {
-            //        GameObject taskTypeItem = GameObject.Instantiate(self.UIActivityV1TaskItem);
-            //        UICommonHelper.SetParent(taskTypeItem, self.TaskListNode);
-            //        ui_1 = self.AddChild<UIActivityV1TaskItemComponent, GameObject>(taskTypeItem);
-            //        self.TaskList.Add(ui_1);
-            //        ui_1.GameObject.SetActive(true);
-            //    }
+                UIActivityV1WeeklyTaskItemComponent ui_1 = null;
+                if (number < self.TaskList.Count)
+                {
+                    ui_1 = self.TaskList[number];
+                    ui_1.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject taskTypeItem = GameObject.Instantiate(self.UIActivityV1WeeklyTaskItem);
+                    UICommonHelper.SetParent(taskTypeItem, self.TaskListNode);
+                    ui_1 = self.AddChild<UIActivityV1WeeklyTaskItemComponent, GameObject>(taskTypeItem);
+                    self.TaskList.Add(ui_1);
+                    ui_1.GameObject.SetActive(true);
+                }
 
-            //    ui_1.OnUpdateData(taskPros[i]);
-            //    number++;
-            //}
+                ui_1.OnUpdateData(taskPros[i]);
+                number++;
+            }
 
-            //for (int k = number; k < self.TaskList.Count; k++)
-            //{
-            //    self.TaskList[k].GameObject.SetActive(false);
-            //}
+            for (int k = number; k < self.TaskList.Count; k++)
+            {
+                self.TaskList[k].GameObject.SetActive(false);
+            }
         }
     }
 }

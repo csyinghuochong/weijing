@@ -1107,6 +1107,7 @@ namespace ET
             }
 
             self.UpdateTargetTask(false);
+            self.InitActivityV1Task();
             self.InitActivityWeekTask();
             self.TriggerTaskCountryEvent(  TaskTargetType.Login_1001, 0, 1, false );
 
@@ -1438,7 +1439,8 @@ namespace ET
 
                 TaskCountryConfig taskCountry = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
                 if (taskCountry.TaskType == TaskCountryType.Season
-                    || taskCountry.TaskType == TaskCountryType.ActivityV1)
+                    || taskCountry.TaskType == TaskCountryType.ActivityV1
+                    || taskCountry.TaskType == TaskCountryType.ActivityWeekly)
                 {
                     continue;
                 }
@@ -1766,7 +1768,7 @@ namespace ET
             self.UpdateActivityWeekTask(notice);
         }
 
-        public static void InitActivityWeekTask(this TaskComponent self)
+        public static void InitActivityV1Task(this TaskComponent self)
         {
             bool havetask = false;
             for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
@@ -1788,7 +1790,43 @@ namespace ET
             {
                 return;
             }
-            List<int> taskCountryList = TaskHelper.GetActivityV1Task(self.GetParent<Unit>()) ;
+            List<int> taskCountryList = TaskHelper.GetActivityV1Task(self.GetParent<Unit>(), 120) ;
+            for (int i = 0; i < taskCountryList.Count; i++)
+            {
+                self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
+            }
+        }
+
+        public static void InitActivityWeekTask(this TaskComponent self)
+        {
+            ServerInfo serverInfo = null;
+            ConfigData.ServerInfoList.TryGetValue(self.DomainZone(), out serverInfo);
+            if (serverInfo == null || !serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask))
+            {
+                return;
+            }
+
+            bool havetask = false;
+            for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
+            {
+                if (!TaskCountryConfigCategory.Instance.Contain(self.TaskCountryList[i].taskID))
+                {
+                    self.TaskCountryList.RemoveAt(i);
+                    continue;
+                }
+
+                TaskCountryConfig taskCountry = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                if (taskCountry.TaskType == TaskCountryType.ActivityWeekly)
+                {
+                    havetask = true;
+                    continue;
+                }
+            }
+            if (havetask)
+            {
+                return;
+            }
+            List<int> taskCountryList = TaskHelper.GetActivityV1Task(self.GetParent<Unit>(), 121);
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
@@ -1810,17 +1848,29 @@ namespace ET
                 }
 
                 TaskCountryConfig taskCountry = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
-                if (taskCountry.TaskType == TaskCountryType.ActivityV1)
+                if (taskCountry.TaskType == TaskCountryType.ActivityV1
+                    || taskCountry.TaskType == TaskCountryType.ActivityWeekly)
                 {
                     self.TaskCountryList.RemoveAt(i);
                     continue;
                 }
             }
 
-            List<int> taskCountryList = TaskHelper.GetActivityV1Task(unit);
+            List<int> taskCountryList = TaskHelper.GetActivityV1Task(unit, 120);
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
+            }
+
+            ServerInfo serverInfo = null;
+            ConfigData.ServerInfoList.TryGetValue(self.DomainZone(), out serverInfo);
+            if (serverInfo != null  && serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask))
+            {
+                taskCountryList = TaskHelper.GetActivityV1Task(unit, 121);
+                for (int i = 0; i < taskCountryList.Count; i++)
+                {
+                    self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
+                }
             }
 
             if (notice)
