@@ -29,8 +29,14 @@ namespace ET
                 reply();
                 return;
             }
+
+            List<RewardItem> droplist = new List<RewardItem>();
+            int dropid = ActivityConfigHelper.FeedItemReward[costItemId];
+            DropHelper.DropIDToDropItem_2(dropid, droplist);
+
             bagComponent.OnCostItemData($"{costItemId};1", ItemLocType.ItemLocBag, ItemGetWay.Activity);
-            bagComponent.OnAddItemData(ActivityConfigHelper.FeedItemReward[costItemId], $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+            bagComponent.OnAddItemData(droplist, string.Empty, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+
             long activitySceneid = DBHelper.GetActivityServerId(unit.DomainZone());
             A2M_ActivityFeedResponse r_GameStatusResponse = (A2M_ActivityFeedResponse)await ActorMessageSenderComponent.Instance.Call
                  (activitySceneid, new M2A_ActivityFeedRequest()

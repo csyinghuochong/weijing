@@ -483,11 +483,11 @@ namespace ET
         /// 在野外击败怪物时会掉落元宵和饺子, 喂食道具会获得奖励哦
         /// </summary>
 
-        public static Dictionary<int, string> FeedItemReward = new Dictionary<int, string>()
+        public static Dictionary<int, int> FeedItemReward = new Dictionary<int, int>()
         {
-            {  10030051,"61400711" },
-            {  10030052,"61400721" },
-            {  10030053,"61400731" },
+            {  10030051,61400711 },
+            {  10030052,61400721 },
+            {  10030053,61400731 },
         };
 
         ///当饱食度达到一定值时,会为每位贡献者赠送一个礼包哦
