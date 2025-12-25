@@ -45,7 +45,7 @@ namespace ET
                     }
 
                     int needcell = ItemHelper.GetNeedCell(activityOrderItem.Get);
-                    if (bagComponent.GetBagLeftCell() < needcell)
+                    if (bagComponent.GetBagLeftCell() < needcell + 1)
                     {
                         response.Error = ErrorCode.ERR_BagIsFull;
                         reply();
@@ -54,6 +54,11 @@ namespace ET
 
                     bagComponent.OnCostItemData(activityOrderItem.Give, ItemLocType.ItemLocBag, ItemGetWay.Activity);
                     bagComponent.OnAddItemData(activityOrderItem.Get, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+
+                    List<RewardItem> droplist = new List<RewardItem>();
+                    int dropid = int.Parse(activityOrderItem.DropID);
+                    DropHelper.DropIDToDropItem_2(dropid, droplist);
+                    bagComponent.OnAddItemData(droplist, string.Empty, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     //activityComponent.ActivityV1Info.OrderId = ActivityConfigHelper.GenerateActivityOrderId();
                     //activityComponent.ActivityV1Info.OrderLastFefreshTime = TimeHelper.ServerNow();
                     break;
