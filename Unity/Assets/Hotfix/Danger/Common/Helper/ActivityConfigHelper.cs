@@ -281,17 +281,27 @@ namespace ET
         /// </summary>
         public static List<ActivityOrderItem> ActivityOrderItemList = new List<ActivityOrderItem>()
         {
-            new ActivityOrderItem(){ Level = 1, LevelWeight = 1,  Weight = 1, Give = "10010083;1@10010083;3@10000132;2", Get = "10000132;5@10000131;1@10000131;3" },
-            new ActivityOrderItem(){ Level = 1, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;4@10000132;2", Get = "10000132;5@10000131;1@10000131;4" },
-            new ActivityOrderItem(){ Level = 1, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;4@10000132;2", Get = "10000132;5@10000131;1@10000131;4" },
-            new ActivityOrderItem(){ Level = 2, LevelWeight = 1,  Weight = 1, Give = "10010083;1@10010083;5@10000132;2", Get = "10000132;5@10000131;1@10000131;5" },
-            new ActivityOrderItem(){ Level = 2, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;6@10000132;2", Get = "10000132;5@10000131;1@10000131;6" },
-            new ActivityOrderItem(){ Level = 3, LevelWeight = 1,  Weight = 1, Give = "10010083;1@10010083;7@10000132;2", Get = "10000132;5@10000131;1@10000131;7" },
-            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
-            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
-            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
-            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
-            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10010083;1@10010083;8@10000132;2", Get = "10000132;5@10000131;1@10000131;8" },
+            new ActivityOrderItem(){ Level = 1, LevelWeight = 1,  Weight = 1, Give = "10030041;2@10030042;1", Get = "10000184;1@1;5000", DropID = "61400510" },
+            new ActivityOrderItem(){ Level = 1, LevelWeight = 0,  Weight = 1, Give = "10030041;1@10030042;2", Get = "10000184;1@1;5000", DropID = "61400510" },
+            new ActivityOrderItem(){ Level = 1, LevelWeight = 0,  Weight = 1, Give = "10030041;2@10030042;2", Get = "10000184;1@1;5000", DropID = "61400510" },
+            new ActivityOrderItem(){ Level = 1, LevelWeight = 0,  Weight = 1, Give = "10030041;3", Get = "10000184;1@1;5000", DropID = "61400510" },
+            new ActivityOrderItem(){ Level = 1, LevelWeight = 0,  Weight = 1, Give = "10030042;3", Get = "10000184;1@1;5000", DropID = "61400510" },
+            new ActivityOrderItem(){ Level = 1, LevelWeight = 0,  Weight = 1, Give = "10030044;1@10030042;1", Get = "10000184;1@1;5000", DropID = "61400510" },
+            new ActivityOrderItem(){ Level = 1, LevelWeight = 0,  Weight = 1, Give = "10030044;1@10030041;1", Get = "10000184;1@1;5000", DropID = "61400510" },
+
+            new ActivityOrderItem(){ Level = 2, LevelWeight = 1,  Weight = 1, Give = "10030043;2@10030044;1", Get = "10000184;3@1;15000", DropID = "61400520" },
+            new ActivityOrderItem(){ Level = 2, LevelWeight = 0,  Weight = 1, Give = "10030043;1@10030044;2", Get = "10000184;3@1;15000", DropID = "61400520" },
+            new ActivityOrderItem(){ Level = 2, LevelWeight = 0,  Weight = 1, Give = "10030043;2@10030042;2@10030041;1", Get = "10000184;3@1;15000", DropID = "61400520" },
+            new ActivityOrderItem(){ Level = 2, LevelWeight = 0,  Weight = 1, Give = "10030044;2@10030042;1@10030041;2", Get = "10000184;3@1;15000", DropID = "61400520" },
+            new ActivityOrderItem(){ Level = 2, LevelWeight = 0,  Weight = 1, Give = "10030043;2@10030041;3", Get = "10000184;3@1;15000", DropID = "61400520" },
+            new ActivityOrderItem(){ Level = 2, LevelWeight = 0,  Weight = 1, Give = "10030044;2@10030042;3", Get = "10000184;3@1;15000", DropID = "61400520" },
+
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10030045;2@10030043;2@10030042;2", Get = "10000184;5@1;30000", DropID = "61400530" },
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10030045;2@10030044;2@10030041;2", Get = "10000184;5@1;30000", DropID = "61400530" },
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10030045;2@10030044;1@10030043;1", Get = "10000184;5@1;30000", DropID = "61400530" },
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10030045;2@10030042;5@10030041;5", Get = "10000184;5@1;30000", DropID = "61400530" },
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10030046;1@10030043;1@10030042;3", Get = "10000184;5@1;30000", DropID = "61400530" },
+            new ActivityOrderItem(){ Level = 3, LevelWeight = 0,  Weight = 1, Give = "10030046;1@10030044;1@10030044;3", Get = "10000184;5@1;30000", DropID = "61400530" }
         };
 
         /// <summary>

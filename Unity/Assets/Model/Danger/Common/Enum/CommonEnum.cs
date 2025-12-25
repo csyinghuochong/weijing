@@ -143,6 +143,7 @@ namespace ET
         public int Weight;
         public string Give;
         public string Get;
+        public string DropID;
     }
 
     public struct ChouKa2Item
