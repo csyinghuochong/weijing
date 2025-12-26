@@ -2061,6 +2061,12 @@ namespace ET
                 }
                 if (itemCof.ItemEquipID == 0)
                 {
+                    List<int> itemSkills = ItemHelper.GetItemSkill(itemCof.SkillID);
+                    foreach (int skillid in itemSkills)
+                    {
+                        SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
+                        skillAddCombat += skillConfig.AddCombat;
+                    }
                     continue;
                 }
 
