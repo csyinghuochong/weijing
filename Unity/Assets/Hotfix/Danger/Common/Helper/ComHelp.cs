@@ -61,7 +61,7 @@ namespace ET
 
         public static float JiaYuanPastureBuy()
         {
-            return float.Parse(GlobalValueConfigCategory.Instance.Get(121).Value);
+            return float.Parse(GlobalValueConfigCategory.Instance.Get(122).Value);
         }
 
         public static int GetSkillCdRate(int sceneType)
