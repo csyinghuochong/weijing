@@ -1,6 +1,7 @@
 using ET;
 using libx;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
@@ -197,8 +198,29 @@ public class UIYinSi : MonoBehaviour
             this.gameObject.SetActive(false);
             GameObject.Find("Global").GetComponent<Init>().TikTokInit();
             GameObject.Find("Global").GetComponent<Init>().ShareSdkInit();
-            GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
+            // 启动一个协程，延迟一帧后执行
+            //StartCoroutine(StartUpdate());
+            Invoke( nameof(StartUpdate_2) , 0.2f );
         }
+    }
+
+    void StartUpdate_2()
+    {
+        Debug.Log("这是延迟一帧后执行的操作");
+        GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
+    }
+
+
+    IEnumerator StartUpdate()
+    {
+        // yield return null 表示等待下一帧
+        yield return null;
+        yield return null;
+        yield return null;
+
+        // 这行代码将在下一帧执行
+        Debug.Log("这是延迟一帧后执行的操作");
+        GameObject.Find("Global/UI/Hidden/Updater").GetComponent<Updater>().StartUpdate();
     }
 
     public void OnButtonRefuse(  )
