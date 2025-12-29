@@ -707,17 +707,17 @@ namespace ET
                 }
             }
 
-            int adddropid = 0;
+            List<int> adddropidlist = new List<int>();
             ServerInfo serverInfo = bekill.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo;
             if (serverInfo != null)
             {
                 if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree) && !bekill.IsBoss())
                 {
-                    adddropid = ActivityConfigHelper.GrowthTreeDropId;
+                    adddropidlist.Add ( ActivityConfigHelper.GrowthTreeDropId );
                 }
                 if (serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Order) && bekill.IsBoss())
                 {
-                    adddropid = ActivityConfigHelper.OrderDropId;
+                    adddropidlist.Add(ActivityConfigHelper.OrderDropId);
                 }
             }
 
@@ -734,9 +734,12 @@ namespace ET
                 droplist.AddRange(droplist_2);
             }
 
-            if (adddropid != 0)
+            if (adddropidlist.Count > 0)
             {
-                DropHelper.DropIDToDropItem(adddropid, droplist);
+                for (int i = 0; i < adddropidlist.Count; i++)
+                {
+                    DropHelper.DropIDToDropItem(adddropidlist[i], droplist);
+                }
             }
 
             if ((monsterCof.MonsterSonType == 55 || monsterCof.MonsterSonType == 56) && droplist.Count == 0)

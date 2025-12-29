@@ -99,10 +99,13 @@ namespace ET
             int zone = int.Parse(userparams[0]);
             long userId = long.Parse(userparams[1]);
             int rechargetype = int.Parse(userparams[3]);
-          
+
+            int amount = int.Parse(dingdanStr.Split('_')[1]);
+            amount /= 100;
+
             string serverName = ServerHelper.GetGetServerItem(false, zone).ServerName;
-            Console.WriteLine($"支付成功[微信]:  区：{serverName}     玩家名字：{userparams[2]}   充值额度：{30}  时间:{TimeHelper.DateTimeNow().ToString()}");
-            RechargeHelp.OnPaySucessToGate(zone, userId, 30, dingdanStr, PayTypeEnum.WeiXinPay, rechargetype).Coroutine();
+            Console.WriteLine($"支付成功[微信]:  区：{serverName}     玩家名字：{userparams[2]}   充值额度：{amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
+            RechargeHelp.OnPaySucessToGate(zone, userId, amount, dingdanStr, PayTypeEnum.WeiXinPay, rechargetype).Coroutine();
             //删除本地缓存的订单
             self.orderDic.Remove(dingdanStr);
         }

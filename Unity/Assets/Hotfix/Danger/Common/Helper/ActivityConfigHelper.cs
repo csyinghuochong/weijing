@@ -38,7 +38,6 @@ namespace ET
         //成长树活动期间才激活这个掉落
         public static int GrowthTreeDropId = 50031001;
         
-
         /// <summary>
         /// 随机生成活动列表
         /// </summary>
