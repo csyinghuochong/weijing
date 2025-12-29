@@ -31,6 +31,10 @@ namespace ET
             {
                 ConsoleHelper.MailConsoleHandler(request.Context).Coroutine();
             }
+            if (infoList[0] == "broad")
+            {
+                ConsoleHelper.BroadConsoleHander(request.Context).Coroutine();
+            }
             if (infoList[0] == "mail2")
             {
                 ConsoleHelper.Mail2ConsoleHandler(request.Context).Coroutine();
