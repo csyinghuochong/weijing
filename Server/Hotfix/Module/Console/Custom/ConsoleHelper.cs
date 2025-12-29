@@ -2766,6 +2766,44 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
+        public static async ETTask<int> BroadConsoleHander(string content)
+        {
+            await ETTask.CompletedTask;
+            //broad 0 1212212
+            string[] mailInfo = content.Split(" ");
+            int zoneType = 0;
+            if (mailInfo[0] != "broad" && mailInfo.Length < 3)
+            {
+                return ErrorCode.ERR_Parameter;
+            }
+            try
+            {
+                zoneType = int.Parse(mailInfo[1]);
+            }
+            catch (Exception ex)
+            {
+                content = ex.ToString();
+                return ErrorCode.ERR_Parameter;
+            }
+#if SERVER
+            List<int> zones = new List<int>();
+            if (zoneType == 0)
+            {
+                zones.AddRange(ServerMessageHelper.GetAllZone());
+            }
+            else
+            {
+                zones.Add(zoneType);
+            }
+
+            for (int i = 0; i < zones.Count; i++)
+            {
+                ServerMessageHelper.SendBroadMessage(zones[i], NoticeType.Notice, mailInfo[2]);
+            }
+#endif
+            return ErrorCode.ERR_Success;
+        }
+
         public static async ETTask<int> Mail2ConsoleHandler(string content)
         {
             await ETTask.CompletedTask;

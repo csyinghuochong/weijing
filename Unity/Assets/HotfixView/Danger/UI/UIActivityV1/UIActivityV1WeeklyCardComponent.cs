@@ -206,6 +206,12 @@ namespace ET
             }
 
             long servertime = TimeHelper.ServerNow();
+            if (servertime < weeklycardtime)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("周卡还未到期！"));
+                return;
+            }
+
             lefttimes = ComHelp.GetDaysDiffByDate(servertime, weeklycardtime);
             if (lefttimes < 7 && recvtimes < 7)
             {
@@ -354,7 +360,12 @@ namespace ET
                     openstatus.SetActive(true);
                 }
             }
-   
+
+            if (servertime < weekstarttime)
+            {
+                openstatus.SetActive(true);  //提前开启了
+            }
+
             self.Text_Number.GetComponent<Text>().text = $"{lefttimes}/{7}";
         }
 
