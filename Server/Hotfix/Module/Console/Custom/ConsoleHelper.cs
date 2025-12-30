@@ -2766,6 +2766,54 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
+        public static async ETTask<int> RestoreRoleConsoleHander(string content)
+        {
+            await ETTask.CompletedTask;
+            //restore 5 1212212
+            string[] mailInfo = content.Split(" ");
+            
+            if (mailInfo[0] != "restore" && mailInfo.Length < 3)
+            {
+                return ErrorCode.ERR_Parameter;
+            }
+            int pyzone = int.Parse(mailInfo[1]);
+
+#if SERVER
+            List<UserInfoComponent> userinfoComponentList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(pyzone, d => d.UserInfo.Name.Equals(mailInfo[2]));
+            if (userinfoComponentList.Count == 0)
+            {
+                return ErrorCode.ERR_PlayerIsNot;
+            }
+
+            UserInfoComponent userInfoComponent = userinfoComponentList[0];
+            if (userinfoComponentList.Count == 0)
+            {
+                return ErrorCode.ERR_PlayerIsNot;
+            }
+
+            List<DBAccountInfo> dBAccountInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(pyzone, d => d.Id.Equals(userInfoComponent.UserInfo.AccInfoID));
+            if (dBAccountInfos.Count == 0)
+            {
+                return ErrorCode.ERR_PlayerIsNot;
+            }
+
+            DBAccountInfo dBAccountInfo = dBAccountInfos[0];
+            if (!dBAccountInfo.DeleteUserList.Contains(userInfoComponent.Id))
+            {
+                return ErrorCode.ERR_PlayerIsNot;
+            }
+
+            dBAccountInfo.DeleteUserList.Remove(userInfoComponent.Id);
+            if (!dBAccountInfo.UserList.Contains(userInfoComponent.Id))
+            {
+                dBAccountInfo.UserList.Add(userInfoComponent.Id);
+            }
+            await Game.Scene.GetComponent<DBComponent>().Save( pyzone,dBAccountInfo);
+#endif
+
+            return ErrorCode.ERR_Success;
+        }
+
         public static async ETTask<int> BroadConsoleHander(string content)
         {
             await ETTask.CompletedTask;
