@@ -93,6 +93,15 @@ namespace ET
                         return;
                     }
                     rewarditem = ActivityConfigHelper.PointsRewardList[request.RewardId];
+                    int needcell = ItemHelper.GetNeedCell(rewarditem);
+                    if (bagComponent.GetBagLeftCell() < needcell)
+                    {
+                        response.Error = ErrorCode.ERR_BagIsFull;
+                        reply();
+                        return;
+                    }
+
+
                     unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.V1TotalPoints, (request.RewardId * -1).ToString());
                     unit.GetComponent<BagComponent>().OnAddItemData(rewarditem, $"{ItemGetWay.ActivityConsume}_{TimeHelper.ServerNow()}");
                     activityComponent.ActivityV1Info.PointsReward.Add(request.RewardId);

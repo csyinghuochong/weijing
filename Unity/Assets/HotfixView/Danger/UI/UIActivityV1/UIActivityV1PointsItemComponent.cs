@@ -59,6 +59,15 @@ namespace ET
                 return;
             }
 
+            string rewarditem = ActivityConfigHelper.PointsRewardList[self.Key];
+            int needcell = ItemHelper.GetNeedCell(rewarditem);
+            Log.ILog.Debug($"needcell:{needcell}");
+            if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < needcell)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("背包空间不足"));
+                return;
+            }
+
             if (!ActivityConfigHelper.PointsRewardList.ContainsKey(self.Key))
             {
                 return;
