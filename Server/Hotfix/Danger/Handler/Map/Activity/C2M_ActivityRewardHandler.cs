@@ -255,7 +255,16 @@ namespace ET
                         return;
                     }
 
-                    bagComponent.OnAddItemData(rewardlists[request.RewardId], $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+                    string rewardinfo = rewardlists[request.RewardId];
+                    needcell = ItemHelper.GetNeedCell(rewardinfo);
+                    if (bagComponent.GetBagLeftCell() < needcell)
+                    {
+                        response.Error = ErrorCode.ERR_BagIsFull;
+                        reply();
+                        return;
+                    }
+
+                    bagComponent.OnAddItemData(rewardinfo, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Add(request.RewardId);
                     break;
                 case ActivityConfigHelper.ActivityV1_DiamondWeeklyCard:
@@ -295,6 +304,14 @@ namespace ET
                     if (diffday < request.RewardId)
                     {
                         response.Error = ErrorCode.ERR_AlreadyReceived;
+                        reply();
+                        return;
+                    }
+                    rewardinfo = rewardlists[request.RewardId];
+                    needcell = ItemHelper.GetNeedCell(rewardinfo);
+                    if (bagComponent.GetBagLeftCell() < needcell)
+                    {
+                        response.Error = ErrorCode.ERR_BagIsFull;
                         reply();
                         return;
                     }
