@@ -8,7 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene session, R2A_Broadcast request, A2R_Broadcast response, Action reply)
         {
-            Log.Console("R2A_Broadcast_a: " + session.Name);
+            //Log.Console("R2A_Broadcast_a: " + session.Name);
 
             switch (request.LoadType)
             {
