@@ -58,10 +58,12 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
             long weeklycardtime = 0;
             int status = 3;
+            List<int> recvlis = new List<int>();
             if (self.Type == ActivityConfigHelper.ActivityV1_GoldWeeklyCard)
             {
                 weeklycardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.GoldWeeklyCard);
-                if (activityComponent.ActivityV1Info.GoldWeeklyCardRewards.Contains(self.Key))
+                recvlis = activityComponent.ActivityV1Info.GoldWeeklyCardRewards;
+                if (recvlis.Contains(self.Key))
                 {
                     status = 2;
                 }
@@ -69,7 +71,8 @@ namespace ET
             if(self.Type == ActivityConfigHelper.ActivityV1_DiamondWeeklyCard)
             {
                 weeklycardtime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.DiamondWeeklyCard);
-                if (activityComponent.ActivityV1Info.DiamondWeeklyCardRewards.Contains(self.Key))
+                recvlis = activityComponent.ActivityV1Info.DiamondWeeklyCardRewards;
+                if (recvlis.Contains(self.Key))
                 {
                     status = 2;
                 }
@@ -77,13 +80,23 @@ namespace ET
 
             long servertime = TimeHelper.ServerNow();
             int diffday = ComHelp.GetDaysDiffByDate(servertime, weeklycardtime );
-            if (status!=2 && (diffday < rewardlists.Count) && (diffday >= self.Key ))
+
+            //过了7天依然可以领取
+            if (status != 2 &&  diffday >= 7 && weeklycardtime>0 && servertime > weeklycardtime && recvlis.Count < 7)
             {
                 status = 1;
             }
-            if(diffday >= 7 || servertime < weeklycardtime)
+            else
             {
-                status = 3;
+                if (status != 2 && (diffday < rewardlists.Count) && (diffday >= self.Key))
+                {
+                    status = 1;
+                }
+                if (diffday >= 7 || servertime < weeklycardtime)
+                {
+                    status = 3;
+                }
+
             }
             self.ButtonReceive.SetActive(status == 1);
             self.CompleteStatu.SetActive(status == 2);

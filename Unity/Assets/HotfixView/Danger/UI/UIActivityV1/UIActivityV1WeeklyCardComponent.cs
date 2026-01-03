@@ -359,6 +359,13 @@ namespace ET
                     lefttimes = 7 - passday  - (dayrecv ?1: 0);
                     openstatus.SetActive(true);
                 }
+
+                //过了7天依然可以领取
+                if (passday >= 7 && weekstarttime >0 && recvList.Count > 0 && recvList.Count < 7)
+                {
+                    lefttimes = 7 - recvList.Count;
+                    openstatus.SetActive(true);
+                }
             }
 
             if (servertime < weekstarttime)

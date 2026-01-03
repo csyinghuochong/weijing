@@ -241,12 +241,13 @@ namespace ET
                     int diffday = ComHelp.GetDaysDiffByDate(servertimer, weeklycardtime );
 
                     //已经过了周卡时间
-                    if (diffday >= rewardlists.Count)
-                    {
-                        response.Error = ErrorCode.ERR_AlreadyReceived;
-                        reply();
-                        return;
-                    }
+                    //if (diffday >= rewardlists.Count)
+                    //{
+                    //    response.Error = ErrorCode.ERR_AlreadyReceived;
+                    //    reply();
+                    //    return;
+                    //}
+
                     //提前领取？
                     if (diffday < request.RewardId )
                     {
@@ -294,12 +295,12 @@ namespace ET
                     diffday = ComHelp.GetDaysDiffByDate(servertimer, weeklycardtime);
 
                     //已经过了周卡时间
-                    if (diffday >= rewardlists.Count)
-                    {
-                        response.Error = ErrorCode.ERR_AlreadyReceived;
-                        reply();
-                        return;
-                    }
+                    //if (diffday >= rewardlists.Count)
+                    //{
+                    //    response.Error = ErrorCode.ERR_AlreadyReceived;
+                    //    reply();
+                    //    return;
+                    //}
                     //提前领取？
                     if (diffday < request.RewardId)
                     {
