@@ -69,7 +69,6 @@ namespace ET
                 Application.runInBackground = true;
                 //关闭垂直同步
                 libx.Assets.MAX_BUNDLES_PERFRAME = 32;
-				SettingHelper.ClintFindPath = false;// bigversion >= 23;
                 // Screen.sleepTimeout = SleepTimeout.NeverSleep;
                 self.ZoneScene().GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LoginScene, 0, 0);
 				self.LastLoginTime = 0;
@@ -1362,6 +1361,9 @@ namespace ET
 					EventType.TikTokAccountLogin.Instance.LastLoginTime = TimeHelper.ClientNow();
                     EventSystem.Instance.PublishClass(EventType.TikTokAccountLogin.Instance);
                 }
+
+				//先锋一区测试
+                //SettingHelper.ClintFindPath = self.ServerInfo.ServerId == 5 && GlobalHelp.GetBigVersion() >= 23;
 #endif
             }
 			else
