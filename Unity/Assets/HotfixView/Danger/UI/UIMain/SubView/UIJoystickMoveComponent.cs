@@ -375,7 +375,7 @@ namespace ET
             Vector3 newv3;
             float distance;
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
-            speed = Mathf.Max(speed, 4f);
+           
             if (SettingHelper.ClintFindPath)
             {
                 List<Vector3> pathfind = new List<Vector3>();
@@ -387,27 +387,27 @@ namespace ET
                     unit.Rotation = Quaternion.Euler(0, self.direction, 0);
                     return -1;
                 }
-
+                self.ShowPathPoints(pathfind);
                 newv3 = pathfind[pathfind.Count - 1];
                 distance = Vector3.Distance(newv3, unit.Position);
                 float needTime = distance / speed;
                 self.checkTime = (long)(1000 * needTime);
-                self.checkTime = Math.Min(200, self.checkTime);
+                self.checkTime = Math.Max(100, self.checkTime);
 
                 long passTime = clientNow - self.MoveComponent.LastRecvTime;
 
                 float c2sdisc = self.MoveComponent.C2SDistance;
                 if (c2sdisc > 3f || passTime > 300)
                 {
-                    speed *= 0.2f;
-                    //Log.ILog.Debug($" self.MoveComponent.c2sdisc :  {c2sdisc}   passTime:{passTime}");
+                    //speed *= 0.2f;
+                    Log.ILog.Debug($" self.MoveComponent.c2sdisc :  {c2sdisc}   passTime:{passTime}");
                 }
-
                 unit.MoveResultToAsync(pathfind, null).Coroutine();
                 self.MoveComponent.MoveToAsync(pathfind, speed).Coroutine();
             }
             else
             {
+                speed = Mathf.Max(speed, 4f);
                 newv3 = self.CanMovePosition(unit, direction, rotation);
                 int speedrate = 0;
                 //int speedRate = 50;  //移动速度 10是原始速度1/10 100是原始速度
@@ -450,6 +450,21 @@ namespace ET
             return 0;
         }
 
+        public static void ShowPathPoints(this UIJoystickMoveComponent self, List<Vector3> pathfind)
+        {
+            Transform transform = GameObject.Find("Global/Unit/Capsule").transform;
+            for (int i = 0; i < pathfind.Count; i++ )
+            {
+                transform.GetChild(i).transform.localPosition = pathfind[i];
+            }
+
+            for (int i = pathfind.Count; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).transform.localPosition = Vector3.zero;
+            }
+
+        }
+
         public static void ShowObstructTip(this UIJoystickMoveComponent self, int monsterId)
         {
             if (Time.time - self.LastShowTip < 1f)
@@ -464,38 +479,38 @@ namespace ET
 
         public static void CanMovePositionList(this UIJoystickMoveComponent self, Unit unit, float speed, Quaternion rotation, List<Vector3> pathfind)
         {
-            unit.GetComponent<PathfindingComponent>().Find(unit.Position, unit.Position + rotation * Vector3.forward * speed * 0.5f, pathfind);
-            //Vector3 targetPosi = unit.Position;
-            //for (int i = 0; i < 30; i++)
-            //{
-            //    targetPosi = targetPosi + rotation * Vector3.forward * 0.2f;
-            //    RaycastHit hit;
+            //unit.GetComponent<PathfindingComponent>().Find(unit.Position, unit.Position + rotation * Vector3.forward * speed * 0.5f, pathfind);
 
-            //    Physics.Raycast(targetPosi + new Vector3(0f, 2f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
-            //    if (hit.collider != null)
-            //    {
-            //        break;
-            //    }
+            Vector3 targetPosi = unit.Position;
+            for (int i = 0; i < 30; i++)
+            {
+                targetPosi = targetPosi + rotation * Vector3.forward * 0.2f;
+                RaycastHit hit;
 
-            //    Physics.Raycast(targetPosi + new Vector3(0f, 2f, 0f), Vector3.down, out hit, 20, self.MapLayer);
-            //    if (hit.collider == null)
-            //    {
-            //        break;
-            //    }
-            //    else
-            //    {
-            //        if (Mathf.Abs(hit.point.y - targetPosi.y) > 0.4f)
-            //        {
-            //            break;
-            //        }
-            //        else
-            //        {
-            //            targetPosi = hit.point;
-            //            pathfind.Add(targetPosi);
-            //        }
-            //    }
-            //}
+                Physics.Raycast(targetPosi + new Vector3(0f, 2f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
+                if (hit.collider != null)
+                {
+                    break;
+                }
 
+                Physics.Raycast(targetPosi + new Vector3(0f, 2f, 0f), Vector3.down, out hit, 20, self.MapLayer);
+                if (hit.collider == null)
+                {
+                    break;
+                }
+                else
+                {
+                    if (Mathf.Abs(hit.point.y - targetPosi.y) > 0.4f)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        targetPosi = hit.point;
+                        pathfind.Add(targetPosi);
+                    }
+                }
+            }
             //return targetPosi;
         }
 
