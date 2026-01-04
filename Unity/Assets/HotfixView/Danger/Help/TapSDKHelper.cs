@@ -655,14 +655,22 @@ namespace ET
 
 
             //转化事件发生后，开发者/第三方在请求接口后附上回传字段({DEEP_CALLBACK_URL}&event_type=xxx&event_timestamp={timestamp}&???=xxx)，并发起 GET 请求，上报给 TapREP。
-            string url = $"{taprepRequest}&event_type={eventType}&event_timestamp={TimeHelper.ServerNow()}&amount={eventData}";
+            string url = string.Empty;
+
+            if (eventType == 3)
+            {
+                url = $"{taprepRequest}&event_type={eventType}&event_timestamp={TimeHelper.ServerNow()/1000}&amount={eventData}&project_type=0";
+            }
+            else
+            {
+                url = $"{taprepRequest}&event_type={eventType}&event_timestamp={TimeHelper.ServerNow()/1000}&project_type=0";
+            }
 
             Log.ILog.Debug($"taprepRequest:{taprepRequest}   {eventType}");
 
-            Log.Debug($"TapReqEvent_1 request  url: {url}");
+            Log.ILog.Debug($"TapReqEvent_1 request  url: {url}");
             string routerInfo = await HttpClientHelper.Get(url);
-            Log.Debug($"TapReqEvent_1 respose  url: {routerInfo}");
-
+            Log.ILog.Debug($"TapReqEvent_1 respose  url: {routerInfo}");
         }
 
 
