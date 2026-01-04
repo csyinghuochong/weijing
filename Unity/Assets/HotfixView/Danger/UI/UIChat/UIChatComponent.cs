@@ -270,12 +270,6 @@ namespace ET
                 self.InputFieldTMP.text = "";
                 return;
             }
-            if (text.Equals("#path"))
-            {
-                SettingHelper.ClintFindPath = !SettingHelper.ClintFindPath;
-                self.InputFieldTMP.text = "";
-                return;
-            }
             if (text.Equals("#fenghao"))
             {
                 GMHelp.SendFengHao(self.ZoneScene()).Coroutine();
@@ -297,7 +291,6 @@ namespace ET
                 SettingHelper.ShowGuangHuan = false;
                 SettingHelper.ShowAnimation = false;
                 SettingHelper.PlaySound = false;
-                SettingHelper.ClintFindPath = false;
                 self.InputFieldTMP.text = "";
                 return;
             }
