@@ -34,6 +34,7 @@ namespace ET
         public BagInfo Baginfo;
         public int ItemID;
         public bool ShowTip;
+        public bool SetFontSize = true;
 
         public string EffectPath;
         public GameObject EquipEffect;
@@ -121,6 +122,11 @@ namespace ET
 
         public static void OnLanguageUpdate(this UIItemComponent self)
         {
+            if (!self.SetFontSize)
+            {
+                return;
+            }
+
             self.Label_ItemName.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 30 : 26;
         }
 

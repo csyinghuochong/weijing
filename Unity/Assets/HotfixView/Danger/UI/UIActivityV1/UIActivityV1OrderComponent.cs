@@ -38,6 +38,7 @@ namespace ET
 
         public GameObject ButtonGive;
         public GameObject ButtonChange;
+        public int FontSize = 40;
     }
 
     public class UIActivityV1OrderComponentDestroy : DestroySystem<UIActivityV1OrderComponent>
@@ -62,8 +63,10 @@ namespace ET
             self.UICommonCostItem.SetActive(false);
 
             GameObject uineeditem = rc.Get<GameObject>("UINeedItem");
+            self.FontSize = uineeditem.transform.Find("Label_ItemName").GetComponent<Text>().fontSize;
             self.UINeedItem = self.AddChild<UIItemComponent, GameObject>(uineeditem);
-
+            self.UINeedItem.SetFontSize = false;
+           
 
             self.GiveItemList = rc.Get<GameObject>("GiveItemList");
 
@@ -224,6 +227,7 @@ namespace ET
             self.UINeedItem.Label_ItemNum.SetActive(false);
 
             self.UINeedItem.Label_ItemName.GetComponent<Text>().text = $"{itemConfig.GetItemName()}*{neednum}";
+            self.UINeedItem.Label_ItemName.GetComponent<Text>().fontSize = self.FontSize;
         }
 
     }
