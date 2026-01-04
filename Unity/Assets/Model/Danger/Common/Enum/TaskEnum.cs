@@ -35,8 +35,8 @@ namespace ET
         public const int UnionRace = 4;  //家族战
         public const int Mine = 5;       //宠物矿场
         public const int Season = 6;    //赛季每日任务
-        public const int ActivityV1 = 7; //活动每周任务
-        public const int ActivityWeekly = 8;            //活动限时周任务
+        public const int ActivityV1 = 7; //限时活动每周任务
+        public const int ActivityWeekly = 8;            //每月轮换活动周任务
     }
 
     //1：杀怪

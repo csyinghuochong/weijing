@@ -1022,13 +1022,32 @@ namespace ET
                     continue;
                 }
             }
+
+            int errortaskNumber = 0;
             for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
             {
                 if (!TaskCountryConfigCategory.Instance.Contain(self.TaskCountryList[i].taskID))
                 {
                     self.TaskCountryList.RemoveAt(i);
                 }
+
+                if(self.TaskCountryList[i].taskID >= 800101 && self.TaskCountryList[i].taskID <= 801001)
+                {
+                    errortaskNumber++;
+                }
             }
+            if (errortaskNumber > 10)
+            {
+                for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
+                {
+                    if (self.TaskCountryList[i].taskID >= 800101 && self.TaskCountryList[i].taskID <= 801001)
+                    {
+                        errortaskNumber++;
+                        self.TaskCountryList.RemoveAt(i);
+                    }
+                }
+            }
+           
 
             //触发一下搜集道具类型的任务
             for (int i = 0; i < self.RoleTaskList.Count; i++)
