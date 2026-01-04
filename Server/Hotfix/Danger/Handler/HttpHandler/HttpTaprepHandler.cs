@@ -26,7 +26,7 @@ namespace ET
     {
         public async ETTask Handle(Entity entity, HttpListenerContext context)
         {
-            Console.WriteLine($"HttpTaprepJianCeHandler:  {context.Request.RawUrl}");
+            //Console.WriteLine($"HttpTaprepJianCeHandler Old:  {context.Request.RawUrl}");
 
             System.Collections.Specialized.NameValueCollection queryString = context.Request.QueryString;
 
@@ -54,17 +54,10 @@ namespace ET
                 dBCenterTaprepRequest.callback = callback;
                 dBCenterTaprepRequest.tap_project_id = tap_project_id;
                 dBCenterTaprepRequest.tap_track_id = tap_track_id;
-
-
-                Console.WriteLine($"callback:  {callback}");
-
-
                 await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterTaprepRequest);
                 dBCenterTaprepRequest.Dispose();
                 dBCenterTaprepRequest = null;
             }
-
-
             HttpServerHelper.ResponseEmpty(context);
             await ETTask.CompletedTask;
         }
@@ -101,6 +94,37 @@ namespace ET
         {
             Console.WriteLine($"HttpTapAdTrackHandler:  {context.Request.RawUrl}");
 
+            System.Collections.Specialized.NameValueCollection queryString = context.Request.QueryString;
+
+            string anid = queryString["OAID"] ?? string.Empty;
+            string callback = queryString["callback"] ?? string.Empty;
+            string tap_project_id = queryString["tap_project_id"] ?? string.Empty;
+            string tap_track_id = queryString["tap_track_id"] ?? string.Empty;
+
+            if (!string.IsNullOrEmpty(anid))
+            {
+                DBCenterTaprepRequest dBCenterTaprepRequest = null;
+                List<DBCenterTaprepRequest> centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterTaprepRequest>(202, d => d.anid == anid);
+                if (centerAccountInfoList == null || centerAccountInfoList.Count == 0)
+                {
+                    dBCenterTaprepRequest = entity.AddChild<DBCenterTaprepRequest>();
+                }
+                else
+                {
+                    dBCenterTaprepRequest = centerAccountInfoList[0];
+                }
+
+                Console.WriteLine($"anid:  {anid}");
+                Console.WriteLine($"callback:  {callback}");
+
+                dBCenterTaprepRequest.anid = anid;
+                dBCenterTaprepRequest.callback = callback;
+                dBCenterTaprepRequest.tap_project_id = tap_project_id;
+                dBCenterTaprepRequest.tap_track_id = tap_track_id;
+                await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterTaprepRequest);
+                dBCenterTaprepRequest.Dispose();
+                dBCenterTaprepRequest = null;
+            }
             HttpServerHelper.ResponseEmpty(context);
             await ETTask.CompletedTask;
         }
