@@ -46,7 +46,7 @@ namespace ET
             }
 
             //判断是否为taprep用户
-            if (response.PlayerInfo!= null &&  !string.IsNullOrEmpty(request.OAID))
+            if (response.PlayerInfo!= null &&  !string.IsNullOrEmpty(request.OAID)  && !request.OAID.Contains("00000000"))
             {
                 List<DBCenterTaprepRequest> centerTaprepRequests = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterTaprepRequest>(scene.DomainZone(), d => d.anid == request.OAID);
                 if (centerTaprepRequests != null && centerTaprepRequests.Count > 0)
