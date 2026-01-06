@@ -150,19 +150,13 @@ namespace ET
             }
             for (int i = 0; i < activityV1Info.V1ActivityList.Count; i++)
             {
-                if (buttonToActivity.ContainsKey(activityV1Info.V1ActivityList[i]))
-                {
-                    continue;
-                }
-
                 string button = buttonToActivity[activityV1Info.V1ActivityList[i]];
                 self.FunctionSetBtn.transform.Find(button).gameObject.SetActive(true);
                 self.FunctionSetBtn.transform.Find(button).SetSiblingIndex(i);  
             }
 
             string buttonfirst = buttonToActivity[activityV1Info.V1ActivityList[0]];
-            int openindex = int.Parse(buttonfirst.Substring(buttonfirst.Length - 1, 1));
-     
+            int openindex = int.Parse(buttonfirst.Substring(8)) - 1;
             self.UIPageButtonComponent.OnSelectIndex(openindex);
             
             self.OnLanguageUpdate();
