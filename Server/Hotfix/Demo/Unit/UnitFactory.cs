@@ -538,6 +538,8 @@ namespace ET
                 {
                     if (dropID[i] == 0)
                         continue;
+                    if (dropID[i] == 60700201)
+                        continue;
 
                     DropConfig dropConfig = DropConfigCategory.Instance.Get(dropID[i]);
                     List<RewardItem> dropItemList_2 = new List<RewardItem>();
@@ -915,6 +917,11 @@ namespace ET
         /// <param name="par"></param>
         public static void CreateDropItems(Unit main, Unit beKill, int dropType,  int dropId, string par)
         {
+            if (dropId == 60700201)
+            {
+                return;
+            }
+
             Scene domainScene = beKill.DomainScene();
             int sceneType = domainScene.GetComponent<MapComponent>().SceneTypeEnum;
 

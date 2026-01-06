@@ -184,6 +184,11 @@ namespace ET
 					List<RewardItem> dropItemList = new List<RewardItem>();
 					for (int d = 0; d < dropIds.Count; d++)
 					{
+						if (dropIds[d] == 60700201)
+						{
+							continue;
+						}
+
 						DropIDToDropItem(dropIds[d], dropItemList, monsterID, dropProValue, all);
 					}
 					return dropItemList;
