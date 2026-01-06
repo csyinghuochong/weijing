@@ -16,8 +16,10 @@ namespace ET
 
         public static bool ShowLieOpen = false;
 
-        public static Dictionary<int , ServerInfo> ServerInfoList = new Dictionary<int , ServerInfo>();    
+        public static List<int> V1ActivityList = new List<int>();
 
+
+        public static Dictionary<int , ServerInfo> ServerInfoList = new Dictionary<int , ServerInfo>();
 
         public static List<int> FunctionOpenIds = new List<int> { 1025, 1043, 1044, 1045, 1052, 1055, 1057, 1058, 1059 };
 

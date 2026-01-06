@@ -1127,7 +1127,7 @@ namespace ET
 
             self.UpdateTargetTask(false);
             self.InitActivityV1Task();
-            self.InitActivityWeekTask();
+            self.InitActivityWeekTask(false);
             self.TriggerTaskCountryEvent(  TaskTargetType.Login_1001, 0, 1, false );
 
             //numericComponent.ApplyValue(NumericType.RankID, chat2G_EnterChat.RankId, false, false);
@@ -1816,11 +1816,23 @@ namespace ET
             }
         }
 
-        public static void InitActivityWeekTask(this TaskComponent self)
+        public static List<TaskPro> GetTaskCountryByType(this TaskComponent self, int tasktype)
         {
-            ServerInfo serverInfo = null;
-            ConfigData.ServerInfoList.TryGetValue(self.DomainZone(), out serverInfo);
-            if (serverInfo == null || !serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask))
+            List<TaskPro> taskPros = new List<TaskPro> { }; 
+            for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
+            {
+                TaskCountryConfig taskCountry = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                if (taskCountry.TaskType == tasktype) 
+                {
+                    taskPros.Add(self.TaskCountryList[i]);
+                }
+            }
+            return taskPros;
+        }
+
+        public static void InitActivityWeekTask(this TaskComponent self, bool notice)
+        {
+            if (!ConfigData.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask))
             {
                 return;
             }
@@ -1845,10 +1857,20 @@ namespace ET
             {
                 return;
             }
+
+
             List<int> taskCountryList = TaskHelper.GetActivityV1Task(self.GetParent<Unit>(), 121);
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
+            }
+
+            if (notice)
+            {
+                M2C_TaskCountryUpdate m2C_TaskUpdate = self.m2C_TaskCountryUpdate;
+                m2C_TaskUpdate.UpdateMode = 2;
+                m2C_TaskUpdate.TaskCountryList = self.TaskCountryList;
+                MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
             }
         }
 
@@ -1881,9 +1903,7 @@ namespace ET
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
             }
 
-            ServerInfo serverInfo = null;
-            ConfigData.ServerInfoList.TryGetValue(self.DomainZone(), out serverInfo);
-            if (serverInfo != null  && serverInfo.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask))
+            if (ConfigData.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask))
             {
                 taskCountryList = TaskHelper.GetActivityV1Task(unit, 121);
                 for (int i = 0; i < taskCountryList.Count; i++)

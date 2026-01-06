@@ -59,7 +59,23 @@ namespace ET
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI uiPageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 
+            ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
+            self.FunctionSetBtn.transform.Find("Btn_Type1").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_NewYearCollectionWord));
+            self.FunctionSetBtn.transform.Find("Btn_Type5").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Shop));
+            self.FunctionSetBtn.transform.Find("Btn_Type6").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_PointsChouKa));
+
             self.FunctionSetBtn.transform.Find("Btn_Type6").gameObject.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+
+            int openindex = 0;
+            for (int i = 1; i <= 6; i++)
+            {
+                if (self.FunctionSetBtn.transform.Find($"Btn_Type{i}").gameObject.activeSelf)
+                {
+                    openindex = i - 1;
+                    break;
+                }
+            }
+
 
             //IOS适配
             IPHoneHelper.SetPosition(self.ScrollView, new Vector2(120f, -77f));
@@ -70,7 +86,7 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButtonComponent = uIPageButtonComponent;
-            self.UIPageButtonComponent.OnSelectIndex(0);
+            self.UIPageButtonComponent.OnSelectIndex(openindex);
             
             self.OnLanguageUpdate();
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);

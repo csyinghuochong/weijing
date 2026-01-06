@@ -24,9 +24,10 @@ namespace ET
         public const int ActivityV1_PointsChouKa = 12;      //积分抽卡
         public const int ActivityV1_GoldWeeklyCard = 13;    //黄金周卡
         public const int ActivityV1_DiamondWeeklyCard = 14; //钻石周卡
-        public const int ActivityV1_Order = 15;             //商人订单
+        public const int ActivityV1_Order = 15;             //订单
         public const int ActivityV1_GrowthTree = 16;        //成长树
         public const int ActivityV1_WeeklyTask = 17;        //周任务
+        public const int ActivityV1_NewYearCollectionWord = 18;        //新年集字
 
 
         //成长树和商人活动这两个活动会有2个掉落ID（分别对应小怪和BOSS掉落，其中小怪只有在有体力的时候才能触发掉落），
@@ -48,14 +49,57 @@ namespace ET
         /// 随机生成活动列表
         /// </summary>
         /// <returns></returns>
-        public static List<int> RandomGenerateActivityList()
+        public static List<int> RandomGenerateActivityList(int weekindex)
         { 
             List<int> ids = new List<int>();
 
-            //默认全部生成 方便测试
-            for (int i = ActivityConfigHelper.ActivityV1_ChouKa; i <= ActivityConfigHelper.ActivityV1_WeeklyTask; i++ )
-            { 
-                ids.Add(i); 
+            // 新活动页面：11个切页
+            ///ActivityConfigHelper.ActivityV1_ChouKa       好运
+            ///ActivityConfigHelper.ActivityV1_Guess        竞猜
+            ///ActivityConfigHelper.ActivityV1_Consume      豪掷
+            ///ActivityConfigHelper.ActivityV1_HongBao      红包
+            ///ActivityConfigHelper.ActivityV1_DuiHuanWord  兑换
+            ///ActivityConfigHelper.ActivityV1_ChouKa2      抽取
+            ///ActivityConfigHelper.ActivityV1_LiBao        礼包
+            ///ActivityConfigHelper.ActivityV1_Feed         喂食
+            ///ActivityConfigHelper.ActivityV1_Order        订单
+            ///ActivityConfigHelper.ActivityV1_GrowthTree   成长树
+            ///ActivityConfigHelper.ActivityV1_WeeklyTask   周任务
+            ///
+            ///限时活动页面：集字/商店/抽奖
+            ///ActivityConfigHelper.ActivityV1_NewYearCollectionWord 新年集字
+            ///ActivityConfigHelper.ActivityV1_Shop         商店
+            ///ActivityConfigHelper.ActivityV1_PointsChouKa 抽奖
+
+            if (weekindex == 0)
+            {
+                //第一周
+                ids.Add(ActivityConfigHelper.ActivityV1_ChouKa);
+                ids.Add(ActivityConfigHelper.ActivityV1_Guess);
+                ids.Add(ActivityConfigHelper.ActivityV1_Consume);
+                ids.Add(ActivityConfigHelper.ActivityV1_HongBao);
+                ids.Add(ActivityConfigHelper.ActivityV1_DuiHuanWord);
+                ids.Add(ActivityConfigHelper.ActivityV1_Feed);
+                ids.Add(ActivityConfigHelper.ActivityV1_NewYearCollectionWord);
+                ids.Add(ActivityConfigHelper.ActivityV1_Order);
+                ids.Add(ActivityConfigHelper.ActivityV1_GrowthTree);
+            }
+            else if (weekindex == 1)
+            {
+                //第二周
+                ids.Add(ActivityConfigHelper.ActivityV1_WeeklyTask);
+            }
+            else if (weekindex == 2)
+            {
+                //第三周
+                ids.Add(ActivityConfigHelper.ActivityV1_Shop);
+                ids.Add(ActivityConfigHelper.ActivityV1_ChouKa2);
+                ids.Add(ActivityConfigHelper.ActivityV1_PointsChouKa);
+            }
+            else
+            {
+                //第四周
+                ids.Add(ActivityConfigHelper.ActivityV1_LiBao);
             }
 
             return ids;

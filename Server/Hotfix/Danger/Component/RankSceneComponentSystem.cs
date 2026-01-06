@@ -70,8 +70,7 @@ namespace ET
             {
                 self.UpdateWorldLv();
             }
-            self.BroadcastWorldLv().Coroutine();
-            self.RandomGenerateActivity();
+            self.BroadcastWorldLv(1).Coroutine();
         }
 
         public static void UpdateWorldLv(this RankSceneComponent self)
@@ -83,7 +82,7 @@ namespace ET
             Log.Debug($"UpdateWorldLv: {self.DomainZone()} {worldLv}");
         }
 
-        public static async ETTask BroadcastWorldLv(this RankSceneComponent self)
+        public static async ETTask BroadcastWorldLv(this RankSceneComponent self, int updatetype = 0)
         {           
             //延迟刷新，以免有些服务器还没启动
             await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 10000));
@@ -139,6 +138,8 @@ namespace ET
 
         public static void OnZeroClockUpdate(this RankSceneComponent self)
         {
+            Console.WriteLine($"RankSceneComponent.OnZeroClockUpdate:  {self.DomainZone()} {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}");
+
             //更新服务器拍卖行数据
             //TimeHelper. self.OpenServiceTime
             self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
@@ -146,8 +147,7 @@ namespace ET
             self.SendPetReward().Coroutine();
             self.SendTrialReward().Coroutine();
             self.SendSeasonTowerReward().Coroutine();
-            self.BroadcastWorldLv().Coroutine();
-            self.RandomGenerateActivity();
+            self.BroadcastWorldLv(1).Coroutine();
 
             self.DBRankInfo.rankShowLie.Clear();
             self.DBRankInfo.rankUnionRace.Clear();
@@ -215,27 +215,6 @@ namespace ET
             }
 
             self.DBServerInfo.ServerInfo.ChouKaDropId = ActivityConfigHelper.ChouKaDropId[RandomHelper.RandomNumber(0, ActivityConfigHelper.ChouKaDropId.Count)];
-        }
-
-
-        /// <summary>
-        /// 每周一刷新
-        /// </summary>
-        /// <param name="self"></param>
-        public static void RandomGenerateActivity(this RankSceneComponent self)
-        {
-            if (ComHelp.IsInnerNet())
-            {
-                self.DBServerInfo.ServerInfo.V1ActivityList = ActivityConfigHelper.RandomGenerateActivityList();
-            }
-            else
-            {
-                //System.DateTime dateTime = TimeHelper.DateTimeNow();
-                //if (dateTime.DayOfWeek == System.DayOfWeek.Monday || self.DBServerInfo.ServerInfo.V1ActivityList.Count == 0)
-                //{
-                //    self.DBServerInfo.ServerInfo.V1ActivityList = ActivityConfigHelper.RandomGenerateActivityList();
-                //}
-            }
         }
 
         public static async ETTask InitDBRankInfo(this RankSceneComponent self)
@@ -978,7 +957,7 @@ namespace ET
                 return;
             }
             Log.Debug($"发放试炼排行榜奖励： {zone}");
-            Log.Console($"发放试炼排行榜奖励： {zone}");
+            //Log.Console($"发放试炼排行榜奖励： {zone}");
             long serverTime = TimeHelper.ServerNow();
             List<KeyValuePairLong> rankingInfos = self.DBRankInfo.rankingTrial;
             long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
@@ -1034,7 +1013,7 @@ namespace ET
             }
 
             Log.Debug($"发放赛季之塔排行榜奖励： {zone}");
-            Console.WriteLine($"发放赛季之塔排行榜奖励： {zone}");
+            //Console.WriteLine($"发放赛季之塔排行榜奖励： {zone}");
 
             long serverTime = TimeHelper.ServerNow();
             List<KeyValuePairLong> rankingInfos = self.DBRankInfo.rankSeasonTower;

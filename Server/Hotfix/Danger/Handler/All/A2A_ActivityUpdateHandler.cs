@@ -302,6 +302,20 @@ namespace ET
                     }
                     LogHelper.CheckLogSize();
                     break;
+                case SceneType.Center:
+                    Console.WriteLine($"centerServerComponent.UpdateWeeklyIndex:{ TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()) }");
+                    if (hour == 0)
+                    {
+                        CenterServerComponent centerServerComponent = scene.GetComponent<CenterServerComponent>();
+                        centerServerComponent.UpdateWeeklyIndex(TimeHelper.DateTimeNow()).Coroutine();
+                    }
+                    if (hour == -1)
+                    {
+                        CenterServerComponent centerServerComponent = scene.GetComponent<CenterServerComponent>();
+                        centerServerComponent.UpdateWeeklyIndex(TimeInfo.Instance.ToDateTime(1767542401000)).Coroutine();
+                    }
+
+                    break;
                 default:
                     break;
             }

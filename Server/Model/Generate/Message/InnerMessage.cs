@@ -71,6 +71,9 @@ namespace ET
 		[ProtoMember(4)]
 		public string LoadValue { get; set; }
 
+		[ProtoMember(5)]
+		public List<int> V1ActivityList = new List<int>();
+
 		[ProtoMember(6)]
 		public ServerInfo ServerInfo { get; set; }
 

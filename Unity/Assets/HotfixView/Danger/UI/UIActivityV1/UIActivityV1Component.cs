@@ -93,6 +93,18 @@ namespace ET
             self.FunctionSetBtn.transform.Find("Btn_10").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree));
             self.FunctionSetBtn.transform.Find("Btn_11").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask));
 
+
+            int openindex = 0;
+            for (int i = 1; i <= 11; i++)
+            { 
+                if(self.FunctionSetBtn.transform.Find($"Btn_{i}").gameObject.activeSelf)
+                {
+                    openindex = i - 1;  
+                    break;
+                }
+            }
+
+
             UI ui = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
             //IOS适配
             IPHoneHelper.SetPosition(rc.Get<GameObject>("ScrollView"), new Vector2(300f, -30f));
@@ -100,7 +112,7 @@ namespace ET
             UIPageButtonComponent uIPageButtonComponent = ui.AddComponent<UIPageButtonComponent>();
             uIPageButtonComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
 
-            uIPageButtonComponent.OnSelectIndex(0);
+            uIPageButtonComponent.OnSelectIndex(openindex);
             self.UIPageButton = uIPageButtonComponent;
         }
     }

@@ -21,6 +21,14 @@ namespace ET
                     }
                 }
             }
+
+            TaskComponent taskComponent = unit.GetComponent<TaskComponent>();   
+            if (ConfigData.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask)
+                && taskComponent.GetTaskCountryByType(TaskCountryType.ActivityWeekly).Count == 0)
+            {
+                taskComponent.InitActivityWeekTask(true);
+            }
+
             response.ReceiveIds = activityComponent.ActivityReceiveIds;
             response.LastSignTime = activityComponent.LastSignTime;
             response.TotalSignNumber = activityComponent.TotalSignNumber;
@@ -40,7 +48,7 @@ namespace ET
 
             ServerInfo dBServerInfo = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo;
             activityV1Info.ChouKaDropId = dBServerInfo.ChouKaDropId;
-            activityV1Info.V1ActivityList = dBServerInfo.V1ActivityList;
+            activityV1Info.V1ActivityList = ConfigData.V1ActivityList;
             activityV1Info.GuessIds.Clear();
 
             long activitySceneid = DBHelper.GetActivityServerId(  unit.DomainZone() );

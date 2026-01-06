@@ -35,7 +35,7 @@ namespace ET
             {
                 if (self.DomainZone() == 5)
                 {
-                    Console.WriteLine($"self.UnitCaches.Add:  {self.DomainZone()} {key}  {unitId}");
+                    //Console.WriteLine($"self.UnitCaches.Add:  {self.DomainZone()} {key}  {unitId}");
                 }
                 unitCache = self.AddChild<UnitCache>();
                 unitCache.key = key;

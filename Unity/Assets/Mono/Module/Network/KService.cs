@@ -109,7 +109,7 @@ namespace ET
             }
 
             this.socket.Bind(ipEndPoint);
-            Log.Console($"KService.Bind: {ipEndPoint.ToString()}");
+            Log.Debug($"KService.Bind: {ipEndPoint.ToString()}");
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -129,7 +129,7 @@ namespace ET
             // 作为客户端不需要修改发送跟接收缓冲区大小
             this.socket.Bind(new IPEndPoint(IPAddress.Any, 0));
 
-            Log.Console($"KService.Bind: {new IPEndPoint(IPAddress.Any, 0).ToString()}");
+            Log.Debug($"KService.Bind: {new IPEndPoint(IPAddress.Any, 0).ToString()}");
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {

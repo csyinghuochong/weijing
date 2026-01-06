@@ -10,9 +10,16 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_ActivityTreeTendRequest request, M2C_ActivityTreeTendResponse response, Action reply)
         {
-            BagComponent bagComponent = unit.GetComponent<BagComponent>();
+            if (!ConfigData.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree))
+            {
+                response.Error = ErrorCode.ERR_AlreadyFinish;
+                reply();
+                return;
+            }
+
             int lower = 0;
             int upper = 0;
+            BagComponent bagComponent = unit.GetComponent<BagComponent>();
             for (int i = request.CostList.Count - 1; i >= 0; i--)
             {
                 int itemid = request.CostList[i].ItemID;

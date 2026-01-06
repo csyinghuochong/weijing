@@ -9668,9 +9668,6 @@ namespace ET
 		[ProtoMember(7)]
 		public int ChouKaDropId { get; set; }
 
-		[ProtoMember(8)]
-		public List<int> V1ActivityList = new List<int>();
-
 		[ProtoMember(9)]
 		public int WeeklyIndex { get; set; }
 

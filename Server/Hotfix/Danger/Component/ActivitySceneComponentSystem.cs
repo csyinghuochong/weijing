@@ -405,6 +405,7 @@ namespace ET
             int hour = dateTime.Hour;
             int openServerDay = DBHelper.GetOpenServerDay(self.DomainZone());
             LogHelper.LogWarning($"NoticeActivityUpdate_Hour: zone: {self.DomainZone()} openday: {openServerDay}  {hour}", true);
+
             for (int i = 0; i < self.MapIdList.Count; i++)
             {
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
@@ -420,9 +421,17 @@ namespace ET
                 self.InitPetMineExtend();
                 self.InitFunctionButton();
             }
-            if ((hour == 0 || hour == 21) && self.DomainZone() == 3) //通知中心服
+
+            if (hour == 0 && self.DomainZone() == 3) //通知中心服
             {
                 Console.WriteLine($"通知中心服:  {hour}");
+                long centerid = DBHelper.GetCenterServerId();
+                A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                             (centerid, new A2A_ActivityUpdateRequest() { Hour = hour });
+            }
+            if ((hour == 0 || hour == 21) && self.DomainZone() == 3) //通知账号中心服
+            {
+                Console.WriteLine($"通知账号中心服:  {hour}");
                 long centerid = DBHelper.GetAccountCenter();
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                              (centerid, new A2A_ActivityUpdateRequest() { Hour = hour });

@@ -315,7 +315,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_FenXiang, self.OnButton_FenXiang);
 
             self.Button_NewYear = rc.Get<GameObject>("Button_NewYear");
-            ButtonHelp.AddListenerEx(self.Button_NewYear, self.OnButton_NewYear);
+            ButtonHelp.AddListenerEx(self.Button_NewYear, () => { self.OnButton_NewYear().Coroutine(); });
 
             self.Btn_LvReward = rc.Get<GameObject>("Btn_LvReward");
             self.Btn_LvRewardEffect = self.Btn_LvReward.transform.Find("Effect").gameObject;
@@ -3170,8 +3170,9 @@ namespace ET
             self.Button_ZhanKai.transform.localScale = active ?   new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
         }
 
-        public static void OnButton_NewYear(this UIMainComponent self)
+        public static async ETTask OnButton_NewYear(this UIMainComponent self)
         {
+            await NetHelper.RequestActivityInfo(self.ZoneScene());
             UIHelper.Create(self.ZoneScene(), UIType.UINewYear).Coroutine();
         }
 

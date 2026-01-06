@@ -21,10 +21,14 @@ namespace ET
                     //等级
                     int zone = int.Parse(request.LoadValue);
                     ConfigData.ServerInfoList[zone] = request.ServerInfo;
-                    if (zone == 5)
-                    {
-                        Console.WriteLine($" ConfigData.ServerInfoList:  {zone}  {request.ServerInfo.WorldLv}");
-                    }
+                    //if (zone == 5)
+                    //{
+                    //    Console.WriteLine($" ConfigData.ServerInfoList:  {zone}  {request.ServerInfo.WorldLv}");
+                    //}
+                    break;
+                case 3:
+                    Console.WriteLine($" ConfigData.V1ActivityList:  {request.V1ActivityList.Count}");
+                    ConfigData.V1ActivityList = request.V1ActivityList;
                     break;
             }
 
