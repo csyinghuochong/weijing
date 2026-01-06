@@ -82,6 +82,8 @@ namespace ET
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1GrowthTree");
             pageViewComponent.UISubViewPath[(int)NewYearPageEnum.ActivityV1WeeklyTask] =
                     ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1WeeklyTask");
+            pageViewComponent.UISubViewPath[(int)NewYearPageEnum.ActivityV1PointsShunXu] =
+                   ABPathHelper.GetUGUIPath("Main/ActivityV1/UIActivityV1PointsShunXu");
 
 
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.CollectionWord] = typeof(UINewYearCollectionWordComponent);
@@ -101,6 +103,7 @@ namespace ET
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.ActivityV1Order] = typeof(UIActivityV1OrderComponent);
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.ActivityV1GrowthTree] = typeof(UIActivityV1GrowthTreeComponent);
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.ActivityV1WeeklyTask] = typeof(UIActivityV1WeeklyTaskComponent);
+            pageViewComponent.UISubViewType[(int)NewYearPageEnum.ActivityV1PointsShunXu] = typeof(UIActivityV1PointsShunXuComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
@@ -140,7 +143,7 @@ namespace ET
             });
             self.UIPageButtonComponent = uIPageButtonComponent;
 
-            for (int i = 1; i <= 17; i++)
+            for (int i = 1; i <= 18; i++)
             {
                 string button = $"Btn_Type{i}";
                 self.FunctionSetBtn.transform.Find(button).gameObject.SetActive(false);
