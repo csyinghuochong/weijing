@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -106,37 +107,28 @@ namespace ET
             UI uiPageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
-            self.FunctionSetBtn.transform.Find("Btn_Type1").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_NewYearCollectionWord));
-            self.FunctionSetBtn.transform.Find("Btn_Type2").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_NewYearMonster));
-            self.FunctionSetBtn.transform.Find("Btn_Type3").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Task));
-            self.FunctionSetBtn.transform.Find("Btn_Type4").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Points));
-            self.FunctionSetBtn.transform.Find("Btn_Type5").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Shop));
-            self.FunctionSetBtn.transform.Find("Btn_Type6").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_PointsChouKa));
 
-            self.FunctionSetBtn.transform.Find("Btn_Type7").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_ChouKa));
-            self.FunctionSetBtn.transform.Find("Btn_Type8").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Guess));
-            self.FunctionSetBtn.transform.Find("Btn_Type9").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Consume));
-            self.FunctionSetBtn.transform.Find("Btn_Type10").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_HongBao));
-            self.FunctionSetBtn.transform.Find("Btn_Type11").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_DuiHuanWord));
-            self.FunctionSetBtn.transform.Find("Btn_Type12").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_ChouKa2));
-            self.FunctionSetBtn.transform.Find("Btn_Type13").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_LiBao));
-            self.FunctionSetBtn.transform.Find("Btn_Type14").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Feed));
-            self.FunctionSetBtn.transform.Find("Btn_Type15").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Order));
-            self.FunctionSetBtn.transform.Find("Btn_Type16").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree));
-            self.FunctionSetBtn.transform.Find("Btn_Type17").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask));
-
-            //self.FunctionSetBtn.transform.Find("Btn_Type6").gameObject.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
-
-            int openindex = 0;
-            for (int i = 1; i <= 17; i++)
+            Dictionary<int, string> buttonToActivity = new Dictionary<int, string>
             {
-                if (self.FunctionSetBtn.transform.Find($"Btn_Type{i}").gameObject.activeSelf)
-                {
-                    openindex = i - 1;
-                    break;
-                }
-            }
-
+                { ActivityConfigHelper.ActivityV1_NewYearCollectionWord, "Btn_Type1"},
+                { ActivityConfigHelper.ActivityV1_NewYearMonster, "Btn_Type2"},
+                { ActivityConfigHelper.ActivityV1_Task, "Btn_Type3"},
+                { ActivityConfigHelper.ActivityV1_Points, "Btn_Type4"},
+                {ActivityConfigHelper.ActivityV1_Shop, "Btn_Type5"},
+                { ActivityConfigHelper.ActivityV1_PointsChouKa, "Btn_Type6"},
+                {  ActivityConfigHelper.ActivityV1_ChouKa, "Btn_Type7"},
+                {  ActivityConfigHelper.ActivityV1_Guess, "Btn_Type8"},
+                {  ActivityConfigHelper.ActivityV1_Consume, "Btn_Type9"},
+                {  ActivityConfigHelper.ActivityV1_HongBao, "Btn_Type10"},
+                {  ActivityConfigHelper.ActivityV1_DuiHuanWord, "Btn_Type11"},
+                {  ActivityConfigHelper.ActivityV1_ChouKa2, "Btn_Type12"},
+                {  ActivityConfigHelper.ActivityV1_LiBao, "Btn_Type13"},
+                { ActivityConfigHelper.ActivityV1_Feed, "Btn_Type14"},
+                { ActivityConfigHelper.ActivityV1_Order, "Btn_Type15"},
+                { ActivityConfigHelper.ActivityV1_GrowthTree, "Btn_Type16"},
+                { ActivityConfigHelper.ActivityV1_WeeklyTask, "Btn_Type17"},
+                 { ActivityConfigHelper.ActivityV1_PointsShunXu, "Btn_Type18"},
+            };
 
             //IOS适配
             IPHoneHelper.SetPosition(self.ScrollView, new Vector2(120f, -77f));
@@ -147,6 +139,27 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButtonComponent = uIPageButtonComponent;
+
+            for (int i = 1; i <= 17; i++)
+            {
+                string button = $"Btn_Type{i}";
+                self.FunctionSetBtn.transform.Find(button).gameObject.SetActive(false);
+            }
+            for (int i = 0; i < activityV1Info.V1ActivityList.Count; i++)
+            {
+                if (buttonToActivity.ContainsKey(activityV1Info.V1ActivityList[i]))
+                {
+                    continue;
+                }
+
+                string button = buttonToActivity[activityV1Info.V1ActivityList[i]];
+                self.FunctionSetBtn.transform.Find(button).gameObject.SetActive(true);
+                self.FunctionSetBtn.transform.Find(button).SetSiblingIndex(i);  
+            }
+
+            string buttonfirst = buttonToActivity[activityV1Info.V1ActivityList[0]];
+            int openindex = int.Parse(buttonfirst.Substring(buttonfirst.Length - 1, 1));
+     
             self.UIPageButtonComponent.OnSelectIndex(openindex);
             
             self.OnLanguageUpdate();
