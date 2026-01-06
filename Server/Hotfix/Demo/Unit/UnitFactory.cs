@@ -725,6 +725,10 @@ namespace ET
                 {
                     adddropidlist.Add(ActivityConfigHelper.OrderDropId);
                 }
+                if (ConfigData.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_NewYearCollectionWord))
+                {
+                    adddropidlist.Add(ActivityConfigHelper.CollectionWordDropId);
+                }
             }
 
             List <RewardItem> droplist = AI_MonsterDrop(main, monsterCof.Id, dropAdd_Pro, false);

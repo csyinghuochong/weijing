@@ -73,7 +73,7 @@ namespace ET
             //每周刷新一次
             if (dateTime.DayOfWeek == System.DayOfWeek.Monday || dBServerInfo.V1ActivityList.Count == 0)
             {
-                Console.WriteLine($"RandomGenerateActivityList.WeeklyIndex:{dBServerInfo.WeeklyIndex}");
+                Console.WriteLine($"RandomGenerateActivityList.WeeklyIndex++:{dBServerInfo.WeeklyIndex}");
                 dBServerInfo.WeeklyIndex++;
                 if (dBServerInfo.WeeklyIndex >= 4)
                 {
