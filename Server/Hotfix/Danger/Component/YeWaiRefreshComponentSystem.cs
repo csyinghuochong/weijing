@@ -56,7 +56,7 @@ namespace ET
             int monsterPosiID = 0;
             switch (openDay) {
                 case 1:
-                    monsterPosiID = 90001;
+                    monsterPosiID = 90001;   //神器之王
                     break;
                 case 2:
                     monsterPosiID = 90002;
@@ -547,6 +547,16 @@ namespace ET
             }
             else if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
             {
+                if (!ConfigData.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_NewYearMonster))
+                {
+                    if (refreshMonster.MonsterId == 72009001 || refreshMonster.MonsterId == 72009002)
+                    {
+                        return;
+                    }
+
+                }
+
+
                 if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(78).Value2)
                 {
                     return;
