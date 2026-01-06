@@ -29,6 +29,7 @@ namespace ET
         public const int ActivityV1_WeeklyTask = 17;        //周任务 TaskCountryType.ActivityWeekly
         public const int ActivityV1_NewYearCollectionWord = 18;        //限时活动-集字
         public const int ActivityV1_NewYearMonster = 19;   //限时活动-年兽
+        public const int ActivityV1_PointsShunXu = 20;      //积分兑换 顺序领取
 
 
         //成长树和商人活动这两个活动会有2个掉落ID（分别对应小怪和BOSS掉落，其中小怪只有在有体力的时候才能触发掉落），
@@ -84,7 +85,7 @@ namespace ET
                 ids.Add(ActivityConfigHelper.ActivityV1_Shop);
                 ids.Add(ActivityConfigHelper.ActivityV1_Points);
                 ids.Add(ActivityConfigHelper.ActivityV1_PointsChouKa);
-
+                ids.Add(ActivityConfigHelper.ActivityV1_PointsShunXu);       //积分顺序领取
             }
             else if (weekindex == 1)
             {
