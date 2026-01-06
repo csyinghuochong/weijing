@@ -3028,15 +3028,14 @@ namespace ET
 
         public static void OnBtn_Friend(this UIMainComponent self)
         {
-            //if (self.ZoneScene().GetComponent<AccountInfoComponent>().Account.Equals("18319670288"))
-            //{
-            //    self.ZoneScene().GetComponent<SessionComponent>().Session.Dispose();
-            //}
-            //else
-            //{
-
-            //}
-            UIHelper.Create(self.DomainScene(), UIType.UIFriend).Coroutine();
+            if (self.ZoneScene().GetComponent<AccountInfoComponent>().Account.Equals("18319670288"))
+            {
+                self.ZoneScene().GetComponent<SessionComponent>().Session.Dispose();
+            }
+            else
+            {
+                UIHelper.Create(self.DomainScene(), UIType.UIFriend).Coroutine();
+            }
         }
 
         public static void OnButton_HongBao(this UIMainComponent self)
