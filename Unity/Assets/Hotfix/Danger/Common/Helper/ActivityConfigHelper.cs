@@ -56,58 +56,63 @@ namespace ET
 
             ///
             ///限时活动页面：
-            ///ActivityConfigHelper.ActivityV1_NewYearCollectionWord 集字
+            ///ActivityConfigHelper.ActivityV1_NewYearCollectionWord 集字   101
             ///ActivityConfigHelper.ActivityV1_NewYearMonster       年兽
-            ///ActivityConfigHelper.ActivityV1_Task         任务
-            ///ActivityConfigHelper.ActivityV1_Points       积分
-            ///ActivityConfigHelper.ActivityV1_Shop         商店
-            ///ActivityConfigHelper.ActivityV1_PointsChouKa 抽奖
-      
+            ///ActivityConfigHelper.ActivityV1_Task         周任务1         201
+            ///ActivityConfigHelper.ActivityV1_Points       积分奖励1       401
+            ///ActivityConfigHelper.ActivityV1_Shop         商店            301
+            ///ActivityConfigHelper.ActivityV1_PointsChouKa 抽奖            503  充值积分抽奖
+
             /// 新活动页面->限时活动页面：11个切页
-            ///ActivityConfigHelper.ActivityV1_ChouKa       好运   7
-            ///ActivityConfigHelper.ActivityV1_Guess        竞猜   8
-            ///ActivityConfigHelper.ActivityV1_Consume      豪掷   9
-            ///ActivityConfigHelper.ActivityV1_HongBao      红包   10
-            ///ActivityConfigHelper.ActivityV1_DuiHuanWord  兑换   11
-            ///ActivityConfigHelper.ActivityV1_ChouKa2      抽取   12
-            ///ActivityConfigHelper.ActivityV1_LiBao        礼包   13
-            ///ActivityConfigHelper.ActivityV1_Feed         喂食   14
-            ///ActivityConfigHelper.ActivityV1_Order        订单   15
-            ///ActivityConfigHelper.ActivityV1_GrowthTree   成长树 16
-            ///ActivityConfigHelper.ActivityV1_WeeklyTask   周任务 17
+            ///ActivityConfigHelper.ActivityV1_ChouKa       好运   7         504  消耗充值积分
+            ///ActivityConfigHelper.ActivityV1_Guess        竞猜   8         //废弃
+            ///ActivityConfigHelper.ActivityV1_Consume      豪掷   9         //废弃
+            ///ActivityConfigHelper.ActivityV1_HongBao      红包   10        //废弃
+            ///ActivityConfigHelper.ActivityV1_DuiHuanWord  兑换   11        //废弃
+            ///ActivityConfigHelper.ActivityV1_ChouKa2      抽取   12    302     冬季积分抽奖
+            ///ActivityConfigHelper.ActivityV1_LiBao        礼包   13    502     充值积分购买
+            ///ActivityConfigHelper.ActivityV1_Feed         喂食   14    102
+            ///ActivityConfigHelper.ActivityV1_Order        订单   15    103
+            ///ActivityConfigHelper.ActivityV1_GrowthTree   成长树 16    104
+            ///ActivityConfigHelper.ActivityV1_WeeklyTask   周任务 17    202
 
             if (weekindex == 0)
             {
                 //第一周
-                ids.Add(ActivityConfigHelper.ActivityV1_ChouKa);
-                ids.Add(ActivityConfigHelper.ActivityV1_Guess);
-                ids.Add(ActivityConfigHelper.ActivityV1_Consume);
-                ids.Add(ActivityConfigHelper.ActivityV1_HongBao);
-                ids.Add(ActivityConfigHelper.ActivityV1_DuiHuanWord);
-                ids.Add(ActivityConfigHelper.ActivityV1_Feed);
-                ids.Add(ActivityConfigHelper.ActivityV1_NewYearCollectionWord);
-                ids.Add(ActivityConfigHelper.ActivityV1_Order);
                 ids.Add(ActivityConfigHelper.ActivityV1_GrowthTree);
+                ids.Add(ActivityConfigHelper.ActivityV1_Task);
+                ids.Add(ActivityConfigHelper.ActivityV1_Shop);
+                ids.Add(ActivityConfigHelper.ActivityV1_Points);
+                ids.Add(ActivityConfigHelper.ActivityV1_PointsChouKa);
+
             }
             else if (weekindex == 1)
             {
                 //第二周
-                ids.Add(ActivityConfigHelper.ActivityV1_WeeklyTask);
-                ids.Add(ActivityConfigHelper.ActivityV1_NewYearMonster);
-                ids.Add(ActivityConfigHelper.ActivityV1_Task);
+                ids.Add(ActivityConfigHelper.ActivityV1_Feed);                  //喂食   14
+                ids.Add(ActivityConfigHelper.ActivityV1_WeeklyTask);            //周任务 17
+                ids.Add(ActivityConfigHelper.ActivityV1_ChouKa2);               //抽取   12   302
+                ids.Add(ActivityConfigHelper.ActivityV1_Points);                //积分奖励1       401
+                ids.Add(ActivityConfigHelper.ActivityV1_ChouKa);                //好运   7         504  消耗充值积分
             }
             else if (weekindex == 2)
             {
                 //第三周
-                ids.Add(ActivityConfigHelper.ActivityV1_Shop);
-                ids.Add(ActivityConfigHelper.ActivityV1_ChouKa2);
-                ids.Add(ActivityConfigHelper.ActivityV1_Points);
-                ids.Add(ActivityConfigHelper.ActivityV1_PointsChouKa);
+                ids.Add(ActivityConfigHelper.ActivityV1_Feed);                  //喂食   14    102
+                ids.Add(ActivityConfigHelper.ActivityV1_Task);                  //周任务1         201
+                ids.Add(ActivityConfigHelper.ActivityV1_Shop);                  //商店            301
+                ids.Add(ActivityConfigHelper.ActivityV1_Points);                //积分奖励1       401
+                ids.Add(ActivityConfigHelper.ActivityV1_LiBao);                 //礼包   13    502
             }
             else
             {
                 //第四周
-                ids.Add(ActivityConfigHelper.ActivityV1_LiBao);
+                ids.Add(ActivityConfigHelper.ActivityV1_NewYearCollectionWord); //集字   101
+                ids.Add(ActivityConfigHelper.ActivityV1_NewYearMonster);        //年兽
+                ids.Add(ActivityConfigHelper.ActivityV1_WeeklyTask);            //周任务 17
+                ids.Add(ActivityConfigHelper.ActivityV1_ChouKa2);               //抽取   12   302
+                ids.Add(ActivityConfigHelper.ActivityV1_Points);                //积分奖励1       401
+                ids.Add(ActivityConfigHelper.ActivityV1_ChouKa);                //好运   7         504  消耗充值积分
             }
 
             return ids;
