@@ -169,7 +169,7 @@ namespace ET
 
         public static async ETTask OnAuctionOver(this PaiMaiSceneComponent self)
         {
-            Console.WriteLine($"拍卖结束！   {self.DomainZone()}");
+            Log.Debug($"拍卖结束: {self.DomainZone()} {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}");
             long gateServerId = DBHelper.GetGateServerId(self.DomainZone());
 
             if (self.AuctioUnitId != 0)

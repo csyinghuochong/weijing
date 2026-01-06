@@ -299,12 +299,12 @@ namespace ET
         {
             int minite = (int)((FunctionHelp.GetCloseTime(1044) - FunctionHelp.GetOpenTime(1044)) / 60);
             /////进程9
-            Log.Console($"家族争霸赛开始！！:{self.DomainZone()}  {minite}");
-            Log.Warning($"家族争霸赛开始！！:{self.DomainZone()}  {minite}");
+            //Log.Console($"家族争霸赛开始！！:{self.DomainZone()}  {minite}");
+            Log.Debug($"家族争霸赛开始！！:{self.DomainZone()}  {minite}");
             for (int i = minite - 1; i >= 0; i--)
             {
                 await TimerComponent.Instance.WaitAsync(60 * 1000);
-                Log.Console($"家族争霸赛检测！！: {self.DomainZone()}  {i}");
+                Log.Debug($"家族争霸赛检测！！: {self.DomainZone()}  {i}");
 
                 Scene fubnescene = self.GetChild<Scene>(self.UnionRaceSceneId);
                 if (fubnescene == null)
