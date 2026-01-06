@@ -711,7 +711,7 @@ namespace ET
 
             List<int> adddropidlist = new List<int>();
 
-            if (!bekill.IsBoss())
+            if ( (sceneType == SceneTypeEnum.LocalDungeon || sceneType == SceneTypeEnum.TeamDungeon) && !bekill.IsBoss())
             {
                 if (ConfigData.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree) )
                 {
