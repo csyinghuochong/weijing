@@ -23,6 +23,7 @@ namespace ET
         ActivityV1Order = 14,
         ActivityV1GrowthTree = 15,
         ActivityV1WeeklyTask = 16,
+        ActivityV1PointsShunXu = 17,
         Number,
     }
 
@@ -124,8 +125,7 @@ namespace ET
             self.FunctionSetBtn.transform.Find("Btn_Type16").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_GrowthTree));
             self.FunctionSetBtn.transform.Find("Btn_Type17").gameObject.SetActive(activityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask));
 
-
-            self.FunctionSetBtn.transform.Find("Btn_Type6").gameObject.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+            //self.FunctionSetBtn.transform.Find("Btn_Type6").gameObject.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             int openindex = 0;
             for (int i = 1; i <= 17; i++)
