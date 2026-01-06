@@ -82,7 +82,6 @@ namespace ET
         public GameObject DragPanel;
         public GameObject Btn_TimeReward;
         public Text Btn_TimeRewardText;
-        public GameObject Button_ActivityV1;
         public GameObject Button_RechargeReward;
         public GameObject Button_ZhanKai;
         public GameObject Button_Welfare;
@@ -435,9 +434,6 @@ namespace ET
             self.Button_RechargeReward = rc.Get<GameObject>("Button_RechargeReward");
             self.Button_RechargeReward.GetComponent<Button>().onClick.AddListener(self.OnButton_RechargeReward);
 
-            self.Button_ActivityV1 = rc.Get<GameObject>("Button_ActivityV1");
-            self.Button_ActivityV1.GetComponent<Button>().onClick.AddListener(() => { self.Button_ActivityV1().Coroutine();    });
-
             List<string> AdminAccount = new List<string>()
             {
                 "tcg01",
@@ -450,8 +446,7 @@ namespace ET
                 "0_tangchunguang",
             };
             self.Btn_GM.SetActive(AdminAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-            self.Button_ActivityV1.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-
+            
             self.Btn_TimeReward = rc.Get<GameObject>("Btn_TimeReward");
             self.Btn_TimeReward.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_TimerChouKa().Coroutine(); });
             self.Btn_TimeReward.SetActive(false);
