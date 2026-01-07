@@ -27,7 +27,7 @@ namespace ET
                     //}
                     break;
                 case 3:
-                    Console.WriteLine($" ConfigData.V1ActivityList:  {request.V1ActivityList.Count}");
+                    Console.WriteLine($"R2A_Broadcast ConfigData.V1ActivityList:  {request.V1ActivityList.Count}");
                     ConfigData.V1ActivityList = request.V1ActivityList;
                     break;
             }
