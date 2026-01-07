@@ -50,13 +50,13 @@ namespace ET
 
         public static void InitInfo(this UIActivityV1PointsShunXuComponent self)
         {
-            foreach (int key in ActivityConfigHelper.PointsRewardList.Keys)
+            foreach (int key in ActivityConfigHelper.PointsShunXuRewardList.Keys)
             {
-                //GameObject go = UnityEngine.Object.Instantiate(self.UIActivityV1PointsShunXuItem);
-                //UIActivityV1PointsShunXuItemComponent component = self.AddChild<UIActivityV1PointsShunXuItemComponent, GameObject>(go);
-                //component.OnUpdateData(key, self.OnRecvHandler);
-                //UICommonHelper.SetParent(go, self.UIActivityV1PointsListNode);
-                //go.SetActive(true);
+                GameObject go = UnityEngine.Object.Instantiate(self.UIActivityV1PointsShunXuItem);
+                UIActivityV1PointsShunXuItemComponent component = self.AddChild<UIActivityV1PointsShunXuItemComponent, GameObject>(go);
+                component.OnUpdateData(key, self.OnRecvHandler);
+                UICommonHelper.SetParent(go, self.UIActivityV1PointsListNode);
+                go.SetActive(true);
             }
 
             self.OnRecvHandler();

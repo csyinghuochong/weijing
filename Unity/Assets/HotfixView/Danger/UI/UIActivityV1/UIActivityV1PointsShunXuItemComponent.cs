@@ -41,7 +41,7 @@ namespace ET
             self.OnRecvHandler = action;
             self.ConsumeNumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("{0}积分"), self.Key);
             UICommonHelper.DestoryChild(self.RewardListNode);
-            UICommonHelper.ShowItemList(ActivityConfigHelper.PointsRewardList[key], self.RewardListNode, self, 1f);
+            UICommonHelper.ShowItemList(ActivityConfigHelper.PointsShunXuRewardList[key], self.RewardListNode, self, 1f);
 
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
             if (activityV1Info.PointsReward.Contains(self.Key))
@@ -59,7 +59,7 @@ namespace ET
                 return;
             }
 
-            string rewarditem = ActivityConfigHelper.PointsRewardList[self.Key];
+            string rewarditem = ActivityConfigHelper.PointsShunXuRewardList[self.Key];
             int needcell = ItemHelper.GetNeedCell(rewarditem);
             Log.ILog.Debug($"needcell:{needcell}");
             if (self.ZoneScene().GetComponent<BagComponent>().GetBagLeftCell() < needcell)
@@ -68,20 +68,31 @@ namespace ET
                 return;
             }
 
-            if (!ActivityConfigHelper.PointsRewardList.ContainsKey(self.Key))
+            if (!ActivityConfigHelper.PointsShunXuRewardList.ContainsKey(self.Key))
             {
                 return;
             }
 
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
-            if (activityV1Info.PointsReward.Contains(self.Key))
+            int getnextRewardId = ActivityConfigHelper.GetNextShunXuReward(activityV1Info.PointsShuxuReward);
+            if (getnextRewardId == 0)
+            {
+                return;
+            }
+            
+            if (self.Key < getnextRewardId)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取"));
                 return;
             }
 
-            int points = (int)(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints);
+            if (self.Key > getnextRewardId)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请按顺序领取"));
+                return;
+            }
 
+            int points = (int)(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints);
             if (points < self.Key)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到条件"));
@@ -90,12 +101,12 @@ namespace ET
 
             C2M_ActivityRewardRequest request = new C2M_ActivityRewardRequest()
             {
-                ActivityType = ActivityConfigHelper.ActivityV1_Points,
+                ActivityType = ActivityConfigHelper.ActivityV1_PointsShunXu,
                 RewardId = self.Key
             };
             M2C_ActivityRewardResponse response =
                     (M2C_ActivityRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.PointsReward.Add(self.Key);
+            self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info.PointsShuxuReward = self.Key;
 
             if (response.Error != ErrorCode.ERR_Success)
             {

@@ -230,6 +230,29 @@ namespace ET
             {  2000, "10000184;500@10000135;3@10000141;8@10000151;10@10010094;1" },
         };
 
+
+        //积分桉顺序兑换
+        public static Dictionary<int, string> PointsShunXuRewardList = new Dictionary<int, string>()
+        {
+            {  100, "10000184;25@1;300000@10010083;10@10000143;2@10000150;1" },
+            {  300, "10000184;75@1;600000@10000141;1@10000151;1@10010079;2" },
+            {  500, "10000184;125@10000135;1@10000141;2@10000151;2@10010046;1" },
+            {  1000, "10000184;250@10000135;2@10000141;4@10000151;5@10010096;1" },
+            {  2000, "10000184;500@10000135;3@10000141;8@10000151;10@10010094;1" },
+        };
+
+        public static int GetNextShunXuReward(int curid)
+        {
+            foreach (var rewardinfo in PointsShunXuRewardList)
+            {
+                if (rewardinfo.Key > curid)
+                {
+                    return rewardinfo.Key;
+                }
+            }
+            return 0;
+        }
+
         //积分抽卡   权重-奖励
         public static List<TimerChouKaItemn> PointsChouKaList = new List<TimerChouKaItemn>()
         {

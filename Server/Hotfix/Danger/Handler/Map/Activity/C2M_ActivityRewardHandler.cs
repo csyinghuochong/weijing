@@ -106,6 +106,43 @@ namespace ET
                     unit.GetComponent<BagComponent>().OnAddItemData(rewarditem, $"{ItemGetWay.ActivityConsume}_{TimeHelper.ServerNow()}");
                     activityComponent.ActivityV1Info.PointsReward.Add(request.RewardId);
                     break;
+
+                case ActivityConfigHelper.ActivityV1_PointsShunXu:
+                    if (!ActivityConfigHelper.PointsShunXuRewardList.ContainsKey(request.RewardId))
+                    {
+                        Log.Error($"C2M_ActivityReceiveRequest.7");
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+
+                    int getnextRewardId = ActivityConfigHelper.GetNextShunXuReward(activityComponent.ActivityV1Info.PointsShuxuReward);
+                    if (getnextRewardId!= request.RewardId)
+                    {
+                        response.Error = ErrorCode.ERR_AlreadyReceived;
+                        reply();
+                        return;
+                    }
+                    if (unit.GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints < request.RewardId)
+                    {
+                        response.Error = ErrorCode.Pre_Condition_Error;
+                        reply();
+                        return;
+                    }
+                    rewarditem = ActivityConfigHelper.PointsShunXuRewardList[request.RewardId];
+                    needcell = ItemHelper.GetNeedCell(rewarditem);
+                    if (bagComponent.GetBagLeftCell() < needcell)
+                    {
+                        response.Error = ErrorCode.ERR_BagIsFull;
+                        reply();
+                        return;
+                    }
+
+
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.V1TotalPoints, (request.RewardId * -1).ToString());
+                    unit.GetComponent<BagComponent>().OnAddItemData(rewarditem, $"{ItemGetWay.ActivityConsume}_{TimeHelper.ServerNow()}");
+                    activityComponent.ActivityV1Info.PointsShuxuReward = request.RewardId;
+                    break;
                 case ActivityConfigHelper.ActivityV1_PointsChouKa:
 
                     if (unit.GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints < 200f)

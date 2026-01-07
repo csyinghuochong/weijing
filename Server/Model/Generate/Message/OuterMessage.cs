@@ -15898,6 +15898,9 @@ namespace ET
 		[ProtoMember(18)]
 		public List<int> V1ActivityList = new List<int>();
 
+		[ProtoMember(19)]
+		public int PointsShuxuReward { get; set; }
+
 	}
 
 //v1活动.抽奖

@@ -48,6 +48,7 @@ namespace ET
             //self.ActivityV1Info.ConsumeDiamondReward.Clear();
             //限时活动积分兑换
             self.ActivityV1Info.PointsReward.Clear();
+            self.ActivityV1Info.PointsShuxuReward = 0;
             self.ActivityV1Info.GrowthTreeValue = 0;
         }
 
