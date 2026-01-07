@@ -85,7 +85,6 @@ namespace ET
                 ids.Add(ActivityConfigHelper.ActivityV1_Shop);
                 ids.Add(ActivityConfigHelper.ActivityV1_Points);
                 ids.Add(ActivityConfigHelper.ActivityV1_PointsChouKa);
-                ids.Add(ActivityConfigHelper.ActivityV1_PointsShunXu);       //积分顺序领取
             }
             else if (weekindex == 1)
             {
@@ -114,6 +113,7 @@ namespace ET
                 ids.Add(ActivityConfigHelper.ActivityV1_ChouKa2);               //抽取   12   302
                 ids.Add(ActivityConfigHelper.ActivityV1_Points);                //积分奖励1       401
                 ids.Add(ActivityConfigHelper.ActivityV1_ChouKa);                //好运   7         504  消耗充值积分
+                ids.Add(ActivityConfigHelper.ActivityV1_PointsShunXu);       //积分顺序领取
             }
 
             return ids;

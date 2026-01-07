@@ -426,6 +426,54 @@ namespace ET
             self.MagickaSlotIdList.Add(new MagickaSlotInfo() { SlotId = magicid, Exp = 0 });
         }
 
+        public static List<PropertyValue> GetMagickaProLists(this ChengJiuComponent self)
+        {
+            List<PropertyValue> proList = new List<PropertyValue>();
+            for (int i = self.MagickaSlotIdList.Count - 1; i >= 0; i--)
+            {
+                MagickaSlotConfig magickaSlotConfig = MagickaSlotConfigCategory.Instance.Get(self.MagickaSlotIdList[i].SlotId);
+
+                string[] attributeInfoList = magickaSlotConfig.AddProperty.Split('@');
+                for (int a = 0; a < attributeInfoList.Length; a++)
+                {
+                    string[] attributeInfo = attributeInfoList[a].Split(';');
+                    if (attributeInfo.Length != 2)
+                    {
+                        continue;
+                    }
+                    try
+                    {
+                        int numericType = int.Parse(attributeInfo[0]);
+                        if (NumericHelp.GetNumericValueType(numericType) == 2)
+                        {
+                            float fvalue = float.Parse(attributeInfo[1]);
+                            proList.Add(new PropertyValue() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+                        }
+                        else
+                        {
+                            long lvalue = 0;
+                            try
+                            {
+                                lvalue = long.Parse(attributeInfo[1]);
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Debug(ex.ToString() + $"报错MagickaSlotId: {self.MagickaSlotIdList[i].SlotId}");
+                            }
+
+                            proList.Add(new PropertyValue() { HideID = numericType, HideValue = lvalue });
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex.ToString());
+                    }
+                }
+            }
+
+            return proList;
+        }
+
         public static int GetMaxMagickaSlotIdPosition(this ChengJiuComponent self)
         {
             int position = 0;

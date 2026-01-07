@@ -2300,6 +2300,12 @@ namespace ET
                 AddUpdateProDicList(jinglingProList[i].HideID, jinglingProList[i].HideValue, UpdateProDicList);
             }
 
+            List<PropertyValue> magickaProList = unit.GetComponent<ChengJiuComponent>().GetMagickaProLists();
+            for (int i = 0; i < magickaProList.Count; i++)
+            {
+                AddUpdateProDicList(magickaProList[i].HideID, magickaProList[i].HideValue, UpdateProDicList);
+            }
+
             //家族修炼属性
             int xiuLian_0 = numericComponent.GetAsInt(NumericType.UnionXiuLian_0);
             int xiuLian_1 = numericComponent.GetAsInt(NumericType.UnionXiuLian_1);
