@@ -421,7 +421,7 @@ namespace ET
                 self.InitPetMineExtend();
                 self.InitFunctionButton();
             }
-
+           
             if (hour == 0 && self.DomainZone() == 3) //通知中心服
             {
                 Console.WriteLine($"通知中心服:  {hour}");
@@ -497,6 +497,16 @@ namespace ET
 
                 self.DBDayActivityInfo.GuessPlayerList.Clear();
             }
+
+            if (hour == 0 && dayOfWeek == DayOfWeek.Monday)
+            {
+                Console.WriteLine($"限时活动清空");
+                self.DBDayActivityInfo.FeedPlayerList.Clear();
+                self.DBDayActivityInfo.FeedRewardKey = 0;
+                self.DBDayActivityInfo.BaoShiDu = 0;
+                self.DBDayActivityInfo.OpenGuessIds.Clear();
+            }
+
         }
     }
 }
