@@ -29,7 +29,7 @@ namespace ET
                     continue;
                 }
 
-                if (!this.TheUnitFrom.IsCanAttackUnit(unit))
+                if (!this.TheUnitFrom.IsCanAttackUnit(unit, true, false))
                 {
                     continue;
                 }

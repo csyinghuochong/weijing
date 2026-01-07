@@ -98,7 +98,7 @@ namespace ET
                     self.SkillHandler.OnAddHurtIds(uu.Id);
                 }
 
-                if (!self.SkillHandler.TheUnitFrom.IsCanAttackUnit(uu))
+                if (!self.SkillHandler.TheUnitFrom.IsCanAttackUnit(uu, true, false))
                 {
                     continue;
                 }

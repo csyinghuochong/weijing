@@ -484,7 +484,7 @@ namespace ET
             {
                 return true;
             }
-            if (!self.TheUnitFrom.IsCanAttackUnit(uu, false))
+            if (!self.TheUnitFrom.IsCanAttackUnit(uu, false, false))
             {
                 return true;
             }
@@ -736,7 +736,7 @@ namespace ET
                     break;
                 //敌方
                 case 4:
-                    canBuff = self.TheUnitFrom.IsCanAttackUnit(uu);
+                    canBuff = self.TheUnitFrom.IsCanAttackUnit(uu, true, false);
                     break;
                 //全部
                 case 5:

@@ -92,7 +92,7 @@ namespace ET
                     continue;
                 }
                 
-                if (!self.SkillHandler.TheUnitFrom.IsCanAttackUnit(uu))
+                if (!self.SkillHandler.TheUnitFrom.IsCanAttackUnit(uu,true, false))
                 {
                     continue;
                 }

@@ -58,7 +58,7 @@ namespace ET
                         continue;
                     }
 
-                    if (!this.TheUnitFrom.IsCanAttackUnit(uu))
+                    if (!this.TheUnitFrom.IsCanAttackUnit(uu, true, false))
                     {
                         continue;
                     }
