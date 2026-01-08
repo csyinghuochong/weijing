@@ -302,8 +302,29 @@ namespace ET
                 //家园
                 //await NetHelper.RequestJiaYuanInfo(zoneScene);
 
-                EventType.EnterMapFinish.Instance.ZoneScene = zoneScene;
-                Game.EventSystem.PublishClass(EventType.EnterMapFinish.Instance);
+                int trynumber = 0;
+                while (true)
+                {
+                    trynumber++;
+
+                    if (zoneScene.IsDisposed)
+                    {
+                        break;
+                    }
+
+                    if (ConfigComponent.Instance.IsLoadFinish())
+                    {
+                        trynumber = 30;
+                    }
+                    if (trynumber >= 30)
+                    {
+                        Log.ILog.Debug($"ConfigComponent.Instance.IsLoadFinish");
+                        EventType.EnterMapFinish.Instance.ZoneScene = zoneScene;
+                        Game.EventSystem.PublishClass(EventType.EnterMapFinish.Instance);
+                        break;
+                    }
+                    await TimerComponent.Instance.WaitAsync(1000);
+                }
             }
             return ErrorCode.ERR_Success;
         }

@@ -26,8 +26,9 @@ namespace ET
 
         private async ETTask RunAsync(EventType.AppStart args)
         {
-            //debug run time
+            Log.ILog.Debug($"AppStart_Init   RunAsync: {TimeHelper.ClientNow()}");
 
+            //debug run time
             Game.Scene.AddComponent<TimerComponent>();
             Game.Scene.AddComponent<CoroutineLockComponent>();
 
@@ -35,9 +36,11 @@ namespace ET
             Game.Scene.AddComponent<ResourcesComponent>();
             //await ResourcesComponent.Instance.LoadBundleAsync("config.unity3d");
             Game.Scene.AddComponent<ConfigComponent>();
-            ConfigComponent.Instance.Load();
+            ConfigComponent.Instance.PreLoad();
+            //ConfigComponent.Instance.Load();
             //ResourcesComponent.Instance.UnloadBundle("config.unity3d");
-            
+            Log.ILog.Debug($"AppStart_Init   ConfigLoad: {TimeHelper.ClientNow()}");
+
             Game.Scene.AddComponent<OpcodeTypeComponent>();
             Game.Scene.AddComponent<MessageDispatcherComponent>();
             
@@ -87,7 +90,7 @@ namespace ET
             TimeInfo.Instance.TimeZone = 8;
             //await ResourcesComponent.Instance.LoadBundleAsync("unit.unity3d");
 
-            Log.ILog.Debug("AppStart_Init   RunAsync");
+            Log.ILog.Debug($"AppStart_Init   PublishClass: {TimeHelper.ClientNow()}");
 
             Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
             EventType.AppStartInitFinish.Instance.ZoneScene = zoneScene;

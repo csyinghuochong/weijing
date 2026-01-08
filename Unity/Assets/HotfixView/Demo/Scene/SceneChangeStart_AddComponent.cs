@@ -38,7 +38,7 @@ namespace ET
             MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
 
             UI uI = await UIHelper.Create(args.ZoneScene, UIType.UILoading);
-            uI.GetComponent<UILoadingComponent>().OnInitUI(args.LastSceneType, args.SceneType, args.ChapterId);
+            uI.GetComponent<UILoadingComponent>().OnInitUI(args.LastSceneType, args.SceneType, args.ChapterId).Coroutine();
 
             UI uimain = UIHelper.GetUI(args.ZoneScene, UIType.UIMain);
             if (uimain != null)

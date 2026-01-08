@@ -39,9 +39,20 @@ namespace ET
 
     public static class UILoadingComponentSystem
     {
-        public static void  OnInitUI(this UILoadingComponent self,int lastScene, int sceneTypeEnum, int chapterId)
+        public static async ETTask OnInitUI(this UILoadingComponent self,int lastScene, int sceneTypeEnum, int chapterId)
         {
             UnitFactory.LoadingScene = true;
+            if (self.GetParent<UI>().GameObject != null)
+            {
+                self.GetParent<UI>().GameObject.SetActive(true);
+            }
+
+            if (!ConfigComponent.Instance.IsLoadFinish())
+            {
+                await TimerComponent.Instance.WaitAsync(1000);
+                ConfigComponent.Instance.Load_2();
+            }
+
             string loadResName = "MainCity";
             List<string> backpngs = new List<string>() { "Back_6" ,"Back_7",  "Back_11", "Back_13", "Back_14", "Back_15"};
             int index = RandomHelper.RandomNumber(0, backpngs.Count);
@@ -110,6 +121,7 @@ namespace ET
 
             self.PassTime = 0f;
             self.ChapterId = sceneTypeEnum == (int)SceneTypeEnum.CellDungeon ? chapterId : 0;
+            self.InitFinish = true;
         }
 
         public static List<string> GetMonstersModelAndEffect(this UILoadingComponent self,  List<int> monsterIds)
@@ -266,6 +278,7 @@ namespace ET
             self.text.text = $"{(int)(progress * 100)}%";
         }
 
+
         public static void  UpdateMainUI(this UILoadingComponent self, int sceneTypeEnum)
         {
             Scene zoneScene = self.ZoneScene();
@@ -380,10 +393,16 @@ namespace ET
 
     public class UILoadingComponentUpdateSystem : UpdateSystem<UILoadingComponent>
     {
+
         public override  void Update(UILoadingComponent self)
         {
             try
             {
+                if (!self.InitFinish)
+                {
+                    return;
+                }
+
                 SceneManagerComponent sceneManagerComponent = Game.Scene.GetComponent<SceneManagerComponent>();
                 SceneAssetRequest sceneAssetRequest = sceneManagerComponent.SceneAssetRequest;
                 if (sceneAssetRequest == null)
