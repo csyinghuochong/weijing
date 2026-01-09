@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -212,18 +213,25 @@ namespace ET
             }
             if (self.PayType == PayTypeEnum.QuDaoPay)
             {
-                //EventType.QuDaoOnPay.Instance.ZoneScene = self.ZoneScene();
-                //AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                //UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                //string payinfo = $"{rechargeNumber}_{accountInfoComponent.CurrentRoleId}_{userInfoComponent.UserInfo.Lv}_{userInfoComponent.UserInfo.Name}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{sendChatResponse.Message}"; 
-                //EventType.QuDaoOnPay.Instance.PayInfo = payinfo;
-                //EventSystem.Instance.PublishClass(EventType.QuDaoOnPay.Instance);
-
-                //test-----------------------------------------------------------
                 EventType.QuDaoOnPay.Instance.ZoneScene = self.ZoneScene();
                 AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
                 UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                string payinfo = $"{1}_{accountInfoComponent.CurrentRoleId}_{userInfoComponent.UserInfo.Lv}_{userInfoComponent.UserInfo.Name}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{sendChatResponse.Message}";
+
+                List<string> accountlist = new List<string>
+                {
+                    "15_2025052806213340",
+                    "17_9e1d570e82b76dee",
+                };
+                bool isqudao = accountlist.Contains(accountInfoComponent.Account);
+                string payinfo = string.Empty;
+                if (isqudao)
+                {
+                    payinfo = $"{1}_{accountInfoComponent.CurrentRoleId}_{userInfoComponent.UserInfo.Lv}_{userInfoComponent.UserInfo.Name}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{sendChatResponse.Message}";
+                }
+                else
+                {
+                    payinfo = $"{rechargeNumber}_{accountInfoComponent.CurrentRoleId}_{userInfoComponent.UserInfo.Lv}_{userInfoComponent.UserInfo.Name}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{sendChatResponse.Message}";
+                }
                 EventType.QuDaoOnPay.Instance.PayInfo = payinfo;
                 EventSystem.Instance.PublishClass(EventType.QuDaoOnPay.Instance);
             }
