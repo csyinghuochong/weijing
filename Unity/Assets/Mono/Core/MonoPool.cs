@@ -25,7 +25,7 @@ namespace ET
                 return Activator.CreateInstance(type);
             }
 
-            if (queue.Count == 0 || NoRecovery)
+            if (queue.Count == 0 )
             {
                 return Activator.CreateInstance(type);
             }
