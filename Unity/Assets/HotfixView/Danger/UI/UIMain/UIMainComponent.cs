@@ -1255,7 +1255,7 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             if (GlobalHelp.GetPlatform() == 1 && !string.IsNullOrEmpty(accountInfoComponent.TaprepRequest))
             {
-                TapSDKHelper.TapReqEvent(accountInfoComponent.TaprepRequest, 3, addNumber + "").Coroutine();
+                TapSDKHelper.TapReqEvent(accountInfoComponent.TaprepRequest, 3, addNumber * 100 + "").Coroutine();
             }
 #endif
         }
