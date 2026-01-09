@@ -13,6 +13,7 @@ namespace ET
             if (message.UpdateMode == 1)
             {
                 //宠物仓库红点提示
+                session.ZoneScene().GetComponent<ReddotComponent>().AddReddont(ReddotType.PetBagAdd);
 
                 List<KeyValuePair> oldPetSkin = session.ZoneScene().GetComponent<PetComponent>().GetPetSkinCopy();
                 //抛出事件。 刷新UI

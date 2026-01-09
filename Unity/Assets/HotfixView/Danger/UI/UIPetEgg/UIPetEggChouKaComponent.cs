@@ -68,6 +68,11 @@ namespace ET
             self.DiamondChouKeTen = rc.Get<GameObject>("DiamondChouKeTen");
 
             self.OnLanguageUpdate();
+
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.RegisterReddot(ReddotType.PetHeXinAdd, self.Reddot_PetHeXinAdd);
+            redPointComponent.RegisterReddot(ReddotType.PetBagAdd, self.Reddot_PetBagAdd);
+
             DataUpdateComponent.Instance.AddListener(DataType.LanguageUpdate, self);
             
             self.UpdateMoney();
@@ -90,12 +95,31 @@ namespace ET
                 }
             }
             self.AssetPath = null;
+
+            ReddotViewComponent redPointComponent = self.ZoneScene()?.GetComponent<ReddotViewComponent>();
+            if(redPointComponent != null)
+            {
+                redPointComponent.UnRegisterReddot(ReddotType.PetHeXinAdd, self.Reddot_PetHeXinAdd);
+                redPointComponent.UnRegisterReddot(ReddotType.PetBagAdd, self.Reddot_PetBagAdd);
+            }
             
+
             DataUpdateComponent.Instance.RemoveListener(DataType.LanguageUpdate, self);
         }
     }
     public static class UIPetEggChouKaComponentSystem
     {
+
+        public static void Reddot_PetHeXinAdd(this UIPetEggChouKaComponent self, int num)
+        {
+            self.Btn_RolePetHeXin.transform.Find("Reddot").gameObject.SetActive(num > 0);
+        }
+
+        public static void Reddot_PetBagAdd(this UIPetEggChouKaComponent self, int num)
+        {
+            self.Btn_RolePetBag.transform.Find("Reddot").gameObject.SetActive(num > 0);
+        }
+
         public static void OnLanguageUpdate(this UIPetEggChouKaComponent self)
         {
             self.Btn_PetEggLucklyExplain.SetActive(GameSettingLanguge.Language == 0);
@@ -125,6 +149,7 @@ namespace ET
         
         public static void OnBtn_RolePetBag(this UIPetEggChouKaComponent self)
         {
+            self.ZoneScene().GetComponent<ReddotComponent>().RemoveReddont(ReddotType.PetBagAdd);
             UIHelper.Create(self.ZoneScene(), UIType.UIRolePetBag).Coroutine();
         }
         public static void OnPetEggLucklyExplainBtn(this UIPetEggChouKaComponent self)
@@ -180,6 +205,7 @@ namespace ET
 
         public static  void OnBtn_RolePetHeXin(this UIPetEggChouKaComponent self)
         {
+            self.ZoneScene().GetComponent<ReddotComponent>().RemoveReddont(ReddotType.PetHeXinAdd);
             UIHelper.Create( self.ZoneScene(), UIType.UIPetHeXinHeCheng ).Coroutine();
         }
 

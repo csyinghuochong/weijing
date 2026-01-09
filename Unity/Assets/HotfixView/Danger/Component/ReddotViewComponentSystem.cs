@@ -22,6 +22,8 @@ namespace ET
                 new ReddotData { key = ReddotType.Welfare, children = new int[3] { ReddotType.WelfareLogin, ReddotType.WelfareTask, ReddotType.WelfareDraw } },
                 new ReddotData { key = ReddotType.Activity, children = new int[1] { ReddotType.SingleRecharge } },
                 new ReddotData { key = ReddotType.NewYear , children = new int[1] { ReddotType.ActivityV1Task } },
+                new ReddotData { key = ReddotType.PetHeXinAdd, children = new int[0] {  } },
+                new ReddotData { key = ReddotType.PetBagAdd, children = new int[0] {  } },
             };
 
             self.Init(reddot);

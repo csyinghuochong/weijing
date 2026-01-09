@@ -261,6 +261,12 @@ namespace ET
         //限时活动
         public const int NewYear = 900;
         public const int ActivityV1Task = 901;
+
+        //有新的宠物之核
+        public const int PetHeXinAdd = 1000;
+
+        //宠物背包有新的宠物
+        public const int PetBagAdd = 1100;
     }
 
     public enum GameSettingEnum
