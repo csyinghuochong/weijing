@@ -12,6 +12,8 @@ namespace ET
 
             if (message.UpdateMode == 1)
             {
+                //宠物仓库红点提示
+
                 List<KeyValuePair> oldPetSkin = session.ZoneScene().GetComponent<PetComponent>().GetPetSkinCopy();
                 //抛出事件。 刷新UI
                 EventType.RolePetAdd.Instance.ZoneScene = session.ZoneScene();
