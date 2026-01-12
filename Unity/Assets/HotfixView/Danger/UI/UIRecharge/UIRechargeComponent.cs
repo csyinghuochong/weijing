@@ -221,6 +221,7 @@ namespace ET
                 {
                     "15_2025052806213340",
                     "17_9e1d570e82b76dee",
+                    "23_757798837",
                 };
                 bool isqudao = accountlist.Contains(accountInfoComponent.Account);
                 string payinfo = string.Empty;
