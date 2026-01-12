@@ -286,6 +286,12 @@ namespace ET
 
         public static bool ActivityV1Reward(this TaskComponent self)
         {
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            if (!activityComponent.ActivityV1Info.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Task))
+            {
+                return false;
+            }
+
             for (int i = 0; i < self.TaskCountryList.Count; i++)
             {
                 TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
