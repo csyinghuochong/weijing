@@ -186,13 +186,14 @@ namespace ET
             {
                 SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get((int)skillHandler.OnlyHideBuffActionUnitID[0]);
 
-                if (skillBuffConfig.DamgePro > 0)
-                {
-                    buffDamgePro = (float)skillBuffConfig.DamgePro;
-                }
 
                 if (!skillHandler.OnlyHideBuffActionUnitID.Contains(defendUnit.Id))
                 {
+                    if (skillBuffConfig.DamgePro > 0)
+                    {
+                        buffDamgePro = (float)skillBuffConfig.DamgePro;
+                    }
+
                     skillHandler.OnlyHideBuffActionUnitID.Add(defendUnit.Id);
 
                     BuffData buffData_2 = new BuffData();
