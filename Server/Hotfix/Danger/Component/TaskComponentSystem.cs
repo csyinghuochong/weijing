@@ -1787,8 +1787,13 @@ namespace ET
             self.UpdateActivityWeekTask(notice);
         }
 
-        public static void InitActivityV1Task(this TaskComponent self)
+        public static void InitActivityV1Task(this TaskComponent self, bool notice = false)
         {
+            //if (!ConfigData.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Task))
+            //{
+            //    return;
+            //}
+
             bool havetask = false;
             for (int i = self.TaskCountryList.Count - 1; i >= 0; i--)
             {
@@ -1813,6 +1818,14 @@ namespace ET
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
+            }
+
+            if (notice)
+            {
+                M2C_TaskCountryUpdate m2C_TaskUpdate = self.m2C_TaskCountryUpdate;
+                m2C_TaskUpdate.UpdateMode = 2;
+                m2C_TaskUpdate.TaskCountryList = self.TaskCountryList;
+                MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
             }
         }
 
@@ -1898,9 +1911,14 @@ namespace ET
             }
 
             List<int> taskCountryList = TaskHelper.GetActivityV1Task(unit, 120);
-            for (int i = 0; i < taskCountryList.Count; i++)
+
+            //if (ConfigData.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Task))
             {
-                self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
+
+                for (int i = 0; i < taskCountryList.Count; i++)
+                {
+                    self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
+                }
             }
 
             if (ConfigData.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_WeeklyTask))

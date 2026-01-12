@@ -29,6 +29,12 @@ namespace ET
                 taskComponent.InitActivityWeekTask(true);
             }
 
+            //if (ConfigData.V1ActivityList.Contains(ActivityConfigHelper.ActivityV1_Task)
+            //    && taskComponent.GetTaskCountryByType(TaskCountryType.ActivityV1).Count == 0)
+            //{
+            //    taskComponent.InitActivityV1Task(true);
+            //}
+
             response.ReceiveIds = activityComponent.ActivityReceiveIds;
             response.LastSignTime = activityComponent.LastSignTime;
             response.TotalSignNumber = activityComponent.TotalSignNumber;
