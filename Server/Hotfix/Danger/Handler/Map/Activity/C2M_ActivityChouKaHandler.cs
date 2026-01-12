@@ -9,8 +9,6 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_ActivityChouKaRequest request, M2C_ActivityChouKaResponse response, Action reply)
         {
-            Log.Error($"C2M_ActivityChouKaRequest活动作弊:{unit.DomainZone()}  {unit.Id}");
-
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (bagComponent.GetBagLeftCell() < 1)
             {

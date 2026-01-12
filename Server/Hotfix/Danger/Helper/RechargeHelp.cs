@@ -156,6 +156,51 @@ namespace ET
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scene"></param>
+        /// <param name="userId"></param>
+        /// <param name="rechargeNumber"></param>
+        /// <param name="orderInfo"></param>
+        /// <param name="rechargeType">//0充值钻石   1购买周卡</param>
+        /// <returns></returns>
+        public static async ETTask OnPaySucessToUnit_2(Scene scene, long userId, int rechargeNumber, string orderInfo, int rechargeType)
+        {
+            Log.Warning($"充值OnPaySucess PlayerState.Game: {scene.DomainZone()}   {userId}  rechargeNumber:{rechargeNumber}", true);
+            G2M_RechargeResultRequest r2M_RechargeRequest = new G2M_RechargeResultRequest() { RechargeNumber = rechargeNumber, OrderInfo = orderInfo, RechargeType = rechargeType };
+            M2G_RechargeResultResponse m2G_RechargeResponse = (M2G_RechargeResultResponse)await ActorLocationSenderComponent.Instance.Call(userId, r2M_RechargeRequest);
+
+            if (m2G_RechargeResponse.Error != ErrorCode.ERR_Success)
+            {
+                Log.Warning($"充值OnPaySucess PlayerState.None: {scene.DomainZone()}   {userId}  rechargeNumber:{rechargeNumber}");
+                //直接存数据库
+                //int number = ComHelp.GetDiamondNumber(rechargeNumber);
+                long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
+                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userId, Component = DBHelper.NumericComponent });
+                NumericComponent numericComponent = (d2GGetUnit.Component as NumericComponent);
+                numericComponent.ApplyChange(null, NumericType.RechargeBuChang, rechargeNumber, 1, false);
+                numericComponent.ApplyValue(null, NumericType.RechargeType, rechargeType, 0, false);
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent()
+                {
+                    UnitId = userId,
+                    EntityByte = MongoHelper.ToBson(numericComponent),
+                    ComponentType = DBHelper.NumericComponent
+                });
+
+                d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userId, Component = DBHelper.UserInfoComponent });
+                UserInfoComponent userInfoComponent = (d2GGetUnit.Component as UserInfoComponent);
+
+                long accountId = userInfoComponent.UserInfo.AccInfoID;
+                SendToAccountCenter(accountId, userId, rechargeNumber, orderInfo).Coroutine();
+            }
+
+            //&& gateUnitInfo.ClientSession!=null
+            await ETTask.CompletedTask;
+        }
+
+
         /// <summary>
         /// /
         /// </summary>
