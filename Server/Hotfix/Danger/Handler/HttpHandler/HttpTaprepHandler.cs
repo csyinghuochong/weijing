@@ -68,7 +68,7 @@ namespace ET
     {
         public async ETTask Handle(Entity entity, HttpListenerContext context)
         {
-            Console.WriteLine($"HttpTapConsoleHandler:  {context.Request.RawUrl}");
+            //Console.WriteLine($"HttpTapConsoleHandler:  {context.Request.RawUrl}");
             System.Collections.Specialized.NameValueCollection queryString = context.Request.QueryString;
             string console = queryString["console"] ?? string.Empty;
             if (!string.IsNullOrEmpty(console))
