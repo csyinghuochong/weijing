@@ -125,7 +125,7 @@ namespace ET
                 }
 
                 long instanceid = self.InstanceId;
-                Log.ILog.Debug($"重连请求11！！ {self.Relink}   {number}");
+                Log.ILog.Debug($"重连请求！！ {self.Relink}   {number}");
                 if (TimerComponent.Instance == null || !self.Relink)
                 {
                     break;
