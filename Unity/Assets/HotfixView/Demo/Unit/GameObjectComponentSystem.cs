@@ -964,7 +964,9 @@ namespace ET
                 return;
             }
             Unit unit = self.GetParent<Unit>();
-            if (unit.Id == UnitHelper.GetMyUnitId(unit.ZoneScene()))
+            long mainid = UnitHelper.GetMyUnitId(unit.ZoneScene());
+            long masterid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+            if (unit.Id == mainid || masterid == mainid)
             {
                 // 身体隐形
                 if (self.Material != null)
@@ -1025,10 +1027,9 @@ namespace ET
         public static void ExitStealth(this GameObjectComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-
-            Log.ILog.Debug($"ExitStealth: {unit.Id}");
-
-            if (unit.Id == UnitHelper.GetMyUnitId(unit.ZoneScene()))
+            long mainid = UnitHelper.GetMyUnitId(unit.ZoneScene());
+            long masterid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+            if (unit.Id == mainid || masterid == mainid)
             {
                 //退出隐身
                 if (self.Material != null)

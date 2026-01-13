@@ -632,6 +632,17 @@ namespace ET
             {
                 self.BuffAddSyncTime(buffHandler.BuffEndTime, skillBuffConfig);
             }
+
+            if (addBufStatus == 1 && unit.Type == UnitType.Player
+                && skillBuffConfig.Id >= 92041030 && skillBuffConfig.Id <= 92041034)
+            {
+                long rolePetId = unit.GetComponent<PetComponent>().GetFightPetId();
+                Unit unitpet = unit.GetParent<UnitComponent>().Get(rolePetId);
+                if (unitpet != null)
+                {
+                    unitpet.GetComponent<BuffManagerComponent>().BuffFactory(buffData, from, skillHandler, notice);
+                }
+            }
         }
 
         public static void BuffAddSyncTime(this BuffManagerComponent self, long endTime, SkillBuffConfig skillBuffConfig)
