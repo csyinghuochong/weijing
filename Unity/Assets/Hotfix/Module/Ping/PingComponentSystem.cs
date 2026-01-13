@@ -78,7 +78,6 @@ namespace ET
                 EventType.BeginRelink.Instance.ErrorCode = 0;
                 if (self.GetParent<Session>() != null)
                 {
-                    Log.Debug("self.GetParent<Session>() != null");
                     EventType.BeginRelink.Instance.ErrorCode = self.GetParent<Session>().Error;
                 }
                 Game.EventSystem.PublishClass(EventType.BeginRelink.Instance);
