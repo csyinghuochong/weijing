@@ -111,10 +111,21 @@ namespace ET
             Log.ILog.Debug($"重连请求！！");
             UIHelper.Create(self.DomainScene(), UIType.UIRelink).Coroutine();
             PlayerPrefsHelp.RecordRelinkMessage($"开始重连！！");
-            for (int i = 0; i < 5; i++)
+
+            int number = 0;
+            while(true)
             {
+                number++;
+                if (number >= 5)
+                {
+                    UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
+                    EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
+                    Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+                    break;
+                }
+
                 long instanceid = self.InstanceId;
-                Log.ILog.Debug($"重连请求11！！ {self.Relink}");
+                Log.ILog.Debug($"重连请求11！！ {self.Relink}   {number}");
                 if (TimerComponent.Instance == null || !self.Relink)
                 {
                     break;
@@ -131,13 +142,6 @@ namespace ET
                 }
                 Log.ILog.Debug($"重连请求22！！ {self.Relink}");
                 await self.SendLogin();
-                if(i == 4)
-                {
-                    UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
-                    EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
-                    Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
-                    break;
-                }
             }
         }
 
