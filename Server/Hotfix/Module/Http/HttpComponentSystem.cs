@@ -116,7 +116,6 @@ namespace ET
 
                 if (self.dispatcher.TryGetValue(context.Request.Url.AbsolutePath, out handler))
                 {
-                    Console.WriteLine($"HttpComponent_Handle Sucess: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())} {context.Request.Url.AbsolutePath}");
                     await handler.Handle(self.Domain, context);
                 }
                 else
