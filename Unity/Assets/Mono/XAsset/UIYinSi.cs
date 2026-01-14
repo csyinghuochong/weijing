@@ -57,7 +57,6 @@ public class UIYinSi : MonoBehaviour
             MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
             //string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
             string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
-
             if (platform == 100)
             {
                 dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
