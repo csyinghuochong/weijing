@@ -41,10 +41,8 @@ namespace ET
         }
 
 
-        public static void ShowTextList(GameObject textItem,int platForm)
+        public static void ShowTextList(GameObject textItem,string pageHtml)
         {
-            string pageHtml = GetYonHuText(platForm);
-
             string tempstr = string.Empty;
             string leftValue = pageHtml;
             int indexlist = pageHtml.IndexOf('\n');
@@ -121,6 +119,33 @@ namespace ET
                 Log.Debug(webEx.ToString());
             }
             return GameSettingLanguge.LoadLocalization("服务器维护中！");
+        }
+
+        public static string GetYingSiText(int platform)
+        {
+            try
+            {
+                WebClient MyWebClient = new WebClient();
+                MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
+                                                                             //string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
+                string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
+
+                if (platform == 100)
+                {
+                    dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
+                    Log.ILog.Debug($"platform == 100  yinsi6");
+                }
+
+                Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
+                string pageHtml = Encoding.UTF8.GetString(pageData);
+                return pageHtml;
+            }
+
+            catch (WebException webEx)
+            {
+                Log.Debug(webEx.ToString());
+            }
+            return "服务器维护中！";
         }
 
         public static string GetYonHuText(int platform)

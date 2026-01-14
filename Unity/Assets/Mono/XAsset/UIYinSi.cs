@@ -57,6 +57,7 @@ public class UIYinSi : MonoBehaviour
             MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
             //string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
             string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
+
             if (platform == 100)
             {
                 dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
@@ -75,11 +76,8 @@ public class UIYinSi : MonoBehaviour
         return "服务器维护中！";
     }
 
-    public void ShowYonghuTextList(GameObject textItem)
+    public void ShowYonghuTextList(GameObject textItem, string pageHtml)
     {
-        int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
-        string pageHtml = GetYongHuText(platform);
-
         string tempstr = string.Empty;
         string leftValue = pageHtml;
         int indexlist = pageHtml.IndexOf('\n');
@@ -142,22 +140,30 @@ public class UIYinSi : MonoBehaviour
     }
 
 
-    private bool LoadYinSi = false;
+    private bool LoadYonghu = false;
     private void ShowYonghuText()
     {
         this.YongHuXieYi.SetActive(true);
-        if (!LoadYinSi)
+        if (!LoadYonghu)
         {
-            LoadYinSi = true;
-            ShowYonghuTextList(this.TextYongHu);
+            LoadYonghu = true;
+            int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
+            string pageHtml = GetYongHuText(platform);
+            ShowYonghuTextList(this.TextYongHu, pageHtml);
         }
     }
 
-    private bool LoadYonghu = false;
+    private bool LoadYinsiNew = false;
     private void ShowYinsiNew() 
     {
-        int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
-        this.TextYinSiNew.text = GetYingSiText(platform);
+        this.YinSiXieYi.SetActive(true);
+        if (!LoadYinsiNew)
+        {
+            LoadYinsiNew = true;
+            int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
+            string pageHtml = GetYingSiText(platform);
+            ShowYonghuTextList(this.TextYinSiNew.gameObject, pageHtml);
+        }
     }
 
 
@@ -168,9 +174,13 @@ public class UIYinSi : MonoBehaviour
 
         this.YongHuXieYi = rc.Get<GameObject>("YongHuXieYi");
         this.YinSiXieYi = rc.Get<GameObject>("YinSiXieYi");
-        this.TextYinSiNew = rc.Get<GameObject>("TextYinSiNew").GetComponent<Text>();
-
+       
+        GameObject textyinsinew = rc.Get<GameObject>("TextYinsiNew");
+        this.TextYinSiNew = textyinsinew.GetComponent<Text>();
+        this.TextYinSiNew.gameObject.SetActive(false);
         this.ShowYinsiNew();
+        this.YinSiXieYi.SetActive(false);
+
         this.TextButton_2 = rc.Get<GameObject>("TextButton_2");
         this.TextButton_1 = rc.Get<GameObject>("TextButton_1");
         this.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { this.YinSiXieYi.SetActive(true); });
@@ -198,7 +208,7 @@ public class UIYinSi : MonoBehaviour
 
         this.AgreeNumber = 0;
 
-        if (PlayerPrefs.GetString("UIYinSi_0111").Equals("1"))
+        if (PlayerPrefs.GetString("UIYinSi_0112").Equals("1"))
         {
             Log.ILog.Debug($"UIYinSi == 1: StartUpdate");
             this.gameObject.SetActive(false);
@@ -247,7 +257,7 @@ public class UIYinSi : MonoBehaviour
         int needAgreeNumber = 2;
         if (this.AgreeNumber >= needAgreeNumber || permissons == "1_1")
         {
-            PlayerPrefs.SetString("UIYinSi_0111", "1");
+            PlayerPrefs.SetString("UIYinSi_0112", "1");
             Log.ILog.Debug($"onRequestPermissionsResult: StartUpdate");
 
             GameObject.Find("Global").GetComponent<Init>().TikTokInit();

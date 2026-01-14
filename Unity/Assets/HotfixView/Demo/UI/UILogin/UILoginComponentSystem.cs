@@ -194,6 +194,7 @@ namespace ET
 				self.TextButton_2 = rc.Get<GameObject>("TextButton_2");
 				self.TextButton_1 = rc.Get<GameObject>("TextButton_1");
 				self.TextYinsiNew = rc.Get<GameObject>("TextYinsiNew").GetComponent<Text>();
+				self.TextYinsiNew.gameObject.SetActive(false);
                 self.YongHuXieYi.SetActive(false);
 				self.YinSiXieYi.SetActive(false);
 
@@ -215,7 +216,9 @@ namespace ET
 				self.YinSiXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(false); });
 
 				self.TextYongHuItem.SetActive(false);
-                UILoginHelper.ShowTextList(self.TextYongHuItem, GlobalHelp.GetPlatform());
+                int platForm = GlobalHelp.GetPlatform();
+                string pageHtml = UILoginHelper.GetYonHuText(platForm);
+                UILoginHelper.ShowTextList(self.TextYongHuItem, pageHtml);
 
                 self.LoginErrorNumber = 0;
 				self.Loading = rc.Get<GameObject>("Loading");
@@ -249,8 +252,11 @@ namespace ET
 				self.AccountInfoComponent.BigVersion = bigversion;
 				self.AccountInfoComponent.UnityVersion = Application.unityVersion;
 
+             
+                pageHtml = self.GetYingSiTextNew(platForm);
+                UILoginHelper.ShowTextList(self.TextYinsiNew.gameObject, pageHtml);
+
                 //Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
-                self.ShowYinsiNew();
                 self.InitLoginType();
                 self.RequestAllServer().Coroutine();
 
@@ -336,14 +342,6 @@ namespace ET
                 Log.Debug(webEx.ToString());
             }
             return "服务器维护中！";
-        }
-
-
-        public static  void ShowYinsiNew(this UILoginComponent self)
-        {
-            int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
-
-            self.TextYinsiNew.text = self.GetYingSiTextNew(platform);
         }
 
 

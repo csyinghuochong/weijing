@@ -43,6 +43,12 @@ namespace ET
                     newAccount.PlayerInfo.RealName = 1;
                     newAccount.PlayerInfo.IdCardNo = string.Empty;
                 }
+                if (request.LoginType == LoginTypeEnum.QuDao)
+                {
+                    newAccount.PlayerInfo.Name = "loginType_" + request.LoginType;
+                    newAccount.PlayerInfo.RealName = 1;
+                    newAccount.PlayerInfo.IdCardNo = string.Empty;
+                }
                 //if (request.LoginType == LoginTypeEnum.TikTokGuanFu)
                 //{
                 //    newAccount.PlayerInfo.Name = "loginType_" + request.LoginType;
