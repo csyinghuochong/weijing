@@ -494,12 +494,7 @@ namespace ET
 
             float posy_start = pathfind[0].y;
             float posy_end = pathfind[pathfind.Count - 1].y;
-
-            if (Math.Abs(posy_start - posy_end) > 0.5f)
-            {
-                Log.Debug(("111"));
-            }
-
+            Log.Debug($"posy_start - posy_end:  {Math.Abs(posy_start - posy_end) }");
             for (int i = 0; i < pathfind.Count; i++)
             {
                 // 第一个点和最后一个点不处理
