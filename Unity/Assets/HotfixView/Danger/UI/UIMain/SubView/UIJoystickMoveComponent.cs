@@ -387,7 +387,7 @@ namespace ET
                     unit.Rotation = Quaternion.Euler(0, self.direction, 0);
                     return -1;
                 }
-                self.ShowPathPoints(pathfind);
+   
                 newv3 = pathfind[pathfind.Count - 1];
                 distance = Vector3.Distance(newv3, unit.Position);
                 float needTime = distance / speed;
@@ -450,21 +450,6 @@ namespace ET
             return 0;
         }
 
-        public static void ShowPathPoints(this UIJoystickMoveComponent self, List<Vector3> pathfind)
-        {
-            Transform transform = GameObject.Find("Global/Unit/Capsule").transform;
-            for (int i = 0; i < pathfind.Count; i++ )
-            {
-                transform.GetChild(i).transform.localPosition = pathfind[i];
-            }
-
-            for (int i = pathfind.Count; i < transform.childCount; i++)
-            {
-                transform.GetChild(i).transform.localPosition = Vector3.zero;
-            }
-
-        }
-
         public static void ShowObstructTip(this UIJoystickMoveComponent self, int monsterId)
         {
             if (Time.time - self.LastShowTip < 1f)
@@ -487,13 +472,13 @@ namespace ET
                 targetPosi = targetPosi + rotation * Vector3.forward * 0.2f;
                 RaycastHit hit;
 
-                Physics.Raycast(targetPosi + new Vector3(0f, 2f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
+                Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
                 if (hit.collider != null)
                 {
                     break;
                 }
 
-                Physics.Raycast(targetPosi + new Vector3(0f, 2f, 0f), Vector3.down, out hit, 20, self.MapLayer);
+                Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.MapLayer);
                 if (hit.collider == null)
                 {
                     break;
