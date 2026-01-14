@@ -320,6 +320,12 @@ namespace ET
                 MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
                                                                              //string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
                 string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
+                if (platform == 100)
+                {
+                    dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
+                    Log.ILog.Debug($"platform == 100  yinsi6");
+                }
+
                 Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
                 string pageHtml = Encoding.UTF8.GetString(pageData);
                 return pageHtml;
@@ -645,18 +651,19 @@ namespace ET
                     break;
 				case LoginTypeEnum.QuDao:
                     self.ThirdLoginBg.SetActive(false);
-#if !UNITY_EDITOR
-                    EventType.QuDaoLoginRequest.Instance.ZoneScene = self.ZoneScene();
-                    EventType.QuDaoLoginRequest.Instance.AccesstokenHandler = (string token, string uid) => { self.OnRecvQuDaoUid(token, uid).Coroutine(); };
-                    EventSystem.Instance.PublishClass(EventType.QuDaoLoginRequest.Instance);
-#else
-                    self.OnRecvQuDaoUid("token", "0_tangchunguang").Coroutine();
-#endif
+					if (GlobalHelp.IsEditorMode)
+					{
+                        self.OnRecvQuDaoUid("token", "0_tangchunguangc").Coroutine();
+                    }
+					else
+					{
+                        EventType.QuDaoLoginRequest.Instance.ZoneScene = self.ZoneScene();
+                        EventType.QuDaoLoginRequest.Instance.AccesstokenHandler = (string token, string uid) => { self.OnRecvQuDaoUid(token, uid).Coroutine(); };
+                        EventSystem.Instance.PublishClass(EventType.QuDaoLoginRequest.Instance);
+                    }
                     break;
 				case LoginTypeEnum.TikTok:
                     self.ThirdLoginBg.SetActive(false);
-
-
 					if (GlobalHelp.GetPlatform() == 5)
 					{
 						Log.ILog.Debug($"GlobalHelp.GetPlatform() == 5");

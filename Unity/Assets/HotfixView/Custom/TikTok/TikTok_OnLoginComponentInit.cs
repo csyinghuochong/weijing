@@ -51,7 +51,7 @@ namespace ET
             Log.ILog.Debug($"OnRecvQuDaoUid:{uid} ");
             self.Account.GetComponent<InputField>().text = uid;
             self.Password.GetComponent<InputField>().text = LoginTypeEnum.QuDao.ToString();
-
+            self.AccountInfoComponent.Age_Type = 100;
             C2A_QuDaoCheckUserInfor c2A_QuDao = new C2A_QuDaoCheckUserInfor() { token = access_token, uid = uid };
             Session accountSession = self.ZoneScene().GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(self.ServerInfo.ServerIp));
             A2C_QuDaoCheckUserInfor a2C_TikTokVerifyUser = (A2C_QuDaoCheckUserInfor)await accountSession.Call(c2A_QuDao);

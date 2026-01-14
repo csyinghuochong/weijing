@@ -421,6 +421,15 @@ namespace ET
 #endif
             }
 
+			//渠道包
+			if (this.Platform == 100)
+			{
+                Log.ILog.Debug($"QuickSdkInit::{this.Platform}");
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+                jo.Call("QuickSdkInit", "QuickSdkInit");
+#endif
+            }
         }
 
         public void TikTokLogin()
