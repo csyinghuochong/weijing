@@ -43,13 +43,13 @@
   <ItemGroup>
     <None Include="Assets\TapTap\AntiAddiction\Plugins\AntiAddiction.asmdef" />
     <Reference Include="UnityEngine">
-      <HintPath>D:\Soft\Unity\Unity Hub\2022.3.60f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+      <HintPath>D:\unityhub\2022.3.60f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>D:\Soft\Unity\Unity Hub\2022.3.60f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>D:\unityhub\2022.3.60f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>D:\Soft\Unity\Unity Hub\2022.3.60f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
+      <HintPath>D:\unityhub\2022.3.60f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
