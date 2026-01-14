@@ -417,6 +417,13 @@ namespace ET
             WriteLogList(new List<string>() { log }, filePath, true);
         }
 
+        public static void NoticeInfo(string log, string lognname)
+        {
+            string filePath = $"../Logs/{lognname}.txt";
+            string[] lofos = log.Split('|');
+            WriteLogList(new List<string>(lofos) , filePath, false);
+        }
+
         public static void RelinkInfo(string log)
         {
             //log = TimeHelper.DateTimeNow().ToString() + " " + log;
