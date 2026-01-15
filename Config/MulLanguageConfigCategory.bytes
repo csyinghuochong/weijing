@@ -4435,3 +4435,15 @@ Pet Bundle
 !��订单奖励"Order Rewards
  ��提交订单"Submit Order
 ,��订单剩余时间:{0}"Time Left: {0}
+��	幼苗期"Seedling
+��	成长期"Growth
+��	盛开期"Bloom
+��	成长值"Growth
+����亲爱的勇士，这次我们需要帮助这棵植物快快成长，你在世界各地可以拾取到水或者肥料道具可以在这里使用帮助植物尽快成长哦！"nHelp this plant grow! Collect water and fertilizer from your travels and use them here to speed up its growth.
+&��奖励说明"Reward Description
+&��预计增加"Estimated Increase
+>��预计增加{0}点成长值"Estimated Increase{0}Growth
+ ��照顾果树"Tend Orchard
+���E提示：根据每次照顾获得成长值匹配不同区间的奖励"9Tip: Care to earn growth points and claim tiered rewards.
+x��3提示：果树成长到不同阶段会发送奖励"=Rewards granted as fruit trees grow through different stages.
+��栏位"Field

@@ -103,6 +103,7 @@ namespace ET
             self.InitUIRewardDescList();
             self.UpdateInfo();
             self.UpdateTextGrowNumber();
+            self.UpdateText_AddNum();
         }
     }
 
@@ -116,7 +117,8 @@ namespace ET
                 GameObject itemSpace = GameObject.Instantiate(self.UIStageDescItem);
 
                 Text text = itemSpace.transform.Find("TextGrowValue").GetComponent<Text>();
-                text.text = $"{costitem.Name} {costitem.GrowthValue}";
+                string costname = GameSettingLanguge.LoadLocalization(costitem.Name);
+                text.text = $"{costname} {costitem.GrowthValue}";
 
                 GameObject ItemRewardList = itemSpace.transform.Find("ItemRewardList").gameObject;
                 UICommonHelper.ShowItemList(costitem.Reward, ItemRewardList, self);
@@ -263,7 +265,7 @@ namespace ET
             self.Tree_Icon.sprite = sp;
 
             self.TextGrowNumber.text = activityComponent.ActivityV1Info.GrowthTreeValue.ToString();
-            self.TextTreeName.text = activityTreeStageItem.Name;
+            self.TextTreeName.text = GameSettingLanguge.LoadLocalization(activityTreeStageItem.Name) ;
 
 
             float progress = activityComponent.ActivityV1Info.GrowthTreeValue * 1f / activityTreeStageItem.GrowthValue;
@@ -289,9 +291,9 @@ namespace ET
                 lower += usenum * costitemcomponent.Item1;
                 upper += usenum * costitemcomponent.Item2;
             }
-            string str1 = GameSettingLanguge.LoadLocalization("预计增加");
-            string str2 = GameSettingLanguge.LoadLocalization("点成长值");
-            self.Text_AddNum.text = $"{str1}{lower}-{upper}{str2}";
+            string str1 = GameSettingLanguge.LoadLocalization("预计增加{0}点成长值");
+            string str2 = $"{lower}-{upper}";
+            self.Text_AddNum.text = string.Format(str1, str2);
         }
 
         public static void UpdateUIGiveItemList(this UIActivityV1GrowthTreeComponent self)
