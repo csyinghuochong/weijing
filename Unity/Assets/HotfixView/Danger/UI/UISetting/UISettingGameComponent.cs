@@ -14,6 +14,7 @@ namespace ET
         public GameObject Page_2;
         public GameObject Page_3;
 
+        public GameObject ButtonYinSi;
         public GameObject JiaYuanSet;
         public GameObject LanguageSet;
         public GameObject ZhuBoSet;
@@ -114,6 +115,10 @@ namespace ET
 
             self.RandomHorese = rc.Get<GameObject>("RandomHorese");
             self.RandomHorese.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(self.OnBtn_RandomHorese);
+
+            self.ButtonYinSi = rc.Get<GameObject>("ButtonYinSi");
+            self.ButtonYinSi.GetComponent<Button>().onClick.AddListener(self.OnButtonYinSi);
+            self.ButtonYinSi.SetActive( GlobalHelp.GetPlatform() == 100 || GlobalHelp.IsEditorMode);
 
             self.LenDepthSet = rc.Get<GameObject>("LenDepthSet");
             self.LenDepthSet.transform.GetComponentInChildren<Slider>().onValueChanged.AddListener((value) => { self.OnLenDepth(value);});
@@ -461,6 +466,11 @@ namespace ET
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.RandomHorese);
             self.RandomHorese.transform.Find("Image_Click").gameObject.SetActive(value == "0");
             self.SaveSettings(GameSettingEnum.RandomHorese, value == "0" ? "1" : "0");
+        }
+
+        public static void OnButtonYinSi(this UISettingGameComponent self)
+        {
+            Application.OpenURL("http://verification.weijinggame.com/weijing/yinsi6.txt");
         }
 
         public static void OnLenDepth(this UISettingGameComponent self, float value)

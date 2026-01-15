@@ -268,6 +268,8 @@ MonoBehaviour:
     gameObject: {fileID: 584276673617593933}
   - key: JiaYuanSet
     gameObject: {fileID: 2300705266759203611}
+  - key: ButtonYinSi
+    gameObject: {fileID: 3078356030330250018}
 --- !u!1 &109964
 GameObject:
   m_ObjectHideFlags: 0
@@ -7825,7 +7827,7 @@ GameObject:
   - component: {fileID: 4970124704345602837}
   - component: {fileID: 414412096923385812}
   m_Layer: 5
-  m_Name: GameMemory (1)
+  m_Name: ButtonYinSi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
