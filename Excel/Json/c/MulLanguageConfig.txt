@@ -3999,5 +3999,5 @@
 {"_t":"MulLanguageConfig","_id":300159,"Des":"","Chinese":"今日抽奖次数：","English":"Today's Draw Chances："},
 {"_t":"MulLanguageConfig","_id":300160,"Des":"","Chinese":"抽奖列表","English":"Prize Pool"},
 {"_t":"MulLanguageConfig","_id":300161,"Des":"","Chinese":"剩余积分：","English":"Remaining Points:"},
-{"_t":"MulLanguageConfig","_id":300162,"Des":"","Chinese":"累计消耗：","English":"Total Spent:"},
+{"_t":"MulLanguageConfig","_id":300162,"Des":"","Chinese":"累计消耗：","English":"Total Spent："},
 ]}
