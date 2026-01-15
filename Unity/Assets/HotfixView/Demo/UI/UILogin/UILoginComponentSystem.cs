@@ -1197,7 +1197,8 @@ namespace ET
 			}
 			if (string.IsNullOrEmpty(account) || string.IsNullOrEmpty(password))
 			{
-				FloatTipManager.Instance.ShowFloatTip("请选择登录方式");
+				int platform = GlobalHelp.GetPlatform();
+                FloatTipManager.Instance.ShowFloatTip(platform == 100 ? "请重新登陆" :  "请选择登录方式");
 				return;
 			}
 			if (TimeHelper.ClientNow() - self.LastLoginTime < 3000)
