@@ -3978,7 +3978,7 @@
 {"_t":"MulLanguageConfig","_id":300138,"Des":"","Chinese":"进阶之路系列任务","English":"Advanced Path Series Missions"},
 {"_t":"MulLanguageConfig","_id":300139,"Des":"","Chinese":"完成所有进阶之路后，可以将等级上限突破至75级！","English":"After completing all Advanced Path Missions, the level cap can be increased to 75!"},
 {"_t":"MulLanguageConfig","_id":300140,"Des":"","Chinese":"已达到最大等级","English":"Max Leve"},
-{"_t":"MulLanguageConfig","_id":300141,"Des":"","Chinese":"攻击型","English":"Attack Type"},
-{"_t":"MulLanguageConfig","_id":300142,"Des":"","Chinese":"恢复型","English":"Healing Type"},
-{"_t":"MulLanguageConfig","_id":300143,"Des":"","Chinese":"全能型","English":"All-Rounder"},
+{"_t":"MulLanguageConfig","_id":300141,"Des":"","Chinese":"攻击型","English":"AttackType"},
+{"_t":"MulLanguageConfig","_id":300142,"Des":"","Chinese":"恢复型","English":"HealingType"},
+{"_t":"MulLanguageConfig","_id":300143,"Des":"","Chinese":"全能型","English":"AllRounder"},
 ]}
