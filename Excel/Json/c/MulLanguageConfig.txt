@@ -3984,6 +3984,6 @@
 {"_t":"MulLanguageConfig","_id":300144,"Des":"","Chinese":"阶段说明","English":"Stage Description"},
 {"_t":"MulLanguageConfig","_id":300145,"Des":"","Chinese":"提示:当饱食度达到一定阶段时,会为每位贡献者赠送一个礼包哦！","English":"Hint: When Satiety reaches a certain level, a gift package will be given to each contributor!"},
 {"_t":"MulLanguageConfig","_id":300146,"Des":"","Chinese":"周任务","English":"Weekly Tasks"},
-{"_t":"MulLanguageConfig","_id":300147,"Des":"","Chinese":"1.在野外击败怪物时会掉落对应的活动道具。","English":"Defeating wild monsters drops event items."},
-{"_t":"MulLanguageConfig","_id":300148,"Des":"","Chinese":"2.喂食道具会获得不同的奖励哦！","English":"Feed items for different rewards!"},
+{"_t":"MulLanguageConfig","_id":300147,"Des":"","Chinese":"1.在野外击败怪物时会掉落对应的活动道具。","English":"1.Defeating wild monsters drops event items."},
+{"_t":"MulLanguageConfig","_id":300148,"Des":"","Chinese":"2.喂食道具会获得不同的奖励哦！","English":"2.Feed items for different rewards!"},
 ]}
