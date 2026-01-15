@@ -4000,4 +4000,11 @@
 {"_t":"MulLanguageConfig","_id":300160,"Des":"","Chinese":"抽奖列表","English":"Prize Pool"},
 {"_t":"MulLanguageConfig","_id":300161,"Des":"","Chinese":"剩余积分：","English":"Remaining Points:"},
 {"_t":"MulLanguageConfig","_id":300162,"Des":"","Chinese":"累计消耗：","English":"Total Spent："},
+{"_t":"MulLanguageConfig","_id":300163,"Des":"","Chinese":"订单","English":"Order"},
+{"_t":"MulLanguageConfig","_id":300164,"Des":"","Chinese":"成长树","English":"Growth Tree"},
+{"_t":"MulLanguageConfig","_id":300165,"Des":"","Chinese":"积分2","English":"Point2"},
+{"_t":"MulLanguageConfig","_id":300166,"Des":"","Chinese":"1.在野外击败怪物有概率掉落各种字。","English":"1.Wild monsters may drop various letters."},
+{"_t":"MulLanguageConfig","_id":300167,"Des":"","Chinese":"2.你可以选择是兑换单个或者兑换全部。","English":"2.Choose to redeem single or all."},
+{"_t":"MulLanguageConfig","_id":300168,"Des":"","Chinese":"3.单个字可以兑换10万金币。","English":"3.Exchange a single letter for 100,000 gold."},
+{"_t":"MulLanguageConfig","_id":300169,"Des":"","Chinese":"4.一套字可以兑换一个金条。","English":"4. Exchange a full set of letters for a gold bar."},
 ]}
