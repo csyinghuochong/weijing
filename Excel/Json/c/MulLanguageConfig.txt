@@ -3990,4 +3990,9 @@
 {"_t":"MulLanguageConfig","_id":300150,"Des":"","Chinese":"活动任务列表","English":"Activity Task List"},
 {"_t":"MulLanguageConfig","_id":300151,"Des":"","Chinese":"活动时间：","English":"Active Time:"},
 {"_t":"MulLanguageConfig","_id":300152,"Des":"","Chinese":"提示:当奖励已经领取超过6次可进行免费刷新。","English":"Hint: You can refresh for free after claiming rewards 6 times."},
+{"_t":"MulLanguageConfig","_id":300153,"Des":"","Chinese":"提示:消耗100钻石得1积分。","English":"Hint: Spend 100 Diamonds to get 1 Point."},
+{"_t":"MulLanguageConfig","_id":300154,"Des":"","Chinese":"每次活动结束时会扣除100积分，兑换任意积分可免扣除。","English":"Avoid a 100-point end-of-event charge by redeeming points."},
+{"_t":"MulLanguageConfig","_id":300155,"Des":"","Chinese":"积分奖励列表","English":"Points Reward List"},
+{"_t":"MulLanguageConfig","_id":300156,"Des":"","Chinese":"当前积分：","English":"Points:"},
+{"_t":"MulLanguageConfig","_id":300157,"Des":"","Chinese":"{0}积分","English":"{0}Points"},
 ]}
