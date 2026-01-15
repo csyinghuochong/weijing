@@ -249,7 +249,7 @@ namespace ET
 
 						DataCollationComponent dataCollationComponent = unit.GetComponent<DataCollationComponent>();
 						dataCollationComponent.CorrectData();
-                        dataCollationComponent.UpdatePlatName(request.Platform, request.Simulator, request.Root, request.DeviceID, request.UnityVersion, request.BigVersion, request.DeviceName);
+                        dataCollationComponent.UpdatePlatName(request.Platform, request.PlatformTwo, request.Simulator, request.Root, request.DeviceID, request.UnityVersion, request.BigVersion, request.DeviceName);
                         dataCollationComponent.UpdateRegionCode(request.CurSystemLanguage, request.CurSystemRegionCode, request.ByIPRegionCode);
                         unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 						//unit.GetComponent<DBSaveComponent>().LastDBTime = TimeHelper.ServerNow();

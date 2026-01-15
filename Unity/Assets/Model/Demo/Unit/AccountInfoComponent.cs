@@ -71,6 +71,8 @@ namespace ET
 
 		public int RechargeType; //0充值钻石   1购买周卡
 
+		public int PlatformTwo;
+
 
         public int GetRecharge()
 		{

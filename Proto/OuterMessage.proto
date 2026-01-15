@@ -222,6 +222,7 @@ message C2G_EnterGame // IRequest
     string ByIPRegionCode = 14;
 	string UnityVersion = 15;
 	int32 BigVersion = 16;
+	int32 PlatformTwo = 17;   //二级渠道
 }
 
 message G2C_EnterGame // IResponse

@@ -53,9 +53,6 @@ namespace ET
         //创建角色时间
         public string CreateRoleTime;
 
-        //平台
-        public string Platform;
-
         //上次登录时间
         public string LastLoginTime;
 
@@ -155,8 +152,11 @@ namespace ET
         // 出售的道具Id
         public string SoldBagInfoID = string.Empty; 
 
-
+        //设备名字
         public string DeviceName;
+
+        //平台
+        public string Platform;
 
         //秒傷
         public long SceondHurt;

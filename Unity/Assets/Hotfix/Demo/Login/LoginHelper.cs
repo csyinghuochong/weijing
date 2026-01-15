@@ -254,6 +254,7 @@ namespace ET
                     ByIPRegionCode = accountInfoComponent.ByIPRegionCode,
                     UnityVersion = accountInfoComponent.UnityVersion,
                     BigVersion = accountInfoComponent.BigVersion,   
+                    PlatformTwo = accountInfoComponent.PlatformTwo,
                 });
             }
             catch (Exception e)

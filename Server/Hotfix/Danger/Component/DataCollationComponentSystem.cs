@@ -297,7 +297,7 @@ namespace ET
             }
         }
 
-        public static void UpdatePlatName(this DataCollationComponent self, int platform, int simulator, int  root, string deviceId, string unityversion, int bigversion, string deviceName)
+        public static void UpdatePlatName(this DataCollationComponent self, int platform, int paltformtwo, int simulator, int  root, string deviceId, string unityversion, int bigversion, string deviceName)
         {
             self.Simulator = simulator;
             self.IsRoot = root;
@@ -311,7 +311,7 @@ namespace ET
             }
             self.DeviceName = deviceName;
 
-            string platformName = PlatformHelper.GetPlatformName(platform);
+            string platformName = PlatformHelper.GetPlatformName(platform, paltformtwo);
             if (!string.IsNullOrEmpty(self.Platform) && !self.Platform.Contains('_'))
             {
                 self.Platform = string.Empty;

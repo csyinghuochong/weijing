@@ -476,6 +476,9 @@ namespace ET
 		[ProtoMember(16)]
 		public int BigVersion { get; set; }
 
+		[ProtoMember(17)]
+		public int PlatformTwo { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]

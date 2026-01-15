@@ -82,7 +82,7 @@ namespace ET
 
         public long LastJiaYuanExpTime = 0;
         public string RemoteAddress;
-        public string DeviceName;
+
         public string UserName;
 
         public long CreateAccountTime;
