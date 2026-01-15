@@ -3982,5 +3982,5 @@
 {"_t":"MulLanguageConfig","_id":300142,"Des":"","Chinese":"恢复型","English":"HealingType"},
 {"_t":"MulLanguageConfig","_id":300143,"Des":"","Chinese":"全能型","English":"AllRounder"},
 {"_t":"MulLanguageConfig","_id":300144,"Des":"","Chinese":"阶段说明","English":"Stage Description"},
-{"_t":"MulLanguageConfig","_id":300145,"Des":"","Chinese":"提示:当饱食度达到一定阶段时,会为每位贡献者赠送一个礼包哦！","English":""},
+{"_t":"MulLanguageConfig","_id":300145,"Des":"","Chinese":"提示:当饱食度达到一定阶段时,会为每位贡献者赠送一个礼包哦！","English":"Hint: When Satiety reaches a certain level, a gift package will be given to each contributor!"},
 ]}
