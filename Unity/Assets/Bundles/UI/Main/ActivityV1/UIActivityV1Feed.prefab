@@ -2495,7 +2495,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "1.\u5728\u91CE\u5916\u51FB\u8D25\u602A\u7269\u65F6\u4F1A\u6389\u843D\u5BF9\u5E94\u7684\u6D3B\u52A8\u9053\u5177\r\u3002"
+  m_Text: "1.\u5728\u91CE\u5916\u51FB\u8D25\u602A\u7269\u65F6\u4F1A\u6389\u843D\u5BF9\u5E94\u7684\u6D3B\u52A8\u9053\u5177\u3002"
 --- !u!114 &6561046517203342026
 MonoBehaviour:
   m_ObjectHideFlags: 0
