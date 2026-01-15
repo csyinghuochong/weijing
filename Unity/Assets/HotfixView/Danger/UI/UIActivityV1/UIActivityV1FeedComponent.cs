@@ -93,7 +93,8 @@ namespace ET
                 GameObject itemSpace = GameObject.Instantiate(self.UIStageDescItem);
 
                 Text text = itemSpace.transform.Find("TextGrowValue").GetComponent<Text>();
-                text.text = $"{costitem.Key}饱食度";
+                string baoshidu = GameSettingLanguge.LoadLocalization("饱食度");
+                text.text = $"{costitem.Key}{baoshidu}";
 
                 GameObject ItemRewardList = itemSpace.transform.Find("ItemRewardList").gameObject;
                 UICommonHelper.ShowItemList(costitem.Value, ItemRewardList, self);

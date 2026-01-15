@@ -3986,4 +3986,8 @@
 {"_t":"MulLanguageConfig","_id":300146,"Des":"","Chinese":"周任务","English":"Weekly Tasks"},
 {"_t":"MulLanguageConfig","_id":300147,"Des":"","Chinese":"1.在野外击败怪物时会掉落对应的活动道具。","English":"1.Defeating wild monsters drops event items."},
 {"_t":"MulLanguageConfig","_id":300148,"Des":"","Chinese":"2.喂食道具会获得不同的奖励哦！","English":"2.Feed items for different rewards!"},
+{"_t":"MulLanguageConfig","_id":300149,"Des":"","Chinese":"饱食度","English":"Satiety"},
+{"_t":"MulLanguageConfig","_id":300150,"Des":"","Chinese":"活动任务列表","English":"Activity Task List"},
+{"_t":"MulLanguageConfig","_id":300151,"Des":"","Chinese":"活动时间：","English":"Active Time:"},
+{"_t":"MulLanguageConfig","_id":300152,"Des":"","Chinese":"提示:当奖励已经领取超过6次可进行免费刷新。","English":"Hint: You can refresh for free after claiming rewards 6 times."},
 ]}

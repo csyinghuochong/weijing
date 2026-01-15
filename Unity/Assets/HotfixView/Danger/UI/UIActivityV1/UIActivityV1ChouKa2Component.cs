@@ -81,7 +81,8 @@ namespace ET
             int itemid = int.Parse(iteminfo[0]);
             int itemnumer = int.Parse(iteminfo[1]);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
-            self.NumText.GetComponent<Text>().text = string.Format(GameSettingLanguge.LoadLocalization("消耗{0}:{1}/{2}"), itemConfig.GetItemName(), itemnumer,  bagComponent.GetItemNumber(itemid));
+            string xiaohao = GameSettingLanguge.LoadLocalization("消耗");
+            self.NumText.GetComponent<Text>().text = xiaohao + string.Format(GameSettingLanguge.LoadLocalization("{0}:{1}/{2}"), itemConfig.GetItemName(), itemnumer,  bagComponent.GetItemNumber(itemid));
         }
 
         public static async ETTask OnOpenBtn(this UIActivityV1ChouKa2Component self)
