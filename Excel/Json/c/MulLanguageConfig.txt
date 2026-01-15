@@ -4007,4 +4007,9 @@
 {"_t":"MulLanguageConfig","_id":300167,"Des":"","Chinese":"2.你可以选择是兑换单个或者兑换全部。","English":"2.Choose to redeem single or all."},
 {"_t":"MulLanguageConfig","_id":300168,"Des":"","Chinese":"3.单个字可以兑换10万金币。","English":"3.Exchange a single letter for 100,000 gold."},
 {"_t":"MulLanguageConfig","_id":300169,"Des":"","Chinese":"4.一套字可以兑换一个金条。","English":"4. Exchange a full set of letters for a gold bar."},
+{"_t":"MulLanguageConfig","_id":300170,"Des":"","Chinese":"奖励内容","English":"Rewards"},
+{"_t":"MulLanguageConfig","_id":300171,"Des":"","Chinese":"魔能礼包","English":"Magic Bundle"},
+{"_t":"MulLanguageConfig","_id":300172,"Des":"","Chinese":"生肖礼包","English":"Zodiac Bundle"},
+{"_t":"MulLanguageConfig","_id":300173,"Des":"","Chinese":"宝石礼包","English":"Gem Bundle"},
+{"_t":"MulLanguageConfig","_id":300174,"Des":"","Chinese":"宠物礼包","English":"Pet Bundle"},
 ]}
