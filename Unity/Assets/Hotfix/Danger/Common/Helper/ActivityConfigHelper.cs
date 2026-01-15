@@ -76,6 +76,7 @@ namespace ET
             ///ActivityConfigHelper.ActivityV1_Order        订单   15    103
             ///ActivityConfigHelper.ActivityV1_GrowthTree   成长树 16    104
             ///ActivityConfigHelper.ActivityV1_WeeklyTask   周任务 17    202
+            ///ActivityConfigHelper.ActivityV1_PointsShunXu 积分奖励 顺序领取   402
 
             if (weekindex == 0)
             {
@@ -92,7 +93,7 @@ namespace ET
                 ids.Add(ActivityConfigHelper.ActivityV1_Feed);                  //喂食   14
                 ids.Add(ActivityConfigHelper.ActivityV1_WeeklyTask);            //周任务 17
                 ids.Add(ActivityConfigHelper.ActivityV1_ChouKa2);               //抽取   12   302
-                ids.Add(ActivityConfigHelper.ActivityV1_Points);                //积分奖励1       401
+                ids.Add(ActivityConfigHelper.ActivityV1_PointsShunXu);                //积分奖励1       401
                 ids.Add(ActivityConfigHelper.ActivityV1_ChouKa);                //好运   7         504  消耗充值积分
             }
             else if (weekindex == 2)
@@ -111,9 +112,8 @@ namespace ET
                 ids.Add(ActivityConfigHelper.ActivityV1_NewYearMonster);        //年兽
                 ids.Add(ActivityConfigHelper.ActivityV1_WeeklyTask);            //周任务 17
                 ids.Add(ActivityConfigHelper.ActivityV1_ChouKa2);               //抽取   12   302
-                ids.Add(ActivityConfigHelper.ActivityV1_Points);                //积分奖励1       401
+                ids.Add(ActivityConfigHelper.ActivityV1_PointsShunXu);                //积分奖励1       401
                 ids.Add(ActivityConfigHelper.ActivityV1_ChouKa);                //好运   7         504  消耗充值积分
-                ids.Add(ActivityConfigHelper.ActivityV1_PointsShunXu);       //积分顺序领取
             }
 
             return ids;
@@ -234,11 +234,12 @@ namespace ET
         //积分桉顺序兑换
         public static Dictionary<int, string> PointsShunXuRewardList = new Dictionary<int, string>()
         {
-            {  100, "10000184;25@1;300000@10010083;10@10000143;2@10000150;1" },
-            {  300, "10000184;75@1;600000@10000141;1@10000151;1@10010079;2" },
-            {  500, "10000184;125@10000135;1@10000141;2@10000151;2@10010046;1" },
-            {  1000, "10000184;250@10000135;2@10000141;4@10000151;5@10010096;1" },
-            {  2000, "10000184;500@10000135;3@10000141;8@10000151;10@10010094;1" },
+            {  100, "10000184;25@3;1000@10000158;110000167;1@10010040;1" },
+            {  300, "10000184;50@3;2000@10000158;210000167;2@10010081;1" },
+            {  500, "10000184;50@3;2000@10000158;210000167;2@10000135;1" },
+            {  1000, "10000184;125@3;5000@10000158;510000167;5@10000164;1" },
+            {  2000, "10000184;250@3;10000@10000158;1010000167;10@10010026;1" },
+            {  3000, "10000184;250@3;10000@10000158;1010000167;10@10000151;5" },
         };
 
         public static int GetNextShunXuReward(int curid)
