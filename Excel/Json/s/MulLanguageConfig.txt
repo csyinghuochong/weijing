@@ -4032,4 +4032,8 @@
 {"_t":"MulLanguageConfig","_id":300192,"Des":"","Chinese":"提示：根据每次照顾获得成长值匹配不同区间的奖励","English":"Tip: Care to earn growth points and claim tiered rewards."},
 {"_t":"MulLanguageConfig","_id":300193,"Des":"","Chinese":"提示：果树成长到不同阶段会发送奖励","English":"Rewards granted as fruit trees grow through different stages."},
 {"_t":"MulLanguageConfig","_id":300194,"Des":"","Chinese":"栏位","English":"Field"},
+{"_t":"MulLanguageConfig","_id":300195,"Des":"","Chinese":"是否花费","English":"Does it cost"},
+{"_t":"MulLanguageConfig","_id":300196,"Des":"","Chinese":"刷新道具?","English":"Refresh Item?"},
+{"_t":"MulLanguageConfig","_id":300197,"Des":"","Chinese":"刷新道具","English":"Refresh Item"},
+{"_t":"MulLanguageConfig","_id":300198,"Des":"","Chinese":"积分不足!","English":"Insufficient Points!"},
 ]}

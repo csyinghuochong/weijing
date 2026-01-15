@@ -148,7 +148,7 @@ namespace ET
                 string itemneeddes = string.Empty;
                 string[] iteminfo = ActivityConfigHelper.Chou2FreshItem.Split(';');
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(iteminfo[0]));
-                itemneeddes += GameSettingLanguge.LoadLocalization("是否花费 ");
+                itemneeddes += GameSettingLanguge.LoadLocalization("是否花费");
                 itemneeddes += itemConfig.GetItemName();
                 itemneeddes += $" X{iteminfo[1]} ";
                 itemneeddes += GameSettingLanguge.LoadLocalization("刷新道具?");
