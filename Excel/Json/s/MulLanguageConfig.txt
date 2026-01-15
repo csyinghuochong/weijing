@@ -4012,4 +4012,12 @@
 {"_t":"MulLanguageConfig","_id":300172,"Des":"","Chinese":"生肖礼包","English":"Zodiac Bundle"},
 {"_t":"MulLanguageConfig","_id":300173,"Des":"","Chinese":"宝石礼包","English":"Gem Bundle"},
 {"_t":"MulLanguageConfig","_id":300174,"Des":"","Chinese":"宠物礼包","English":"Pet Bundle"},
+{"_t":"MulLanguageConfig","_id":300175,"Des":"","Chinese":"积分不足","English":"Insufficient Points"},
+{"_t":"MulLanguageConfig","_id":300176,"Des":"","Chinese":"刷新订单","English":"Refresh Orders"},
+{"_t":"MulLanguageConfig","_id":300177,"Des":"","Chinese":"简介","English":"Description"},
+{"_t":"MulLanguageConfig","_id":300178,"Des":"","Chinese":"亲爱的勇士，这次我们需要一些珍贵的材料制造一个东西，你可以帮我们找到这些材料吗？","English":"Brave warrior, we need rare materials to craft something. Can you help us find them?"},
+{"_t":"MulLanguageConfig","_id":300179,"Des":"","Chinese":"配方","English":"Recipe"},
+{"_t":"MulLanguageConfig","_id":300180,"Des":"","Chinese":"订单奖励","English":"Order Rewards"},
+{"_t":"MulLanguageConfig","_id":300181,"Des":"","Chinese":"提交订单","English":"Submit Order"},
+{"_t":"MulLanguageConfig","_id":300182,"Des":"","Chinese":"订单剩余时间:{0}","English":"Time Left: {0}"},
 ]}

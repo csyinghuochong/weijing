@@ -220,8 +220,8 @@ namespace ET
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(  itemid );
 
             long havenum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(itemid);
-            string showstr = GameSettingLanguge.LoadLocalization("拥有");
-            self.TextHaveNumber.text = $"{showstr}:{havenum}";
+            string showstr = GameSettingLanguge.LoadLocalization("拥有:");
+            self.TextHaveNumber.text = $"{showstr}{havenum}";
 
             self.UINeedItem.UpdateItem( new BagInfo() { ItemID = itemid }, ItemOperateEnum.None );
             self.UINeedItem.Label_ItemNum.SetActive(false);
