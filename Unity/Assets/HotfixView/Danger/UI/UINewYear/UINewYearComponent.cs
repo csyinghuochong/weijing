@@ -134,7 +134,7 @@ namespace ET
             };
 
             //IOS适配
-            IPHoneHelper.SetPosition(self.ScrollView, new Vector2(120f, -77f));
+            IPHoneHelper.SetPosition(self.ScrollView, new Vector2(300f, -77f));
 
             UIPageButtonComponent uIPageButtonComponent = uiPageButton.AddComponent<UIPageButtonComponent>();
             uIPageButtonComponent.SetClickHandler((int page) =>
