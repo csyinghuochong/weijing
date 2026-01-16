@@ -759,8 +759,15 @@ namespace ET
 			}
             if (values[0].Contains("READ_PHONE_NUMBERS") && values[1] == "1" )
             {
-                GlobalHelp.OnButtonGetPhoneNum();
+				self.CalltGetPhoneNum().Coroutine();
             }
+        }
+
+		public static async ETTask CalltGetPhoneNum(this UILoginComponent self)
+		{
+			await TimerComponent.Instance.WaitAsync(100);
+            Log.ILog.Debug($"UILoginComponent.CalltGetPhoneNum");
+            GlobalHelp.OnButtonGetPhoneNum();
         }
 
         public static void OnGetPhoneNum(this UILoginComponent self, string phoneNum)
