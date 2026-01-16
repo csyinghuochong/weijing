@@ -1157,31 +1157,10 @@ namespace ET
 		   //this.OnGetPhoneNumHandler(phonenum);
 		    this.OnGetPhoneNumHandler("");
 #else
-            this.OnGetPhoneNumHandler("");
+            this.OnGetPhoneNumHandler(PhoneNumberHelper.getRandomTel());
 #endif
 		}
 
-		public void OnGetPhoneNum_2()
-		{
-#if UNITY_ANDROID && !UNITY_EDITOR
-			jo.Call("OnGetPhoneNum_2", "+86");
-#elif UNITY_IPHONE && !UNITY_EDITOR
-			Log.ILog.Debug($"UNITY_IPHONE:");
-#else
-			this.OnGetPhoneNumHandler(PhoneNumberHelper.getRandomTel());
-#endif
-		}
-
-		public void OnGetPhoneNum_3()
-		{
-#if UNITY_ANDROID && !UNITY_EDITOR
-			jo.Call("OnGetPhoneNum_3", "+86");
-#elif UNITY_IPHONE && !UNITY_EDITOR
-			Log.ILog.Debug($"UNITY_IPHONE:");
-#else
-			this.OnGetPhoneNumHandler(PhoneNumberHelper.getRandomTel());
-#endif
-		}
 
 		public void OnRecvPhoneNum(string phoneNum)
 		{
