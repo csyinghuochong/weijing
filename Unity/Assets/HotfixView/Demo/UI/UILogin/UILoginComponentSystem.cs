@@ -751,15 +751,15 @@ namespace ET
 
         public static void onRequestPermissionsResult(this UILoginComponent self, string permissons)
         {
-            Log.ILog.Debug($"UILoginComponent.onRequestPermissionsResult: {permissons}");
-            string[] values = permissons.Split('_');
-			if (values.Length < 2)
+            Log.ILog.Debug($"UILoginComponent.onRequestPermissionsResultx: {permissons}");
+           
+			if (permissons.Contains("READ_PHONE_NUMBERS_1") )
 			{
-				return;
-			}
-            if (values[0].Contains("READ_PHONE_NUMBERS") && values[1] == "1" )
-            {
 				self.CalltGetPhoneNum().Coroutine();
+			}
+			else
+			{
+				Log.ILog.Debug($"UILoginComponent.valus.no valid"); 
             }
         }
 
