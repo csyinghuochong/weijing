@@ -29,6 +29,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
@@ -364,14 +365,57 @@ namespace libx
         private IEnumerator _checking;
         private bool _startUpdate =  false;
 
+
+        //发送游戏启动事件
+        public  void  SendGameStart()
+        {
+            Init init = GameObject.Find("Global").GetComponent<Init>();
+
+            if (init.Platform != 1)
+            {
+                return;
+            }
+            if (!PlayerPrefs.GetString("SendGameStart_0111").Equals("1"))
+            {
+                PlayerPrefs.SetString("SendGameStart_0111", "1");
+                init.OnGetDeviceOAIDHandler = (string oaid) =>
+                {
+                    this.OnGetDeviceOAID(oaid).Coroutine();
+                };
+                init.GetDeviceOAID();
+
+            }
+        }
+
+        public async ETTask OnGetDeviceOAID(string oaid)
+        {
+            Log.ILog.Debug($"OnGetDeviceOAID: {oaid}");
+            Init init = GameObject.Find("Global").GetComponent<Init>();
+            init.OnGetDeviceOAIDHandler = null;
+            if (string.IsNullOrEmpty(oaid) || oaid.Contains("00000000"))
+            {
+                return;
+            }
+
+            Debug.Log("httpClient: http://127.0.0.1:30300/game_start");
+
+            string server = init.OueNetMode ? "http://39.96.194.143:20008" : "http://127.0.0.1:30300";
+            string url = $"{server}/game_start?TIME={TimeHelper.ClientNow()}&OAID={oaid}";
+            HttpClient httpClient = new();
+            HttpResponseMessage response = await httpClient.GetAsync(url);
+            string result = await response.Content.ReadAsStringAsync();
+        }
+
         public void StartUpdate()
         {
             _startUpdate = true;
             Debug.Log("StartUpdate.Development:" + development);
+
+            SendGameStart();
+
 #if UNITY_EDITOR
             if (development)
             {
-                Debug.Log("StartUpdate.Development1:");
                 Assets.runtimeMode = false;
                 StartCoroutine(LoadGameScene());
                 return;
