@@ -711,15 +711,15 @@ namespace ET
 					}
 					break;
 				case LoginTypeEnum.PhoneNumLogin:
-					//if (string.IsNullOrEmpty(lastAccount))
-					//{
-					//	//GlobalHelp.OnButtonGetPhoneNum();
-					//}
-					//else
-					//{
-					//	self.OnGetPhoneNum(lastAccount);
-					//	self.OnButtonYiJianLogin();
-					//}
+					if (string.IsNullOrEmpty(lastAccount))
+					{
+						//GlobalHelp.OnButtonGetPhoneNum();
+					}
+					else
+					{
+						self.OnGetPhoneNum(lastAccount);
+						//self.OnButtonYiJianLogin();
+					}
 					break;
                 case LoginTypeEnum.Apple:
                     EventType.AppleSignIn.Instance.ZoneScene = self.ZoneScene();
@@ -1181,7 +1181,8 @@ namespace ET
 			self.Password.GetComponent<InputField>().text = self.LoginType;
 			self.IPhone.SetActive(false);
 			self.ThirdLoginBg.SetActive(false);
-			self.ZhuCe.SetActive(false);
+            self.YiJianDengLu.SetActive(false);
+            self.ZhuCe.SetActive(false);
 			self.HideNode.SetActive(true);
 		}
 

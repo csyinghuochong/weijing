@@ -1157,7 +1157,7 @@ namespace ET
 		   //this.OnGetPhoneNumHandler(phonenum);
 		    this.OnGetPhoneNumHandler("");
 #else
-            this.OnGetPhoneNumHandler(PhoneNumberHelper.getRandomTel());
+            this.OnGetPhoneNumHandler("18319870268");
 #endif
 		}
 
