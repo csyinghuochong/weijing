@@ -110,13 +110,20 @@ namespace ET
                     scene.AddComponent<SoloSceneComponent>();
                     break;
                 case SceneType.ReCharge:
-                    scene.AddComponent<RechargeSceneComponent>();
-                    scene.AddComponent<ReChargeWXComponent>();
-                    scene.AddComponent<ReChargeQDComponent>();
-                    scene.AddComponent<ReChargeAliComponent>();
-                    scene.AddComponent<ReChargeIOSComponent>();
-                    scene.AddComponent<ReChargeTikTokComponent>();
-                    scene.AddComponent<ReChargeGoogleComponent>();
+                    if (Game.Options.StartConfig.Contains("Google"))
+                    {
+                        scene.AddComponent<ReChargeGoogleComponent>();
+                    }
+                    else
+                    {
+                        scene.AddComponent<RechargeSceneComponent>();
+                        scene.AddComponent<ReChargeWXComponent>();
+                        scene.AddComponent<ReChargeQDComponent>();
+                        scene.AddComponent<ReChargeAliComponent>();
+                        scene.AddComponent<ReChargeIOSComponent>();
+                        scene.AddComponent<ReChargeTikTokComponent>();
+                        scene.AddComponent<ReChargeGoogleComponent>();
+                    }
                     break;
                 case SceneType.Happy:
                     scene.AddComponent<HappySceneComponent>();
