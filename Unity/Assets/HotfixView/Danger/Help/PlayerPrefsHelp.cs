@@ -18,6 +18,7 @@ namespace ET
         public static string WJa_LastNotice_EN = "WJa_LastNotice_EN";
         public static string MyOldServerID = "WJa_MyOldServerID";
         public static string LastLoginType = "WJa_LastLoginType";
+        public static string IsYiJianDengLu = "WJa_IsYiJianDengLu";
         public static string LoginErrorTime = "WJa_LoginErrorTime";
         public static string ChapterDifficulty = "WJa_ChapterDifficulty";
         public static string LenDepth = "WJa_LenDepth";
