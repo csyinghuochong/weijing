@@ -8,7 +8,10 @@ namespace ET
     public class UILoginComponent: Entity, IAwake
 	{
 
-		public GameObject buttonAgeTip;
+
+		public GameObject ButtonAppleLogin;
+        public GameObject ButtonTapTapLogin;
+        public GameObject buttonAgeTip;
 		public GameObject UIAgeTip;
 
         public GameObject DeleteAccountBtn;

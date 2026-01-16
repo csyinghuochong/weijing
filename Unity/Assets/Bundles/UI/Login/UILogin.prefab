@@ -268,6 +268,10 @@ MonoBehaviour:
     gameObject: {fileID: 7520167211964533426}
   - key: YinSiXieYi
     gameObject: {fileID: 5239736480467535296}
+  - key: ButtonTapTapLogin
+    gameObject: {fileID: 8442317189217543919}
+  - key: ButtonAppleLogin
+    gameObject: {fileID: 9069138134126939079}
 --- !u!114 &4343214064597879920
 MonoBehaviour:
   m_ObjectHideFlags: 0

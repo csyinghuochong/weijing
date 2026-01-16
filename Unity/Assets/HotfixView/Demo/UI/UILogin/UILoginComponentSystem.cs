@@ -86,7 +86,15 @@ namespace ET
                 ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_Apple").gameObject, () => { self.OnBtn_Apple(); });
                 self.ZhuCe.transform.Find("Btn_ZhuCe").gameObject.SetActive(GlobalHelp.IsEditorMode);
 
-				self.DeleteAccountBtn = rc.Get<GameObject>("DeleteAccountBtn");
+                self.ButtonAppleLogin = rc.Get<GameObject>("ButtonAppleLogin");
+                self.ButtonTapTapLogin = rc.Get<GameObject>("ButtonTapTapLogin");
+                ButtonHelp.AddListenerEx(self.ButtonTapTapLogin, () => { self.OnBtn_TapTap(); });
+                ButtonHelp.AddListenerEx(self.ButtonAppleLogin, () => { self.OnBtn_Apple(); });
+
+                self.ButtonAppleLogin.SetActive(platform == 20001);
+                self.ButtonTapTapLogin.SetActive(platform == 1);
+
+                self.DeleteAccountBtn = rc.Get<GameObject>("DeleteAccountBtn");
 				self.DeleteAccountBtn.SetActive(false);
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
