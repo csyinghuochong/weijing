@@ -145,6 +145,7 @@ namespace ET
 
 				GameObject.Find("Global").GetComponent<SMSSDemo>().CommitCodeSucessHandler = (string text) => { self.OnCommitCodeHandler(text); };
 				GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNumHandler = (string text) => { self.OnGetPhoneNum(text); };
+                GameObject.Find("Global").GetComponent<Init>().OnGetPermissionsHandler = self.onRequestPermissionsResult;
 
                 self.RealNameButton = rc.Get<GameObject>("RealNameButton");
 				self.RealNameButton.GetComponent<Button>().onClick.AddListener(self.OnRealNameButton);
@@ -739,6 +740,20 @@ namespace ET
 			self.ZhuCe.SetActive(true);
 			self.HideNode.SetActive(false);
 		}
+
+        public static void onRequestPermissionsResult(this UILoginComponent self, string permissons)
+        {
+            Log.ILog.Debug($"UILoginComponent.onRequestPermissionsResult: {permissons}");
+            string[] values = permissons.Split('_');
+			if (values.Length < 2)
+			{
+				return;
+			}
+            if (values[0].Contains("READ_PHONE_NUMBERS") && values[1] == "1" )
+            {
+                GlobalHelp.OnButtonGetPhoneNum();
+            }
+        }
 
         public static void OnGetPhoneNum(this UILoginComponent self, string phoneNum)
         {
