@@ -1168,6 +1168,9 @@ namespace ET
 
                 if (itemConfig.ItemType == ItemTypeEnum.Equipment)
                 {
+                    //有传承宝石的不能出售
+
+
                     //魔能不出售
                     if (itemConfig.EquipType == 401)
                     {
