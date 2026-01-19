@@ -13,12 +13,8 @@
                 return;
             }
             int sceneTypeEnum = scene.GetComponent<MapComponent>().SceneTypeEnum;
-            if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
-            {
-                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-                scene.Dispose();
-                return;
-            }
+            TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+            scene.Dispose();
         }
     }
 }
