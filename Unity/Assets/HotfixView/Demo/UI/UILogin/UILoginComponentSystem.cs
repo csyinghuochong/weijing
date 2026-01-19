@@ -1335,9 +1335,9 @@ namespace ET
 			self.AccountInfoComponent.OAID = oaid;
             Log.ILog.Debug($"OnGetDeviceOAID:{oaid}");
 
-			if (!PlayerPrefs.GetString("SendHotUpdate_0119b").Equals("1"))
+			if (!PlayerPrefs.GetString("SendHotUpdate_0119c").Equals("1"))
 			{
-                PlayerPrefs.SetString("SendHotUpdate_0119b", "1");
+                PlayerPrefs.SetString("SendHotUpdate_0119c", "1");
                 LoginHelper.SendHotUpdatecomplete(self.ZoneScene(), GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode).Coroutine();
             }
         }

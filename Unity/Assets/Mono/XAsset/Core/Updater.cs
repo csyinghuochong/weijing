@@ -375,9 +375,9 @@ namespace libx
             {
                 return;
             }
-            if (!PlayerPrefs.GetString("SendGameStart_0119b").Equals("1"))
+            if (!PlayerPrefs.GetString("SendGameStart_0119c").Equals("1"))
             {
-                PlayerPrefs.SetString("SendGameStart_0119b", "1");
+                PlayerPrefs.SetString("SendGameStart_0119c", "1");
                 init.OnGetDeviceOAIDHandler = (string oaid) =>
                 {
                     this.OnGetDeviceOAID(oaid).Coroutine();
