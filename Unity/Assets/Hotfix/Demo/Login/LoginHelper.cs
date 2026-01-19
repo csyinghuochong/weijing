@@ -417,7 +417,7 @@ namespace ET
                     c2Center_Hot = (Center2C_HotUpdatecompleteResponse)await session.Call(new C2Center_HotUpdatecompleteRequest 
                     { 
                         OAID = accountInfoComponent.OAID,
-                        Time = TimeHelper.DateTimeNow().ToString()
+                        Time = TimeHelper.ClientNow()
                 });
                 }
                 session.Dispose();
