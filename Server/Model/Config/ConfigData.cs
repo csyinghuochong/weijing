@@ -10,7 +10,7 @@ namespace ET
 
         public static bool AccountOldLogic = false;
 
-        public static bool CleanSkill = true;
+        public static bool CleanSkill = false;
 
         public static bool LogRechargeNumber = false;
 
