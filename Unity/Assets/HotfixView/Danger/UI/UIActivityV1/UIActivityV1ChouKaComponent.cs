@@ -6,6 +6,8 @@ namespace ET
 {
     public class UIActivityV1ChouKaComponent: Entity, IAwake
     {
+
+        public GameObject ConsumeNumText;
         public GameObject NumText;
         public GameObject UIActivityV1ChouKaListNode;
         public GameObject UIActivityV1ChouKaItem;
@@ -29,11 +31,13 @@ namespace ET
             self.RewardItemListNode = rc.Get<GameObject>("RewardItemListNode");
             self.CostItemListNode = rc.Get<GameObject>("CostItemListNode");
             self.OpenBtn = rc.Get<GameObject>("OpenBtn");
+            self.ConsumeNumText = rc.Get<GameObject>("ConsumeNumText");
 
             self.UIActivityV1ChouKaItem.SetActive(false);
             self.OpenBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBtn().Coroutine(); });
 
             self.InitInfo();
+            self.OnRecvHandler();
         }
     }
 
@@ -64,6 +68,15 @@ namespace ET
             }
 
             self.UpdateInfo();
+            self.OnRecvHandler();
+        }
+
+        public static void OnRecvHandler(this UIActivityV1ChouKaComponent self)
+        {
+            int points = (int)(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.V1TotalPoints);
+
+            self.ConsumeNumText.GetComponent<Text>().text =
+                   string.Format(GameSettingLanguge.LoadLocalization("{0}积分"), points);
         }
 
         public static void InitInfo(this UIActivityV1ChouKaComponent self)
