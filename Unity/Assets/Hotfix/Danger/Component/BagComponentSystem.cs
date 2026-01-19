@@ -1168,9 +1168,23 @@ namespace ET
 
                 if (itemConfig.ItemType == ItemTypeEnum.Equipment)
                 {
-                    //有传承宝石的不能出售
-
-
+                    //有宝石的不能出售
+                    bool havegem = false;
+                    string[] gemids = bagInfos[i].GemIDNew.Split('_');
+                    for (int gem = 0; gem < gemids.Length; gem++)
+                    {
+                    
+                        if (gemids[gem] != "0")
+                        {
+                            havegem = true;
+                            break;
+                        }
+                    }
+                    if (havegem)
+                    {
+                        continue;
+                    }
+                   
                     //魔能不出售
                     if (itemConfig.EquipType == 401)
                     {
