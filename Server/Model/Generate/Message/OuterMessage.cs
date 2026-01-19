@@ -202,6 +202,9 @@ namespace ET
 		[ProtoMember(4)]
 		public long AccountId { get; set; }
 
+		[ProtoMember(5)]
+		public string OAID { get; set; }
+
 	}
 
 	[Message(OuterOpcode.A2C_CreateRoleData)]
@@ -478,6 +481,9 @@ namespace ET
 
 		[ProtoMember(17)]
 		public int PlatformTwo { get; set; }
+
+		[ProtoMember(18)]
+		public string OAID { get; set; }
 
 	}
 
@@ -1314,6 +1320,9 @@ namespace ET
 
 		[ProtoMember(12)]
 		public string OAID { get; set; }
+
+		[ProtoMember(13)]
+		public string DeviceName { get; set; }
 
 	}
 
@@ -10706,6 +10715,37 @@ namespace ET
 	[Message(OuterOpcode.Center2C_DeleteAccountResponse)]
 	[ProtoContract]
 	public partial class Center2C_DeleteAccountResponse: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(Center2C_HotUpdatecompleteResponse))]
+	[Message(OuterOpcode.C2Center_HotUpdatecompleteRequest)]
+	[ProtoContract]
+	public partial class C2Center_HotUpdatecompleteRequest: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string OAID { get; set; }
+
+		[ProtoMember(2)]
+		public string Time { get; set; }
+
+	}
+
+	[Message(OuterOpcode.Center2C_HotUpdatecompleteResponse)]
+	[ProtoContract]
+	public partial class Center2C_HotUpdatecompleteResponse: Object, IResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
