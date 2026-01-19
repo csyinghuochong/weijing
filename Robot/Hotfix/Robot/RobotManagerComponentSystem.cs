@@ -78,7 +78,7 @@ namespace ET
                 }
 
                 Log.Console($"NewRobot:{adress} {robotZone}  {account}");
-                int errorCode = await LoginHelper.Login(zoneScene, adress, account, passward, false, string.Empty, "0");
+                int errorCode = await LoginHelper.Login(zoneScene, adress, account, passward, false, string.Empty, "0", string.Empty);
                 Session session = zoneScene.GetComponent<SessionComponent>().Session;
                 if (session == null)
                 {
