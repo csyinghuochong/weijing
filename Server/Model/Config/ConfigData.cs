@@ -8,7 +8,7 @@ namespace ET
 
         public static int PopularizeZone = 2;
 
-        public static bool AccountOldLogic = true;
+        public static bool AccountOldLogic = false;
 
         public static bool CleanSkill = true;
 
