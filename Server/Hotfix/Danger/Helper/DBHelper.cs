@@ -292,7 +292,24 @@ namespace ET
                 ComponentType = entity.GetType().Name
             });
         }
-        
+
+        public static async ETTask UpdateLastGameTime(string oaid, string lastgametime)
+        {
+            if (string.IsNullOrEmpty(oaid))
+            {
+                return;
+            }
+            Console.WriteLine($"updatelastgametime DBCenterDataCache:  {oaid}");
+            List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == oaid);
+            if (centerDataCaches != null && centerDataCaches.Count > 0)
+            {
+                DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
+                dBCenterDataCache.LastLoginTime = lastgametime;
+                await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
+            }
+        }
+
+
         public static async ETTask<T> GetComponent<T>(int zone, long unitId) where T : Entity
         {
             List<T> resulets = await Game.Scene.GetComponent<DBComponent>().Query<T>(zone, d => d.Id == unitId);

@@ -434,7 +434,16 @@ namespace ET
                             
                             response.RoleLists.Add(roleList);
                         }
- 
+
+                        List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == request.OAID);
+                        if (centerDataCaches != null && centerDataCaches.Count > 0)
+                        {
+                            Console.WriteLine($"loginaccount DBCenterDataCache:  {request.OAID}");
+                            DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
+                            dBCenterDataCache.OnLogin(request.DeviceName);
+                            await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
+                        }
+                       
                         response.RelinkRecord = ConfigHelper.RelinkRecordUsers.Contains(request.AccountName) ? 1 : 0;
                         response.TodayCreateRole = centerAccount.TodayCreateRole;
                         response.TaprepRequest = centerAccount.TaprepRequest;

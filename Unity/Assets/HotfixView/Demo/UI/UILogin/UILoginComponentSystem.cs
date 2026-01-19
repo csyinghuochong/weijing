@@ -288,12 +288,17 @@ namespace ET
                 Log.ILog.Debug($"GetBigVersion.:{GlobalHelp.GetBigVersion()}  GetPlatform:{GlobalHelp.GetPlatform()} IsEditorMode:{GlobalHelp.IsEditorMode}");
 
                 if (GlobalHelp.GetBigVersion() >= 21
-					&& GlobalHelp.GetPlatform()  == 1
-					&& !GlobalHelp.IsEditorMode)
+					&& GlobalHelp.GetPlatform()  == 1)
 				{
-					Log.ILog.Debug("eventType.TapTapGetOAID.Instance");
-					EventType.TapTapGetOAID.Instance.ZoneScene = self.ZoneScene();
-					Game.EventSystem.PublishClass(EventType.TapTapGetOAID.Instance);
+                    if (GlobalHelp.IsEditorMode)
+                    {
+						self.OnGetDeviceOAID(SystemInfo.deviceUniqueIdentifier);
+                    }
+                    else
+                    {
+                        EventType.TapTapGetOAID.Instance.ZoneScene = self.ZoneScene();
+                        Game.EventSystem.PublishClass(EventType.TapTapGetOAID.Instance);
+                    }
 				}
                 if (GlobalHelp.GetBigVersion() >= 24)
                 {
@@ -1328,7 +1333,13 @@ namespace ET
 		public static void OnGetDeviceOAID(this UILoginComponent self, string oaid)
 		{
 			self.AccountInfoComponent.OAID = oaid;
-			Log.ILog.Debug($"OnGetDeviceOAID:{oaid}");
+            Log.ILog.Debug($"OnGetDeviceOAID:{oaid}");
+
+			if (!PlayerPrefs.GetString("SendHotUpdate_0119").Equals("1"))
+			{
+                PlayerPrefs.SetString("SendHotUpdate_0119", "1");
+                LoginHelper.SendHotUpdatecomplete(self.ZoneScene(), GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode).Coroutine();
+            }
         }
 
         public static async ETTask TestTapHttp_2(this UILoginComponent self)
@@ -1349,6 +1360,7 @@ namespace ET
 		{
            
             long serverTime = TimeHelper.ServerNow();
+			string deviveInfo = $"{UnityEngine.SystemInfo.deviceModel}_{UnityEngine.Screen.width}:{UnityEngine.Screen.height}";
             int loginError = await LoginHelper.Login(
                 self.DomainScene(),
                 self.ServerInfo.ServerIp,
@@ -1356,7 +1368,8 @@ namespace ET
                 password,
                 false,
                 string.Empty,
-                loginType);
+                loginType,
+				deviveInfo);
 
 			if (loginError == ErrorCode.ERR_Success)
 			{

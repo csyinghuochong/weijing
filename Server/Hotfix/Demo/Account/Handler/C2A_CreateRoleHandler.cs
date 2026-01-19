@@ -192,6 +192,15 @@ namespace ET
 						centerAccountList[0].CreateRoleList.Add( new KeyValuePairLong() { KeyId = userId, Value  = TimeHelper.ServerNow() } );
                         Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(202, centerAccountList[0]).Coroutine();
 
+                        List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == request.OAID);
+                        if (centerDataCaches != null && centerDataCaches.Count > 0 && string.IsNullOrEmpty(centerDataCaches[0].FristCrateRoleTime))
+                        {
+                            Console.WriteLine($"createrole DBCenterDataCache:  {request.OAID}");
+                            DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
+                            dBCenterDataCache.FristCrateRoleTime = TimeHelper.DateTimeNow().ToString();
+                            await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
+                        }
+
                         //返回角色信息
                         CreateRoleInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userInfo,  userId);
 						response.createRoleInfo = roleList;

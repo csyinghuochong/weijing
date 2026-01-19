@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Web;
 
 namespace ET
@@ -27,7 +29,30 @@ namespace ET
         {
             System.Collections.Specialized.NameValueCollection queryString = context.Request.QueryString;
             string param1 = queryString["TIME"];
-            string oaid = queryString["OAID"];
+            string anid = queryString["OAID"];
+
+            Console.WriteLine($"game_start anid:  {anid}");
+            if (long.TryParse(param1, out long createTimne) && !string.IsNullOrEmpty(anid) && !anid.Contains("00000000"))
+            {
+                DBCenterDataCache dBCenterDataCache = null;
+                List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == anid);
+                if (centerDataCaches == null || centerDataCaches.Count == 0)
+                {
+                    dBCenterDataCache = entity.AddChild<DBCenterDataCache>();
+                }
+                else
+                {
+                    dBCenterDataCache = centerDataCaches[0];
+                }
+                
+                dBCenterDataCache.anid = anid;
+                dBCenterDataCache.CreateTimeLong = createTimne;
+                dBCenterDataCache.CreateTimeString = TimeInfo.Instance.ToDateTime(createTimne).ToString();
+                await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
+                dBCenterDataCache.Dispose();
+                dBCenterDataCache = null;
+            }
+
 
             HttpGetRouterResponse response = new HttpGetRouterResponse();
             HttpServerHelper.Response(context, response);

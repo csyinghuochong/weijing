@@ -243,7 +243,11 @@ namespace ET
                         self.DomainScene(),
                         PlayerComponent.ServerIp,
                         PlayerComponent.Account,
-                        PlayerComponent.Password, true, string.Empty, PlayerComponent.LoginType);
+                        PlayerComponent.Password,
+                        true, 
+                        string.Empty,
+                        PlayerComponent.LoginType,
+                        string.Empty);
 
             PlayerPrefsHelp.RecordRelinkMessage($"重连LoginHelper.Login  {code}！！");
             if (code != ErrorCode.ERR_Success)

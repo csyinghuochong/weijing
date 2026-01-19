@@ -97,8 +97,7 @@ namespace ET
                     return;
                 }
             }
-           
-           
+
 			long instanceId = session.InstanceId;
 			using (session.AddComponent<SessionLockingComponent>())
 			{
@@ -249,7 +248,7 @@ namespace ET
 
 						DataCollationComponent dataCollationComponent = unit.GetComponent<DataCollationComponent>();
 						dataCollationComponent.CorrectData();
-                        dataCollationComponent.UpdatePlatName(request.Platform, request.PlatformTwo, request.Simulator, request.Root, request.DeviceID, request.UnityVersion, request.BigVersion, request.DeviceName);
+                        dataCollationComponent.UpdatePlatName(request.Platform, request.PlatformTwo, request.Simulator, request.Root, request.DeviceID, request.UnityVersion, request.BigVersion, request.DeviceName, request.OAID);
                         dataCollationComponent.UpdateRegionCode(request.CurSystemLanguage, request.CurSystemRegionCode, request.ByIPRegionCode);
                         unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 						//unit.GetComponent<DBSaveComponent>().LastDBTime = TimeHelper.ServerNow();
@@ -291,7 +290,17 @@ namespace ET
 							response.PopUpInfo = GMHelp.PopUpPlayer[accountId];
 						}
 
-						reply();
+                        List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == request.OAID);
+                        if (centerDataCaches != null && centerDataCaches.Count > 0 && string.IsNullOrEmpty(centerDataCaches[0].FirstEnterMainCityTime))
+                        {
+                            Console.WriteLine($"entermaincity DBCenterDataCache:  {request.OAID}");
+                            DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
+                            dBCenterDataCache.FirstEnterMainCityTime = TimeHelper.DateTimeNow().ToString();
+							dBCenterDataCache.DeviceName = request.DeviceName;
+                            await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
+                        }
+
+                        reply();
 						StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), $"Map{ComHelp.MainCityID()}");
 						await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0, "0");
 

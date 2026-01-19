@@ -35,7 +35,7 @@ namespace ET
             string tap_project_id = queryString["tap_project_id"] ?? string.Empty;
             string tap_track_id = queryString["tap_track_id"] ?? string.Empty;
 
-            Console.WriteLine($"anid:  {anid}");
+            Console.WriteLine($"wjtaprepjiance anid:  {anid}");
 
             if (!string.IsNullOrEmpty(anid))
             {

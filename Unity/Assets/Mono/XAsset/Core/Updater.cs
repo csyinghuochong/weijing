@@ -375,15 +375,14 @@ namespace libx
             {
                 return;
             }
-            if (!PlayerPrefs.GetString("SendGameStart_0111").Equals("1"))
+            if (!PlayerPrefs.GetString("SendGameStart_0119").Equals("1"))
             {
-                PlayerPrefs.SetString("SendGameStart_0111", "1");
+                PlayerPrefs.SetString("SendGameStart_0119", "1");
                 init.OnGetDeviceOAIDHandler = (string oaid) =>
                 {
                     this.OnGetDeviceOAID(oaid).Coroutine();
                 };
                 init.GetDeviceOAID();
-
             }
         }
 

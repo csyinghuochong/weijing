@@ -150,7 +150,10 @@ namespace ET
         public string BuySelfPlayer;
  
         // 出售的道具Id
-        public string SoldBagInfoID = string.Empty; 
+        public string SoldBagInfoID = string.Empty;
+
+
+        public string OAID;
 
         //设备名字
         public string DeviceName;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Web;
 
 namespace ET
 {
@@ -34,7 +35,7 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
-        public static async ETTask<int> Login(Scene zoneScene, string address, string account, string password, bool relink, string token, string thirdLogin)
+        public static async ETTask<int> Login(Scene zoneScene, string address, string account, string password, bool relink, string token, string thirdLogin, string devivename)
         {
             Log.ILog.Debug($"login: {account}   {password}    {thirdLogin}");
             AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
@@ -61,8 +62,9 @@ namespace ET
                     Relink = relink,
                     age_type = age_type,
                     DeviceID = deviceid,
-                    OAID = oaid
-                });
+                    OAID = oaid,
+                    DeviceName = devivename
+            });
             }
             catch (Exception e)
             {
@@ -255,6 +257,7 @@ namespace ET
                     UnityVersion = accountInfoComponent.UnityVersion,
                     BigVersion = accountInfoComponent.BigVersion,   
                     PlatformTwo = accountInfoComponent.PlatformTwo,
+                    OAID = accountInfoComponent.OAID,
                 });
             }
             catch (Exception e)
@@ -357,11 +360,13 @@ namespace ET
             A2C_CreateRoleData g2cCreateRole = null;
             try
             {
+                AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
                 g2cCreateRole = (A2C_CreateRoleData)await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2A_CreateRoleData()
                 {
                     CreateOcc = createOcc,
                     CreateName = createName,
-                    AccountId = zoneScene.GetComponent<AccountInfoComponent>().AccountId
+                    AccountId = accountInfoComponent.AccountId,
+                    OAID = accountInfoComponent.OAID,
                 });
                 return g2cCreateRole;
             }
@@ -396,6 +401,34 @@ namespace ET
             }
         }
 
+
+        public static async ETTask<int> SendHotUpdatecomplete(Scene zoneScene, bool outNet, VersionMode versionCode)
+        {
+            try
+            {
+                // 创建一个ETModel层的Session
+                Center2C_HotUpdatecompleteResponse c2Center_Hot;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet)).AddressList;
+                AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
+                //走的中心服
+                string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ServerHelper.LocalIp}:{GetAccountCenterPort(versionCode)}";
+                Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
+                {
+                    c2Center_Hot = (Center2C_HotUpdatecompleteResponse)await session.Call(new C2Center_HotUpdatecompleteRequest 
+                    { 
+                        OAID = accountInfoComponent.OAID,
+                        Time = TimeHelper.DateTimeNow().ToString()
+                });
+                }
+                session.Dispose();
+                return ErrorCode.ERR_Success;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                return ErrorCode.ERR_Error;
+            }
+        }
 
         //注册账号
         public static async ETTask<int> Register(Scene zoneScene, bool outNet,  VersionMode versionCode, string account, string password, int platform, int serverid)
