@@ -10739,7 +10739,7 @@ namespace ET
 		public string OAID { get; set; }
 
 		[ProtoMember(2)]
-		public string Time { get; set; }
+		public long Time { get; set; }
 
 	}
 
