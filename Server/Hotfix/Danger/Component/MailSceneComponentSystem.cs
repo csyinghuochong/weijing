@@ -67,6 +67,9 @@ namespace ET
             return maxId;
         }
 
+
+
+
         public static async ETTask<int> OnLogin(this MailSceneComponent self, long unitid, int curmailid)
         {
             //检测没有发送的邮件
