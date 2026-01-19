@@ -297,14 +297,14 @@ namespace ET
             }
         }
 
-        public static void UpdatePlatName(this DataCollationComponent self, int platform, int paltformtwo, int simulator, int  root, string deviceId, string unityversion, int bigversion, string deviceName)
+        public static void UpdatePlatName(this DataCollationComponent self, int platform, int paltformtwo, int simulator, int  root, string deviceId, string unityversion, int bigversion, string deviceName, string oaid)
         {
             self.Simulator = simulator;
             self.IsRoot = root;
             self.DeviceID = deviceId;
             self.UnityVersion = unityversion;
             self.BigVersion = bigversion;
-
+            self.OAID = oaid;   
             if (!string.IsNullOrEmpty(deviceName))
             {
                 deviceName = deviceName.Replace(';', '&');
@@ -372,7 +372,7 @@ namespace ET
             self.DiamondCostList.Clear();
         }
 
-        public static void OnOffLine(this DataCollationComponent self)
+        public static void OnOffLine(this DataCollationComponent self, string lastgametime)
         {
             Unit unit = self.GetParent<Unit>();
 
@@ -407,7 +407,7 @@ namespace ET
 
             self.TodayOnLine = userInfoComponent.TodayOnLine;
 
-            self.LastLoginTime = TimeHelper.DateTimeNow().ToString();
+            self.LastLoginTime = lastgametime;
 
             self.MainTask = unit.GetComponent<TaskComponent>().GetMainTaskId();   
 

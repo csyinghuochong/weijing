@@ -137,15 +137,18 @@ namespace ET
                 }
             }
 
+            string oaid = unit.GetComponent<DataCollationComponent>().OAID;
+            string lastgametime =   TimeHelper.DateTimeNow().ToString();
             numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
             unit.GetComponent<UserInfoComponent>().OnOffLine();
-            unit.GetComponent<DataCollationComponent>().OnOffLine();
+            unit.GetComponent<DataCollationComponent>().OnOffLine(lastgametime);
             unit.GetComponent<UnitGateComponent>().PlayerState = PlayerState.None;
             if (!unit.IsRobot())
             {
                 LogHelper.LoginInfo(offLineInfo);
                 Log.Warning(offLineInfo);
                 self.UpdateCacheDB();
+                DBHelper.UpdateLastGameTime(oaid, lastgametime).Coroutine();
             }
         }
 
