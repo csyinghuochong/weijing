@@ -464,39 +464,9 @@ namespace ET
 
         public static void CanMovePositionList(this UIJoystickMoveComponent self, Unit unit, float speed, Quaternion rotation, List<Vector3> pathfind)
         {
-            //for (int i = 5; i >= 1; i--)
-            //{
-            //    Vector3  targetPosi = unit.Position + rotation * Vector3.forward * i;
-            //    RaycastHit hit;
-
-            //    Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
-            //    if (hit.collider != null)
-            //    {
-            //        break;
-            //    }
-
-            //    Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.MapLayer);
-            //    if (hit.collider == null)
-            //    {
-            //        break;
-            //    }
-            //    else
-            //    {
-            //        targetPosi.y =  hit.point.y;
-            //        unit.GetComponent<PathfindingComponent>().Find(unit.Position, targetPosi, pathfind);
-
-            //        if (pathfind.Count >= 2)
-            //        {
-            //            break;
-            //        }
-            //    }
-            //}
-
-            List<Vector3> pathfindtest = new List<Vector3>();
-            Vector3 targetPosi = unit.Position;
-            for (int i = 0; i < 30; i++)
+            for (int i = 5; i >= 1; i--)
             {
-                targetPosi = targetPosi + rotation * Vector3.forward * 0.2f;
+                Vector3 targetPosi = unit.Position + rotation * Vector3.forward * i;
                 RaycastHit hit;
 
                 Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
@@ -512,26 +482,56 @@ namespace ET
                 }
                 else
                 {
-                    if (i >= 5)
-                    {
-                        unit.GetComponent<PathfindingComponent>().Find(unit.Position, hit.point, pathfindtest);
-                        if (pathfindtest.Count < 2)
-                        {
-                            break;
-                        }
-                    }
+                    targetPosi.y = hit.point.y;
+                    unit.GetComponent<PathfindingComponent>().Find(unit.Position, targetPosi, pathfind);
 
-                    if (pathfind.Count > 0 && Mathf.Abs(hit.point.y - pathfind[^1].y) > 0.4f)
+                    if (pathfind.Count >= 2)
                     {
                         break;
                     }
-                    else
-                    {
-                        targetPosi = hit.point;
-                        pathfind.Add(targetPosi);
-                    }
                 }
             }
+
+            //List<Vector3> pathfindtest = new List<Vector3>();
+            //Vector3 targetPosi = unit.Position;
+            //for (int i = 0; i < 30; i++)
+            //{
+            //    targetPosi = targetPosi + rotation * Vector3.forward * 0.2f;
+            //    RaycastHit hit;
+
+            //    Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
+            //    if (hit.collider != null)
+            //    {
+            //        break;
+            //    }
+
+            //    Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.MapLayer);
+            //    if (hit.collider == null)
+            //    {
+            //        break;
+            //    }
+            //    else
+            //    {
+            //        if (i >= 5)
+            //        {
+            //            unit.GetComponent<PathfindingComponent>().Find(unit.Position, hit.point, pathfindtest);
+            //            if (pathfindtest.Count < 2)
+            //            {
+            //                break;
+            //            }
+            //        }
+
+            //        if (pathfind.Count > 0 && Mathf.Abs(hit.point.y - pathfind[^1].y) > 0.4f)
+            //        {
+            //            break;
+            //        }
+            //        else
+            //        {
+            //            targetPosi = hit.point;
+            //            pathfind.Add(targetPosi);
+            //        }
+            //    }
+            //}
 
             //if (pathfind.Count < 2)
             //{
