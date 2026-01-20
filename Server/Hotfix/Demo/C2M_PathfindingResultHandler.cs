@@ -37,6 +37,12 @@ namespace ET
             unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
             skillManagerComponent.InterruptSing(0, true);
 
+            //模拟网络延迟
+            //if (RandomHelper.RandomNumber(1, 10) == 5)
+            //{
+            //    await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(20, 60));
+            //}
+
             M2C_PathfindingResult m2C_PathfindingResult = new M2C_PathfindingResult();
             m2C_PathfindingResult.Id = unit.Id;
             m2C_PathfindingResult.YaoGan = true;

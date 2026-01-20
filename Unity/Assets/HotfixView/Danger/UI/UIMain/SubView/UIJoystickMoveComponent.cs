@@ -221,6 +221,7 @@ namespace ET
             self.lastSendTime = 0;
             self.direction = self.GetDirection(pdata);
             self.MoveComponent.LastRecvTime = TimeHelper.ClientNow();
+            self.MoveComponent.C2SDistance = 0f;
             int canmove = self.SendMove(self.direction);
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.JoystickTimer, self);
@@ -395,9 +396,8 @@ namespace ET
                 self.checkTime = Math.Max(100, self.checkTime);
 
                 long passTime = clientNow - self.MoveComponent.LastRecvTime;
-
                 float c2sdisc = self.MoveComponent.C2SDistance;
-                if (c2sdisc > 3f || passTime > 300)
+                if (c2sdisc > 3f || passTime > 3000)
                 {
                     //speed *= 0.2f;
                     Log.ILog.Debug($" self.MoveComponent.c2sdisc :  {c2sdisc}   passTime:{passTime}");

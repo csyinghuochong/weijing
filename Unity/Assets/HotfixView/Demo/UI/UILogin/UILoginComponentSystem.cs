@@ -1420,7 +1420,7 @@ namespace ET
                 }
 
 				//先锋一区测试
-                //SettingHelper.ClintFindPath = self.ServerInfo.ServerId == 5 && GlobalHelp.GetBigVersion() >= 23;
+                SettingHelper.ClintFindPath = self.ServerInfo.ServerId == 5 && GlobalHelp.GetBigVersion() >= 23;
 #endif
             }
 			else
