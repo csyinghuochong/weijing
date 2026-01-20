@@ -44,6 +44,9 @@ namespace ET
                         }
                         response.Message = session.DomainScene().GetComponent<AccountCenterComponent>().TianQiValue.ToString();
                         string[] stringxxx = LogHelper.GetNoticeNew().Split('@');
+
+                        long timeNow = TimeHelper.ServerNow();
+                        long timeColse = 0;
                         if (stringxxx.Length == 2)
                         {
                             response.NoticeVersion = stringxxx[0];
@@ -51,8 +54,10 @@ namespace ET
                         }
                         if (stringxxx.Length == 3)
                         {
+                            response.NoticeVersion = stringxxx[0];
+                            timeColse = long.Parse(stringxxx[1]);
+                            response.NoticeText = stringxxx[2];
                         }
-
                         
                         string[] stringxxx_EN = LogHelper.GetNoticeNew_EN().Split('@');
                         if (stringxxx_EN.Length == 2)
@@ -62,7 +67,17 @@ namespace ET
                         }
                         if (stringxxx_EN.Length == 3)
                         {
+                            response.NoticeVersion_EN = stringxxx_EN[0];
+                            timeColse = long.Parse(stringxxx_EN[1]);
+                            response.NoticeText_EN = stringxxx_EN[2];
                         }
+
+                        if (timeColse > 0 && timeNow > timeColse + TimeHelper.OneDay * 3)
+                        {
+                            response.NoticeText = string.Empty;
+                            response.NoticeText_EN = string.Empty;
+                        }
+
 
                         int accountcenter = StartSceneConfigCategory.Instance.AccountCenterConfig.OuterPort;
                         string outeIp = StartMachineConfigCategory.Instance.Get(1).OuterIP;

@@ -820,17 +820,30 @@ namespace ET
 		{
 			AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
 			string noticeVersion = accountInfoComponent.NoticeVersion;
+
 			if (noticeVersion != PlayerPrefsHelp.GetString(PlayerPrefsHelp.WJa_LastNotice))
 			{
 				PlayerPrefsHelp.SetString(PlayerPrefsHelp.WJa_LastNotice, noticeVersion);
-				self.OnNotice();
+
+                if (string.IsNullOrEmpty(accountInfoComponent.NoticeText))
+                {
+                    return;
+                }
+
+                self.OnNotice();
 			}
 			
 			string noticeVersion_EN = accountInfoComponent.NoticeVersion_EN;
 			if (noticeVersion_EN != PlayerPrefsHelp.GetString(PlayerPrefsHelp.WJa_LastNotice_EN))
 			{
 				PlayerPrefsHelp.SetString(PlayerPrefsHelp.WJa_LastNotice_EN, noticeVersion_EN);
-				self.OnNotice();
+
+                if (string.IsNullOrEmpty(accountInfoComponent.NoticeText_EN))
+                {
+                    return;
+                }
+
+                self.OnNotice();
 			}
 		}
 
