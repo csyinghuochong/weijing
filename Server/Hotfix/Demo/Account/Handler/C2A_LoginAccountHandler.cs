@@ -87,29 +87,6 @@ namespace ET
                     }
                 }
 
-                //密码要md5
-                //if (!Regex.IsMatch(request.AccountName.Trim(),@"^(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*).{6,15}$"))
-                //{
-                //    response.Error = ErrorCode.ERR_AccountNameFormError;
-                //    reply();
-                //    session.Disconnect().Coroutine();
-                //    return;
-                //}
-
-                //if (!Regex.IsMatch(request.Password.Trim(),@"^[A-Za-z0-9]+$"))
-                //{
-                //    response.Error = ErrorCode.ERR_PasswordFormError;
-                //    reply();
-                //    session.Disconnect().Coroutine();
-                //    return;
-                //}
-                //public const int RegisterLogin = 0;     //注册账号登录
-                //public const int WeixLogin = 1;         //微信登录
-                //public const int QQLogin = 2;           //QQ登录
-                //public const int PhoneCodeLogin = 3;         //短信验证吗登录
-                //public const int PhoneNumLogin = 4;        //手机号登录
-                //public const int TapTap = 5;                //taptap登录
-                //先检测一下QQ和微信登录
                 long AccountId = 0;
                 long sessionId  = session.InstanceId;
 
@@ -398,12 +375,6 @@ namespace ET
                                 continue;
                             }
                             UserInfoComponent userinfo = d2GGetUnit.Component as UserInfoComponent;
-
-                            //if (session.DomainZone() == 5 && userinfo.UserInfo.Occ == 5 && userinfo.UserInfo.Lv >= 50 
-                            //    && userinfo.Id != 3157723315460702208 && userinfo.Id != 3157541896042119168)
-                            //{
-                            //    continue;
-                            //}
 
                             CreateRoleInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userinfo.UserInfo, account.UserList[i]);
 
