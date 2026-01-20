@@ -422,12 +422,7 @@ namespace ET
         //Parameters=31_30   31区合并到30区
         public static async ETTask MergeZone(int oldzone, int newzone)
         {
-            ListComponent<int> mergezones = new ListComponent<int>() { oldzone, newzone };
-            for (int i = 0; i < mergezones.Count; i++)
-            {
-                var startZoneConfig = StartZoneConfigCategory.Instance.Get(mergezones[i]);
-                Game.Scene.GetComponent<DBComponent>().InitDatabase(startZoneConfig);
-            }
+           
 
             //同时满足以下规则,数据将被清理
             //1.未充值
