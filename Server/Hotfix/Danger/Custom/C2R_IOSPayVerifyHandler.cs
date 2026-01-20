@@ -19,14 +19,14 @@ namespace ET
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Recharge, request.UnitId))
             {
                 ////////////////111111
-                await scene.GetComponent<ReChargeIOSComponent>().OnIOSPayVerify(new M2R_RechargeRequest()
-                {
-                    Zone = zone,
-                    UnitId = request.UnitId,
-                    payMessage = request.payMessage,
-                    UnitName = request.UnitId.ToString(),
-                    RechargeType = request.RechargeType,    
-                });
+                //await scene.GetComponent<ReChargeIOSComponent>().OnIOSPayVerify(new M2R_RechargeRequest()
+                //{
+                //    Zone = zone,
+                //    UnitId = request.UnitId,
+                //    payMessage = request.payMessage,
+                //    UnitName = request.UnitId.ToString(),
+                //    RechargeType = request.RechargeType,    
+                //});
 
                 ////////////////222222
                 //int errocode = scene.GetComponent<ReChargeIOSComponent>().OnIOSPayVerify_New(new M2R_RechargeRequest()
