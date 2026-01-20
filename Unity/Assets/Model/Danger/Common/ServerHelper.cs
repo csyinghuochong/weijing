@@ -465,14 +465,12 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 188, ServerIp = $"{ip}:20405", ServerName = "九天境", ServerOpenTime = 1766746800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 189, ServerIp = $"{ip}:20445", ServerName = "吉星高照", ServerOpenTime = 1767351600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 190, ServerIp = $"{ip}:20555", ServerName = "逐月谷", ServerOpenTime = 1767956400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-
-
-                //2026/01/16 19:00:00 1768561200000 合区 吉祥如意 - 紫禁之巅   139/147
-                //2026/01/16 19:00:00 1768561200000 合区 普天同庆 - 风暴之地   176/178
-                //2026/01/16 19:00:00 1768561200000 合区 泰坦之锤 - 圣光神域   182/183
-                //2026/01/16 19:00:00 1768561200000 合区 炽焰神殿 - 山河万里   184/185
-                //2026/01/16 19:00:00 1768561200000 新区 沧澜神域 191
                 serverItems_1.Add(new ServerItem() { ServerId = 191, ServerIp = $"{ip}:20595", ServerName = "沧澜神域", ServerOpenTime = 1768561200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+
+
+                //2026/01/23 19:00:00 1769166000000 合区 xx - xx   xx/xx
+                //2026/01/23 19:00:00 1769166000000 新区 剑啸山河 192
+                serverItems_1.Add(new ServerItem() { ServerId = 192, ServerIp = $"{ip}:20455", ServerName = "剑啸山河", ServerOpenTime = 1769166000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
