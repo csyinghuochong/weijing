@@ -493,7 +493,6 @@ namespace ET
             //}
 
             List<Vector3> pathfindtest = new List<Vector3>();
-
             Vector3 targetPosi = unit.Position;
             for (int i = 0; i < 30; i++)
             {
@@ -522,7 +521,7 @@ namespace ET
                         }
                     }
 
-                    if (Mathf.Abs(hit.point.y - targetPosi.y) > 0.4f)
+                    if (pathfind.Count > 0 && Mathf.Abs(hit.point.y - pathfind[^1].y) > 0.4f)
                     {
                         break;
                     }
