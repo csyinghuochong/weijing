@@ -11,7 +11,6 @@ namespace ET
 		{
 			try
 			{
-				Log.Warning($"C2A_CreateRoleData:{request.AccountId}");
 				//判断名字是否符合要求
 				if (string.IsNullOrEmpty(request.CreateName))
 				{

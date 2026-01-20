@@ -8,7 +8,7 @@ namespace ET
         {
             try
             {
-                long accountId = request.AccountId;//登录中心服踢玩家下线
+                long accountId = request.AccountId;
 
                 using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginGate, accountId.GetHashCode()))
                 {
@@ -26,13 +26,13 @@ namespace ET
                     {
                         Log.Info($"ErrorCode.ERR_OtherAccountLogin2 {accountId}");
                         gateSession.GetComponent<SessionPlayerComponent>().isLoginAgain = true;
-                        gateSession.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_OtherAccountLogin }); //客户端断线
-                        gateSession?.Disconnect().Coroutine();  //释放会调用SessionPlayerComponentDestory
+                        gateSession.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_OtherAccountLogin });
+                        gateSession?.Disconnect().Coroutine(); 
                     }
                     if (request.Relink)
                     {
                         player.RemoveComponent<PlayerOfflineOutTimeComponent>();
-                        player.AddComponent<PlayerOfflineOutTimeComponent>();   //客户端踢下线，30秒之后调用kickplayer? 还是直接kickplayer;
+                        player.AddComponent<PlayerOfflineOutTimeComponent>();  
                     }
                     else
                     {

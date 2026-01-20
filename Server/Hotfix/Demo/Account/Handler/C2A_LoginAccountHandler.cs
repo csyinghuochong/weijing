@@ -10,10 +10,9 @@ namespace ET
         {
             try
             {
-                Log.Debug($"LoginTest request.AccountName:{request.AccountName} {request.Password} {session.RemoteAddress}", true);
                 if (session.DomainScene().SceneType != SceneType.Account)
                 {
-                    Log.Warning($"LoginTest C2A_LoginAccount请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+                    Log.Error($"LoginTest C2A_LoginAccount请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
                     session.Dispose();
                     return;
                 }
@@ -34,7 +33,8 @@ namespace ET
                     session.Disconnect().Coroutine();
                     return;
                 }
-                if (request.AccountName.Contains("请选择一种登录方式"))
+                if (request.AccountName.Contains("请选择一种登录方式") 
+                    || request.AccountName.Contains("一键登陆"))
                 {
                     response.Error = ErrorCode.ERR_LoginInfoIsNull;
                     response.Message = "请联系qq136087482处理";
@@ -59,16 +59,6 @@ namespace ET
                     return;
                 }
 
-                if (!request.Password.Equals( request.ThirdLogin ) && !request.Password.Equals(ComHelp.RobotPassWord))
-                {
-                    Log.Warning($"登录的账号:  {request.AccountName} {request.Password} {request.ThirdLogin}");
-                }
-
-                if (!ComHelp.RobotPassWord.Equals(request.Password))
-                {
-                    //Log.Console($"客户端登录: {TimeHelper.DateTimeNow().ToString()} {session.RemoteAddress}");
-                    Log.Warning($"账号登录(LoginAccount):{session.DomainZone()}   {request.AccountName}  {session.RemoteAddress} ");
-                }
 
                 if (session.RemoteAddress.ToString().Contains("42.177.217.71"))
                 {
