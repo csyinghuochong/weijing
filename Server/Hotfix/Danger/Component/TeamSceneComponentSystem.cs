@@ -45,7 +45,7 @@ namespace ET
             //69和 72的2个副本 有10%概率 在每个BOSS附近刷新出 80002010 这个宝箱，
             //这个宝箱的掉落是只有自己的可以拾取的，并且宝箱和掉落只有自己可见，
             //在聊天广播中提示要加入XXX玩家通过XXX宝箱拾取XXX,而不是之前的那个通用的广播
-            if (ComHelp.IsInnerNet() || (RandomHelper.RandFloat01() < 0.1f && sceneConfig.EnterLv >= 69))
+            if (ComHelp.IsInnerNet() || (RandomHelper.RandFloat01() < 0.15f && sceneConfig.EnterLv >= 69))
             {
                 int bossid = sceneConfig.BossId;
                 Vector3 bosspostion = Vector3.zero;
