@@ -396,11 +396,11 @@ namespace libx
                 return;
             }
 
-            Debug.Log("httpClient: http://127.0.0.1:30300/game_start");
-
             string server = init.OueNetMode ? "http://39.96.194.143:20008" : "http://127.0.0.1:30300";
+            Debug.Log($"httpClient:{server}");
+
             string url = $"{server}/game_start?TIME={TimeHelper.ClientNow()}&OAID={oaid}";
-            HttpClient httpClient = new();
+            HttpClient httpClient = new HttpClient();
             HttpResponseMessage response = await httpClient.GetAsync(url);
             string result = await response.Content.ReadAsStringAsync();
         }
