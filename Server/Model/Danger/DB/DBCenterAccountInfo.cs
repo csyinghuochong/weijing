@@ -22,6 +22,8 @@ namespace ET
         //用户名
         public string Account { get; set; }
 
+        public string EnPhone{ get; set; }
+
         //密码
         public string Password { get; set; }
 
