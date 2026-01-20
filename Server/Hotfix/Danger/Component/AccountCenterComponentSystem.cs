@@ -124,7 +124,7 @@ namespace ET
                 byte[] buffer = new byte[4];
                 rng.GetBytes(buffer);
                 int randomNumber = Math.Abs(BitConverter.ToInt32(buffer, 0));
-                return randomNumber % 9000 + 1000; // 确保范围在1000-9999之间
+                return randomNumber % 9000 + 1000;
             }
         }
 
@@ -145,7 +145,6 @@ namespace ET
             }
             int secureNumber = GenerateSecureFourDigitNumber();
             self.PhoneVerification.Add(phone, new KeyValuePair<long, string>(TimeHelper.ServerNow(), secureNumber.ToString()));
-            Console.WriteLine($"GenerateVerification: {phone}  {secureNumber}");
             return secureNumber.ToString();
         }
 
@@ -175,7 +174,6 @@ namespace ET
             if (self.TianQITime >= 12)
             {
                 self.TianQITime = 0;
-                //self.TianQiValue = RandomHelper.RandomNumber(1, 3);
                 self.UpdateTianQi();
 
                 List<int> zones = ServerMessageHelper.GetAllZone();
