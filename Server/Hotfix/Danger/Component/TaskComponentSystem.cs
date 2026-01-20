@@ -1029,6 +1029,7 @@ namespace ET
                 if (!TaskCountryConfigCategory.Instance.Contain(self.TaskCountryList[i].taskID))
                 {
                     self.TaskCountryList.RemoveAt(i);
+                    continue;   
                 }
 
                 if(self.TaskCountryList[i].taskID >= 800101 && self.TaskCountryList[i].taskID <= 801001)

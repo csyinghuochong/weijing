@@ -491,6 +491,10 @@ namespace ET
                     }
                 }
             }
+            if (pathfind.Count < 2)
+            {
+                return;
+            }
 
             float posy_start = pathfind[0].y;
             float posy_end = pathfind[pathfind.Count - 1].y;
