@@ -424,7 +424,7 @@ namespace ET
                         mailInfo.MailId = IdGenerater.Instance.GenerateId();
                         mailInfo.ItemList.AddRange(bagInfos);
 
-                        MailHelp.SendUserMail(unit.DomainZone(), unit.Id, mailInfo).Coroutine();
+                        MailHelp.SendUserMail(unititem.DomainZone(), unititem.Id, mailInfo).Coroutine();
                     }
                     else
                     {
