@@ -44,11 +44,26 @@ namespace ET
                         }
                         response.Message = session.DomainScene().GetComponent<AccountCenterComponent>().TianQiValue.ToString();
                         string[] stringxxx = LogHelper.GetNoticeNew().Split('@');
-                        response.NoticeVersion = stringxxx[0];
-                        response.NoticeText = stringxxx[1];
+                        if (stringxxx.Length == 2)
+                        {
+                            response.NoticeVersion = stringxxx[0];
+                            response.NoticeText = stringxxx[1];
+                        }
+                        if (stringxxx.Length == 3)
+                        {
+                        }
+
+                        
                         string[] stringxxx_EN = LogHelper.GetNoticeNew_EN().Split('@');
-                        response.NoticeVersion_EN = stringxxx_EN[0];
-                        response.NoticeText_EN = stringxxx_EN[1];
+                        if (stringxxx_EN.Length == 2)
+                        {
+                            response.NoticeVersion_EN = stringxxx_EN[0];
+                            response.NoticeText_EN = stringxxx_EN[1];
+                        }
+                        if (stringxxx_EN.Length == 3)
+                        {
+                        }
+
                         int accountcenter = StartSceneConfigCategory.Instance.AccountCenterConfig.OuterPort;
                         string outeIp = StartMachineConfigCategory.Instance.Get(1).OuterIP;
                         response.AccountCenterIp = $"{outeIp}:{accountcenter}";

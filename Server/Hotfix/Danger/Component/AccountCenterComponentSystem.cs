@@ -176,6 +176,7 @@ namespace ET
                 self.TianQITime = 0;
                 self.UpdateTianQi();
 
+
                 List<int> zones = ServerMessageHelper.GetAllZone();
                 for (int i = 0; i < zones.Count; i++)
                 {
