@@ -1721,6 +1721,9 @@ namespace ET
 		[ProtoMember(9)]
 		public int SmsVerifyType { get; set; }
 
+		[ProtoMember(10)]
+		public bool ShowNotice { get; set; }
+
 	}
 
 	[ResponseType(nameof(A2C_SendSmsVerifyCode))]

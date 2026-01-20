@@ -186,7 +186,11 @@ namespace ET
                     {
                         notice += $"@{content}";
                     }
-                    if (index >= 2)
+                    if (index == 2)
+                    {
+                        notice += $"@{content}";
+                    }
+                    if (index >= 3)
                     {
                         notice += $"\r\n{content}";
                     }

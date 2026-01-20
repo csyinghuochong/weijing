@@ -819,17 +819,17 @@ namespace ET
 		public static void ShowNotice(this UILoginComponent self)
 		{
 			AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+
+			if (!accountInfoComponent.ShowNotice)
+			{
+				return;
+			}
+
 			string noticeVersion = accountInfoComponent.NoticeVersion;
 
 			if (noticeVersion != PlayerPrefsHelp.GetString(PlayerPrefsHelp.WJa_LastNotice))
 			{
 				PlayerPrefsHelp.SetString(PlayerPrefsHelp.WJa_LastNotice, noticeVersion);
-
-                if (string.IsNullOrEmpty(accountInfoComponent.NoticeText))
-                {
-                    return;
-                }
-
                 self.OnNotice();
 			}
 			
@@ -837,12 +837,6 @@ namespace ET
 			if (noticeVersion_EN != PlayerPrefsHelp.GetString(PlayerPrefsHelp.WJa_LastNotice_EN))
 			{
 				PlayerPrefsHelp.SetString(PlayerPrefsHelp.WJa_LastNotice_EN, noticeVersion_EN);
-
-                if (string.IsNullOrEmpty(accountInfoComponent.NoticeText_EN))
-                {
-                    return;
-                }
-
                 self.OnNotice();
 			}
 		}

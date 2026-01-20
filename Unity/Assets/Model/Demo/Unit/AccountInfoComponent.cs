@@ -48,6 +48,7 @@ namespace ET
 
 		public int SmsVerifyType = 0;  //0 mob  1 aliyun
 
+		public bool ShowNotice = false;
         public int SerialErrorTime = 0;
 
 		public int IsPopUp = 0;

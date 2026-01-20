@@ -684,6 +684,7 @@ namespace ET
             accountInfoComponent.NoticeVersion_EN = r2CSelectServer.NoticeVersion_EN;
             accountInfoComponent.NoticeText_EN = r2CSelectServer.NoticeText_EN;
             accountInfoComponent.SmsVerifyType = r2CSelectServer.SmsVerifyType;
+            accountInfoComponent.ShowNotice = r2CSelectServer.ShowNotice;
             //苹果的强制为阿里云
             //if (platform == 20001)
             //{

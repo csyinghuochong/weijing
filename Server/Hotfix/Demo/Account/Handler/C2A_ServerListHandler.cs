@@ -47,11 +47,6 @@ namespace ET
 
                         long timeNow = TimeHelper.ServerNow();
                         long timeColse = 0;
-                        if (stringxxx.Length == 2)
-                        {
-                            response.NoticeVersion = stringxxx[0];
-                            response.NoticeText = stringxxx[1];
-                        }
                         if (stringxxx.Length == 3)
                         {
                             response.NoticeVersion = stringxxx[0];
@@ -60,11 +55,6 @@ namespace ET
                         }
                         
                         string[] stringxxx_EN = LogHelper.GetNoticeNew_EN().Split('@');
-                        if (stringxxx_EN.Length == 2)
-                        {
-                            response.NoticeVersion_EN = stringxxx_EN[0];
-                            response.NoticeText_EN = stringxxx_EN[1];
-                        }
                         if (stringxxx_EN.Length == 3)
                         {
                             response.NoticeVersion_EN = stringxxx_EN[0];
@@ -74,10 +64,12 @@ namespace ET
 
                         if (timeColse > 0 && timeNow > timeColse + TimeHelper.OneDay * 3)
                         {
-                            response.NoticeText = string.Empty;
-                            response.NoticeText_EN = string.Empty;
+                            response.ShowNotice = false;
                         }
-
+                        else
+                        {
+                            response.ShowNotice = true;
+                        }
 
                         int accountcenter = StartSceneConfigCategory.Instance.AccountCenterConfig.OuterPort;
                         string outeIp = StartMachineConfigCategory.Instance.Get(1).OuterIP;
