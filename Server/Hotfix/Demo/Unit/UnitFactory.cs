@@ -789,7 +789,7 @@ namespace ET
                 {
                     if (sceneType == SceneTypeEnum.TeamDungeon && ( droplist[i].ItemID>= 10030011 && droplist[i].ItemID <= 10030019))
                     {
-                        Log.Error($"掉落装备.字: {droplist[i].ItemID}   {sceneType}");
+                        //Log.Error($"掉落装备.字: {droplist[i].ItemID}   {sceneType}");
                     }
 
                     UnitComponent unitComponent = DomainScene.GetComponent<UnitComponent>();
