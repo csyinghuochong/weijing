@@ -409,9 +409,27 @@ namespace ET
                 {
                     unititem.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PassTeamShenYuanNumber_21, 0, 1);
                 }
-                if (unititem.GetComponent<UserInfoComponent>().UserInfo.UserId == idExtra)
+                if (unititem.GetComponent<UserInfoComponent>().UserInfo.UserId == idExtra && m2C_FubenSettlement.RewardExtraItem.Count > 0)
                 {
-                    unititem.GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem, string.Empty, $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
+                    BagComponent bagComponent = unititem.GetComponent<BagComponent>();
+                    if (bagComponent.GetBagLeftCell() < 1)
+                    {
+                        List<BagInfo> bagInfos = new List<BagInfo>();
+                        RewardItem rewardItem = m2C_FubenSettlement.RewardExtraItem[0];
+                        bagInfos.Add(new BagInfo() { ItemID = rewardItem.ItemID, ItemNum = rewardItem.ItemNum });
+                        MailInfo mailInfo = new MailInfo();
+                        mailInfo.Status = 0;
+                        mailInfo.Context = "副本奖励";
+                        mailInfo.Title = "额外奖励";
+                        mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                        mailInfo.ItemList.AddRange(bagInfos);
+
+                        MailHelp.SendUserMail(unit.DomainZone(), unit.Id, mailInfo).Coroutine();
+                    }
+                    else
+                    {
+                        bagComponent.OnAddItemData(m2C_FubenSettlement.RewardExtraItem, string.Empty, $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
+                    }
                 }
                 MessageHelper.SendToClient(unititem, m2C_FubenSettlement);
             }
