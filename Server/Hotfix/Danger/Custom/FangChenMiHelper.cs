@@ -12,8 +12,8 @@ namespace ET
         public const string FangChenMi_appid = "764a47910a4a4cce8aa957f6e1b4a535";
         public const string FangChenMi_secretkey = "252ddc303d729a08c500c0017d4ed4c5";
         public const string FangChenMi_bizid = "1199028911";
-        public static string[] normalUrls = { "https://api.wlc.nppa.gov.cn/idcard/authentication/check"
-            , "http://api2.wlc.nppa.gov.cn/idcard/authentication/query"
+        public static string[] normalUrls = { "https://api.wlc.nppa.gov.cn/idcard/authentication/query"
+            , "http://api2.wlc.nppa.gov.cn/idcard/authentication/check"
             , "http://api2.wlc.nppa.gov.cn/behavior/collection/loginout" };
 
 
@@ -28,10 +28,9 @@ namespace ET
             }
             else
             {
-                strjson = args.ToJson(); // Newtonsoft.Json.JsonConvert.SerializeObject(args);
+                strjson = Newtonsoft.Json.JsonConvert.SerializeObject(args);
                 data = MyCryptoClass.encryptByAES128Gcm(FangChenMi_secretkey, strjson);
-                object data_n = new { data = data };
-                data = data_n.ToJson();  // Newtonsoft.Json.JsonConvert.SerializeObject(new { data = data });
+                data =  Newtonsoft.Json.JsonConvert.SerializeObject(new { data = data });
             }
             var timestamps = InitValueDefs.SecondsFrom19700101ms().ToString();
             var dic = new Dictionary<string, string>();
@@ -40,7 +39,6 @@ namespace ET
             dic["bizId"] = FangChenMi_bizid;
             var res = "";
 
-            Log.Debug($"OnDoFangchenmi2:  {args.ToString()}");
             if (eType == EType.Query)
             {
                 dic["ai"] = args.ToString();
@@ -63,7 +61,7 @@ namespace ET
 
             Log.Debug($"Fangchenmi res {res}");
             Console.WriteLine($"Fangchenmi res {res}");
-            //object data_result = Newtonsoft.Json.JsonConvert.DeserializeObject<object>(res);
+            object data_result = Newtonsoft.Json.JsonConvert.DeserializeObject<object>(res);
             // 反序列化json
             RealNameCode result_1 = null;
             try
