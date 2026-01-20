@@ -464,17 +464,48 @@ namespace ET
 
         public static void CanMovePositionList(this UIJoystickMoveComponent self, Unit unit, float speed, Quaternion rotation, List<Vector3> pathfind)
         {
-            for (int i = 5; i >= 1; i--)
+            //for (int i = 5; i >= 1; i--)
+            //{
+            //    Vector3  targetPosi = unit.Position + rotation * Vector3.forward * i;
+            //    RaycastHit hit;
+
+            //    Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
+            //    if (hit.collider != null)
+            //    {
+            //        break;
+            //    }
+
+            //    Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.MapLayer);
+            //    if (hit.collider == null)
+            //    {
+            //        break;
+            //    }
+            //    else
+            //    {
+            //        targetPosi.y =  hit.point.y;
+            //        unit.GetComponent<PathfindingComponent>().Find(unit.Position, targetPosi, pathfind);
+
+            //        if (pathfind.Count >= 2)
+            //        {
+            //            break;
+            //        }
+            //    }
+            //}
+
+            List<Vector3> pathfindtest = new List<Vector3>();
+
+            Vector3 targetPosi = unit.Position;
+            for (int i = 0; i < 30; i++)
             {
-                Vector3  targetPosi = unit.Position + rotation * Vector3.forward * i;
+                targetPosi = targetPosi + rotation * Vector3.forward * 0.2f;
                 RaycastHit hit;
-            
+
                 Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
                 if (hit.collider != null)
                 {
                     break;
                 }
-            
+
                 Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.MapLayer);
                 if (hit.collider == null)
                 {
@@ -482,73 +513,53 @@ namespace ET
                 }
                 else
                 {
-                    targetPosi.y =  hit.point.y;
-                    unit.GetComponent<PathfindingComponent>().Find(unit.Position, targetPosi, pathfind);
+                    if (i >= 5)
+                    {
+                        unit.GetComponent<PathfindingComponent>().Find(unit.Position, hit.point, pathfindtest);
+                        if (pathfindtest.Count < 2)
+                        {
+                            break;
+                        }
+                    }
 
-                    if (pathfind.Count >= 2)
+                    if (Mathf.Abs(hit.point.y - targetPosi.y) > 0.4f)
                     {
                         break;
                     }
+                    else
+                    {
+                        targetPosi = hit.point;
+                        pathfind.Add(targetPosi);
+                    }
                 }
             }
-            if (pathfind.Count < 2)
-            {
-                return;
-            }
 
-            float posy_start = pathfind[0].y;
-            float posy_end = pathfind[pathfind.Count - 1].y;
-            Log.Debug($"posy_start - posy_end:  {Math.Abs(posy_start - posy_end) }");
-            for (int i = 0; i < pathfind.Count; i++)
-            {
-                // 第一个点和最后一个点不处理
-                if (i == 0 || i == pathfind.Count - 1) continue;
-    
-                // 计算当前点在路径中的比例 (0到1之间)
-                float t = (float)i / (pathfind.Count - 1);
-    
-                // 线性插值计算目标Y值
-                float targetY = Mathf.Lerp(posy_start, posy_end, t);
-    
-                // 平滑过渡：可以调整lerp的最后一个参数来控制平滑程度
-                pathfind[i] = new Vector3(
-                    pathfind[i].x,
-                    Mathf.Lerp(pathfind[i].y, targetY, 0.5f), // 0.5f是平滑强度
-                    pathfind[i].z
-                );
-            }
+            //if (pathfind.Count < 2)
+            //{
+            //    return;
+            //}
+            //float posy_start = pathfind[0].y;
+            //float posy_end = pathfind[pathfind.Count - 1].y;
+            //Log.Debug($"posy_start - posy_end:  {Math.Abs(posy_start - posy_end)}");
+            //for (int i = 0; i < pathfind.Count; i++)
+            //{
+            //    // 第一个点和最后一个点不处理
+            //    if (i == 0 || i == pathfind.Count - 1) continue;
 
+            //    // 计算当前点在路径中的比例 (0到1之间)
+            //    float t = (float)i / (pathfind.Count - 1);
 
-            // Vector3 targetPosi = unit.Position;
-            // for (int i = 0; i < 30; i++)
-            // {
-            //     targetPosi = targetPosi + rotation * Vector3.forward * 0.2f;
-            //     RaycastHit hit;
-            //
-            //     Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
-            //     if (hit.collider != null)
-            //     {
-            //         break;
-            //     }
-            //
-            //     Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.MapLayer);
-            //     if (hit.collider == null)
-            //     {
-            //         break;
-            //     }
-            //     else
-            //     {
-            //         if (Mathf.Abs(hit.point.y - targetPosi.y) > 0.4f)
-            //         {
-            //             break;
-            //         }
-            //         else
-            //         {
-            //             targetPosi = hit.point;
-            //             pathfind.Add(targetPosi);
-            //         }
-            //     }
-            // }
+            //    // 线性插值计算目标Y值
+            //    float targetY = Mathf.Lerp(posy_start, posy_end, t);
+
+            //    // 平滑过渡：可以调整lerp的最后一个参数来控制平滑程度
+            //    pathfind[i] = new Vector3(
+            //        pathfind[i].x,
+            //        Mathf.Lerp(pathfind[i].y, targetY, 0.5f), // 0.5f是平滑强度
+            //        pathfind[i].z
+            //    );
+            //}
+
             //return targetPosi;
         }
 
