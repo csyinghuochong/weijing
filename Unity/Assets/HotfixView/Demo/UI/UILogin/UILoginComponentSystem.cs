@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-
+	
     public class UILoginComponentAwakeSystem : AwakeSystem<UILoginComponent>
 	{
 
@@ -1378,7 +1378,10 @@ namespace ET
                 loginType,
 				deviveInfo);
 
-			if (loginError == ErrorCode.ERR_Success)
+            //先锋一区测试
+            SettingHelper.ClintFindPath = self.ServerInfo.ServerId == 5 && GlobalHelp.GetBigVersion() >= 23;
+
+            if (loginError == ErrorCode.ERR_Success)
 			{
 
 #if UNITY_ANDROID
@@ -1418,9 +1421,6 @@ namespace ET
 					EventType.TikTokAccountLogin.Instance.LastLoginTime = TimeHelper.ClientNow();
                     EventSystem.Instance.PublishClass(EventType.TikTokAccountLogin.Instance);
                 }
-
-				//先锋一区测试
-                SettingHelper.ClintFindPath = self.ServerInfo.ServerId == 5 && GlobalHelp.GetBigVersion() >= 23;
 #endif
             }
 			else
