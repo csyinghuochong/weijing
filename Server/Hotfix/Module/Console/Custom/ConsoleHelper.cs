@@ -73,6 +73,88 @@ namespace ET
                 zonlist.Add(zone);
             }
 
+            Dictionary<int, Dictionary<string, int>> unityversionNumber = new Dictionary<int, Dictionary<string, int>>();
+
+            for (int i = 0; i < zonlist.Count; i++)
+            {
+                int pyzone = StartZoneConfigCategory.Instance.Get(zonlist[i]).PhysicZone;
+
+                unityversionNumber.Add(pyzone, new Dictionary<string, int>());
+
+                List<DataCollationComponent> dataCollationComponents = await Game.Scene.GetComponent<DBComponent>().Query<DataCollationComponent>(pyzone, d => d.Id > 0);
+                for (int userinfo = 0; userinfo < dataCollationComponents.Count; userinfo++)
+                {
+                    DataCollationComponent dataCollation = dataCollationComponents[userinfo];
+
+                    string unitversion = dataCollation.UnityVersion;
+                    
+                    if (string.IsNullOrEmpty(dataCollation.Name)
+                        || string.IsNullOrEmpty(unitversion))
+                    {
+                        continue;
+                    }
+
+                    if (!string.IsNullOrEmpty(unitversion) && unitversion.Contains("2022"))
+                    {
+                        unitversion = "2022.3.60f1c1";
+                    }
+                    else
+                    {
+                        unitversion = "2020.3.33f1c2";
+                    }
+
+
+
+                    if (!unityversionNumber[pyzone].ContainsKey(unitversion))
+                    {
+                        unityversionNumber[pyzone].Add(unitversion, 0);
+                    }
+                    unityversionNumber[pyzone][unitversion]++;
+                }
+            }
+
+            string fenhaoTip = string.Empty;
+            foreach ((int pyzone, Dictionary<string, int> occnumber) in unityversionNumber)
+            {
+                fenhaoTip += $"{pyzone}区各版本玩家数量:\n";
+                //fenhaoTip += $"封角色:{pyzone}   {account}   {unitids[i]}";
+
+                foreach ((string unityversion, int number) in occnumber)
+                {
+                    fenhaoTip += $"UnityVersion： {unityversion}    人数： {number}\n";
+                }
+                fenhaoTip += $"\n";
+            }
+            LogHelper.UnityVersionoNumer(fenhaoTip);
+#endif
+        }
+
+
+        //unityversion2 12
+        public static async ETTask ChaXunUnity2VersionHandler(string content)
+        {
+            Console.WriteLine($"request.Context:  ChaXunUnityVersionHandler: {content}");
+            await ETTask.CompletedTask;
+            string[] chaxunInfo = content.Split(" ");
+            if (chaxunInfo.Length != 2)
+            {
+                Console.WriteLine($"C must have allonline zone");
+                Log.Warning($"C must have allonline zone");
+                return;
+            }
+
+#if SERVER
+            int zone = int.Parse(chaxunInfo[1]);
+            List<int> zonlist = new List<int> { };
+            if (zone == 0)
+            {
+                zonlist = ServerMessageHelper.GetAllZone();
+            }
+            else
+            {
+                zonlist.Add(zone);
+            }
+
             Dictionary<int, Dictionary<string, int>> occtwoNumber = new Dictionary<int, Dictionary<string, int>>();
 
             for (int i = 0; i < zonlist.Count; i++)
@@ -1800,7 +1882,6 @@ namespace ET
 
         public static async ETTask DecodingFormatPhoneHandler(string content)
         {
-            Console.WriteLine($"request.Context:  DecodingFormatPhoneHandler: {content}");
             await ETTask.CompletedTask;
             string[] chaxunInfo = content.Split(" ");
             if (chaxunInfo.Length != 2)
@@ -1817,8 +1898,13 @@ namespace ET
                 DBCenterAccountInfo dBCenterAccount = accoutResult[i];
                 if (dBCenterAccount.Password != "3" && dBCenterAccount.Password != "4")
                 {
-                    return;
+                    continue;
                 }
+                if (dBCenterAccount.EnPhone == "0")
+                {
+                    continue;
+                }
+                dBCenterAccount.EnPhone = "0";
                 dBCenterAccount.Account = AESUtilsHelper.AesDecrypt(dBCenterAccount.Account, chaxunInfo[1]);
                 await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterAccount);
             }
@@ -1829,7 +1915,6 @@ namespace ET
 
         public static async ETTask EncodingFormatPhoneHandler(string content)
         {
-            Console.WriteLine($"request.Context:  EncodingFormatPhoneHandler: {content}");
             await ETTask.CompletedTask;
             string[] chaxunInfo = content.Split(" ");
             if (chaxunInfo.Length != 2 )
@@ -1846,9 +1931,14 @@ namespace ET
                 DBCenterAccountInfo dBCenterAccount = accoutResult[i];
                 if (dBCenterAccount.Password != "3" && dBCenterAccount.Password != "4")
                 {
-                    return;
+                    continue;
+                }
+                if (dBCenterAccount.EnPhone == "1")
+                {
+                    continue;
                 }
                 dBCenterAccount.Account = AESUtilsHelper.AesEncrypt(dBCenterAccount.Account, chaxunInfo[1]);
+                dBCenterAccount.EnPhone = "1";
                 await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterAccount);
             }
 #endif
