@@ -27,7 +27,7 @@ namespace ET
             self.Text_ChengJiuPoint = rc.Get<GameObject>("Text_ChengJiuPoint");
             self.Text_ChengJiuName = rc.Get<GameObject>("Text_ChengJiuName");
             self.ChengJiuIcon = rc.Get<GameObject>("ChengJiuIcon");
-            self.ButtonClose = rc.Get<GameObject>("ChengJiuIcon");
+            self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() =>
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UIChengJiuActivite);
