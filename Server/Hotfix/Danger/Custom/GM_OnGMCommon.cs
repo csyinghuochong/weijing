@@ -66,6 +66,7 @@ namespace ET
 
             if (infoList[0] == ConsoleMode.ReloadDll)
             {
+                Console.WriteLine($"request.Context: {request.Context}");
                 ConsoleHelper.ReloadDllConsoleHandler(request.Context).Coroutine();
             }
             if (infoList[0] == ConsoleMode.ServerRank)
@@ -74,6 +75,7 @@ namespace ET
             }
             if (infoList[0] == ConsoleMode.StopServer)
             {
+                Console.WriteLine($"request.Context: {request.Context}");
                 ConsoleHelper.StopServerConsoleHandler(request.Context).Coroutine();
             }
             if (infoList[0] == "gold" || infoList[0] == "diamond")
