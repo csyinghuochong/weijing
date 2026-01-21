@@ -1,7 +1,10 @@
 ﻿using MongoDB.Driver.Linq;
 using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ET
@@ -1759,6 +1762,35 @@ namespace ET
 #endif
         }
 
+        public static async ETTask EncodingFormatPhoneHandler(string content)
+        {
+            Console.WriteLine($"request.Context:  EncodingFormatPhoneHandler: {content}");
+            await ETTask.CompletedTask;
+            string[] chaxunInfo = content.Split(" ");
+            if (chaxunInfo.Length != 2 || chaxunInfo[0] != "formatphone")
+            {
+                Console.WriteLine($"C must have allonline zone");
+                Log.Warning($"C must have allonline zone");
+                return;
+            }
+
+#if SERVER
+            //List<DBCenterAccountInfo> accoutResult = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, _account => _account.Id > 0);
+            //for (int i = 0; i < accoutResult.Count; i++)
+            //{
+            //    DBCenterAccountInfo dBCenterAccount = accoutResult[i];
+            //    if (dBCenterAccount.Password != "3" && dBCenterAccount.Password != "4")
+            //    {
+            //        return;
+            //    }
+            //    dBCenterAccount.Account = AESUtilsHelper.AesEncrypt(dBCenterAccount.Account, chaxunInfo[1]);
+            //    await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterAccount);
+            //}
+
+#endif
+
+            await ETTask.CompletedTask;
+        }
 
         /// <summary>
         /// 通过身份证号封号
