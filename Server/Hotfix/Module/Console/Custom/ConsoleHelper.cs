@@ -102,9 +102,6 @@ namespace ET
                     {
                         unitversion = "2020.3.33f1c2";
                     }
-
-
-
                     if (!unityversionNumber[pyzone].ContainsKey(unitversion))
                     {
                         unityversionNumber[pyzone].Add(unitversion, 0);
