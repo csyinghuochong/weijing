@@ -100,6 +100,8 @@ namespace ET
                     request.ThirdLogin = "0";
                 }
 
+                int oldAccount = 0;
+
                 if (!string.IsNullOrEmpty(request.ThirdLogin) && request.ThirdLogin.Length > 0)
                 {
                     using (session.AddComponent<SessionLockingComponent>())
@@ -150,6 +152,8 @@ namespace ET
                                 {
                                     Console.WriteLine($"已有老账号:    {request.AccountName}   {AccountId}");
                                 }
+
+                                oldAccount = 1;
                             }
                         }
                     }
@@ -159,6 +163,7 @@ namespace ET
                 {
                     return;
                 }
+            
                 using (session.AddComponent<SessionLockingComponent>())
                 {
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountName.Trim().GetHashCode()))
@@ -401,6 +406,7 @@ namespace ET
                         {
                             Console.WriteLine($"loginaccount DBCenterDataCache:  {request.OAID}");
                             DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
+                            dBCenterDataCache.OldAccount = oldAccount;
                             dBCenterDataCache.OnLogin(request.DeviceName);
                             await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
                         }

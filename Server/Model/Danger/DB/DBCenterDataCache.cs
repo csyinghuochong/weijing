@@ -27,6 +27,8 @@ namespace ET
         public string FristCrateRoleTime;
         //第一次进入主城
         public string FirstEnterMainCityTime;
+        //是否老账号 老号为1 新号是0
+        public int OldAccount;
 
         public void OnLogin(string devicename)
         {
