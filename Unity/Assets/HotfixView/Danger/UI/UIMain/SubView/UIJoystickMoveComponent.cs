@@ -52,6 +52,7 @@ namespace ET
         public AttackComponent AttackComponent;
         public MoveComponent MoveComponent;
         public BattleMessageComponent BattleMessageComponent;
+        public RelinkComponent RelinkComponent;
         public GameObject GameObject;
 
         public int ObstructLayer;
@@ -111,6 +112,7 @@ namespace ET
             self.MainCamera = self.DomainScene().GetComponent<UIComponent>().MainCamera;
             self.AttackComponent = self.ZoneScene().GetComponent<AttackComponent>();
             self.BattleMessageComponent = self.ZoneScene().GetComponent<BattleMessageComponent>();
+            self.RelinkComponent = self.ZoneScene().GetComponent<RelinkComponent>();
             self.ObstructLayer = (1 << LayerMask.NameToLayer(LayerEnum.Obstruct.ToString()));
             self.BuildingLayer = (1 << LayerMask.NameToLayer(LayerEnum.Building.ToString()));
             self.MapLayer = (1 << LayerMask.NameToLayer(LayerEnum.Map.ToString()));
@@ -216,8 +218,12 @@ namespace ET
             {
                 return;
             }
+            if (self.RelinkComponent.Relink)
+            {
+                return;
+            }
 
-            //MapHelper.LogMoveInfo($"移动摇杆拖动: {TimeHelper.ServerNow()}");
+                //MapHelper.LogMoveInfo($"移动摇杆拖动: {TimeHelper.ServerNow()}");
             self.lastSendTime = 0;
             self.direction = self.GetDirection(pdata);
             self.MoveComponent.LastRecvTime = TimeHelper.ClientNow();

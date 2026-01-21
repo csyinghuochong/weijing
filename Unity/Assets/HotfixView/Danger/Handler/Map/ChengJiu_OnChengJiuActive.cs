@@ -13,6 +13,7 @@ namespace ET
         protected override async void Run(object cls)
         {
             EventType.ChengJiuActive args = cls as EventType.ChengJiuActive;
+            await TimerComponent.Instance.WaitAsync(1000);
 
             UI uiBattleMain = UIHelper.GetUI(args.ZoneScene, UIType.UIChengJiuActivite);
             if (uiBattleMain == null)

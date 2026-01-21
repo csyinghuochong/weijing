@@ -38,9 +38,10 @@ namespace ET
             skillManagerComponent.InterruptSing(0, true);
 
             //模拟网络延迟
-            //if (RandomHelper.RandomNumber(1, 10) == 5)
+            //if (RandomHelper.RandomNumber(1, 30) == 15)
             //{
-            //    await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(20, 60));
+            //    Console.WriteLine($"模拟延迟！！！！");
+            //    await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(20, 160));
             //}
 
             M2C_PathfindingResult m2C_PathfindingResult = new M2C_PathfindingResult();
