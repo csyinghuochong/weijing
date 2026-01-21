@@ -259,5 +259,7 @@ namespace ET
 		 public const ushort L2M_GetWeChatOACode = 20256;
 		 public const ushort L2M_WeChatOABindResult = 20257;
 		 public const ushort M2L_WeChatOABindResult = 20258;
+		 public const ushort M2Center_UpdateDataCacheRequest = 20259;
+		 public const ushort Center2M_UpdateDataCacheResponse = 20260;
 	}
 }
