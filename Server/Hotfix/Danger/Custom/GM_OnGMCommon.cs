@@ -50,6 +50,11 @@ namespace ET
                 RechargeHelp.OnPaySucessToGate(int.Parse(mailInfo[1]), long.Parse(mailInfo[2]), int.Parse(mailInfo[3]), "补偿", 0, 0).Coroutine();
 #endif
             }
+            if (infoList[0] == "enphone")
+            {
+                ConsoleHelper.EncodingFormatPhoneHandler(request.Context).Coroutine();  
+            }
+
             if (infoList[0] == ConsoleMode.ReloadDll)
             {
                 ConsoleHelper.ReloadDllConsoleHandler(request.Context).Coroutine();
