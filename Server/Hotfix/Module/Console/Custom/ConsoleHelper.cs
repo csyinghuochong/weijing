@@ -30,12 +30,12 @@ namespace ET
             for (int i = 0; i < accoutResult.Count; i++)
             {
                 DBCenterAccountInfo dBCenterAccount = accoutResult[i];
-                dBCenterAccount.TotalRecharge = dBCenterAccount.GetTotalRecharge();
                 if (ComHelp.RobotPassWord.Equals(dBCenterAccount.Password)) 
                 {
                     robotnumber++;
                     continue;
                 }
+                dBCenterAccount.TotalRecharge = dBCenterAccount.GetTotalRecharge();
                 if (dBCenterAccount.TotalRecharge > 10000)
                 {
                     Console.WriteLine($"{dBCenterAccount.Account}  {dBCenterAccount.TotalRecharge}");
