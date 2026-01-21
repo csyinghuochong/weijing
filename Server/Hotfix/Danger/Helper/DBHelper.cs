@@ -299,14 +299,15 @@ namespace ET
             {
                 return;
             }
-            Console.WriteLine($"updatelastgametime DBCenterDataCache:  {oaid}");
-            List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == oaid);
-            if (centerDataCaches != null && centerDataCaches.Count > 0)
+
+            long accountZone = DBHelper.GetAccountCenter();
+            Center2M_UpdateDataCacheResponse centerAccount = (Center2M_UpdateDataCacheResponse)await ActorMessageSenderComponent.Instance.Call(accountZone, new M2Center_UpdateDataCacheRequest()
             {
-                DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
-                dBCenterDataCache.LastLoginTime = lastgametime;
-                await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
-            }
+                OAID = oaid,
+                Time = lastgametime,
+            });
+
+            
         }
 
 

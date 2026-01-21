@@ -4708,7 +4708,7 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(Center2M_ShareSucessResponse))]
+	[ResponseType(nameof(Center2M_UpdateDataCacheResponse))]
 	[Message(InnerOpcode.M2Center_UpdateDataCacheRequest)]
 	[ProtoContract]
 	public partial class M2Center_UpdateDataCacheRequest: Object, IActorRequest
