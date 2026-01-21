@@ -1379,7 +1379,7 @@ namespace ET
 				deviveInfo);
 
             //先锋一区测试
-            SettingHelper.ClintFindPath = self.ServerInfo.ServerId == 5 && GlobalHelp.GetBigVersion() >= 23;
+            SettingHelper.ClintFindPath = self.ServerInfo.ServerId == 5 && GMHelp.GmAccount.Contains(account);
 
             if (loginError == ErrorCode.ERR_Success)
 			{
