@@ -25,18 +25,24 @@ namespace ET
                 return;
             }
 #if SERVER
+            int robotnumber = 0;
             List<DBCenterAccountInfo> accoutResult = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, _account => _account.Id > 0);
             for (int i = 0; i < accoutResult.Count; i++)
             {
                 DBCenterAccountInfo dBCenterAccount = accoutResult[i];
                 dBCenterAccount.TotalRecharge = dBCenterAccount.GetTotalRecharge();
-
+                if (ComHelp.RobotPassWord.Equals(dBCenterAccount.Password)) 
+                {
+                    robotnumber++;
+                    continue;
+                }
                 if (dBCenterAccount.TotalRecharge > 10000)
                 {
                     Console.WriteLine($"{dBCenterAccount.Account}  {dBCenterAccount.TotalRecharge}");
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterAccount);
             }
+            Console.WriteLine($"robotnumber:  {robotnumber}");
 #endif
 
             await ETTask.CompletedTask;

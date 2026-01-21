@@ -29,7 +29,7 @@ namespace ET
 
         public PlayerInfo PlayerInfo { get; set; }
 
-        public int TotalRecharge { get; set; }
+        public int TotalRecharge { get; set; }   //总充值
 
         public int AccountType; //账号类型
 
@@ -43,7 +43,9 @@ namespace ET
 
         public List<KeyValuePairLong> CreateRoleList = new List<KeyValuePairLong>();
 
-        public List<int> IsUpperList = new List<int>(); 
+        public List<int> IsUpperList = new List<int>();
+
+        public string IP;    //上次登陆ip
 
         public int GetTotalRecharge()
         {

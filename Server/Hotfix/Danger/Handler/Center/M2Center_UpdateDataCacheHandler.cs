@@ -19,6 +19,14 @@ namespace ET
                 await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
             }
 
+            List<DBCenterAccountInfo> centerAccountInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == request.AccInfoID);
+            if (centerAccountInfos != null && centerAccountInfos.Count > 0)
+            {
+                DBCenterAccountInfo dBCenterAccount = centerAccountInfos[0];
+                dBCenterAccount.IP = request.RemoteAddress;
+                await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterAccount);
+            }
+
             reply();
             await ETTask.CompletedTask;
         }

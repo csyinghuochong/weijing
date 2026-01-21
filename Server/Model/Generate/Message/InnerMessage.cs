@@ -4725,6 +4725,12 @@ namespace ET
 		[ProtoMember(2)]
 		public string Time { get; set; }
 
+		[ProtoMember(3)]
+		public long AccInfoID { get; set; }
+
+		[ProtoMember(4)]
+		public string RemoteAddress { get; set; }
+
 	}
 
 	[Message(InnerOpcode.Center2M_UpdateDataCacheResponse)]

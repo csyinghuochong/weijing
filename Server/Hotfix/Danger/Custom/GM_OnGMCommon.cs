@@ -31,6 +31,11 @@ namespace ET
             {
                 ConsoleHelper.MailConsoleHandler(request.Context).Coroutine();
             }
+            if (infoList[0] == "caclaccountrecharge")
+            {
+                ConsoleHelper.CaclAccountRechargeHandler(request.Context).Coroutine();
+            }
+
             if (infoList[0] == "broad")
             {
                 ConsoleHelper.BroadConsoleHander(request.Context).Coroutine();
@@ -53,6 +58,10 @@ namespace ET
             if (infoList[0] == "enphone")
             {
                 ConsoleHelper.EncodingFormatPhoneHandler(request.Context).Coroutine();  
+            }
+            if (infoList[0] == "dephone")
+            {
+                ConsoleHelper.DecodingFormatPhoneHandler(request.Context).Coroutine();
             }
 
             if (infoList[0] == ConsoleMode.ReloadDll)
