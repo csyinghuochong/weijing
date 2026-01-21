@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIChengJiuActiviteComponent : Entity,IAwake,IDestroy
     {
+        public GameObject ButtonClose;
         public GameObject Text_ChengJiuDesc;
         public GameObject Text_ChengJiuPoint;
         public GameObject Text_ChengJiuName;
@@ -26,6 +27,11 @@ namespace ET
             self.Text_ChengJiuPoint = rc.Get<GameObject>("Text_ChengJiuPoint");
             self.Text_ChengJiuName = rc.Get<GameObject>("Text_ChengJiuName");
             self.ChengJiuIcon = rc.Get<GameObject>("ChengJiuIcon");
+            self.ButtonClose = rc.Get<GameObject>("ChengJiuIcon");
+            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                UIHelper.Remove(self.ZoneScene(), UIType.UIChengJiuActivite);
+            });
         }
     }
     public class UIChengJiuActiviteComponentDestroy : DestroySystem<UIChengJiuActiviteComponent>

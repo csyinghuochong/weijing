@@ -19,8 +19,8 @@ namespace ET
             if (uiBattleMain == null)
             {
                 uiBattleMain = await UIHelper.Create(args.ZoneScene, UIType.UIChengJiuActivite);
+                uiBattleMain.GetComponent<UIChengJiuActiviteComponent>().OnInitUI(args.m2C_ChengJiu.ChengJiuId).Coroutine();
             }
-            uiBattleMain.GetComponent<UIChengJiuActiviteComponent>().OnInitUI(args.m2C_ChengJiu.ChengJiuId).Coroutine();
         }
     }
 }
