@@ -29,6 +29,8 @@ namespace ET
 
         public PlayerInfo PlayerInfo { get; set; }
 
+        public int TotalRecharge { get; set; }
+
         public int AccountType; //账号类型
 
         public long CreateTime; //创建时间

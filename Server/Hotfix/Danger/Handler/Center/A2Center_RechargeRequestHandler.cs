@@ -16,6 +16,7 @@ namespace ET
                 Log.Warning($"A2Center_RechargeRequest: {scene.DomainZone()}");
                 List<DBCenterAccountInfo> resulets = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(zone, d => d.Id == request.AccountId);
                 resulets[0].PlayerInfo.RechargeInfos.Add(request.RechargeInfo);
+                resulets[0].TotalRecharge = resulets[0].GetTotalRecharge(); 
                 Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(scene.DomainZone(), resulets[0]).Coroutine();
                 reply();
             }

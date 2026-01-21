@@ -12,6 +12,36 @@ namespace ET
     public static class ConsoleHelper
     {
 
+        //caclaccountrecharge 202
+        public static async ETTask CaclAccountRechargeHandler(string content)
+        {
+            Console.WriteLine($"request.Context:  CaclAccountRechargeHandler: {content}");
+            await ETTask.CompletedTask;
+            string[] chaxunInfo = content.Split(" ");
+            if (chaxunInfo.Length != 2)
+            {
+                Console.WriteLine($"C must have allonline zone");
+                Log.Warning($"C must have allonline zone");
+                return;
+            }
+#if SERVER
+            List<DBCenterAccountInfo> accoutResult = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, _account => _account.Id > 0);
+            for (int i = 0; i < accoutResult.Count; i++)
+            {
+                DBCenterAccountInfo dBCenterAccount = accoutResult[i];
+                dBCenterAccount.TotalRecharge = dBCenterAccount.GetTotalRecharge();
+
+                if (dBCenterAccount.TotalRecharge > 10000)
+                {
+                    Console.WriteLine($"{dBCenterAccount.Account}  {dBCenterAccount.TotalRecharge}");
+                }
+                await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterAccount);
+            }
+#endif
+
+            await ETTask.CompletedTask;
+        }
+
         //unityversion 12
         public static async ETTask ChaXunUnityVersionHandler(string content)
         {
@@ -1762,12 +1792,12 @@ namespace ET
 #endif
         }
 
-        public static async ETTask EncodingFormatPhoneHandler(string content)
+        public static async ETTask DecodingFormatPhoneHandler(string content)
         {
-            Console.WriteLine($"request.Context:  EncodingFormatPhoneHandler: {content}");
+            Console.WriteLine($"request.Context:  DecodingFormatPhoneHandler: {content}");
             await ETTask.CompletedTask;
             string[] chaxunInfo = content.Split(" ");
-            if (chaxunInfo.Length != 2 || chaxunInfo[0] != "formatphone")
+            if (chaxunInfo.Length != 2)
             {
                 Console.WriteLine($"C must have allonline zone");
                 Log.Warning($"C must have allonline zone");
@@ -1775,18 +1805,46 @@ namespace ET
             }
 
 #if SERVER
-            //List<DBCenterAccountInfo> accoutResult = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, _account => _account.Id > 0);
-            //for (int i = 0; i < accoutResult.Count; i++)
-            //{
-            //    DBCenterAccountInfo dBCenterAccount = accoutResult[i];
-            //    if (dBCenterAccount.Password != "3" && dBCenterAccount.Password != "4")
-            //    {
-            //        return;
-            //    }
-            //    dBCenterAccount.Account = AESUtilsHelper.AesEncrypt(dBCenterAccount.Account, chaxunInfo[1]);
-            //    await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterAccount);
-            //}
+            List<DBCenterAccountInfo> accoutResult = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, _account => _account.Id > 0);
+            for (int i = 0; i < accoutResult.Count; i++)
+            {
+                DBCenterAccountInfo dBCenterAccount = accoutResult[i];
+                if (dBCenterAccount.Password != "3" && dBCenterAccount.Password != "4")
+                {
+                    return;
+                }
+                dBCenterAccount.Account = AESUtilsHelper.AesDecrypt(dBCenterAccount.Account, chaxunInfo[1]);
+                await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterAccount);
+            }
+#endif
 
+            await ETTask.CompletedTask;
+        }
+
+        public static async ETTask EncodingFormatPhoneHandler(string content)
+        {
+            Console.WriteLine($"request.Context:  EncodingFormatPhoneHandler: {content}");
+            await ETTask.CompletedTask;
+            string[] chaxunInfo = content.Split(" ");
+            if (chaxunInfo.Length != 2 )
+            {
+                Console.WriteLine($"C must have allonline zone");
+                Log.Warning($"C must have allonline zone");
+                return;
+            }
+
+#if SERVER
+            List<DBCenterAccountInfo> accoutResult = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, _account => _account.Id > 0);
+            for (int i = 0; i < accoutResult.Count; i++)
+            {
+                DBCenterAccountInfo dBCenterAccount = accoutResult[i];
+                if (dBCenterAccount.Password != "3" && dBCenterAccount.Password != "4")
+                {
+                    return;
+                }
+                dBCenterAccount.Account = AESUtilsHelper.AesEncrypt(dBCenterAccount.Account, chaxunInfo[1]);
+                await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterAccount);
+            }
 #endif
 
             await ETTask.CompletedTask;
