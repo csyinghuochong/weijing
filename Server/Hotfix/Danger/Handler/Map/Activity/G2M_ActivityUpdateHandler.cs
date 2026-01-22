@@ -25,8 +25,7 @@ namespace ET
                     unit.GetComponent<DataCollationComponent>().OnZeroClockUpdate(true);
                     break;
                 case -1:
-                    Log.Debug($"OnZeroClockUpdate防止卡死 [-1]");
-                    //LocationProxyComponent.Instance.Remove(unit.Id).Coroutine();
+                    LocationProxyComponent.Instance.Remove(unit.Id).Coroutine();
                     break;
                 default:
                     //if (message.ActivityType == 18  && unit.DomainZone() == 81)
