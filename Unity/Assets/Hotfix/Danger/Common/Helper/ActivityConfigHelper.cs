@@ -565,11 +565,11 @@ namespace ET
         /// 在野外击败怪物时会掉落元宵和饺子, 喂食道具会获得奖励哦
         /// </summary>
 
-        public static Dictionary<int, int> FeedItemReward = new Dictionary<int, int>()
+        public static Dictionary<int, KeyValuePair<int,int>> FeedItemReward = new Dictionary<int, KeyValuePair<int, int>>()
         {
-            {  10030051,61400711 },
-            {  10030052,61400721 },
-            {  10030053,61400731 },
+            {  10030051, new KeyValuePair<int, int>(61400711 ,1 ) },
+            {  10030052, new KeyValuePair<int, int>(61400721 ,1 ) },
+            {  10030053, new KeyValuePair<int, int>(61400731 ,1 ) },
         };
 
         ///当饱食度达到一定值时,会为每位贡献者赠送一个礼包哦
@@ -581,6 +581,18 @@ namespace ET
             { 3500, "1;100000@10000184;30@10000131;10@10010085;50@10010041;3"},
             { 5000, "1;100000@10000184;30@10000131;10@10010085;50@10010041;3"},
         };
+
+        public static int GetFeed1RewardIndex(int lastindex, int  newid )
+        {
+            foreach (var costitem in ActivityConfigHelper.Feed1RewardList)
+            {
+                if (costitem.Key <= newid && costitem.Key > lastindex)
+                {
+                    return costitem.Key;
+                }
+            }
+            return 0;
+        }
 
         /// <summary>
         /// 每日礼包
