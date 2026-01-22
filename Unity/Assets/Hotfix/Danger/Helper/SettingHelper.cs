@@ -73,5 +73,10 @@ namespace ET
         /// 0 服务器寻路   1 客户端寻路
         /// </summary>
         public static bool ClintFindPath = false;
+
+        /// <summary>
+        /// 服务器移动 特殊情况客户端接管
+        /// </summary>
+        public static bool ClintFindPath2 = false;
     }
 }
