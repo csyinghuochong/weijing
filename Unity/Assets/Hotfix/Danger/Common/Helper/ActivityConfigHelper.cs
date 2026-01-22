@@ -90,7 +90,7 @@ namespace ET
             else if (weekindex == 1)
             {
                 //第二周
-                ids.Add(ActivityConfigHelper.ActivityV1_Feed);                  //喂食   14
+                ids.Add(ActivityConfigHelper.ActivityV1_Order);                  //商人   15
                 ids.Add(ActivityConfigHelper.ActivityV1_WeeklyTask);            //周任务 17
                 ids.Add(ActivityConfigHelper.ActivityV1_ChouKa2);               //抽取   12   302
                 ids.Add(ActivityConfigHelper.ActivityV1_PointsShunXu);                //积分奖励1       401
@@ -257,11 +257,11 @@ namespace ET
         //积分抽卡   权重-奖励
         public static List<TimerChouKaItemn> PointsChouKaList = new List<TimerChouKaItemn>()
         {
-             new TimerChouKaItemn(){   Weight = 15,  ItemInfo =  "10000143;3" },     
+            new TimerChouKaItemn(){   Weight = 15,  ItemInfo =  "10000143;3" },     
             new TimerChouKaItemn(){   Weight = 15, ItemInfo =  "10000151;1" },    
             new TimerChouKaItemn(){   Weight = 15, ItemInfo =  "10010040;1" },    
             new TimerChouKaItemn(){   Weight = 5, ItemInfo =  "10010094;1" },  
-            new TimerChouKaItemn(){    Weight = 15, ItemInfo =  "10000150;1" },   
+            new TimerChouKaItemn(){  Weight = 15, ItemInfo =  "10000150;1" },   
             new TimerChouKaItemn(){  Weight = 15,  ItemInfo =  "10000135;1" },    
             new TimerChouKaItemn(){  Weight = 5,  ItemInfo =  "10000151;3" },    
             new TimerChouKaItemn(){  Weight = 15,  ItemInfo =  "10010046;1" },    
@@ -306,9 +306,9 @@ namespace ET
         /// </summary>
         public static List<ActivityTreeStageItem> ActivityTreeStageDesc = new List<ActivityTreeStageItem>()
         {
-            new ActivityTreeStageItem(){ GrowthValue = 250, Name = "幼苗期", Reward = "10000184;50@1;150000@10010083;10@10010085;100@10000102;1" },
-            new ActivityTreeStageItem(){ GrowthValue = 600, Name = "成长期", Reward = "10000184;100@1;300000@10010083;20@10010085;200@10000158;1" },
-            new ActivityTreeStageItem(){ GrowthValue = 1200, Name = "盛开期", Reward = "10000184;150@1;500000@10010083;30@10010085;300@10010093;1" },
+            new ActivityTreeStageItem(){ GrowthValue = 250, Name = "幼苗期", Reward = "3;300@10000184;50@1;150000@10010083;10@10010085;100@10000102;1" },
+            new ActivityTreeStageItem(){ GrowthValue = 600, Name = "成长期", Reward = "3;300@10000184;100@1;300000@10010083;20@10010085;200@10000158;1" },
+            new ActivityTreeStageItem(){ GrowthValue = 1200, Name = "盛开期", Reward = "3;300@10000184;150@1;500000@10010083;30@10010085;300@10010093;1" },
         };
 
         public static int GetActivityTreeStageItem(long growthvalue)
@@ -576,10 +576,10 @@ namespace ET
 
         public static Dictionary<int, string> Feed1RewardList = new Dictionary<int, string>()
         {
-            { 1000, "1;100000@10000184;30@10000131;10@10010085;50@10010041;3"},
-            { 2000, "1;100000@10000184;30@10000131;10@10010085;50@10010041;3"},
-            { 3500, "1;100000@10000184;30@10000131;10@10010085;50@10010041;3"},
-            { 5000, "1;100000@10000184;30@10000131;10@10010085;50@10010041;3"},
+            { 1000, "3;200@1;100000@10000184;30@10000132;10@10010085;50@10010041;3"},
+            { 2000, "3;200@1;100000@10000184;30@10010083;10@10010085;50@10010041;3"},
+            { 3500, "3;200@1;100000@10000184;30@10010092;1@10010085;100@10010041;3"},
+            { 5000, "3;200@1;100000@10000184;30@10000143;1@10010085;100@10010041;3"},
         };
 
         public static int GetFeed1RewardIndex(int lastindex, int  newid )
