@@ -108,7 +108,7 @@ j��普攻加持Attack Boost ��(&2$普通攻击造成的伤害提升20%: B
 ��逆境反击Hand of Tenacity ��(*2<生命值低于50%时，自身伤害提升30%,持续10秒。: BSkillIdAdd;62000114
 ���闪避印记Courage of Will ��(*2�普通攻击和释放技能有一定的概率对目标身上附加闪避标记，每个闪避标记可以降低目标10%的闪避,最多叠加5层。: BSkillIdAdd;62000115
 ���黑暗印记Courage of Will ��(42�普通攻击和释放技能有概率为目标附加1层黑暗印记，当黑暗印记达到5层时，造成范围350%伤害和1秒置空。: BSkillIdAdd;62000116
-���坚韧之力Hand of Tenacity ��(42i当生命值降低至50%后,闪避提升40%,自身伤害提升50%,持续3秒，30秒内只能触发一次: BSkillIdAdd;62000117
+���坚韧之力Hand of Tenacity ��(42i当生命值降低至30%后,闪避提升50%,自身伤害提升30%,持续3秒，30秒内只能触发一次: BSkillIdAdd;62000117
 ���腐蚀破甲Power of Attack ��(42K每次攻击目标会有一定概率使其所有防御降低为0,持续5秒: BSkillIdAdd;62000118
 ���生命提升Health increase ���(2攻击+10;攻击+20;攻击+30:"Attack +10; Attack +20; Attack +30BRolePropertyAdd;100203;50
 ���光环技能范围Auras Skill Range ���(2A旋风斩的技能伤害范围+1;旋风斩的技能伤害范围+2:rThe skill damage range of Whirlwind Slash increases by 1; The skill damage range of Whirlwind Slash increases by 2BSkillPropertyAdd;80000013;1;10
