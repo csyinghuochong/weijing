@@ -446,9 +446,16 @@ namespace ET
                     self.checkTime = 100;
                 }
 
-                //Log.Debug($"distance: {distance}   newv3:{newv3}");
-
                 unit.MoveByYaoGan(newv3, direction, distance, null, speedrate).Coroutine();
+                long passTime = clientNow - self.MoveComponent.LastRecvTime;
+                if (passTime > 200 && SettingHelper.ClintFindPath2)
+                {
+                    Log.ILog.Debug($"passTime > 200 客户端先走！！！！");
+                    List<Vector3> pathfind = new List<Vector3>();
+                    pathfind.Add(( unit.Position + newv3) * 0.5f );
+                    pathfind.Add(newv3);
+                    self.MoveComponent.MoveToAsync(pathfind, speed).Coroutine();
+                }
             }
 
             self.lastSendTime = clientNow;
