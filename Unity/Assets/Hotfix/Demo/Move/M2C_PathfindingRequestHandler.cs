@@ -13,8 +13,14 @@ namespace ET
 				return;
 			}
 
-			//MapHelper.LogMoveInfo($"移动寻路返回 {TimeHelper.ServerNow()}");
-           
+            MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+            if (unit.MainHero)
+            {
+                moveComponent.C2SDistance = Vector3.Distance(new Vector3(message.X, message.Y, message.Z), unit.Position);
+                moveComponent.LastRecvTime = TimeHelper.ClientNow();
+            }
+            //MapHelper.LogMoveInfo($"移动寻路返回 {TimeHelper.ServerNow()}");
+
             float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
             using (ListComponent<Vector3> pointsList = ListComponent<Vector3>.Create())
 			{
@@ -50,7 +56,7 @@ namespace ET
                     }
                 }
 				unit.SpeedRate = message.SpeedRate;
-                unit.GetComponent<MoveComponent>().MoveToAsync(pointsList, speed * (message.SpeedRate * 0.01f)).Coroutine();
+                moveComponent.MoveToAsync(pointsList, speed * (message.SpeedRate * 0.01f)).Coroutine();
 			}
 		}
 	}
