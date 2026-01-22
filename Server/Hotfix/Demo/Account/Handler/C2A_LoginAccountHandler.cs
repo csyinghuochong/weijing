@@ -406,6 +406,7 @@ namespace ET
                         {
                             Console.WriteLine($"loginaccount DBCenterDataCache:  {request.OAID}");
                             DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
+                            oldAccount = dBCenterDataCache.TotalLoginNumber > 0 ? 0 : oldAccount;
                             dBCenterDataCache.OldAccount = oldAccount;
                             dBCenterDataCache.OnLogin(request.DeviceName);
                             await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);

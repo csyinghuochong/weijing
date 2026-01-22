@@ -79,7 +79,7 @@ namespace ET
             self.ButtonIOSTest.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonIOSTest(); });
             self.ButtonIOSTest.SetActive(false);
 #if UNITY_IPHONE
-             self.ButtonIOSTest.SetActive( GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+             //self.ButtonIOSTest.SetActive( GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 #endif
              self.InitRechargeList().Coroutine();
 
