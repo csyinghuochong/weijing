@@ -16,10 +16,10 @@ namespace ET
             activitySceneComponent.DBDayActivityInfo.FeedPlayerList[request.UnitID]++;
 
             int baoshiadd = 1;
-
             if (ActivityConfigHelper.FeedItemReward.ContainsKey(request.ItemID))
             {
-                baoshiadd = ActivityConfigHelper.FeedItemReward[request.ItemID].Value;
+                KeyValuePairLong keyValuePairLong = ActivityConfigHelper.FeedItemReward[request.ItemID];
+                baoshiadd = RandomHelper.RandomNumber((int)keyValuePairLong.Value, (int)keyValuePairLong.Value2 + 1);
             }
 
             activitySceneComponent.DBDayActivityInfo.BaoShiDu += baoshiadd;
@@ -60,7 +60,7 @@ namespace ET
                 }
             }
             
-            response.BaoShiDu = baoshidu;
+            response.BaoShiDu = newid;
             reply();
             await ETTask.CompletedTask;
         }

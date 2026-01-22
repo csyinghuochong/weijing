@@ -597,6 +597,7 @@ namespace ET
                 return;
             }
 
+#if SERVER
             int zone = int.Parse(chaxunInfo[1]);
             long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(zone, "Chat").InstanceId;
             A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
@@ -605,6 +606,7 @@ namespace ET
                     MessageType = NoticeType.ClearChat,
                     MessageValue = "清空聊天"
                 });
+#endif
         }
 
         public static async ETTask JinYanConsoleHandler(string content)
@@ -2172,7 +2174,7 @@ namespace ET
             }
 
             LogHelper.GongZuoShi(gongzuoshiInfo);
-#endif 
+#endif
         }
 
 

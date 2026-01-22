@@ -31,7 +31,7 @@ namespace ET
             }
 
             List<RewardItem> droplist = new List<RewardItem>();
-            int dropid = ActivityConfigHelper.FeedItemReward[costItemId].Key;
+            int dropid = (int)ActivityConfigHelper.FeedItemReward[costItemId].KeyId;
             DropHelper.DropIDToDropItem_2(dropid, droplist);
 
             bagComponent.OnCostItemData($"{costItemId};1", ItemLocType.ItemLocBag, ItemGetWay.Activity);

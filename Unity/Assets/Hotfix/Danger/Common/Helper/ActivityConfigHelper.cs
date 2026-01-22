@@ -565,11 +565,11 @@ namespace ET
         /// 在野外击败怪物时会掉落元宵和饺子, 喂食道具会获得奖励哦
         /// </summary>
 
-        public static Dictionary<int, KeyValuePair<int,int>> FeedItemReward = new Dictionary<int, KeyValuePair<int, int>>()
+        public static Dictionary<int, KeyValuePairLong> FeedItemReward = new Dictionary<int, KeyValuePairLong>()
         {
-            {  10030051, new KeyValuePair<int, int>(61400711 ,1 ) },
-            {  10030052, new KeyValuePair<int, int>(61400721 ,1 ) },
-            {  10030053, new KeyValuePair<int, int>(61400731 ,1 ) },
+            {  10030051, new KeyValuePairLong{ KeyId = 61400711, Value = 1, Value2 = 3  } },
+            {  10030052, new KeyValuePairLong{ KeyId = 61400721, Value = 3, Value2 = 5  } },
+            {  10030053, new KeyValuePairLong{ KeyId = 61400731, Value = 5, Value2 = 10  } }
         };
 
         ///当饱食度达到一定值时,会为每位贡献者赠送一个礼包哦
