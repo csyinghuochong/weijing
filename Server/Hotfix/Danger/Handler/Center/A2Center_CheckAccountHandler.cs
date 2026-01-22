@@ -48,6 +48,7 @@ namespace ET
             //判断是否为taprep用户
             if (response.PlayerInfo!= null &&  !string.IsNullOrEmpty(request.OAID)  && !request.OAID.Contains("00000000"))
             {
+                int downloadtype = 0;
                 List<DBCenterTaprepRequest> centerTaprepRequests = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterTaprepRequest>(scene.DomainZone(), d => d.anid == request.OAID);
                 if (centerTaprepRequests != null && centerTaprepRequests.Count > 0)
                 {
@@ -55,6 +56,15 @@ namespace ET
                     DBCenterTaprepRequest dBCenterTaprep = centerTaprepRequests[0];
                     //response.TaprepRequest = $"{dBCenterTaprep.callback}&{dBCenterTaprep.tap_project_id}&{dBCenterTaprep.tap_track_id}";
                     response.TaprepRequest = dBCenterTaprep.callback;
+                    downloadtype = DownLoadTypeEnum.ADS;
+                }
+
+                List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == request.OAID);
+                if (centerDataCaches != null && centerDataCaches.Count > 0 && downloadtype > 0)
+                {
+                    DBCenterDataCache dBCenterTaprep = centerDataCaches[0];
+                    dBCenterTaprep.DownloadType = downloadtype;
+                    Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterTaprep).Coroutine();
                 }
             }
      

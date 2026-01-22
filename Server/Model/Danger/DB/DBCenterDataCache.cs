@@ -29,6 +29,9 @@ namespace ET
         public string FirstEnterMainCityTime;
         //是否老账号 老号为1 新号是0
         public int OldAccount;
+        //是否是广告下载
+        //tap广告渠道  自然渠道 0  tap广告渠道11
+        public int DownloadType;
 
         public void OnLogin(string devicename)
         {

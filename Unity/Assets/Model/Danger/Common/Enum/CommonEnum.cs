@@ -194,6 +194,12 @@ namespace ET
         public const int CampPlayer_2 = 2;
     }
 
+    public static class DownLoadTypeEnum
+    {
+        public const int Default = 0;
+        public const int ADS = 11;
+    }
+
     public static class LoginTypeEnum
     {
         public const int RegisterLogin = 0;     //注册账号登录

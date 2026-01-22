@@ -195,5 +195,7 @@ namespace ET
         public long PaiMaiCostGoldToday;
 
         public int Robot;   //1机器人  0真实玩家
+
+        public int DownloadType;
     }
 }

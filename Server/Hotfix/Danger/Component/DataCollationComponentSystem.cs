@@ -323,11 +323,12 @@ namespace ET
             self.Platform += $"{platformName}: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow()).ToString()}_";
         }
 
-        public static void UpdateRegionCode(this DataCollationComponent self, int systemLanguage, string systemRegionCode, string byIPRegionCode)
+        public static void UpdateRegionCode(this DataCollationComponent self, int systemLanguage, string systemRegionCode, string byIPRegionCode, int downloadtype)
         {
             self.CurSystemLanguage = systemLanguage;
             self.CurSystemRegionCode = systemRegionCode;
             self.ByIPRegionCode = byIPRegionCode;
+            self.DownloadType = downloadtype;   
         }
 
 

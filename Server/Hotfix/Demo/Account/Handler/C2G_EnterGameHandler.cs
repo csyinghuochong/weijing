@@ -238,6 +238,22 @@ namespace ET
 						await DBHelper.AddDataComponent<JiaYuanComponent>(unit, request.UserID, DBHelper.JiaYuanComponent);
                         await DBHelper.AddDataComponent<DataCollationComponent>(unit, request.UserID, DBHelper.DataCollationComponent);
 
+
+                        int downloadType = 0;
+                        List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == request.OAID);
+                        if (centerDataCaches != null && centerDataCaches.Count > 0)
+                        {
+                            downloadType = centerDataCaches[0].DownloadType;
+                        }
+                        if (centerDataCaches != null && centerDataCaches.Count > 0 && string.IsNullOrEmpty(centerDataCaches[0].FirstEnterMainCityTime))
+                        {
+                            Console.WriteLine($"entermaincity DBCenterDataCache:  {request.OAID}");
+                            DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
+                            dBCenterDataCache.FirstEnterMainCityTime = TimeHelper.DateTimeNow().ToString();
+                            dBCenterDataCache.DeviceName = request.DeviceName;
+                            await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
+                        }
+
                         unit.AddComponent<UnitGateComponent, long>(player.InstanceId);
                         unit.AddComponent<MailComponent>();
                         unit.AddComponent<StateComponent>();
@@ -249,7 +265,7 @@ namespace ET
 						DataCollationComponent dataCollationComponent = unit.GetComponent<DataCollationComponent>();
 						dataCollationComponent.CorrectData();
                         dataCollationComponent.UpdatePlatName(request.Platform, request.PlatformTwo, request.Simulator, request.Root, request.DeviceID, request.UnityVersion, request.BigVersion, request.DeviceName, request.OAID);
-                        dataCollationComponent.UpdateRegionCode(request.CurSystemLanguage, request.CurSystemRegionCode, request.ByIPRegionCode);
+                        dataCollationComponent.UpdateRegionCode(request.CurSystemLanguage, request.CurSystemRegionCode, request.ByIPRegionCode, downloadType);
                         unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 						//unit.GetComponent<DBSaveComponent>().LastDBTime = TimeHelper.ServerNow();
                         unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
@@ -290,15 +306,6 @@ namespace ET
 							response.PopUpInfo = GMHelp.PopUpPlayer[accountId];
 						}
 
-                        List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == request.OAID);
-                        if (centerDataCaches != null && centerDataCaches.Count > 0 && string.IsNullOrEmpty(centerDataCaches[0].FirstEnterMainCityTime))
-                        {
-                            Console.WriteLine($"entermaincity DBCenterDataCache:  {request.OAID}");
-                            DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
-                            dBCenterDataCache.FirstEnterMainCityTime = TimeHelper.DateTimeNow().ToString();
-							dBCenterDataCache.DeviceName = request.DeviceName;
-                            await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
-                        }
 
                         reply();
 						StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), $"Map{ComHelp.MainCityID()}");
