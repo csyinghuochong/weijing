@@ -2,7 +2,7 @@
 
 namespace ET
 {
-	[MessageHandler]
+    [MessageHandler]
 	public class M2C_PathfindingRequestHandler : AMHandler<M2C_PathfindingRequest>
 	{
 		protected override void Run(Session session, M2C_PathfindingRequest message)

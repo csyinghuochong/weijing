@@ -12,6 +12,33 @@ namespace ET
     public static class ConsoleHelper
     {
 
+        //resetdatacache 202
+        public static async ETTask ResetDBCenterDataCacheHandler(string content)
+        {
+            Console.WriteLine($"request.Context:  ResetDBCenterDataCacheHandler: {content}");
+            await ETTask.CompletedTask;
+            string[] chaxunInfo = content.Split(" ");
+            if (chaxunInfo.Length != 2)
+            {
+                Console.WriteLine($"C must have allonline zone");
+                Log.Warning($"C must have allonline zone");
+                return;
+            }
+#if SERVER
+           
+            List<DBCenterDataCache> accoutResult = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, _account => _account.Id > 0);
+            for (int i = 0; i < accoutResult.Count; i++)
+            {
+                DBCenterDataCache dBCenterAccount = accoutResult[i];
+                dBCenterAccount.OldAccount = 0;
+                await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterAccount);
+            }
+            Console.WriteLine($"accoutResult:  {accoutResult.Count}");
+#endif
+
+            await ETTask.CompletedTask;
+        }
+
         //caclaccountrecharge 202
         public static async ETTask CaclAccountRechargeHandler(string content)
         {

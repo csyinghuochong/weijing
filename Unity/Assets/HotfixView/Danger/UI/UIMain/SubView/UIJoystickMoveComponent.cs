@@ -223,7 +223,8 @@ namespace ET
                 return;
             }
 
-                //MapHelper.LogMoveInfo($"移动摇杆拖动: {TimeHelper.ServerNow()}");
+            //MapHelper.LogMoveInfo($"移动摇杆拖动: {TimeHelper.ServerNow()}");
+            self.checkTime = 0;
             self.lastSendTime = 0;
             self.direction = self.GetDirection(pdata);
             self.MoveComponent.LastRecvTime = TimeHelper.ClientNow();
@@ -435,7 +436,20 @@ namespace ET
                     return -2;
                 }
                 //distance = Mathf.Max(distance, 1f);
+
                 distance = Vector3.Distance(unit.Position, newv3);
+                long passTime = clientNow - self.MoveComponent.LastRecvTime;
+                if (passTime > self.checkTime + 100 && SettingHelper.ClintFindPath2)
+                {
+                    Log.ILog.Debug($"客户端先走.  passTime: {passTime}    checktime:{self.checkTime}");
+                    List<Vector3> pathfind = new List<Vector3>
+                    {
+                        (unit.Position + newv3) * 0.5f,
+                        newv3
+                    };
+                    self.MoveComponent.MoveToAsync(pathfind, speed).Coroutine();
+                }
+
                 if (self.noCheckTime < clientNow)
                 {
                     float needtime = distance / speed;
@@ -447,15 +461,6 @@ namespace ET
                 }
 
                 unit.MoveByYaoGan(newv3, direction, distance, null, speedrate).Coroutine();
-                long passTime = clientNow - self.MoveComponent.LastRecvTime;
-                if (passTime > 200 && SettingHelper.ClintFindPath2)
-                {
-                    Log.ILog.Debug($"passTime > 200 客户端先走！！！！");
-                    List<Vector3> pathfind = new List<Vector3>();
-                    pathfind.Add(( unit.Position + newv3) * 0.5f );
-                    pathfind.Add(newv3);
-                    self.MoveComponent.MoveToAsync(pathfind, speed).Coroutine();
-                }
             }
 
             self.lastSendTime = clientNow;

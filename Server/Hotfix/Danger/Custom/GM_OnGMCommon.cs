@@ -170,6 +170,10 @@ namespace ET
             {
                 ConsoleHelper.ChaXunUnityVersionHandler(request.Context).Coroutine();
             }
+            if (infoList[0] == "resetdatacache")
+            {
+                ConsoleHelper.ResetDBCenterDataCacheHandler(request.Context).Coroutine();
+            }
             if (infoList[0] == "unityversion2")
             {
                 ConsoleHelper.ChaXunUnity2VersionHandler(request.Context).Coroutine();
