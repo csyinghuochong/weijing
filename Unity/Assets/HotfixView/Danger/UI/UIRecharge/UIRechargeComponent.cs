@@ -335,50 +335,7 @@ namespace ET
 
         public static void OnRechageSucess(this UIRechargeComponent self, int amount, int now)
         {
-#if UNITY_ANDROID
-            if (amount <= 0)
-            {
-                return;
-            }
-
-            int r_num = RandomHelper.RandomNumber(1000, 9999);
-            string nowTime = TimeHelper.ServerNow().ToString();
-            string orderId = $"Pay_{r_num}_{nowTime}_{amount}";
-            string product = $"{amount}WJ";
-            string payment = "pay";
-            if (self.PayType == PayTypeEnum.AliPay)
-            {
-                orderId = $"AliPay_{r_num}_{nowTime}_{amount}";
-                payment = "alipay";
-            }
-            if (self.PayType == PayTypeEnum.WeiXinPay)
-            {
-                orderId = $"WXPay_{r_num}_{nowTime}_{amount}";
-                payment = "wechat";
-            }
-
-            if (GlobalHelp.GetPlatform() == 1)
-            {
-                
-                TapSDKHelper.OnCharge(orderId, product, amount * 100, "CNY", payment, "{\"on_sell\":true}");
-                TapSDKHelper.UserUpdate_rechargeNumber(now);
-            }
-
-            if (GlobalHelp.GetPlatform() == 8)
-            {
-                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                EventType.TikTokOnPay.Instance.ZoneScene = self.ZoneScene();
-                EventType.TikTokOnPay.Instance.GameUserID = accountInfoComponent.Account;
-                EventType.TikTokOnPay.Instance.GameRoleID = accountInfoComponent.CurrentRoleId.ToString();
-                EventType.TikTokOnPay.Instance.GameOrderID = orderId;
-                EventType.TikTokOnPay.Instance.TotalAmount = amount;
-                EventType.TikTokOnPay.Instance.ProductID = product;
-                EventType.TikTokOnPay.Instance.ProductName = product;
-                EventType.TikTokOnPay.Instance.ProductDesc = product;
-
-                EventSystem.Instance.PublishClass(EventType.TikTokOnPay.Instance);
-            }
-#endif
+            GlobalHelp.OnRechageSucess(self.ZoneScene(), self.PayType, amount, now);
         }
     }
 }

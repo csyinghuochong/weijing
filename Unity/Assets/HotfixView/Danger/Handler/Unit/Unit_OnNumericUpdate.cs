@@ -27,6 +27,9 @@ namespace ET
                     
                     uI = UIHelper.GetUI(zoneScene, UIType.UIRecharge);
                     uI?.GetComponent<UIRechargeComponent>()?.OnRechageSucess(addNumer, rechargeNumber);
+                    
+                    uI = UIHelper.GetUI(zoneScene, UIType.UICountry);
+                    uI?.GetComponent<UICountryComponent>()?.OnRechageSucess(addNumer, rechargeNumber);
                     break;
                 case NumericType.GoldWeeklyCard:
                 case NumericType.DiamondWeeklyCard:

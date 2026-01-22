@@ -149,6 +149,16 @@ namespace ET
             ui.GetComponent<UIActivityV1WeeklyCardComponent>().OnWeeklyCardUpdate();
         }
 
+        public static void OnRechageSucess(this UICountryComponent self, int amount, int now)
+        {
+            UI ui = self.UIPageView.UISubViewList[(int)CountryPageEnum.ActivityV1WeeklyCard];
+            if (ui == null)
+            {
+                return;
+            }
+            ui.GetComponent<UIActivityV1WeeklyCardComponent>().OnRechageSucess(amount, now);
+        }
+
         public static void OnClickPageButton(this UICountryComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

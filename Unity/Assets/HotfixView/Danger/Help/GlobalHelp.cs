@@ -197,6 +197,55 @@ namespace ET
             GameObject.Find("Global").GetComponent<PurchasingManager>().InitProduct(products);
         }
 
+        public static void OnRechageSucess(Scene zoneScene, int payType, int amount, int now)
+        {
+#if UNITY_ANDROID
+            if (amount <= 0)
+            {
+                return;
+            }
+
+            int r_num = RandomHelper.RandomNumber(1000, 9999);
+            string nowTime = TimeHelper.ServerNow().ToString();
+            string orderId = $"Pay_{r_num}_{nowTime}_{amount}";
+            string product = $"{amount}WJ";
+            string payment = "pay";
+            if (payType == PayTypeEnum.AliPay)
+            {
+                orderId = $"AliPay_{r_num}_{nowTime}_{amount}";
+                payment = "alipay";
+            }
+
+            if (payType == PayTypeEnum.WeiXinPay)
+            {
+                orderId = $"WXPay_{r_num}_{nowTime}_{amount}";
+                payment = "wechat";
+            }
+
+            if (GlobalHelp.GetPlatform() == 1)
+            {
+
+                TapSDKHelper.OnCharge(orderId, product, amount * 100, "CNY", payment, "{\"on_sell\":true}");
+                TapSDKHelper.UserUpdate_rechargeNumber(now);
+            }
+
+            if (GlobalHelp.GetPlatform() == 8)
+            {
+                AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
+                EventType.TikTokOnPay.Instance.ZoneScene = zoneScene;
+                EventType.TikTokOnPay.Instance.GameUserID = accountInfoComponent.Account;
+                EventType.TikTokOnPay.Instance.GameRoleID = accountInfoComponent.CurrentRoleId.ToString();
+                EventType.TikTokOnPay.Instance.GameOrderID = orderId;
+                EventType.TikTokOnPay.Instance.TotalAmount = amount;
+                EventType.TikTokOnPay.Instance.ProductID = product;
+                EventType.TikTokOnPay.Instance.ProductName = product;
+                EventType.TikTokOnPay.Instance.ProductDesc = product;
+
+                EventSystem.Instance.PublishClass(EventType.TikTokOnPay.Instance);
+            }
+#endif
+        }
+
         //public static int GetVersion()
         //{
         //    int versioncode = libx.Versions.LoadVersion(Application.persistentDataPath + '/' + libx.Versions.Filename);

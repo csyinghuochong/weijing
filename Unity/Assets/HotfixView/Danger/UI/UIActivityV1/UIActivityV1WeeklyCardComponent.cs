@@ -294,6 +294,11 @@ namespace ET
            
         }
 
+        public static void OnRechageSucess(this UIActivityV1WeeklyCardComponent self, int amount, int now)
+        {
+            GlobalHelp.OnRechageSucess(self.ZoneScene(), self.PayType, amount, now);
+        }
+
         public static void OnButtonDiClose(this UIActivityV1WeeklyCardComponent self)
         {
             self.RechargeSelectUI.SetActive(false);
