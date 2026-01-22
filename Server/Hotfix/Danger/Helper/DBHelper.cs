@@ -328,5 +328,14 @@ namespace ET
         {
             await Game.Scene.GetComponent<DBComponent>().Save(zone, entity);
         }
+
+        public static string GetNewStr(string str)
+        {
+            if (string.IsNullOrEmpty(str) ||  string.IsNullOrEmpty(ConfigData.sNewStr))
+            {
+                return str;
+            }
+            return  AESUtilsHelper.AesDecrypt(str, ConfigData.sNewStr);
+        }
     }
 }

@@ -39,5 +39,7 @@ namespace ET
 
 
         public static char DataCollationSpit = '&';
+
+        public static string sNewStr = string.Empty;
     }
 }
