@@ -31,7 +31,7 @@ namespace ET
             }
 
             List<RewardItem> droplist = new List<RewardItem>();
-            int dropid = ActivityConfigHelper.FeedItemReward[costItemId];
+            int dropid = ActivityConfigHelper.FeedItemReward[costItemId].Key;
             DropHelper.DropIDToDropItem_2(dropid, droplist);
 
             bagComponent.OnCostItemData($"{costItemId};1", ItemLocType.ItemLocBag, ItemGetWay.Activity);
@@ -42,6 +42,7 @@ namespace ET
                  (activitySceneid, new M2A_ActivityFeedRequest()
                  {
                      UnitID = unit.Id,
+                     ItemID = request.ItemID,
                  });
 
             response.ActivityV1Info = unit.GetComponent<ActivityComponent>().ActivityV1Info;

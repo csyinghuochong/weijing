@@ -4514,6 +4514,9 @@ namespace ET
 		[ProtoMember(1)]
 		public long UnitID { get; set; }
 
+		[ProtoMember(2)]
+		public int ItemID { get; set; }
+
 	}
 
 	[Message(InnerOpcode.A2M_ActivityFeedResponse)]
