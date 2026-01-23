@@ -1521,6 +1521,18 @@ namespace ET
 #endif
         }
 
+
+        public  List<Vector3> points = new List<Vector3>(); // 存储点位置的数组
+        public  void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            foreach (Vector3 point in points)
+            {
+                // 在每个点位置画一个小球
+                Gizmos.DrawSphere(point, 0.1f);
+            }
+        }
+
         public void RequestStoreReview_3()
         {
             Log.ILog.Debug("RequestStoreReview_3");
