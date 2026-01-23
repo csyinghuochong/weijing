@@ -399,7 +399,7 @@ namespace ET
                 newv3 = pathfind[pathfind.Count - 1];
                 distance = Vector3.Distance(newv3, unit.Position);
                 float needTime = distance / speed;
-                self.checkTime = (long)(1000 * needTime) - 100;
+                self.checkTime = (long)(1000 * needTime) - 200;
                 self.checkTime = Math.Max(100, self.checkTime);
 
                 long passTime = clientNow - self.MoveComponent.LastRecvTime;
