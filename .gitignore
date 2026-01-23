@@ -26,6 +26,7 @@ Release/
 _ReSharper.CSharp/
 *.opensdf
 *.sdf
+/Unity/Assets/HotfixView/Custom
 /CSharp/CSharp.sln.ide
 /Unity/Library
 /Unity/Packages/
