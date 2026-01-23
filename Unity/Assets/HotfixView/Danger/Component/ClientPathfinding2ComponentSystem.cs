@@ -10,6 +10,8 @@ namespace ET
         public override void Awake(ClientPathfinding2Component self)
         {
             self.NavMeshAgent = self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject.GetComponent<NavMeshAgent>();
+            self.NavMeshAgent.enabled = false;
+            self.NavMeshAgent.enabled = true;
         }
     }
 
