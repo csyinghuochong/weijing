@@ -870,7 +870,6 @@ namespace ET
         public class QuDaoLoginRequest : DisposeObject
         {
             public static readonly QuDaoLoginRequest Instance = new QuDaoLoginRequest();
-            public Action<string, string> AccesstokenHandler;
             public Scene ZoneScene;
         }
 
@@ -905,7 +904,6 @@ namespace ET
         public class TikTokGetAccesstoken : DisposeObject
         {
             public static readonly TikTokGetAccesstoken Instance = new TikTokGetAccesstoken();
-            public Action<string> AccesstokenHandler;
             public Scene ZoneScene;
         }
 
