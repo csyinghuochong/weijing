@@ -401,14 +401,13 @@ namespace ET
                 float needTime = distance / speed;
                 self.checkTime = (long)(1000 * needTime) - 200;
                 self.checkTime = Math.Max(100, self.checkTime);
-
                 long passTime = clientNow - self.MoveComponent.LastRecvTime;
                 float c2sdisc = self.MoveComponent.C2SDistance;
                 if (c2sdisc > 3f || passTime > 3000)
                 {
                     //speed *= 0.2f;
-                    Log.ILog.Debug($" self.MoveComponent.c2sdisc :  {c2sdisc}   passTime:{passTime}");
                 }
+                Log.ILog.Debug($"self.MoveComponent.c2sdisc :  {c2sdisc}   passTime:{passTime}");
                 unit.MoveResultToAsync(pathfind, null).Coroutine();
                 self.MoveComponent.MoveToAsync(pathfind, speed).Coroutine();
             }
@@ -592,8 +591,11 @@ namespace ET
 
                     if (pathfind.Count > 0)
                     {
+                        Log.ILog.Debug($"pathfind.Count: {pathfind.Count}  target: {targetPosi}  find:{pathfind[^1]}");
                         break;
                     }
+
+                    Log.ILog.Debug($"pathfind.Count: {pathfind.Count}  target: {targetPosi} ");
                 }
             }
         }
