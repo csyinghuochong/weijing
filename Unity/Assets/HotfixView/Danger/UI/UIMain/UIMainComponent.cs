@@ -2665,7 +2665,7 @@ namespace ET
 
             //先锋一区测试
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            SettingHelper.ClintFindPath = sceneTypeEnum == SceneTypeEnum.MainCityScene && accountInfoComponent.ServerId == 5 && GMHelp.GmAccount.Contains(accountInfoComponent.Account);
+            SettingHelper.ClintFindPath = sceneTypeEnum == SceneTypeEnum.LocalDungeon && accountInfoComponent.ServerId == 5 && GMHelp.GmAccount.Contains(accountInfoComponent.Account);
         }
 
         public static void OnButtonGoToOperate(this UIMainComponent self)
