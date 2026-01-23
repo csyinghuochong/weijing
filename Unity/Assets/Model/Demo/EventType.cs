@@ -1030,6 +1030,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class TapTapLogin : DisposeObject
+        {
+            public static readonly TapTapLogin Instance = new TapTapLogin();
+            public Scene ZoneScene;
+            public string LoginType;
+        }
+
         public class TapTapSdkInit : DisposeObject
         {
             public static readonly TapTapSdkInit Instance = new TapTapSdkInit();

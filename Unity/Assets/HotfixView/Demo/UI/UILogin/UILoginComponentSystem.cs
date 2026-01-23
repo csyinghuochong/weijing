@@ -647,15 +647,25 @@ namespace ET
 					self.GetUserInfo(self.LoginType);
 					break;
 				case LoginTypeEnum.TapTap:
-                    self.GetTapUserInfo(self.LoginType).Coroutine();
-     //               if (GlobalHelp.GetBigVersion() <= 23)
-					//{
-						
-					//}
-					//else
-					//{
-     //                   self.GetTapUserInfo_2(self.LoginType).Coroutine();
-     //               }
+					if (GlobalHelp.IsEditorMode)
+					{
+						self.OnGetTapUserInfo("taptaptest");
+                    }
+					else
+					{
+                        EventType.TapTapLogin.Instance.ZoneScene = self.ZoneScene();
+                        EventType.TapTapLogin.Instance.LoginType = self.LoginType;
+                        EventSystem.Instance.PublishClass(EventType.TapTapLogin.Instance);
+                    } 
+                    //self.GetTapUserInfo(self.LoginType).Coroutine();
+                    //               if (GlobalHelp.GetBigVersion() <= 23)
+                    //{
+
+                    //}
+                    //else
+                    //{
+                    //                   self.GetTapUserInfo_2(self.LoginType).Coroutine();
+                    //               }
                     break;
 				case LoginTypeEnum.QuDao:
                     self.ThirdLoginBg.SetActive(false);
@@ -683,11 +693,12 @@ namespace ET
 					}
                     if (GlobalHelp.GetPlatform() == 8)
                     {
+#if !UNITY_EDITOR
                         Log.ILog.Debug($"GlobalHelp.GetPlatform() == 8");
                         EventType.TikTokGetAuthorizeCode.Instance.ZoneScene = self.ZoneScene();
                         EventType.TikTokGetAuthorizeCode.Instance.TikTokAuthorizeHandler = (string text1) => { self.OnTikTokAuthorizeHandler(text1).Coroutine(); };
-  
                         EventSystem.Instance.PublishClass(EventType.TikTokGetAuthorizeCode.Instance);
+#endif
                     }
                     break;;
                 case LoginTypeEnum.Google:
