@@ -9,7 +9,14 @@ namespace ET
     {
         public override void Awake(ClientPathfinding2Component self)
         {
-            self.NavMeshAgent = self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject.GetComponent<NavMeshAgent>();
+            GameObject gameObject = self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject;
+            if (gameObject.transform.Find("NavMeshAgent") == null)
+            {
+                GameObject navemeshagent = new GameObject("NavMeshAgent");
+                navemeshagent.AddComponent<NavMeshAgent>();   
+                UICommonHelper.SetParent(navemeshagent, gameObject);
+            }
+            self.NavMeshAgent = gameObject.transform.Find("NavMeshAgent").GetComponent<NavMeshAgent>();
             self.NavMeshAgent.enabled = false;
             self.NavMeshAgent.enabled = true;
         }

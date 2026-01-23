@@ -2595,7 +2595,6 @@ GameObject:
   - component: {fileID: 7778671190638578803}
   - component: {fileID: 7778671190638578809}
   - component: {fileID: 2857056453225311360}
-  - component: {fileID: 5353073577049854584}
   m_Layer: 14
   m_Name: Hero_1
   m_TagString: Untagged
@@ -2662,28 +2661,6 @@ MonoBehaviour:
   data:
   - key: Wuqi001
     gameObject: {fileID: 409167621337430055}
---- !u!195 &5353073577049854584
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7778671190638578811}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &7778671190900899382
 GameObject:
   m_ObjectHideFlags: 0
