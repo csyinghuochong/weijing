@@ -387,7 +387,7 @@ namespace ET
             if (SettingHelper.ClintFindPath)
             {
                 List<Vector3> pathfind = new List<Vector3>();
-                self.CanMovePositionList(unit, speed, rotation, pathfind);
+                self.CanMovePositionList_2(unit, speed, rotation, pathfind);
                 if (pathfind.Count < 2)
                 {
                     EventType.MoveStart.Instance.Unit = unit;
@@ -435,21 +435,7 @@ namespace ET
                     Log.Debug($"靠墙蹭动：也不能移动！");
                     return -2;
                 }
-                //distance = Mathf.Max(distance, 1f);
-
                 distance = Vector3.Distance(unit.Position, newv3);
-                long passTime = clientNow - self.MoveComponent.LastRecvTime;
-                if (passTime > self.checkTime + 100 && SettingHelper.ClintFindPath2)
-                {
-                    Log.ILog.Debug($"客户端先走.  passTime: {passTime}    checktime:{self.checkTime}");
-                    List<Vector3> pathfind = new List<Vector3>
-                    {
-                        (unit.Position + newv3) * 0.5f,
-                        newv3
-                    };
-                    self.MoveComponent.MoveToAsync(pathfind, speed).Coroutine();
-                }
-
                 if (self.noCheckTime < clientNow)
                 {
                     float needtime = distance / speed;
@@ -459,7 +445,6 @@ namespace ET
                 {
                     self.checkTime = 100;
                 }
-
                 unit.MoveByYaoGan(newv3, direction, distance, null, speedrate).Coroutine();
             }
 
@@ -578,6 +563,39 @@ namespace ET
             //}
 
             //return targetPosi;
+        }
+
+
+        public static void CanMovePositionList_2(this UIJoystickMoveComponent self, Unit unit, float speed, Quaternion rotation, List<Vector3> pathfind)
+        {
+
+            for (int i = 5; i >= 1; i--)
+            {
+                Vector3 targetPosi = unit.Position + rotation * Vector3.forward * i;
+                RaycastHit hit;
+
+                Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.BuildingLayer);
+                if (hit.collider != null)
+                {
+                    break;
+                }
+
+                Physics.Raycast(targetPosi + new Vector3(0f, 6f, 0f), Vector3.down, out hit, 20, self.MapLayer);
+                if (hit.collider == null)
+                {
+                    break;
+                }
+                else
+                {
+                    targetPosi.y = hit.point.y;
+                    unit.GetComponent<ClientPathfinding2Component>().Find(targetPosi, pathfind);
+
+                    if (pathfind.Count > 0)
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         /// <summary>

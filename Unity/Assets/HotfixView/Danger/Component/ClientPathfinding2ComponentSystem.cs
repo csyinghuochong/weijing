@@ -5,20 +5,24 @@ using UnityEngine.AI;
 namespace ET
 {
 
-    public static partial class ClientPathfinding2ComponentSystem
+    public class ClientPathfinding2ComponentAwake : AwakeSystem<ClientPathfinding2Component>
     {
-      
-        private static void Awake(this ClientPathfinding2Component self)
+        public override void Awake(ClientPathfinding2Component self)
         {
             self.NavMeshAgent = self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject.GetComponent<NavMeshAgent>();
         }
+    }
 
-
-        private static void Destroy(this ClientPathfinding2Component self)
+    public class ClientPathfinding2ComponentDestroy : DestroySystem<ClientPathfinding2Component>
+    {
+        public override void Destroy(ClientPathfinding2Component self)
         {
             self.NavMeshAgent = null;
         }
+    }
 
+    public static partial class ClientPathfinding2ComponentSystem
+    {
         public static void Find(this ClientPathfinding2Component self, Vector3 target, List<Vector3> result)
         {
             NavMeshPath path = new NavMeshPath();

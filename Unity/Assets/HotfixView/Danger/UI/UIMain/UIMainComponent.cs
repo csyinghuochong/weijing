@@ -2662,6 +2662,10 @@ namespace ET
                 self.CheckMailReddot().Coroutine();
                 self.CheckJiaYuanReddot().Coroutine();
             }
+
+            //先锋一区测试
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            SettingHelper.ClintFindPath = sceneTypeEnum == SceneTypeEnum.MainCityScene && accountInfoComponent.ServerId == 5 && GMHelp.GmAccount.Contains(accountInfoComponent.Account);
         }
 
         public static void OnButtonGoToOperate(this UIMainComponent self)

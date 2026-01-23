@@ -40,7 +40,8 @@ namespace ET
 
             self.RemoveComponent<PathfindingComponent>();
             self.AddComponent<PathfindingComponent, int>(navmesh);
-            //unit.AddComponent<ClientPathfinding2Component>();
+            self.RemoveComponent<ClientPathfinding2Component>();
+            self.AddComponent<ClientPathfinding2Component>();
         }
 
         public static void OnMainHeroMove(Unit self)

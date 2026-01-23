@@ -1377,11 +1377,7 @@ namespace ET
                 string.Empty,
                 loginType,
 				deviveInfo);
-
-			//先锋一区测试
-			SettingHelper.ClintFindPath = false; /// self.ServerInfo.ServerId == 5 && GMHelp.GmAccount.Contains(account);
-			SettingHelper.ClintFindPath2 = self.ServerInfo.ServerId == 5 && GMHelp.GmAccount.Contains(account);
-
+			
             if (loginError == ErrorCode.ERR_Success)
 			{
 
