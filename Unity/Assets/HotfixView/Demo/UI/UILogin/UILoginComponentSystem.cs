@@ -671,7 +671,6 @@ namespace ET
                     self.ThirdLoginBg.SetActive(false);
 #if !UNITY_EDITOR
 					EventType.QuDaoLoginRequest.Instance.ZoneScene = self.ZoneScene();
-                    //EventType.QuDaoLoginRequest.Instance.AccesstokenHandler = (string token, string uid) => { self.OnRecvQuDaoUid(token, uid).Coroutine(); };
                     EventSystem.Instance.PublishClass(EventType.QuDaoLoginRequest.Instance);
 #endif
                     break;
@@ -681,17 +680,16 @@ namespace ET
 					{
 						Log.ILog.Debug($"GlobalHelp.GetPlatform() == 5");
 #if !UNITY_EDITOR
-					EventType.TikTokGetAccesstoken.Instance.ZoneScene = self.ZoneScene();
-                    //EventType.TikTokGetAccesstoken.Instance.AccesstokenHandler = (string text) => { self.OnRecvTikTokAccesstoken(text).Coroutine(); };
-                    EventSystem.Instance.PublishClass(EventType.TikTokGetAccesstoken.Instance);
+						EventType.TikTokGetAccesstoken.Instance.ZoneScene = self.ZoneScene();
+						EventSystem.Instance.PublishClass(EventType.TikTokGetAccesstoken.Instance);
 #endif
-					}
+                    }
                     if (GlobalHelp.GetPlatform() == 8)
                     {
-#if !UNITY_EDITOR
+
                         Log.ILog.Debug($"GlobalHelp.GetPlatform() == 8");
+#if !UNITY_EDITOR
                         EventType.TikTokGetAuthorizeCode.Instance.ZoneScene = self.ZoneScene();
-                        //EventType.TikTokGetAuthorizeCode.Instance.TikTokAuthorizeHandler = (string text1) => { self.OnTikTokAuthorizeHandler(text1).Coroutine(); };
                         EventSystem.Instance.PublishClass(EventType.TikTokGetAuthorizeCode.Instance);
 #endif
                     }
