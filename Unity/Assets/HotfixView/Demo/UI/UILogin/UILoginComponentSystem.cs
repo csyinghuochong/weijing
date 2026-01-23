@@ -669,16 +669,11 @@ namespace ET
                     break;
 				case LoginTypeEnum.QuDao:
                     self.ThirdLoginBg.SetActive(false);
-					if (GlobalHelp.IsEditorMode)
-					{
-                        self.OnRecvQuDaoUid("token", "0_tangchunguangc").Coroutine();
-                    }
-					else
-					{
-                        EventType.QuDaoLoginRequest.Instance.ZoneScene = self.ZoneScene();
-                        EventType.QuDaoLoginRequest.Instance.AccesstokenHandler = (string token, string uid) => { self.OnRecvQuDaoUid(token, uid).Coroutine(); };
-                        EventSystem.Instance.PublishClass(EventType.QuDaoLoginRequest.Instance);
-                    }
+#if !UNITY_EDITOR
+					EventType.QuDaoLoginRequest.Instance.ZoneScene = self.ZoneScene();
+                    EventType.QuDaoLoginRequest.Instance.AccesstokenHandler = (string token, string uid) => { self.OnRecvQuDaoUid(token, uid).Coroutine(); };
+                    EventSystem.Instance.PublishClass(EventType.QuDaoLoginRequest.Instance);
+#endif
                     break;
 				case LoginTypeEnum.TikTok:
                     self.ThirdLoginBg.SetActive(false);
