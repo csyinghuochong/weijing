@@ -22,6 +22,8 @@ namespace ET
             {
                 case 10001:
                     return 1f / 6;
+                case 10013:
+                    return 1f / 1.4f;
                 default:
                     return 1f / 6;
                 }
