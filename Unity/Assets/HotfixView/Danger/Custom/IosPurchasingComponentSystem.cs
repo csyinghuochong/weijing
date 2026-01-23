@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ET
 {
+
     
     public class IosPurchasingComponentAwake : AwakeSystem<IosPurchasingComponent>
     {
