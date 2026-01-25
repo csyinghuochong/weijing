@@ -409,7 +409,7 @@ namespace ET
                         {
                             Console.WriteLine($"loginaccount DBCenterDataCache:  {request.OAID}");
                             DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
-                            if (dBCenterDataCache.TotalLoginNumber == 0 && oldAccount == 1)
+                            if (dBCenterDataCache.TotalLoginNumber == 0 && oldAccount == 1 && account.UserList.Count > 0)
                             {
                                 dBCenterDataCache.OldAccount = oldAccount;
                                 dBCenterDataCache.OldAccountTime = TimeInfo.Instance.ToDateTime(oldCreateTime).ToString();
