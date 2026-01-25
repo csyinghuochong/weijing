@@ -591,7 +591,7 @@ namespace ET
 
                     if (pathfind.Count > 0)
                     {
-                        Log.ILog.Debug($"pathfind.Count: {pathfind.Count}  target: {targetPosi}  find:{pathfind[^1]}");
+                        Log.ILog.Debug($"pathfind.Count: {pathfind.Count}  target: {targetPosi}  find:{pathfind[pathfind.Count - 1]}");
                         break;
                     }
 

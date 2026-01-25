@@ -115,8 +115,8 @@ namespace ET
                     dBCenterTaprepRequest = centerAccountInfoList[0];
                 }
 
-                Console.WriteLine($"new anid:  {anid}");
-                Console.WriteLine($"new callback:  {callback}");
+                //Console.WriteLine($"new anid:  {anid}");
+                //Console.WriteLine($"new callback:  {callback}");
 
                 dBCenterTaprepRequest.anid = anid;
                 dBCenterTaprepRequest.callback = callback;
