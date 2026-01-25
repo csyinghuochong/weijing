@@ -150,7 +150,11 @@ namespace ET
                 LogHelper.LoginInfo(offLineInfo);
                 Log.Warning(offLineInfo);
                 self.UpdateCacheDB();
-                DBHelper.UpdateLastGameTime(oaid, lastgametime, userInfoComponent.UserInfo.AccInfoID, userInfoComponent.RemoteAddress).Coroutine();
+                DBHelper.UpdateLastGameTime(oaid, 
+                    lastgametime,
+                    userInfoComponent.UserInfo.AccInfoID,
+                    userInfoComponent.RemoteAddress,
+                    userInfoComponent.UserInfo.Lv).Coroutine();
             }
         }
 
