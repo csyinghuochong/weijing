@@ -359,6 +359,9 @@ namespace ET
 		[ProtoMember(5)]
 		public string TaprepRequest { get; set; }
 
+		[ProtoMember(6)]
+		public long CreateTime { get; set; }
+
 		[ProtoMember(13)]
 		public int TodayCreateRole { get; set; }
 
@@ -4733,6 +4736,15 @@ namespace ET
 
 		[ProtoMember(4)]
 		public string RemoteAddress { get; set; }
+
+		[ProtoMember(5)]
+		public int MaxLevel { get; set; }
+
+		[ProtoMember(6)]
+		public int OnlineTime { get; set; }
+
+		[ProtoMember(8)]
+		public long UnitID { get; set; }
 
 	}
 

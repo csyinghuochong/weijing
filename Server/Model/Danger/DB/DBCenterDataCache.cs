@@ -10,6 +10,9 @@ namespace ET
     {
         //设备ID
         public string anid;
+
+        //该设备登陆的账号
+        public string AccountName;
         //机型
         public string DeviceName;
         //数据创建时间
@@ -27,11 +30,23 @@ namespace ET
         public string FristCrateRoleTime;
         //第一次进入主城
         public string FirstEnterMainCityTime;
-        //是否老账号 老号为1 新号是0
-        public int OldAccount;
+      
         //是否是广告下载
         //tap广告渠道  自然渠道 0  tap广告渠道11
         public int DownloadType;
+        //总充值
+        public int TotalRecharge;
+        //最高等级
+        public int MaxLevel;
+        //总时间
+        public long TotalOnlineTime;
+
+        //是否老账号 老号为1 新号是0
+        public int OldAccount;
+        //该设备登陆的账号创建时间
+        public string OldAccountTime;
+
+        public string IP;    //上次登陆ip
 
         public void OnLogin(string devicename)
         {
