@@ -15,6 +15,9 @@ namespace ET
         public string tap_project_id;
         public string tap_track_id;
 
+        //是否是广告下载
+        //tap广告渠道  自然渠道 0  tap广告渠道11
+        public int DownloadType;
         public bool actived;
     }
 }

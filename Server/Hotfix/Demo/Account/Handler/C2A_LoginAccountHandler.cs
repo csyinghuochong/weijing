@@ -403,6 +403,7 @@ namespace ET
                             response.RoleLists.Add(roleList);
                         }
 
+                        //客户端启动的时候注册DBCenterDataCache。  
                         List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == request.OAID);
                         if (centerDataCaches != null && centerDataCaches.Count > 0)
                         {

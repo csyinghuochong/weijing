@@ -56,7 +56,7 @@ namespace ET
                     DBCenterTaprepRequest dBCenterTaprep = centerTaprepRequests[0];
                     //response.TaprepRequest = $"{dBCenterTaprep.callback}&{dBCenterTaprep.tap_project_id}&{dBCenterTaprep.tap_track_id}";
                     response.TaprepRequest = dBCenterTaprep.callback;
-                    downloadtype = DownLoadTypeEnum.ADS;
+                    downloadtype = dBCenterTaprep.DownloadType;
                 }
 
                 List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == request.OAID);

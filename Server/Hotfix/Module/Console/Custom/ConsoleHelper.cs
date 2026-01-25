@@ -31,6 +31,7 @@ namespace ET
             {
                 DBCenterDataCache dBCenterAccount = accoutResult[i];
                 dBCenterAccount.OldAccount = 0;
+                dBCenterAccount.DownloadType = 0;
                 await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterAccount);
             }
             Console.WriteLine($"accoutResult:  {accoutResult.Count}");

@@ -35,7 +35,7 @@ namespace ET
             string tap_project_id = queryString["tap_project_id"] ?? string.Empty;
             string tap_track_id = queryString["tap_track_id"] ?? string.Empty;
 
-            Console.WriteLine($"wjtaprepjiance anid:  {anid}");
+            Console.WriteLine($"old  wjtaprepjiance anid:  {anid}");
 
             if (!string.IsNullOrEmpty(anid))
             {
@@ -54,6 +54,7 @@ namespace ET
                 dBCenterTaprepRequest.callback = callback;
                 dBCenterTaprepRequest.tap_project_id = tap_project_id;
                 dBCenterTaprepRequest.tap_track_id = tap_track_id;
+                dBCenterTaprepRequest.DownloadType = 0;
                 await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterTaprepRequest);
                 dBCenterTaprepRequest.Dispose();
                 dBCenterTaprepRequest = null;
@@ -92,7 +93,7 @@ namespace ET
     {
         public async ETTask Handle(Entity entity, HttpListenerContext context)
         {
-            Console.WriteLine($"HttpTapAdTrackHandler:  {context.Request.RawUrl}");
+            Console.WriteLine($"new HttpTapAdTrackHandler:  {context.Request.RawUrl}");
 
             System.Collections.Specialized.NameValueCollection queryString = context.Request.QueryString;
 
@@ -114,13 +115,14 @@ namespace ET
                     dBCenterTaprepRequest = centerAccountInfoList[0];
                 }
 
-                Console.WriteLine($"anid:  {anid}");
-                Console.WriteLine($"callback:  {callback}");
+                Console.WriteLine($"new anid:  {anid}");
+                Console.WriteLine($"new callback:  {callback}");
 
                 dBCenterTaprepRequest.anid = anid;
                 dBCenterTaprepRequest.callback = callback;
                 dBCenterTaprepRequest.tap_project_id = tap_project_id;
                 dBCenterTaprepRequest.tap_track_id = tap_track_id;
+                dBCenterTaprepRequest.DownloadType = DownLoadTypeEnum.ADS;
                 await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterTaprepRequest);
                 dBCenterTaprepRequest.Dispose();
                 dBCenterTaprepRequest = null;
