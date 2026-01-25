@@ -94,10 +94,12 @@ namespace ET
             if (dBCenterAccountInfo != null)
             {
                 response.TodayCreateRole = ComHelp.GetTodayCreateRoleNumber(dBCenterAccountInfo.CreateRoleList);
+                response.CreateTime = dBCenterAccountInfo.CreateTime;
             }
             else
             {
                 response.TodayCreateRole = 0;
+                response.CreateTime = 0;    
             }
 
             reply();

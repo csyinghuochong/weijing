@@ -16,6 +16,8 @@ namespace ET
                 Console.WriteLine($"updatelastgametime DBCenterDataCache:  {request.OAID}");
                 DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
                 dBCenterDataCache.LastLoginTime = request.Time;
+                dBCenterDataCache.IP = request.RemoteAddress;
+                dBCenterDataCache.MaxLevel = Math.Max(request.MaxLevel, dBCenterDataCache.MaxLevel);
                 await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
             }
 

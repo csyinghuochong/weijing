@@ -101,6 +101,7 @@ namespace ET
                 }
 
                 int oldAccount = 0;
+                long oldCreateTime = 0;
 
                 if (!string.IsNullOrEmpty(request.ThirdLogin) && request.ThirdLogin.Length > 0)
                 {
@@ -154,6 +155,7 @@ namespace ET
                                 }
 
                                 oldAccount = 1;
+                                oldCreateTime = centerAccount.CreateTime;
                             }
                         }
                     }
@@ -406,8 +408,12 @@ namespace ET
                         {
                             Console.WriteLine($"loginaccount DBCenterDataCache:  {request.OAID}");
                             DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
-                            oldAccount = dBCenterDataCache.TotalLoginNumber > 0 ? 0 : oldAccount;
-                            dBCenterDataCache.OldAccount = oldAccount;
+                            if (dBCenterDataCache.TotalLoginNumber == 0 && oldAccount == 1)
+                            {
+                                dBCenterDataCache.OldAccount = oldAccount;
+                                dBCenterDataCache.OldAccountTime = TimeInfo.Instance.ToDateTime(oldCreateTime).ToString();
+                            }
+                            dBCenterDataCache.AccountName = request.AccountName;
                             dBCenterDataCache.OnLogin(request.DeviceName);
                             await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
                         }
