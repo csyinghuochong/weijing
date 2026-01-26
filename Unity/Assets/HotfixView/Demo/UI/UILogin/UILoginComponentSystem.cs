@@ -1253,7 +1253,6 @@ namespace ET
 
             if (string.IsNullOrEmpty(account) || string.IsNullOrEmpty(password))
 			{
-				
                 FloatTipManager.Instance.ShowFloatTip(platform == 100 ? "请重新登陆" :  "请选择登录方式");
 				return;
 			}
