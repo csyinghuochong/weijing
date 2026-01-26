@@ -1242,9 +1242,18 @@ namespace ET
 				self.RequestAllServer().Coroutine();
 				return;
 			}
-			if (string.IsNullOrEmpty(account) || string.IsNullOrEmpty(password))
+
+            int platform = GlobalHelp.GetPlatform();
+            if (platform == 100 && string.IsNullOrEmpty(account) || string.IsNullOrEmpty(password))
 			{
-				int platform = GlobalHelp.GetPlatform();
+				Log.ILog.Debug($"platform == 100 && string.IsNullOrEmpty(account)");
+				self.UpdateLoginType();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(account) || string.IsNullOrEmpty(password))
+			{
+				
                 FloatTipManager.Instance.ShowFloatTip(platform == 100 ? "请重新登陆" :  "请选择登录方式");
 				return;
 			}
