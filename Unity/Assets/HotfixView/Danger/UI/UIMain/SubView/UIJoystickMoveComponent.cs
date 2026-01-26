@@ -589,13 +589,11 @@ namespace ET
                     targetPosi.y = hit.point.y;
                     unit.GetComponent<ClientPathfinding2Component>().Find(targetPosi, pathfind);
 
-                    if (pathfind.Count > 0)
+                    if (pathfind.Count >= 2)
                     {
-                        Log.ILog.Debug($"pathfind.Count: {pathfind.Count}  target: {targetPosi}  find:{pathfind[pathfind.Count - 1]}");
+                        Log.ILog.Debug($"pathfind.Count: {pathfind.Count}  i: {i}");
                         break;
                     }
-
-                    Log.ILog.Debug($"pathfind.Count: {pathfind.Count}  target: {targetPosi} ");
                 }
             }
         }
