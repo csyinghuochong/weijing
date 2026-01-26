@@ -154,7 +154,8 @@ namespace ET
                     lastgametime,
                     userInfoComponent.UserInfo.AccInfoID,
                     userInfoComponent.RemoteAddress,
-                    userInfoComponent.UserInfo.Lv).Coroutine();
+                    userInfoComponent.UserInfo.Lv,
+                    self.OnLineTime).Coroutine();
             }
         }
 
@@ -310,6 +311,7 @@ namespace ET
                 self.UpdateCacheDB();
             }
             self.DBInterval++;
+            self.OnLineTime++;
             unit.GetComponent<TaskComponent>().Check();
             unit.GetComponent<UserInfoComponent>().Check();
             unit.GetComponent<DataCollationComponent>().Check();

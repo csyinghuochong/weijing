@@ -293,7 +293,7 @@ namespace ET
             });
         }
 
-        public static async ETTask UpdateLastGameTime(string oaid, string lastgametime, long accoutid, string ip, int level)
+        public static async ETTask UpdateLastGameTime(string oaid, string lastgametime, long accoutid, string ip, int level, int onlinetime)
         {
             if (string.IsNullOrEmpty(oaid))
             {
@@ -308,6 +308,7 @@ namespace ET
                 AccInfoID = accoutid,
                 RemoteAddress = ip,
                 MaxLevel = level,
+                OnlineTime = onlinetime,
             });
 
             

@@ -9,6 +9,7 @@ namespace ET
         public long DBInterval;
         public long NoFindPath;
         public long SceondIndex;
+        public int OnLineTime;
 
         public HashSet<Type> EntityChangeTypeSet { get; } = new HashSet<Type>();
     }
