@@ -108,6 +108,7 @@ namespace ET
             playerComponent.PlayerInfo = a2CLoginAccount.PlayerInfo;
             playerComponent.CreateRoleList = a2CLoginAccount.RoleLists;
             playerComponent.Token = a2CLoginAccount.Token;
+            playerComponent.ClintFindPath = a2CLoginAccount.ClintFindPath;
             playerComponent.TaprepRequest = a2CLoginAccount.TaprepRequest;
             playerComponent.TodayCreateRole = a2CLoginAccount.TodayCreateRole;
             playerComponent.RelinkRecord = a2CLoginAccount.RelinkRecord;

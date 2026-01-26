@@ -424,6 +424,7 @@ namespace ET
                         response.TaprepRequest = centerAccount.TaprepRequest;
                         response.PlayerInfo = centerPlayerInfo;
                         response.AccountId = account.Id;
+                        response.ClintFindPath = 1;
                         response.Token = Token;
                        
                         for (int r = 0; r < response.PlayerInfo.RechargeInfos.Count; r++) 

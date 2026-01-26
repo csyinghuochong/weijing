@@ -1360,6 +1360,9 @@ namespace ET
 		[ProtoMember(10)]
 		public string TaprepRequest { get; set; }
 
+		[ProtoMember(11)]
+		public int ClintFindPath { get; set; }
+
 		[ProtoMember(13)]
 		public int TodayCreateRole { get; set; }
 

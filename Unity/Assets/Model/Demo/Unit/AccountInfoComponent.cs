@@ -24,8 +24,9 @@ namespace ET
 
 		public string TaprepRequest;
         public int TodayCreateRole;
+		public int ClintFindPath;
 
-		public int RelinkRecord;
+        public int RelinkRecord;
 
 		public int NewRegister;
 
