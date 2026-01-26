@@ -23,7 +23,7 @@ namespace ET
                     scene.AddComponent<RobotManagerComponent>();
                     scene.AddComponent<RandNameComponent>();
                     int tapport = ComHelp.IsInnerNet() ? ComHelp.TapHttpIneer + 1 : ComHelp.TapHttpOuter;
-                    //scene.AddComponent<HttpComponent, string>($"http://*:{tapport}/");
+                    scene.AddComponent<HttpComponent, string>($"http://*:{tapport}/");
                     break;
             }
 

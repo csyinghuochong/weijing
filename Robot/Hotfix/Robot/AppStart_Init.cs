@@ -33,6 +33,7 @@ namespace ET
             Game.Scene.AddComponent<ShouJiChapterInfoComponent>();
             Game.Scene.AddComponent<SkillDispatcherComponent>();
 
+            Game.Scene.AddComponent<ActorMessageSenderComponent>();
             Game.Scene.AddComponent<ActorMessageDispatcherComponent>();
 
             StartProcessConfig processConfig = StartProcessConfigCategory.Instance.Get(Game.Options.Process);

@@ -51,6 +51,10 @@
             <Link>Module\Message\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
+		<Compile Include="..\..\Server\Hotfix\Module\Http\**\*.cs">
+			<Link>Module\Message\%(RecursiveDir)%(FileName)%(Extension)</Link>
+		</Compile>
+
         <Compile Include="..\..\Server\Hotfix\Module\MessageInner\**\*.cs">
             <Link>Module\MessageInner\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>

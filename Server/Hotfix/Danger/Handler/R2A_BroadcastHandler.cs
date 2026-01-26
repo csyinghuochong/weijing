@@ -30,6 +30,9 @@ namespace ET
                     Console.WriteLine($"R2A_Broadcast ConfigData.V1ActivityList:  {request.V1ActivityList.Count}");
                     ConfigData.V1ActivityList = request.V1ActivityList;
                     break;
+                case 4:
+                    Console.WriteLine("request.LoadType = 4");
+                    break;
             }
 
             reply();

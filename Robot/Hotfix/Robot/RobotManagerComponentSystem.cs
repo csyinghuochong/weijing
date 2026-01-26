@@ -5,6 +5,26 @@ using System.Net;
 
 namespace ET
 {
+
+    [HttpHandler(SceneType.Robot, "/robotwjconsolecallback")]
+    public class HttpRobotCallBackHandler : IHttpHandler
+    {
+        public async ETTask Handle(Entity entity, HttpListenerContext context)
+        {
+            System.Collections.Specialized.NameValueCollection queryString = context.Request.QueryString;
+            RobotManagerComponent robotManager = entity.GetComponent<RobotManagerComponent>();      
+            int param1 = int.Parse(queryString["param1"]);
+
+            List<StartSceneConfig> processScenes = StartSceneConfigCategory.Instance.GetByProcess(1);
+            StartSceneConfig startSceneConfig = processScenes[0];
+            long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(startSceneConfig.Zone, startSceneConfig.Name).InstanceId;
+            A2R_Broadcast createUnit = (A2R_Broadcast)await ActorMessageSenderComponent.Instance.Call(
+                mapInstanceId, new R2A_Broadcast() { LoadType = param1 });
+
+            await ETTask.CompletedTask;
+        }
+    }
+
     [ObjectSystem]
     public class RobotManagerComponentAwakeSystem : AwakeSystem<RobotManagerComponent>
     {

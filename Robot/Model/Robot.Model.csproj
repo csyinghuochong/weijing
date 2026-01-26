@@ -85,6 +85,10 @@
             <Link>Module\Message\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
+		<Compile Include="..\..\Server\Model\Module\Http\**\*.cs">
+			<Link>Module\Message\%(RecursiveDir)%(FileName)%(Extension)</Link>
+		</Compile>
+
         <Compile Include="..\..\Unity\Assets\Model\Module\Numeric\**\*.cs">
             <Link>Module\Numeric\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
