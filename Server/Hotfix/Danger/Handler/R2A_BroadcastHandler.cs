@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -32,6 +33,13 @@ namespace ET
                     break;
                 case 4:
                     Console.WriteLine("request.LoadType = 4");
+                    //List<int> zones = ServerMessageHelper.GetAllZone();
+                    //foreach (int czone in zones)
+                    //{
+                    //    long fubenCenterId = DBHelper.GetFubenCenterId(czone);
+                    //    R2F_WorldLvUpdateRequest crequest = new R2F_WorldLvUpdateRequest() {  };
+                    //    await ActorMessageSenderComponent.Instance.Call(fubenCenterId, crequest);
+                    //}
                     break;
             }
 
