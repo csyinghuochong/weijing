@@ -32,6 +32,17 @@ namespace ET
 
     public static partial class ClientPathfinding2ComponentSystem
     {
+
+        public static void OnShangMa(this ClientPathfinding2Component self, GameObject go, int horseId)
+        {
+
+        }
+
+        public static void OnXiaMa(this ClientPathfinding2Component self, GameObject go, int horseId)
+        {
+        }
+
+
         public static void Find(this ClientPathfinding2Component self, Vector3 target, List<Vector3> result)
         {
             NavMeshPath path = new NavMeshPath();
