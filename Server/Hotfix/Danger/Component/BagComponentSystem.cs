@@ -255,6 +255,8 @@ namespace ET
            
             for (int i = bagInfos.Count - 1; i >= 0; i--)
             {
+
+
                 if (!ItemConfigCategory.Instance.Contain(bagInfos[i].ItemID))
                 {
                     Console.WriteLine($"CheckValiedItem11:  {bagInfos[i].ItemID}   {bagInfos[i].ItemNum}");

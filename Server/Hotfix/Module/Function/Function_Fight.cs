@@ -1705,6 +1705,9 @@ namespace ET
             List<int> equipIDList = new List<int>();
             List<int> equipSuitIDList = new List<int>();
             List<BagInfo> equipList = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip);
+            List<BagInfo> equipList_2 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip_2);
+
+            equipList.AddRange(equipList_2);
 
             for (int i = equipList.Count - 1; i >= 0; i--)
             {
