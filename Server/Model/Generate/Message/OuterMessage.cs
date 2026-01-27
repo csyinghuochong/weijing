@@ -5051,6 +5051,9 @@ namespace ET
 		[ProtoMember(7)]
 		public int MagicQulity { get; set; }
 
+		[ProtoMember(8)]
+		public long BagInfoId { get; set; }
+
 	}
 
 //通过奖励

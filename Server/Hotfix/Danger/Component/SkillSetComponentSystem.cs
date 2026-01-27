@@ -743,7 +743,7 @@ namespace ET
 			return ids;
         }
 
-		public static void OnAddItemSkill(this SkillSetComponent self, List<int> itemSkills,  Dictionary<int, int> magicskills = null)
+		public static void OnAddItemSkill(this SkillSetComponent self, List<int> itemSkills,  Dictionary<int, int> magicskills = null, long baginfoid = 0)
 		{
 			Unit unit = self.GetParent<Unit>();
             for (int i = 0; i < itemSkills.Count; i++)
@@ -770,6 +770,7 @@ namespace ET
 				skillPro.SkillSetType = (int)SkillSetEnum.Skill;
 				skillPro.SkillSource = (int)SkillSourceEnum.Equip;
 				skillPro.MagicQulity = magicqulity;
+				skillPro.BagInfoId = baginfoid;
                 self.SkillList.Add(skillPro);
                 unit.GetComponent<SkillPassiveComponent>().AddPassiveSkill(skillId, magicskills);
                 self.CheckSkillTianFu(skillId, true);
@@ -829,7 +830,8 @@ namespace ET
 				}
 				for (int k = self.SkillList.Count - 1; k >= 0; k--)
 				{
-					if (self.SkillList[k].SkillSource == (int)SkillSourceEnum.Equip && self.SkillList[k].SkillID == skillId)
+					if (self.SkillList[k].SkillSource == (int)SkillSourceEnum.Equip
+						&& self.SkillList[k].SkillID == skillId)
 					{
                         skillPassiveComponent.RemovePassiveSkill(skillId);
                         self.CheckSkillTianFu(skillId, false);
@@ -1143,7 +1145,7 @@ namespace ET
 
             itemSkills.AddRange(bagInfo.HideSkillLists);
 			itemSkills.AddRange(bagInfo.InheritSkills);
-			self.OnAddItemSkill(itemSkills, magicSkills);
+			self.OnAddItemSkill(itemSkills, magicSkills, bagInfo.BagInfoID);
 
 			if (itemConfig.ItemEquipID > 0)
 			{
@@ -1211,7 +1213,19 @@ namespace ET
 			return null;
 		}
 
-		public static SkillPro GetByPosition(this SkillSetComponent self, int pos)
+        public static SkillPro GetByItemSkillID(this SkillSetComponent self, int skillid, long baginfoid)
+        {
+            for (int i = self.SkillList.Count - 1; i >= 0; i--)
+            {
+                if (self.SkillList[i].SkillID == skillid || self.SkillList[i].BagInfoId == baginfoid)
+                {
+                    return self.SkillList[i];
+                }
+            }
+            return null;
+        }
+
+        public static SkillPro GetByPosition(this SkillSetComponent self, int pos)
 		{
 			for (int i = self.SkillList.Count - 1; i >= 0; i--)
 			{
