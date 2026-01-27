@@ -362,6 +362,10 @@ namespace ET
             {
                 self.GameObject.transform.localRotation = Quaternion.Euler(0, 90, 0);
             }
+            if (unit.MainHero)
+            {
+                unit.GetComponent<ClientPathfinding2Component>()?.OnShangMa(go);
+            }
             unit.GetComponent<FsmComponent>()?.SetHorseState();
             try
             {
@@ -384,6 +388,10 @@ namespace ET
                 return;
             }
             Unit unit = self.GetParent<Unit>();
+            if (unit.MainHero)
+            {
+                unit.GetComponent<ClientPathfinding2Component>()?.OnXiaMa();
+            }
             UICommonHelper.SetParent(self.GameObject, GlobalComponent.Instance.UnitPlayer.gameObject);
             self.UpdatePositon(self.GetParent<Unit>().Position);
             unit.GetComponent<AnimatorComponent>()?.UpdateAnimator(self.GameObject);

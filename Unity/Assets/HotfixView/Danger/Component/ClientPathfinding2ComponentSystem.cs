@@ -37,15 +37,29 @@ namespace ET
     public static partial class ClientPathfinding2ComponentSystem
     {
 
-        public static void OnShangMa(this ClientPathfinding2Component self, GameObject go, int horseId)
+        public static void OnShangMa(this ClientPathfinding2Component self, GameObject horsego)
         {
+            self.NavMeshAgentRole.enabled = false;
 
+            if (horsego.transform.Find("NavMeshAgent") == null)
+            {
+                GameObject navemeshagent = new GameObject("NavMeshAgent");
+                navemeshagent.AddComponent<NavMeshAgent>();
+                UICommonHelper.SetParent(navemeshagent, horsego);
+            }
+            self.NavMeshAgentHorese = horsego.transform.Find("NavMeshAgent").GetComponent<NavMeshAgent>();
+            self.NavMeshAgentHorese.enabled = false;
+            self.NavMeshAgentHorese.enabled = true;
+
+            self.NavMeshAgent = self.NavMeshAgentHorese;
         }
 
-        public static void OnXiaMa(this ClientPathfinding2Component self, GameObject go, int horseId)
+        public static void OnXiaMa(this ClientPathfinding2Component self)
         {
+            self.NavMeshAgentRole.enabled = false;
+            self.NavMeshAgentRole.enabled = true;
+            self.NavMeshAgent = self.NavMeshAgentRole;
         }
-
 
         public static void Find(this ClientPathfinding2Component self, Vector3 target, List<Vector3> result)
         {
