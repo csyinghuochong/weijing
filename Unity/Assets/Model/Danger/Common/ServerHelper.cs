@@ -466,11 +466,12 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 189, ServerIp = $"{ip}:20445", ServerName = "吉星高照", ServerOpenTime = 1767351600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 190, ServerIp = $"{ip}:20555", ServerName = "逐月谷", ServerOpenTime = 1767956400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 191, ServerIp = $"{ip}:20595", ServerName = "沧澜神域", ServerOpenTime = 1768561200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-
-
-                //2026/01/23 19:00:00 1769166000000 合区 xx - xx   xx/xx
-                //2026/01/23 19:00:00 1769166000000 新区 剑啸山河 192
                 serverItems_1.Add(new ServerItem() { ServerId = 192, ServerIp = $"{ip}:20455", ServerName = "剑啸山河", ServerOpenTime = 1769166000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+
+
+                //2026/01/30 19:00:00 1769770800000 合区 xx - xx   xx/xx
+                //2026/01/30 19:00:00 1769770800000 新区 精灵之森 193
+                serverItems_1.Add(new ServerItem() { ServerId = 193, ServerIp = $"{ip}:20495", ServerName = "精灵之森", ServerOpenTime = 1769770800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
