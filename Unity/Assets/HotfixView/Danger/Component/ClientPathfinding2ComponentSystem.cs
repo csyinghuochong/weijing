@@ -35,7 +35,7 @@ namespace ET
         public static void Find(this ClientPathfinding2Component self, Vector3 target, List<Vector3> result)
         {
             NavMeshPath path = new NavMeshPath();
-
+            self.NavMeshAgent.transform.localPosition = Vector3.zero;
             if (self.NavMeshAgent.CalculatePath(target, path))
             {
                 for (int i = 0; i < path.corners.Length; i++)
