@@ -16,9 +16,9 @@ namespace ET
                 navemeshagent.AddComponent<NavMeshAgent>();   
                 UICommonHelper.SetParent(navemeshagent, gameObject);
             }
-            self.NavMeshAgent = gameObject.transform.Find("NavMeshAgent").GetComponent<NavMeshAgent>();
-            self.NavMeshAgent.enabled = false;
-            self.NavMeshAgent.enabled = true;
+            self.NavMeshAgentRole = gameObject.transform.Find("NavMeshAgent").GetComponent<NavMeshAgent>();
+            self.NavMeshAgentRole.enabled = false;
+            self.NavMeshAgentRole.enabled = true;
         }
     }
 
@@ -26,7 +26,7 @@ namespace ET
     {
         public override void Destroy(ClientPathfinding2Component self)
         {
-            self.NavMeshAgent = null;
+            self.NavMeshAgentRole = null;
         }
     }
 
@@ -46,8 +46,8 @@ namespace ET
         public static void Find(this ClientPathfinding2Component self, Vector3 target, List<Vector3> result)
         {
             NavMeshPath path = new NavMeshPath();
-            self.NavMeshAgent.transform.localPosition = Vector3.zero;
-            if (self.NavMeshAgent.CalculatePath(target, path))
+            self.NavMeshAgentRole.transform.localPosition = Vector3.zero;
+            if (self.NavMeshAgentRole.CalculatePath(target, path))
             {
                 for (int i = 0; i < path.corners.Length; i++)
                 {

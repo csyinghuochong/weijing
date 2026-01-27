@@ -7,5 +7,9 @@ namespace ET
     {
 
         public NavMeshAgent NavMeshAgent;
+
+        public NavMeshAgent NavMeshAgentRole;
+
+        public NavMeshAgent NavMeshAgentHorese;
     }
 }
