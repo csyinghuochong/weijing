@@ -20,6 +20,7 @@ namespace ET
             else
             {
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
+                //rankComponent.ClearRankingTrialById(3178933533368451072);
                 List<KeyValuePairLong> ranklist = rankComponent.DBRankInfo.rankingTrial;
               
                 List<long> idlist = new List<long>();

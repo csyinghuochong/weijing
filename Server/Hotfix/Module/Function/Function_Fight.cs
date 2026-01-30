@@ -1704,9 +1704,32 @@ namespace ET
             //装备属性
             List<int> equipIDList = new List<int>();
             List<int> equipSuitIDList = new List<int>();
-            List<BagInfo> equipList = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip);
+            List<BagInfo> equipList_1 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip);
             List<BagInfo> equipList_2 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip_2);
 
+            for (int equipList1index = equipList_1.Count - 1; equipList1index >= 0; equipList1index--)
+            {
+                bool isequip2 = false;
+
+                foreach (BagInfo bagInfo in equipList_2)
+                { 
+                    if(bagInfo.BagInfoID == equipList_1[equipList1index].BagInfoID)
+                    {
+                        isequip2 = true;
+                        break;
+                    }
+                }
+
+                if (isequip2)
+                {
+                    Console.WriteLine($"重复添加 remove11!! {unit.Id} {equipList1index}");
+                    equipList_1.RemoveAt(equipList1index);
+                }
+            }
+
+
+            List<BagInfo> equipList = new List<BagInfo>();
+            equipList.AddRange(equipList_1);
             equipList.AddRange(equipList_2);
 
             for (int i = equipList.Count - 1; i >= 0; i--)

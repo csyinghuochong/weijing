@@ -106,6 +106,7 @@ namespace ET
             }
         }
 
+        //3287042516137869312  半心心心
         public static void ClearRankingTrialById(this RankSceneComponent self, long unitid)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
@@ -121,7 +122,7 @@ namespace ET
         public static void ClearRankingTrial(this RankSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            if (self.DomainZone() == 1 && dateTime.Year == 2023 && dateTime.Month == 12 && dateTime.Day == 30)
+            if ((self.DomainZone() == 190) && dateTime.Year == 2026 && dateTime.Month == 12 && dateTime.Day == 30)
             {
                 self.DBRankInfo.rankingTrial.Clear();
                 Log.Warning("self.DBRankInfo.rankingTrial.Clear");

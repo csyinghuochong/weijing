@@ -59,7 +59,31 @@ namespace ET
 				//}
 			}
 
-			if (bagComponent.FashionEquipList.Count == 0)
+
+            List<BagInfo> equipList = bagComponent.GetItemByLoc(ItemLocType.ItemLocEquip);
+            List<BagInfo> equipList_2 = bagComponent.GetItemByLoc(ItemLocType.ItemLocEquip_2);
+
+            for (int equipListindex = equipList.Count - 1; equipListindex >= 0; equipListindex--)
+            {
+                bool isequip2 = false;
+
+                foreach (BagInfo bagInfo in equipList_2)
+                {
+                    if (bagInfo.BagInfoID == equipList[equipListindex].BagInfoID)
+                    {
+                        isequip2 = true;
+                        break;
+                    }
+                }
+
+                if (isequip2)
+                {
+                    Console.WriteLine($"重复添加 remove22!! {unit.Id} {equipListindex}");
+                    equipList.RemoveAt(equipListindex);
+                }
+            }
+
+            if (bagComponent.FashionEquipList.Count == 0)
 			{
                 OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
 				for (int i = 0; i < occupationConfig.FashionBase.Length; i++)
