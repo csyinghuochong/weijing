@@ -208,7 +208,7 @@ namespace ET
                     {
                         //私有掉落，本地移除
                         //unitComponent.Remove(ids[i].UnitId);
-
+                        itemdrop.RemoveComponent<DeleyRemoveComponent>();
                         itemdrop.AddComponent<DeleyRemoveComponent, long>(3000);
 
                         EventType.UnitDropFly.Instance.Unit = itemdrop;
