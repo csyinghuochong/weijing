@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Security.AccessControl;
 
 namespace ET
 {
@@ -110,6 +111,8 @@ namespace ET
 
         public static async ETTask Handle(this HttpComponent self, HttpListenerContext context)
         {
+            string abspath = string.Empty;
+            string rawurl = string.Empty;
             try
             {
                 IHttpHandler handler;
@@ -120,9 +123,8 @@ namespace ET
                 }
                 else
                 {
-                    string abspath = string.Empty;
-                    string rawurl = string.Empty;   
-                    if(context!=null && context.Request!=null)
+                    
+                    if (context != null && context.Request != null)
                     {
                         abspath = context.Request.Url.AbsolutePath;
                         rawurl = context.Request.RawUrl;
@@ -134,8 +136,21 @@ namespace ET
             {
                 Log.Error(e);
             }
-            context.Request.InputStream.Dispose();
-            context.Response.OutputStream.Dispose();
+            finally
+            {
+                // 安全释放资源
+                try
+                {
+                    context.Request.InputStream.Dispose();
+                    context.Response.OutputStream.Dispose();
+                }
+                catch (HttpListenerException ex)
+                {
+                    Console.WriteLine($"释放 HttpListener 资源时发生网络异常: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}  {abspath} {rawurl}");
+                    // 记录日志但不抛出，避免影响主线程
+                    Log.Debug($"释放 HttpListener 资源时发生网络异常: {ex.Message}");
+                }
+            }
         }
     }
 }

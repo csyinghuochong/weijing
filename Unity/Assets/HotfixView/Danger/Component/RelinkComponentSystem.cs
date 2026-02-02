@@ -131,7 +131,7 @@ namespace ET
                     break;
                 }
 
-                await TimerComponent.Instance.WaitAsync(1000);
+                await TimerComponent.Instance.WaitAsync(5000);
                 if (instanceid != self.InstanceId)
                 {
                     break;
@@ -141,7 +141,7 @@ namespace ET
                     break;
                 }
                 Log.ILog.Debug($"重连请求22！！ {self.Relink}");
-                await self.SendLogin();
+                self.SendLogin().Coroutine();
             }
         }
 
