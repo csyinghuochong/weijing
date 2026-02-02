@@ -40,7 +40,7 @@ namespace ET
             long usetime = TimeHelper.ServerNow() - self.BeginTime;
             if (usetime <= 0 || usetime > TimeHelper.Second * 70)
             {
-                Console.WriteLine($"TrialDungeon  usetime <= 0 || usetime > TimeHelper.Second * 70");
+                Console.WriteLine($"TrialDungeon  usetime <= 0 || usetime > TimeHelper.Second * 70: {usetime}");
                 M2C_FubenSettlement m2C_FubenSettlement_0 = new M2C_FubenSettlement();
                 m2C_FubenSettlement_0.BattleResult = CombatResultEnum.Fail;
                 MessageHelper.SendToClient(players[0], m2C_FubenSettlement_0);
