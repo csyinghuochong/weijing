@@ -76,6 +76,7 @@ namespace ET
 						long serverOpenTime = ServerHelper.GetOpenServerTime(false, session.DomainZone());
 						if (!ComHelp.IsBanHaoZone(session.DomainZone()) 
 							&& !ComHelp.IsZhuBoZone(session.DomainZone())
+							&& !ServerHelper.IsGoogleServer(session.DomainZone())
                             && !GMHelp.GmAccount.Contains(centerAccountList[0].Account)
 							&& !GMHelp.TestNewOccAccount.Contains(centerAccountList[0].Account))
 						{
