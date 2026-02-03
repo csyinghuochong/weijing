@@ -255,6 +255,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (itemConfig.EquipType == 401)
+                {
+                    continue;
+                }
 
                 UIItemComponent uI_1 = null;
                 if (number < self.ItemUIlist.Count)
@@ -354,6 +358,11 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
                 if (itemConfig.ItemType == ItemTypeEnum.Equipment)
                 {
+                    //魔能不放入
+                    if (itemConfig.EquipType == 401)
+                    {
+                        continue;
+                    }
                     // 绿色、蓝色品质的生肖不分解
                     if (itemConfig.EquipType == 101 && (itemConfig.ItemQuality == (int)ItemQualityEnem.Quality2 ||
                             itemConfig.ItemQuality == (int)ItemQualityEnem.Quality3))

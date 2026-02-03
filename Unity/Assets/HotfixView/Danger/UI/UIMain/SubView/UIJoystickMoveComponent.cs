@@ -405,9 +405,9 @@ namespace ET
                 float c2sdisc = self.MoveComponent.C2SDistance;
                 if (c2sdisc > 3f || passTime > 3000)
                 {
-                    //speed *= 0.2f;
+                    speed *= 0.2f;
+                    Log.ILog.Debug($"self.MoveComponent.c2sdisc :  {c2sdisc}   passTime:{passTime}");
                 }
-                Log.ILog.Debug($"self.MoveComponent.c2sdisc :  {c2sdisc}   passTime:{passTime}");
                 unit.MoveResultToAsync(pathfind, null).Coroutine();
                 self.MoveComponent.MoveToAsync(pathfind, speed).Coroutine();
             }
