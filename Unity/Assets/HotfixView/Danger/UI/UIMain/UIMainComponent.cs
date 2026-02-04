@@ -2667,7 +2667,6 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             SettingHelper.ClintFindPath = GlobalHelp.GetBigVersion() >= 26 && sceneTypeEnum == SceneTypeEnum.LocalDungeon && accountInfoComponent.ClintFindPath == 1;
             //&& accountInfoComponent.ServerId == 5 && GMHelp.GmAccount.Contains(accountInfoComponent.Account)
-
         }
 
         public static void OnButtonGoToOperate(this UIMainComponent self)
