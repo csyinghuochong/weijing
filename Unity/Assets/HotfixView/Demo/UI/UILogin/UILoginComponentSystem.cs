@@ -629,7 +629,7 @@ namespace ET
 			{
 #if UNITY_IPHONE || UNITY_IOS
 				self.YiJianDengLu.transform.Find("ButtonYiJianLogin").gameObject.SetActive(false);
-				self.YiJianDengLu.transform.Find("ButtonOtherLogin").transform.localPosition = new Vector3(8f,-88f,0f);
+				self.YiJianDengLu.transform.Find("ButtonOtherLogin").transform.localPosition = new Vector3(0f,-37f,0f);
 #endif
             }
 
