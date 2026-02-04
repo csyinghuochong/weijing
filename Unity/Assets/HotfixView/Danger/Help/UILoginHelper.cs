@@ -121,21 +121,26 @@ namespace ET
             return GameSettingLanguge.LoadLocalization("服务器维护中！");
         }
 
-        public static string GetYingSiText(int platform)
+
+        public static bool ShowWebpage = true;
+        public static string  GetYingSiTextNewUrl(int platform)
+        {
+            string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
+            if (platform == 100)
+            {
+                dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
+                Log.ILog.Debug($"platform == 100  yinsi6");
+            }
+            return dataurl;
+        }
+        public static string GetYingSiTextNew( int platform)
         {
             try
             {
                 WebClient MyWebClient = new WebClient();
                 MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
                                                                              //string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
-                string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
-
-                if (platform == 100)
-                {
-                    dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
-                    Log.ILog.Debug($"platform == 100  yinsi6");
-                }
-
+                string dataurl = GetYingSiTextNewUrl(platform);
                 Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
                 string pageHtml = Encoding.UTF8.GetString(pageData);
                 return pageHtml;
@@ -147,6 +152,12 @@ namespace ET
             }
             return "服务器维护中！";
         }
+    
+        public static string GetYonHuTextUrl(int platform)
+        {
+            string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi.txt";
+            return dataurl;
+        }
 
         public static string GetYonHuText(int platform)
         {
@@ -154,7 +165,7 @@ namespace ET
             {
                 WebClient MyWebClient = new WebClient();
                 MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
-                string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi.txt";
+                string dataurl = GetYonHuTextUrl(platform);
                 Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
                 string pageHtml = Encoding.UTF8.GetString(pageData);
                 return pageHtml;

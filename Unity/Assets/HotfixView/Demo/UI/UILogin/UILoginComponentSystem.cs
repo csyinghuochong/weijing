@@ -217,8 +217,33 @@ namespace ET
                     self.ZhuCe.transform.Find("Btn_iPhone").gameObject.SetActive(false);	
                 }
 
-                self.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
-				self.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
+                self.TextButton_1.GetComponent<Button>().onClick.AddListener(() =>
+				{
+                    if (UILoginHelper.ShowWebpage)
+					{
+                        string url = UILoginHelper.GetYonHuTextUrl(platform);
+                        url = url.Substring(0, url.Length - 4) + "_1.html";
+                        Application.OpenURL(url);
+					}
+					else
+					{
+                        self.YongHuXieYi.SetActive(true);
+                    }
+				});
+				self.TextButton_2.GetComponent<Button>().onClick.AddListener(() =>
+				{
+                    
+					if (UILoginHelper.ShowWebpage)
+					{
+                        string url = UILoginHelper.GetYingSiTextNewUrl(platform);
+                        url = url.Substring(0, url.Length - 4) + "_1.html";
+                        Application.OpenURL(url);
+					}
+					else
+					{
+                        self.YinSiXieYi.SetActive(true);
+                    }
+				});
 				self.TextButton_2_2.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
 				self.TextButton_2_1.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
 				self.YongHuXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(false); });
@@ -262,7 +287,7 @@ namespace ET
 				self.AccountInfoComponent.UnityVersion = Application.unityVersion;
 
              
-                pageHtml = self.GetYingSiTextNew(platForm);
+                pageHtml = UILoginHelper.GetYingSiTextNew(platForm);
                 UILoginHelper.ShowTextList(self.TextYinsiNew.gameObject, pageHtml);
 
                 //Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
@@ -327,32 +352,6 @@ namespace ET
 	
 	public static class UILoginComponentSystem
     {
-
-        public static string GetYingSiTextNew(this UILoginComponent self,int platform)
-        {
-            try
-            {
-                WebClient MyWebClient = new WebClient();
-                MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
-                                                                             //string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
-                string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
-                if (platform == 100)
-                {
-                    dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
-                    Log.ILog.Debug($"platform == 100  yinsi6");
-                }
-
-                Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
-                string pageHtml = Encoding.UTF8.GetString(pageData);
-                return pageHtml;
-            }
-
-            catch (WebException webEx)
-            {
-                Log.Debug(webEx.ToString());
-            }
-            return "服务器维护中！";
-        }
 
 
         public static void InitSdk(this UILoginComponent self)
