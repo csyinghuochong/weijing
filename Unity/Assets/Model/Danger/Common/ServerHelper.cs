@@ -471,8 +471,8 @@ namespace ET
 
 
                 //2026/02/06 19:00:00 1770375600000 合区 xx - xx   xx/xx
-                //2026/02/06 19:00:00 1770375600000 新区 新区新区 194
-                serverItems_1.Add(new ServerItem() { ServerId = 194, ServerIp = $"{ip}:20545", ServerName = "新区新区", ServerOpenTime = 1770375600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+                //2026/02/06 19:00:00 1770375600000 新区 龙焰王座 194
+                serverItems_1.Add(new ServerItem() { ServerId = 194, ServerIp = $"{ip}:20545", ServerName = "龙焰王座", ServerOpenTime = 1770375600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
