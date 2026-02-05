@@ -117,7 +117,8 @@ namespace ET
 
 #endif
 				}
-				
+
+				UILoginHelper.ShowWebpage = GlobalHelp.IsEditorMode;
 
                 self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(taptap);
                 self.ZhuCe.transform.Find("Btn_Apple").gameObject.SetActive(bigversion >= 21 && platform == 20001);
