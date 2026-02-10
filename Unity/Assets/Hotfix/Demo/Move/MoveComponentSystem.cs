@@ -353,8 +353,11 @@ namespace ET
             }
             if (skillConfig.IfStopMove == 0)
             {
-                EventType.CommonHint.Instance.HintText = skillConfig.SkillName + "释放打断寻路状态";
-                Game.EventSystem.PublishClass(EventType.CommonHint.Instance);
+                if (skillConfig.SkillActType == 1)
+                {
+                    EventType.CommonHint.Instance.HintText = skillConfig.SkillName + "释放打断寻路状态";
+                    Game.EventSystem.PublishClass(EventType.CommonHint.Instance);
+                }
                 return;
             }
 
