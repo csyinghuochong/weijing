@@ -118,7 +118,7 @@ namespace ET
 #endif
 				}
 
-				UILoginHelper.ShowWebpage = GlobalHelp.IsEditorMode;
+				UILoginHelper.ShowWebpage = GlobalHelp.IsEditorMode || platform == 100;
 
                 self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(taptap);
                 self.ZhuCe.transform.Find("Btn_Apple").gameObject.SetActive(bigversion >= 21 && platform == 20001);
@@ -216,6 +216,11 @@ namespace ET
 				{
 					self.YinSiToggle2.GetComponent<Toggle>().isOn = false;
                     self.ZhuCe.transform.Find("Btn_iPhone").gameObject.SetActive(false);	
+                }
+                if (platform == 100)
+                {
+                    self.YinSiToggle.gameObject.SetActive(true);
+                    self.YinSiToggle.GetComponent<Toggle>().isOn = true;
                 }
 
                 self.TextButton_1.GetComponent<Button>().onClick.AddListener(() =>
