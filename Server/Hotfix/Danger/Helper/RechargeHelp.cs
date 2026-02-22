@@ -11,7 +11,7 @@ namespace ET
             OnRechage(unit, rechargeNumber, rechargeType, true);
             long accountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID;
             long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
-            SendToAccountCenter(accountId, userId, rechargeNumber, orderInfo).Coroutine();
+            SendToAccountCenter(accountId, userId, rechargeNumber, orderInfo, rechargeType).Coroutine();
             unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
         }
 
@@ -24,6 +24,8 @@ namespace ET
         
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
+            Log.Debug($"OnRechage: {unit.Id}   {rechargetType}  {rechargeNumber}  rechargetType:{rechargetType}");
+
             //0 砖石  1周卡
             if (rechargetType == 0)
             {
@@ -32,7 +34,6 @@ namespace ET
             }
             else
             {
-
                 Console.WriteLine($"OnRechage: {unit.Id}   {rechargetType}  {rechargeNumber}");
 
                 if (rechargeNumber == 30)
@@ -92,7 +93,7 @@ namespace ET
 
         }
 
-        public static async ETTask SendToAccountCenter(long accountId, long userId, int rechargeNumber, string ordinfo)
+        public static async ETTask SendToAccountCenter(long accountId, long userId, int rechargeNumber, string ordinfo, int rechargeType)
         {
             A2Center_RechargeRequest rechargeRequest = new A2Center_RechargeRequest()
             {
@@ -102,7 +103,8 @@ namespace ET
                     Amount = rechargeNumber,
                     Time = TimeHelper.ServerNow(),
                     UserId = userId,
-                    OrderInfo = ordinfo
+                    OrderInfo = ordinfo,
+                    RechargeType = rechargeType
                 }
             };
             long accountZone = DBHelper.GetAccountCenter();
@@ -124,13 +126,13 @@ namespace ET
             //&& gateUnitInfo.ClientSession!=null
             if (gateUnitInfo != null  && gateUnitInfo.PlayerState == PlayerState.Game && gateUnitInfo.InstanceId > 0)
             {
-                Log.Warning($"充值OnPaySucess PlayerState.Game: {scene.DomainZone()}   {userId}  rechargeNumber:{rechargeNumber}", true);
+                Log.Warning($"充值OnPaySucess PlayerState.Game: {scene.DomainZone()}   {userId}  rechargeNumber:{rechargeNumber}  rechargeType:{rechargeType}", true);
                 G2M_RechargeResultRequest r2M_RechargeRequest = new G2M_RechargeResultRequest() { RechargeNumber = rechargeNumber , OrderInfo = orderInfo, RechargeType = rechargeType};
                 M2G_RechargeResultResponse m2G_RechargeResponse = (M2G_RechargeResultResponse)await ActorLocationSenderComponent.Instance.Call(gateUnitInfo.UnitId, r2M_RechargeRequest);
             }
             else
             {
-                Log.Warning($"充值OnPaySucess PlayerState.None: {scene.DomainZone()}   {userId}  rechargeNumber:{rechargeNumber}");
+                Log.Warning($"充值OnPaySucess PlayerState.None: {scene.DomainZone()}   {userId}  rechargeNumber:{rechargeNumber}  rechargeType:{rechargeType}");
                 //直接存数据库
                 //int number = ComHelp.GetDiamondNumber(rechargeNumber);
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
@@ -149,7 +151,7 @@ namespace ET
                 UserInfoComponent userInfoComponent = (d2GGetUnit.Component as UserInfoComponent);
                 
                 long accountId = userInfoComponent.UserInfo.AccInfoID;
-                SendToAccountCenter(accountId, userId, rechargeNumber, orderInfo).Coroutine();
+                SendToAccountCenter(accountId, userId, rechargeNumber, orderInfo, rechargeType).Coroutine();
                 await ETTask.CompletedTask;
             }
         }
@@ -191,7 +193,7 @@ namespace ET
                 UserInfoComponent userInfoComponent = (d2GGetUnit.Component as UserInfoComponent);
 
                 long accountId = userInfoComponent.UserInfo.AccInfoID;
-                SendToAccountCenter(accountId, userId, rechargeNumber, orderInfo).Coroutine();
+                SendToAccountCenter(accountId, userId, rechargeNumber, orderInfo, rechargeType  ).Coroutine();
             }
 
             //&& gateUnitInfo.ClientSession!=null
