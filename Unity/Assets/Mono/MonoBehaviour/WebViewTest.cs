@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Kogarasi.WebView;
 
 class WebViewCallbackTest : Kogarasi.WebView.IWebViewCallback
 {
@@ -23,7 +24,7 @@ public class WebViewTest : MonoBehaviour
 	WebViewCallbackTest m_callback;
 
 	// Use this for initialization
-	void Start () {
+	public void OpenUrl (string url) {
 
 		m_callback = new WebViewCallbackTest();
 
@@ -31,9 +32,14 @@ public class WebViewTest : MonoBehaviour
 	
 		if( webview != null )
 		{
-			webview.LoadURL( "https://www.google.co.jp" );
-			webview.SetVisibility( true );
+			webview.LoadURL(url);
+            
+            webview.SetMargins(0, 100, 0, 0); // »´∆¡œ‘ æ
+
+            webview.SetVisibility( true );
 			webview.setCallback( m_callback );
+
+			Debug.Log($"loadurl:   {url}");
 		}
 	}
 	

@@ -29,6 +29,12 @@ public class UIYinSi : MonoBehaviour
 
     public int AgreeNumber = 0;
 
+    public static string GetYonHuTextUrl(int platform)
+    {
+        string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi.txt";
+        return dataurl;
+    }
+
 
     public string GetYongHuText(int platform)
     {
@@ -36,7 +42,8 @@ public class UIYinSi : MonoBehaviour
         {
             WebClient MyWebClient = new WebClient();
             MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
-            string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi.txt";
+            string dataurl = GetYonHuTextUrl(platform);
+                //(platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi.txt";
             Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
             string pageHtml = Encoding.UTF8.GetString(pageData);
             return pageHtml;
@@ -49,6 +56,16 @@ public class UIYinSi : MonoBehaviour
         return "服务器维护中！";
     }
 
+    public static string GetYingSiTextNewUrl(int platform)
+    {
+        string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
+        if (platform == 100)
+        {
+            dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
+            Log.ILog.Debug($"platform == 100  yinsi6");
+        }
+        return dataurl;
+    }
     public string GetYingSiText(int platform)
     {
         try
@@ -56,13 +73,14 @@ public class UIYinSi : MonoBehaviour
             WebClient MyWebClient = new WebClient();
             MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
             //string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
-            string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
+            //string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
 
-            if (platform == 100)
-            {
-                dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
-                Log.ILog.Debug($"platform == 100  yinsi6");
-            }
+            //if (platform == 100)
+            //{
+            //    dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
+            //    Log.ILog.Debug($"platform == 100  yinsi6");
+            //}
+            string dataurl = GetYingSiTextNewUrl(platform);
 
             Byte[] pageData = MyWebClient.DownloadData(dataurl); //从指定网站下载数据
             string pageHtml = Encoding.UTF8.GetString(pageData);
@@ -181,10 +199,23 @@ public class UIYinSi : MonoBehaviour
         this.ShowYinsiNew();
         this.YinSiXieYi.SetActive(false);
 
+        int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
         this.TextButton_2 = rc.Get<GameObject>("TextButton_2");
         this.TextButton_1 = rc.Get<GameObject>("TextButton_1");
-        this.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { this.YinSiXieYi.SetActive(true); });
-        this.TextButton_1.GetComponent<Button>().onClick.AddListener(ShowYonghuText);
+        this.TextButton_2.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            //this.YinSiXieYi.SetActive(true); 
+            string url = GetYingSiTextNewUrl(platform);
+            url = url.Substring(0, url.Length - 4) + "_1.html";
+            Application.OpenURL(url);
+        });
+        this.TextButton_1.GetComponent<Button>().onClick.AddListener(()=>
+        {
+            //ShowYonghuText();
+            string url = GetYonHuTextUrl(platform);
+            url = url.Substring(0, url.Length - 4) + "_1.html";
+            Application.OpenURL(url);
+        });
 
         this.TextYongHu = rc.Get<GameObject>("TextYongHu");
         this.TextYongHu.SetActive(false);
