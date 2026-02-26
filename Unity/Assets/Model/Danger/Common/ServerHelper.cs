@@ -458,8 +458,8 @@ namespace ET
                 //2026/01/16 19:00:00 1768561200000 合区 炽焰神殿 - 山河万里   184/185
                 serverItems_1.Add(new ServerItem() { ServerId = 184, ServerIp = $"{ip}:20515", ServerName = "炽焰神殿", ServerOpenTime = 1764327600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 185, ServerIp = $"{ip}:20515", ServerName = "山河万里", ServerOpenTime = 1764932400000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-                
-                
+
+
                 serverItems_1.Add(new ServerItem() { ServerId = 186, ServerIp = $"{ip}:20615", ServerName = "忘川彼岸", ServerOpenTime = 1765537200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 187, ServerIp = $"{ip}:20635", ServerName = "花涧语", ServerOpenTime = 1766142000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 188, ServerIp = $"{ip}:20405", ServerName = "九天境", ServerOpenTime = 1766746800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
@@ -475,6 +475,7 @@ namespace ET
 
                 //2026/02/27 19:00:00 1772190000000 合区 xx - xx   xx/xx
                 //2026/02/27 19:00:00 1772190000000 新区 御剑天涯 197
+                //201-210为特殊区服
                 serverItems_1.Add(new ServerItem() { ServerId = 197, ServerIp = $"{ip}:20655", ServerName = "御剑天涯", ServerOpenTime = 1772190000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
