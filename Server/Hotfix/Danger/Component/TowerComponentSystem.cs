@@ -110,10 +110,10 @@ namespace ET
                 self.OnTowerOver("PassAll");
                 return;
             }
-            self.CreateMonster(self.TowerId + 1).Coroutine();
+            self.CreateMonster(self.TowerId + 1, false).Coroutine();
         }
 
-        public static async ETTask CreateMonster(this TowerComponent self, int towerId)
+        public static async ETTask CreateMonster(this TowerComponent self, int towerId, bool init)
         {
             long instanceId = self.InstanceId;
             self.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.TowerId, towerId, true);
@@ -123,6 +123,10 @@ namespace ET
                 return;
             }
             if (self.MainUnit == null || self.MainUnit.IsDisposed)
+            {
+                return;
+            }
+            if (!init && self.TowerId == 0)
             {
                 return;
             }
@@ -145,7 +149,7 @@ namespace ET
             {
                 index = 2;
             }
-            self.CreateMonster(int.Parse(ids[index])).Coroutine();
+            self.CreateMonster(int.Parse(ids[index]),true).Coroutine();
         }
     }
 }
