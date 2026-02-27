@@ -692,8 +692,8 @@ namespace ET
             }
             if (taskConfig.TaskType == TaskTypeEnum.Treasure)
             {
-                int treasureTask = numericComponent.GetAsInt(NumericType.TreasureTask);
-                numericComponent.ApplyValue(NumericType.TreasureTask, treasureTask + 1);
+                //int treasureTask = numericComponent.GetAsInt(NumericType.TreasureTask);
+                //numericComponent.ApplyValue(NumericType.TreasureTask, treasureTask + 1);
             }
             if (taskConfig.TaskType == TaskTypeEnum.Season)
             {

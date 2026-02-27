@@ -92,6 +92,13 @@ namespace ET
                 response.Error = error;
                 response.TaskPro = taskPro;
 
+                if(taskConfig.TaskType == TaskTypeEnum.Treasure && error == ErrorCode.ERR_Success)
+                {
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    int treasureTask = numericComponent.GetAsInt(NumericType.TreasureTask);
+                    numericComponent.ApplyValue(NumericType.TreasureTask, treasureTask + 1);
+                }
+
                 MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();  
                 if (taskConfig.TaskType == TaskTypeEnum.Treasure && error == ErrorCode.ERR_Success
                     && mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon && taskPro.FubenId == mapComponent.SceneId)
