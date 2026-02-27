@@ -220,7 +220,7 @@ namespace ET
                 if (platform == 100)
                 {
                     self.YinSiToggle.gameObject.SetActive(true);
-                    self.YinSiToggle.GetComponent<Toggle>().isOn = true;
+                    self.YinSiToggle.GetComponent<Toggle>().isOn = false;
                 }
 
                 self.TextButton_1.GetComponent<Button>().onClick.AddListener(() =>
