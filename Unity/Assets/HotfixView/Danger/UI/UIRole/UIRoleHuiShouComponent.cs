@@ -255,10 +255,10 @@ namespace ET
                 {
                     continue;
                 }
-                if (itemConfig.EquipType == 401)
-                {
-                    continue;
-                }
+                //if (itemConfig.EquipType == 401)
+                //{
+                //    continue;
+                //}
 
                 UIItemComponent uI_1 = null;
                 if (number < self.ItemUIlist.Count)
