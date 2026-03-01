@@ -2,279 +2,230 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// 网格节点类，存储每个格子的信息
-public class AStarNode
+// 单个网格节点的属性
+public class Node
 {
-    // 节点的网格坐标（x列，y行）
-    public int gridX;
-    public int gridY;
+    public bool isWalkable; // 是否可通行
+    public Vector3 worldPosition; // 世界坐标
+    public int gridX; // 网格X坐标
+    public int gridY; // 网格Y坐标
 
-    // A*核心参数
+    // A星核心参数
     public int gCost; // 起点到当前节点的成本
     public int hCost; // 当前节点到终点的预估成本
-    public int fCost => gCost + hCost; // 总代价
+    public int fCost => gCost + hCost; // 总成本
+    public Node parent; // 父节点（用于回溯路径）
 
-    public bool isObstacle; // 是否是障碍物（不可通行）
-    public AStarNode parent; // 父节点（用于回溯路径）
-    public Vector3 worldPos; // 节点的世界坐标（用于Unity显示）
-
-    public AStarNode(int x, int y, Vector3 pos, bool obstacle)
+    public Node(bool _isWalkable, Vector3 _worldPos, int _gridX, int _gridY)
     {
-        gridX = x;
-        gridY = y;
-        worldPos = pos;
-        isObstacle = obstacle;
-    }
-
-    // 手动计算FCost（防止属性不更新的情况）
-    public void CalculateFCost()
-    {
-        //fCost = gCost + hCost;
+        isWalkable = _isWalkable;
+        worldPosition = _worldPos;
+        gridX = _gridX;
+        gridY = _gridY;
     }
 }
 
 public class AStarPathfinding : MonoBehaviour
 {
-    [Header("地图设置")]
-    public int gridWidth = 10; // 网格宽度（列数）
-    public int gridHeight = 10; // 网格高度（行数）
-    public float nodeSize = 1f; // 每个格子的大小
-    public Transform startPos; // 起点（Unity场景中赋值）
-    public Transform targetPos; // 终点（Unity场景中赋值）
-    public LayerMask obstacleLayer; // 障碍物层（Unity中设置）
+    // 网格配置
+    public Transform seeker; // 寻路者（如玩家）
+    public Transform target; // 目标点（如敌人）
+    public Vector2 gridWorldSize; // 网格世界尺寸
+    public float nodeRadius; // 节点半径
+    public LayerMask unwalkableMask; // 不可通行层（如障碍物）
 
-    private AStarNode[,] grid; // 网格数组
-    private List<AStarNode> openList; // 待检测节点
-    private List<AStarNode> closeList; // 已检测节点
+    private Node[,] grid; // 网格二维数组
+    private float nodeDiameter; // 节点直径
+    private int gridSizeX, gridSizeY; // 网格行列数
 
-    void Start()
+    private void Awake()
     {
-        // 初始化网格
+        nodeDiameter = nodeRadius * 2;
+        // 计算网格行列数（向下取整）
+        gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
+        gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
         CreateGrid();
-        // 寻路并绘制路径
-        List<AStarNode> path = FindPath(startPos.position, targetPos.position);
-        DrawPath(path);
     }
 
-    // 1. 创建网格地图
-    void CreateGrid()
+    // 创建网格
+    private void CreateGrid()
     {
-        grid = new AStarNode[gridWidth, gridHeight];
-        Vector3 worldBottomLeft = transform.position - Vector3.right * gridWidth * nodeSize / 2 - Vector3.forward * gridHeight * nodeSize / 2;
+        grid = new Node[gridSizeX, gridSizeY];
+        Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
 
-        // 遍历每个格子，初始化节点
-        for (int x = 0; x < gridWidth; x++)
+        for (int x = 0; x < gridSizeX; x++)
         {
-            for (int y = 0; y < gridHeight; y++)
+            for (int y = 0; y < gridSizeY; y++)
             {
-                // 计算当前节点的世界坐标
-                Vector3 worldPos = worldBottomLeft + Vector3.right * (x * nodeSize + nodeSize / 2) + Vector3.forward * (y * nodeSize + nodeSize / 2);
-                // 检测是否是障碍物（射线检测）
-                bool isObstacle = Physics.CheckSphere(worldPos, nodeSize / 4, obstacleLayer);
-
-                // 创建节点
-                grid[x, y] = new AStarNode(x, y, worldPos, isObstacle);
+                // 计算节点世界坐标
+                Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
+                // 检测节点是否可通行（射线检测）
+                bool walkable = !Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask);
+                grid[x, y] = new Node(walkable, worldPoint, x, y);
             }
         }
     }
 
-    // 2. 核心：A*寻路算法
-    public List<AStarNode> FindPath(Vector3 startWorldPos, Vector3 targetWorldPos)
+    // 获取节点的相邻节点
+    private List<Node> GetNeighbours(Node node)
     {
-        // 1. 转换世界坐标为网格节点
-        AStarNode startNode = GetNodeFromWorldPos(startWorldPos);
-        AStarNode targetNode = GetNodeFromWorldPos(targetWorldPos);
+        List<Node> neighbours = new List<Node>();
 
-        // 2. 初始化Open/Close列表
-        openList = new List<AStarNode>() { startNode };
-        closeList = new List<AStarNode>();
-
-        // 3. 初始化所有节点的GCost为最大值，父节点为空
-        for (int x = 0; x < gridWidth; x++)
+        for (int x = -1; x <= 1; x++)
         {
-            for (int y = 0; y < gridHeight; y++)
+            for (int y = -1; y <= 1; y++)
             {
-                AStarNode node = grid[x, y];
-                node.gCost = int.MaxValue;
-                node.parent = null;
+                // 跳过自身
+                if (x == 0 && y == 0) continue;
+
+                int checkX = node.gridX + x;
+                int checkY = node.gridY + y;
+
+                // 检查是否在网格范围内
+                if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
+                {
+                    neighbours.Add(grid[checkX, checkY]);
+                }
             }
         }
 
-        // 4. 起点初始化
-        startNode.gCost = 0;
-        startNode.hCost = CalculateHCost(startNode, targetNode);
+        return neighbours;
+    }
 
-        // 5. 核心循环：遍历OpenList
-        while (openList.Count > 0)
+    // 核心：A星寻路算法
+    public List<Node> FindPath(Vector3 startPos, Vector3 targetPos)
+    {
+        // 转换世界坐标为网格节点
+        Node startNode = NodeFromWorldPoint(startPos);
+        Node targetNode = NodeFromWorldPoint(targetPos);
+
+        // 开放列表（待检查的节点）、关闭列表（已检查的节点）
+        List<Node> openSet = new List<Node>();
+        HashSet<Node> closedSet = new HashSet<Node>();
+        openSet.Add(startNode);
+
+        while (openSet.Count > 0)
         {
-            // 5.1 找到OpenList中FCost最小的节点（当前节点）
-            AStarNode currentNode = GetLowestFCostNode(openList);
+            // 找到开放列表中fCost最小的节点
+            Node currentNode = openSet[0];
+            for (int i = 1; i < openSet.Count; i++)
+            {
+                if (openSet[i].fCost < currentNode.fCost ||
+                    (openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost))
+                {
+                    currentNode = openSet[i];
+                }
+            }
 
-            // 5.2 如果当前节点是终点，回溯路径并返回
+            openSet.Remove(currentNode);
+            closedSet.Add(currentNode);
+
+            // 找到目标节点，回溯路径
             if (currentNode == targetNode)
             {
                 return RetracePath(startNode, targetNode);
             }
 
-            // 5.3 将当前节点从OpenList移到CloseList
-            openList.Remove(currentNode);
-            closeList.Add(currentNode);
-
-            // 5.4 遍历当前节点的相邻节点
-            foreach (AStarNode neighborNode in GetNeighborNodes(currentNode))
+            // 遍历相邻节点
+            foreach (Node neighbour in GetNeighbours(currentNode))
             {
-                // 跳过障碍物或已检测的节点
-                if (neighborNode.isObstacle || closeList.Contains(neighborNode))
+                // 跳过不可通行或已检查的节点
+                if (!neighbour.isWalkable || closedSet.Contains(neighbour))
                 {
                     continue;
                 }
 
-                // 5.5 计算从起点到相邻节点的临时GCost
-                int tentativeGCost = currentNode.gCost + CalculateHCost(currentNode, neighborNode);
-
-                // 5.6 如果临时GCost更小，更新相邻节点
-                if (tentativeGCost < neighborNode.gCost)
+                // 计算新的gCost
+                int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
+                if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
                 {
-                    neighborNode.parent = currentNode;
-                    neighborNode.gCost = tentativeGCost;
-                    neighborNode.hCost = CalculateHCost(neighborNode, targetNode);
+                    neighbour.gCost = newMovementCostToNeighbour;
+                    neighbour.hCost = GetDistance(neighbour, targetNode);
+                    neighbour.parent = currentNode;
 
-                    // 5.7 如果相邻节点不在OpenList，加入
-                    if (!openList.Contains(neighborNode))
+                    if (!openSet.Contains(neighbour))
                     {
-                        openList.Add(neighborNode);
+                        openSet.Add(neighbour);
                     }
                 }
             }
         }
 
-        // 6. 没有找到路径
-        Debug.Log("未找到有效路径！");
+        // 没有找到路径返回空
         return null;
     }
 
-    // 辅助：计算HCost（曼哈顿距离，适合上下左右移动）
-    private int CalculateHCost(AStarNode a, AStarNode b)
+    // 回溯路径（从终点到起点）
+    private List<Node> RetracePath(Node startNode, Node endNode)
     {
-        int dx = Mathf.Abs(a.gridX - b.gridX);
-        int dy = Mathf.Abs(a.gridY - b.gridY);
-        return 10 * (dx + dy); // 10是移动一格的基础成本
-    }
+        List<Node> path = new List<Node>();
+        Node currentNode = endNode;
 
-    // 辅助：找到OpenList中FCost最小的节点
-    private AStarNode GetLowestFCostNode(List<AStarNode> nodeList)
-    {
-        AStarNode lowestFCostNode = nodeList[0];
-        for (int i = 1; i < nodeList.Count; i++)
-        {
-            if (nodeList[i].fCost < lowestFCostNode.fCost ||
-                (nodeList[i].fCost == lowestFCostNode.fCost && nodeList[i].hCost < lowestFCostNode.hCost))
-            {
-                lowestFCostNode = nodeList[i];
-            }
-        }
-        return lowestFCostNode;
-    }
-
-    // 辅助：获取相邻节点（上下左右，可扩展为8方向）
-    private List<AStarNode> GetNeighborNodes(AStarNode currentNode)
-    {
-        List<AStarNode> neighbors = new List<AStarNode>();
-
-        // 上
-        if (currentNode.gridY + 1 < gridHeight)
-        {
-            neighbors.Add(grid[currentNode.gridX, currentNode.gridY + 1]);
-        }
-        // 下
-        if (currentNode.gridY - 1 >= 0)
-        {
-            neighbors.Add(grid[currentNode.gridX, currentNode.gridY - 1]);
-        }
-        // 左
-        if (currentNode.gridX - 1 >= 0)
-        {
-            neighbors.Add(grid[currentNode.gridX - 1, currentNode.gridY]);
-        }
-        // 右
-        if (currentNode.gridX + 1 < gridWidth)
-        {
-            neighbors.Add(grid[currentNode.gridX + 1, currentNode.gridY]);
-        }
-
-        return neighbors;
-    }
-
-    // 辅助：回溯路径（从终点到起点，再反转）
-    private List<AStarNode> RetracePath(AStarNode startNode, AStarNode endNode)
-    {
-        List<AStarNode> path = new List<AStarNode>();
-        AStarNode currentNode = endNode;
-
-        // 从终点回溯到起点
         while (currentNode != startNode)
         {
             path.Add(currentNode);
             currentNode = currentNode.parent;
         }
 
-        // 反转路径（起点→终点）
+        // 反转路径（从起点到终点）
         path.Reverse();
         return path;
     }
 
-    // 辅助：世界坐标转网格节点
-    private AStarNode GetNodeFromWorldPos(Vector3 worldPos)
+    // 计算两个节点的曼哈顿距离（启发函数）
+    private int GetDistance(Node nodeA, Node nodeB)
     {
-        // 计算归一化的坐标（0~1）
-        float percentX = (worldPos.x + gridWidth * nodeSize / 2) / (gridWidth * nodeSize);
-        float percentY = (worldPos.z + gridHeight * nodeSize / 2) / (gridHeight * nodeSize);
+        int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
+        int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
+        return 10 * (dstX + dstY); // 10为基础移动成本（对角线可设为14）
+    }
 
-        // 限制在0~1之间，防止越界
+    // 世界坐标转网格节点
+    public Node NodeFromWorldPoint(Vector3 worldPosition)
+    {
+        float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
+        float percentY = (worldPosition.z + gridWorldSize.y / 2) / gridWorldSize.y;
         percentX = Mathf.Clamp01(percentX);
         percentY = Mathf.Clamp01(percentY);
 
-        // 转换为网格坐标
-        int x = Mathf.RoundToInt((gridWidth - 1) * percentX);
-        int y = Mathf.RoundToInt((gridHeight - 1) * percentY);
-
+        int x = Mathf.RoundToInt((gridSizeX - 1) * percentX);
+        int y = Mathf.RoundToInt((gridSizeY - 1) * percentY);
         return grid[x, y];
     }
 
-    // 辅助：Gizmos绘制路径（Unity场景视图可视化）
-    void DrawPath(List<AStarNode> path)
-    {
-        if (path == null) return;
-
-        for (int i = 0; i < path.Count - 1; i++)
-        {
-            Debug.DrawLine(path[i].worldPos, path[i + 1].worldPos, Color.green, 10f);
-        }
-    }
-
-    // Gizmos绘制网格（场景视图可视化）
-    void OnDrawGizmos()
+    // Gizmos可视化网格和路径（调试用）
+    private void OnDrawGizmos()
     {
         // 绘制网格范围
-        Gizmos.DrawWireCube(transform.position, new Vector3(gridWidth * nodeSize, 1f, gridHeight * nodeSize));
+        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
         if (grid != null)
         {
-            AStarNode startNode = GetNodeFromWorldPos(startPos.position);
-            AStarNode targetNode = GetNodeFromWorldPos(targetPos.position);
+            Node seekerNode = NodeFromWorldPoint(seeker.position);
+            Node targetNode = NodeFromWorldPoint(target.position);
 
-            // 遍历所有节点
-            foreach (AStarNode node in grid)
+            // 绘制所有节点
+            foreach (Node n in grid)
             {
-                // 障碍物：红色，普通节点：白色
-                Gizmos.color = node.isObstacle ? Color.red : Color.white;
+                // 可通行=白色，不可通行=红色
+                Gizmos.color = n.isWalkable ? Color.white : Color.red;
 
-                // 如果是起点：绿色，终点：蓝色
-                if (node == startNode) Gizmos.color = Color.green;
-                if (node == targetNode) Gizmos.color = Color.blue;
+                // 标记起点（绿色）、终点（黄色）
+                if (seekerNode == n) Gizmos.color = Color.green;
+                if (targetNode == n) Gizmos.color = Color.yellow;
 
-                // 绘制节点（立方体）
-                Gizmos.DrawCube(node.worldPos, Vector3.one * (nodeSize - 0.1f));
+                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
+            }
+
+            // 绘制寻路结果
+            List<Node> path = FindPath(seeker.position, target.position);
+            if (path != null)
+            {
+                for (int i = 0; i < path.Count - 1; i++)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawLine(path[i].worldPosition, path[i + 1].worldPosition);
+                }
             }
         }
     }
