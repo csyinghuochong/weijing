@@ -461,7 +461,11 @@ namespace ET
             {
                 self.OnlineCheckTimer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute, TimerType.OnlineCheckTimer, self);
             }
-            
+            if (GlobalHelp.GetPlatform() == 100)
+            {
+                self.Button_FenXiang.SetActive(false);
+            }
+
             //初始化子UI
             self.initSubUI();
 
