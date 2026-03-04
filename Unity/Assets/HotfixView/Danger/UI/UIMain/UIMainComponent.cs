@@ -2172,7 +2172,8 @@ namespace ET
                     self.Btn_Rank.SetActive(showButton);
                     break;
                 case 1069:
-                    self.Button_FenXiang.SetActive(showButton && GlobalHelp.GetPlatform() != 6);
+                    self.Button_FenXiang.SetActive(showButton && GlobalHelp.GetPlatform() != 6 && GlobalHelp.GetPlatform() != 100);
+                    
                     break;
                 case 1067:
                     self.Button_NewYear.SetActive(showButton);
