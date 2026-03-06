@@ -91,6 +91,18 @@ namespace ET
                 }
                 self.Draws[index].GetComponent<ReferenceCollector>().Get<GameObject>("Text")?.SetActive(false);
             }
+
+            
+            if (GlobalHelp.GetPlatform() == 100)
+            {
+#if UNITY_2022_1_OR_NEWER
+                if (EventHandle.onChannelType() == 23)
+                {
+                    self.DrawBtn.transform.Find("Text (2)").gameObject.SetActive(true);
+
+                }
+#endif
+            }
         }
 
         public static async ETTask StartDraw(this UIWelfareDrawComponent self)
