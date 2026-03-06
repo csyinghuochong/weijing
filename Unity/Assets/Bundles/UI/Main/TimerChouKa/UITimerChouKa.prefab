@@ -517,7 +517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2852751876722876588
 RectTransform:
   m_ObjectHideFlags: 0
@@ -532,9 +532,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4220785170386054612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 338, y: -118}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 167, y: -544}
   m_SizeDelta: {x: 301, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7871068093302627371
@@ -673,7 +673,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u70B9\u51FB\u62BD\u5956"
+  m_Text: "\u70B9\u51FB\u9886\u53D6"
 --- !u!114 &8370889810657418185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,7 +768,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u62BD\u5956\u5217\u8868"
+  m_Text: "\u5728\u7EBF\u5956\u52B1"
 --- !u!114 &6151364956106658246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2502,7 +2502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960.1, y: 928}
+  m_AnchoredPosition: {x: 479, y: 708}
   m_SizeDelta: {x: 600, y: 108}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6652650930730324807
