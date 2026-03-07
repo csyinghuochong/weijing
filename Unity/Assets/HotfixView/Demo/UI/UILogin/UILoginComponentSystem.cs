@@ -228,7 +228,7 @@ namespace ET
                     if (UILoginHelper.ShowWebpage)
 					{
                         string url = UILoginHelper.GetYonHuTextUrl(platform);
-                        url = url.Substring(0, url.Length - 4) + "_1.html";
+                        url = url.Substring(0, url.Length - 4) + ".html";
                         Application.OpenURL(url);
 					}
 					else
@@ -242,7 +242,7 @@ namespace ET
 					if (UILoginHelper.ShowWebpage)
 					{
                         string url = UILoginHelper.GetYingSiTextNewUrl(platform);
-                        url = url.Substring(0, url.Length - 4) + "_1.html";
+                        url = url.Substring(0, url.Length - 4) + ".html";
                         Application.OpenURL(url);
 					}
 					else

@@ -207,11 +207,10 @@ public class UIYinSi : MonoBehaviour
 
         this.TextButton_2.GetComponent<Button>().onClick.AddListener(() =>
         {
-
-            if (platform == 10 )
+            if (platform == 100 )
             {
                 string url = GetYingSiTextNewUrl(platform);
-                url = url.Substring(0, url.Length - 4) + "_1.html";
+                url = url.Substring(0, url.Length - 4) + ".html";
                 Application.OpenURL(url);
             }
             else
@@ -226,7 +225,7 @@ public class UIYinSi : MonoBehaviour
             if (platform == 100)
             {
                 string url = GetYonHuTextUrl(platform);
-                url = url.Substring(0, url.Length - 4) + "_1.html";
+                url = url.Substring(0, url.Length - 4) + ".html";
                 Application.OpenURL(url);
             }
             else
