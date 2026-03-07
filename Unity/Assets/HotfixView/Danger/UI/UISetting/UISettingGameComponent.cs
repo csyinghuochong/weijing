@@ -220,7 +220,8 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonPhone, self.OnButtonPhone);
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.ButtonPhone.SetActive(true);
-            if (GlobalHelp.GetPlatform() == 5 || GlobalHelp.GetPlatform() == 6 || GlobalHelp.GetPlatform() == 7)
+            if (GlobalHelp.GetPlatform() == 5 || GlobalHelp.GetPlatform() == 6
+                || GlobalHelp.GetPlatform() == 7 || GlobalHelp.GetPlatform() == 100)
             {
                 self.ButtonPhone.SetActive(false);
             }

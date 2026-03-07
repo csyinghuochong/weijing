@@ -128,7 +128,7 @@ namespace ET
             string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
             if (platform == 100)
             {
-                dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
+                dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi_1.txt";
                 Log.ILog.Debug($"platform == 100  yinsi6");
             }
             return dataurl;
@@ -155,7 +155,7 @@ namespace ET
     
         public static string GetYonHuTextUrl(int platform)
         {
-            string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi.txt";
+            string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi_1.txt";
             return dataurl;
         }
 

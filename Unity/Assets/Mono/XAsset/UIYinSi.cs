@@ -31,7 +31,7 @@ public class UIYinSi : MonoBehaviour
 
     public static string GetYonHuTextUrl(int platform)
     {
-        string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi.txt";
+        string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi_1.txt";
         return dataurl;
     }
 
@@ -61,7 +61,7 @@ public class UIYinSi : MonoBehaviour
         string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
         if (platform == 100)
         {
-            dataurl = "http://verification.weijinggame.com/weijing/yinsi6.txt";
+            dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi_1.txt";
             Log.ILog.Debug($"platform == 100  yinsi6");
         }
         return dataurl;
@@ -202,19 +202,37 @@ public class UIYinSi : MonoBehaviour
         int platform = GameObject.Find("Global").GetComponent<Init>().Platform;
         this.TextButton_2 = rc.Get<GameObject>("TextButton_2");
         this.TextButton_1 = rc.Get<GameObject>("TextButton_1");
+
+        int qdtype = EventHandle.onChannelType();
+
         this.TextButton_2.GetComponent<Button>().onClick.AddListener(() =>
         {
-            //this.YinSiXieYi.SetActive(true); 
-            string url = GetYingSiTextNewUrl(platform);
-            url = url.Substring(0, url.Length - 4) + "_1.html";
-            Application.OpenURL(url);
+
+            if (platform == 10 )
+            {
+                string url = GetYingSiTextNewUrl(platform);
+                url = url.Substring(0, url.Length - 4) + "_1.html";
+                Application.OpenURL(url);
+            }
+            else
+            {
+                this.YinSiXieYi.SetActive(true);
+            }
+
+
         });
         this.TextButton_1.GetComponent<Button>().onClick.AddListener(()=>
         {
-            //ShowYonghuText();
-            string url = GetYonHuTextUrl(platform);
-            url = url.Substring(0, url.Length - 4) + "_1.html";
-            Application.OpenURL(url);
+            if (platform == 100)
+            {
+                string url = GetYonHuTextUrl(platform);
+                url = url.Substring(0, url.Length - 4) + "_1.html";
+                Application.OpenURL(url);
+            }
+            else
+            {
+                ShowYonghuText();
+            }
         });
 
         this.TextYongHu = rc.Get<GameObject>("TextYongHu");
