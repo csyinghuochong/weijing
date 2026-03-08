@@ -38,7 +38,7 @@ namespace ET
 
                 Log.ILog.Debug($"bigversion == {bigversion}   appversionx: {Application.version}");
 #if UNITY_IPHONE || UNITY_IOS
-				if (bigversion == 24 && Application.version == "2.5.0")
+				if (bigversion == 26 && Application.version == "2.5.6")
                 {
                     self.IOSReview = true;
                 }
@@ -107,7 +107,7 @@ namespace ET
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
 
 
-				if (self.IOSReview && bigversion == 24)
+				if (self.IOSReview && bigversion == 26)
 				{
 
 				
@@ -542,7 +542,7 @@ namespace ET
 				self.LoginType = lastloginType;
 			}
 			self.LoginType = GlobalHelp.IsBanHaoMode ? LoginTypeEnum.RegisterLogin.ToString() : self.LoginType;
-			if (self.IOSReview && GlobalHelp.GetBigVersion() == 24)
+			if (self.IOSReview && GlobalHelp.GetBigVersion() == 26)
 			{
 #if UNITY_IPHONE || UNITY_IOS
 			self.LoginType =  LoginTypeEnum.RegisterLogin.ToString();
@@ -621,7 +621,7 @@ namespace ET
 			string lastAccount = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 
 			bool uppos = GlobalHelp.IsBanHaoMode || LoginTypeEnum.RegisterLogin.ToString() == self.LoginType;
-			if (self.IOSReview && GlobalHelp.GetBigVersion() == 24)
+			if (self.IOSReview && GlobalHelp.GetBigVersion() == 26)
 			{
 #if UNITY_IPHONE || UNITY_IOS
 			uppos = true;
@@ -1474,7 +1474,7 @@ namespace ET
 			Log.ILog.Debug("OnButtonOtherLogin");
 			self.AccountReversal = string.Empty;
 			bool register = false;
-			if (self.IOSReview && GlobalHelp.GetBigVersion() == 24)
+			if (self.IOSReview && GlobalHelp.GetBigVersion() == 26)
 			{
 #if UNITY_IPHONE || UNITY_IOS
 				register = true;
