@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
-using Kogarasi.WebView;
 
-class WebViewCallbackTest : Kogarasi.WebView.IWebViewCallback
+
+class WebViewCallbackTest 
 {
 	public void onLoadStart( string url )
 	{
@@ -28,19 +28,7 @@ public class WebViewTest : MonoBehaviour
 
 		m_callback = new WebViewCallbackTest();
 
-		WebViewBehavior webview = GetComponent<WebViewBehavior>();
-	
-		if( webview != null )
-		{
-			webview.LoadURL(url);
-            
-            webview.SetMargins(0, 100, 0, 0); // »´∆¡œ‘ æ
-
-            webview.SetVisibility( true );
-			webview.setCallback( m_callback );
-
-			Debug.Log($"loadurl:   {url}");
-		}
+		
 	}
 	
 }
