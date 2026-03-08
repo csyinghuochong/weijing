@@ -118,7 +118,6 @@ namespace ET
 #endif
 				}
 
-				UILoginHelper.ShowWebpage = GlobalHelp.IsEditorMode || platform == 100;
 
                 self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(taptap);
                 self.ZhuCe.transform.Find("Btn_Apple").gameObject.SetActive(bigversion >= 21 && platform == 20001);
@@ -225,7 +224,7 @@ namespace ET
 
                 self.TextButton_1.GetComponent<Button>().onClick.AddListener(() =>
 				{
-                    if (UILoginHelper.ShowWebpage)
+                    if (platform == 100)
 					{
                         string url = UILoginHelper.GetYonHuTextUrl(platform);
                         url = url.Substring(0, url.Length - 4) + ".html";
@@ -239,7 +238,7 @@ namespace ET
 				self.TextButton_2.GetComponent<Button>().onClick.AddListener(() =>
 				{
                     
-					if (UILoginHelper.ShowWebpage)
+					if (platform == 100)
 					{
                         string url = UILoginHelper.GetYingSiTextNewUrl(platform);
                         url = url.Substring(0, url.Length - 4) + ".html";

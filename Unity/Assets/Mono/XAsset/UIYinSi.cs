@@ -31,7 +31,21 @@ public class UIYinSi : MonoBehaviour
 
     public static string GetYonHuTextUrl(int platform)
     {
-        string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi_1.txt";
+        //string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi_1.txt";
+        //return dataurl;
+        string dataurl = string.Empty;
+        if (platform == 5 || platform == 6)
+        {
+            dataurl = "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt";
+        }
+        else if (platform == 100)
+        {
+            dataurl = "http://verification.weijinggame.com/weijing/YongHuXieYi_1.txt";
+        }
+        else
+        {
+            dataurl = "http://verification.weijinggame.com/weijing/YongHuXieYi.txt";
+        }
         return dataurl;
     }
 

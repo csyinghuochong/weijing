@@ -121,8 +121,6 @@ namespace ET
             return GameSettingLanguge.LoadLocalization("服务器维护中！");
         }
 
-
-        public static bool ShowWebpage = true;
         public static string  GetYingSiTextNewUrl(int platform)
         {
             string dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi.txt";
@@ -152,10 +150,22 @@ namespace ET
             }
             return "服务器维护中！";
         }
-    
+
         public static string GetYonHuTextUrl(int platform)
         {
-            string dataurl = (platform == 5 || platform == 6) ? "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt" : "http://verification.weijinggame.com/weijing/YongHuXieYi_1.txt";
+            string dataurl = string.Empty;
+            if (platform == 5 || platform == 6)
+            {
+                dataurl = "http://verification.weijinggame.com/weijing/YongHuXieYi_DouYin.txt";
+            }
+            else if (platform == 100)
+            {
+                dataurl = "http://verification.weijinggame.com/weijing/YongHuXieYi_1.txt";
+            }
+            else
+            {
+                dataurl = "http://verification.weijinggame.com/weijing/YongHuXieYi.txt";
+            }
             return dataurl;
         }
 
