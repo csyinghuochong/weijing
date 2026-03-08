@@ -613,6 +613,12 @@ namespace ET
                 return;
             }
 
+            if (PetHelper.HavePetEquip(self.LastSelectItem))
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物身上有对应的宠物装备，请先将宠物装备卸下在执行此操作！"));
+                return;
+            }
+
             //if (self.PetComponent.PetMingList.Contains(self.LastSelectItem.Id))
             //{
             //    FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物矿场队伍中,不能分解！");

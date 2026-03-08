@@ -91,6 +91,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先卸下宠物之核！"));
                 return;
             }
+            if (PetHelper.HavePetEquip(self.HeChengPet_Left) || PetHelper.HavePetEquip(self.HeChengPet_Right))
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物身上有对应的宠物装备，请先将宠物装备卸下在执行此操作！"));
+                return;
+            }
 
             bool havepetHexin = false;
             for (int i = 0; i < self.HeChengPet_Left.PetHeXinList.Count; i++)

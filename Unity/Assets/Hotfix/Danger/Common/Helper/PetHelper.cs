@@ -367,6 +367,19 @@ namespace ET
             return false;
         }
 
+        public static bool HavePetEquip(RolePetInfo rolePetInfo)
+        {
+            for (int i = 0; i < rolePetInfo.PetEquipList.Count; i++)
+            {
+                if (rolePetInfo.PetEquipList[i] > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static void CheckPetPosition(List<long> petTeamList, List<long> petMingPosition)
         {
             ///移除
