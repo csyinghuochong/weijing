@@ -471,7 +471,19 @@ namespace ET
 
         public static void OnButtonYinSi(this UISettingGameComponent self)
         {
-            Application.OpenURL("http://verification.weijinggame.com/weijing/yinsi6.txt");
+            int platform = GlobalHelp.GetPlatform();
+      
+            if (platform == 100)
+            {
+                string url = UILoginHelper.GetYonHuTextUrl(platform);
+                url = url.Substring(0, url.Length - 4) + ".html";
+                Application.OpenURL(url);
+            }
+            else
+            {
+                Application.OpenURL("http://verification.weijinggame.com/weijing/yinsi6.txt");
+            }
+
         }
 
         public static void OnLenDepth(this UISettingGameComponent self, float value)
