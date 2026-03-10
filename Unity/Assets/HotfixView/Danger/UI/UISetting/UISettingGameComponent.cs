@@ -683,10 +683,21 @@ namespace ET
 
         public static void OnCloseGame(this UISettingGameComponent self)
         {
+            bool isoppo = false;
+#if UNITY_2022_1_OR_NEWER
+            if (EventHandle.onChannelType() == 23)
+            {
+                isoppo = true;
+            }
+#endif
 
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("设置"), GameSettingLanguge.LoadLocalization("是否退出游戏?"), () => 
             {
-                if (GlobalHelp.GetPlatform() == 100)
+                if (isoppo)
+                {
+                    Application.Quit();
+                }
+                else if (GlobalHelp.GetPlatform() == 100)
                 {
                     EventType.QuDaoSdkExit.Instance.ZoneScene = self.ZoneScene();
                     Game.EventSystem.PublishClass(EventType.QuDaoSdkExit.Instance);
