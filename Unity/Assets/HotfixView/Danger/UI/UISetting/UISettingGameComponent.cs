@@ -693,11 +693,8 @@ namespace ET
 
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("设置"), GameSettingLanguge.LoadLocalization("是否退出游戏?"), () => 
             {
-                if (isoppo)
-                {
-                    Application.Quit();
-                }
-                else if (GlobalHelp.GetPlatform() == 100)
+
+                if (GlobalHelp.GetPlatform() == 100)
                 {
                     EventType.QuDaoSdkExit.Instance.ZoneScene = self.ZoneScene();
                     Game.EventSystem.PublishClass(EventType.QuDaoSdkExit.Instance);

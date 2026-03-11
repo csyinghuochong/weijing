@@ -531,7 +531,8 @@ public class EventHandle : QuickSDKListener
         //SDK退出成功的回调
         showLog("onExitSuccess", "");
         //退出成功的回调里面调用  QuickSDK.getInstance ().exitGame ();  即可实现退出游戏，杀进程。为避免与渠道发生冲突，请不要使用  Application.Quit ();
-        QuickSDK.getInstance().exitGame();
+        //QuickSDK.getInstance().exitGame();
+        Application.Quit(); 
     }
 
     public override void onSucceed(string infos)
