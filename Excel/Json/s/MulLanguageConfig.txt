@@ -4036,4 +4036,5 @@
 {"_t":"MulLanguageConfig","_id":300196,"Des":"","Chinese":"刷新道具?","English":"Refresh Item?"},
 {"_t":"MulLanguageConfig","_id":300197,"Des":"","Chinese":"刷新道具","English":"Refresh Item"},
 {"_t":"MulLanguageConfig","_id":300198,"Des":"","Chinese":"积分不足!","English":"Insufficient Points!"},
+{"_t":"MulLanguageConfig","_id":300199,"Des":"","Chinese":"当前宠物身上有对应的宠物装备，请先将宠物装备卸下在执行此操作！","English":"Please first unequip the pet equipment before performing this action!"},
 ]}
