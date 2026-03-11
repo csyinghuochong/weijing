@@ -481,7 +481,6 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 195, ServerIp = $"{ip}:20565", ServerName = "逐鹿天下", ServerOpenTime = 1770980400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 196, ServerIp = $"{ip}:20645", ServerName = "金马迎春", ServerOpenTime = 1771585200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 197, ServerIp = $"{ip}:20655", ServerName = "御剑天涯", ServerOpenTime = 1772190000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-serverItems_1.Add(new ServerItem() { ServerId = 198, ServerIp = $"{ip}:20665", ServerName = "马踏山河", ServerOpenTime = 1772794800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 198, ServerIp = $"{ip}:20665", ServerName = "马踏山河", ServerOpenTime = 1772794800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
 
 
