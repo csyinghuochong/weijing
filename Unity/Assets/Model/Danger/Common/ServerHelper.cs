@@ -481,16 +481,14 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 195, ServerIp = $"{ip}:20565", ServerName = "逐鹿天下", ServerOpenTime = 1770980400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 196, ServerIp = $"{ip}:20645", ServerName = "金马迎春", ServerOpenTime = 1771585200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 197, ServerIp = $"{ip}:20655", ServerName = "御剑天涯", ServerOpenTime = 1772190000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-
-
-                //2026/03/06 19:00:00 1772794800000 合区 生命之树-泰坦之锤 180/182
-                //2026/03/06 19:00:00 1772794800000 合区 忘川彼岸-花涧语   186/187
-                //2026/03/06 19:00:00 1772794800000 合区 九天境-吉星高照   188/189
-                //2026/03/06 19:00:00 1772794800000 合区 逐月谷-沧澜神域   190/191
-                //2026/03/06 19:00:00 1772794800000 合区 剑啸山河-精灵之森 192/193
-                //2026/03/06 19:00:00 1772794800000 新区 马踏山河 198
-                //201-210为特殊区服
+serverItems_1.Add(new ServerItem() { ServerId = 198, ServerIp = $"{ip}:20665", ServerName = "马踏山河", ServerOpenTime = 1772794800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 198, ServerIp = $"{ip}:20665", ServerName = "马踏山河", ServerOpenTime = 1772794800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+
+
+                //2026/03/13 19:00:00 1773399600000 合区 xx-xx xx/xx
+                //2026/03/13 19:00:00 1773399600000 新区 新区新区 199
+                //201-210为特殊区服
+                serverItems_1.Add(new ServerItem() { ServerId = 199, ServerIp = $"{ip}:20445", ServerName = "新区新区", ServerOpenTime = 1773399600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
