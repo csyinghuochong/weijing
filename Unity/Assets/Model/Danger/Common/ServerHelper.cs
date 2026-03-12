@@ -485,9 +485,9 @@ namespace ET
 
 
                 //2026/03/13 19:00:00 1773399600000 合区 xx-xx xx/xx
-                //2026/03/13 19:00:00 1773399600000 新区 新区新区 199
+                //2026/03/13 19:00:00 1773399600000 新区 烽火逐鹿 199
                 //201-210为特殊区服
-                serverItems_1.Add(new ServerItem() { ServerId = 199, ServerIp = $"{ip}:20445", ServerName = "新区新区", ServerOpenTime = 1773399600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+                serverItems_1.Add(new ServerItem() { ServerId = 199, ServerIp = $"{ip}:20445", ServerName = "烽火逐鹿", ServerOpenTime = 1773399600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
