@@ -222,6 +222,7 @@ namespace ET
                     self.YinSiToggle.GetComponent<Toggle>().isOn = false;
                 }
 
+
                 self.TextButton_1.GetComponent<Button>().onClick.AddListener(() =>
 				{
                     if (platform == 100)
@@ -298,6 +299,11 @@ namespace ET
                 //Game.Scene.GetComponent<SoundComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
                 self.InitLoginType();
                 self.RequestAllServer().Coroutine();
+
+				if (platform == 100 && !string.IsNullOrEmpty(self.Account.GetComponent<InputField>().text))
+				{
+                    self.YinSiToggle.GetComponent<Toggle>().isOn = true;
+                }
 
                 if ((bigversion >= 14 && bigversion < 16) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString("UIYinSi0627")))
                 {
