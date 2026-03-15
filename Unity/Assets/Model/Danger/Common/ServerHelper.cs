@@ -475,8 +475,8 @@ namespace ET
                 //2026/03/06 19:00:00 1772794800000 合区 剑啸山河-精灵之森 192/193
                 serverItems_1.Add(new ServerItem() { ServerId = 192, ServerIp = $"{ip}:20455", ServerName = "剑啸山河", ServerOpenTime = 1769166000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 193, ServerIp = $"{ip}:20455", ServerName = "精灵之森", ServerOpenTime = 1769770800000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-                
-                
+
+
                 serverItems_1.Add(new ServerItem() { ServerId = 194, ServerIp = $"{ip}:20545", ServerName = "龙焰王座", ServerOpenTime = 1770375600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 195, ServerIp = $"{ip}:20565", ServerName = "逐鹿天下", ServerOpenTime = 1770980400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 196, ServerIp = $"{ip}:20645", ServerName = "金马迎春", ServerOpenTime = 1771585200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
