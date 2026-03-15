@@ -683,13 +683,13 @@ namespace ET
 
         public static void OnCloseGame(this UISettingGameComponent self)
         {
-            bool isoppo = false;
+/*            bool isoppo = false;
 #if UNITY_2022_1_OR_NEWER
             if (EventHandle.onChannelType() == 23)
             {
                 isoppo = true;
             }
-#endif
+#endif*/
 
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("设置"), GameSettingLanguge.LoadLocalization("是否退出游戏?"), () => 
             {

@@ -93,7 +93,7 @@ namespace ET
     {
         public async ETTask Handle(Entity entity, HttpListenerContext context)
         {
-            Console.WriteLine($"new HttpTapAdTrackHandler:  {context.Request.RawUrl}");
+            //Console.WriteLine($"new HttpTapAdTrackHandler:  {context.Request.RawUrl}");
 
             System.Collections.Specialized.NameValueCollection queryString = context.Request.QueryString;
 

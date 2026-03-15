@@ -34,6 +34,15 @@ namespace ET
         //是否是广告下载
         //tap广告渠道  自然渠道 0  tap广告渠道11
         public int DownloadType;
+
+
+        /* XiaoMi,
+         ViVo,
+         OPPO,
+         HuaWei ,*/
+        //TapTapADS   //小米 
+        public string DownloadFrom;    //下载渠道
+
         //总充值
         public int TotalRecharge;
         //最高等级
@@ -56,6 +65,11 @@ namespace ET
             }
             this.DeviceName = devicename;   
             this.TotalLoginNumber++;
+        }
+
+        public void SetDownloadType(int downloadType, int platform, int platformtwo) 
+        { 
+            
         }
     }
 }

@@ -407,7 +407,7 @@ namespace ET
                         List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == request.OAID);
                         if (centerDataCaches != null && centerDataCaches.Count > 0)
                         {
-                            Console.WriteLine($"loginaccount DBCenterDataCache:  {request.OAID}");
+                            Console.WriteLine($"loginaccount DBCenterDataCache find:  {request.OAID}");
                             DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
                             if (dBCenterDataCache.TotalLoginNumber == 0 && oldAccount == 1 && account.UserList.Count > 0)
                             {
