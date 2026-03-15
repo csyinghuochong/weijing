@@ -15,6 +15,8 @@ public enum ChannelIdEnum
     ViVo = 17,
     OPPO = 23,
     HuaWei = 24,
+    HuaWeiHaiWai = 1073,
+    YongYao = 2376,
 }
 
 public class EventHandle : QuickSDKListener
