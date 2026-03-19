@@ -297,6 +297,18 @@ public class EventHandle : QuickSDKListener
         //QuickSDK.getInstance().callFunctionWithParams(FuncType.QUICK_SDK_FUNC_TYPE_URL, "https://hotfix.public.manasisrefrain.com/Resources/GaCha/8003/8003.html");
     }
 
+    public void OnVivoExit()
+    {
+        Debug.LogWarning("！！！！VIVO OnVivoExit 11！！！！");
+        if (!EventHandle.IsQudaoPackage())
+            return;
+        Debug.LogWarning("！！！！VIVO OnVivoExit 22！！！！");
+        if (EventHandle.onChannelType() != 17)
+            return;
+        Debug.LogWarning("！！！！VIVO OnVivoExit 33！！！！");
+        onExit();
+    }
+
     /// <summary>
     ///  退出（必接）
     ///  退出游戏。需先通过isChannelHasExitDialog接口判断渠道是否有退出框，若渠道有退出框，直接调用QuickSDK的exit接口，若渠道没有退出框，则调用游戏自身的退出
@@ -305,8 +317,11 @@ public class EventHandle : QuickSDKListener
     {
         if (!EventHandle.IsQudaoPackage())
             return;
+
+        Debug.LogWarning("！！！！VIVO onExit 44！！！！");
         if (QuickSDK.getInstance().isChannelHasExitDialog())
         {
+            Debug.LogWarning("！！！！VIVO onExit 55！！！！");
             QuickSDK.getInstance().exit();
         }
         else

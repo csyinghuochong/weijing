@@ -732,18 +732,26 @@ namespace ET
 
 		public void OnHotUpdateComplete()
 		{
-			HotUpdateComplete = true;
+            HotUpdateComplete = true;
 			GameObject.Find("Global/UI/Hidden/UIYinSi").SetActive(false);
             CodeLoader.Instance.Start();
 		}
+
+		private void OnVivoExit()
+		{
+            EventHandle eventHandle = this.GetComponent<EventHandle>();
+			eventHandle.OnVivoExit();
+        }
 
 		private void Update()
 		{
 			// 监听 Android 系统返回键/返回手势，Unity 已经做了映射
 			if (Input.GetKeyDown(KeyCode.Escape))
 			{
-				// 关闭最上层UI
-				Debug.LogWarning("！！！！弹出退出弹窗！！！！");
+                // 关闭最上层UI
+                Debug.LogWarning("！！！！VIVO 弹出退出弹窗！！！！");
+
+                OnVivoExit();
 			}
 
 			if (this.appleAuthManager != null)
