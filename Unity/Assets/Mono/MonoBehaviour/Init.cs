@@ -739,7 +739,13 @@ namespace ET
 
 		private void Update()
 		{
-            if (this.appleAuthManager != null)
+			// 监听 Android 系统返回键/返回手势，Unity 已经做了映射
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				Debug.LogWarning("！！！！弹出退出弹窗！！！！");
+			}
+
+			if (this.appleAuthManager != null)
             {
                 this.appleAuthManager.Update();
             }
