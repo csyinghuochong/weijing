@@ -742,6 +742,7 @@ namespace ET
 			// 监听 Android 系统返回键/返回手势，Unity 已经做了映射
 			if (Input.GetKeyDown(KeyCode.Escape))
 			{
+				// 关闭最上层UI
 				Debug.LogWarning("！！！！弹出退出弹窗！！！！");
 			}
 
