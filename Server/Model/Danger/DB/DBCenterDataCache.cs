@@ -68,8 +68,56 @@ namespace ET
         }
 
         public void SetDownloadType(int downloadType, int platform, int platformtwo) 
-        { 
-            
+        {
+            if (downloadType == 11)
+            {
+                this.DownloadFrom = "TapTapADS";
+            }
+            else if (platform == 20001)
+            {
+                this.DownloadFrom = "IOS";
+            }
+            else if (platform == 5 || platform == 6)
+            {
+                this.DownloadFrom = "TikTok";
+            }
+            else if( platform == 100)
+            {
+                /*XiaoMi = 15,
+                ViVo = 17,
+                OPPO = 23,
+                HuaWei = 24,
+                HuaWeiHaiWai = 1073,
+                YongYao = 2376,*/
+                switch (platformtwo)
+                {
+                    case 15:
+                        this.DownloadFrom = "XiaoMi";
+                        break;
+                    case 17:
+                        this.DownloadFrom = "ViVo";
+                        break;
+                    case 23:
+                        this.DownloadFrom = "OPPO";
+                        break;
+                    case 24:
+                        this.DownloadFrom = "HuaWei";
+                        break;
+                    case 1073:
+                        this.DownloadFrom = "HuaWeiHaiWai";
+                        break;
+                    case 2376:
+                        this.DownloadFrom = "YongYao";
+                        break;
+                    default:
+                        this.DownloadFrom = "QuDao";
+                        break;
+                }
+            }
+            else
+            {
+                this.DownloadFrom = "TapTap";
+            }
         }
     }
 }
