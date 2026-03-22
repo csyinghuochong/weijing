@@ -69,6 +69,7 @@ namespace ET
 
         public void SetDownloadType(int downloadType, int platform, int platformtwo) 
         {
+            this.DownloadType = downloadType;   
             if (downloadType == 11)
             {
                 this.DownloadFrom = "TapTapADS";

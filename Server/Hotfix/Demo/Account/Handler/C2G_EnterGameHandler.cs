@@ -126,6 +126,14 @@ namespace ET
                         return;
                     }
 
+                    List<DBCenterAccountInfo> centerAccountInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == request.AccountId);
+                    if (centerAccountInfos == null|| centerAccountInfos.Count == 0)
+					{
+                        response.Error = ErrorCode.ERR_AccountInBlackListError;
+                        reply();
+                        return;
+                    }
+
                     List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
 					if (accountInfoList ==null || accountInfoList.Count == 0)
 					{
@@ -240,20 +248,81 @@ namespace ET
 
 
                         int downloadType = 0;
+						bool havedatacache = false;
                         List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == request.OAID);
-                        if (centerDataCaches != null && centerDataCaches.Count > 0)
-                        {
-                            downloadType = centerDataCaches[0].DownloadType;
+						if (centerDataCaches != null && centerDataCaches.Count > 0)
+						{
+							downloadType = centerDataCaches[0].DownloadType;
+							havedatacache = true;
+
                         }
+
                         if (centerDataCaches != null && centerDataCaches.Count > 0 && string.IsNullOrEmpty(centerDataCaches[0].FirstEnterMainCityTime))
                         {
                             Console.WriteLine($"entermaincity DBCenterDataCache:  {request.OAID}");
                             DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
                             dBCenterDataCache.FirstEnterMainCityTime = TimeHelper.DateTimeNow().ToString();
                             dBCenterDataCache.DeviceName = request.DeviceName;
+
+                            dBCenterDataCache.SetDownloadType(downloadType, request.Platform, request.PlatformTwo);
+
                             await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
                         }
 
+                        //有可能有数据 但不是taptap下载的
+                        if ( !havedatacache && !accountInfoList[0].Account.Contains("_"))
+                        {
+                            centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.AccountName == accountInfoList[0].Account);
+							
+							if (centerDataCaches != null && centerDataCaches.Count > 0)
+							{
+                                
+								if (string.IsNullOrEmpty(centerDataCaches[0].DownloadFrom))
+								{
+
+                                    Console.WriteLine($"centerDataCaches==null have account:{accountInfoList[0].Account}    {request.OAID}   {request.Platform}     {request.PlatformTwo}");
+
+                                    centerDataCaches[0].SetDownloadType(downloadType, request.Platform, request.PlatformTwo);
+
+                                    await Game.Scene.GetComponent<DBComponent>().Save(202, centerDataCaches[0]);
+                                }
+                            }
+							else
+							{
+								//通过oaid和账号都查不到
+								string createtime = string.Empty;
+								long createtimelong = centerAccountInfos[0].CreateTime;
+
+                                if (centerAccountInfos[0].CreateTime > 0)
+								{
+									createtime = TimeInfo.Instance.ToDateTime(centerAccountInfos[0].CreateTime).ToString();
+                                }
+
+                                Console.WriteLine($"centerDataCaches==null no   account:{accountInfoList[0].Account}    {createtime}  {request.OAID}   {request.Platform}     {request.PlatformTwo}");
+                                Log.Debug($"centerDataCaches==null no   account:{accountInfoList[0].Account}    {createtime}  {request.OAID}   {request.Platform}     {request.PlatformTwo}");
+
+
+                                //最近的才创建数据
+                                if (createtimelong > 1773399600000)
+								{
+                                    Console.WriteLine($"centerDataCaches==null create  account:{accountInfoList[0].Account}    {createtime}  {request.OAID}   {request.Platform}     {request.PlatformTwo}");
+                                    Log.Debug($"centerDataCaches==null create   account:{accountInfoList[0].Account}    {createtime}  {request.OAID}   {request.Platform}     {request.PlatformTwo}");
+
+                                    DBCenterDataCache dBCenterDataCache = session.AddChild<DBCenterDataCache>();
+                                    dBCenterDataCache.anid = accountInfoList[0].Account;
+                                    dBCenterDataCache.AccountName = accountInfoList[0].Account;
+                                    dBCenterDataCache.SetDownloadType(downloadType, request.Platform, request.PlatformTwo);
+
+                                    await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
+                                    dBCenterDataCache.Dispose();
+                                    dBCenterDataCache = null;
+
+                                }
+
+ 
+                            }
+                        }
+	
                         unit.AddComponent<UnitGateComponent, long>(player.InstanceId);
                         unit.AddComponent<MailComponent>();
                         unit.AddComponent<StateComponent>();
