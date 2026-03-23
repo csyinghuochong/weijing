@@ -563,11 +563,11 @@ namespace ET
        
             string music = PlayerPrefsHelp.GetString(PlayerPrefsHelp.MusicVolume);
             float musicvalue = string.IsNullOrEmpty(music) ? 1f : float.Parse(music);
-            self.SliderSound.GetComponent<Slider>().value = musicvalue;
+            self.SliderMusic.GetComponent<Slider>().value = musicvalue;
 
             string sound = PlayerPrefsHelp.GetString(PlayerPrefsHelp.SoundVolume);
             float soundvalue = string.IsNullOrEmpty(sound) ? 1f : float.Parse(sound);
-            self.SliderMusic.GetComponent<Slider>().value = soundvalue;
+            self.SliderSound.GetComponent<Slider>().value = soundvalue;
 
             self.ScreenToggle0.isOn = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.FenBianlLv) == "1";
             self.ScreenToggle1.isOn = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.FenBianlLv) == "2";
