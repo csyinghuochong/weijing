@@ -6,6 +6,49 @@ using UnityEngine.UI;
 
 namespace ET
 {
+    public enum LanguageType: byte
+    {
+        /// <summary>
+        /// 中国
+        /// </summary>
+        CN = 0,
+
+        /// <summary>
+        /// 欧美
+        /// </summary>
+        EN = 1,
+        
+        /// <summary>
+        /// 港澳台
+        /// </summary>
+        GAT = 2,
+
+        /// <summary>
+        /// 韩国
+        /// </summary>
+        KR = 3,
+
+        /// <summary>
+        /// 日本
+        /// </summary>
+        JP = 4,
+
+        /// <summary>
+        /// 越南
+        /// </summary>
+        VN = 5,
+
+        /// <summary>
+        /// 印尼
+        /// </summary>
+        INDO = 6,
+
+        /// <summary>
+        /// 占位符（新增+1）
+        /// </summary>
+        MAX = 7,
+    }
+
     public class GameSettingLanguge : Singleton<GameSettingLanguge>
     {
         //随机名称
@@ -336,8 +379,43 @@ namespace ET
             }
         }
 
+        // 获取本地系统语言
+        public static LanguageType SystemLanguage()
+        {
+            UnityEngine.SystemLanguage systemLanguage = Application.systemLanguage;
+            switch (systemLanguage)
+            {
+                case UnityEngine.SystemLanguage.ChineseSimplified:
+                    Log.Warning("本地语言 中文(简体)");
+                    return LanguageType.CN;
+                case UnityEngine.SystemLanguage.ChineseTraditional:
+                    Log.Warning("本地语言 中文(繁体)");
+                    return LanguageType.CN;
+                case UnityEngine.SystemLanguage.English:
+                    Log.Warning("本地语言 英文");
+                    return LanguageType.EN;
+                case UnityEngine.SystemLanguage.Japanese:
+                    Log.Warning("本地语言 日语");
+                    return LanguageType.EN;
+                case UnityEngine.SystemLanguage.Korean:
+                    Log.Warning("本地语言 韩语");
+                    return LanguageType.EN;
+                case UnityEngine.SystemLanguage.Indonesian:
+                    Log.Warning("本地语言 印度尼西亚语");
+                    return LanguageType.EN;
+                case UnityEngine.SystemLanguage.Vietnamese:
+                    Log.Warning("本地语言 越南语");
+                    return LanguageType.EN;
+                default:
+                    Log.Warning("默认");
+                    return LanguageType.EN;
+            }
+        }
+        
         public static void InitMulLanguageData()
         {
+            LanguageType languageType = SystemLanguage();
+            
             Language = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.Language);
             
             foreach (MulLanguageConfig config in MulLanguageConfigCategory.Instance.GetAll().Values)
