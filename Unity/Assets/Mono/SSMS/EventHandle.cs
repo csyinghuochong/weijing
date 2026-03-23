@@ -303,10 +303,13 @@ public class EventHandle : QuickSDKListener
         if (!EventHandle.IsQudaoPackage())
             return;
         Debug.LogWarning("！！！！VIVO OnVivoExit 22！！！！");
-        if (EventHandle.onChannelType() != 17)
-            return;
-        Debug.LogWarning("！！！！VIVO OnVivoExit 33！！！！");
-        onExit();
+        if (EventHandle.onChannelType() == 15
+            || EventHandle.onChannelType() == 17)
+        {
+
+            Debug.LogWarning("！！！！VIVO OnVivoExit 33！！！！");
+            onExit();
+        }
     }
 
     /// <summary>
