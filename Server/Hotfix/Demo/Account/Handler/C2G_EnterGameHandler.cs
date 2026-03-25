@@ -264,7 +264,7 @@ namespace ET
                             dBCenterDataCache.FirstEnterMainCityTime = TimeHelper.DateTimeNow().ToString();
                             dBCenterDataCache.DeviceName = request.DeviceName;
 
-                            dBCenterDataCache.SetDownloadType(downloadType, request.Platform, request.PlatformTwo);
+                            dBCenterDataCache.SetDownloadType(downloadType, request.Platform, request.PlatformTwo, request.DeviceName);
 
                             await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
                         }
@@ -276,13 +276,13 @@ namespace ET
 							
 							if (centerDataCaches != null && centerDataCaches.Count > 0)
 							{
-                                
-								if (string.IsNullOrEmpty(centerDataCaches[0].DownloadFrom))
+								if (string.IsNullOrEmpty(centerDataCaches[0].DownloadFrom)
+									|| string.IsNullOrEmpty(centerDataCaches[0].Platform))
 								{
 
                                     Console.WriteLine($"centerDataCaches==null have account:{accountInfoList[0].Account}    {request.OAID}   {request.Platform}     {request.PlatformTwo}");
 
-                                    centerDataCaches[0].SetDownloadType(downloadType, request.Platform, request.PlatformTwo);
+                                    centerDataCaches[0].SetDownloadType(downloadType, request.Platform, request.PlatformTwo, request.DeviceName);
 
                                     await Game.Scene.GetComponent<DBComponent>().Save(202, centerDataCaches[0]);
                                 }
@@ -311,15 +311,12 @@ namespace ET
                                     DBCenterDataCache dBCenterDataCache = session.AddChild<DBCenterDataCache>();
                                     dBCenterDataCache.anid = accountInfoList[0].Account;
                                     dBCenterDataCache.AccountName = accountInfoList[0].Account;
-                                    dBCenterDataCache.SetDownloadType(downloadType, request.Platform, request.PlatformTwo);
+                                    dBCenterDataCache.SetDownloadType(downloadType, request.Platform, request.PlatformTwo, request.DeviceName);
 
                                     await Game.Scene.GetComponent<DBComponent>().Save(202, dBCenterDataCache);
                                     dBCenterDataCache.Dispose();
                                     dBCenterDataCache = null;
-
                                 }
-
- 
                             }
                         }
 	
