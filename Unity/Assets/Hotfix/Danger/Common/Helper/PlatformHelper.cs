@@ -59,6 +59,12 @@ namespace ET
                 case 24:
                     platformname = "华为";
                     break;
+                case 1073:
+                    platformname = "华为海外";
+                    break;
+                case 2376:
+                    platformname = "荣耀";
+                    break;
                 default:
                     platformname = "安卓渠道";
                     break;

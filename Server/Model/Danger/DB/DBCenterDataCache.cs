@@ -108,7 +108,7 @@ namespace ET
                         this.DownloadFrom = "HuaWeiHaiWai";
                         break;
                     case 2376:
-                        this.DownloadFrom = "YongYao";
+                        this.DownloadFrom = "RongYao";
                         break;
                     default:
                         this.DownloadFrom = "QuDao";
