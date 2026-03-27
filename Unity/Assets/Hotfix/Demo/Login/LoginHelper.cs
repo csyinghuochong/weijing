@@ -270,7 +270,7 @@ namespace ET
 
             if (g2CEnterGame.Error != ErrorCode.ERR_Success)
             {
-                Log.Error(g2CEnterGame.Error.ToString());
+                Log.Error($"g2CEnterGame.Error.ToString():  {accountInfoComponent.Account}");
                 return g2CEnterGame.Error;
             }
 
