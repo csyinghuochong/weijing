@@ -10,8 +10,22 @@ using UnityEngine.UI;
 
 namespace ET
 {
-	
-    public class UILoginComponentAwakeSystem : AwakeSystem<UILoginComponent>
+	[Event]
+	public class YinSiAgree_OnApply: AEventClass<EventType.YinSiAgree>
+	{
+		protected override void Run(object cls)
+		{
+			EventType.YinSiAgree args = cls as EventType.YinSiAgree;
+
+			UI uilogin = UIHelper.GetUI(args.ZoneScene, UIType.UILogin);
+			if (uilogin != null)
+			{
+				uilogin.GetComponent<UILoginComponent>().OnYinSiYinSiAgree();
+			}
+		}
+	}
+
+	public class UILoginComponentAwakeSystem : AwakeSystem<UILoginComponent>
 	{
 
 		public void TestQulity()
@@ -1222,7 +1236,8 @@ namespace ET
 		{
 			if (!self.YinSiToggle.GetComponent<Toggle>().isOn)
 			{
-				FloatTipManager.Instance.ShowFloatTip("请选勾选用户隐私协议！");
+				UIHelper.Create(self.ZoneScene(), UIType.UIYinSi).Coroutine();
+
 				return;
 			}
 
@@ -1230,6 +1245,14 @@ namespace ET
 			string password = self.Password.GetComponent<InputField>().text;
 			Log.ILog.Debug($"Login: {account} {password}");
 			self.RequestLogin(account, password, self.LoginType);
+		}
+
+		public static void OnYinSiYinSiAgree(this UILoginComponent self)
+		{
+			if (self.YinSiToggle.gameObject.activeSelf)
+			{
+				self.YinSiToggle.GetComponent<Toggle>().isOn = true;
+			}
 		}
 
 

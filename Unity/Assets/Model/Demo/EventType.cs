@@ -1090,5 +1090,11 @@ namespace ET
             public M2C_OneChallenge m2C_OneChallenge;
             public Scene ZoneScene;
         }
+
+        public class YinSiAgree: DisposeObject
+        {
+            public static readonly YinSiAgree Instance = new YinSiAgree();
+            public Scene ZoneScene;
+        }
     }
 }
