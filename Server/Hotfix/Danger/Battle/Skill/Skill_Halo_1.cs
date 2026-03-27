@@ -36,11 +36,6 @@
                     this.HurtIds.RemoveAt(i);
                     continue;
                 }
-                if (!unit.IsCanBeAttack())
-                {
-                    this.HurtIds.RemoveAt(i);
-                    continue;
-                }
             }
             this.CheckChiXuHurt();
         }
