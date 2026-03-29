@@ -92,6 +92,9 @@ namespace ET
 
         public static void OnButtonAgree(this UIYinSiComponent self)
         {
+            EventType.YinSiAgree.Instance.ZoneScene = self.ZoneScene();
+            EventSystem.Instance.PublishClass(EventType.YinSiAgree.Instance);
+            
             GameObject.Find("Global").GetComponent<Init>().SetIsPermissionGranted();
         }
     }
