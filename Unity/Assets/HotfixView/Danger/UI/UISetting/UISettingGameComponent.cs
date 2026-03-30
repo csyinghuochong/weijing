@@ -301,6 +301,7 @@ namespace ET
             self.LenDepthSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             self.RotaAngleSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             self.ZhuBoSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
+            self.JiaYuanSet.GetComponentInChildren<Text>().fontSize = GameSettingLanguge.Language == 0? 36 : 32;
             foreach (Text text in self.LanguageSet.GetComponentsInChildren<Text>())
             {
                 text.fontSize = GameSettingLanguge.Language == 0? 36 : 32;
