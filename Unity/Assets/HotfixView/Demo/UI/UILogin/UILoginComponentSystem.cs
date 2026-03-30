@@ -241,9 +241,7 @@ namespace ET
 				{
                     if (platform == 100)
 					{
-                        string url = UILoginHelper.GetYonHuTextUrl(platform);
-                        url = url.Substring(0, url.Length - 4) + ".html";
-                        Application.OpenURL(url);
+                        UILoginHelper.OpenURL_YonHuText(platform);
 					}
 					else
 					{
@@ -255,9 +253,7 @@ namespace ET
                     
 					if (platform == 100)
 					{
-                        string url = UILoginHelper.GetYingSiTextNewUrl(platform);
-                        url = url.Substring(0, url.Length - 4) + ".html";
-                        Application.OpenURL(url);
+                        UILoginHelper.OpenURL_YingSiText(platform);
 					}
 					else
 					{

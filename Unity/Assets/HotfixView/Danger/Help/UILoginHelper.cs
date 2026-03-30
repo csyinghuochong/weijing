@@ -151,6 +151,20 @@ namespace ET
             return "服务器维护中！";
         }
 
+        public static void OpenURL_YonHuText(int platform)
+        {
+            string url = UILoginHelper.GetYonHuTextUrl(platform);
+            url = url.Substring(0, url.Length - 4) + ".html";
+            Application.OpenURL(url);
+        }
+
+        public static void OpenURL_YingSiText(int platform)
+        {
+            string url = UILoginHelper.GetYingSiTextNewUrl(platform);
+            url = url.Substring(0, url.Length - 4) + ".html";
+            Application.OpenURL(url);
+        }
+        
         public static string GetYonHuTextUrl(int platform)
         {
             string dataurl = string.Empty;
