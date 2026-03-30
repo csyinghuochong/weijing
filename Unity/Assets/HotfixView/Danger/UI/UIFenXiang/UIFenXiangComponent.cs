@@ -69,7 +69,7 @@ namespace ET
             self.Btn_Type3 = rc.Get<GameObject>("Btn_Type3");
             self.Btn_Type4 = rc.Get<GameObject>("Btn_Type4");
             self.Btn_Type5 = rc.Get<GameObject>("Btn_Type5");
-            if (GlobalHelp.GetPlatform() == 5 || GlobalHelp.GetPlatform() == 6)
+            if (GlobalHelp.GetPlatform() == 5 || GlobalHelp.GetPlatform() == 6 || GlobalHelp.GetPlatform() == 100)
             {
                 self.Btn_Type4.SetActive(false);
             }
