@@ -2172,7 +2172,17 @@ namespace ET
                     self.Btn_Rank.SetActive(showButton);
                     break;
                 case 1069:
-                    self.Button_FenXiang.SetActive(showButton);
+                    bool show = true;
+#if UNITY_2022_1_OR_NEWER
+                    if (GlobalHelp.GetPlatform() == 100)
+                    {
+                        if (EventHandle.onChannelType() == 15)
+                        {
+                            show = false;
+                        }
+                    }
+#endif
+                    self.Button_FenXiang.SetActive(showButton && show);
                     break;
                 case 1067:
                     self.Button_NewYear.SetActive(showButton);
