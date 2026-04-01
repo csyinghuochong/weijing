@@ -96,7 +96,7 @@ namespace ET
             if (GlobalHelp.GetPlatform() == 100)
             {
 #if UNITY_2022_1_OR_NEWER
-                if (EventHandle.onChannelType() == 23)
+                if (EventHandle.onChannelType() == 23 || EventHandle.onChannelType() == 15)
                 {
                     self.DrawBtn.transform.Find("Text (2)").gameObject.SetActive(true);
 
