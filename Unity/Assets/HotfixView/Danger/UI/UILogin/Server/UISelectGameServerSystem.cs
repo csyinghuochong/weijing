@@ -14,8 +14,9 @@ namespace ET
         public GameObject UISelectServerItem;
         public GameObject ImageButton;
         public GameObject FunctionSetBtn;
+        public GameObject FunctionSelectServerBtn;
 
-        public UI uIPageView;
+        public UIPageButtonComponent uIPageView;
         public List<UISelectServerItemComponent> LateServerUIList = new List<UISelectServerItemComponent>();
         public List<UISelectServerItemComponent> AllServerUIList = new List<UISelectServerItemComponent>();
        }
@@ -43,12 +44,18 @@ namespace ET
 
                 GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
                 UI uiJoystick = self.AddChild<UI, string, GameObject>("FunctionBtnSet", BtnItemTypeSet);
-                self.uIPageView = uiJoystick;
                 UIPageButtonComponent uIPageViewComponent = uiJoystick.AddComponent<UIPageButtonComponent>();
+                self.uIPageView = uIPageViewComponent;
                 uIPageViewComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
-
-
                 uIPageViewComponent.OnSelectIndex(0);
+
+                GameObject FunctionSelectServerBtn = rc.Get<GameObject>("FunctionSelectServerBtn");
+                UI functionSelectServerUI = self.AddChild<UI, string, GameObject>("FunctionSelectServerBtn", FunctionSelectServerBtn);
+          
+                UIPageButtonComponent uIPageViewComponent2 = functionSelectServerUI.AddComponent<UIPageButtonComponent>();
+                uIPageViewComponent2.SetClickHandler((int page) => { self.OnClickPageButton_2(page); });
+                uIPageViewComponent2.OnSelectIndex(0);
+                FunctionSelectServerBtn.SetActive(false);   
             }
         }
 
@@ -199,6 +206,24 @@ namespace ET
 
             UIHelper.Remove(self.DomainScene(), UIType.UISelectServer);
         }
+
+        public static void OnClickPageButton_2(this UISelectServerComponent self, int page)
+        {
+            Log.ILog.Debug($"OnClickPageButton_2:{page}");
+           /* AccountInfoComponent PlayerComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
+            if (page == 0)
+            {
+                ServerHelper.InitServerList( "StartConfig/Beta");
+            }
+            else
+            {
+                ServerHelper.InitServerList("StartConfig/Google");
+            }
+
+            PlayerComponent.AllServerList = ServerHelper.GetServerList();
+            self.OnUpdateServerList(self.uIPageView.GetCurrentIndex());*/
+        }
+
 
         public static void OnClickPageButton(this UISelectServerComponent self, int page)
         {
