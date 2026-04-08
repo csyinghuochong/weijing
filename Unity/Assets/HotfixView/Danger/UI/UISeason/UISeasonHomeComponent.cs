@@ -110,13 +110,13 @@ namespace ET
                     string.Format(GameSettingLanguge.LoadLocalization("赛季时间:{0}.{1}.{2}-{3}.{4}.{5}"), startTime.Year, startTime.Month, startTime.Day, endTime.Year, endTime.Month, endTime.Day);
 
    
-            if (seasonOpenTime.KeyId == 7)
-            {
-                self.SeasonText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("2025第四赛季");
-            }
             if (seasonOpenTime.KeyId == 8)
             {
                 self.SeasonText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("2026第一赛季");
+            }
+            if (seasonOpenTime.KeyId == 9)
+            {
+                self.SeasonText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("2026第二赛季");
             }
 
             int seasonExp = userInfo.SeasonExp;
