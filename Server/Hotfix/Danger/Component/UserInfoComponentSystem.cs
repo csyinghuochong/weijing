@@ -590,6 +590,11 @@ namespace ET
                     expcoefficient *= bossDevelopment.ExpAdd;
                 }
 
+                float expAdd = (numericComponent.GetAsFloat(NumericType.Now_ExpAdd) - 1f);
+                expAdd = Math.Clamp(expAdd, 0f, 1f);    
+
+                expcoefficient += expAdd;
+
                 if ((sceneType == SceneTypeEnum.LocalDungeon && self.UserInfo.PiLao > 0)
                   || sceneType != SceneTypeEnum.LocalDungeon)
                 {

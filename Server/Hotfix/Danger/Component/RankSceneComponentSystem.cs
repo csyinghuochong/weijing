@@ -140,7 +140,7 @@ namespace ET
 
         public static void OnZeroClockUpdate(this RankSceneComponent self)
         {
-            Console.WriteLine($"RankSceneComponent.OnZeroClockUpdate:  {self.DomainZone()} {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}");
+            //Console.WriteLine($"RankSceneComponent.OnZeroClockUpdate:  {self.DomainZone()} {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}");
 
             //更新服务器拍卖行数据
             //TimeHelper. self.OpenServiceTime

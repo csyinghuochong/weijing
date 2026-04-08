@@ -292,7 +292,7 @@ namespace ET
                         //防沉迷相关
                         string idCardNo = centerPlayerInfo.IdCardNo;
                         int canLogin = CanLogin(idCardNo, IsHoliday, request.age_type, int.Parse(request.ThirdLogin));
-                        if (canLogin != ErrorCode.ERR_Success)
+                        if (canLogin != ErrorCode.ERR_Success && !ServerHelper.IsGoogleServer(session.DomainZone()))
                         {
                             response.Error = canLogin;
                             reply();

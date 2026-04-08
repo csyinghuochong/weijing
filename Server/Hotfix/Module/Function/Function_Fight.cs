@@ -1706,6 +1706,7 @@ namespace ET
             List<int> equipSuitIDList = new List<int>();
             List<BagInfo> equipList_1 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip);
             List<BagInfo> equipList_2 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip_2);
+            List<BagInfo> equipList_3 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.SeasonJingHe);
 
             for (int equipList1index = equipList_1.Count - 1; equipList1index >= 0; equipList1index--)
             {
@@ -1731,6 +1732,7 @@ namespace ET
             List<BagInfo> equipList = new List<BagInfo>();
             equipList.AddRange(equipList_1);
             equipList.AddRange(equipList_2);
+            equipList.AddRange(equipList_3);
 
             for (int i = equipList.Count - 1; i >= 0; i--)
             {
@@ -2479,6 +2481,7 @@ namespace ET
             double BaseDamgeSub = occBaseDamgeSubAdd + BaseDamgeSub_EquipSuit;
 
             //更新基础属性
+            AddUpdateProDicList((int)NumericType.Base_ExpAdd_Base, 10000, UpdateProDicList);
             AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, BaseHp, UpdateProDicList);
             AddUpdateProDicList((int)NumericType.Base_MinAct_Base, BaseMinAct, UpdateProDicList);
             AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, BaseMaxAct, UpdateProDicList);
@@ -2686,7 +2689,6 @@ namespace ET
             long Agility_value_add = 0;
             long Stamina_value_add = 0;
             long Constitution_value_add = 0;
-
 
             //力量加物理穿透
             int wuliChuanTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 5;

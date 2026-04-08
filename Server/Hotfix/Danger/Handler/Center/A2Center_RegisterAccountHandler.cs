@@ -49,6 +49,14 @@ namespace ET
                     newAccount.PlayerInfo.RealName = 1;
                     newAccount.PlayerInfo.IdCardNo = string.Empty;
                 }
+
+                if (Game.Options.StartConfig.Contains("Google"))
+                {
+                    newAccount.PlayerInfo.Name = "loginType_" + request.LoginType;
+                    newAccount.PlayerInfo.RealName = 1;
+                    newAccount.PlayerInfo.IdCardNo = "429001199012282996";
+                }
+
                 //if (request.LoginType == LoginTypeEnum.TikTokGuanFu)
                 //{
                 //    newAccount.PlayerInfo.Name = "loginType_" + request.LoginType;
