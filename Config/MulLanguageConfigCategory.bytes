@@ -187,7 +187,7 @@ V��!收到低于总生命30%的伤害"-Received damage less than 30% of total
 ��经验+"Experience +
 ��金币+"Gold +
 C��挑战时间少于5分钟""Challenge time less than 5 minutes
-'��月卡奖励"Monthly card reward
+&��周卡奖励"Weekly card reward
 (��挑战成功"Challenge successful
 A��选择剩余时间:10秒"!Select remaining time: 10 seconds
 ,��正在加载数据中"Loading data...
@@ -497,15 +497,15 @@ Z�� 1. 体力上限额外增加20点"21. Increase the upper limit of Energy b
 ~��(。
 2. 通关关卡可额外开启宝箱"N。 
 2. Additional treasure chests can be opened after passing the checkpoint.
-Z��$。
-3. 领取每日月卡奖励。
+Y��$。
+3. 领取每日周卡奖励。
 
-".。 
-3. Receive daily monthly card rewards. 
+"-。 
+3. Receive daily weekly card rewards. 
 
 
 &��周卡奖励"Weekly card reward
-)��月卡福利"Monthly card benefits
+(��周卡福利"Weekly card benefits
 (��开启周卡"Open the weekly card
 -��周卡剩余领取次数:"Claim Times:
 ���;周卡特权
@@ -3330,14 +3330,14 @@ C��背包空间不足")There is not enough space in the backpack
 M��已经购买过该礼包！"*This gift pack has already been purchased!
 4��当前额度：{0}/{1}"Current limit: {0}/{1}
 ,��背包已满！"The backpack is full!
-@��请先开启月卡！"#Please open the monthly card first!
+?��请先开启周卡！""Please open the weekly card first!
 I��当天奖励已领取！")The reward of the day has been collected!
 ���*是否领取?
 领取后会有体力溢出!"ODo you want to receive it? 
 There will be physical overflow after receiving it!
-A��月卡开启成功"'The monthly card is opened successfully
-)��开启月卡"Open the monthly card
-e��"是否花费{0}钻石开启月卡?";Do you want to spend {0} diamonds to open the monthly card?
+@��周卡开启成功"&The weekly card is opened successfully
+(��开启周卡"Open the weekly card
+d��"是否花费{0}钻石开启周卡?":Do you want to spend {0} diamonds to open the weekly card?
 ��	已抽取"	Extracted
 9��消耗幸运卷轴:{0}/1"Spend Lucky Scroll: {0}/1
 !��已经抽完"It's finished

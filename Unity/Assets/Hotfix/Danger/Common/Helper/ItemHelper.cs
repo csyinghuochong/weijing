@@ -1001,7 +1001,7 @@ namespace ET
                 { ItemGetWay.ShoujiReward, "收集奖励" },
                 { ItemGetWay.StoreBuy, "商店购买" },
                 { ItemGetWay.TaskCountry, "活跃任务" },
-                { ItemGetWay.YueKaReward, "月卡奖励" },
+                { ItemGetWay.YueKaReward, "周卡奖励" },
                 { ItemGetWay.ChengJiuRward, "成就奖励" },
                 { ItemGetWay.RankReward, "排行榜奖励" },
                 { ItemGetWay.FirstWin, "首胜" },

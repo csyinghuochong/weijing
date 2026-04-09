@@ -78,7 +78,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (!unit.IsYueKaStates())
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先开启月卡！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先开启周卡！"));
                 return;
             }
 
@@ -118,7 +118,7 @@ namespace ET
             if (m2C_RoleYueKaResponse.Error == 0)
             {
                 //月卡开启成功
-                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("月卡开启成功"));
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("周卡开启成功"));
                 self.Img_JiHuo.SetActive(true);
                 self.BtnOpenYueKaSet.SetActive(false);
                 self.Btn_GetReward.SetActive(true);
@@ -134,7 +134,7 @@ namespace ET
 
             //判断自身是否有钻石
             string cost = GlobalValueConfigCategory.Instance.Get(37).Value;
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("开启月卡"), string.Format(GameSettingLanguge.LoadLocalization("是否花费{0}钻石开启月卡?"), cost), () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), GameSettingLanguge.LoadLocalization("开启周卡"), string.Format(GameSettingLanguge.LoadLocalization("是否花费{0}钻石开启周卡?"), cost), () =>
            {
                self.ReqestOpenYueKa().Coroutine();
            }, null).Coroutine() ;
