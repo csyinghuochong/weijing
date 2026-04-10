@@ -1706,7 +1706,7 @@ namespace ET
             List<int> equipSuitIDList = new List<int>();
             List<BagInfo> equipList_1 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip);
             List<BagInfo> equipList_2 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip_2);
-            List<BagInfo> equipList_3 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.SeasonJingHe);
+           
 
             for (int equipList1index = equipList_1.Count - 1; equipList1index >= 0; equipList1index--)
             {
@@ -1732,7 +1732,7 @@ namespace ET
             List<BagInfo> equipList = new List<BagInfo>();
             equipList.AddRange(equipList_1);
             equipList.AddRange(equipList_2);
-            equipList.AddRange(equipList_3);
+ 
 
             for (int i = equipList.Count - 1; i >= 0; i--)
             {
@@ -2639,6 +2639,7 @@ namespace ET
 
             ///晶核列表
             List<BagInfo> jingHeList = unit.GetComponent<BagComponent>().GetCurJingHeList();
+
             for (int i = 0; i < jingHeList.Count; i++)
             {
                 //存储装备精炼数值
