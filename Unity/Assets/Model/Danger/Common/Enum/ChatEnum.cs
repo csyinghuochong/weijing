@@ -46,6 +46,7 @@ namespace ET
         public const int ClearChat = 23;
         public const int JinYan = 24;   
         public const int Archive = 25;
+        public const int CreateRobotMainCity = 26;
     }
 
 }

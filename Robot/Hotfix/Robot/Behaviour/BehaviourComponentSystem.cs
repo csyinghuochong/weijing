@@ -39,6 +39,7 @@ namespace ET
             //9   奔跑大赛机器人
             //10  恶魔活动机器人
             //11  宝藏之地机器人
+            //12  主城出生点机器人
             RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
             self.RobotConfig = robotConfig;
             switch (robotConfig.Behaviour)
@@ -110,6 +111,10 @@ namespace ET
                 case 11:
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_BaoZang, Value = "Behaviour_BaoZang" });
                     self.NewBehaviour = BehaviourType.Behaviour_BaoZang;
+                    break;
+                case 12:
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_MainCityStroll, Value = "Behaviour_MainCityStroll" });
+                    self.NewBehaviour = BehaviourType.Behaviour_MainCityStroll;
                     break;
                 default:
                     break;

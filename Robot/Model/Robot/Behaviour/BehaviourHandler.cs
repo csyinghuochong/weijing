@@ -19,6 +19,7 @@
         public const int Behaviour_Demon = 14;
         public const int Behaviour_BaoZang = 15;
         public const int Behaviour_Retreat = 16;
+        public const int Behaviour_MainCityStroll = 17;              //闲逛
     }
 
     public class BehaviourHandlerAttribute : BaseAttribute

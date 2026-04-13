@@ -74,6 +74,61 @@ namespace ET
                         await TimerComponent.Instance.WaitAsync(200);
                     }
                     break;
+                case NoticeType.CreateRobotMainCity:
+
+                    Console.WriteLine($"CreateRobotMainCity:  {message.Message}");
+
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.RemoveRobot, 1))
+                    {
+
+                        number = int.Parse(message.Message.Split('#')[1]);
+
+                        List<Entity> ts = robotManagerComponent.Children.Values.ToList();
+                        for (int i = 0; i < ts.Count; i++)
+                        {
+                           
+                            Scene robotScene = ts[i] as Scene;
+                            if (robotScene.GetComponent<BehaviourComponent>() == null)
+                            {
+                                continue;
+                            }
+                            if (robotScene.GetComponent<BehaviourComponent>().GetBehaviour() != 12)
+                            {
+                                continue;
+                            }
+                            if (message.Zone != robotScene.GetComponent<AccountInfoComponent>().ServerId)
+                            {
+                                continue;
+                            }
+                            robotScene.GetComponent<AttackComponent>().RemoveTimer();
+                            robotManagerComponent.RemoveRobot(robotScene, "主城移动机器人").Coroutine();
+                            await TimerComponent.Instance.WaitAsync(200);
+                        }
+
+                        for (int i = 0; i < number; ++i)
+                        {
+                            robotId = RandomHelper.RandomNumber(12001, 12006);
+
+
+                            int robotZone = robotManagerComponent.ZoneIndex++;
+                            Log.Console($"create robot22 {robotZone}");
+                            Scene robot = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                            if (robot == null)
+                            {
+                                continue;
+                            }
+                            BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(robotId);
+                            if (behaviourComponent == null)
+                            {
+                                continue;
+                            }
+                            behaviourComponent.CreateTime = TimeHelper.ClientNow();
+                            await TimerComponent.Instance.WaitAsync(200);
+                        }
+                    }
+
+                      
+                    break;
                 case NoticeType.TeamDungeon:
                     int robotnumber = 0;
                     long lastteamtime = 0;

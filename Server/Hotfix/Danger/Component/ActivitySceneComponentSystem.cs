@@ -214,6 +214,7 @@ namespace ET
             }
             self.SaveDB();
             self.CreateRobot(openServerDay).Coroutine();
+            self.CreateRobotMainCity(openServerDay).Coroutine();        
 
             //每日活动
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.ActivitySceneTimer, self);
@@ -397,6 +398,31 @@ namespace ET
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.CreateRobot, Message = $"1001#{createRobotNumber}" });
         }
+
+        private static async ETTask CreateRobotMainCity(this ActivitySceneComponent self, int openServerDay)
+        {
+
+            Console.WriteLine($"CreateRobotMainCity:  {self.DomainZone()}");
+
+            await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 1);
+            long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+
+            while (true)
+            {
+
+                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.CreateRobotMainCity, Message = $"12001#10" });
+
+                await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 10);
+                if (self.IsDisposed)
+                {
+                    break;
+                }
+            }
+
+           
+        }
+
+
 
         public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, DateTime dateTime)
         {
