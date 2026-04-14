@@ -418,7 +418,7 @@ namespace ET
                     robotIndex = 0;
                 }
 
-                await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 10);
+                await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 5);
                 if (self.IsDisposed)
                 {
                     break;
