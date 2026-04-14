@@ -100,6 +100,8 @@ namespace ET
                             {
                                 continue;
                             }
+                            Console.WriteLine($"主城移动机器人退出111  :{robotScene.GetComponent<AccountInfoComponent>().Account}");
+
                             robotScene.GetComponent<AttackComponent>().RemoveTimer();
                             robotManagerComponent.RemoveRobot(robotScene, "主城移动机器人").Coroutine();
                             await TimerComponent.Instance.WaitAsync(200);

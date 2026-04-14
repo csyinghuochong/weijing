@@ -55,6 +55,7 @@ namespace ET
                 }
             }
             Log.Debug($"机器人退出： {exitType}");
+            Console.WriteLine($"机器人退出222 Account:  {robotScene.GetComponent<AccountInfoComponent>().Account}");
             robotScene.GetComponent<SessionComponent>().Session.Dispose();
             await TimerComponent.Instance.WaitAsync(200);
             robotScene.Dispose();
@@ -115,6 +116,7 @@ namespace ET
                     }
                     playerComponent.ServerId = zone;
                     playerComponent.CurrentRoleId = g2cCreateRole.createRoleInfo.UserID;
+                    playerComponent.Account = account;
 
                     errorCode = await LoginHelper.GetRealmKey(zoneScene);
                     errorCode = await LoginHelper.EnterGame(zoneScene, "", false, 0); 
@@ -145,6 +147,7 @@ namespace ET
                         Log.Debug($"{account}  {zone} 创角成功");
                         playerComponent.ServerId = zone;
                         playerComponent.CurrentRoleId = g2cCreateRole.createRoleInfo.UserID;
+                        playerComponent.Account = account;
 
                         errorCode = await LoginHelper.GetRealmKey(zoneScene);
                         errorCode = await LoginHelper.EnterGame(zoneScene, string.Empty, false, 0);
@@ -178,6 +181,8 @@ namespace ET
                 Log.Debug($"robotId[增]: {self.RobotNumber[robotId]}");
             }
             robotNumber = self.RobotNumber[robotId]++;
+
+            Log.Console($"NewRobotBatch robotNumber: {robotNumber}  robotIndex: {robotIndex}");
 
             robotNumber += robotIndex;
 
