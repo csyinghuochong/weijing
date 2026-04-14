@@ -165,7 +165,31 @@ namespace ET
             }
         }
 
-        public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotZone, int robotId)
+        public static async ETTask<Scene> NewRobotBatch(this RobotManagerComponent self, int zone, int robotZone, int robotId, int robotIndex)
+        {
+            int robotNumber = 0;
+            if (!self.RobotNumber.ContainsKey(robotId))
+            {
+                self.RobotNumber.Add(robotId, 0);
+                Log.Debug($"robotId[新]: 0");
+            }
+            else
+            {
+                Log.Debug($"robotId[增]: {self.RobotNumber[robotId]}");
+            }
+            robotNumber = self.RobotNumber[robotId]++;
+
+            robotNumber += robotIndex;
+
+            string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
+
+            Log.Console($"NewRobotBatch: {account}");
+
+            Scene robotScene = await self.NewRobot_2(zone, robotZone, robotId, account, ComHelp.RobotPassWord);
+            return robotScene;
+        }
+
+            public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotZone, int robotId)
         {
             int robotNumber = 0;
             if (!self.RobotNumber.ContainsKey(robotId))

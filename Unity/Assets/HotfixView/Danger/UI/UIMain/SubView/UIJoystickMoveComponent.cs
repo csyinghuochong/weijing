@@ -386,8 +386,20 @@ namespace ET
            
             if (SettingHelper.ClintFindPath)
             {
+                StateComponent stateComponent = unit.GetComponent<StateComponent>();    
+                bool ishide = stateComponent != null && stateComponent.StateTypeGet(StateTypeEnum.Hide);
+
                 List<Vector3> pathfind = new List<Vector3>();
-                self.CanMovePositionList_2(unit, speed, rotation, pathfind);
+
+                if (ishide)
+                {
+                    self.CanMovePositionList(unit, speed, rotation, pathfind);
+                }
+                else
+                {
+                    self.CanMovePositionList_2(unit, speed, rotation, pathfind);
+                }
+
                 if (pathfind.Count < 2)
                 {
                     EventType.MoveStart.Instance.Unit = unit;

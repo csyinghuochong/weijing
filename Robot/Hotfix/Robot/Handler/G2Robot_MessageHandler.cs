@@ -81,7 +81,7 @@ namespace ET
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.RemoveRobot, 1))
                     {
 
-                        number = int.Parse(message.Message.Split('#')[1]);
+                        int  robotIndex = int.Parse(message.Message.Split('#')[1]);
 
                         List<Entity> ts = robotManagerComponent.Children.Values.ToList();
                         for (int i = 0; i < ts.Count; i++)
@@ -104,22 +104,22 @@ namespace ET
                             robotManagerComponent.RemoveRobot(robotScene, "主城移动机器人").Coroutine();
                             await TimerComponent.Instance.WaitAsync(200);
                         }
-
-                        for (int i = 0; i < number; ++i)
+                        Log.Console($"create robot22  robotIndex : {robotIndex}");
+                        for (int i = 0; i < 5; i++)
                         {
-                            robotId = RandomHelper.RandomNumber(12001, 12006);
-
-
+                            robotId = 12001 +  i;
                             int robotZone = robotManagerComponent.ZoneIndex++;
-                            Log.Console($"create robot22 {robotZone}");
-                            Scene robot = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                            Log.Console($"create robot22 {robotZone}  {robotId}");
+                            Scene robot = await robotManagerComponent.NewRobotBatch(message.Zone, robotZone, robotId, robotIndex);
                             if (robot == null)
                             {
+                                Log.Console($"create robot22 robot == null 111");
                                 continue;
                             }
                             BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(robotId);
                             if (behaviourComponent == null)
                             {
+                                Log.Console($"create robot22 robot == null 222");
                                 continue;
                             }
                             behaviourComponent.CreateTime = TimeHelper.ClientNow();
