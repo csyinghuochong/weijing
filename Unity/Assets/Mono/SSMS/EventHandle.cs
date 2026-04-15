@@ -304,7 +304,8 @@ public class EventHandle : QuickSDKListener
             return;
         Debug.LogWarning("！！！！VIVO OnVivoExit 22！！！！");
         if (EventHandle.onChannelType() == 15
-            || EventHandle.onChannelType() == 17)
+            || EventHandle.onChannelType() == 17
+            || EventHandle.onChannelType() == 2376)
         {
 
             Debug.LogWarning("！！！！VIVO OnVivoExit 33！！！！");
