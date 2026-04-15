@@ -372,7 +372,7 @@ namespace ET
 
         private static async ETTask CreateRobot(this ActivitySceneComponent self, int openServerDay)
         {
-            await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 10);
+            await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 10 + self.DomainZone());
 
             int createRobotNumber = 0;
             if (openServerDay >= 30)
