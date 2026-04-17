@@ -401,10 +401,10 @@ namespace ET
 
         private static async ETTask CreateRobotMainCity(this ActivitySceneComponent self, int openServerDay)
         {
-            Console.WriteLine($"CreateRobotMainCity:  {self.DomainZone()}");
-
             await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 30 + self.DomainZone());
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+
+            Console.WriteLine($"CreateRobotMainCity:  {self.DomainZone()}");
 
             int robotIndex = 0;
             while (true)
@@ -418,7 +418,7 @@ namespace ET
                     robotIndex = 0;
                 }
 
-                await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 5);
+                await TimerComponent.Instance.WaitAsync(TimeHelper.Hour );
                 if (self.IsDisposed)
                 {
                     break;
