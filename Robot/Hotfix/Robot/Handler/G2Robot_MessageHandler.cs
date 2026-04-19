@@ -107,7 +107,7 @@ namespace ET
                             await TimerComponent.Instance.WaitAsync(200);
                         }
                         Log.Console($"create robot22  robotIndex : {robotIndex}");
-                        for (int i = 0; i < 5; i++)
+                        for (int i = 0; i < 10; i++)
                         {
                             robotId = 12001 +  i;
                             int robotZone = robotManagerComponent.ZoneIndex++;
