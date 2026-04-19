@@ -39,6 +39,23 @@ namespace ET
 					}
 					return;
 				}
+				if (message.GMMsg == "#testmail")
+				{
+					/*List<long> userList = new List<long>();
+					userList.Add(3411435712975798272);
+                    userList.Add(3411452497707991040);
+                    userList.Add(3413181050245939200);
+
+                    foreach (long useriid in userList) 
+					{
+                        MailInfo mailInfo = new MailInfo();
+                        mailInfo.Status = 0;
+                        mailInfo.Context = "如果您遇到支付问题，请联系QQ ： 136087482 处理";
+                        mailInfo.Title = "系统通知";
+                        mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                        await MailHelp.SendUserMail(unit.DomainZone(), useriid, mailInfo);*/
+                    }
+                }
 				if (message.GMMsg == "#mianshang")
 				{
 					BuffData buffData_1 = new BuffData();
