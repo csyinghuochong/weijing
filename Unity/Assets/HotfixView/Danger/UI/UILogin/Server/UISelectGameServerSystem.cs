@@ -16,6 +16,8 @@ namespace ET
         public GameObject FunctionSetBtn;
         public GameObject FunctionSelectServerBtn;
 
+        public bool TestMulServer = false;
+
         public UIPageButtonComponent uIPageView;
         public List<UISelectServerItemComponent> LateServerUIList = new List<UISelectServerItemComponent>();
         public List<UISelectServerItemComponent> AllServerUIList = new List<UISelectServerItemComponent>();
@@ -25,6 +27,12 @@ namespace ET
         {
             public override void Awake(UISelectServerComponent self)
             {
+                if (GlobalHelp.IsOutNetMode)
+                {
+                    //self.TestMulServer = true;
+                    //self.TestMulServer = GlobalHelp.GetPlatform() == 20001;
+                }
+
                 self.LateServerUIList.Clear();
                 self.AllServerUIList.Clear();
 
@@ -55,7 +63,10 @@ namespace ET
                 UIPageButtonComponent uIPageViewComponent2 = functionSelectServerUI.AddComponent<UIPageButtonComponent>();
                 uIPageViewComponent2.SetClickHandler((int page) => { self.OnClickPageButton_2(page); });
                 uIPageViewComponent2.OnSelectIndex(0);
-                FunctionSelectServerBtn.SetActive(false);   
+                FunctionSelectServerBtn.SetActive(false);
+                FunctionSelectServerBtn.transform.Find("Btn_SelectServer3").gameObject.SetActive(false);
+
+                FunctionSelectServerBtn.SetActive(self.TestMulServer);
             }
         }
 
@@ -78,6 +89,11 @@ namespace ET
 
             for (int i = allserverList.Count - 1; i >= 0; i--)
             {
+                if (self.TestMulServer)
+                {
+                    continue;
+                }
+
                 if (!allserverList[i].PlatformList.Contains(platform) && platform!= 8)
                 {
                     allserverList.RemoveAt(i);
@@ -210,18 +226,50 @@ namespace ET
         public static void OnClickPageButton_2(this UISelectServerComponent self, int page)
         {
             Log.ILog.Debug($"OnClickPageButton_2:{page}");
-           /* AccountInfoComponent PlayerComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
-            if (page == 0)
+
+            if (self.TestMulServer)
             {
-                ServerHelper.InitServerList( "StartConfig/Beta");
-            }
-            else
-            {
-                ServerHelper.InitServerList("StartConfig/Google");
+
+                AccountInfoComponent PlayerComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
+                if (page == 0)
+                {
+                    ServerHelper.InitServerList("StartConfig/Beta");
+                }
+                else if (page == 1)
+                {
+                    ServerHelper.InitServerList("StartConfig/Google");
+                }
+                else
+                {
+                    return;
+                }
+
+
+                List<ServerItem> serverItems = ServerHelper.GetServerList();
+            
+                LoginHelper.CheckServerList(serverItems, VersionMode.Beta);
+
+
+                long serverTime = TimeHelper.ServerNow();
+                List<ServerItem> validServerList = new List<ServerItem>();  
+                for (int i = 0; i < serverItems.Count; i++)
+                {
+                    //128服只有主播账号才显示。。
+                    if (ComHelp.IsZhuBoZone(serverItems[i].ServerId))
+                    {
+                        continue;
+                    }
+                    if (serverItems[i].Show != 0 && serverItems[i].ServerOpenTime <= serverTime)
+                    {
+                        validServerList.Add(serverItems[i]);
+                    }
+                }
+
+                PlayerComponent.AllServerList.Clear();
+                PlayerComponent.AllServerList = validServerList;    
+                self.OnUpdateServerList(self.uIPageView.GetCurrentIndex());
             }
 
-            PlayerComponent.AllServerList = ServerHelper.GetServerList();
-            self.OnUpdateServerList(self.uIPageView.GetCurrentIndex());*/
         }
 
 
