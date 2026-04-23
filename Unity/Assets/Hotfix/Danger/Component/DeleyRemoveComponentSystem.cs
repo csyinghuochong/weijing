@@ -40,7 +40,7 @@ namespace ET
     {
         public override void Destroy(DeleyRemoveComponent self)
         {
-            TimerComponent.Instance.Remove(ref self.Timer);
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
