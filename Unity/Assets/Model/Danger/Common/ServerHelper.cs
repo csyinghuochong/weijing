@@ -490,10 +490,10 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 214, ServerIp = $"{ip}:20565", ServerName = "烽火王座", ServerOpenTime = 1776402000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
 
 
-                //2026/04/24 13:00:00 1777006800000 合区 xx-xx xx/xx
-                //2026/04/24 13:00:00 1777006800000 新区 新区新区 215
+                //2026/04/24 19:00:00 1777028400000 合区 xx-xx xx/xx
+                //2026/04/24 19:00:00 1777028400000 新区 凌云九霄 215
                 //201-210为特殊区服
-                serverItems_1.Add(new ServerItem() { ServerId = 215, ServerIp = $"{ip}:20595", ServerName = "新区新区", ServerOpenTime = 1777006800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+                serverItems_1.Add(new ServerItem() { ServerId = 215, ServerIp = $"{ip}:20595", ServerName = "凌云九霄", ServerOpenTime = 1777028400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器

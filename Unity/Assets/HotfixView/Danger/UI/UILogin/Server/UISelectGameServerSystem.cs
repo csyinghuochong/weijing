@@ -29,8 +29,7 @@ namespace ET
             {
                 if (GlobalHelp.IsOutNetMode)
                 {
-                    //self.TestMulServer = true;
-                    //self.TestMulServer = GlobalHelp.GetPlatform() == 20001;
+                    self.TestMulServer = GlobalHelp.GetPlatform() == 20001;
                 }
 
                 self.LateServerUIList.Clear();
