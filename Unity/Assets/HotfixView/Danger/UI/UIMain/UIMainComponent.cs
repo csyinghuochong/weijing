@@ -2679,7 +2679,7 @@ namespace ET
 
             //先锋一区测试
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            SettingHelper.ClintFindPath = GlobalHelp.GetBigVersion() >= 26 && sceneTypeEnum == SceneTypeEnum.LocalDungeon && accountInfoComponent.ClintFindPath == 1;
+            SettingHelper.ClintFindPath = false;// GlobalHelp.GetBigVersion() >= 26 && sceneTypeEnum == SceneTypeEnum.LocalDungeon && accountInfoComponent.ClintFindPath == 1;
             //&& accountInfoComponent.ServerId == 5 && GMHelp.GmAccount.Contains(accountInfoComponent.Account)
         }
 
