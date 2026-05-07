@@ -220,10 +220,10 @@ namespace ET
             {
                 numericComponent.Set(NumericType.TrialDungeonId, maxTowerId, false);
             }
-            if (numericComponent.GetAsInt(NumericType.UpdateActivty) == 0)
+            if (numericComponent.GetAsInt(NumericType.UpdateActivty) < 2)
             {
                 self.GetParent<Unit>().GetComponent<ActivityComponent>().ClearJieRiActivty();
-                numericComponent.Set(NumericType.UpdateActivty, 1, false);
+                numericComponent.Set(NumericType.UpdateActivty, 2, false);
             }
             if (numericComponent.GetAsInt(NumericType.V1TotalPoints) > 0)
             {
