@@ -64,7 +64,7 @@ namespace ET
 
                 if (unit.Id == 2341487098982367232 && taskCountryConfig.TaskType == TaskCountryType.Mine)
                 {
-                    Console.WriteLine($"刀，领取矿场任务奖励  {taskCountryConfig.Id}   {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}");
+                    //Console.WriteLine($"刀，领取矿场任务奖励  {taskCountryConfig.Id}   {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}");
                 }
 
                 taskPro.taskStatus = (int)TaskStatuEnum.Commited;

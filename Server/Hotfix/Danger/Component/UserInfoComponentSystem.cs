@@ -259,7 +259,7 @@ namespace ET
             }
             if (JiaYuanConfigCategory.Instance.Get(self.UserInfo.JiaYuanLv).NextID <= 0 && self.UserInfo.JiaYuanExp > 0)
             {
-                Console.WriteLine($"清空家园经验: {self.Id}  {self.UserInfo.JiaYuanLv}  {self.UserInfo.JiaYuanExp}");
+                //Console.WriteLine($"清空家园经验: {self.Id}  {self.UserInfo.JiaYuanLv}  {self.UserInfo.JiaYuanExp}");
             }
 
             if (self.IsZhuBoLevel16())

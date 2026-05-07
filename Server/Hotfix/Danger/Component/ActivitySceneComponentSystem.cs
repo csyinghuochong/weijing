@@ -403,9 +403,7 @@ namespace ET
         {
             await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 30 + self.DomainZone());
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-
-            Console.WriteLine($"CreateRobotMainCity:  {self.DomainZone()}");
-
+            //Console.WriteLine($"CreateRobotMainCity:  {self.DomainZone()}");
             int robotIndex = 0;
             while (true)
             {

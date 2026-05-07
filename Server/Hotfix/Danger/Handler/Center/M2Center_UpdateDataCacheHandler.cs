@@ -24,7 +24,7 @@ namespace ET
             List<DBCenterDataCache> centerDataCaches = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterDataCache>(202, d => d.anid == request.OAID);
             if (centerDataCaches != null && centerDataCaches.Count > 0)
             {
-                Console.WriteLine($"updatelastgametime DBCenterDataCache:  {request.OAID}");
+                //Console.WriteLine($"updatelastgametime DBCenterDataCache:  {request.OAID}");
                 DBCenterDataCache dBCenterDataCache = centerDataCaches[0];
                 dBCenterDataCache.LastLoginTime = request.Time;
                 dBCenterDataCache.IP = request.RemoteAddress;

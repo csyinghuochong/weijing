@@ -280,7 +280,7 @@ namespace ET
 									|| string.IsNullOrEmpty(centerDataCaches[0].Platform))
 								{
 
-                                    Console.WriteLine($"centerDataCaches==null have account:{accountInfoList[0].Account}    {request.OAID}   {request.Platform}     {request.PlatformTwo}");
+                                    //Console.WriteLine($"centerDataCaches==null have account:{accountInfoList[0].Account}    {request.OAID}   {request.Platform}     {request.PlatformTwo}");
 
                                     centerDataCaches[0].SetDownloadType(downloadType, request.Platform, request.PlatformTwo, request.DeviceName);
 
@@ -298,14 +298,14 @@ namespace ET
 									createtime = TimeInfo.Instance.ToDateTime(centerAccountInfos[0].CreateTime).ToString();
                                 }
 
-                                Console.WriteLine($"centerDataCaches==null no   account:{accountInfoList[0].Account}    {createtime}  {request.OAID}   {request.Platform}     {request.PlatformTwo}");
+                                //Console.WriteLine($"centerDataCaches==null no   account:{accountInfoList[0].Account}    {createtime}  {request.OAID}   {request.Platform}     {request.PlatformTwo}");
                                 Log.Debug($"centerDataCaches==null no   account:{accountInfoList[0].Account}    {createtime}  {request.OAID}   {request.Platform}     {request.PlatformTwo}");
 
 
                                 //最近的才创建数据
                                 if (createtimelong > 1773399600000)
 								{
-                                    Console.WriteLine($"centerDataCaches==null create  account:{accountInfoList[0].Account}    {createtime}  {request.OAID}   {request.Platform}     {request.PlatformTwo}");
+                                    //Console.WriteLine($"centerDataCaches==null create  account:{accountInfoList[0].Account}    {createtime}  {request.OAID}   {request.Platform}     {request.PlatformTwo}");
                                     Log.Debug($"centerDataCaches==null create   account:{accountInfoList[0].Account}    {createtime}  {request.OAID}   {request.Platform}     {request.PlatformTwo}");
 
                                     DBCenterDataCache dBCenterDataCache = session.AddChild<DBCenterDataCache>();
