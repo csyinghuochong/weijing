@@ -22,6 +22,7 @@ namespace ET
 				moniq += "Root";
             }
 
+		
             if (request.DeviceName.Contains("motorola XT2335-3_1523")
 				|| request.AccountId == 2313611196302950417)
 			{
@@ -132,6 +133,11 @@ namespace ET
                         response.Error = ErrorCode.ERR_AccountInBlackListError;
                         reply();
                         return;
+                    }
+
+                    if (request.UnityVersion.Contains("2020"))
+                    {
+                        Console.WriteLine($"{centerAccountInfos[0].Account}  {request.UnityVersion}");
                     }
 
                     List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
