@@ -135,7 +135,7 @@ namespace ET
                         return;
                     }
 
-                    if (request.UnityVersion.Contains("2020"))
+                    if (!string.IsNullOrEmpty(request.UnityVersion) && request.UnityVersion.Contains("2020"))
                     {
                         Console.WriteLine($"{centerAccountInfos[0].Account}  {request.UnityVersion}");
                     }
