@@ -591,9 +591,13 @@ namespace ET
                 }
 
                 float expAdd = (numericComponent.GetAsFloat(NumericType.Now_ExpAdd) - 1f);
-                expAdd = Math.Clamp(expAdd, 0f, 1f);    
+                expAdd = Math.Clamp(expAdd, 0f, 1f);
+
+                float now_GoldAdd_Pro = (numericComponent.GetAsFloat(NumericType.Now_GoldAdd_Pro));
+                now_GoldAdd_Pro = Math.Clamp(now_GoldAdd_Pro, 0f, 1f);
 
                 expcoefficient += expAdd;
+                expcoefficient += now_GoldAdd_Pro;
 
                 if ((sceneType == SceneTypeEnum.LocalDungeon && self.UserInfo.PiLao > 0)
                   || sceneType != SceneTypeEnum.LocalDungeon)
