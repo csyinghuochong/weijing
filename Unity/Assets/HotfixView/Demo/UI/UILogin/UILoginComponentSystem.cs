@@ -67,15 +67,23 @@ namespace ET
 #endif
 
 #if UNITY_ANDROID
-                //            if (bigversion < 18)
-                //{
-                //	string apk_Extension = (platform == 5 || platform == 6) ? "tiktok" : "taptap";
-                //                apk_Extension  = apk_Extension  + ".apk";
-                //    string apk_Url =	"http://verification.weijinggame.com/weijing/apk/weijing_" + apk_Extension;
-                //                Application.OpenURL(apk_Url);	
-                //	return;
-                //}
+				//            if (bigversion < 18)
+				//{
+				//	string apk_Extension = (platform == 5 || platform == 6) ? "tiktok" : "taptap";
+				//                apk_Extension  = apk_Extension  + ".apk";
+				//    string apk_Url =	"http://verification.weijinggame.com/weijing/apk/weijing_" + apk_Extension;
+				//                Application.OpenURL(apk_Url);	
+				//	return;
+				//}
 #endif
+
+				if (!string.IsNullOrEmpty(Application.unityVersion)  && Application.unityVersion.Contains("2020"))
+				{
+#if UNITY_IPHONE || UNITY_IOS
+					Application.OpenURL("https://apps.apple.com/cn/app/id1510177862");
+					return;
+#endif
+                }
 
                 self.InitSdk();
 				
@@ -114,7 +122,7 @@ namespace ET
 
 #if UNITY_ANDROID
                 taptap = bigversion >= 15 && platform == 1;
-#endif 
+#endif
                
                 self.AccountText = rc.Get<GameObject>("AccountText");
 

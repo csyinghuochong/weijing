@@ -422,7 +422,7 @@ namespace ET
 
                 if (componentList.Count == 0)
                 {
-                    Console.WriteLine($"ExecuteBatchSingleComponent==null: {zone} {userid}  {typeof(K).Name}");
+                    //Console.WriteLine($"ExecuteBatchSingleComponent==null: {zone} {userid}  {typeof(K).Name}");
                     Log.Error($"ExecuteBatchSingleComponent==null: {zone} {userid}  {typeof(K).Name}");
                     continue;
                 }
