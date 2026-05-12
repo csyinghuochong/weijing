@@ -59,8 +59,15 @@ namespace ET
 			self.Btn_Type_5 = rc.Get<GameObject>("Btn_Type_5");
 			self.Btn_Type_5.SetActive(true);
 
-			//单选组件
-			GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
+#if UNITY_2022_1_OR_NEWER
+            if (EventHandle.onChannelType() == 23)
+            {
+                self.Btn_Type_5.SetActive(false);
+            }
+#endif
+
+            //单选组件
+            GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
 			UI uiPage = self.AddChild<UI, string, GameObject>("FunctionSetBtn", BtnItemTypeSet);
 			UIPageButtonComponent uIPageViewComponent = uiPage.AddComponent<UIPageButtonComponent>();
 			uIPageViewComponent.SetClickHandler((int page) => {
