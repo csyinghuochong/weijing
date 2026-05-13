@@ -352,14 +352,6 @@ MonoBehaviour:
   data:
   - key: Btn_Close
     gameObject: {fileID: 175330}
-  - key: Btn_SelectTreue
-    gameObject: {fileID: 111212}
-  - key: Btn_SelectFalse
-    gameObject: {fileID: 0}
-  - key: title
-    gameObject: {fileID: 197512}
-  - key: Text
-    gameObject: {fileID: 0}
 --- !u!114 &-5524722706776497301
 MonoBehaviour:
   m_ObjectHideFlags: 0

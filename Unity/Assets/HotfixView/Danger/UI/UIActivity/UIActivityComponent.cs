@@ -62,8 +62,10 @@ namespace ET
 #if UNITY_2022_1_OR_NEWER
             if (EventHandle.onChannelType() == 23)
             {
-                self.Btn_Type_5.SetActive(false);
+                //self.Btn_Type_5.SetActive(false);
             }
+
+
 #endif
 
             //单选组件

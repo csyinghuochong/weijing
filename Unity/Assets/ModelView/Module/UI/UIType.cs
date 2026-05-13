@@ -241,6 +241,7 @@ namespace ET
         public const string UIDemon = "Demon/UIDemon";
 		public const string UIWelfare = "Main/Welfare/UIWelfare";
         public const string UITimerChouKa = "Main/TimerChouKa/UITimerChouKa";
+        public const string UI_Gongshi_1 = "Common/UI_Gongshi_1";
 
 
         public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()

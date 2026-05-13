@@ -7,6 +7,8 @@ namespace ET
     public class UIActivityLoginComponent : Entity, IAwake, IDestroy
     {
         public GameObject ItemNodeList;
+        public GameObject GongShiBtn;
+
         public string AssetPath = string.Empty;
     }
 
@@ -28,12 +30,32 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI().Coroutine(); };
 
+            self.GongShiBtn = rc.Get<GameObject>("GongShiBtn");
+            self.GongShiBtn.SetActive(false);
+
+
+#if UNITY_2022_1_OR_NEWER
+            if (EventHandle.onChannelType() == 23)
+            {
+                self.GongShiBtn.SetActive(true);
+            }
+#endif
+
+            ButtonHelp.AddListenerEx(self.GongShiBtn, self.OnBtn_GongShiBtn);
+
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
         }
     }
 
     public static class UIActivityLoginComponentSystem
     {
+
+        public static void OnBtn_GongShiBtn(this UIActivityLoginComponent self)
+        {
+            UIHelper.Create(self.ZoneScene(), UIType.UI_Gongshi_1).Coroutine();
+        }
+
+
         public static async ETTask OnUpdateUI(this UIActivityLoginComponent self)
         {
             long instanceId = self.InstanceId;

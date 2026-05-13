@@ -5,6 +5,10 @@ namespace ET
 {
     public class UIActivitySingleRechargeComponent: Entity, IAwake, IDestroy
     {
+
+        public GameObject ReceiveBtn;
+        public GameObject GongShiBtn;
+
         public GameObject Text_Tip;
         public GameObject UIActivitySingleRechargeItemListNode;
         public GameObject UIActivitySingleRechargeItem;
@@ -22,7 +26,21 @@ namespace ET
 
             self.UIActivitySingleRechargeItem.SetActive(false);
 
-          
+            self.ReceiveBtn = rc.Get<GameObject>("ReceiveBtn");
+            self.GongShiBtn = rc.Get<GameObject>("GongShiBtn");
+            self.GongShiBtn.SetActive(false);
+
+
+#if UNITY_2022_1_OR_NEWER
+            if (EventHandle.onChannelType() == 23)
+            {
+                self.GongShiBtn.SetActive(true);
+            }
+#endif
+
+            ButtonHelp.AddListenerEx(self.ReceiveBtn, self.OnBtn_ReceiveBtn);
+            ButtonHelp.AddListenerEx(self.GongShiBtn, self.OnBtn_GongShiBtn);
+
             self.GetInfo();
             
             self.OnLanguageUpdate();
@@ -40,6 +58,17 @@ namespace ET
     
     public static class UIActivitySingleRechargeComponentSystem
     {
+
+        public static void OnBtn_ReceiveBtn(this UIActivitySingleRechargeComponent self)
+        {
+            UIHelper.Create( self.ZoneScene(), UIType.UIRecharge ).Coroutine();
+        }
+
+        public static void OnBtn_GongShiBtn(this UIActivitySingleRechargeComponent self)
+        {
+            UIHelper.Create(self.ZoneScene(), UIType.UI_Gongshi_1).Coroutine();
+        }
+
         public static void OnLanguageUpdate(this UIActivitySingleRechargeComponent self)
         {
             self.Text_Tip.GetComponent<Text>().fontSize = GameSettingLanguge.Language == 0? 32 : 26;
