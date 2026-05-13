@@ -2,6 +2,7 @@
 using UnityEngine;
 using cn.sharesdk.unity3d;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace ET 
 {
@@ -110,7 +111,18 @@ namespace ET
             {
                 rc.Get<GameObject>("Btn_Type1").SetActive(false);
             }
-            
+
+
+#if UNITY_2022_1_OR_NEWER
+            if (EventHandle.onChannelType() == 24)
+            {
+                rc.Get<GameObject>("Btn_Type1").SetActive(false);
+                rc.Get<GameObject>("Btn_Type2").SetActive(false);
+                rc.Get<GameObject>("Btn_Type5").SetActive(false);
+            }
+#endif
+
+
             var buttonNames = new[] { "Btn_Type1", "Btn_Type2", "Btn_Type3", "Btn_Type4", "Btn_Type5" };
             for (int i = 0; i < buttonNames.Length; i++)
             {
