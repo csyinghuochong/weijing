@@ -41,6 +41,11 @@ namespace ET
             }
 #endif
 
+            if (GlobalHelp.IsEditorMode)
+            {
+                self.GongShiBtn.SetActive(true);
+            }
+
             ButtonHelp.AddListenerEx(self.GongShiBtn, self.OnBtn_GongShiBtn);
 
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");

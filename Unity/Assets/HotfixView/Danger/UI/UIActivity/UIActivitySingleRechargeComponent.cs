@@ -37,6 +37,11 @@ namespace ET
                 self.GongShiBtn.SetActive(true);
             }
 #endif
+            if (GlobalHelp.IsEditorMode)
+            {
+                self.GongShiBtn.SetActive(true);
+            }
+
 
             ButtonHelp.AddListenerEx(self.ReceiveBtn, self.OnBtn_ReceiveBtn);
             ButtonHelp.AddListenerEx(self.GongShiBtn, self.OnBtn_GongShiBtn);
