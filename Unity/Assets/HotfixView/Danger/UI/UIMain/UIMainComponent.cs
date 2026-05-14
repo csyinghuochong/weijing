@@ -2176,7 +2176,8 @@ namespace ET
 #if UNITY_2022_1_OR_NEWER
                     if (GlobalHelp.GetPlatform() == 100)
                     {
-                        if (EventHandle.onChannelType() == 15)
+                        if (EventHandle.onChannelType() == 15
+                            || EventHandle.onChannelType() == 24)
                         {
                             show = false;
                         }
