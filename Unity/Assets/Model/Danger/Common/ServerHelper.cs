@@ -497,9 +497,9 @@ namespace ET
 
 
                 //2026/05/15 19:00:00 1778842800000 合区 xx - xx xx/xx
-                //2026/05/15 19:00:00 1778842800000 新区 xx 218
+                //2026/05/15 19:00:00 1778842800000 新区 观星台 218
                 //201-210为特殊区服
-                serverItems_1.Add(new ServerItem() { ServerId = 218, ServerIp = $"{ip}:20445", ServerName = "新区新区", ServerOpenTime = 1778842800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+                serverItems_1.Add(new ServerItem() { ServerId = 218, ServerIp = $"{ip}:20445", ServerName = "观星台", ServerOpenTime = 1778842800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
