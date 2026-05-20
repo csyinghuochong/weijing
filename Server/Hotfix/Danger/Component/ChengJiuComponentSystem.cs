@@ -44,13 +44,13 @@ namespace ET
         public static void OnLogin(this ChengJiuComponent self)
         {
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (self.DomainZone() <= 48 && numericComponent.GetAsLong(NumericType.RechargeNumber) < 400 && self.JingLingList.Contains(10003))
+           /* if (self.DomainZone() <= 48 && numericComponent.GetAsLong(NumericType.RechargeNumber) < 400 && self.JingLingList.Contains(10003))
             {
                 Log.Warning($"充值小于400有精灵龟: {self.Id}");
                 self.JingLingList.Remove(10003);
                 self.JingLingId = 0;
                 self.JingLingUnitId = 0;
-            }
+            }*/
 
             self.TriggerEvent(ChengJiuTargetEnum.PlayerLevel_205, 0, self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv);
         }
