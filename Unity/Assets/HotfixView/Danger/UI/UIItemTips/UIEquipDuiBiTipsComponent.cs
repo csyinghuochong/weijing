@@ -85,8 +85,8 @@ namespace ET
             self.UI_1 = ui_1;
             UIEquipTipsComponent UIPetInfoShow_1 = ui_1.AddComponent<UIEquipTipsComponent>();
             UIPetInfoShow_1.Img_back_btn.SetActive(false);
-            UIPetInfoShow_1.InitData(args.bagInfo, args.itemOperateEnum, 0, args.EquipList);
             UICommonHelper.SetParent(ui_1.GameObject, self.Tips1);
+            UIPetInfoShow_1.InitData(args.bagInfo, args.itemOperateEnum, 0, args.EquipList);
         }
 
         public static async ETTask OnUpdateAppraisalUI(this UIEquipDuiBiTipsComponent self, EventType.ShowItemTips args)

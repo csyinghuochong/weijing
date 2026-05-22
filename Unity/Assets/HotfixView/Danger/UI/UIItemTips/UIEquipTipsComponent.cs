@@ -1287,14 +1287,33 @@ namespace ET
             {
                 self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x, DiHight);
             }
+
+            Log.ILog.Debug($"DiHight:  {DiHight}");
+
+            /* if (DiHight > 1150)
+             {
+                 float height = (DiHight - 1098f) * 0.5f;
+                 self.Obj_BtnSet.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, height);
+             }
+             else
+             {
+                 self.Obj_BtnSet.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+             }*/
+
+
             if (DiHight > 1150)
             {
-                float height = (DiHight - 1098f) * 0.5f;
-                self.Obj_BtnSet.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, height);
+                float height = 1098f / DiHight;
+                float scale = Mathf.Max(0.7f, height);
+
+                Log.ILog.Debug($"scale:  {scale}");
+
+                self.GetParent<UI>().GameObject.GetComponent<RectTransform>().localScale = Vector2.one * scale; 
+                //self.Obj_BtnSet.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, height);
             }
             else
             {
-                self.Obj_BtnSet.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                //self.Obj_BtnSet.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             }
 
             //显示装备制造者的名字[名字直接放入baginfo]

@@ -460,6 +460,14 @@ namespace ET
             son.transform.localScale = Vector3.one;
         }
 
+        public static void SetParentNoScale(GameObject son, GameObject parent)
+        {
+            if (son == null || parent == null)
+                return;
+            son.transform.SetParent(parent.transform);
+            son.transform.localPosition = Vector3.zero;
+        }
+
         public static void DestoryChild(GameObject go)
         {
             if (go == null)

@@ -1243,7 +1243,6 @@ namespace ET
                     Log.Warning($"玩家({GMHelp.DebugPlayerList[defendUnit.Id]})对手伤害   技能ID:{skillconfig.Id} 技能:{skillconfig.SkillName}  伤害:{damge}");
                 }
 
-
                 //存储是为万为单位的
                 //damge = (damge / 10000 * 10000);
                 if (damge > 0)
