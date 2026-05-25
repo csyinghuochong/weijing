@@ -328,6 +328,13 @@ namespace ET
             { NumericType.Now_PetAllDefPro, new NumericAttribute(){Name = "宠物防御",Icon = string.Empty}},
             { NumericType.Now_PetAllAdfPro, new NumericAttribute(){Name = "宠物魔防",Icon = string.Empty}},
             { NumericType.Now_PetAllHpPro, new NumericAttribute(){Name = "宠物生命",Icon = string.Empty}},
+
+            { NumericType.Now_ShuActAddPro, new NumericAttribute(){Name = "魔法书附加伤害",Icon = string.Empty}},
+            { NumericType.Now_FaZhangActAddPro, new NumericAttribute(){Name = "法杖附加伤害",Icon = string.Empty}},
+             { NumericType.Now_JianActAddPro, new NumericAttribute(){Name = "剑附加伤害",Icon = string.Empty}},
+              { NumericType.Now_DaoActAddPro, new NumericAttribute(){Name = "刀附加伤害",Icon = string.Empty}},
+              { NumericType.Now_GongActAddPro, new NumericAttribute(){Name = "弓箭附加伤害",Icon = string.Empty}},
+            
         };
 
         public static Dictionary<int, string> ItemTypeName = new Dictionary<int, string>()
@@ -894,11 +901,11 @@ namespace ET
                         int showType = NumericHelp.GetNumericValueType(hideProList.HideID);
                         if (showType == 2)
                         {
-                            attribute = GameSettingLanguge.LoadLocalization("当前附加") + " " + proName + ":" + (hideProList.HideValue / 100f).ToString("0.##") + "%";
+                            attribute = GameSettingLanguge.LoadLocalization("当前附加") + proName + ":" + (hideProList.HideValue / 100f).ToString("0.##") + "%";
                         }
                         else
                         {
-                            attribute = GameSettingLanguge.LoadLocalization("当前附加") + " " + proName + ":" + hideProList.HideValue;
+                            attribute = GameSettingLanguge.LoadLocalization("当前附加") + proName + ":" + hideProList.HideValue;
                         }
 
                         ShowPropertyText(attribute, showColor, Obj_EquipPropertyText, Obj_EquipBaseSetList);
