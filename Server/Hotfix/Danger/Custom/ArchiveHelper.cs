@@ -390,7 +390,7 @@ namespace ET
 
             //    }
             //}
-            Console.WriteLine($"ExecuteBatchAllComponent:  zone: {zone}   number: {saveuserids.Count}");
+            //Console.WriteLine($"ExecuteBatchAllComponent:  zone: {zone}   number: {saveuserids.Count}");
             await ExecuteBatchSingleComponent<ActivityComponent>(zone, saveuserids);
             await ExecuteBatchSingleComponent<BagComponent>(zone, saveuserids);
             await ExecuteBatchSingleComponent<ChengJiuComponent>(zone, saveuserids);

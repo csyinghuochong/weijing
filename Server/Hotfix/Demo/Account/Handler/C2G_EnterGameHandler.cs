@@ -137,7 +137,8 @@ namespace ET
 
                     if (!string.IsNullOrEmpty(request.UnityVersion) && request.UnityVersion.Contains("2020"))
                     {
-                        Console.WriteLine($"{centerAccountInfos[0].Account}  {request.UnityVersion}");
+                        Console.WriteLine($"{centerAccountInfos[0].Account}  {request.UnityVersion}   {request.Platform}");
+                        Log.Error($"{centerAccountInfos[0].Account}  {request.UnityVersion}  {request.Platform}");
                     }
 
                     List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);

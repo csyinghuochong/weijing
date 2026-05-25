@@ -23,7 +23,7 @@ namespace ET
             {
                 result = "1";
             }
-            Console.WriteLine($"C2A_QuDaoCheckUserInforHandler:  {result}");
+            //Console.WriteLine($"C2A_QuDaoCheckUserInforHandler:  {result}");
 
             reply();
             await ETTask.CompletedTask;

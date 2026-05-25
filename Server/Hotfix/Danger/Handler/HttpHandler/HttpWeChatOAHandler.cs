@@ -52,7 +52,7 @@ namespace ET
 
             var request = context.Request;
             var response = context.Response;
-            Console.WriteLine($"HttpWeChatOAHandler 1: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}  {request.HttpMethod} {context.Request.RawUrl}");
+            //Console.WriteLine($"HttpWeChatOAHandler 1: {TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow())}  {request.HttpMethod} {context.Request.RawUrl}");
 
             var query = request.QueryString;
 
@@ -66,7 +66,7 @@ namespace ET
                 string.IsNullOrEmpty(timestamp) ||
                 string.IsNullOrEmpty(nonce))
             {
-                Console.WriteLine("HttpWeChatOAHandler 缺少必要的参数");
+                //Console.WriteLine("HttpWeChatOAHandler 缺少必要的参数");
             }
 
             // 2. 验证签名
@@ -74,11 +74,11 @@ namespace ET
 
             if (!isValid)
             {
-                Console.WriteLine("签名验证失败，可能不是来自微信服务器的请求");
+                //Console.WriteLine("签名验证失败，可能不是来自微信服务器的请求");
             }
             else
             {
-                Console.WriteLine("签名验证成功，是来自微信服务器的合法请求");
+                //Console.WriteLine("签名验证成功，是来自微信服务器的合法请求");
                 // 这里可以添加处理消息的逻辑
             }
 
@@ -91,7 +91,7 @@ namespace ET
                     sPostData = reader.ReadToEnd();
                 }
 
-                Console.WriteLine($"HttpWeChatOAHandler.requestBody:  {sPostData}");
+                //Console.WriteLine($"HttpWeChatOAHandler.requestBody:  {sPostData}");
                 XmlDocument doc = new XmlDocument();
                 doc.XmlResolver = null;
                 XmlNode root;
@@ -111,7 +111,7 @@ namespace ET
                     if (MsgType.Equals("text"))
                     {
                         Content = root["Content"].InnerText;
-                        Console.WriteLine($"HttpWeChatOAHandler.MsgType:  {MsgType}  Content: {Content}");
+                        //Console.WriteLine($"HttpWeChatOAHandler.MsgType:  {MsgType}  Content: {Content}");
 
                          string bindresult = await entity.GetComponent<WeChatOACodeComponent>().BingWeChatOACodeResult(FromUserName, Content);
 
