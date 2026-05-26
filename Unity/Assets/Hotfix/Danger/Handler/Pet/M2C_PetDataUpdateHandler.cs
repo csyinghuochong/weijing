@@ -15,6 +15,11 @@
                     {
                         rolePetInfo.AddPropretyNum += (int.Parse(message.UpdateTypeValue) - rolePetInfo.PetLv) * 5;
                         rolePetInfo.PetLv = int.Parse(message.UpdateTypeValue);
+
+
+                        EventType.PetLevelUdate.Instance.Id = message.PetId;
+                        EventType.PetLevelUdate.Instance.ZoneScene = session.ZoneScene();
+                        EventSystem.Instance.PublishClass(EventType.PetLevelUdate.Instance);
                     }
                     break;
                 case (int)UserDataType.Exp:

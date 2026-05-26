@@ -137,6 +137,17 @@ namespace ET
             self.UpdateShowRoleHuoLi();
         }
 
+        public static void PetLevelUdate(this UIRoleHeadComponent self, long petid)
+        {
+            RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetFightPet();
+            if (rolePetInfo == null || rolePetInfo.Id != petid)
+            {
+                return; 
+            }
+
+            self.Lab_PetLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级") + ":" + rolePetInfo.PetLv;
+        }
+
         public static void OnPetFightSet(this UIRoleHeadComponent self)
         {
             int sceneType = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;

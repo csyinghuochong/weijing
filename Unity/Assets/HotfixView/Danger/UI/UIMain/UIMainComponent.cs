@@ -563,7 +563,18 @@ namespace ET
             FloatTipManager.Instance.ShowFloatTipDi(tip);
         }
     }
-    
+
+    [Event]
+    public class PetLevelUdateEvent : AEventClass<EventType.PetLevelUdate>
+    {
+        protected override void Run(object cls)
+        {
+            EventType.PetLevelUdate args = cls as EventType.PetLevelUdate;
+            UI uimain = UIHelper.GetUI(args.ZoneScene, UIType.UIMain);
+            uimain.GetComponent<UIMainComponent>().UIRoleHead.PetLevelUdate(args.Id);
+        }
+    }
+
     [Event]
     public class GetPetHintEvent: AEventClass<EventType.GetPetHint>
     {

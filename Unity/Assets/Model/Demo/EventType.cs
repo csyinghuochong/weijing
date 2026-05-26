@@ -360,11 +360,18 @@ namespace ET
             public string HintText;
             public int Id;
         }
-        
+
         public class GetPetHint : DisposeObject
         {
             public static readonly GetPetHint Instance = new GetPetHint();
             public int Id;
+        }
+
+        public class PetLevelUdate : DisposeObject
+        {
+            public static readonly PetLevelUdate Instance = new PetLevelUdate();
+            public Scene ZoneScene; 
+            public long Id;
         }
 
         public class CommonPopup : DisposeObject
