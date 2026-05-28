@@ -56,7 +56,7 @@ namespace AlibabaCloud.SDK.Sample
             AlibabaCloud.TeaUtil.Models.RuntimeOptions runtime = new AlibabaCloud.TeaUtil.Models.RuntimeOptions();
             try
             {
-                Console.WriteLine($"Check PhoneNumber: {phoneNum}");
+                //Console.WriteLine($"Check PhoneNumber: {phoneNum}");
 
                 // 复制代码运行请自行打印 API 的返回值
                 var response = client.CheckSmsVerifyCodeWithOptions(checkSmsVerifyCodeRequest, runtime);
