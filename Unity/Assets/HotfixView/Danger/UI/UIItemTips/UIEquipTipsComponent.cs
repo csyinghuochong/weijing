@@ -1303,17 +1303,17 @@ namespace ET
 
             if (DiHight > 1150)
             {
-                float height = 1098f / DiHight;
-                float scale = Mathf.Max(0.7f, height);
+                float rate = 1098f / DiHight;
+                float scale = Mathf.Max(0.7f, rate);
 
                 Log.ILog.Debug($"scale:  {scale}");
 
                 self.GetParent<UI>().GameObject.GetComponent<RectTransform>().localScale = Vector2.one * scale; 
-                //self.Obj_BtnSet.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, height);
+                self.Obj_BtnSet.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 40f);
             }
             else
             {
-                //self.Obj_BtnSet.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                self.Obj_BtnSet.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             }
 
             //显示装备制造者的名字[名字直接放入baginfo]

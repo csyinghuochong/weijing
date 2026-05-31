@@ -454,7 +454,7 @@ namespace ET
            
             if (hour == 0 && self.DomainZone() == 3) //通知中心服
             {
-                Console.WriteLine($"通知中心服:  {hour}");
+                //Console.WriteLine($"通知中心服:  {hour}");
                 long centerid = DBHelper.GetCenterServerId();
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                              (centerid, new A2A_ActivityUpdateRequest() { Hour = hour });
