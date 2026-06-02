@@ -20,6 +20,7 @@ namespace ET
             "_000bGbtVOqK4dtQMLPjSh1ZDyfmbmhQIAbQ",
             "115042653365711142718",   //google
             "19974071056",  //王
+            "6a1e6e6fa47bcdd2dedc6e3b",
         };
 
         public static List<string> TestNewOccAccount = new List<string>()
