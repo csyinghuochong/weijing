@@ -139,7 +139,9 @@ namespace ET
             self.LanguageSet = rc.Get<GameObject>("LanguageSet");
             self.LanguageSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_LanguageSet(0); });
             self.LanguageSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_LanguageSet(1); });
-            self.LanguageSet.gameObject.SetActive(GlobalHelp.GetPlatform() == 7 || GlobalHelp.IsEditorMode);
+            self.LanguageSet.gameObject.SetActive(GlobalHelp.GetPlatform() == 7
+                || GlobalHelp.GetPlatform() == 20001
+                || GlobalHelp.IsEditorMode);
 
             self.JiaYuanSet = rc.Get<GameObject>("JiaYuanSet");
             self.JiaYuanSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_JiaYuanSet(); });

@@ -915,7 +915,25 @@ namespace ET
             self.Lab_ItemName.GetComponent<Text>().text = itemconf.GetItemName();
             self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
 
+#if UNITY_2022_1_OR_NEWER
+            List<int> itemids = new List<int>()
+            {
+                10000101,18000102,10000103,18000104,10000105,10000186,10808107,10008188,
+                18088128,18000121,18808122,18000123,18808124,18000125,18888141,10808142
+            };
+
+            //if (EventHandle.onChannelType() == 23)
+            {
+                if (itemids.Contains(itemconf.Id))
+                {
+                    Text_ItemDes += "\n概率公式:获取对应的道具概率为完全随机。";
+                }
+            }
+#endif
+
+
             self.ItemDes.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization(Text_ItemDes);
+
             //赞助宝箱设置描述为绿色
             //if (itemSubType == 9)
             //{
