@@ -504,7 +504,7 @@ namespace ET
                 //201-210为特殊区服
                 serverItems_1.Add(new ServerItem() { ServerId = 221, ServerIp = $"{ip}:20555", ServerName = "世外桃源", ServerOpenTime = 1780657200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
-
+            
             //google服务器
             if (startConfig.Contains("Google"))
             {
