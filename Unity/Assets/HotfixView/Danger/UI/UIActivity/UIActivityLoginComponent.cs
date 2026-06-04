@@ -41,7 +41,7 @@ namespace ET
             }
 #endif
 
-            self.GongShiBtn.SetActive(true);
+            //self.GongShiBtn.SetActive(true);
 
             ButtonHelp.AddListenerEx(self.GongShiBtn, self.OnBtn_GongShiBtn);
 

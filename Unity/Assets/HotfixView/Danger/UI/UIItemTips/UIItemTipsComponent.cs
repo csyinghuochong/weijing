@@ -922,7 +922,7 @@ namespace ET
                 18088128,18000121,18808122,18000123,18808124,18000125,18888141,10808142
             };
 
-            //if (EventHandle.onChannelType() == 23)
+            if (EventHandle.onChannelType() == 23)
             {
                 if (itemids.Contains(itemconf.Id))
                 {
