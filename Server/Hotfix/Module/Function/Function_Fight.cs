@@ -1100,6 +1100,16 @@ namespace ET
                     }
                 }
 
+
+                if (skillconfig.SkillActType == 1)
+                {
+                    float skilladdPro = numericComponentAttack.GetAsFloat(NumericType.Now_SkillMoreDamgePro);
+                    if (skilladdPro >= 0 && skilladdPro <= 1f)
+                    {
+                        damgePro += skilladdPro;
+                    }
+                }
+
                 //pk相关
                 if (playerPKStatus)
                 {

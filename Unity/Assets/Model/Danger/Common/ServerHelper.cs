@@ -498,10 +498,13 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 219, ServerIp = $"{ip}:20495", ServerName = "星月同辉", ServerOpenTime = 1779426000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
 
 
+                
+                serverItems_1.Add(new ServerItem() { ServerId = 220, ServerIp = $"{ip}:20525", ServerName = "九天揽星", ServerOpenTime = 1780052400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+
                 //2026/05/29 19:00:00 1780052400000 合区 xx - xx xx/xx
                 //2026/05/29 19:00:00 1780052400000 新区 九天揽星 220
                 //201-210为特殊区服
-                serverItems_1.Add(new ServerItem() { ServerId = 220, ServerIp = $"{ip}:20525", ServerName = "九天揽星", ServerOpenTime = 1780052400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+
             }
 
             //google服务器
