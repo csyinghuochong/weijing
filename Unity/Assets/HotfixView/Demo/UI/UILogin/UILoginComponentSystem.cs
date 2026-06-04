@@ -83,6 +83,8 @@ namespace ET
 					Application.OpenURL("https://apps.apple.com/cn/app/id1510177862");
 					return;
 #endif
+
+					PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "系统提示", "请尽快去对应平台下载最新安装包", null).Coroutine();
                 }
 
                 self.InitSdk();
