@@ -197,5 +197,10 @@ namespace ET
         public int Robot;   //1机器人  0真实玩家
 
         public int DownloadType;
+
+
+        //抽到碎片就重置
+        public int NoSuiPianChouKaTimes = 0;
+        public int NoSuiPianPetChouKaTimes = 0;
     }
 }

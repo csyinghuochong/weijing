@@ -95,6 +95,36 @@ namespace ET
             {
                 DropHelper.DropIDToDropItem_2(dropId, rewardItems);
             }
+
+
+            bool havesuipian = false;
+            for (int i = 0; i < rewardItems.Count; i++)
+            {
+                int itemid = rewardItems[i].ItemID;
+                if (itemid == 10000136)
+                {
+                    havesuipian = true;
+                    break;
+                }
+            }
+
+            if (havesuipian)
+            {
+                unit.GetComponent<DataCollationComponent>().NoSuiPianPetChouKaTimes = 0;
+            }
+            else
+            {
+                unit.GetComponent<DataCollationComponent>().NoSuiPianPetChouKaTimes += request.ChouKaType;
+                int curTimes = unit.GetComponent<DataCollationComponent>().NoSuiPianPetChouKaTimes;
+
+                if (curTimes >= 150)
+                {
+                    unit.GetComponent<DataCollationComponent>().NoSuiPianPetChouKaTimes = 0;
+                    rewardItems.RemoveAt(0);
+
+                    rewardItems.Add(new RewardItem() { ItemID = 10000136, ItemNum = 1 });
+                }
+            }
             unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetExplore}_{TimeHelper.ServerNow()}_{exploreLuck}");
             response.ReardList = rewardItems;
             reply();

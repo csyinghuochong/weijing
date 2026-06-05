@@ -35,8 +35,6 @@ namespace ET
             }
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-
-
             //钻石抽卡券
             bool mianfei = false;
             int needZuanshi = 0;
@@ -86,8 +84,40 @@ namespace ET
             }
             
             LogHelper.LogWarning($"抽卡： {unit.Id} {droplist.Count}", true);
-            
+
             // 判断背包是否能装下，不能的话剩下的放抽卡仓库
+
+            bool havesuipian = false;
+            for (int i = 0; i < droplist.Count; i++)
+            {
+                int itemid = droplist[i].ItemID;    
+                if (itemid == 10000136 || itemid == 10000151)
+                {
+                    havesuipian = true;
+                    break;
+                }
+            }
+
+            if (havesuipian)
+            {
+                unit.GetComponent<DataCollationComponent>().NoSuiPianChouKaTimes = 0;
+            }
+            else
+            {
+                unit.GetComponent<DataCollationComponent>().NoSuiPianChouKaTimes += request.ChouKaType;
+                int curTimes = unit.GetComponent<DataCollationComponent>().NoSuiPianChouKaTimes;
+
+                if (curTimes >= 150)
+                {
+                    unit.GetComponent<DataCollationComponent>().NoSuiPianChouKaTimes = 0;
+                    int getid = RandomHelper.RandFloat01() < 0.5f ? 10000136 : 10000151;
+                    droplist.RemoveAt(0);
+
+                    droplist.Add(new RewardItem() { ItemID = getid, ItemNum = 1 });
+                }
+            }
+
+
             int bagLeftSpace = bagComponent.GetBagLeftCell();
             bool addItemError = false; 
             if (bagLeftSpace < droplist.Count)
@@ -153,6 +183,8 @@ namespace ET
             {
                 unit.GetComponent<ChengJiuComponent>().OnChouKaTen();
             }
+
+
             unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskTargetType.ChouKa_1016, 0, request.ChouKaType);
             unit.GetComponent<DataCollationComponent>().OnChouKa(request.ChouKaType);
             response.RewardList = droplist;
