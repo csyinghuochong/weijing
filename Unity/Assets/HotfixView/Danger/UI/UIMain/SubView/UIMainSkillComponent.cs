@@ -16,6 +16,7 @@ namespace ET
         public GameObject Transforms;
         public GameObject Normal;
         public GameObject Btn_NpcDuiHua;
+        public GameObject Btn_GuaJi;
         public GameObject Btn_JingLing;
         public GameObject Button_ZhuaPu;
         public GameObject Btn_ShiQu;
@@ -77,6 +78,10 @@ namespace ET
             self.Btn_CancleSkill = rc.Get<GameObject>("Btn_CancleSkill");
             self.UI_MainRose_attack = rc.Get<GameObject>("UI_MainRose_attack");
           
+            self.Btn_GuaJi  = rc.Get<GameObject>("Btn_GuaJi");
+
+            self.Btn_GuaJi.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonGuaJi(); });
+
             self.Btn_Target = rc.Get<GameObject>("Btn_Target");
             self.Btn_Target.GetComponent<Button>().onClick.AddListener(() => { self.OnLockTargetUnit(); });
 
@@ -734,6 +739,9 @@ namespace ET
                 self.UISkillGirdList[i].ResetSkillSecond();
             }
             self.UISkillJueXing.RemoveSkillInfoShow();
+
+            int userLv  = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            self.Btn_GuaJi.SetActive(sceneType == SceneTypeEnum.LocalDungeon && userLv>= 15);
         }
 
         public static void ResetUI(this UIMainSkillComponent self)
@@ -746,6 +754,44 @@ namespace ET
                 uISkillGridComponent.UseSkill = false;
             }
             self.UIFangunComponet.OnUpdate(0);
+        }
+
+        public static void OnButtonGuaJi(this UIMainSkillComponent self)
+        {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前地图不能挂机!"));
+                return;
+            }
+
+            //判断是否有体力,没体力不能挂机,减少服务器开销
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0)
+            {
+                if (self.ZoneScene().GetComponent<UnitGuaJiComponen>() != null)
+                {
+                    //移除挂机组件
+                    self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
+                }
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("体力已经消耗完毕,请确保体力充足喔!"));
+                return;
+            };
+
+
+
+            //添加挂机组件
+            if (self.ZoneScene().GetComponent<UnitGuaJiComponen>() == null)
+            {
+                self.ZoneScene().AddComponent<UnitGuaJiComponen>();
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("开始挂机!"));
+            }
+            else
+            {
+                //移除挂机组件
+                self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("取消挂机!"));
+            }
         }
 
         public static void OnLockTargetUnit(this UIMainSkillComponent self)

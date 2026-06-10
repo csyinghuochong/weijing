@@ -24621,6 +24621,8 @@ MonoBehaviour:
     gameObject: {fileID: 1870568266242666793}
   - key: Normal
     gameObject: {fileID: 8697209410111610523}
+  - key: Btn_GuaJi
+    gameObject: {fileID: 2990358887583479094}
 --- !u!1 &3055922816209195441
 GameObject:
   m_ObjectHideFlags: 0
