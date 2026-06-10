@@ -7,6 +7,8 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_FindNearMonsterRequest request, M2C_FindNearMonsterResponse response, Action reply)
         {
+            unit.GetComponent<DataCollationComponent>().IsUseGuaJi = 1;
+
             Unit listUnit = AIHelp.GetNearestEnemy(unit,  50f, true);
             if (listUnit !=null)
             {

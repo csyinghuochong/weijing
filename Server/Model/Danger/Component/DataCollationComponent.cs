@@ -198,6 +198,16 @@ namespace ET
 
         public int DownloadType;
 
+        
+        public int LastLoginDate = 0;
+
+        //累计登录天数
+        public int TotalLoginDayNumber = 0;
+
+
+        //是否使用过挂机
+        public int IsUseGuaJi = 0; //
+
 
         //抽到碎片就重置
         public int NoSuiPianChouKaTimes = 0;

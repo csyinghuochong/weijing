@@ -441,6 +441,16 @@ namespace ET
 
             self.LastSealTowerId = numericComponent.GetAsInt( NumericType.TowerOfSealArrived);
 
+
+            long serverTime = TimeHelper.ServerNow();
+            int lastDate = ComHelp.GetDayByTime(serverTime);
+            if (lastDate!=self.LastLoginDate)
+            {
+
+                self.LastLoginDate = lastDate;
+                self.TotalLoginDayNumber++;
+            }
+
             self.UpdateData();
         }
     }
