@@ -149,6 +149,12 @@ namespace ET
 
         // IP查询API地址（以ip-api为例）
         private string ipApiUrl = "http://ip-api.com/json/?fields=country,countryCode";
+        
+        //com.example.weijinggame.x7sy
+        //AppKey
+        //8e4a4fc224dc249ff012e2623f670b83
+		//小7RSA公钥
+        //MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+I0ZD9muTrBuLlCcfmUzuHTsAlg5PvJJBk5T8KMoC5oCbsjP6332xlX3gbdgJ38oY2k+ZsUrbaDqTobPSCDfH79IdGzCbSla2o9UYVdK3iL7M8970BOK9XW1IDHXF+EDEiYjvwq1CN9dgF7vmANOBI3XlIrtDvtHgzQF2FPQ2FwIDAQAB
 
         [HideInInspector]
         public int Platform = 0;
