@@ -205,8 +205,7 @@ namespace ET
         {
             string createName = self.InputCreateRoleName.GetComponent<InputField>().text;
 
-            self.LastCrateRoleTime = Time.time; 
-
+           
             if (createName.Contains("*") 
                 || !StringHelper.IsSpecialChar(createName))
             {
@@ -225,6 +224,9 @@ namespace ET
             {
                 return;
             }
+            self.LastCrateRoleTime = Time.time;
+
+
             int TodayCreateRole = self.ZoneScene().GetComponent<AccountInfoComponent>().TodayCreateRole;
 
             if (TodayCreateRole < 5 || GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account))
