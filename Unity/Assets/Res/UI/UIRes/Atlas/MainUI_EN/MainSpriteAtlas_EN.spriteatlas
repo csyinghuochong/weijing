@@ -90,6 +90,7 @@ SpriteAtlas:
     - 3679c5fea2abcd640a24d6fb6b404b7f: 21300000
     - 56420a2f904cdde48a8afcbe24f215e1: 21300000
     - 9c2c7bdf20432d748bc8fef0570999d6: 21300000
+    - 3a2bfcffbd0340a4896359cee05f7e47: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 3c61c810c17e7414892d6fa14aa4b4e3, type: 3}
@@ -145,6 +146,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3679c5fea2abcd640a24d6fb6b404b7f, type: 3}
   - {fileID: 21300000, guid: 56420a2f904cdde48a8afcbe24f215e1, type: 3}
   - {fileID: 21300000, guid: 9c2c7bdf20432d748bc8fef0570999d6, type: 3}
+  - {fileID: 21300000, guid: 3a2bfcffbd0340a4896359cee05f7e47, type: 3}
   m_PackedSpriteNamesToIndex:
   - c6_EN
   - Btn_4_EN
@@ -199,6 +201,7 @@ SpriteAtlas:
   - Btn_130_EN
   - Btn_104_EN
   - c1_EN
+  - Btn_144_EN
   m_RenderDataMap: {}
   m_Tag: MainSpriteAtlas_EN
   m_IsVariant: 0
