@@ -791,6 +791,9 @@ namespace ET
                 //移除挂机组件
                 self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("取消挂机!"));
+
+                UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                uimain.GetComponent<UIMainComponent>().UGuaJiSet.SetActive(false);
             }
         }
 
