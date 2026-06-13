@@ -88,11 +88,12 @@ namespace ET
         [SerializeField]
         public bool OueNetMode;
         [SerializeField]
-        public int BigVersion = 24;
+        public int BigVersion = 27;
         //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id
-        //22客户端寻路 23渠道包/Google     24tapv4登陆(待定) unity20220362+osdkdatalink 25网络状态检测+tap付费在线sdk 26NavMeshAI
+        //22客户端寻路 23渠道包/Google     24tapv4登陆(待定) unity20220362+osdkdatalink 25网络状态检测+tap付费在线sdk
+        //26NavMeshAI  27小七
         [SerializeField]
-        public int BigVersionIOS = 24;
+        public int BigVersionIOS = 27;
         //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id Apple登陆
         //22客户端寻路 23渠道包/Google 24ios评分  25网络状态检测  26NavMeshAI
         [SerializeField]
@@ -155,6 +156,23 @@ namespace ET
         //8e4a4fc224dc249ff012e2623f670b83
 		//小7RSA公钥
         //MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+I0ZD9muTrBuLlCcfmUzuHTsAlg5PvJJBk5T8KMoC5oCbsjP6332xlX3gbdgJ38oY2k+ZsUrbaDqTobPSCDfH79IdGzCbSla2o9UYVdK3iL7M8970BOK9XW1IDHXF+EDEiYjvwq1CN9dgF7vmANOBI3XlIrtDvtHgzQF2FPQ2FwIDAQAB
+        private const string X7AppKey = "8e4a4fc224dc249ff012e2623f670b83";
+        public const int X7ChannelType = 10001;
+
+        public bool X7Initialized;
+        public Action OnX7InitSuccessHandler;
+        public Action<string> OnX7InitFailHandler;
+        public Action<string> OnX7LoginSuccessHandler;
+        public Action<string> OnX7LoginFailHandler;
+        public Action OnX7LoginCancelHandler;
+        public Action OnX7LogoutSuccessHandler;
+        public Action<string> OnX7LogoutFailHandler;
+        public Action<string> OnX7PaySuccessHandler;
+        public Action<string> OnX7PayFailHandler;
+        public Action<string> OnX7PayCancelHandler;
+        public Action OnX7ExitSuccessHandler;
+        public Action<string> OnX7ExitFailHandler;
+        public Action OnX7SwitchAccountHandler;
 
         [HideInInspector]
         public int Platform = 0;
@@ -258,6 +276,10 @@ namespace ET
             Log.ILog.Debug("unity111  TikTokGuanFu8=true");
             this.Platform = 8;
             this.Apk_Extension = "tiktokguanfu";
+#elif XiaoQi9
+            Log.ILog.Debug("unity111  XiaoQi9=true");
+            this.Platform = 9;
+            this.Apk_Extension = "xiaoqi";
 #elif QuDao
 			Log.ILog.Debug("unity111  QuDaoMuBao=true");
 			this.Platform = 100;
@@ -427,15 +449,172 @@ namespace ET
 #endif
             }
 
-			//渠道包
-			if (this.Platform == 100)
+			//小7手游
+			if (this.Platform == 9)
 			{
-                Log.ILog.Debug($"QuickSdkInit::{this.Platform}");
+                Log.ILog.Debug($"X7Init::{this.Platform}");
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-                jo.Call("QuickSdkInit", "QuickSdkInit");
+                jo.Call("X7Init");
 #endif
             }
+        }
+
+        public void X7Init()
+        {
+            if (this.Platform != 9)
+            {
+                return;
+            }
+#if UNITY_ANDROID && !UNITY_EDITOR
+            jo.Call("X7Init");
+#endif
+        }
+
+        public void X7Login()
+        {
+            if (this.Platform != 9)
+            {
+                return;
+            }
+#if UNITY_ANDROID && !UNITY_EDITOR
+            jo.Call("X7Login");
+#endif
+        }
+
+        public void X7Logout()
+        {
+            if (this.Platform != 9)
+            {
+                return;
+            }
+#if UNITY_ANDROID && !UNITY_EDITOR
+            jo.Call("X7Logout");
+#endif
+        }
+
+        public void X7Pay(string payJson)
+        {
+            if (this.Platform != 9)
+            {
+                return;
+            }
+#if UNITY_ANDROID && !UNITY_EDITOR
+            jo.Call("X7Pay", payJson);
+#endif
+        }
+
+        public void X7ReportRole(string roleJson)
+        {
+            if (this.Platform != 9)
+            {
+                return;
+            }
+#if UNITY_ANDROID && !UNITY_EDITOR
+            jo.Call("X7ReportRole", roleJson);
+#endif
+        }
+
+        public void X7Exit()
+        {
+            if (this.Platform != 9)
+            {
+                return;
+            }
+#if UNITY_ANDROID && !UNITY_EDITOR
+            jo.Call("X7Exit");
+#endif
+        }
+
+        public void OnX7InitResult(string result)
+        {
+            Log.ILog.Debug($"OnX7InitResult: {result}");
+            if (result == "success")
+            {
+                this.X7Initialized = true;
+                this.OnX7InitSuccessHandler?.Invoke();
+                return;
+            }
+            string msg = result.StartsWith("fail:") ? result.Substring(5) : result;
+            this.OnX7InitFailHandler?.Invoke(msg);
+        }
+
+        public void OnX7LoginResult(string result)
+        {
+            Log.ILog.Debug($"OnX7LoginResult: {result}");
+            if (result.StartsWith("success:"))
+            {
+                string token = result.Substring(8);
+                this.OnX7LoginSuccessHandler?.Invoke(token);
+                return;
+            }
+            if (result == "cancel")
+            {
+                this.OnX7LoginCancelHandler?.Invoke();
+                return;
+            }
+            string msg = result.StartsWith("fail:") ? result.Substring(5) : result;
+            this.OnX7LoginFailHandler?.Invoke(msg);
+        }
+
+        public void OnX7LogoutResult(string result)
+        {
+            Log.ILog.Debug($"OnX7LogoutResult: {result}");
+            if (result == "success")
+            {
+                this.OnX7LogoutSuccessHandler?.Invoke();
+                return;
+            }
+            if (result == "cancel")
+            {
+                return;
+            }
+            string msg = result.StartsWith("fail:") ? result.Substring(5) : result;
+            this.OnX7LogoutFailHandler?.Invoke(msg);
+        }
+
+        public void OnX7PayResult(string result)
+        {
+            Log.ILog.Debug($"OnX7PayResult: {result}");
+            if (result.StartsWith("success:"))
+            {
+                this.OnX7PaySuccessHandler?.Invoke(result.Substring(8));
+                return;
+            }
+            if (result.StartsWith("cancel:"))
+            {
+                this.OnX7PayCancelHandler?.Invoke(result.Substring(7));
+                return;
+            }
+            string msg = result.StartsWith("fail:") ? result.Substring(5) : result;
+            this.OnX7PayFailHandler?.Invoke(msg);
+        }
+
+        public void OnX7ReportRoleResult(string result)
+        {
+            Log.ILog.Debug($"OnX7ReportRoleResult: {result}");
+        }
+
+        public void OnX7ExitResult(string result)
+        {
+            Log.ILog.Debug($"OnX7ExitResult: {result}");
+            if (result == "success")
+            {
+                this.OnX7ExitSuccessHandler?.Invoke();
+                return;
+            }
+            if (result == "cancel")
+            {
+                return;
+            }
+            string msg = result.StartsWith("fail:") ? result.Substring(5) : result;
+            this.OnX7ExitFailHandler?.Invoke(msg);
+        }
+
+        public void OnX7SwitchAccountResult(string result)
+        {
+            Log.ILog.Debug($"OnX7SwitchAccountResult: {result}");
+            this.OnX7SwitchAccountHandler?.Invoke();
         }
 
         public void TikTokLogin()
@@ -745,6 +924,11 @@ namespace ET
 
 		private void OnVivoExit()
 		{
+            if (this.Platform == 9)
+            {
+                this.X7Exit();
+                return;
+            }
             EventHandle eventHandle = this.GetComponent<EventHandle>();
 			eventHandle.OnVivoExit();
         }
