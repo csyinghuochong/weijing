@@ -25,6 +25,7 @@ android {
         }
         versionCode **VERSIONCODE**
         versionName '**VERSIONNAME**'
+        multiDexEnabled true
     }
 
     aaptOptions {
@@ -74,7 +75,6 @@ MobSDK {
       }
 
    
-
 
     ShareSDK {
         //第三方平台配置
@@ -164,9 +164,5 @@ MobSDK {
             }
 
         }
-    }
-
-    permissions {
-        exclude "android.permission.QUERY_ALL_PACKAGES", "android.permission.READ_PHONE_STATE"
     }
 }
