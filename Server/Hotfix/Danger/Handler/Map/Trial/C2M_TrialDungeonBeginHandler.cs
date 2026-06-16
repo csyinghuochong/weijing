@@ -22,6 +22,11 @@ namespace ET
                 domainScene.GetComponent<UnitComponent>().Remove(monsterList[i].Id);
             }
             await TimerComponent.Instance.WaitAsync(1000);
+            if (trialDungeonComponent.IsDisposed)
+            {
+                return;
+            }
+
             trialDungeonComponent.GenerateFuben(domainScene.GetComponent<MapComponent>().SonSceneId);
             reply();
             await ETTask.CompletedTask;
