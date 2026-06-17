@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1397,8 +1397,8 @@ MonoBehaviour:
   Development: 1
   EditorMode: 1
   OueNetMode: 1
-  BigVersion: 26
-  BigVersionIOS: 26
+  BigVersion: 27
+  BigVersionIOS: 27
   CodeMode: 4
   VersionMode: 1
   Updater: {fileID: 2018631435}
@@ -1410,6 +1410,7 @@ MonoBehaviour:
   javaClassStr: com.example.alinewsdk.AliSDKActivity
   javaActiveStr: currentActivity
   webClientId: 180577064002-q7g1bs089la31rq92kdmkasrmdjt7q9c.apps.googleusercontent.com
+  X7Initialized: 0
   Platform: 0
   HotUpdateComplete: 0
   Apk_Extension: 
