@@ -479,6 +479,8 @@ namespace ET
 		//登录
         public void X7Login()
         {
+            Log.ILog.Debug($"X7Login::{this.Platform}");
+
             if (this.Platform != 9)
             {
                 return;
@@ -498,6 +500,8 @@ namespace ET
         //登出
         public void X7Logout()
         {
+            Log.ILog.Debug($"X7Logout::{this.Platform}");
+
             if (this.Platform != 9)
             {
                 return;
@@ -510,6 +514,8 @@ namespace ET
 		//退出游戏
         public void X7Exit()
         {
+            Log.ILog.Debug($"X7Exit::{this.Platform}");
+
             if (this.Platform != 9)
             {
                 return;
@@ -522,6 +528,8 @@ namespace ET
 		//支付
         public void X7Pay(string payJson)
         {
+            Log.ILog.Debug($"X7Pay::{this.Platform}");
+
             if (this.Platform != 9)
             {
                 return;
@@ -534,6 +542,8 @@ namespace ET
 		//角色信息上报
         public void X7ReportRole(string roleJson)
         {
+            Log.ILog.Debug($"X7ReportRole::{this.Platform}");
+
             if (this.Platform != 9)
             {
                 return;
