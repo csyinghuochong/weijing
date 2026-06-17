@@ -1020,6 +1020,13 @@ namespace ET
             public string Account;
         }
 
+        public class XiaoQiSignIn : DisposeObject
+        {
+            public static readonly XiaoQiSignIn Instance = new XiaoQiSignIn();
+            public Action<string> AccesstokenHandler;
+            public Scene ZoneScene;
+            public string Account;
+        }
 
         //bigversion >= 24才可以获取
         public class GetSysRegionInfo : DisposeObject

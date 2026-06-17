@@ -26,6 +26,8 @@ using Douyin.Game;
 using System.Threading.Tasks;
 using UnityEngine.Android;
 using UnityEngine.Networking;
+using ZXing.Aztec.Internal;
+
 
 
 #if UNITY_IPHONE && !UNITY_EDITOR
@@ -95,7 +97,7 @@ namespace ET
         [SerializeField]
         public int BigVersionIOS = 27;
         //17部分包含抖音sdk能力 18(模拟器检测) 19 3D视角  20 Tap实名  21tap设备Id Apple登陆
-        //22客户端寻路 23渠道包/Google 24ios评分  25网络状态检测  26NavMeshAI
+        //22客户端寻路 23渠道包/Google 24ios评分  25网络状态检测  26NavMeshAI 27小七
         [SerializeField]
         public CodeMode CodeMode = CodeMode.Mono;
         [SerializeField]
@@ -420,7 +422,7 @@ namespace ET
 #endif
         }
 
-        public void TikTokInit()
+        public void ThirdSdkInit()
         {
 
 			Debug.Log("Init.TikTokInit");
@@ -460,6 +462,8 @@ namespace ET
             }
         }
 
+
+		//初始化
         public void X7Init()
         {
             if (this.Platform != 9)
@@ -471,17 +475,27 @@ namespace ET
 #endif
         }
 
+
+		//登录
         public void X7Login()
         {
             if (this.Platform != 9)
             {
                 return;
             }
+
+#if UNITY_EDITOR
+            this.OnX7LoginSuccessHandler?.Invoke("xiaoqi_random1234568");
+            return;
+#endif
+
 #if UNITY_ANDROID && !UNITY_EDITOR
             jo.Call("X7Login");
 #endif
         }
 
+
+        //登出
         public void X7Logout()
         {
             if (this.Platform != 9)
@@ -493,6 +507,19 @@ namespace ET
 #endif
         }
 
+		//退出游戏
+        public void X7Exit()
+        {
+            if (this.Platform != 9)
+            {
+                return;
+            }
+#if UNITY_ANDROID && !UNITY_EDITOR
+            jo.Call("X7Exit");
+#endif
+        }
+
+		//支付
         public void X7Pay(string payJson)
         {
             if (this.Platform != 9)
@@ -504,6 +531,7 @@ namespace ET
 #endif
         }
 
+		//角色信息上报
         public void X7ReportRole(string roleJson)
         {
             if (this.Platform != 9)
@@ -515,16 +543,7 @@ namespace ET
 #endif
         }
 
-        public void X7Exit()
-        {
-            if (this.Platform != 9)
-            {
-                return;
-            }
-#if UNITY_ANDROID && !UNITY_EDITOR
-            jo.Call("X7Exit");
-#endif
-        }
+
 
         public void OnX7InitResult(string result)
         {

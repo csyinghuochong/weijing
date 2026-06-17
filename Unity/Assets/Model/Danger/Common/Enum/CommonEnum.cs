@@ -213,6 +213,7 @@ namespace ET
         public const int QuDao = 8;
         public const int Google = 9;
         public const int TikTokGuanFu = 10;
+        public const int XiaoQi = 11;
     }
 
     public static class PayTypeEnum

@@ -624,11 +624,25 @@ namespace ET
                 self.HideNode.SetActive(true);
             }
 
+            if (GlobalHelp.GetBigVersion() >= 27 && GlobalHelp.GetPlatform() == 9)
+            {
+                self.LoginType = LoginTypeEnum.XiaoQi.ToString();
 
-            Log.ILog.Debug($"InitLoginType: {lastloginType} { self.LoginType}  {GlobalHelp.GetBigVersion()}  {GlobalHelp.GetPlatform()}");
+                self.ThirdLoginBg.SetActive(false);
+                self.ZhuCe.SetActive(false);
+                self.YiJianDengLu.SetActive(false);
+                self.Account.SetActive(false);
+                self.Password.SetActive(false);
+                self.HideNode.SetActive(true);
+            }
+
 			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 			self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
-			self.ServerBtn.SetActive( GMHelp.GmAccount.Contains(self.Account.GetComponent<InputField>().text) );
+
+            Log.ILog.Debug($"InitLoginType, lastloginType:  {lastloginType} self.LoginType :{self.LoginType}  ");
+            Log.ILog.Debug($"InitLoginType, Account:  {self.Account.GetComponent<InputField>().text} Password :{self.Password.GetComponent<InputField>().text}  ");
+
+            self.ServerBtn.SetActive( GMHelp.GmAccount.Contains(self.Account.GetComponent<InputField>().text) );
         }
 
         //public const int RegisterLogin = 0;     //注册账号登录
@@ -729,6 +743,12 @@ namespace ET
                     EventType.GoogleSignIn.Instance.ZoneScene = self.ZoneScene();
                     EventType.GoogleSignIn.Instance.AccesstokenHandler = (string text) => { self.OnRecvGoogleSignIn(text); };
                     EventSystem.Instance.PublishClass(EventType.GoogleSignIn.Instance);
+                    break;
+				case LoginTypeEnum.XiaoQi:
+                    self.ThirdLoginBg.SetActive(false);
+                    EventType.XiaoQiSignIn.Instance.ZoneScene = self.ZoneScene();
+                    EventType.XiaoQiSignIn.Instance.AccesstokenHandler = (string text) => { self.OnX7LoginSuccessHandler(text); };
+                    EventSystem.Instance.PublishClass(EventType.XiaoQiSignIn.Instance);
                     break;
                 case LoginTypeEnum.PhoneCodeLogin:
 					if (string.IsNullOrEmpty(lastAccount))
@@ -1047,6 +1067,29 @@ namespace ET
             self.Account.SetActive(false);
             self.Password.SetActive(false);
             self.HideNode.SetActive(true);
+        }
+
+		public static void OnX7LoginSuccessHandler(this UILoginComponent self, string appuserinfo)
+		{
+			Log.ILog.Debug($"OnX7LoginSuccessHandler, {appuserinfo}");
+
+            if (string.IsNullOrEmpty(appuserinfo))
+            {
+                FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败， 请选择其他登陆方式！");
+                return;
+            }
+
+            self.LoginType = LoginTypeEnum.XiaoQi.ToString();
+            self.Account.GetComponent<InputField>().text = appuserinfo;
+            self.Password.GetComponent<InputField>().text = self.LoginType;
+            self.ZhuCe.SetActive(false);
+            self.YiJianDengLu.SetActive(false);
+            self.ThirdLoginBg.SetActive(false);
+            self.Account.SetActive(false);
+            self.Password.SetActive(false);
+            self.HideNode.SetActive(true);
+            self.AccountInfoComponent.Age_Type = 100;
+            Log.ILog.Debug($"OnX7LoginSuccessHandler:  {appuserinfo}  {self.LoginType}");
         }
 
         public static void OnRecvGoogleSignIn(this UILoginComponent self, string appuserinfo)
