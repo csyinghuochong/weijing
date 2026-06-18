@@ -52,7 +52,7 @@ namespace ET
 
                 Log.ILog.Debug($"bigversion == {bigversion}   appversionx: {Application.version}");
 #if UNITY_IPHONE || UNITY_IOS
-				if (bigversion == 26 && Application.version == "2.6.8")
+				if (bigversion == 26 && Application.version == "2.7.0")
                 {
                     self.IOSReview = true;
                 }

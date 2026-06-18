@@ -28,62 +28,63 @@ namespace Google.Impl {
     }
 
     public override void Dispose() {
-      GoogleSignInImpl.GoogleSignIn_DisposeFuture(SelfPtr());
+     /// GoogleSignInImpl.GoogleSignIn_DisposeFuture(SelfPtr());
       base.Dispose();
     }
 
     public bool Pending {
       get {
-        return GoogleSignInImpl.GoogleSignIn_Pending(SelfPtr());
+                return false;// GoogleSignInImpl.GoogleSignIn_Pending(SelfPtr());
       }
     }
 
     public GoogleSignInUser Result {
       get {
-        IntPtr ptr = GoogleSignInImpl.GoogleSignIn_Result(SelfPtr());
-        if (ptr != IntPtr.Zero) {
-          GoogleSignInUser user = new GoogleSignInUser();
-          HandleRef userPtr = new HandleRef(user, ptr);
+                //IntPtr ptr = GoogleSignInImpl.GoogleSignIn_Result(SelfPtr());
+                //if (ptr != IntPtr.Zero) {
+                //  GoogleSignInUser user = new GoogleSignInUser();
+                //  HandleRef userPtr = new HandleRef(user, ptr);
 
-          user.DisplayName = OutParamsToString((out_string, out_size) =>
-                  GoogleSignInImpl.GoogleSignIn_GetDisplayName(userPtr,
-                                                               out_string,
-                                                               out_size));
-          user.Email = OutParamsToString((out_string, out_size) =>
-              GoogleSignInImpl.GoogleSignIn_GetEmail(userPtr, out_string,
-                                                     out_size));
+                //  user.DisplayName = OutParamsToString((out_string, out_size) =>
+                //          GoogleSignInImpl.GoogleSignIn_GetDisplayName(userPtr,
+                //                                                       out_string,
+                //                                                       out_size));
+                //  user.Email = OutParamsToString((out_string, out_size) =>
+                //      GoogleSignInImpl.GoogleSignIn_GetEmail(userPtr, out_string,
+                //                                             out_size));
 
-          user.FamilyName = OutParamsToString((out_string, out_size) =>
-              GoogleSignInImpl.GoogleSignIn_GetFamilyName(userPtr, out_string,
-                                                          out_size));
+                //  user.FamilyName = OutParamsToString((out_string, out_size) =>
+                //      GoogleSignInImpl.GoogleSignIn_GetFamilyName(userPtr, out_string,
+                //                                                  out_size));
 
-          user.GivenName = OutParamsToString((out_string, out_size) =>
-              GoogleSignInImpl.GoogleSignIn_GetGivenName(userPtr, out_string,
-                                                         out_size));
+                //  user.GivenName = OutParamsToString((out_string, out_size) =>
+                //      GoogleSignInImpl.GoogleSignIn_GetGivenName(userPtr, out_string,
+                //                                                 out_size));
 
-          user.IdToken = OutParamsToString((out_string, out_size) =>
-              GoogleSignInImpl.GoogleSignIn_GetIdToken(userPtr, out_string,
-                                                       out_size));
+                //  user.IdToken = OutParamsToString((out_string, out_size) =>
+                //      GoogleSignInImpl.GoogleSignIn_GetIdToken(userPtr, out_string,
+                //                                               out_size));
 
-          user.AuthCode = OutParamsToString((out_string, out_size) =>
-              GoogleSignInImpl.GoogleSignIn_GetServerAuthCode(userPtr, out_string,
-                                                              out_size));
+                //  user.AuthCode = OutParamsToString((out_string, out_size) =>
+                //      GoogleSignInImpl.GoogleSignIn_GetServerAuthCode(userPtr, out_string,
+                //                                                      out_size));
 
-          string url = OutParamsToString((out_string, out_size) =>
-              GoogleSignInImpl.GoogleSignIn_GetImageUrl(userPtr, out_string,
-                                                        out_size));
-          if (url.Length > 0) {
-            user.ImageUrl = new System.Uri(url);
-          }
+                //  string url = OutParamsToString((out_string, out_size) =>
+                //      GoogleSignInImpl.GoogleSignIn_GetImageUrl(userPtr, out_string,
+                //                                                out_size));
+                //  if (url.Length > 0) {
+                //    user.ImageUrl = new System.Uri(url);
+                //  }
 
-          user.UserId = OutParamsToString((out_string, out_size) =>
-              GoogleSignInImpl.GoogleSignIn_GetUserId(userPtr, out_string,
-                                                      out_size));
-          return user;
-        } else {
-          return null;
-        }
-      }
+                //            user.UserId = OutParamsToString((out_string, out_size) =>
+                //                GoogleSignInImpl.GoogleSignIn_GetUserId(userPtr, out_string,
+                //                                                        out_size));
+                //            return user;
+                //} else {
+                //  return null;
+                //}
+                return null;
+            }
     }
 
     /// <summary>
@@ -94,8 +95,9 @@ namespace Google.Impl {
     /// <value>The status.</value>
     public GoogleSignInStatusCode Status {
       get {
-        return (GoogleSignInStatusCode)GoogleSignInImpl.GoogleSignIn_Status(
-          SelfPtr());
+                //return (GoogleSignInStatusCode)GoogleSignInImpl.GoogleSignIn_Status(
+                //  SelfPtr());
+                return GoogleSignInStatusCode.InvalidAccount;
       }
     }
   }

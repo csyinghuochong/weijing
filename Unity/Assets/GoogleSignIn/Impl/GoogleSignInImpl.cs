@@ -35,22 +35,22 @@ namespace Google.Impl {
         if (configuration.AdditionalScopes != null) {
           scopes.AddRange(configuration.AdditionalScopes);
         }
-        GoogleSignIn_Configure(SelfPtr(), configuration.UseGameSignIn,
-                     configuration.WebClientId,
-                     configuration.RequestAuthCode,
-                     configuration.ForceTokenRefresh,
-                     configuration.RequestEmail,
-                     configuration.RequestIdToken,
-                     configuration.HidePopups,
-                     scopes.ToArray(),
-                     scopes.Count,
-                     configuration.AccountName);
+        //GoogleSignIn_Configure(SelfPtr(), configuration.UseGameSignIn,
+        //             configuration.WebClientId,
+        //             configuration.RequestAuthCode,
+        //             configuration.ForceTokenRefresh,
+        //             configuration.RequestEmail,
+        //             configuration.RequestIdToken,
+        //             configuration.HidePopups,
+        //             scopes.ToArray(),
+        //             scopes.Count,
+        //             configuration.AccountName);
       }
     }
 
     /// <summary>Enables/Disables verbose logging to help troubleshooting</summary>
     public void EnableDebugLogging(bool flag) {
-        GoogleSignIn_EnableDebugLogging(SelfPtr(), flag);
+        //GoogleSignIn_EnableDebugLogging(SelfPtr(), flag);
     }
 
     /// <summary>
@@ -62,8 +62,9 @@ namespace Google.Impl {
     /// the requested elements.
     /// </remarks>
     public Future<GoogleSignInUser> SignIn() {
-      IntPtr nativeFuture = GoogleSignIn_SignIn(SelfPtr());
-      return new Future<GoogleSignInUser>(new NativeFuture(nativeFuture));
+            //IntPtr nativeFuture = GoogleSignIn_SignIn(SelfPtr());
+            //return new Future<GoogleSignInUser>(new NativeFuture(nativeFuture));
+            return null;
     }
 
     /// <summary>
@@ -75,22 +76,28 @@ namespace Google.Impl {
     /// the requested elements.
     /// </remarks>
     public Future<GoogleSignInUser> SignInSilently() {
-      IntPtr nativeFuture = GoogleSignIn_SignInSilently(SelfPtr());
-      return new Future<GoogleSignInUser>(new NativeFuture(nativeFuture));
+            //IntPtr nativeFuture = GoogleSignIn_SignInSilently(SelfPtr());
+            //return new Future<GoogleSignInUser>(new NativeFuture(nativeFuture));
+            return null;
     }
 
     /// <summary>
     /// Signs out the User.
     /// </summary>
     public void SignOut() {
-      GoogleSignIn_Signout(SelfPtr());
+      //GoogleSignIn_Signout(SelfPtr());
     }
 
     /// <summary>
     /// Disconnects the user from the application and revokes all consent.
     /// </summary>
     public void Disconnect() {
-      GoogleSignIn_Disconnect(SelfPtr());
+      //GoogleSignIn_Disconnect(SelfPtr());
+    }
+
+    public static IntPtr GoogleSignIn_Create(IntPtr data)
+    { 
+        return IntPtr.Zero; 
     }
 
     /// <summary>
@@ -102,77 +109,77 @@ namespace Google.Impl {
     /// </remarks>
     /// <returns>The pointer to the instance.</returns>
     /// <param name="data">Data used in creating the instance.</param>
-    [DllImport(DllName)]
-    static extern IntPtr GoogleSignIn_Create(IntPtr data);
+        //[DllImport(DllName)]
+        //static extern IntPtr GoogleSignIn_Create(IntPtr data);
 
-    [DllImport(DllName)]
-    static extern void GoogleSignIn_EnableDebugLogging(HandleRef self, bool flag);
+        //[DllImport(DllName)]
+        //static extern void GoogleSignIn_EnableDebugLogging(HandleRef self, bool flag);
 
-    [DllImport(DllName)]
-    static extern bool GoogleSignIn_Configure(HandleRef self,
-      bool useGameSignIn, string webClientId,
-      bool requestAuthCode, bool forceTokenRefresh, bool requestEmail,
-      bool requestIdToken, bool hidePopups, string[] additionalScopes,
-      int scopeCount, string accountName);
+        //[DllImport(DllName)]
+        //static extern bool GoogleSignIn_Configure(HandleRef self,
+        //  bool useGameSignIn, string webClientId,
+        //  bool requestAuthCode, bool forceTokenRefresh, bool requestEmail,
+        //  bool requestIdToken, bool hidePopups, string[] additionalScopes,
+        //  int scopeCount, string accountName);
 
-    [DllImport(DllName)]
-    static extern IntPtr GoogleSignIn_SignIn(HandleRef self);
+        //[DllImport(DllName)]
+        //static extern IntPtr GoogleSignIn_SignIn(HandleRef self);
 
-    [DllImport(DllName)]
-    static extern IntPtr GoogleSignIn_SignInSilently(HandleRef self);
+        //[DllImport(DllName)]
+        //static extern IntPtr GoogleSignIn_SignInSilently(HandleRef self);
 
-    [DllImport(DllName)]
-    static extern void GoogleSignIn_Signout(HandleRef self);
+        //[DllImport(DllName)]
+        //static extern void GoogleSignIn_Signout(HandleRef self);
 
-    [DllImport(DllName)]
-    static extern void GoogleSignIn_Disconnect(HandleRef self);
+        //[DllImport(DllName)]
+        //static extern void GoogleSignIn_Disconnect(HandleRef self);
 
-    [DllImport(DllName)]
-    internal static extern void GoogleSignIn_DisposeFuture(HandleRef self);
+        //[DllImport(DllName)]
+        //internal static extern void GoogleSignIn_DisposeFuture(HandleRef self);
 
-    [DllImport(DllName)]
-    internal static extern bool GoogleSignIn_Pending(HandleRef self);
+        //[DllImport(DllName)]
+        //internal static extern bool GoogleSignIn_Pending(HandleRef self);
 
-    [DllImport(DllName)]
-    internal static extern IntPtr GoogleSignIn_Result(HandleRef self);
+        //[DllImport(DllName)]
+        //internal static extern IntPtr GoogleSignIn_Result(HandleRef self);
 
-    [DllImport(DllName)]
-    internal static extern int GoogleSignIn_Status(HandleRef self);
+        //[DllImport(DllName)]
+        //internal static extern int GoogleSignIn_Status(HandleRef self);
 
-    [DllImport(DllName)]
-    internal static extern UIntPtr GoogleSignIn_GetServerAuthCode(
-      HandleRef self, [In, Out] byte[] bytes, UIntPtr len);
+        //[DllImport(DllName)]
+        //internal static extern UIntPtr GoogleSignIn_GetServerAuthCode(
+        //  HandleRef self, [In, Out] byte[] bytes, UIntPtr len);
 
-    [DllImport(DllName)]
-    internal static extern UIntPtr GoogleSignIn_GetDisplayName(HandleRef self,
-      [In, Out] byte[] bytes, UIntPtr len);
+        //[DllImport(DllName)]
+        //internal static extern UIntPtr GoogleSignIn_GetDisplayName(HandleRef self,
+        //  [In, Out] byte[] bytes, UIntPtr len);
 
-    [DllImport(DllName)]
-    internal static extern UIntPtr GoogleSignIn_GetEmail(HandleRef self,
-      [In, Out] byte[] bytes, UIntPtr len);
+        //[DllImport(DllName)]
+        //internal static extern UIntPtr GoogleSignIn_GetEmail(HandleRef self,
+        //  [In, Out] byte[] bytes, UIntPtr len);
 
-    [DllImport(DllName)]
-    internal static extern UIntPtr GoogleSignIn_GetFamilyName(HandleRef self,
-      [In, Out] byte[] bytes, UIntPtr len);
+        //[DllImport(DllName)]
+        //internal static extern UIntPtr GoogleSignIn_GetFamilyName(HandleRef self,
+        //  [In, Out] byte[] bytes, UIntPtr len);
 
-    [DllImport(DllName)]
-    internal static extern UIntPtr GoogleSignIn_GetGivenName(HandleRef self,
-      [In, Out] byte[] bytes, UIntPtr len);
+        //[DllImport(DllName)]
+        //internal static extern UIntPtr GoogleSignIn_GetGivenName(HandleRef self,
+        //  [In, Out] byte[] bytes, UIntPtr len);
 
-    [DllImport(DllName)]
-    internal static extern UIntPtr GoogleSignIn_GetIdToken(HandleRef self,
-      [In, Out] byte[] bytes, UIntPtr len);
+        //[DllImport(DllName)]
+        //internal static extern UIntPtr GoogleSignIn_GetIdToken(HandleRef self,
+        //  [In, Out] byte[] bytes, UIntPtr len);
 
-    [DllImport(DllName)]
-    internal static extern UIntPtr GoogleSignIn_GetImageUrl(HandleRef self,
-      [In, Out] byte[] bytes, UIntPtr len);
+        //[DllImport(DllName)]
+        //internal static extern UIntPtr GoogleSignIn_GetImageUrl(HandleRef self,
+        //  [In, Out] byte[] bytes, UIntPtr len);
 
-    [DllImport(DllName)]
-    internal static extern UIntPtr GoogleSignIn_GetUserId(HandleRef self,
-      [In, Out] byte[] bytes, UIntPtr len);
+        //[DllImport(DllName)]
+        //internal static extern UIntPtr GoogleSignIn_GetUserId(HandleRef self,
+        //  [In, Out] byte[] bytes, UIntPtr len);
 
-    // Gets the Unity player activity.
-    // For iOS, this returns Zero.
+        // Gets the Unity player activity.
+        // For iOS, this returns Zero.
     private static IntPtr GetPlayerActivity() {
 #if UNITY_ANDROID
       UnityEngine.AndroidJavaClass jc = new UnityEngine.AndroidJavaClass(
