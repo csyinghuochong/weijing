@@ -487,7 +487,7 @@ namespace ET
             }
 
 #if UNITY_EDITOR
-            this.OnX7LoginSuccessHandler?.Invoke("xiaoqi_random1234568");
+            this.OnX7LoginSuccessHandler?.Invoke("xiaoqi_random345689");
             return;
 #endif
 

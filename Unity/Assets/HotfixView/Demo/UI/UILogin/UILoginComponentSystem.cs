@@ -1549,7 +1549,7 @@ namespace ET
 
         public static void OnRegister(this UILoginComponent self)
 		{
-			Log.ILog.Debug("OnButtonOtherLogin");
+			Log.ILog.Debug("UILoginComponent.OnRegister");
 			self.AccountReversal = string.Empty;
 			bool register = false;
 			if (self.IOSReview && GlobalHelp.GetBigVersion() == 26)
@@ -1595,6 +1595,7 @@ namespace ET
             self.ResetPlayerPrefs(LoginTypeEnum.QuDao.ToString());
             self.ResetPlayerPrefs(LoginTypeEnum.Google.ToString());
             self.ResetPlayerPrefs(LoginTypeEnum.TikTokGuanFu.ToString());
+            self.ResetPlayerPrefs(LoginTypeEnum.XiaoQi.ToString());
             self.InitLoginType();
 		}
 
