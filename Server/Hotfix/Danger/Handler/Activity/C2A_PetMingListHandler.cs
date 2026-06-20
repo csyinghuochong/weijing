@@ -18,7 +18,7 @@ namespace ET
                 ActivitySceneComponent activitySceneComponent = scene.GetComponent<ActivitySceneComponent>();
                 List<PetMingPlayerInfo> minglist = activitySceneComponent.DBDayActivityInfo.PetMingList;
 
-                if (TimeHelper.ServerNow() - activitySceneComponent.PetMingLastTime < TimeHelper.Minute)
+                if (TimeHelper.ServerNow() - activitySceneComponent.PetMingLastTime < TimeHelper.Second * 5)
                 {
                     response.PetMingPlayerInfos = activitySceneComponent.PetMingList;
                 }

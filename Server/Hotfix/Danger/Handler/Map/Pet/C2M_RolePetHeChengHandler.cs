@@ -371,6 +371,7 @@ namespace ET
             petComponent.CheckPetPingFen();
 			petComponent.CheckPetZiZhi();
             Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
+			unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
             response.DeletePetInfoId = petinfo_delete.Id;
 			response.rolePetInfo = petinfo_update;
 			reply();
