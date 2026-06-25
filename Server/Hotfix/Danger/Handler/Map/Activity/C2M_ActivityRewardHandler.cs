@@ -101,6 +101,7 @@ namespace ET
                         return;
                     }
 
+                    Log.Debug($"兑换活动积分:{unit.Id}  {request.RewardId}");
 
                     unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.V1TotalPoints, (request.RewardId * -1).ToString());
                     unit.GetComponent<BagComponent>().OnAddItemData(rewarditem, $"{ItemGetWay.ActivityConsume}_{TimeHelper.ServerNow()}");

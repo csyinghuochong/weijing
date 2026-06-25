@@ -1943,7 +1943,12 @@ namespace ET
             self.LastPointsReward.AddRange(unit.GetComponent<ActivityComponent>().ActivityV1Info.PointsReward);
             int pointreward = unit.GetComponent<ActivityComponent>().ActivityV1Info.PointsReward.Count;
             bool isduihuan = pointreward> 0;
-            Log.Warning($"新活动任务清空: {unit.DomainZone()} {unit.Id}  兑换次数: {pointreward}");
+
+            if (pointreward > 0)
+            {
+                Log.Warning($"新活动任务清空: {unit.DomainZone()} {unit.Id}  兑换次数: {pointreward}");
+            }
+          
             //每次活动扣除100积分， 对话任意积分可免扣除
 
             unit.GetComponent<HeroDataComponent>().ActivityV1Reset(!isduihuan, notice);

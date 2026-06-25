@@ -200,6 +200,7 @@
         public const int GoldWeeklyCard = 3200;                                 //黄金周卡开始时间
         public const int DiamondWeeklyCard = 3201;                              //钻石周卡ComHelp.GetDayByTime
         public const int RechargeType = 3202;                                    //0充值钻石   1购买周卡
+        public const int ResetWeekTime = 3203;
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值
