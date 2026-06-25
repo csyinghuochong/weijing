@@ -505,7 +505,7 @@ namespace ET
                 //2026/06/26 19:00:00 1782471600000 合区 xx-xx    xx/xx
                 //2026/06/26 19:00:00 1782471600000 新区 永恒秘境 224
                 //201-210为特殊区服
-                serverItems_1.Add(new ServerItem() { ServerId = 224, ServerIp = $"{ip}:20545", ServerName = "永恒秘境", ServerOpenTime = 1782471600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+                serverItems_1.Add(new ServerItem() { ServerId = 224, ServerIp = $"{ip}:20595", ServerName = "永恒秘境", ServerOpenTime = 1782471600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
