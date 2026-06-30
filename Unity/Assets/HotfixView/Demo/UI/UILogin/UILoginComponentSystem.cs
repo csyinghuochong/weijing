@@ -25,6 +25,7 @@ namespace ET
 		}
 	}
 
+
 	public class UILoginComponentAwakeSystem : AwakeSystem<UILoginComponent>
 	{
 
@@ -747,7 +748,7 @@ namespace ET
 				case LoginTypeEnum.XiaoQi:
                     self.ThirdLoginBg.SetActive(false);
                     EventType.XiaoQiSignIn.Instance.ZoneScene = self.ZoneScene();
-                    EventType.XiaoQiSignIn.Instance.AccesstokenHandler = (string text) => { self.OnX7LoginSuccessHandler(text); };
+                    EventType.XiaoQiSignIn.Instance.AccesstokenHandler = (string text) => { self.OnX7LoginSuccessHandler(text).Coroutine(); };
                     EventSystem.Instance.PublishClass(EventType.XiaoQiSignIn.Instance);
                     break;
                 case LoginTypeEnum.PhoneCodeLogin:
@@ -1069,18 +1070,53 @@ namespace ET
             self.HideNode.SetActive(true);
         }
 
-		public static void OnX7LoginSuccessHandler(this UILoginComponent self, string appuserinfo)
+		public static async ETTask OnX7LoginSuccessHandler(this UILoginComponent self, string tokenkey)
 		{
-			Log.ILog.Debug($"OnX7LoginSuccessHandler, {appuserinfo}");
+			Log.ILog.Debug($"OnX7LoginSuccessHandler, tokenkey: {tokenkey}");
 
-            if (string.IsNullOrEmpty(appuserinfo))
+            if (string.IsNullOrEmpty(tokenkey))
             {
                 FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败， 请选择其他登陆方式！");
                 return;
             }
 
             self.LoginType = LoginTypeEnum.XiaoQi.ToString();
-            self.Account.GetComponent<InputField>().text = appuserinfo;
+
+
+			C2A_XiaoQiCheckLogin c2A_XiaoQiCheckLogin = new C2A_XiaoQiCheckLogin();
+            c2A_XiaoQiCheckLogin.tokenkey = tokenkey;
+
+            Session accountSession = self.ZoneScene().GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(self.ServerInfo.ServerIp));
+            A2C_XiaoQiCheckLogin a2C_TikTokVerifyUser = (A2C_XiaoQiCheckLogin)await accountSession.Call(c2A_XiaoQiCheckLogin);
+            if (a2C_TikTokVerifyUser.Error != ErrorCode.ERR_Success)
+            {
+                self.ZoneScene().GetComponent<AccountInfoComponent>().Age_Type = -1;
+                self.Account.GetComponent<InputField>().text = string.Empty;
+                self.Password.GetComponent<InputField>().text = string.Empty;
+                FloatTipManager.Instance.ShowFloatTip("小7登录验证失败！");
+				return;	
+            }
+
+
+            X7CheckLoginResponse response = JsonHelper.FromJson<X7CheckLoginResponse>(a2C_TikTokVerifyUser.longResule);
+            if (response == null || response.errno != 0 || response.data == null || string.IsNullOrEmpty(response.data.guid))
+            {
+                self.ZoneScene().GetComponent<AccountInfoComponent>().Age_Type = -1;
+                self.Account.GetComponent<InputField>().text = string.Empty;
+                self.Password.GetComponent<InputField>().text = string.Empty;
+
+                string errMsg = response?.errormsg;
+                FloatTipManager.Instance.ShowFloatTip(string.IsNullOrEmpty(errMsg) ? "小7登录验证失败" : errMsg);
+                return;
+            }
+
+            self.ZoneScene().GetComponent<AccountInfoComponent>().Age_Type = 100;
+         
+            string guid = response.data.guid;
+            Log.ILog.Debug($"X7CheckLogin success, guid: {guid}, username: {response.data.username}");
+
+            self.AccountReversal = StringBuilderHelper.Encrypt(guid);
+            self.Account.GetComponent<InputField>().text = guid;
             self.Password.GetComponent<InputField>().text = self.LoginType;
             self.ZhuCe.SetActive(false);
             self.YiJianDengLu.SetActive(false);
@@ -1089,7 +1125,7 @@ namespace ET
             self.Password.SetActive(false);
             self.HideNode.SetActive(true);
             self.AccountInfoComponent.Age_Type = 100;
-            Log.ILog.Debug($"OnX7LoginSuccessHandler:  {appuserinfo}  {self.LoginType}");
+            Log.ILog.Debug($"OnX7LoginSuccessHandler: guid={guid}, loginType={self.LoginType}");
         }
 
         public static void OnRecvGoogleSignIn(this UILoginComponent self, string appuserinfo)
@@ -1326,9 +1362,9 @@ namespace ET
 			}
 
             int platform = GlobalHelp.GetPlatform();
-            if (platform == 100 && string.IsNullOrEmpty(account) || string.IsNullOrEmpty(password))
+            if ((platform == 100 || platform == 9) && string.IsNullOrEmpty(account) || string.IsNullOrEmpty(password))
 			{
-				Log.ILog.Debug($"platform == 100 && string.IsNullOrEmpty(account)");
+				Log.ILog.Debug($"platform == {platform} && string.IsNullOrEmpty(account) or password");
 				self.UpdateLoginType();
                 return;
             }

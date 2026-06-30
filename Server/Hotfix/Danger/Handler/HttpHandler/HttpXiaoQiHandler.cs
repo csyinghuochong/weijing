@@ -1,8 +1,17 @@
+﻿
 using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
+
 
 namespace ET
 {
+    public class HttpXiaoQiHandler
+    {
+
+    }
+
     public static partial class HttpClientHelper
     {
         public static async ETTask<string> Get(string link)

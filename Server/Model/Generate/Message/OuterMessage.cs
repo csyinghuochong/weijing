@@ -17049,6 +17049,40 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(A2C_XiaoQiCheckLogin))]
+	[Message(OuterOpcode.C2A_XiaoQiCheckLogin)]
+	[ProtoContract]
+	public partial class C2A_XiaoQiCheckLogin: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public string tokenkey { get; set; }
+
+		[ProtoMember(3)]
+		public string sign { get; set; }
+
+	}
+
+	[Message(OuterOpcode.A2C_XiaoQiCheckLogin)]
+	[ProtoContract]
+	public partial class A2C_XiaoQiCheckLogin: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string longResule { get; set; }
+
+	}
+
 ////////////////////////////////////////////////
 //#################一定要放在最后
 	[ResponseType(nameof(Center2C_BlackAccountResponse))]

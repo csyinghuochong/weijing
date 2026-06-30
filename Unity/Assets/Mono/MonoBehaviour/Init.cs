@@ -457,12 +457,14 @@ namespace ET
                 Log.ILog.Debug($"X7Init::{this.Platform}");
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-                jo.Call("X7Init");
+                X7Init();
 #endif
             }
         }
 
-
+		/// <summary>
+		/// 同上。。。
+		/// </summary>
 		//初始化
         public void X7Init()
         {

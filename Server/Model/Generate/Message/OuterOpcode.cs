@@ -929,7 +929,9 @@ namespace ET
 		 public const ushort M2C_ActivityOrderOperateResponse = 10926;
 		 public const ushort C2M_ActivityTreeTendRequest = 10927;
 		 public const ushort M2C_ActivityTreeTendResponse = 10928;
-		 public const ushort C2Center_QueryAccountRequest = 10929;
-		 public const ushort Center2C_QueryAccountResponse = 10930;
+		 public const ushort C2A_XiaoQiCheckLogin = 10929;
+		 public const ushort A2C_XiaoQiCheckLogin = 10930;
+		 public const ushort C2Center_QueryAccountRequest = 10931;
+		 public const ushort Center2C_QueryAccountResponse = 10932;
 	}
 }
