@@ -504,9 +504,9 @@ namespace ET
 
 
                 //2026/07/03 19:00:00 1783076400000 合区 xx-xx    xx/xx
-                //2026/07/03 19:00:00 1783076400000 新区 新区新区 225
+                //2026/07/03 19:00:00 1783076400000 新区 陌上花开 225
                 //201-210为特殊区服
-                serverItems_1.Add(new ServerItem() { ServerId = 225, ServerIp = $"{ip}:20655", ServerName = "新区新区", ServerOpenTime = 1783076400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+                serverItems_1.Add(new ServerItem() { ServerId = 225, ServerIp = $"{ip}:20655", ServerName = "陌上花开", ServerOpenTime = 1783076400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
