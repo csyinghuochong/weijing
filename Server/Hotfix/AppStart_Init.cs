@@ -92,11 +92,11 @@ namespace ET
             Game.Scene.AddComponent<SkillDispatcherComponent>();
             Game.Scene.AddComponent<BuffDispatcherComponent>();
             Game.Scene.AddComponent<ShouJiChapterInfoComponent>();
-
+            
             long unitid = DBHelper.DebugUnitId;
             // int n = (int)((unitid / 99) % 4);
-            Log.Console($"unit.zone0522: {UnitIdStruct.GetUnitZone(unitid)}");
-            Console.WriteLine($"unit.zone0522: {UnitIdStruct.GetUnitZone(unitid)}");
+            Log.Console($"unit.zone0626: {UnitIdStruct.GetUnitZone(unitid)}");
+            Console.WriteLine($"unit.zone0626: {UnitIdStruct.GetUnitZone(unitid)}");
             Console.WriteLine($"Game.Options.StartConfig:  {Game.Options.StartConfig}");
             ServerHelper.InitServerList(Game.Options.StartConfig);
             Console.WriteLine($"ServerItems.Count:  {ServerHelper.GetServerList().Count}");
