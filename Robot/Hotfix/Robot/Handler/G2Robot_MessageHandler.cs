@@ -250,8 +250,9 @@ namespace ET
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
                         int robotNumber = 0;
+                        int maxRobot = message.Zone > 210 ? 12 : 8;
                         totalnumber = 0;
-                        while (robotNumber < 12)
+                        while (robotNumber < 4)
                         {
                             totalnumber ++;
                             if (totalnumber >= 20)

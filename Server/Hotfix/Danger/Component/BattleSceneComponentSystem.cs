@@ -30,12 +30,13 @@ namespace ET
             LogHelper.LogWarning("Battle:  OnZeroClockUpdate", true);
         }
 
-        public static void  OnBattleOpen(this BattleSceneComponent self)
+        public static async ETTask   OnBattleOpen(this BattleSceneComponent self)
         {
             self.BattleOpen = true;
             LogHelper.LogWarning($"OnBattleOpen : {self.DomainZone()}", true);
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0 )  //&& !ComHelp.IsInnerNet())
             {
+                await TimerComponent.Instance.WaitAsync((1024 - self.DomainZone()) * 10);
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOpen });
             }

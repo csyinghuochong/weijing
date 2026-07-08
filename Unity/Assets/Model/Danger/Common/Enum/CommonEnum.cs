@@ -224,6 +224,7 @@ namespace ET
         public const int IOSPay = 4;
         public const int TikTok = 5;
         public const int Google = 6;
+        public const int XiaoQi = 7;
     }
 
     public static class ReddotType
