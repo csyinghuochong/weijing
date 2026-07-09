@@ -1160,6 +1160,18 @@ namespace ET
                         EventType.QuDaoUpdateRole.Instance.UpdateRoleInfo = $"{userInfo.UserId}_{userInfo.Lv}_{userInfo.Name}_{accountInfoComponent.ServerId}_{accountInfoComponent.ServerName}_{userInfo.Occ}_{occupationConfig.OccupationName}";
                         EventSystem.Instance.PublishClass(EventType.QuDaoUpdateRole.Instance);
                     }
+                    if (GlobalHelp.GetBigVersion() >= 27 && GlobalHelp.GetPlatform() == 9)
+                    {
+                        AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                        EventType.XiaoQiReportRole.Instance.ZoneScene = self.ZoneScene();
+                        EventType.XiaoQiReportRole.Instance.ReportType = X7PayHelper.ReportTypeLevelUp;
+                        EventType.XiaoQiReportRole.Instance.RoleId = userInfo.UserId;
+                        EventType.XiaoQiReportRole.Instance.RoleLevel = userInfo.Lv;
+                        EventType.XiaoQiReportRole.Instance.RoleName = userInfo.Name;
+                        EventType.XiaoQiReportRole.Instance.ServerId = accountInfoComponent.ServerId;
+                        EventType.XiaoQiReportRole.Instance.GameGuid = accountInfoComponent.Account;
+                        EventSystem.Instance.PublishClass(EventType.XiaoQiReportRole.Instance);
+                    }
                     break;
                 case UserDataType.Name:
                     self.UIRoleHead.UpdateShowRoleName();

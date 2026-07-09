@@ -109,6 +109,15 @@ namespace ET
                 self.ButtonAliPay.SetActive(false);
                 self.ButtonWeiXin.SetActive(false);
             }
+
+            if (GlobalHelp.GetBigVersion() >= 27 && GlobalHelp.GetPlatform() == 9)
+            {
+                self.PayType = PayTypeEnum.XiaoQi;
+                self.ImageSelect1.SetActive(false);
+                self.ImageSelect2.SetActive(false);
+                self.ButtonAliPay.SetActive(false);
+                self.ButtonWeiXin.SetActive(false);
+            }
 #if UNITY_IPHONE && !UNITY_EDITOR
             self.ImageSelect1.SetActive(false);
             self.ImageSelect2.SetActive(false);
@@ -236,6 +245,15 @@ namespace ET
                 EventType.QuDaoOnPay.Instance.PayInfo = payinfo;
                 EventSystem.Instance.PublishClass(EventType.QuDaoOnPay.Instance);
             }
+            if (self.PayType == PayTypeEnum.XiaoQi)
+            {
+                Log.ILog.Debug($"self.PayType == PayTypeEnum.XiaoQi:  {sendChatResponse.Message}");
+                EventType.XiaoQiOnPay.Instance.ZoneScene = self.ZoneScene();
+                EventType.XiaoQiOnPay.Instance.GameOrderId = sendChatResponse.Message;
+                EventType.XiaoQiOnPay.Instance.RechargeNumber = rechargeNumber;
+                EventType.XiaoQiOnPay.Instance.RechargeType = 0;
+                EventSystem.Instance.PublishClass(EventType.XiaoQiOnPay.Instance);
+            }
         }
 
         public static async ETTask OnClickRechargeItem(this UIRechargeComponent self, int chargetNumber)
@@ -293,6 +311,10 @@ namespace ET
                 GlobalHelp.OnGooglePurchase(chargetNumber);
                 C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { RechargeNumber = chargetNumber, PayType = PayTypeEnum.Google, RechargeType = 0 };
                 self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest).Coroutine();
+            }
+            else if (GlobalHelp.GetBigVersion() >= 27 && GlobalHelp.GetPlatform() == 9)
+            {
+                self.RequestRecharge().Coroutine();
             }
             else
             {

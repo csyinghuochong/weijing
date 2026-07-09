@@ -183,6 +183,14 @@ namespace ET
                 //EventType.QuDaoOnPay.Instance.PayInfo = payinfo;
                 //EventSystem.Instance.PublishClass(EventType.QuDaoOnPay.Instance);
             }
+            if (self.PayType == PayTypeEnum.XiaoQi)
+            {
+                EventType.XiaoQiOnPay.Instance.ZoneScene = self.ZoneScene();
+                EventType.XiaoQiOnPay.Instance.GameOrderId = sendChatResponse.Message;
+                EventType.XiaoQiOnPay.Instance.RechargeNumber = rechargeNumber;
+                EventType.XiaoQiOnPay.Instance.RechargeType = self.ZoneScene().GetComponent<AccountInfoComponent>().RechargeType;
+                EventSystem.Instance.PublishClass(EventType.XiaoQiOnPay.Instance);
+            }
         }
 
         public static async ETTask OnClickRechargeItem(this UIActivityV1WeeklyCardComponent self)
@@ -252,6 +260,12 @@ namespace ET
             {
                 //渠道支付
                 self.PayType = PayTypeEnum.QuDaoPay;
+                self.RechargeSelectUI.SetActive(false);
+                self.RequestRecharge(string.Empty).Coroutine();
+            }
+            else if (GlobalHelp.GetBigVersion() >= 27 && GlobalHelp.GetPlatform() == 9)
+            {
+                self.PayType = PayTypeEnum.XiaoQi;
                 self.RechargeSelectUI.SetActive(false);
                 self.RequestRecharge(string.Empty).Coroutine();
             }

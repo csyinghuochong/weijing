@@ -1083,6 +1083,22 @@ namespace ET
             self.LoginType = LoginTypeEnum.XiaoQi.ToString();
 
 
+			if (GlobalHelp.IsInnerNetMode)
+			{
+				self.AccountReversal = StringBuilderHelper.Encrypt(tokenkey);
+                self.Account.GetComponent<InputField>().text = tokenkey;
+                self.Password.GetComponent<InputField>().text = self.LoginType;
+                self.ZhuCe.SetActive(false);
+                self.YiJianDengLu.SetActive(false);
+                self.ThirdLoginBg.SetActive(false);
+                self.Account.SetActive(false);
+                self.Password.SetActive(false);
+                self.HideNode.SetActive(true);
+                self.AccountInfoComponent.Age_Type = 100;
+                return;
+			}
+
+
 			C2A_XiaoQiCheckLogin c2A_XiaoQiCheckLogin = new C2A_XiaoQiCheckLogin();
             c2A_XiaoQiCheckLogin.tokenkey = tokenkey;
 

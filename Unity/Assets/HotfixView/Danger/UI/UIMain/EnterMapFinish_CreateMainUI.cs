@@ -60,6 +60,23 @@ namespace ET
                 EventSystem.Instance.PublishClass(EventType.QuDaoEnterGame.Instance);
             }
 
+            if (GlobalHelp.GetBigVersion() >= 27 && GlobalHelp.GetPlatform() == 9)
+            {
+                CreateRoleInfo createRoleInfo = accountInfoComponent.CreateRoleList.FirstOrDefault(p => p.UserID == accountInfoComponent.CurrentRoleId);
+                if (createRoleInfo != null)
+                {
+                    UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
+                    EventType.XiaoQiReportRole.Instance.ZoneScene = zoneScene;
+                    EventType.XiaoQiReportRole.Instance.ReportType = X7PayHelper.ReportTypeEnter;
+                    EventType.XiaoQiReportRole.Instance.RoleId = createRoleInfo.UserID;
+                    EventType.XiaoQiReportRole.Instance.RoleLevel = userInfo.Lv;
+                    EventType.XiaoQiReportRole.Instance.RoleName = createRoleInfo.PlayerName;
+                    EventType.XiaoQiReportRole.Instance.ServerId = accountInfoComponent.ServerId;
+                    EventType.XiaoQiReportRole.Instance.GameGuid = accountInfoComponent.Account;
+                    EventSystem.Instance.PublishClass(EventType.XiaoQiReportRole.Instance);
+                }
+            }
+
 #if UNITY_ANDROID
             TapSDKHelper.SetUser(roleId.ToString());
             TapSDKHelper.TestTrackEvent("", "");

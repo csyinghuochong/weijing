@@ -1028,6 +1028,27 @@ namespace ET
             public string Account;
         }
 
+        public class XiaoQiOnPay : DisposeObject
+        {
+            public static readonly XiaoQiOnPay Instance = new XiaoQiOnPay();
+            public Scene ZoneScene;
+            public string GameOrderId;
+            public int RechargeNumber;
+            public int RechargeType;
+        }
+
+        public class XiaoQiReportRole : DisposeObject
+        {
+            public static readonly XiaoQiReportRole Instance = new XiaoQiReportRole();
+            public Scene ZoneScene;
+            public string ReportType;
+            public long RoleId;
+            public int RoleLevel;
+            public string RoleName;
+            public int ServerId;
+            public string GameGuid;
+        }
+
         //bigversion >= 24才可以获取
         public class GetSysRegionInfo : DisposeObject
         {

@@ -90,6 +90,16 @@ namespace ET
             GameObject.Find("Global").GetComponent<Init>().WeChatPay(orderInfo);
         }
 
+        public static void X7Pay(string payJson)
+        {
+            GameObject.Find("Global").GetComponent<Init>().X7Pay(payJson);
+        }
+
+        public static void X7ReportRole(string roleJson)
+        {
+            GameObject.Find("Global").GetComponent<Init>().X7ReportRole(roleJson);
+        }
+
         public static int BigVersion = -1;
         public static int GetBigVersion()
         {
@@ -108,7 +118,7 @@ namespace ET
         }
 
         /// <summary>
-        /// 0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包) Google7  TikTokGuanFu8   xiaoqi7  渠道包100  ios20001
+        /// 0 默认 taptap1  QQ2 platform3 小说推广 platform4备用  TikTok5  TikTokMuBao6(抖音母包) Google7  TikTokGuanFu8   xiaoqi9  渠道包100  ios20001
         /// </summary>
         /// <returns></returns>
         public static int GetPlatform()

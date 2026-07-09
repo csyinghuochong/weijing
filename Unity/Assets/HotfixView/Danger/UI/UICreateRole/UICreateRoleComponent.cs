@@ -275,6 +275,18 @@ namespace ET
                 EventSystem.Instance.PublishClass(EventType.QuDaoCreateRole.Instance);
             }
 
+            if (GlobalHelp.GetBigVersion() >= 27 && GlobalHelp.GetPlatform() == 9)
+            {
+                EventType.XiaoQiReportRole.Instance.ZoneScene = self.ZoneScene();
+                EventType.XiaoQiReportRole.Instance.ReportType = X7PayHelper.ReportTypeCreate;
+                EventType.XiaoQiReportRole.Instance.RoleId = createRoleInfo.UserID;
+                EventType.XiaoQiReportRole.Instance.RoleLevel = 1;
+                EventType.XiaoQiReportRole.Instance.RoleName = createRoleInfo.PlayerName;
+                EventType.XiaoQiReportRole.Instance.ServerId = accountInfoComponent.ServerId;
+                EventType.XiaoQiReportRole.Instance.GameGuid = accountInfoComponent.Account;
+                EventSystem.Instance.PublishClass(EventType.XiaoQiReportRole.Instance);
+            }
+
             accountInfoComponent.CreateRoleList.Add(g2cCreateRole.createRoleInfo);
             accountInfoComponent.TodayCreateRole++;
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UILobby);
