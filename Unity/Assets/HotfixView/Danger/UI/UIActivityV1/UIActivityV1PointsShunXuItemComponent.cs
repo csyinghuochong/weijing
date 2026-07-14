@@ -44,7 +44,13 @@ namespace ET
             UICommonHelper.ShowItemList(ActivityConfigHelper.PointsShunXuRewardList[key], self.RewardListNode, self, 1f);
 
             ActivityV1Info activityV1Info = self.ZoneScene().GetComponent<ActivityComponent>().ActivityV1Info;
-            if (activityV1Info.PointsReward.Contains(self.Key))
+
+            int getnextRewardId = ActivityConfigHelper.GetNextShunXuReward(activityV1Info.PointsShuxuReward);
+
+            //if (getnextRewardId > 0 &&  self.Key < getnextRewardId)
+
+            Log.ILog.Debug($"self.Key , activityV1Info.PointsShuxuReward:{self.Key}  {activityV1Info.PointsShuxuReward}");
+            if(self.Key <= activityV1Info.PointsShuxuReward)
             {
                 self.ReceiveBtn.SetActive(false);
                 self.ReceivedImg.SetActive(true);
