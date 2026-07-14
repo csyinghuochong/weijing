@@ -82,6 +82,7 @@ namespace ET
             
             if (self.Key < getnextRewardId)
             {
+                Log.ILog.Debug($"self.Key < getnextRewardId:  {self.Key}  {getnextRewardId}");
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经领取"));
                 return;
             }
