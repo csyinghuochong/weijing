@@ -4,7 +4,7 @@ apply plugin: 'com.android.library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 // X7 SDK Dependencies Start
-    implementation 'io.github.x7sy-sm:x7sdk-androidx:8.30.0'
+    implementation 'io.github.x7sy-sm:x7sdk-androidx:8.76.0'
 // X7 SDK Dependencies End
 **DEPS**}
 
