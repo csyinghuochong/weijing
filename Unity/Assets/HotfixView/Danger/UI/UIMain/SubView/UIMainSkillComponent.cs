@@ -77,10 +77,13 @@ namespace ET
             self.UI_MainRose_FanGun = rc.Get<GameObject>("UI_MainRose_FanGun");
             self.Btn_CancleSkill = rc.Get<GameObject>("Btn_CancleSkill");
             self.UI_MainRose_attack = rc.Get<GameObject>("UI_MainRose_attack");
-          
-            self.Btn_GuaJi  = rc.Get<GameObject>("Btn_GuaJi");
 
-            self.Btn_GuaJi.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonGuaJi(); });
+            Transform buttonGuaji = self.GetParent<UI>().GameObject.transform.Find("Btn_GuaJi");
+            if (buttonGuaji != null)
+            {
+                self.Btn_GuaJi = buttonGuaji.gameObject;
+               self.Btn_GuaJi.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonGuaJi(); });
+            }
 
             self.Btn_Target = rc.Get<GameObject>("Btn_Target");
             self.Btn_Target.GetComponent<Button>().onClick.AddListener(() => { self.OnLockTargetUnit(); });
