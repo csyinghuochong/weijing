@@ -78,7 +78,7 @@ namespace ET
             self.Btn_CancleSkill = rc.Get<GameObject>("Btn_CancleSkill");
             self.UI_MainRose_attack = rc.Get<GameObject>("UI_MainRose_attack");
 
-            Transform buttonGuaji = self.GetParent<UI>().GameObject.transform.Find("Btn_GuaJi");
+            Transform buttonGuaji = self.GetParent<UI>().GameObject.transform.Find("ButtonList2/Btn_GuaJi");
             if (buttonGuaji != null)
             {
                 self.Btn_GuaJi = buttonGuaji.gameObject;
