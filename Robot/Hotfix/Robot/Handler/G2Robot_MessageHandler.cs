@@ -243,34 +243,56 @@ namespace ET
                             await TimerComponent.Instance.WaitAsync(500);
                         }
                     }
+
                     break;
                 case NoticeType.BattleOpen:
                     Log.Debug($"战场机器人[BattleOpen]: {message.Zone}");
-  
-                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
-                    {
-                        int robotNumber = 0;
-                        int maxRobot = message.Zone > 210 ? 12 : 8;
-                        totalnumber = 0;
-                        while (robotNumber < 4)
-                        {
-                            totalnumber ++;
-                            if (totalnumber >= 20)
-                            {
-                                break;
-                            }
-                            int robotZone = robotManagerComponent.ZoneIndex++;
-                            robotId = BattleHelper.GetBattleRobotId(3, 0);
 
-                            Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
-                            if (robotScene == null)
+                    // 按区加锁，避免多区战场同时开时互相堵在同一把全局锁上
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, message.Zone))
+                    {
+                        int maxRobot = message.Zone > 210 ? 12 : 8;
+                        List<ETTask> tasks = new List<ETTask>(maxRobot);
+                        for (int i = 0; i < maxRobot; i++)
+                        {
+                            int robotZone = robotManagerComponent.ZoneIndex++;
+                            int battleRobotId = BattleHelper.GetBattleRobotId(3, 0);
+                            if (battleRobotId == 0)
                             {
                                 continue;
                             }
-                            robotScene.AddComponent<BehaviourComponent, int>(robotId);
-                            await TimerComponent.Instance.WaitAsync(500);
-                            robotNumber++;
+
+                            int captureZone = message.Zone;
+                            int captureRobotZone = robotZone;
+                            int captureRobotId = battleRobotId;
+                            tasks.Add(CreateBattleRobot());
+
+                            async ETTask CreateBattleRobot()
+                            {
+                                try
+                                {
+                                    Scene robotScene = await robotManagerComponent.NewRobot(captureZone, captureRobotZone, captureRobotId);
+                                    if (robotScene == null)
+                                    {
+                                        Log.Debug($"战场机器人创建失败: zone={captureZone} robotZone={captureRobotZone}");
+                                        return;
+                                    }
+                                    robotScene.AddComponent<BehaviourComponent, int>(captureRobotId);
+                                    await TimerComponent.Instance.WaitFrameAsync();
+                                    Log.Debug($"战场机器人创建成功: zone={captureZone} robotZone={captureRobotZone} robotId={captureRobotId}");
+                                }
+                                catch (Exception e)
+                                {
+                                    Log.Error($"战场机器人创建异常 zone={captureZone}: {e}");
+                                }
+                            }
                         }
+
+                        if (tasks.Count > 0)
+                        {
+                            await ETTaskHelper.WaitAll(tasks);
+                        }
+                        Log.Debug($"战场机器人[BattleOpen]完成: zone={message.Zone} count={tasks.Count}");
                     }
                     break;
                 case NoticeType.SoloOver:
