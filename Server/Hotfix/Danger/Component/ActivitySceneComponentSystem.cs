@@ -530,7 +530,6 @@ namespace ET
 
             if (hour == 0 && dayOfWeek == DayOfWeek.Monday)
             {
-                Console.WriteLine($"限时活动清空");
                 self.DBDayActivityInfo.FeedPlayerList.Clear();
                 self.DBDayActivityInfo.FeedRewardKey = 0;
                 self.DBDayActivityInfo.BaoShiDu = 0;
