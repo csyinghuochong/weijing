@@ -635,6 +635,9 @@ namespace ET
                 self.Account.SetActive(false);
                 self.Password.SetActive(false);
                 self.HideNode.SetActive(true);
+
+                // 切换小号回到登录后，自动再调一次小7登录拿新 token
+                self.TryX7ReloginAfterSwitch();
             }
 
 			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
@@ -645,6 +648,24 @@ namespace ET
 
             self.ServerBtn.SetActive( GMHelp.GmAccount.Contains(self.Account.GetComponent<InputField>().text) );
         }
+
+        public static void TryX7ReloginAfterSwitch(this UILoginComponent self)
+        {
+
+#if XiaoQi9
+            if (GlobalHelp.GetPlatform() != 9 || !X7LoginHelper.PendingRelogin)
+            {
+                return;
+            }
+
+
+            X7LoginHelper.PendingRelogin = false;
+            Log.ILog.Debug("TryX7ReloginAfterSwitch: XiaoQiSignIn");
+            EventType.XiaoQiSignIn.Instance.ZoneScene = self.ZoneScene();
+            EventType.XiaoQiSignIn.Instance.AccesstokenHandler = (string text) => { self.OnX7LoginSuccessHandler(text).Coroutine(); };
+            EventSystem.Instance.PublishClass(EventType.XiaoQiSignIn.Instance);
+#endif
+		}
 
         //public const int RegisterLogin = 0;     //注册账号登录
         //public const int WeixLogin = 1;         //微信登录

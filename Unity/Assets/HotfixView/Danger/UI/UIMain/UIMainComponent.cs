@@ -1296,6 +1296,14 @@ namespace ET
                 EventType.QuDaoSwichAccount.Instance.QuDaoSwichAccountHandler = self.OnQuDaoSwichAccountHandler;
                 EventSystem.Instance.PublishClass(EventType.QuDaoSwichAccount.Instance);
             }
+
+            // 小7：进游戏后重新挂切换小号回调（Custom 里写 Init，热更层只抛事件）
+            if (GlobalHelp.GetPlatform() == 9)
+            {
+                EventType.XiaoQiSwichAccount.Instance.ZoneScene = self.ZoneScene();
+                EventType.XiaoQiSwichAccount.Instance.XiaoQiSwichAccountHandler = self.OnX7SwitchAccountHandler;
+                EventSystem.Instance.PublishClass(EventType.XiaoQiSwichAccount.Instance);
+            }
 #endif
         }
 
@@ -1308,6 +1316,23 @@ namespace ET
             EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
             EventType.ReturnLogin.Instance.ErrorCode = 0;
             Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+        }
+
+        private static void OnX7SwitchAccountHandler(this UIMainComponent self)
+        {
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            Log.ILog.Debug("OnX7SwitchAccountHandler: return login and relogin");
+
+#if XiaoQi9
+            X7LoginHelper.PendingRelogin = true;
+            EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
+            EventType.ReturnLogin.Instance.ErrorCode = 0;
+            Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+#endif
         }
 
         public static void CheckTapRepCiLiu(this UIMainComponent self)

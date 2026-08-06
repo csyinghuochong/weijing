@@ -1028,6 +1028,16 @@ namespace ET
             public string Account;
         }
 
+        /// <summary>
+        /// 小7进游戏后注册悬浮窗切换小号/登出回调（由 Custom 挂到 Init）
+        /// </summary>
+        public class XiaoQiSwichAccount : DisposeObject
+        {
+            public static readonly XiaoQiSwichAccount Instance = new XiaoQiSwichAccount();
+            public Action XiaoQiSwichAccountHandler;
+            public Scene ZoneScene;
+        }
+
         public class XiaoQiOnPay : DisposeObject
         {
             public static readonly XiaoQiOnPay Instance = new XiaoQiOnPay();

@@ -16,6 +16,8 @@ namespace ET
         public string roleCE;
         public string roleStage;
         public string roleRechargeAmount;
+        public string roleGuildId;
+        public string roleGuild;
     }
 
     public static class X7PayHelper
@@ -24,7 +26,10 @@ namespace ET
         public const string X7PublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+I0ZD9muTrBuLlCcfmUzuHTsAlg5PvJJBk5T8KMoC5oCbsjP6332xlX3gbdgJ38oY2k+ZsUrbaDqTobPSCDfH79IdGzCbSla2o9UYVdK3iL7M8970BOK9XW1IDHXF+EDEiYjvwq1CN9dgF7vmANOBI3XlIrtDvtHgzQF2FPQ2FwIDAQAB";
         public const string NotifyId = "-1";
         public const string GameCurrency = "CNY";
-        public const string GameAccessVersion = "8.30";
+        // 支付下单 game_access_version，按渠道要求固定传 2507
+        public const string GameAccessVersion = "2507";
+        // 战力/关卡/充值/公会等无法准确取值时按渠道要求传 -1
+        public const string RoleReportDefaultValue = "-1";
 
         public const string ReportTypeCreate = "1";
         public const string ReportTypeEnter = "2";
@@ -81,9 +86,11 @@ namespace ET
                 { "game_role_name", roleNameStr },
                 { "roleLevel", levelStr },
                 { "game_guid", guid },
-                { "roleCE", "0" },
-                { "roleStage", "0" },
-                { "roleRechargeAmount", "0" },
+                { "roleCE", RoleReportDefaultValue },
+                { "roleStage", RoleReportDefaultValue },
+                { "roleRechargeAmount", RoleReportDefaultValue },
+                { "roleGuildId", RoleReportDefaultValue },
+                { "roleGuild", RoleReportDefaultValue },
             };
             return JsonHelper.ToJson(reportData);
         }
