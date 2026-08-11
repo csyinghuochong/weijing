@@ -11,7 +11,7 @@
 {"_t":"EquipSuitConfig","_id":12011,"Name":"龙脊套装","Name_EN":"Endurance Set","NeedEquipID":[15201002,15202002,15203002,15204002,15205002,15211002,15211011],"SuitPropertyID":"2,120111;4,120112;6,120113","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":12021,"Name":"魔灵套装","Name_EN":"Silvermoon Set","NeedEquipID":[15201004,15202004,15203004,15204004,15205004,15211004,15211012],"SuitPropertyID":"2,120121;4,120122;6,120123","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":12031,"Name":"秩序套装","Name_EN":"Stormrage Set","NeedEquipID":[15201006,15202006,15203006,15204006,15205006,15211006,15211013],"SuitPropertyID":"2,120131;4,120132;6,120133","SuitType":0,"Occ":0},
-{"_t":"EquipSuitConfig","_id":12051,"Name":"恒心套装","Name_EN":"Endless Set","NeedEquipID":[15206003,15210011,15210012,15210111,15210112,15200211],"SuitPropertyID":"2,200001","SuitType":0,"Occ":0},
+{"_t":"EquipSuitConfig","_id":12051,"Name":"恒心套装","Name_EN":"Endless Set","NeedEquipID":[15206003,15210011,15210012,15210111,15210112,15210211],"SuitPropertyID":"2,200001","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":13011,"Name":"银月套装","Name_EN":"Revelator Set","NeedEquipID":[15301002,15302002,15303002,15304002,15305002,15311002,15311011],"SuitPropertyID":"2,130111;4,130112;6,130113","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":13021,"Name":"风暴套装","Name_EN":"Fate Set","NeedEquipID":[15301004,15302004,15303004,15304004,15305004,15311004,15311012],"SuitPropertyID":"2,130121;4,130122;6,130123","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":13031,"Name":"无尽套装","Name_EN":"Holy Spirit Set","NeedEquipID":[15301006,15302006,15303006,15304006,15305006,15311006,15311013],"SuitPropertyID":"2,130131;4,130132;6,130133","SuitType":0,"Occ":0},
