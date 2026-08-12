@@ -9,7 +9,8 @@ namespace ET
 	{
 
 
-		public GameObject ButtonAppleLogin;
+		public GameObject TextButton_IcpBeiAn;
+        public GameObject ButtonAppleLogin;
         public GameObject ButtonTapTapLogin;
         public GameObject buttonAgeTip;
 		public GameObject UIAgeTip;

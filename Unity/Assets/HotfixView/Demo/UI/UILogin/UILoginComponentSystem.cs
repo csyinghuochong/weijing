@@ -227,7 +227,9 @@ namespace ET
 				self.YinSiToggle = rc.Get<GameObject>("YinSiToggle");
 				self.TextButton_2 = rc.Get<GameObject>("TextButton_2");
 				self.TextButton_1 = rc.Get<GameObject>("TextButton_1");
-				self.TextYinsiNew = rc.Get<GameObject>("TextYinsiNew").GetComponent<Text>();
+				self.TextButton_IcpBeiAn = rc.Get<GameObject>("TextButton_IcpBeiAn");
+
+                self.TextYinsiNew = rc.Get<GameObject>("TextYinsiNew").GetComponent<Text>();
 				self.TextYinsiNew.gameObject.SetActive(false);
                 self.YongHuXieYi.SetActive(false);
 				self.YinSiXieYi.SetActive(false);
@@ -246,7 +248,7 @@ namespace ET
                     self.YinSiToggle.gameObject.SetActive(true);
                     self.YinSiToggle.GetComponent<Toggle>().isOn = false;
                 }
-
+				self.TextButton_IcpBeiAn.SetActive(platform == 9);
 
                 self.TextButton_1.GetComponent<Button>().onClick.AddListener(() =>
 				{
@@ -275,8 +277,9 @@ namespace ET
 				self.TextButton_2_1.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
 				self.YongHuXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(false); });
 				self.YinSiXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(false); });
+				self.TextButton_IcpBeiAn.GetComponent<Button>().onClick.AddListener(self.OnClickTextButton_IcpBeiAn);
 
-				self.TextYongHuItem.SetActive(false);
+                self.TextYongHuItem.SetActive(false);
                 int platForm = GlobalHelp.GetPlatform();
                 string pageHtml = UILoginHelper.GetYonHuText(platForm);
                 UILoginHelper.ShowTextList(self.TextYongHuItem, pageHtml);
@@ -385,6 +388,10 @@ namespace ET
 	public static class UILoginComponentSystem
     {
 
+		public static void OnClickTextButton_IcpBeiAn(this UILoginComponent self)
+		{
+			Application.OpenURL("https://beian.miit.gov.cn/#/Integrated/recordQuery");
+		}
 
         public static void InitSdk(this UILoginComponent self)
 		{
