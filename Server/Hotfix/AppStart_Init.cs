@@ -95,8 +95,8 @@ namespace ET
             
             long unitid = DBHelper.DebugUnitId;
             // int n = (int)((unitid / 99) % 4);
-            Log.Console($"unit.zone0807: {UnitIdStruct.GetUnitZone(unitid)}");
-            Console.WriteLine($"unit.zone0807: {UnitIdStruct.GetUnitZone(unitid)}");
+            Log.Console($"unit.zone0815: {UnitIdStruct.GetUnitZone(unitid)}");
+            Console.WriteLine($"unit.zone0815: {UnitIdStruct.GetUnitZone(unitid)}");
             Console.WriteLine($"Game.Options.StartConfig:  {Game.Options.StartConfig}");
             ServerHelper.InitServerList(Game.Options.StartConfig);
             Console.WriteLine($"ServerItems.Count:  {ServerHelper.GetServerList().Count}");
