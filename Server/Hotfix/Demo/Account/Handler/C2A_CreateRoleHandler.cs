@@ -74,11 +74,16 @@ namespace ET
 						long accountCrateTime = centerAccountList[0].CreateTime;
 						long serverNowTime = TimeHelper.ServerNow();
 						long serverOpenTime = ServerHelper.GetOpenServerTime(false, session.DomainZone());
-						if (!ComHelp.IsBanHaoZone(session.DomainZone()) 
+
+						bool testAccount = centerAccountList[0].Account == "qqUID_BA63136176105041E8C1A0697413812B";
+
+
+                        if (!ComHelp.IsBanHaoZone(session.DomainZone()) 
 							&& !ComHelp.IsZhuBoZone(session.DomainZone())
 							&& !ServerHelper.IsGoogleServer(session.DomainZone())
                             && !GMHelp.GmAccount.Contains(centerAccountList[0].Account)
-							&& !GMHelp.TestNewOccAccount.Contains(centerAccountList[0].Account))
+							&& !GMHelp.TestNewOccAccount.Contains(centerAccountList[0].Account)
+							&& !testAccount)
 						{
                             if (!centerAccountList[0].Password.Equals(ComHelp.RobotPassWord) && accountCrateTime > 0 && (accountCrateTime - serverOpenTime >= TimeHelper.OneDay * 14))
                             {

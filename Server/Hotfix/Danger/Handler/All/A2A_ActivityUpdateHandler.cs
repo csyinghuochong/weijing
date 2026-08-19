@@ -232,7 +232,7 @@ namespace ET
                     if (request.FunctionId == 1025 && request.FunctionType == 1)
                     {
                         //Log.Console("OnBattleOpen");
-                        scene.GetComponent<BattleSceneComponent>().OnBattleOpen().Coroutine();
+                        scene.GetComponent<BattleSceneComponent>().OnBattleOpen();
                     }
                     if (request.FunctionId == 1025 && request.FunctionType == 2)
                     {

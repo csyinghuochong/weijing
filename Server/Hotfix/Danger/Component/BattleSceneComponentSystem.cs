@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -30,16 +31,34 @@ namespace ET
             LogHelper.LogWarning("Battle:  OnZeroClockUpdate", true);
         }
 
-        public static async ETTask   OnBattleOpen(this BattleSceneComponent self)
+        public static void OnBattleOpen(this BattleSceneComponent self)
         {
             self.BattleOpen = true;
             LogHelper.LogWarning($"OnBattleOpen : {self.DomainZone()}", true);
-            if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0 )  //&& !ComHelp.IsInnerNet())
+
+            if (DBHelper.GetOpenServerDay(self.DomainZone()) <= 0)
             {
-                await TimerComponent.Instance.WaitAsync((1024 - self.DomainZone()) * 10);
-                long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOpen });
+                return;
             }
+
+            List<int> openZones = ServerMessageHelper.GetAllZone()
+                .Where(z => DBHelper.GetOpenServerDay(z) > 0)
+                .OrderBy(z => z)
+                .ToList();
+
+            // 只由最小区号发一次，Message 带全区列表
+            if (openZones.Count == 0 || self.DomainZone() != openZones[0])
+            {
+                return;
+            }
+
+            long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+            MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()
+            {
+                Zone = self.DomainZone(),
+                MessageType = NoticeType.BattleOpen,
+                Message = string.Join(",", openZones),
+            });
         }
 
         public static async ETTask OnBattleOver(this BattleSceneComponent self)

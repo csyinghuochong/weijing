@@ -37,6 +37,7 @@ namespace ET
 
     public static class RobotManagerComponentSystem
     {
+        private static readonly object RobotNumberLock = new object();
 
         public static async ETTask RemoveRobot(this RobotManagerComponent self, Scene robotScene, string exitType)
         {
@@ -46,12 +47,11 @@ namespace ET
                 return;
             }
             int robotId = robotScene.GetComponent<BehaviourComponent>().RobotConfig.Id;
-            if (self.RobotNumber.ContainsKey(robotId))
+            lock (RobotNumberLock)
             {
-                self.RobotNumber[robotId]--;
-                if (self.RobotNumber[robotId] < 0)
+                if (self.RobotNumber.TryGetValue(robotId, out int n))
                 {
-                    self.RobotNumber[robotId] = 0;
+                    self.RobotNumber[robotId] = Math.Max(0, n - 1);
                 }
             }
             Log.Debug($"机器人退出： {exitType}");
@@ -170,17 +170,7 @@ namespace ET
 
         public static async ETTask<Scene> NewRobotBatch(this RobotManagerComponent self, int zone, int robotZone, int robotId, int robotIndex)
         {
-            int robotNumber = 0;
-            if (!self.RobotNumber.ContainsKey(robotId))
-            {
-                self.RobotNumber.Add(robotId, 0);
-                Log.Debug($"robotId[新]: 0");
-            }
-            else
-            {
-                Log.Debug($"robotId[增]: {self.RobotNumber[robotId]}");
-            }
-            robotNumber = self.RobotNumber[robotId]++;
+            int robotNumber = self.AllocRobotNumber(robotId);
 
             Log.Console($"NewRobotBatch robotNumber: {robotNumber}  robotIndex: {robotIndex}");
 
@@ -194,23 +184,150 @@ namespace ET
             return robotScene;
         }
 
-            public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotZone, int robotId)
+        public static int AllocRobotZoneIndex(this RobotManagerComponent self) => NextId(ref self.ZoneIndex);
+
+        public static int AllocRobotNumber(this RobotManagerComponent self, int robotId)
         {
-            int robotNumber = 0;
-            if (!self.RobotNumber.ContainsKey(robotId))
+            lock (RobotNumberLock)
             {
-                self.RobotNumber.Add(robotId, 0);
-                Log.Debug($"robotId[新]: 0");
+                self.RobotNumber.TryGetValue(robotId, out int n);
+                self.RobotNumber[robotId] = n + 1;
+                return n;
             }
-            else
+        }
+
+        private static int NextId(ref int value)
+        {
+            lock (RobotNumberLock) { return value++; }
+        }
+
+        // Message 格式: "201,202,203,..." 全区轮询登录
+        public static async ETTask RunBattleOpenRobots(this RobotManagerComponent self, string zonesMessage)
+        {
+            int robotId = BattleHelper.GetBattleRobotId(3, 0);
+            if (robotId == 0)
             {
-                Log.Debug($"robotId[增]: {self.RobotNumber[robotId]}");
+                Log.Warning("战场机器人配置缺失 behaviour=3");
+                return;
             }
-            robotNumber = self.RobotNumber[robotId]++;
+
+            if (string.IsNullOrEmpty(zonesMessage))
+            {
+                Log.Warning("战场机器人区列表为空");
+                return;
+            }
+
+            lock (RobotNumberLock)
+            {
+                if (self.BattleOpenRunning)
+                {
+                    return;
+                }
+
+                self.BattleOpenOk.Clear();
+                foreach (string part in zonesMessage.Split(','))
+                {
+                    if (int.TryParse(part, out int zone))
+                    {
+                        self.BattleOpenOk[zone] = 0;
+                    }
+                }
+
+                if (self.BattleOpenOk.Count == 0)
+                {
+                    Log.Warning($"战场机器人区列表解析失败: {zonesMessage}");
+                    return;
+                }
+
+                self.BattleOpenRunning = true;
+                RunBattleOpenRoundRobin(self, robotId).Coroutine();
+            }
+
+            await ETTask.CompletedTask;
+        }
+
+        private static async ETTask RunBattleOpenRoundRobin(RobotManagerComponent self, int robotId)
+        {
+            const int maxRound = 12;
+            const int targetOk = 2;
+
+            List<int> zones;
+            lock (RobotNumberLock)
+            {
+                zones = self.BattleOpenOk.Keys.OrderBy(z => z).ToList();
+            }
+
+            for (int round = 0; round < maxRound; round++)
+            {
+                foreach (int zone in zones)
+                {
+                    lock (RobotNumberLock)
+                    {
+                        if (self.BattleOpenOk[zone] >= targetOk)
+                        {
+                            continue;
+                        }
+                    }
+
+                    if (await TryBattleOpenRobot(self, zone, robotId))
+                    {
+                        lock (RobotNumberLock)
+                        {
+                            self.BattleOpenOk[zone]++;
+                        }
+                    }
+
+                    await TimerComponent.Instance.WaitAsync(500);
+                }
+
+                lock (RobotNumberLock)
+                {
+                    if (self.BattleOpenOk.Values.All(v => v >= targetOk))
+                    {
+                        break;
+                    }
+                }
+            }
+
+            lock (RobotNumberLock)
+            {
+                foreach (KeyValuePair<int, int> kv in self.BattleOpenOk)
+                {
+                    Log.Debug($"战场机器人 zone={kv.Key} success={kv.Value}");
+                }
+
+                self.BattleOpenOk.Clear();
+                self.BattleOpenRunning = false;
+            }
+        }
+
+        private static async ETTask<bool> TryBattleOpenRobot(RobotManagerComponent self, int zone, int robotId)
+        {
+            try
+            {
+                Scene scene = await self.NewRobot(zone, self.AllocRobotZoneIndex(), robotId);
+                if (scene == null)
+                {
+                    await TimerComponent.Instance.WaitAsync(300);
+                    return false;
+                }
+
+                scene.AddComponent<BehaviourComponent, int>(robotId);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Log.Error($"战场机器人异常 zone={zone}: {e}");
+                return false;
+            }
+        }
+
+        public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotZone, int robotId)
+        {
+            int robotNumber = self.AllocRobotNumber(robotId);
             string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
 
-            Scene robotScene = await self.NewRobot_2(zone, robotZone, robotId, account, ComHelp.RobotPassWord);
-            return robotScene;
+            return await self.NewRobot_2(zone, robotZone, robotId, account, ComHelp.RobotPassWord);
             //同一个进程robotZone是自增的
             //zoneScene = SceneFactory.CreateZoneScene(robotZone, "Robot", self);
             //string account = $"{robotId}_{zone}_{robotNumber}_0221";    //本地

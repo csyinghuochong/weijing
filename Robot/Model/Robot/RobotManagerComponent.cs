@@ -9,6 +9,9 @@ namespace ET
 
         public Dictionary<int, int> RobotNumber = new Dictionary<int, int>();
 
-        public Dictionary<long, long> TeamRobot = new Dictionary<long, long>(); 
+        public Dictionary<long, long> TeamRobot = new Dictionary<long, long>();
+
+        public Dictionary<int, int> BattleOpenOk = new Dictionary<int, int>();
+        public bool BattleOpenRunning;
     }
 }
