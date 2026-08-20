@@ -156,7 +156,7 @@
 {"_t":"ActivityConfig","_id":33011,"ActivityType":33,"Icon":"","Par_1":"5;31","Par_2":"","Par_3":"","Par_4":"端午节","Par_4_EN":"Communist Party Day"},
 {"_t":"ActivityConfig","_id":33012,"ActivityType":33,"Icon":"","Par_1":"7;1","Par_2":"","Par_3":"","Par_4":"建党节","Par_4_EN":"Army Day"},
 {"_t":"ActivityConfig","_id":33013,"ActivityType":33,"Icon":"","Par_1":"8;1","Par_2":"","Par_3":"","Par_4":"建军节","Par_4_EN":"Qixi Festival"},
-{"_t":"ActivityConfig","_id":33014,"ActivityType":33,"Icon":"","Par_1":"8;29","Par_2":"","Par_3":"","Par_4":"七夕节","Par_4_EN":"Teachers' Day"},
+{"_t":"ActivityConfig","_id":33014,"ActivityType":33,"Icon":"","Par_1":"8;20","Par_2":"","Par_3":"","Par_4":"七夕节","Par_4_EN":"Teachers' Day"},
 {"_t":"ActivityConfig","_id":33015,"ActivityType":33,"Icon":"","Par_1":"9;10","Par_2":"","Par_3":"","Par_4":"教师节","Par_4_EN":"Mid-Autumn Festival"},
 {"_t":"ActivityConfig","_id":33016,"ActivityType":33,"Icon":"","Par_1":"10;6","Par_2":"","Par_3":"","Par_4":"中秋节","Par_4_EN":"National Day"},
 {"_t":"ActivityConfig","_id":33017,"ActivityType":33,"Icon":"","Par_1":"10;1","Par_2":"","Par_3":"","Par_4":"国庆节","Par_4_EN":"Double Ninth Festival"},
