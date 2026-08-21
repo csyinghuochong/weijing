@@ -297,7 +297,7 @@ public class EventHandle : QuickSDKListener
         //QuickSDK.getInstance().callFunctionWithParams(FuncType.QUICK_SDK_FUNC_TYPE_URL, "https://hotfix.public.manasisrefrain.com/Resources/GaCha/8003/8003.html");
     }
 
-    public void OnVivoExit()
+    public void OnQuDaoExit()
     {
         Debug.LogWarning("！！！！VIVO OnVivoExit 11！！！！");
         if (!EventHandle.IsQudaoPackage())
@@ -305,6 +305,7 @@ public class EventHandle : QuickSDKListener
         Debug.LogWarning("！！！！VIVO OnVivoExit 22！！！！");
         if (EventHandle.onChannelType() == 15
             || EventHandle.onChannelType() == 17
+            || EventHandle.onChannelType() == 23
             || EventHandle.onChannelType() == 2376)
         {
 

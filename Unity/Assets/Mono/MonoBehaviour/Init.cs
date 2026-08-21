@@ -953,7 +953,7 @@ namespace ET
             CodeLoader.Instance.Start();
 		}
 
-		private void OnVivoExit()
+		private void OnQuDaoExit()
 		{
             if (this.Platform == 9)
             {
@@ -961,7 +961,7 @@ namespace ET
                 return;
             }
             EventHandle eventHandle = this.GetComponent<EventHandle>();
-			eventHandle.OnVivoExit();
+			eventHandle.OnQuDaoExit();
         }
 
 		private void Update()
@@ -972,7 +972,7 @@ namespace ET
                 // 关闭最上层UI
                 Debug.LogWarning("！！！！VIVO 弹出退出弹窗！！！！");
 
-                OnVivoExit();
+                OnQuDaoExit();
 			}
 
 			if (this.appleAuthManager != null)
