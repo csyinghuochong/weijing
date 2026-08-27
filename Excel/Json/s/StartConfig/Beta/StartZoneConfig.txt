@@ -221,4 +221,5 @@
 {"_t":"StartZoneConfig","_id":230,"DBConnection":"mongodb://localhost:27017/","PhysicZone":230,"DBName":"WJBeta230"},
 {"_t":"StartZoneConfig","_id":231,"DBConnection":"mongodb://localhost:27017/","PhysicZone":231,"DBName":"WJBeta231"},
 {"_t":"StartZoneConfig","_id":232,"DBConnection":"mongodb://localhost:27017/","PhysicZone":232,"DBName":"WJBeta232"},
+{"_t":"StartZoneConfig","_id":233,"DBConnection":"mongodb://localhost:27017/","PhysicZone":233,"DBName":"WJBeta233"},
 ]}
