@@ -970,7 +970,7 @@ namespace ET
 			if (Input.GetKeyDown(KeyCode.Escape))
 			{
                 // 关闭最上层UI
-                Debug.LogWarning("！！！！VIVO 弹出退出弹窗！！！！");
+                Debug.LogWarning("！！！！QuDao 弹出退出弹窗！！！！");
 
                 OnQuDaoExit();
 			}
