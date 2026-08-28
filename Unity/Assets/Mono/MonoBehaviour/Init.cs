@@ -415,6 +415,7 @@ namespace ET
 			}
 		}
 
+
 		public void ShareSdkInit()
 		{
 #if !UNITY_EDITOR
@@ -458,6 +459,15 @@ namespace ET
 
 #if UNITY_ANDROID && !UNITY_EDITOR
                 X7Init();
+#endif
+            }
+
+            if (this.Platform == 100)
+            {
+                Log.ILog.Debug($"QuickSdkInit::{this.Platform}");
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+                jo.Call("QuickSdkInit", "QuickSdkInit");
 #endif
             }
         }
