@@ -512,9 +512,9 @@ namespace ET
 
 
                 //2026/08/28 19:00:00 1787914800000 合区 xx-xx  xx/xx
-                //2026/08/28 19:00:00 1787914800000 新区 新区新区 233
+                //2026/08/28 19:00:00 1787914800000 新区 炽焰圣殿 233
                 //201-210为特殊区服
-                serverItems_1.Add(new ServerItem() { ServerId = 233, ServerIp = $"{ip}:20545", ServerName = "新区新区", ServerOpenTime = 1787914800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+                serverItems_1.Add(new ServerItem() { ServerId = 233, ServerIp = $"{ip}:20545", ServerName = "炽焰圣殿", ServerOpenTime = 1787914800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器

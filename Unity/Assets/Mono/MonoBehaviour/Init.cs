@@ -425,7 +425,7 @@ namespace ET
         public void ThirdSdkInit()
         {
 
-			Debug.Log("Init.TikTokInit");
+			Debug.Log("Init.ThirdSdkInit");
 			if (this.Platform == 5)
 			{
 #if UNITY_ANDROID && !UNITY_EDITOR
