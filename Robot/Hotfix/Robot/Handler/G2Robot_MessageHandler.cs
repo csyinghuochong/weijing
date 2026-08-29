@@ -246,7 +246,8 @@ namespace ET
 
                     break;
                 case NoticeType.BattleOpen:
-                    robotManagerComponent.RunBattleOpenRobots(message.Message).Coroutine();
+                    // 哪个区有玩家进场，就只拉该区机器人；区间并行由 RobotManager 保证
+                    robotManagerComponent.RunBattleOpenRobots(message.Zone).Coroutine();
                     break;
                 case NoticeType.SoloOver:
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.RemoveRobot, 1))
@@ -274,6 +275,7 @@ namespace ET
                     }
                     break;
                 case NoticeType.BattleOver:
+                    robotManagerComponent.ClearBattleOpenZone(message.Zone);
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.RemoveRobot, 1))
                     {
                         List<Entity>  ts = robotManagerComponent.Children.Values.ToList();

@@ -11,7 +11,7 @@ namespace ET
 
         public Dictionary<long, long> TeamRobot = new Dictionary<long, long>();
 
-        public Dictionary<int, int> BattleOpenOk = new Dictionary<int, int>();
-        public bool BattleOpenRunning;
+        /// <summary>正在拉机器人的区（区内串行，区间并行）</summary>
+        public HashSet<int> BattleOpenRunningZones = new HashSet<int>();
     }
 }

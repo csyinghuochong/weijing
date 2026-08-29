@@ -201,9 +201,13 @@ namespace ET
             lock (RobotNumberLock) { return value++; }
         }
 
-        // Message 格式: "201,202,203,..." 全区轮询登录
-        public static async ETTask RunBattleOpenRobots(this RobotManagerComponent self, string zonesMessage)
+        /// <summary>
+        /// 指定区拉战场机器人：每区 8 个、区内串行进入；不同区可并行。
+        /// </summary>
+        public static async ETTask RunBattleOpenRobots(this RobotManagerComponent self, int zone)
         {
+            const int robotCountPerZone = 8;
+
             int robotId = BattleHelper.GetBattleRobotId(3, 0);
             if (robotId == 0)
             {
@@ -211,93 +215,54 @@ namespace ET
                 return;
             }
 
-            if (string.IsNullOrEmpty(zonesMessage))
+            if (zone <= 0)
             {
-                Log.Warning("战场机器人区列表为空");
+                Log.Warning($"战场机器人区号无效: {zone}");
                 return;
             }
 
             lock (RobotNumberLock)
             {
-                if (self.BattleOpenRunning)
+                // 每区只接受一次通知：已在拉或已拉过则直接忽略
+                if (!self.BattleOpenRunningZones.Add(zone))
                 {
+                    Log.Warning($"战场机器人忽略重复通知 zone={zone}");
                     return;
                 }
+            }
 
-                self.BattleOpenOk.Clear();
-                foreach (string part in zonesMessage.Split(','))
+            int success = 0;
+            try
+            {
+                Log.Debug($"战场机器人开始 zone={zone} count={robotCountPerZone}");
+                const int maxAttempt = 16;
+                for (int attempt = 0; attempt < maxAttempt && success < robotCountPerZone; attempt++)
                 {
-                    if (int.TryParse(part, out int zone))
+                    if (await TryBattleOpenRobot(self, zone, robotId))
                     {
-                        self.BattleOpenOk[zone] = 0;
+                        success++;
                     }
+
+                    // 区内串行
+                    await TimerComponent.Instance.WaitAsync(500);
                 }
 
-                if (self.BattleOpenOk.Count == 0)
-                {
-                    Log.Warning($"战场机器人区列表解析失败: {zonesMessage}");
-                    return;
-                }
-
-                self.BattleOpenRunning = true;
-                RunBattleOpenRoundRobin(self, robotId).Coroutine();
+                Log.Debug($"战场机器人完成 zone={zone} success={success}/{robotCountPerZone}");
+            }
+            finally
+            {
+                // 本轮结束后保留在集合中，避免同轮重复拉；战场结束再清（见 BattleOver）
             }
 
             await ETTask.CompletedTask;
         }
 
-        private static async ETTask RunBattleOpenRoundRobin(RobotManagerComponent self, int robotId)
+        /// <summary>战场结束后允许该区下次再拉机器人</summary>
+        public static void ClearBattleOpenZone(this RobotManagerComponent self, int zone)
         {
-            const int maxRound = 12;
-            const int targetOk = 2;
-
-            List<int> zones;
             lock (RobotNumberLock)
             {
-                zones = self.BattleOpenOk.Keys.OrderBy(z => z).ToList();
-            }
-
-            for (int round = 0; round < maxRound; round++)
-            {
-                foreach (int zone in zones)
-                {
-                    lock (RobotNumberLock)
-                    {
-                        if (self.BattleOpenOk[zone] >= targetOk)
-                        {
-                            continue;
-                        }
-                    }
-
-                    if (await TryBattleOpenRobot(self, zone, robotId))
-                    {
-                        lock (RobotNumberLock)
-                        {
-                            self.BattleOpenOk[zone]++;
-                        }
-                    }
-
-                    await TimerComponent.Instance.WaitAsync(500);
-                }
-
-                lock (RobotNumberLock)
-                {
-                    if (self.BattleOpenOk.Values.All(v => v >= targetOk))
-                    {
-                        break;
-                    }
-                }
-            }
-
-            lock (RobotNumberLock)
-            {
-                foreach (KeyValuePair<int, int> kv in self.BattleOpenOk)
-                {
-                    Log.Debug($"战场机器人 zone={kv.Key} success={kv.Value}");
-                }
-
-                self.BattleOpenOk.Clear();
-                self.BattleOpenRunning = false;
+                self.BattleOpenRunningZones.Remove(zone);
             }
         }
 

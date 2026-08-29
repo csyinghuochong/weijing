@@ -17,6 +17,8 @@ namespace ET
     public class BattleSceneComponent : Entity, IAwake, IDestroy
     {
         public bool BattleOpen;
+        /// <summary>本轮战场开启后是否已通知过本区机器人（首个战场 Scene 创建时通知）</summary>
+        public bool RobotBattleOpenNotified;
         public List<BattleInfo> BattleInfos = new List<BattleInfo>();
     }
 }
