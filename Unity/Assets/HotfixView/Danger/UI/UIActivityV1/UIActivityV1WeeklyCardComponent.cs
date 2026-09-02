@@ -233,7 +233,7 @@ namespace ET
 #if UNITY_IPHONE
             //拉起ios支付
                                 self.PayType = PayTypeEnum.IOSPay;
-             GlobalHelp.OnIOSPurchase(chargetNumber);
+            GlobalHelp.OnIOSGoldCard(chargetNumber);
             self.RechargeSelectUI.SetActive(false);
 
              //ios主要用来服务器打印日志

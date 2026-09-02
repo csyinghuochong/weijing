@@ -178,12 +178,7 @@ namespace ET
             string products = "pay_1@pay_5@pay_10@pay_20@pay_30@pay_50@pay_80@pay_100";
             GameObject.Find("Global").GetComponent<IAPManager>().InitializePurchasing(products);
         }
-        
-        public static void OnIOSPurchase(int rmb)
-        {
-            string product =  $"{rmb}WJ";
-            GameObject.Find("Global").GetComponent<PurchasingManager>().OnIOSPurchase(product);
-        }
+
 
         //testpay1  商品ID
         public static void OnIOSPurchaseTest( )
@@ -203,9 +198,22 @@ namespace ET
             //builder.AddProduct("488WJ", ProductType.Consumable);
             //builder.AddProduct("488SG", ProductType.Consumable);
             //builder.AddProduct("648WJ", ProductType.Consumable);
-            string products = "6WJ_30WJ_50WJ_98WJ_198WJ_298WJ_488WJ_488SG_648WJ_testpay1";
+            string products = "6WJ_30WJ_50WJ_98WJ_198WJ_298WJ_488WJ_488SG_648WJ_testpay1_98WJGoldCard_30WJGoldCard";
             GameObject.Find("Global").GetComponent<PurchasingManager>().InitProduct(products);
         }
+
+        public static void OnIOSGoldCard(int rmb)
+        {
+            string product = $"{rmb}WJGoldCard";
+            GameObject.Find("Global").GetComponent<PurchasingManager>().OnIOSPurchase(product);
+        }
+
+        public static void OnIOSPurchase(int rmb)
+        {
+            string product = $"{rmb}WJ";
+            GameObject.Find("Global").GetComponent<PurchasingManager>().OnIOSPurchase(product);
+        }
+
 
         public static void OnRechageSucess(Scene zoneScene, int payType, int amount, int now)
         {
