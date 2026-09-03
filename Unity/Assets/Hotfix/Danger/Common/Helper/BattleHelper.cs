@@ -108,6 +108,47 @@ namespace ET
             return ids[RandomHelper.RandomNumber(0, ids.Count)];
         }
 
+        /// <summary>
+        /// 按战场 Scene 推荐等级筛机器人，避免 20 级号进 10-29 图、玩家却在 30-60 图看不见。
+        /// </summary>
+        public static int GetBattleRobotIdForScene(int sceneId)
+        {
+            if (sceneId <= 0 || !SceneConfigCategory.Instance.Contain(sceneId))
+            {
+                return GetBattleRobotId(3, 0);
+            }
+
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
+            if (sceneConfig.TuiJianLv == null || sceneConfig.TuiJianLv.Length < 2)
+            {
+                return GetBattleRobotId(3, 0);
+            }
+
+            int minLv = sceneConfig.TuiJianLv[0];
+            int maxLv = sceneConfig.TuiJianLv[1];
+            List<int> ids = new List<int>();
+            List<RobotConfig> robots = RobotConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < robots.Count; i++)
+            {
+                RobotConfig robot = robots[i];
+                if (robot.Behaviour != 3 || robot.BehaviourID != 0)
+                {
+                    continue;
+                }
+                if (robot.Level < minLv || robot.Level > maxLv)
+                {
+                    continue;
+                }
+                ids.Add(robot.Id);
+            }
+
+            if (ids.Count == 0)
+            {
+                return GetBattleRobotId(3, 0);
+            }
+            return ids[RandomHelper.RandomNumber(0, ids.Count)];
+        }
+
         public static int GetTeamRobotId(int fubenId)
         {
             List<int> ids = new List<int>();

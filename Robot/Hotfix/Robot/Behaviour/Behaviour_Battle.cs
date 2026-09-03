@@ -22,7 +22,15 @@ namespace ET
             //Console.WriteLine("Behaviour_Battle");
             while (true)
             {
-                int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
+                int sceneId = 0;
+                if (!string.IsNullOrEmpty(aiComponent.MessageValue))
+                {
+                    int.TryParse(aiComponent.MessageValue, out sceneId);
+                }
+                if (sceneId <= 0)
+                {
+                    sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
+                }
                 int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
 
                 if (errorCode != 0)

@@ -11,6 +11,7 @@ namespace ET
         public override void Awake(BattleSceneComponent self)
         {
             self.BattleInfos.Clear();
+            self.RobotBattleOpenNotifiedScenes.Clear();
         }
     }
 
@@ -19,6 +20,7 @@ namespace ET
         public override void Destroy(BattleSceneComponent self)
         {
             self.BattleInfos.Clear();
+            self.RobotBattleOpenNotifiedScenes.Clear();
         }
     }
 
@@ -33,7 +35,7 @@ namespace ET
         public static void OnBattleOpen(this BattleSceneComponent self)
         {
             self.BattleOpen = true;
-            self.RobotBattleOpenNotified = false;
+            self.RobotBattleOpenNotifiedScenes.Clear();
             LogHelper.LogWarning($"OnBattleOpen : {self.DomainZone()}", true);
             // 机器人改到首个玩家进场、GenerateBattleInstanceId 创建战场 Scene 后再通知
         }
@@ -41,7 +43,7 @@ namespace ET
         public static async ETTask OnBattleOver(this BattleSceneComponent self)
         {
             self.BattleOpen = false;
-            self.RobotBattleOpenNotified = false;
+            self.RobotBattleOpenNotifiedScenes.Clear();
             LogHelper.LogDebug($"OnBattleOver : {self.DomainZone()}");
             //Console.WriteLine($"OnBattleOver : {self.DomainZone()}");
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
@@ -167,27 +169,23 @@ namespace ET
                 battleInfo.Camp2Player.Add(unitid);
             }
 
-            // 本区本轮只通知机器人一次：必须在 Add 前用标志位抢占，避免后续再建战场重复通知
-            bool notifyRobotOnce = !self.RobotBattleOpenNotified;
-            if (notifyRobotOnce)
-            {
-                self.RobotBattleOpenNotified = true;
-            }
+            // 本区每种战场图只通知一次：必须在 Add 前抢占，避免同图再建副本重复拉机器人
+            bool notifyRobotOnce = self.RobotBattleOpenNotifiedScenes.Add(sceneId);
 
             self.BattleInfos.Add(battleInfo);
 
             if (notifyRobotOnce)
             {
-                self.NotifyRobotBattleOpen();
+                self.NotifyRobotBattleOpen(sceneId);
             }
 
             return new KeyValuePairInt() { KeyId = camp, Value = battleInfo.FubenInstanceId };
         }
 
         /// <summary>
-        /// 通知机器人进入本区。调用方已用 RobotBattleOpenNotified 保证每区每轮只进一次。
+        /// 通知机器人进入本区本张战场图。调用方已保证每种 Scene 每轮只通知一次。
         /// </summary>
-        private static void NotifyRobotBattleOpen(this BattleSceneComponent self)
+        private static void NotifyRobotBattleOpen(this BattleSceneComponent self, int sceneId)
         {
             if (DBHelper.GetOpenServerDay(self.DomainZone()) <= 0)
             {
@@ -200,9 +198,9 @@ namespace ET
             {
                 Zone = zone,
                 MessageType = NoticeType.BattleOpen,
-                Message = zone.ToString(),
+                Message = sceneId.ToString(),
             });
-            LogHelper.LogWarning($"NotifyRobotBattleOpen zone={zone} (once)", true);
+            LogHelper.LogWarning($"NotifyRobotBattleOpen zone={zone} sceneId={sceneId} (once per scene)", true);
         }
     }
 }

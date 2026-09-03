@@ -55,7 +55,7 @@ namespace ET
                 }
             }
             Log.Debug($"机器人退出： {exitType}");
-            Console.WriteLine($"机器人退出222 Account:  {robotScene.GetComponent<AccountInfoComponent>().Account}");
+            //Console.WriteLine($"机器人退出222 Account:  {robotScene.GetComponent<AccountInfoComponent>().Account}");
             robotScene.GetComponent<SessionComponent>().Session.Dispose();
             await TimerComponent.Instance.WaitAsync(200);
             robotScene.Dispose();
@@ -172,13 +172,13 @@ namespace ET
         {
             int robotNumber = self.AllocRobotNumber(robotId);
 
-            Log.Console($"NewRobotBatch robotNumber: {robotNumber}  robotIndex: {robotIndex}");
+            //Log.Console($"NewRobotBatch robotNumber: {robotNumber}  robotIndex: {robotIndex}");
 
             robotNumber += robotIndex;
 
             string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
 
-            Log.Console($"NewRobotBatch: {account}");
+            //Log.Console($"NewRobotBatch: {account}");
 
             Scene robotScene = await self.NewRobot_2(zone, robotZone, robotId, account, ComHelp.RobotPassWord);
             return robotScene;
@@ -201,14 +201,28 @@ namespace ET
             lock (RobotNumberLock) { return value++; }
         }
 
-        /// <summary>
-        /// 指定区拉战场机器人：每区 8 个、区内串行进入；不同区可并行。
-        /// </summary>
-        public static async ETTask RunBattleOpenRobots(this RobotManagerComponent self, int zone)
+        private static long MakeBattleOpenSceneKey(int zone, int sceneId)
         {
-            const int robotCountPerZone = 8;
+            return (long)zone * 10000000L + sceneId;
+        }
 
-            int robotId = BattleHelper.GetBattleRobotId(3, 0);
+        /// <summary>
+        /// 每区每种战场图只拉一次、每次 3 个；同区不同图可各拉一次，不同区可并行。
+        /// sceneMessage 为玩家进入的战场 SceneId。
+        /// </summary>
+        public static async ETTask RunBattleOpenRobots(this RobotManagerComponent self, int zone, string sceneMessage = null)
+        {
+            const int robotCountPerScene = 3;
+
+            int sceneId = 0;
+            if (!string.IsNullOrEmpty(sceneMessage))
+            {
+                int.TryParse(sceneMessage, out sceneId);
+            }
+
+            int robotId = sceneId > 0
+                ? BattleHelper.GetBattleRobotIdForScene(sceneId)
+                : BattleHelper.GetBattleRobotId(3, 0);
             if (robotId == 0)
             {
                 Log.Warning("战场机器人配置缺失 behaviour=3");
@@ -221,12 +235,13 @@ namespace ET
                 return;
             }
 
+            long runningKey = MakeBattleOpenSceneKey(zone, sceneId);
             lock (RobotNumberLock)
             {
-                // 每区只接受一次通知：已在拉或已拉过则直接忽略
-                if (!self.BattleOpenRunningZones.Add(zone))
+                // 每区每种 Scene 只接受一次通知
+                if (!self.BattleOpenRunningScenes.Add(runningKey))
                 {
-                    Log.Warning($"战场机器人忽略重复通知 zone={zone}");
+                    Log.Warning($"战场机器人忽略重复通知 zone={zone} sceneId={sceneId}");
                     return;
                 }
             }
@@ -234,39 +249,49 @@ namespace ET
             int success = 0;
             try
             {
-                Log.Debug($"战场机器人开始 zone={zone} count={robotCountPerZone}");
-                const int maxAttempt = 16;
-                for (int attempt = 0; attempt < maxAttempt && success < robotCountPerZone; attempt++)
+                Log.Debug($"战场机器人开始 zone={zone} sceneId={sceneId} robotId={robotId} count={robotCountPerScene}");
+                const int maxAttempt = 10;
+                for (int attempt = 0; attempt < maxAttempt && success < robotCountPerScene; attempt++)
                 {
-                    if (await TryBattleOpenRobot(self, zone, robotId))
+                    if (await TryBattleOpenRobot(self, zone, robotId, sceneId))
                     {
                         success++;
                     }
 
-                    // 区内串行
                     await TimerComponent.Instance.WaitAsync(500);
                 }
 
-                Log.Debug($"战场机器人完成 zone={zone} success={success}/{robotCountPerZone}");
+                Log.Debug($"战场机器人完成 zone={zone} sceneId={sceneId} success={success}/{robotCountPerScene}");
             }
             finally
             {
-                // 本轮结束后保留在集合中，避免同轮重复拉；战场结束再清（见 BattleOver）
+                // 本轮结束后保留在集合中，避免同图重复拉；战场结束再清（见 BattleOver）
             }
 
             await ETTask.CompletedTask;
         }
 
-        /// <summary>战场结束后允许该区下次再拉机器人</summary>
+        /// <summary>战场结束后允许该区各 Scene 下次再拉机器人</summary>
         public static void ClearBattleOpenZone(this RobotManagerComponent self, int zone)
         {
             lock (RobotNumberLock)
             {
-                self.BattleOpenRunningZones.Remove(zone);
+                List<long> removeKeys = new List<long>();
+                foreach (long key in self.BattleOpenRunningScenes)
+                {
+                    if (key / 10000000L == zone)
+                    {
+                        removeKeys.Add(key);
+                    }
+                }
+                for (int i = 0; i < removeKeys.Count; i++)
+                {
+                    self.BattleOpenRunningScenes.Remove(removeKeys[i]);
+                }
             }
         }
 
-        private static async ETTask<bool> TryBattleOpenRobot(RobotManagerComponent self, int zone, int robotId)
+        private static async ETTask<bool> TryBattleOpenRobot(RobotManagerComponent self, int zone, int robotId, int sceneId)
         {
             try
             {
@@ -277,7 +302,11 @@ namespace ET
                     return false;
                 }
 
-                scene.AddComponent<BehaviourComponent, int>(robotId);
+                BehaviourComponent behaviourComponent = scene.AddComponent<BehaviourComponent, int>(robotId);
+                if (behaviourComponent != null && sceneId > 0)
+                {
+                    behaviourComponent.MessageValue = sceneId.ToString();
+                }
                 return true;
             }
             catch (Exception e)

@@ -100,7 +100,7 @@ namespace ET
                             {
                                 continue;
                             }
-                            Console.WriteLine($"主城移动机器人退出111  :{robotScene.GetComponent<AccountInfoComponent>().Account}");
+                            //Console.WriteLine($"主城移动机器人退出111  :{robotScene.GetComponent<AccountInfoComponent>().Account}");
 
                             robotScene.GetComponent<AttackComponent>().RemoveTimer();
                             robotManagerComponent.RemoveRobot(robotScene, "主城移动机器人").Coroutine();
@@ -246,8 +246,8 @@ namespace ET
 
                     break;
                 case NoticeType.BattleOpen:
-                    // 哪个区有玩家进场，就只拉该区机器人；区间并行由 RobotManager 保证
-                    robotManagerComponent.RunBattleOpenRobots(message.Zone).Coroutine();
+                    // 每区每种战场 Scene 只拉一次；Message 为玩家进入的战场 SceneId
+                    robotManagerComponent.RunBattleOpenRobots(message.Zone, message.Message).Coroutine();
                     break;
                 case NoticeType.SoloOver:
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.RemoveRobot, 1))
