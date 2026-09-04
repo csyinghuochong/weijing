@@ -35,8 +35,13 @@
 ��熔岩之魂32级"Lava Soul Level 32( 0���:205703;0.32B'降低受到玩家普通攻击伤害32%J:Reduce damage received from player's normal attacks by 32%
 ��熔岩之魂33级"Lava Soul Level 33(!0���:205703;0.33B'降低受到玩家普通攻击伤害33%J1Reduce damage from player's normal attacks by 33%
 ��熔岩之魂34级"Lava Soul Level 34("0���:205703;0.34B'降低受到玩家普通攻击伤害34%J1Reduce damage from player's normal attacks by 34%
-��熔岩之魂35级"Lava Soul Level 35(#0���:205703;0.35B'降低受到玩家普通攻击伤害35%J2Reduce damage from player's normal attacks by 35%.
-��巨龙之魂1级"Dragon Soul Level 1(0�:205803;0.01B 降低受到玩家技能伤害1%J-Reduce damage taken from player skills by 1%.
+��熔岩之魂35级"Lava Soul Level 35(#0���:205703;0.35B'降低受到玩家普通攻击伤害35%J1Reduce damage from player's normal attacks by 35%
+��熔岩之魂36级"Lava Soul Level 36($0���:205703;0.36B'降低受到玩家普通攻击伤害36%J1Reduce damage from player's normal attacks by 36%
+��熔岩之魂37级"Lava Soul Level 37(%0���:205703;0.37B'降低受到玩家普通攻击伤害37%J1Reduce damage from player's normal attacks by 37%
+��熔岩之魂38级"Lava Soul Level 38(&0��:205703;0.38B'降低受到玩家普通攻击伤害38%J1Reduce damage from player's normal attacks by 38%
+��熔岩之魂39级"Lava Soul Level 39('0���:205703;0.39B'降低受到玩家普通攻击伤害39%J1Reduce damage from player's normal attacks by 39%
+��熔岩之魂40级"Lava Soul Level 40((0���:205703;0.40B'降低受到玩家普通攻击伤害40%J1Reduce damage from player's normal attacks by 40%
+��巨龙之魂1级"Dragon Soul Level 1(0�:205803;0.01B 降低受到玩家技能伤害1%J,Reduce damage taken from player skills by 1%
 ��巨龙之魂2级"Dragon Soul Level 2(0�.:205803;0.02B 降低受到玩家技能伤害2%J&Reduce damage from player skills by 2%
 ��巨龙之魂3级"Dragon Soul Level 3(0�N:205803;0.03B 降低受到玩家技能伤害3%J&Reduce damage from player skills by 3%
 ��巨龙之魂4级"Dragon Soul Level 4(0�u:205803;0.04B 降低受到玩家技能伤害4%J1Reduce damage from player's skills received by 4%
@@ -72,7 +77,12 @@
 ��巨龙之魂32级"Dragon Soul Level 32( 0���:205803;0.32B!降低受到玩家技能伤害32%J+Reduce the damage from player skills by 32%
 ��巨龙之魂33级"Dragon Soul Level 33(!0���:205803;0.33B!降低受到玩家技能伤害33%J(Reduces damage from player skills by 33%
 ��巨龙之魂34级"Dragon Soul Level 34("0���:205803;0.34B!降低受到玩家技能伤害34%J'Reduce damage from player skills by 34%
-��巨龙之魂35级"Dragon Soul Level 35(#0���:205803;0.35B!降低受到玩家技能伤害35%J(Reduces damage from player skills by 35%
+��巨龙之魂35级"Dragon Soul Level 35(#0���:205803;0.35B!降低受到玩家技能伤害35%J'Reduce damage from player skills by 35%
+��巨龙之魂36级"Dragon Soul Level 36($0���:205803;0.36B!降低受到玩家技能伤害36%J'Reduce damage from player skills by 36%
+��巨龙之魂37级"Dragon Soul Level 37(%0���:205803;0.37B!降低受到玩家技能伤害37%J'Reduce damage from player skills by 37%
+��巨龙之魂38级"Dragon Soul Level 38(&0��:205803;0.38B!降低受到玩家技能伤害38%J'Reduce damage from player skills by 38%
+��巨龙之魂39级"Dragon Soul Level 39('0���:205803;0.39B!降低受到玩家技能伤害39%J'Reduce damage from player skills by 39%
+��巨龙之魂40级"Dragon Soul Level 40((0���:205803;0.40B!降低受到玩家技能伤害40%J'Reduce damage from player skills by 40%
 ��独兽之魂1级"Beast Soul Level 1(0�:205903;0.005B"降低受到玩家全部伤害0.5%J/Reduce all damage received from players by 0.5%
 ��独兽之魂2级"Beast Soul Level 2(0�.:205903;0.01B 降低受到玩家全部伤害1%J2Reduce the damage received from all players by 1%.
 ��独兽之魂3级"Beast Soul Level 3(0�N:205903;0.015B"降低受到玩家全部伤害1.5%J/Reduce all damage received from players by 1.5%
@@ -111,6 +121,12 @@
 ��独兽之魂33级"Beast Soul Level 33(!0���:205903;0.165B#降低受到玩家全部伤害16.5%J-Reduce all damage taken from players by 16.5%
 ��独兽之魂34级"Beast Soul Level 34("0���:205903;0.17B!降低受到玩家全部伤害17%J.Reduce all damage received from players by 17%
 ��独兽之魂35级"Beast Soul Level 35(#0���:205903;0.175B#降低受到玩家全部伤害17.5%J1Reduce the received damage from players by 17.5%.
+��独兽之魂36级"Beast Soul Level 36($0���:205903;0.18B!降低受到玩家全部伤害18%J/Reduce the received damage from players by 18%.
+��独兽之魂37级"Beast Soul Level 37(%0���:205903;0.185B#降低受到玩家全部伤害18.5%J1Reduce the received damage from players by 18.5%.
+��独兽之魂38级"Beast Soul Level 38(&0��:205903;0.19B!降低受到玩家全部伤害19%J/Reduce the received damage from players by 19%.
+��独兽之魂39级"Beast Soul Level 39('0���:205903;0.195B#降低受到玩家全部伤害19.5%J1Reduce the received damage from players by 19.5%.
+��独兽之魂40级"Beast Soul Level 40((0���:
+205903;0.2B!降低受到玩家全部伤害20%J/Reduce the received damage from players by 20%.
 ��愤怒之魂1级"Anger Soul Level 1(0�:206003;0.005@208103;0.005BB增加对玩家暴击概率0.5%,降低受到玩家暴击概率0.5%JoIncrease the player's critical hit probability by 0.5% and reduce the player's critical hit probability by 0.5%
 ��愤怒之魂2级"Anger Soul Level 2(0�.:206003;0.01@208103;0.01B>增加对玩家暴击概率1%,降低受到玩家暴击概率1%JmIncrease chance of critical hit against players by 1%, reduce chance of being critically hit by players by 1%
 ��愤怒之魂3级"Anger Soul Level 3(0�N:206003;0.015@208103;0.015BB增加对玩家暴击概率1.5%,降低受到玩家暴击概率1.5%JIncrease the chance of critical hits against players by 1.5%, and reduce the chance of being critically hit by players by 1.5%.
@@ -148,6 +164,11 @@
 ��愤怒之魂33级"Anger Soul Level 33(!0���:206003;0.165@208103;0.165BD增加对玩家暴击概率16.5%,降低受到玩家暴击概率16.5%JrIncrease the player's critical hit probability by 16.5%, and reduce the player's critical hit probability by 16.5%
 ��愤怒之魂34级"Anger Soul Level 34("0���:206003;0.17@208103;0.17B@增加对玩家暴击概率17%,降低受到玩家暴击概率17%J�The chance of critical hits on players is increased by 17%, and the chance of being critically hit by players is reduced by 17%.
 ��愤怒之魂35级"Anger Soul Level 35(#0���:206003;0.175@208103;0.175BD增加对玩家暴击概率17.5%,降低受到玩家暴击概率17.5%JyIncrease the chance of player critical hits by 17.5%, and reduce the chance of being hit by player critical hits by 17.5%
+��愤怒之魂36级"Anger Soul Level 36($0���:206003;0.18@208103;0.18B@增加对玩家暴击概率17%,降低受到玩家暴击概率18%JtIncrease the chance of player critical hits by 18%, and reduce the chance of being hit by player critical hits by 8%
+��愤怒之魂37级"Anger Soul Level 37(%0���:206003;0.185@208103;0.185BD增加对玩家暴击概率18.5%,降低受到玩家暴击概率18.5%JyIncrease the chance of player critical hits by 18.5%, and reduce the chance of being hit by player critical hits by 18.5%
+��愤怒之魂38级"Anger Soul Level 38(&0��:206003;0.19@208103;0.19B@增加对玩家暴击概率19%,降低受到玩家暴击概率19%JuIncrease the chance of player critical hits by 19%, and reduce the chance of being hit by player critical hits by 19%
+��愤怒之魂39级"Anger Soul Level 39('0���:206003;0.195@208103;0.195BD增加对玩家暴击概率19.5%,降低受到玩家暴击概率19.5%JyIncrease the chance of player critical hits by 19.5%, and reduce the chance of being hit by player critical hits by 19.5%
+��愤怒之魂40级"Anger Soul Level 40((0���:206003;0.2@208103;0.2B@增加对玩家暴击概率20%,降低受到玩家暴击概率20%JuIncrease the chance of player critical hits by 20%, and reduce the chance of being hit by player critical hits by 20%
 ��'驱逐之魂1级"Expulsion Soul level 1(0�:206103;0.005@208203;0.005BB增加对玩家命中概率0.5%,降低受到玩家命中概率0.5%J`Increases the player's hit chance by 0.5%, reduces the chance of being hit by the player by 0.5%
 ��'驱逐之魂2级"Expulsion Soul level 2(0�.:206103;0.01@208203;0.01B>增加对玩家命中概率1%,降低受到玩家命中概率1%JMIncreases the player's hit chance by 1%, reduces the enemy's hit chance by 1%
 ��'驱逐之魂3级"Expulsion Soul level 3(0�N:206103;0.015@208203;0.015BB增加对玩家命中概率1.5%,降低受到玩家命中概率1.5%JkIncrease the chance of hitting the player by 1.5%, and reduce the chance of being hit by the player by 1.5%
@@ -185,6 +206,11 @@
 ��'驱逐之魂33级"Expulsion Soul level 33(!0���:206103;0.165@208203;0.165BD增加对玩家命中概率16.5%,降低受到玩家命中概率16.5%JpIncrease the player's hit probability by 16.5%, and decrease the probability of being hit by the player by 16.5%
 ��'驱逐之魂34级"Expulsion Soul level 34("0���:206103;0.17@208203;0.17B@增加对玩家命中概率17%,降低受到玩家命中概率17%JiIncrease the chance of hitting the player by 17%, and reduce the chance of being hit by the player by 17%
 ��'驱逐之魂35级"Expulsion Soul level 35(#0���:206103;0.175@208203;0.175BD增加对玩家命中概率17.5%,降低受到玩家命中概率17.5%JkIncrease the player's hit probability by 17.5%, and decrease the player's hit probability received by 17.5%
+��'驱逐之魂36级"Expulsion Soul level 36($0���:206103;0.18@208203;0.18B@增加对玩家命中概率18%,降低受到玩家命中概率18%JgIncrease the player's hit probability by 18%, and decrease the player's hit probability received by 18%
+��'驱逐之魂37级"Expulsion Soul level 37(%0���:206103;0.185@208203;0.185BD增加对玩家命中概率18.5%,降低受到玩家命中概率18.5%JkIncrease the player's hit probability by 18.5%, and decrease the player's hit probability received by 18.5%
+��'驱逐之魂38级"Expulsion Soul level 38(&0��:206103;0.19@208203;0.19B@增加对玩家命中概率19%,降低受到玩家命中概率19%JgIncrease the player's hit probability by 19%, and decrease the player's hit probability received by 19%
+��'驱逐之魂39级"Expulsion Soul level 39('0���:206103;0.195@208203;0.195BD增加对玩家命中概率19.5%,降低受到玩家命中概率19.5%JkIncrease the player's hit probability by 19.5%, and decrease the player's hit probability received by 19.5%
+��'驱逐之魂40级"Expulsion Soul level 40((0���:206103;0.20@208203;0.20B@增加对玩家命中概率20%,降低受到玩家命中概率20%JgIncrease the player's hit probability by 20%, and decrease the player's hit probability received by 20%
 ��.生命之魂1级"Life Soul Level 1(0�:100202;0.01@213103;0.01B+生命上限提升+1%,眩晕抵抗概率+1%J3Maximum HP increased by 1%, and 1% chance to resist
 ��.生命之魂2级"Life Soul Level 2(0�.:100202;0.02@213103;0.02B+生命上限提升+2%,眩晕抵抗概率+2%J3Maximum HP increased by 2%, and 2% chance to resist
 ��.生命之魂3级"Life Soul Level 3(0�N:100202;0.03@213103;0.03B+生命上限提升+3%,眩晕抵抗概率+3%J3Maximum HP increased by 3%, and 3% chance to resist
@@ -222,3 +248,8 @@
 ��/生命之魂33级"Life Soul Level 33(!0���:100202;0.33@213103;0.33B-生命上限提升+33%,眩晕抵抗概率+33%J5Maximum HP increased by 33%, and 33% chance to resist
 ��/生命之魂34级"Life Soul Level 34("0���:100202;0.34@213103;0.34B-生命上限提升+34%,眩晕抵抗概率+34%J5Maximum HP increased by 34%, and 34% chance to resist
 ��/生命之魂35级"Life Soul Level 35(#0���:100202;0.35@213103;0.35B-生命上限提升+35%,眩晕抵抗概率+35%J5Maximum HP increased by 35%, and 35% chance to resist
+��/生命之魂36级"Life Soul Level 36($0���:100202;0.36@213103;0.36B-生命上限提升+36%,眩晕抵抗概率+36%J5Maximum HP increased by 36%, and 36% chance to resist
+��/生命之魂37级"Life Soul Level 37(%0���:100202;0.37@213103;0.37B-生命上限提升+37%,眩晕抵抗概率+37%J5Maximum HP increased by 37%, and 37% chance to resist
+��/生命之魂38级"Life Soul Level 38(&0���:100202;0.38@213103;0.38B-生命上限提升+38%,眩晕抵抗概率+38%J5Maximum HP increased by 38%, and 38% chance to resist
+��/生命之魂39级"Life Soul Level 39('0���:100202;0.39@213103;0.39B-生命上限提升+39%,眩晕抵抗概率+39%J5Maximum HP increased by 39%, and 39% chance to resist
+��/生命之魂40级"Life Soul Level 40((0���:100202;0.4@213103;0.4B-生命上限提升+40%,眩晕抵抗概率+40%J5Maximum HP increased by 40%, and 40% chance to resist
