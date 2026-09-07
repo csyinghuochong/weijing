@@ -201,6 +201,14 @@
         public const int DiamondWeeklyCard = 3201;                              //钻石周卡ComHelp.GetDayByTime
         public const int RechargeType = 3202;                                    //0充值钻石   1购买周卡
         public const int ResetWeekTime = 3203;
+        public const int PetTupo_0 = 3204;                                      //宠物突破：攻击
+        public const int PetTupo_1 = 3205;                                      //宠物突破：生命
+        public const int PetTupo_2 = 3206;                                      //宠物突破：防御
+        public const int PetTupo_3 = 3207;                                      //宠物突破：法防
+        public const int PetTupoFail_0 = 3208;
+        public const int PetTupoFail_1 = 3209;
+        public const int PetTupoFail_2 = 3210;
+        public const int PetTupoFail_3 = 3211;
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

@@ -1008,6 +1008,18 @@ namespace ET
                 return self.EquipSpaceName_EN;
             }
         }
+
+        public static string GetEquipSpaceName(this PetTupoConfig self)
+        {
+            if (GameSettingLanguge.Language == 0)
+            {
+                return self.EquipSpaceName;
+            }
+            else
+            {
+                return self.EquipSpaceName_EN;
+            }
+        }
         
         public static string GetTaskName(this TaskCountryConfig self)
         {

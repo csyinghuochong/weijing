@@ -44,7 +44,11 @@ namespace ET
 
         public static async ETTask<UI> OnSelectIndex(this UIPageViewComponent self, int page)
         {
-            if (self.UISubViewList[page] == null && self.UISubViewPath[page].Length > 0)
+            if (page < 0 || self.UISubViewList == null || page >= self.UISubViewList.Length)
+            {
+                return null;
+            }
+            if (self.UISubViewList[page] == null && !string.IsNullOrEmpty(self.UISubViewPath[page]))
             {
                 long instanceid = self.InstanceId;
                 string path = self.UISubViewPath[page];

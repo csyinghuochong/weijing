@@ -1156,6 +1156,7 @@ namespace ET
                 { ItemGetWay.JiaYuanCook, "家园厨房" },
                 { ItemGetWay.Donation, "捐献" },
                 { ItemGetWay.UnionXiuLian, "家族修炼" },
+                { ItemGetWay.PetTupo, "宠物突破" },
                 { ItemGetWay.UnionBoss, "家族BOSS" },
                 { ItemGetWay.UnionRace, "家族争霸" },
                 { ItemGetWay.Auction, "竞拍" },

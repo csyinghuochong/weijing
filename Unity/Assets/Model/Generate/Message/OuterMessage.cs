@@ -17119,4 +17119,36 @@ namespace ET
 
 	}
 
+//宠物突破
+	[ResponseType(nameof(M2C_PetTupoResponse))]
+	[Message(OuterOpcode.C2M_PetTupoRequest)]
+	[ProtoContract]
+	public partial class C2M_PetTupoRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int Position { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PetTupoResponse)]
+	[ProtoContract]
+	public partial class M2C_PetTupoResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

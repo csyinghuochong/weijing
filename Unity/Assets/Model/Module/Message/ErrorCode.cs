@@ -245,6 +245,8 @@ namespace ET
         public const int ERR_Pet_Hint_3 = 300912;                                   //出战宠物不能散步
         public const int ERR_Pet_Hint_4 = 300913;
         public const int ERR_Pet_CanNotLock = 300914;
+        public const int ERR_PetTupoMax = 300915;                                   //宠物突破已达上限
+        public const int ERR_PetTupoFail = 300916;                                  //宠物突破失败
 
         public const int ERR_Union_Same_Name = 301001;                              //同名的家族
         public const int ERR_MysteryItem_Max = 301002;                              //改道具每日购买次数已达上限

@@ -11,7 +11,8 @@ namespace ET
         PetHeCheng = 1,
         PetXiLian = 2,
         PetShouHu = 3,
-        PetUpStar = 4,
+        PetTupo = 4,
+        PetUpStar = 5,
 
         Number,
     }
@@ -46,11 +47,15 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)PetPageEnum.PetHeCheng] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetHeCheng");
             pageViewComponent.UISubViewPath[(int)PetPageEnum.PetXiLian] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetXiLian");
             pageViewComponent.UISubViewPath[(int)PetPageEnum.PetShouHu] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetShouHu");
-           
+            pageViewComponent.UISubViewPath[(int)PetPageEnum.PetTupo] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetTupo");
+            pageViewComponent.UISubViewPath[(int)PetPageEnum.PetUpStar] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetUpStar");
+
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetList] = typeof(UIPetListComponent);
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetHeCheng] = typeof(UIPetHeChengComponent);
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetXiLian] = typeof(UIPetXiLianComponent);
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetShouHu] = typeof(UIPetShouHuComponent);
+            pageViewComponent.UISubViewType[(int)PetPageEnum.PetTupo] = typeof(UIPetTupoComponent);
+            pageViewComponent.UISubViewType[(int)PetPageEnum.PetUpStar] = typeof(UIPetUpStarComponent);
             self.UIPageView = pageViewComponent;
 
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
@@ -58,6 +63,9 @@ namespace ET
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
+
+            self.FunctionSetBtn.transform.Find("Btn_Tupo").gameObject.SetActive(GlobalHelp.IsEditorMode);
+
 
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
@@ -243,7 +251,10 @@ namespace ET
         public static void OnBagItemUpdate(this UIPetComponent self)
         {
             UI uI = self.UIPageView.UISubViewList[(int)PetPageEnum.PetList];
-            uI.GetComponent<UIPetListComponent>().OnBagItemUpdate();
+            uI?.GetComponent<UIPetListComponent>().OnBagItemUpdate();
+
+            UI tupoUI = self.UIPageView.UISubViewList[(int)PetPageEnum.PetTupo];
+            tupoUI?.GetComponent<UIPetTupoComponent>().OnUpdateUI();
         }
 
         public static void OnEquipPetHeXin(this UIPetComponent self)

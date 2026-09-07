@@ -78,6 +78,14 @@ namespace ET
                 numericComponent.Set(NumericType.UnionPetXiuLian_2, keyValuePairs[6][0].Id);
                 numericComponent.Set(NumericType.UnionPetXiuLian_3, keyValuePairs[7][0].Id);
             }
+            if (numericComponent.GetAsInt(NumericType.PetTupo_0) == 0)
+            {
+                Dictionary<int, List<PetTupoConfig>> petTupoList = PetTupoConfigCategory.Instance.PetTupoList;
+                numericComponent.Set(NumericType.PetTupo_0, petTupoList[0][0].Id);
+                numericComponent.Set(NumericType.PetTupo_1, petTupoList[1][0].Id);
+                numericComponent.Set(NumericType.PetTupo_2, petTupoList[2][0].Id);
+                numericComponent.Set(NumericType.PetTupo_3, petTupoList[3][0].Id);
+            }
             if (numericComponent.GetAsInt(NumericType.Bloodstone) == 0)
             {
                 numericComponent.Set(NumericType.Bloodstone, 10100);

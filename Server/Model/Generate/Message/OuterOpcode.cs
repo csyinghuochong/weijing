@@ -933,5 +933,7 @@ namespace ET
 		 public const ushort A2C_XiaoQiCheckLogin = 10930;
 		 public const ushort C2Center_QueryAccountRequest = 10931;
 		 public const ushort Center2C_QueryAccountResponse = 10932;
+		 public const ushort C2M_PetTupoRequest = 10933;
+		 public const ushort M2C_PetTupoResponse = 10934;
 	}
 }

@@ -1178,6 +1178,26 @@ namespace ET
                         Function_Fight.AddUpdateProDicList(jiazuProList[pro].HideID, jiazuProList[pro].HideValue, attriDic);
                     }
                 }
+
+                int petTupo_0 = numericComponent.GetAsInt(NumericType.PetTupo_0);
+                int petTupo_1 = numericComponent.GetAsInt(NumericType.PetTupo_1);
+                int petTupo_2 = numericComponent.GetAsInt(NumericType.PetTupo_2);
+                int petTupo_3 = numericComponent.GetAsInt(NumericType.PetTupo_3);
+                List<int> petTupoIds = new List<int>() { petTupo_0, petTupo_1, petTupo_2, petTupo_3 };
+                for (int i = 0; i < petTupoIds.Count; i++)
+                {
+                    if (petTupoIds[i] == 0 || !PetTupoConfigCategory.Instance.Contain(petTupoIds[i]))
+                    {
+                        continue;
+                    }
+                    PetTupoConfig petTupoConfig = PetTupoConfigCategory.Instance.Get(petTupoIds[i]);
+                    List<PropertyValue> petTupoProList = new List<PropertyValue>();
+                    NumericHelp.GetProList(petTupoConfig.EquipPropreAdd, petTupoProList);
+                    for (int pro = 0; pro < petTupoProList.Count; pro++)
+                    {
+                        Function_Fight.AddUpdateProDicList(petTupoProList[pro].HideID, petTupoProList[pro].HideValue, attriDic);
+                    }
+                }
             }
 
             if (!PetSkinConfigCategory.Instance.Contain(rolePetInfo.SkinId))

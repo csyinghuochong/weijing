@@ -6989,3 +6989,19 @@ message Center2C_QueryAccountResponse // IResponse
 	string Account = 1;
 	string Password = 2;
 }
+
+//宠物突破
+//ResponseType M2C_PetTupoResponse
+message C2M_PetTupoRequest // IActorLocationRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 Position = 1;
+}
+
+message M2C_PetTupoResponse // IActorLocationResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
