@@ -272,6 +272,23 @@ namespace ET
                         targetNum = int.Parse(skillConfig.GameObjectParameter);
                         range = (float)skillConfig.SkillRangeSize;
                         targetIds = AIHelp.GetNearestEnemyByNumber(unit, range, targetNum);
+
+                        //
+                        if (targetIds.Count == 0)
+                        {
+                            skillInfo = new SkillInfo();
+                            skillInfo.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+                            SkillConfig skillConfig1 = SkillConfigCategory.Instance.Get(weaponSkill);
+                            Vector3 targetPosition = unit.Position + unit.Rotation * Vector3.forward * (float)skillConfig1.SkillRangeSize;
+                            skillInfo.WeaponSkillID = weaponSkill;
+                            skillInfo.PosX = targetPosition.x;
+                            skillInfo.PosY = targetPosition.y;
+                            skillInfo.PosZ = targetPosition.z;
+                            skillInfo.TargetID = skillcmd.TargetID;
+
+                            skillInfos.Add(skillInfo);
+                            return skillInfos;
+                        }
                     }
                     else
                     {
