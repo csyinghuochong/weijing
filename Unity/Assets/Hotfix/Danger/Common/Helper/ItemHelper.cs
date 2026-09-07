@@ -650,6 +650,62 @@ namespace ET
                         return true;
                     }
                     return false;
+
+                case "16000404a":
+                    if (idList.Contains(16000402) && idList.Contains(16000403))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000404b":
+                    if (idList.Contains(16000401))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000411a":
+                    if (idList.Contains(16000409) && idList.Contains(16000410))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000411b":
+                    if (idList.Contains(16000412))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000504a":
+                    if (idList.Contains(16000502) && idList.Contains(16000503))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000504b":
+                    if (idList.Contains(16000501))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000511a":
+                    if (idList.Contains(16000509) && idList.Contains(16000510))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000511b":
+                    if (idList.Contains(16000512))
+                    {
+                        return true;
+                    }
+                    return false;
             }
 
             return IfShengXiaoActive(int.Parse(shengXiaoItemID), equipList);
@@ -914,6 +970,69 @@ namespace ET
                     break;
 
                 case 16000412:
+                    return true;
+
+                case 16000501:
+                    return true;
+
+                case 16000502:
+                    return true;
+
+                case 16000503:
+                    if (idList.Contains(16000502))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000504:
+                    if (idList.Contains(16000502) && idList.Contains(16000503) || idList.Contains(16000501))
+                    {
+                        return true;
+                    }
+                    break;
+                case 16000505:
+                    return true;
+
+                case 16000506:
+                    if (idList.Contains(16000505))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000507:
+                    if (idList.Contains(16000505) && idList.Contains(16000506))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000508:
+                    if (idList.Contains(16000505) && idList.Contains(16000506) && idList.Contains(16000508))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000509:
+                    return true;
+
+                case 16000510:
+                    if (idList.Contains(16000509))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000511:
+                    if (idList.Contains(16000509) && idList.Contains(16000510) || idList.Contains(16000512))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000512:
                     return true;
             }
             return false;

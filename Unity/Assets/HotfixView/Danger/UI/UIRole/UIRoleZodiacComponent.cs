@@ -159,6 +159,17 @@ namespace ET
                     self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
                 }
 
+                if (page == 4)
+                {
+                    string path =ABPathHelper.GetAtlasPath_2(ABAtlasTypes.ItemQualityIcon, "ItemQuality_5");
+                    Sprite sp = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                    if (!self.AssetPath.Contains(path))
+                    {
+                        self.AssetPath.Add(path);
+                    }
+                    self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
+                }
+
                 self.EquipList[i].GameObject.transform.Find("Lab_JiHuo").gameObject.SetActive(false);
             }
 
@@ -189,6 +200,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (page == 4 && subType != 15)
+                {
+                    continue;
+                }
 
                 self.EquipList[itemConfig.ItemSubType % 100 - 1].UpdateData(equiplist[i], self.Occ, self.ItemOperateEnum, equiplist);
 
@@ -214,6 +229,18 @@ namespace ET
                 if (page == 2)
                 {
                     linkName = linkName.Replace("160001", "160003");
+                    resName = "Link_4";
+                }
+
+                if (page == 3)
+                {
+                    linkName = linkName.Replace("160001", "160004");
+                    resName = "Link_4";
+                }
+
+                if (page == 4)
+                {
+                    linkName = linkName.Replace("160001", "160005");
                     resName = "Link_4";
                 }
 
