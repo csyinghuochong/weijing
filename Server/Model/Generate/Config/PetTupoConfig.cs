@@ -1,0 +1,110 @@
+using System;
+using System.Collections.Generic;
+using MongoDB.Bson.Serialization.Attributes;
+using ProtoBuf;
+
+namespace ET
+{
+    [ProtoContract]
+    [Config]
+    public partial class PetTupoConfigCategory : ProtoObject, IMerge
+    {
+        public static PetTupoConfigCategory Instance;
+		
+        [ProtoIgnore]
+        [BsonIgnore]
+        private Dictionary<int, PetTupoConfig> dict = new Dictionary<int, PetTupoConfig>();
+		
+        [BsonElement]
+        [ProtoMember(1)]
+        private List<PetTupoConfig> list = new List<PetTupoConfig>();
+		
+        public PetTupoConfigCategory()
+        {
+            Instance = this;
+        }
+        
+        public void Merge(object o)
+        {
+            PetTupoConfigCategory s = o as PetTupoConfigCategory;
+            this.list.AddRange(s.list);
+        }
+		
+        public override void EndInit()
+        {
+            foreach (PetTupoConfig config in list)
+            {
+                config.EndInit();
+                this.dict.Add(config.Id, config);
+            }            
+            this.AfterEndInit();
+        }
+		
+        public PetTupoConfig Get(int id)
+        {
+            this.dict.TryGetValue(id, out PetTupoConfig item);
+
+            if (item == null)
+            {
+                throw new Exception($"配置找不到，配置表名: {nameof (PetTupoConfig)}，配置id: {id}");
+            }
+
+            return item;
+        }
+		
+        public bool Contain(int id)
+        {
+            return this.dict.ContainsKey(id);
+        }
+
+        public Dictionary<int, PetTupoConfig> GetAll()
+        {
+            return this.dict;
+        }
+
+        public PetTupoConfig GetOne()
+        {
+            if (this.dict == null || this.dict.Count <= 0)
+            {
+                return null;
+            }
+            return this.dict.Values.GetEnumerator().Current;
+        }
+    }
+
+    [ProtoContract]
+	public partial class PetTupoConfig: ProtoObject, IConfig
+	{
+		/// <summary>Id</summary>
+		[ProtoMember(1)]
+		public int Id { get; set; }
+		/// <summary>装备名称</summary>
+		[ProtoMember(2)]
+		public string EquipSpaceName { get; set; }
+		/// <summary>下一级强化</summary>
+		[ProtoMember(4)]
+		public int NextID { get; set; }
+		/// <summary>强化等级</summary>
+		[ProtoMember(5)]
+		public int QiangHuaLv { get; set; }
+		/// <summary>升级等级限制</summary>
+		[ProtoMember(6)]
+		public int UpLvLimit { get; set; }
+		/// <summary>成功概率</summary>
+		[ProtoMember(7)]
+		public double SuccessPro { get; set; }
+		/// <summary>消耗家族贡献</summary>
+		[ProtoMember(8)]
+		public int CostGold { get; set; }
+		/// <summary>消耗道具</summary>
+		[ProtoMember(9)]
+		public string CostItem { get; set; }
+		/// <summary>强化属性</summary>
+		[ProtoMember(10)]
+		public string EquipPropreAdd { get; set; }
+		/// <summary>失败附加成功概率</summary>
+		[ProtoMember(11)]
+		public double AdditionPro { get; set; }
+
+	}
+}
