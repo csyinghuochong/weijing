@@ -1245,6 +1245,9 @@ namespace ET
                 self.GetAttributeShow(rolePetInfo, NumericType.Now_Hit, petAllHit));
             self.UpdateAttributeItem(3, self.PetProSetItem_2, self.PetProSetNode_2, "",
                 self.GetAttributeShow(rolePetInfo, NumericType.Now_Dodge, petAllDodge));
+            self.UpdateAttributeItem(4, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_DamgeAddPro, 0));
+            self.UpdateAttributeItem(5, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_DamgeSubPro, 0));
+            self.UpdateAttributeItem(6, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_ActBossPro, 0));
         }
 
         public static string GetAttributeShow(this UIPetListComponent self, RolePetInfo rolePetInfo, int numericType, float addValue)
