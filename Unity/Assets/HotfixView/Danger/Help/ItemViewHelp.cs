@@ -323,17 +323,20 @@ namespace ET
             { NumericType.Now_PetAllAdf, new NumericAttribute(){Name = "宠物全体魔防",Icon = string.Empty}},
             { NumericType.Now_PetAllHp, new NumericAttribute(){Name = "宠物全体生命",Icon = string.Empty}},
 
-            { NumericType.Now_PetAllMageActPro, new NumericAttribute(){Name = "宠物魔法攻击",Icon = string.Empty}},
-            { NumericType.Now_PetAllActPro, new NumericAttribute(){Name = "宠物攻击",Icon = string.Empty}},
-            { NumericType.Now_PetAllDefPro, new NumericAttribute(){Name = "宠物防御",Icon = string.Empty}},
-            { NumericType.Now_PetAllAdfPro, new NumericAttribute(){Name = "宠物魔防",Icon = string.Empty}},
-            { NumericType.Now_PetAllHpPro, new NumericAttribute(){Name = "宠物生命",Icon = string.Empty}},
+            { NumericType.Now_PetAllMageActPro, new NumericAttribute(){Name = "宠物全体魔法",Icon = string.Empty}},
+            { NumericType.Now_PetAllActPro, new NumericAttribute(){Name = "宠物全体攻击",Icon = string.Empty}},
+            { NumericType.Now_PetAllDefPro, new NumericAttribute(){Name = "宠物全体防御",Icon = string.Empty}},
+            { NumericType.Now_PetAllAdfPro, new NumericAttribute(){Name = "宠物全体魔防",Icon = string.Empty}},
+            { NumericType.Now_PetAllHpPro, new NumericAttribute(){Name = "宠物全体生命",Icon = string.Empty}},
+            { NumericType.Now_PetAllDamgeAddPro, new NumericAttribute(){Name = "宠物全体伤害加成",Icon = string.Empty}},
+            { NumericType.Now_PetAllDamgeSubPro, new NumericAttribute(){Name = "宠物全体伤害减免",Icon = string.Empty}},
+            { NumericType.Now_PetAllActBossAddDamge, new NumericAttribute(){Name = "宠物全体对怪增伤",Icon = string.Empty}},
 
             { NumericType.Now_ShuActAddPro, new NumericAttribute(){Name = "魔法书附加伤害",Icon = string.Empty}},
             { NumericType.Now_FaZhangActAddPro, new NumericAttribute(){Name = "法杖附加伤害",Icon = string.Empty}},
-             { NumericType.Now_JianActAddPro, new NumericAttribute(){Name = "剑附加伤害",Icon = string.Empty}},
-              { NumericType.Now_DaoActAddPro, new NumericAttribute(){Name = "刀附加伤害",Icon = string.Empty}},
-              { NumericType.Now_GongActAddPro, new NumericAttribute(){Name = "弓箭附加伤害",Icon = string.Empty}},
+            { NumericType.Now_JianActAddPro, new NumericAttribute(){Name = "剑附加伤害",Icon = string.Empty}},
+            { NumericType.Now_DaoActAddPro, new NumericAttribute(){Name = "刀附加伤害",Icon = string.Empty}},
+            { NumericType.Now_GongActAddPro, new NumericAttribute(){Name = "弓箭附加伤害",Icon = string.Empty}},
             
         };
 

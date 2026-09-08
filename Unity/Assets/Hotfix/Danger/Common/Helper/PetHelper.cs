@@ -24,12 +24,12 @@ namespace ET
                 return 601800091;
             }
 
-            if (pingfen >= 6000)
+            if (pingfen >= 8500)
             {
                 return 601800081;
             }
 
-            if (pingfen >= 3500)
+            if (pingfen >= 5000)
             {
                 return 601800071;
             }
@@ -368,8 +368,21 @@ namespace ET
 
                 if (petinfo.PetSkill[i] >= 80002001 && petinfo.PetSkill[i] < 80002999)
                 {
-                    fightValueFloat += 0.15f;
+                    fightValueFloat += 0.1f;
                 }
+            }
+            
+            //技能超过4级有加成
+            if (petinfo.PetSkill.Count > 4) {
+                int addskillvalue = (petinfo.PetSkill.Count - 4) * 150;
+                fightValue += addskillvalue;
+            }
+
+            //超过8个每个再额外加
+            if (petinfo.PetSkill.Count >= 8)
+            {
+                int addskillvalue = (petinfo.PetSkill.Count - 4) * 75;
+                fightValue += addskillvalue;
             }
 
             fightValue = (int)((float)fightValue * fightValueFloat);

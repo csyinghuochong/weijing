@@ -1006,7 +1006,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5BA0\u7269\u8BC4\u52063500-6000\u53EF\u83B7\u5F97"
+  m_Text: "\u5BA0\u7269\u8BC4\u52065000-8499\u53EF\u83B7\u5F97"
 --- !u!114 &5244668795808673552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2117,7 +2117,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5BA0\u7269\u8BC4\u52061-3500\u53EF\u83B7\u5F97"
+  m_Text: "\u5BA0\u7269\u8BC4\u52061-4999\u53EF\u83B7\u5F97"
 --- !u!114 &5229749132434976432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2699,7 +2699,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5BA0\u7269\u8BC4\u5206\u8D85\u8FC79000\u53EF\u83B7\u5F97"
+  m_Text: "\u5BA0\u7269\u8BC4\u5206\u8D85\u8FC710000\u53EF\u83B7\u5F97"
 --- !u!114 &2645703301003613051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2914,7 +2914,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5BA0\u7269\u8BC4\u52066000-9000\u53EF\u83B7\u5F97"
+  m_Text: "\u5BA0\u7269\u8BC4\u52068500-9999\u53EF\u83B7\u5F97"
 --- !u!114 &7431875746291141984
 MonoBehaviour:
   m_ObjectHideFlags: 0
