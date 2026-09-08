@@ -560,73 +560,7 @@ namespace ET
 
         public static void OnBtn_FangSheng(this UIPetListComponent self)
         {
-            if (self.LastSelectItem == null)
-            {
-                return;
-            }
-
-            if (self.LastSelectItem.IsProtect)
-            {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物已锁定！"));
-                return;
-            }
-
-            if (self.LastSelectItem.PetStatus == 1)
-            {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("出战宠物不能分解！"));
-                return;
-            }
-
-            if (self.LastSelectItem.PetStatus == 2)
-            {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先停止家园散步！"));
-                return;
-            }
-
-            if (self.LastSelectItem.PetStatus == 3)
-            {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先从仓库取出！"));
-                return;
-            }
-
-            if (self.PetComponent.TeamPetList.Contains(self.LastSelectItem.Id))
-            {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物天梯上阵中,不能分解！"));
-                return;
-            }
-
-            if (self.PetComponent.PetFormations.Contains(self.LastSelectItem.Id))
-            {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物存在于宠物副本上阵中,不能分解！"));
-                return;
-            }
-
-            if (PetHelper.IsShenShou(self.LastSelectItem.ConfigId))
-            {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("神兽不能放生"));
-                return;
-            }
-
-            if (PetHelper.HavePetHeXin(self.LastSelectItem))
-            {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先卸下宠物之核！"));
-                return;
-            }
-
-            if (PetHelper.HavePetEquip(self.LastSelectItem))
-            {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前宠物身上有对应的宠物装备，请先将宠物装备卸下在执行此操作！"));
-                return;
-            }
-
-            //if (self.PetComponent.PetMingList.Contains(self.LastSelectItem.Id))
-            //{
-            //    FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物矿场队伍中,不能分解！");
-            //    return;
-            //}
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("确定放生当前宠物么？\n放生宠物可以获得一定数量的宠物之核和宠物之尘哦！"),
-                () => { self.PetComponent.RequestFenJie(self.LastSelectItem.Id).Coroutine(); },
-                null).Coroutine();
+            UIHelper.Create(self.ZoneScene(), UIType.UIPetFenJieTip).Coroutine();
         }
 
         public static void OnClickChuZhan(this UIPetListComponent self)

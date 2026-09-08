@@ -9,11 +9,28 @@ namespace ET
 
         public static string GetPetFenJieItems(RolePetInfo rolePetInfo)
         {
-            int pingfen = PetHelper.PetPingJia(rolePetInfo);
-            int skillNum = rolePetInfo.PetSkill.Count;
+            if (rolePetInfo == null)
+            {
+                return "";
+            }
 
+            return GetPetFenJieItemsByPingFen(PetPingJia(rolePetInfo));
+        }
 
-            return "1;1@2;1";
+        public static string GetPetFenJieItemsByPingFen(int pingfen)
+        {
+            // 宠物之核碎片 10000131 + 宠灵之尘 10000166
+            if (pingfen >= 10000)
+            {
+                return "10000131;3@10000166;20";
+            }
+
+            if (pingfen >= 5000)
+            {
+                return "10000131;2@10000166;10";
+            }
+
+            return "10000131;1@10000166;5";
         }
 
         public static Dictionary<int, int> GetEquipSkillList(RolePetInfo rolePetInfo, BagComponent bagComponent)

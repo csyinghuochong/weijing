@@ -312,6 +312,11 @@ namespace ET
                     uiComponent.OnPetFenJieUpdate();
                     continue;
                 }
+                if (component is UIPetFenJieTipComponent fenJieTipComponent)
+                {
+                    fenJieTipComponent.OnPetFenJieUpdate();
+                    continue;
+                }
             }
         }
 
