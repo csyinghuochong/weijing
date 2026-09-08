@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -39,12 +40,22 @@ namespace ET
                 return;
             }
 
-            //获取宠物碎片
-            PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-			if (petCof.ReleaseReward != null && petCof.ReleaseReward.Length > 2)
-			{
-				unit.GetComponent<BagComponent>().OnAddItemData(petCof.ReleaseReward, $"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
-			}
+            //获取放生掉落
+            int dropId = PetHelper.GetPetFenJieItems(rolePetInfo);
+            if (dropId != 0 && DropConfigCategory.Instance.Contain(dropId))
+            {
+                List<RewardItem> rewardItems = new List<RewardItem>();
+                DropHelper.DropIDToDropItem(dropId, rewardItems);
+                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
+            }
+            else
+            {
+                PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+                if (petCof.ReleaseReward != null && petCof.ReleaseReward.Length > 2)
+                {
+                    unit.GetComponent<BagComponent>().OnAddItemData(petCof.ReleaseReward, $"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
+                }
+            }
 
 			if (petType == 1)
 			{

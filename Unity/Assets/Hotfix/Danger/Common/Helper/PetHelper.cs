@@ -7,30 +7,29 @@ namespace ET
     public static class PetHelper
     {
 
-        public static string GetPetFenJieItems(RolePetInfo rolePetInfo)
+        public static int GetPetFenJieItems(RolePetInfo rolePetInfo)
         {
             if (rolePetInfo == null)
             {
-                return "";
+                return 0;
             }
 
             return GetPetFenJieItemsByPingFen(PetPingJia(rolePetInfo));
         }
 
-        public static string GetPetFenJieItemsByPingFen(int pingfen)
+        public static int GetPetFenJieItemsByPingFen(int pingfen)
         {
-            // 宠物之核碎片 10000131 + 宠灵之尘 10000166
             if (pingfen >= 10000)
             {
-                return "10000131;3@10000166;20";
+                return 601800081;
             }
 
             if (pingfen >= 5000)
             {
-                return "10000131;2@10000166;10";
+                return 601800071;
             }
 
-            return "10000131;1@10000166;5";
+            return 601800061;
         }
 
         public static Dictionary<int, int> GetEquipSkillList(RolePetInfo rolePetInfo, BagComponent bagComponent)

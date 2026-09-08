@@ -182,25 +182,27 @@ namespace ET
             }
         }
 
-        public static void ShowRewardList(this UIPetFenJieTipComponent self, GameObject parent, string itemStr, List<UIItemComponent> cache)
+        public static void ShowRewardList(this UIPetFenJieTipComponent self, GameObject parent, int dropId, List<UIItemComponent> cache)
         {
             if (parent == null || self.UICommonItem == null)
             {
                 return;
             }
 
-            string[] itemList = string.IsNullOrEmpty(itemStr) ? new string[0] : itemStr.Split('@');
-            int num = 0;
-            for (int i = 0; i < itemList.Length; i++)
+            List<RewardItem> rewardItems = new List<RewardItem>();
+            if (dropId != 0 && DropConfigCategory.Instance.Contain(dropId))
             {
-                string[] str = itemList[i].Split(';');
-                if (str.Length < 2)
+                rewardItems = DropHelper.DropIDToShowItem(dropId);
+            }
+
+            int num = 0;
+            for (int i = 0; i < rewardItems.Count; i++)
+            {
+                if (!ItemConfigCategory.Instance.Contain(rewardItems[i].ItemID))
                 {
                     continue;
                 }
 
-                int itemConfigId = int.Parse(str[0]);
-                int itemNum = int.Parse(str[1]);
                 UIItemComponent itemComponent;
                 if (num < cache.Count)
                 {
@@ -218,7 +220,7 @@ namespace ET
                     cache.Add(itemComponent);
                 }
 
-                itemComponent.UpdateItem(new BagInfo() { ItemID = itemConfigId, ItemNum = itemNum }, ItemOperateEnum.None);
+                itemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
                 num++;
             }
 
