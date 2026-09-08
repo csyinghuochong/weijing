@@ -21,10 +21,15 @@ namespace ET
         {
             if (pingfen >= 10000)
             {
+                return 601800091;
+            }
+
+            if (pingfen >= 6000)
+            {
                 return 601800081;
             }
 
-            if (pingfen >= 5000)
+            if (pingfen >= 3500)
             {
                 return 601800071;
             }
