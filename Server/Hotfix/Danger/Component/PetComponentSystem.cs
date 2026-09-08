@@ -1175,6 +1175,7 @@ namespace ET
                 AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllDefPro, NumericType.Now_MaxDef, true);
                 AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllAdfPro, NumericType.Now_MaxAdf, true);
                 AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllHpPro, NumericType.Now_MaxHp, true);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllActBossAddDamge, NumericType.Now_ActBossPro, true);
             }
 
             if (!PetSkinConfigCategory.Instance.Contain(rolePetInfo.SkinId))

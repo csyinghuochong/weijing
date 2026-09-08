@@ -38,7 +38,7 @@ namespace ET
 
             self.XiuLianImageIcon = rc.Get<GameObject>("XiuLianImageIcon");
             self.UIUnionXiuLianItemList.Clear();
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
             {
                 UIUnionXiuLianItemComponent uIUnionXiuLianItem =
                         self.AddChild<UIUnionXiuLianItemComponent, GameObject>(rc.Get<GameObject>($"XiuLian_{i}"));

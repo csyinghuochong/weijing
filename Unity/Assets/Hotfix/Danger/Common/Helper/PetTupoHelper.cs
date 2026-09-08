@@ -14,6 +14,8 @@ namespace ET
                     return NumericType.PetTupo_2;
                 case 3:
                     return NumericType.PetTupo_3;
+                case 4:
+                    return NumericType.PetTupo_4;
                 default:
                     return 0;
             }
@@ -31,6 +33,8 @@ namespace ET
                     return NumericType.PetTupoFail_2;
                 case 3:
                     return NumericType.PetTupoFail_3;
+                case 4:
+                    return NumericType.PetTupoFail_4;
                 default:
                     return 0;
             }

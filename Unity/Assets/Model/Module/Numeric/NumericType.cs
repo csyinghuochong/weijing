@@ -209,6 +209,8 @@
         public const int PetTupoFail_1 = 3209;
         public const int PetTupoFail_2 = 3210;
         public const int PetTupoFail_3 = 3211;
+        public const int PetTupo_4 = 3212;                                      //宠物突破：20500
+        public const int PetTupoFail_4 = 3213;
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值
