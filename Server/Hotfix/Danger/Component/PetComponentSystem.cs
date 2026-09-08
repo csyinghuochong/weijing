@@ -1156,48 +1156,25 @@ namespace ET
                 }
             }
 
-            //宠物修炼属性。 宠物数值
+            //玩家身上的宠物全体属性转到宠物自身属性（全体抗暴→抗暴击等）
             if (numericComponent != null)
             {
-                int xiuLian_0 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_0);
-                int xiuLian_1 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_1);
-                int xiuLian_2 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_2);
-                int xiuLian_3 = numericComponent.GetAsInt(NumericType.UnionPetXiuLian_3);
-                List<int> unionXiuLianids = new List<int>() { xiuLian_0, xiuLian_1, xiuLian_2, xiuLian_3 };
-                for (int i = 0; i < unionXiuLianids.Count; i++)
-                {
-                    if (unionXiuLianids[i] == 0)
-                    {
-                        continue;
-                    }
-                    UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get(unionXiuLianids[i]);
-                    List<PropertyValue> jiazuProList = new List<PropertyValue>();
-                    NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
-                    for (int pro = 0; pro < jiazuProList.Count; pro++)
-                    {
-                        Function_Fight.AddUpdateProDicList(jiazuProList[pro].HideID, jiazuProList[pro].HideValue, attriDic);
-                    }
-                }
-
-                int petTupo_0 = numericComponent.GetAsInt(NumericType.PetTupo_0);
-                int petTupo_1 = numericComponent.GetAsInt(NumericType.PetTupo_1);
-                int petTupo_2 = numericComponent.GetAsInt(NumericType.PetTupo_2);
-                int petTupo_3 = numericComponent.GetAsInt(NumericType.PetTupo_3);
-                List<int> petTupoIds = new List<int>() { petTupo_0, petTupo_1, petTupo_2, petTupo_3 };
-                for (int i = 0; i < petTupoIds.Count; i++)
-                {
-                    if (petTupoIds[i] == 0 || !PetTupoConfigCategory.Instance.Contain(petTupoIds[i]))
-                    {
-                        continue;
-                    }
-                    PetTupoConfig petTupoConfig = PetTupoConfigCategory.Instance.Get(petTupoIds[i]);
-                    List<PropertyValue> petTupoProList = new List<PropertyValue>();
-                    NumericHelp.GetProList(petTupoConfig.EquipPropreAdd, petTupoProList);
-                    for (int pro = 0; pro < petTupoProList.Count; pro++)
-                    {
-                        Function_Fight.AddUpdateProDicList(petTupoProList[pro].HideID, petTupoProList[pro].HideValue, attriDic);
-                    }
-                }
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllMageAct, NumericType.Now_Mage, false);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllAct, NumericType.Now_MaxAct, false);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllDef, NumericType.Now_MaxDef, false);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllAdf, NumericType.Now_MaxAdf, false);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllHp, NumericType.Now_MaxHp, false);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllCri, NumericType.Now_Cri, false);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllHit, NumericType.Now_Hit, false);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllDodge, NumericType.Now_Dodge, false);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllRes, NumericType.Now_Res, false);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllDamgeAddPro, NumericType.Now_DamgeAddPro, false);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllDamgeSubPro, NumericType.Now_DamgeSubPro, false);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllMageActPro, NumericType.Now_Mage, true);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllActPro, NumericType.Now_MaxAct, true);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllDefPro, NumericType.Now_MaxDef, true);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllAdfPro, NumericType.Now_MaxAdf, true);
+                AddPetAllToPet(numericComponent, attriDic, NumericType.Now_PetAllHpPro, NumericType.Now_MaxHp, true);
             }
 
             if (!PetSkinConfigCategory.Instance.Contain(rolePetInfo.SkinId))
@@ -1298,6 +1275,20 @@ namespace ET
             rolePetInfo.Ks.Add((int)NumericType.PetPinFen);
             rolePetInfo.Vs.Add(pingfen);
             rolePetInfo.PetPingFen = pingfen;
+        }
+
+        /// <summary>
+        /// 玩家宠物全体属性转到宠物自身属性。isPro 为 true 时进乘法槽（百分比），否则进附加槽。
+        /// </summary>
+        private static void AddPetAllToPet(NumericComponent numericComponent, Dictionary<int, long> attriDic, int petAllType, int petType, bool isPro)
+        {
+            long petAllValue = numericComponent.GetAsLong(petAllType);
+            if (petAllValue == 0)
+            {
+                return;
+            }
+            int destType = petType * 100 + (isPro ? 2 : 3);
+            Function_Fight.AddUpdateProDicList(destType, petAllValue, attriDic);
         }
 
         public static void UpdatePetNumeric(this PetComponent self, Dictionary<int, long> attriDic)
