@@ -7,6 +7,15 @@ namespace ET
     public static class PetHelper
     {
 
+        public static string GetPetFenJieItems(RolePetInfo rolePetInfo)
+        {
+            int pingfen = PetHelper.PetPingJia(rolePetInfo);
+            int skillNum = rolePetInfo.PetSkill.Count;
+
+
+            return "1;1@2;1";
+        }
+
         public static Dictionary<int, int> GetEquipSkillList(RolePetInfo rolePetInfo, BagComponent bagComponent)
         {
             Dictionary<int, int> hideSkillId = new Dictionary<int, int>();
