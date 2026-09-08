@@ -1142,7 +1142,7 @@
         public const int Extra_Buff_PetAllDodge_Add = Now_PetAllDodge * 100 + 11;           //属性Buff附加加法
         public const int Extra_Buff_PetAllDodge_Mul = Now_PetAllDodge * 100 + 12;           //属性Buff附加乘法
 
-        //宠物全体闪避
+        //宠物全体抗暴
         public const int Now_PetAllRes = 2304;         //宠物全体抗暴
         public const int Base_PetAllRes_Base = Now_PetAllRes * 100 + 1;                 //属性累加
         public const int Base_PetAllRes_Mul = Now_PetAllRes * 100 + 2;                  //属性乘法
@@ -1165,6 +1165,14 @@
         public const int Base_PetAllDamgeSubPro_Add = Now_PetAllDamgeSubPro * 100 + 3;                   //属性附加
         public const int Extra_Buff_PetAllDamgeSubPro_Add = Now_PetAllDamgeSubPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_PetAllDamgeSubPro_Mul = Now_PetAllDamgeSubPro * 100 + 12;            //属性Buff附加乘法
+
+        //宠物全体对怪伤害
+        public const int Now_PetAllActBossAddDamge = 2307;                                                 //当前BOSS普通攻击加成固定值
+        public const int Base_PetAllActBossAddDamge_Base = Now_PetAllActBossAddDamge * 100 + 1;                  //属性累加
+        public const int Base_PetAllActBossAddDamge_Mul = Now_PetAllActBossAddDamge * 100 + 2;                   //属性乘法
+        public const int Base_PetAllActBossAddDamge_Add = Now_PetAllActBossAddDamge * 100 + 3;                   //属性附加
+        public const int Extra_Buff_PetAllActBossAddDamge_Add = Now_PetAllActBossAddDamge * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_PetAllActBossAddDamge_Mul = Now_PetAllActBossAddDamge * 100 + 12;            //属性Buff附加乘法
 
 
         //宠物全体魔法攻击
