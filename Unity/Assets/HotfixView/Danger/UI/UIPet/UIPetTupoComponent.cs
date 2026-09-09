@@ -108,6 +108,10 @@ namespace ET
                 {
                     self.UIItemComponentList[i].GameObject.SetActive(false);
                 }
+                if (self.Label_CostGold != null)
+                {
+                    self.Label_CostGold.text = "";
+                }
                 return;
             }
 
@@ -116,12 +120,15 @@ namespace ET
             self.Pro_1.transform.Find("Text_Tip_Pro_0").GetComponent<Text>().text =
                     ItemViewHelp.GetAttributeDesc(nextPetTupoConfig.EquipPropreAdd);
 
+            long haveGold = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Gold;
+            if (self.Label_CostGold != null)
+            {
+                self.Label_CostGold.text = $"{ItemViewHelp.ReturnNumStr(petTupoConfig.CostGold)}/{ItemViewHelp.ReturnNumStr(haveGold)}";
+                self.Label_CostGold.color = haveGold >= petTupoConfig.CostGold ? new Color(0, 1, 0) : new Color(245f / 255f, 43f / 255f, 96f / 255f);
+            }
+
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<string> itemList = new List<string>();
-            if (petTupoConfig.CostGold > 0)
-            {
-                itemList.Add($"1;{petTupoConfig.CostGold}");
-            }
             if (!ComHelp.IfNull(petTupoConfig.CostItem) && petTupoConfig.CostItem != "0")
             {
                 itemList.AddRange(petTupoConfig.CostItem.Split('@'));
