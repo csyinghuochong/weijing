@@ -64,8 +64,7 @@ namespace ET
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 
-            self.FunctionSetBtn.transform.Find("Btn_Tupo").gameObject.SetActive(GlobalHelp.IsEditorMode);
-
+            //self.FunctionSetBtn.transform.Find("Btn_Tupo").gameObject.SetActive(GlobalHelp.IsEditorMode);
 
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
