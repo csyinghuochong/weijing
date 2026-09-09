@@ -6,6 +6,8 @@ namespace ET
 {
     public class UIPetTupoComponent : Entity, IAwake
     {
+
+        public Text Label_CostGold;
         public GameObject UICommonItem;
         public GameObject CostItemListNode;
         public GameObject XiuLianName;
@@ -35,6 +37,8 @@ namespace ET
             self.Pro_1 = rc.Get<GameObject>("Pro_1");
             self.Pro_0 = rc.Get<GameObject>("Pro_0");
             self.XiuLianName = rc.Get<GameObject>("XiuLianName");
+
+            self.Label_CostGold = rc.Get<GameObject>("Label_CostGold").GetComponent<Text>();
 
             self.XiuLianImageIcon = rc.Get<GameObject>("XiuLianImageIcon");
             self.UIUnionXiuLianItemList.Clear();

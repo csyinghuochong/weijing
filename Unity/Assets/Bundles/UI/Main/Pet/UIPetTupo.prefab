@@ -3534,7 +3534,7 @@ GameObject:
   - component: {fileID: 1754771865649491525}
   - component: {fileID: 751167098107149100}
   m_Layer: 5
-  m_Name: Label_CostGold (1)
+  m_Name: TxtTip11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4824,6 +4824,8 @@ MonoBehaviour:
     gameObject: {fileID: 2309253927222200809}
   - key: XiuLian_4
     gameObject: {fileID: 4493697115485836303}
+  - key: Label_CostGold
+    gameObject: {fileID: 6836476089710524099}
 --- !u!114 &5374465974167089190
 MonoBehaviour:
   m_ObjectHideFlags: 0

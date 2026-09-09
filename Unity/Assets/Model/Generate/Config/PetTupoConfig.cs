@@ -96,7 +96,7 @@ namespace ET
 		/// <summary>成功概率</summary>
 		[ProtoMember(7)]
 		public double SuccessPro { get; set; }
-		/// <summary>消耗家族贡献</summary>
+		/// <summary>消耗金币</summary>
 		[ProtoMember(8)]
 		public int CostGold { get; set; }
 		/// <summary>消耗道具</summary>
