@@ -1328,8 +1328,18 @@ namespace ET
             self.PetZiZhiItemList[4].transform.Find("ImageExpValue").localScale = new Vector3(Mathf.Clamp(rolePetInfo.ZiZhi_ChengZhang * 1f / (float)petConfig.ZiZhi_ChengZhang_Max, 0f, 1f), 1f, 1f);
             self.PetZiZhiItemList[5].transform.Find("ImageExpValue").localScale = new Vector3(Mathf.Clamp(rolePetInfo.ZiZhi_MageAct * 1f / petConfig.ZiZhi_MageAct_Max, 0f, 1f), 1f, 1f);
             */
-            Sprite sprite16 = ResourcesComponent.Instance.LoadAsset<Sprite>("Assets/Bundles/Icon/OtherIcon/Pro_16.png");
-            Sprite sprite17 = ResourcesComponent.Instance.LoadAsset<Sprite>("Assets/Bundles/Icon/OtherIcon/Pro_17.png");
+            string path16 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Pro_16");
+            string path17 = ABPathHelper.GetAtlasPath_2(ABAtlasTypes.OtherIcon, "Pro_17");
+            Sprite sprite16 = ResourcesComponent.Instance.LoadAsset<Sprite>(path16);
+            Sprite sprite17 = ResourcesComponent.Instance.LoadAsset<Sprite>(path17);
+            if (!self.AssetPath.Contains(path16))
+            {
+                self.AssetPath.Add(path16);
+            }
+            if (!self.AssetPath.Contains(path17))
+            {
+                self.AssetPath.Add(path17);
+            }
 
             self.PetZiZhiItemList[0].transform.Find("ImageExpValue").GetComponent<Image>().sprite =
                     rolePetInfo.ZiZhi_Hp >= petConfig.ZiZhi_Hp_Max? sprite16 : sprite17;
