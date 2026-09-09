@@ -1544,5 +1544,22 @@ namespace ET
                 self.Lab_JinHua.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已进化");
             }
         }
+
+        public static void OnPetTupoSuccess(this UIPetListComponent self)
+        {
+            if (self.LastSelectItem == null)
+            {
+                return;
+            }
+
+            RolePetInfo rolePetInfo = self.PetComponent.GetPetInfoByID(self.LastSelectItem.Id);
+            if (rolePetInfo == null)
+            {
+                return;
+            }
+
+            self.LastSelectItem = rolePetInfo;
+            self.OnUpdatePetInfo(rolePetInfo);
+        }
     }
 }

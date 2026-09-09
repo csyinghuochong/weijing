@@ -201,7 +201,21 @@ namespace ET
                     (M2C_PetTupoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error == ErrorCode.ERR_Success)
             {
+                PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+                if (response.RolePetInfos != null)
+                {
+                    for (int i = 0; i < response.RolePetInfos.Count; i++)
+                    {
+                        petComponent.OnRolePetUpdate(response.RolePetInfos[i]);
+                    }
+                }
+
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("突破成功！"));
+
+                UI uiPet = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet);
+                UIPetComponent uiPetComponent = uiPet?.GetComponent<UIPetComponent>();
+                UI petListUI = uiPetComponent?.UIPageView?.UISubViewList[(int)PetPageEnum.PetList];
+                petListUI?.GetComponent<UIPetListComponent>()?.OnPetTupoSuccess();
             }
             else
             {

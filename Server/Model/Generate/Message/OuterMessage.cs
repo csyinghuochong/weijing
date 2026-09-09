@@ -17149,6 +17149,9 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
+		[ProtoMember(1)]
+		public List<RolePetInfo> RolePetInfos = new List<RolePetInfo>();
+
 	}
 
 }

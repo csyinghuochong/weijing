@@ -88,6 +88,8 @@ namespace ET
                 petComponent.UpdatePetAttribute(petComponent.RolePetInfos[i], false);
             }
 
+            response.RolePetInfos = petComponent.RolePetInfos;
+
             reply();
             await ETTask.CompletedTask;
         }
