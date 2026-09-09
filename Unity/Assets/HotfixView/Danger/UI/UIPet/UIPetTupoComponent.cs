@@ -88,6 +88,22 @@ namespace ET
                 }
                 PetTupoConfig itemConfig = PetTupoConfigCategory.Instance.Get(itemTupoId);
                 self.UIUnionXiuLianItemList[i].Text_Tip_1.GetComponent<Text>().text = itemConfig.GetEquipSpaceName();
+                bool gray = itemConfig.Id % 100 == 0;
+                UICommonHelper.SetImageGray(self.UIUnionXiuLianItemList[i].ImageIcon, gray);
+                Transform itemRoot = self.UIUnionXiuLianItemList[i].ImageIcon.transform.parent;
+                Transform glow = itemRoot.Find("ImageIcon (1)");
+                if (glow != null && glow.GetComponent<Image>() != null)
+                {
+                    UICommonHelper.SetImageGray(glow.gameObject, gray);
+                }
+                if (i < self.XiuLianImageIcon.transform.childCount)
+                {
+                    GameObject center = self.XiuLianImageIcon.transform.GetChild(i).gameObject;
+                    if (center.GetComponent<Image>() != null)
+                    {
+                        UICommonHelper.SetImageGray(center, gray);
+                    }
+                }
             }
 
             int numerType = PetTupoHelper.GetTupoNumericType(self.Position);
