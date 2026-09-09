@@ -89,6 +89,8 @@ MonoBehaviour:
     gameObject: {fileID: 3655635531418631200}
   - key: ItemRewadList_3
     gameObject: {fileID: 7635243888841772451}
+  - key: ItemRewadList_4
+    gameObject: {fileID: 8347405683344372047}
   - key: UIPetFenJieTipItem
     gameObject: {fileID: 307763666654068237}
   - key: PetListNode

@@ -12,6 +12,7 @@ namespace ET
         public GameObject ItemRewadList_1;
         public GameObject ItemRewadList_2;
         public GameObject ItemRewadList_3;
+        public GameObject ItemRewadList_4;
         public GameObject UIPetFenJieTipItem;
         public GameObject PetListNode;
         public GameObject UICommonItem;
@@ -24,6 +25,7 @@ namespace ET
         public List<UIItemComponent> RewardItemList_1 = new List<UIItemComponent>();
         public List<UIItemComponent> RewardItemList_2 = new List<UIItemComponent>();
         public List<UIItemComponent> RewardItemList_3 = new List<UIItemComponent>();
+        public List<UIItemComponent> RewardItemList_4 = new List<UIItemComponent>();
     }
 
     public class UIPetFenJieTipComponentAwakeSystem : AwakeSystem<UIPetFenJieTipComponent>
@@ -38,6 +40,7 @@ namespace ET
             self.ItemRewadList_1 = rc.Get<GameObject>("ItemRewadList_1");
             self.ItemRewadList_2 = rc.Get<GameObject>("ItemRewadList_2");
             self.ItemRewadList_3 = rc.Get<GameObject>("ItemRewadList_3");
+            self.ItemRewadList_4 = rc.Get<GameObject>("ItemRewadList_4");
             self.UIPetFenJieTipItem = rc.Get<GameObject>("UIPetFenJieTipItem");
             self.UIPetFenJieTipItem.SetActive(false);
             self.PetListNode = rc.Get<GameObject>("PetListNode");
@@ -73,6 +76,7 @@ namespace ET
             self.RewardItemList_1 = null;
             self.RewardItemList_2 = null;
             self.RewardItemList_3 = null;
+            self.RewardItemList_4 = null;
         }
     }
 
@@ -82,7 +86,8 @@ namespace ET
         {
             self.ShowRewardList(self.ItemRewadList_1, PetHelper.GetPetFenJieItemsByPingFen(0), self.RewardItemList_1);
             self.ShowRewardList(self.ItemRewadList_2, PetHelper.GetPetFenJieItemsByPingFen(5000), self.RewardItemList_2);
-            self.ShowRewardList(self.ItemRewadList_3, PetHelper.GetPetFenJieItemsByPingFen(10000), self.RewardItemList_3);
+            self.ShowRewardList(self.ItemRewadList_3, PetHelper.GetPetFenJieItemsByPingFen(8500), self.RewardItemList_3);
+            self.ShowRewardList(self.ItemRewadList_4, PetHelper.GetPetFenJieItemsByPingFen(10000), self.RewardItemList_4);
             self.OnInitPetList();
         }
 
@@ -126,6 +131,7 @@ namespace ET
             if (list.Count == 0)
             {
                 self.LastSelectItem = null;
+                self.UpdateRewardGray();
                 return;
             }
 
@@ -180,6 +186,7 @@ namespace ET
             {
                 self.PetUIList[i].OnSelectUI(self.LastSelectItem);
             }
+            self.UpdateRewardGray();
         }
 
         public static void ShowRewardList(this UIPetFenJieTipComponent self, GameObject parent, int dropId, List<UIItemComponent> cache)
@@ -221,12 +228,54 @@ namespace ET
                 }
 
                 itemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
+                itemComponent.Label_ItemNum.SetActive(false);
                 num++;
             }
 
             for (int i = num; i < cache.Count; i++)
             {
                 cache[i].GameObject.SetActive(false);
+            }
+        }
+
+        public static void UpdateRewardGray(this UIPetFenJieTipComponent self)
+        {
+            int dang = 0;
+            if (self.LastSelectItem != null)
+            {
+                dang = PetHelper.GetPetFenJieDang(PetHelper.PetPingJia(self.LastSelectItem));
+            }
+
+            self.SetRewardListGray(self.RewardItemList_1, dang != 1);
+            self.SetRewardListGray(self.RewardItemList_2, dang != 2);
+            self.SetRewardListGray(self.RewardItemList_3, dang != 3);
+            self.SetRewardListGray(self.RewardItemList_4, dang != 4);
+        }
+
+        public static void SetRewardListGray(this UIPetFenJieTipComponent self, List<UIItemComponent> cache, bool gray)
+        {
+            if (cache == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < cache.Count; i++)
+            {
+                UIItemComponent item = cache[i];
+                if (item == null || item.GameObject == null || !item.GameObject.activeSelf)
+                {
+                    continue;
+                }
+
+                if (item.Image_ItemIcon != null)
+                {
+                    UICommonHelper.SetImageGray(item.Image_ItemIcon, gray);
+                }
+
+                if (item.Image_ItemQuality != null)
+                {
+                    UICommonHelper.SetImageGray(item.Image_ItemQuality, gray);
+                }
             }
         }
 

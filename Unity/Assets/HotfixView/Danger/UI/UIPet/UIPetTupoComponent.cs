@@ -146,7 +146,9 @@ namespace ET
                 UIItemComponent itemComponent = self.UIItemComponentList[num];
                 itemComponent.GameObject.SetActive(true);
                 itemComponent.UpdateItem(new BagInfo() { ItemID = itemConfigId }, ItemOperateEnum.None);
-                itemComponent.Label_ItemNum.GetComponent<Text>().text = $"{itemNum}/{havedNum}";
+                itemComponent.Label_ItemNum.GetComponent<Text>().text = itemConfigId == 1
+                        ? $"{ItemViewHelp.ReturnNumStr(itemNum)}/{ItemViewHelp.ReturnNumStr(havedNum)}"
+                        : $"{itemNum}/{havedNum}";
                 itemComponent.Label_ItemNum.GetComponent<Text>().color =
                         havedNum >= itemNum ? new Color(0, 1, 0) : new Color(245f / 255f, 43f / 255f, 96f / 255f);
                 num++;

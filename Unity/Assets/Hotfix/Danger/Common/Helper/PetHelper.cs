@@ -37,6 +37,26 @@ namespace ET
             return 601800061;
         }
 
+        public static int GetPetFenJieDang(int pingfen)
+        {
+            if (pingfen >= 10000)
+            {
+                return 4;
+            }
+
+            if (pingfen >= 8500)
+            {
+                return 3;
+            }
+
+            if (pingfen >= 5000)
+            {
+                return 2;
+            }
+
+            return 1;
+        }
+
         public static Dictionary<int, int> GetEquipSkillList(RolePetInfo rolePetInfo, BagComponent bagComponent)
         {
             Dictionary<int, int> hideSkillId = new Dictionary<int, int>();
