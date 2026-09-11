@@ -15,12 +15,14 @@ namespace ET
                 DBPopularizeInfo dBPopularizeInfo = await DBHelper.GetComponentCache<DBPopularizeInfo>(scene.DomainZone(), request.ActorId);
                 if (dBPopularizeInfo == null)
                 {
+                    response.Error = ErrorCode.ERR_PopularizeNot;
                     reply();
                     return;
                 }
                 UserInfoComponent userInfoComponent = await DBHelper.GetComponentCache<UserInfoComponent>(scene.DomainZone(), request.ActorId);
                 if (userInfoComponent == null)
                 {
+                    response.Error = ErrorCode.ERR_PopularizeNot;
                     reply();
                     return;
                 }
@@ -30,12 +32,14 @@ namespace ET
                 int newzone = ServerHelper.GetNewServerId(oldzone);
                 if (newzone < 5)
                 {
+                    response.Error = ErrorCode.ERR_PopularizeNot;
                     reply();
                     return;
                 }
                 if (newzone > ServerHelper.GetServerList().Count + 10)
                 {
                     Log.Warning($"C2Popularize_PlayerRequest: {request.PopularizeId}");
+                    response.Error = ErrorCode.ERR_PopularizeNot;
                     reply();
                     return;
                 }
@@ -70,12 +74,13 @@ namespace ET
                     return;
                 }
 
+
+                response.Message = "SUCESS";
                 dBPopularizeInfoList[0].MyPopularizeList.Add(new PopularizeInfo() { UnitId = request.ActorId });
                 await DBHelper.SaveComponentCache(newzone, dBPopularizeInfoList[0].Id, dBPopularizeInfoList[0]);
 
                 dBPopularizeInfo.BePopularizeId = request.PopularizeId;
                 await DBHelper.SaveComponentCache(newzone, dBPopularizeInfo.Id, dBPopularizeInfo);
-
             }
 
             reply();
