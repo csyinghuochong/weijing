@@ -655,7 +655,13 @@ namespace ET
         public void OnX7SwitchAccountResult(string result)
         {
             Log.ILog.Debug($"OnX7SwitchAccountResult: {result}");
-            this.OnX7SwitchAccountHandler?.Invoke();
+            if (this.OnX7SwitchAccountHandler != null)
+            {
+                this.OnX7SwitchAccountHandler.Invoke();
+                return;
+            }
+            Log.ILog.Debug("OnX7SwitchAccountResult: handler is null, fallback OnX7LogoutSuccessHandler");
+            this.OnX7LogoutSuccessHandler?.Invoke();
         }
 
         public void TikTokLogin()
