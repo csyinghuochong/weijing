@@ -493,8 +493,8 @@ namespace ET
                 //2026/09/11 19:00:00 1789124400000 合区 风语神殿-霜烬王座  230/231
                 serverItems_1.Add(new ServerItem() { ServerId = 230, ServerIp = $"{ip}:20495", ServerName = "风语神殿", ServerOpenTime = 1786100400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 231, ServerIp = $"{ip}:20495", ServerName = "霜烬王座", ServerOpenTime = 1786705200000, New = 0, Show = 0, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-                
-                
+
+
                 serverItems_1.Add(new ServerItem() { ServerId = 232, ServerIp = $"{ip}:20515", ServerName = "神之岛屿", ServerOpenTime = 1787310000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 233, ServerIp = $"{ip}:20545", ServerName = "炽焰圣殿", ServerOpenTime = 1787914800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 234, ServerIp = $"{ip}:20555", ServerName = "不朽之城", ServerOpenTime = 1788519600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
