@@ -60,6 +60,8 @@ _ReSharper.CSharp/
 /netcoreapp2.0
 /Unity/Assets/StreamingAssets.meta
 /Unity/Assets/StreamingAssetsGoogle.meta
+/Unity/Assets/StreamingAssets_1/
+/Unity/Assets/StreamingAssets_1.meta
 .DS_Store
 Server/.DS_Store
 /Server/.vscode/

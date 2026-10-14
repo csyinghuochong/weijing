@@ -78,6 +78,12 @@ public class UIYinSi : MonoBehaviour
             dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi_1.txt";
             Log.ILog.Debug($"platform == 100  yinsi6");
         }
+        if (platform == 7)
+        {
+            //谷歌
+            dataurl = "http://verification.weijinggame.com/weijing/yinsi5.txt";
+            Log.ILog.Debug($"platform == 7  谷歌");
+        }
         return dataurl;
     }
     public string GetYingSiText(int platform)
@@ -221,7 +227,7 @@ public class UIYinSi : MonoBehaviour
 
         this.TextButton_2.GetComponent<Button>().onClick.AddListener(() =>
         {
-            if (platform == 100 )
+            if (platform == 100 || platform == 7)
             {
                 string url = GetYingSiTextNewUrl(platform);
                 url = url.Substring(0, url.Length - 4) + ".html";

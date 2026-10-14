@@ -263,8 +263,7 @@ namespace ET
 				});
 				self.TextButton_2.GetComponent<Button>().onClick.AddListener(() =>
 				{
-                    
-					if (platform == 100)
+					if (platform == 100 || platform == 7)
 					{
                         UILoginHelper.OpenURL_YingSiText(platform);
 					}

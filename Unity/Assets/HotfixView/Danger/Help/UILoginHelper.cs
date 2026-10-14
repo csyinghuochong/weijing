@@ -129,6 +129,11 @@ namespace ET
                 dataurl = "http://verification.weijinggame.com/weijing/YongHuYinSi_1.txt";
                 Log.ILog.Debug($"platform == 100  yinsi6");
             }
+            if (platform == 7)
+            {
+                //谷歌
+                dataurl = "http://verification.weijinggame.com/weijing/yinsi5.txt";
+            }
             return dataurl;
         }
         public static string GetYingSiTextNew( int platform)
