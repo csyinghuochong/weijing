@@ -77,7 +77,7 @@ namespace ET
 
 						bool testAccount = centerAccountList[0].Account == "qqUID_BA63136176105041E8C1A0697413812B";
 
-
+						/*
                         if (!ComHelp.IsBanHaoZone(session.DomainZone()) 
 							&& !ComHelp.IsZhuBoZone(session.DomainZone())
 							&& !ServerHelper.IsGoogleServer(session.DomainZone())
@@ -92,6 +92,8 @@ namespace ET
                                 return;
                             }
                         }
+						*/
+
                         //if (!centerAccountList[0].Password.Equals(ComHelp.RobotPassWord) && accountCrateTime == 0 && (serverNowTime - serverOpenTime >= TimeHelper.OneDay * 14))
                         //{
                         //    response.Error = ErrorCode.ERR_CreateRole_Limit_2;
