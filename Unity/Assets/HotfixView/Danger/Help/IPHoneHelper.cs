@@ -55,7 +55,9 @@ namespace ET
         public static bool IsHaveLiuHai()
         {
             return (Screen.width == 2796 && Screen.height == 1290)      //iphone15promax
-                || (Screen.width == 2556 && Screen.height == 1179);     //iphone15
+                || (Screen.width == 2556 && Screen.height == 1179)      //iphone15
+                || (Screen.width == 2034 && Screen.height == 1398)      //iphone duo 外屏横屏
+                || (Screen.width == 2670 && Screen.height == 1878);     //iphone duo 内屏横屏
         }
 
         public static bool IsIphoneSE()
@@ -138,7 +140,9 @@ namespace ET
         }
         if (modelStr == "iPhone10,3" || modelStr == "iPhone10,6" || modelStr == "iPhone11,2" || modelStr == "iPhone11,6" || modelStr == "iPhone11,8"
          || modelStr == "iPhone12,1"|| modelStr == "iPhone12,3"|| modelStr == "iPhone12,5"|| modelStr == "iPhone12,8" || modelStr == "iPhone15,2" || modelStr == "iPhone15,3" || modelStr == "iPhone15,4"
-         || modelStr.Contains("iPhone12")||modelStr.Contains("iPhone13")||modelStr.Contains("iPhone14")||modelStr.Contains("iPhone15")||modelStr.Contains("iPhone16")||modelStr.Contains("iPhone17"))
+         || modelStr == "iPhone19,4" //iphone duo
+         || modelStr.Contains("iPhone12")||modelStr.Contains("iPhone13")||modelStr.Contains("iPhone14")||modelStr.Contains("iPhone15")||modelStr.Contains("iPhone16")||modelStr.Contains("iPhone17")
+         || modelStr.Contains("iPhone18")||modelStr.Contains("iPhone19"))
         {
             //需要适配
             return true;
