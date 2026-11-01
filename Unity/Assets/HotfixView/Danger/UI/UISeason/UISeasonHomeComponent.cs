@@ -117,6 +117,26 @@ namespace ET
             {
                 self.SeasonText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("2026第三赛季");
             }
+            if (seasonOpenTime.KeyId == 11)
+            {
+                self.SeasonText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("2026第四赛季");
+            }
+            if (seasonOpenTime.KeyId == 12)
+            {
+                self.SeasonText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("2027第一赛季");
+            }
+            if (seasonOpenTime.KeyId == 13)
+            {
+                self.SeasonText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("2027第二赛季");
+            }
+            if (seasonOpenTime.KeyId == 14)
+            {
+                self.SeasonText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("2027第三赛季");
+            }
+            if (seasonOpenTime.KeyId == 15)
+            {
+                self.SeasonText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("2027第四赛季");
+            }
 
             int seasonExp = userInfo.SeasonExp;
             SeasonLevelConfig seasonLevelConfig = SeasonLevelConfigCategory.Instance.Get(userInfo.SeasonLevel);
