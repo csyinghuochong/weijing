@@ -509,9 +509,9 @@ namespace ET
 
 
                 //2026/11/06 19:00:00 1793962800000 合区 xx-xx  xx/xx
-                //2026/11/06 19:00:00 1793962800000 新区 新区新区 243
+                //2026/11/06 19:00:00 1793962800000 新区 谁与争锋 243
                 //201-210为特殊区服
-                serverItems_1.Add(new ServerItem() { ServerId = 243, ServerIp = $"{ip}:20505", ServerName = "新区新区", ServerOpenTime = 1793962800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+                serverItems_1.Add(new ServerItem() { ServerId = 243, ServerIp = $"{ip}:20505", ServerName = "谁与争锋", ServerOpenTime = 1793962800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
