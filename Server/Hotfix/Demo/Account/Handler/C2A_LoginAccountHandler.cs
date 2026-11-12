@@ -374,33 +374,50 @@ namespace ET
 
                         response.RoleLists.Clear();
                         long dbCacheId = DBHelper.GetDbCacheId(session.DomainZone());
+                        List<long> invalidUserIds = new List<long>();
                         for (int i = 0; i < account.UserList.Count; i++)
                         {
-                            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.UserInfoComponent });
-                            if (d2GGetUnit.Component == null)
+                            long userId = account.UserList[i];
+                            D2G_GetComponent userInfoResp = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userId, Component = DBHelper.UserInfoComponent });
+                            D2G_GetComponent numericResp = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userId, Component = DBHelper.NumericComponent });
+                            D2G_GetComponent bagResp = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userId, Component = DBHelper.BagComponent });
+
+                            // 查询失败先跳过，不能把还在的角色删掉。查到了但组件没有，才算无效。
+                            if (userInfoResp.Error != ErrorCode.ERR_Success || numericResp.Error != ErrorCode.ERR_Success || bagResp.Error != ErrorCode.ERR_Success)
                             {
                                 continue;
                             }
-                            UserInfoComponent userinfo = d2GGetUnit.Component as UserInfoComponent;
 
-                            CreateRoleInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userinfo.UserInfo, account.UserList[i]);
+                            UserInfoComponent userinfo = userInfoResp.Component as UserInfoComponent;
+                            NumericComponent numericComponent = numericResp.Component as NumericComponent;
+                            BagComponent bagComponent = bagResp.Component as BagComponent;
+                            if (userinfo == null || userinfo.UserInfo == null || numericComponent == null || bagComponent == null)
+                            {
+                                invalidUserIds.Add(userId);
+                                continue;
+                            }
 
-                            d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.NumericComponent });
-                            if (d2GGetUnit.Component!=null)
-                            {
-                                NumericComponent numericComponent = d2GGetUnit.Component as NumericComponent;
-                                roleList.WeaponId = numericComponent.GetAsInt(NumericType.Now_Weapon);
-                                roleList.EquipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
-                            }
-                           
-                            d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.BagComponent });
-                            if (d2GGetUnit.Component != null)
-                            {
-                                BagComponent bagComponent = d2GGetUnit.Component as BagComponent;
-                                roleList.FashionIds = bagComponent.FashionEquipList;
-                            }
-                            
+                            CreateRoleInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userinfo.UserInfo, userId);
+                            roleList.WeaponId = numericComponent.GetAsInt(NumericType.Now_Weapon);
+                            roleList.EquipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
+                            roleList.FashionIds = bagComponent.FashionEquipList;
                             response.RoleLists.Add(roleList);
+                        }
+
+                        if (invalidUserIds.Count > 0)
+                        {
+                            for (int i = 0; i < invalidUserIds.Count; i++)
+                            {
+                                long invalidUserId = invalidUserIds[i];
+                                account.UserList.Remove(invalidUserId);
+                                if (!account.DeleteUserList.Contains(invalidUserId))
+                                {
+                                    account.DeleteUserList.Add(invalidUserId);
+                                }
+                                Log.Warning($"Login remove invalid role: {request.AccountName} {invalidUserId}");
+                                Console.WriteLine($"Login remove invalid role: {request.AccountName} {invalidUserId}");
+                            }
+                            await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(session.DomainZone(), account);
                         }
 
                         //客户端启动的时候注册DBCenterDataCache。  

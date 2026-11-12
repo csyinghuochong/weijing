@@ -114,7 +114,7 @@ namespace ET
 						if (newAccount.UserList.Count > 10)
 						{
                             Log.Error($"C2A_CreateRoleHandler.2");
-                            response.Error = ErrorCode.ERR_ModifyData;
+                            response.Error = ErrorCode.ERR_CreateRole_Limit;
                             reply();
                             return;
                         }
