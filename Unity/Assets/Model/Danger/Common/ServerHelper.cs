@@ -510,18 +510,13 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 241, ServerIp = $"{ip}:20465", ServerName = "逐光之路", ServerOpenTime = 1792753200000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 242, ServerIp = $"{ip}:20485", ServerName = "苍风之誓", ServerOpenTime = 1793358000000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
                 serverItems_1.Add(new ServerItem() { ServerId = 243, ServerIp = $"{ip}:20505", ServerName = "谁与争锋", ServerOpenTime = 1793962800000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
-
-
-                //2026/11/13 19:00:00 1794567600000 合区 九天境-金马迎春  188/196
-                //2026/11/13 19:00:00 1794567600000 合区 绿茵世界-永恒秘境  222/224
-                //2026/11/13 19:00:00 1794567600000 合区 一剑惊鸿-长安故梦  226/228
-                //2026/11/13 19:00:00 1794567600000 合区 神之岛屿-炽焰圣殿  232/233
-                //2026/11/13 19:00:00 1794567600000 合区 不朽之城-希望之光  234/235
-                //2026/11/13 19:00:00 1794567600000 合区 月光神域-霜火之巅  236/237
-                //2026/11/13 19:00:00 1794567600000 合区 盛世华章-翡翠之地  238/239
-                //2026/11/13 19:00:00 1794567600000 新区 风之禾野 244
-                //201-210为特殊区服
                 serverItems_1.Add(new ServerItem() { ServerId = 244, ServerIp = $"{ip}:20525", ServerName = "风之禾野", ServerOpenTime = 1794567600000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
+
+
+                //2026/11/20 19:00:00 1795172400000 合区 xx-xx  xx/xx
+                //2026/11/20 19:00:00 1795172400000 新区 风雨同归 245
+                //201-210为特殊区服
+                serverItems_1.Add(new ServerItem() { ServerId = 245, ServerIp = $"{ip}:20385", ServerName = "风雨同归", ServerOpenTime = 1795172400000, New = 0, Show = 1, PlatformList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 8, 100, 20001 } });
             }
 
             //google服务器
