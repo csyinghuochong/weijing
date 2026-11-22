@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tauren Warrior_Skin_Mat_Dissolve
+  m_Shader: {fileID: 4800000, guid: 9f7e299f202797a4cb234938560347b2, type: 3}
+  m_ValidKeywords:
+  - _2SIDESSECONDEDGE_ON
+  - _AXIS_Z
+  - _EDGESAFFECT_ALBEDO
+  - _GUIDEAFFECTSEDGESBLENDING_ON
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: d1f77263bda26aa40be269645e2f5e07, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 1}
+    - _DisplacementGuide:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Edge1Pattern:
+        m_Texture: {fileID: 2800000, guid: 91370402da60bf04190de90a1b38e206, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionTexture:
+        m_Texture: {fileID: 2800000, guid: cfe332c15788ca346a65ab6a84f4413d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GuideTexture:
+        m_Texture: {fileID: 2800000, guid: 92c51efe6ea7c2c499cfc3f20377911f, type: 3}
+        m_Scale: {x: 11, y: 11}
+        m_Offset: {x: 0, y: 0}
+    - _MainEdgeDisplacementGuide:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainEdgePattern:
+        m_Texture: {fileID: 2800000, guid: 1355309eb73cdc743b0cfbb3bbb4afd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicTexture:
+        m_Texture: {fileID: 2800000, guid: d84cb3f3c8fbf0b4cbbec1206b9a6a4b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondEdgeDisplacementGuide:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondEdgePattern:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture0:
+        m_Texture: {fileID: 2800000, guid: ae5b00fadb5938546b5ec43ee0d7af70, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample5:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _0AmountOffsetMin: 0
+    - _2SidesSecondEdge: 1
+    - _AlphaCutoff: 0.5
+    - _Axis: 2
+    - _DisplacementGuideTilling: 1
+    - _DisplacementGuideTillingSpeed: 0
+    - _DissolveAmount: 0
+    - _Edge1PatternTilling: 8.61
+    - _EdgeWidth: 0.054
+    - _EdgesAffect: 0
+    - _Float3: 0.05
+    - _GuideAffectsEdgesBlending: 1
+    - _GuideEdgesBlendingStrength: 0.13
+    - _GuideStrength: 1.01
+    - _GuideTilling: 1
+    - _GuideTillingSpeed: 0.016
+    - _InvertDirectionMinMax: 0
+    - _MainEdgePatternHardness: 0
+    - _MainEdgePatternTilling: 8.81
+    - _MainEdgeWidth: 0.062
+    - _MaxHeightWhenAmount1: -1.23
+    - _MaxValueWhenAmount1: 1.09
+    - _MaxY: 17.1
+    - _MetallicValue: 0
+    - _MinHeightWhenAmount0: 16.37
+    - _MinValueWhenAmount0: -0.53
+    - _MinY: -2.1
+    - _NoiseStrength: 0.67
+    - _SecondEdgePatternTilling: 11
+    - _SecondEdgeWidth: 0.013
+    - _SmoothnessValue: 0
+    - _SpecularValue: 1
+    - _Test: 0.01
+    - _UseTriplanarUvs: 0
+    - _UseTriplanarUvsGuide: 0
+    - _VertexDisplacement: 0.05
+    - _VertexDisplacementEdge1: 0
+    - _VertexDisplacementEdge2: 0
+    - _VertexDisplacementMainEdge: 0
+    - _VertexDisplacementSecondEdge: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DissolveColor: {r: 1, g: 0, b: 0, a: 0}
+    - _EdgeColor1: {r: 1, g: 0, b: 0, a: 0}
+    - _EdgeColor2: {r: 0, g: 0.07843113, b: 1, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainEdgeColor1: {r: 0.28235295, g: 0.07058824, b: 0, a: 0}
+    - _MainEdgeColor2: {r: 29.508846, g: 0, b: 0, a: 0}
+    - _SecondEdgeColor1: {r: 29.857058, g: 18.616755, b: 0, a: 1}
+    - _SecondEdgeColor2: {r: 0, g: 0, b: 0, a: 0}
+    - _SpecularValue: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
